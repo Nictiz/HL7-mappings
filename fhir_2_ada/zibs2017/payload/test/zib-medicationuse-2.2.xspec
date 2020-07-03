@@ -51,11 +51,7 @@
                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
                            <value value="MBH_513_2_MGB_1"/>
                         </identifier>
-                        <status>
-                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                              <valueCode value="unknown"/>
-                           </extension>
-                        </status>
+                        <status value="on-hold"/>
                         <category>
                            <coding>
                               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -88,6 +84,12 @@
                            <display value="relatie naar medicatieafspraak"/>
                         </derivedFrom>
                         <taken value="y"/>
+                        <reasonCode>
+                           <text value="Lymfekanker"/>
+                        </reasonCode>
+                        <note>
+                           <text value="Tabletten wat lastig door te slikken, maar het lukt uiteindelijk wel."/>
+                        </note>
                         <dosage>
                            <sequence value="1"/>
                            <text value="Vanaf 1 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
@@ -118,6 +120,48 @@
                      <mode value="match"/>
                   </search>
                </entry>
+                 <entry>
+                    <fullUrl value="urn:uuid:09e20357-b54a-11ea-7883-020000000000"/>
+                    <resource>
+                       <Patient>
+                          <meta>
+                             <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+                          </meta>
+                          <identifier>
+                             <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                             <value>
+                                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                   <valueCode value="masked"/>
+                                </extension>
+                             </value>
+                          </identifier>
+                          <identifier>
+                             <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
+                             <value value="51107"/>
+                          </identifier>
+                          <name>
+                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                                <valueCode value="NL1"/>
+                             </extension>
+                             <family value="XXX_Amaya">
+                                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                   <valueString value="XXX_Amaya"/>
+                                </extension>
+                             </family>
+                             <given value="J.">
+                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                   <valueCode value="IN"/>
+                                </extension>
+                             </given>
+                          </name>
+                          <gender value="male"/>
+                          <birthDate value="1964-08-06"/>
+                       </Patient>
+                    </resource>
+                    <search>
+                       <mode value="include"/>
+                    </search>
+                 </entry>
                <entry>
                   <fullUrl value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
                   <resource>
@@ -514,18 +558,28 @@
             </x:context>
             <x:expect label="'medicatie_gebruik' element with children">
                 <medicatie_gebruik>
-                   <gebruiksperiode_start value="2018-09-01T00:00:00" datatype="datetime"/>
-                    <identificatie value="MBH_513_2_MGB_1"
+                   <gebruiksperiode_start 
+                      value="2018-09-01T00:00:00+02:00" 
+                      datatype="datetime"/>
+                    <identificatie 
+                       value="MBH_513_2_MGB_1"
                         root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-                   <registratiedatum value="2018-09-01T15:39:00" datatype="datetime"/>
+                   <registratiedatum 
+                      value="2018-09-01T15:39:00+02:00" 
+                      datatype="datetime"/>
                     <gebruik_indicator value="true"/>
                     <volgens_afspraak_indicator value="false"/>
+                   <stoptype
+                      code="1"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                      displayName="Onderbreking"/>
                     <gebruiks_product>
                         <product>
                             <product_code code="5967"
                                 codeSystem="2.16.840.1.113883.2.4.4.10"
                                 displayName="FUROSEMIDE TABLET 40MG"
-                                codeSystemName="G-Standaard PRK"/>
+                                codeSystemName="G-Standaard PRK"
+                                preferred="true"/>
                             <product_code
                                 code="16810"
                                 codeSystem="2.16.840.1.113883.2.4.4.1"
@@ -538,7 +592,7 @@
                         <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                             code="9"
                             displayName="Oraal"
-                            codeSystemName="G-Standaard Toedieningswegen"/>
+                            codeSystemName="G-Standaard TH007 Toedieningswegen"/>
                         <doseerinstructie>
                             <volgnummer value="1"/>
                             <dosering>
@@ -549,7 +603,7 @@
                                     <eenheid 
                                        code="245"
                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                       codeSystemName="G-Standaardthesaurus basiseenheden"
+                                       codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
                                        displayName="stuk"/>
                                 </keerdosis>
                                 <toedieningsschema>
@@ -564,11 +618,6 @@
                             </dosering>
                         </doseerinstructie>
                     </gebruiksinstructie>
-                    <gerelateerde_afspraak>
-                        <identificatie_medicatieafspraak 
-                           value="MBH_513_2_MA_1"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                    </gerelateerde_afspraak>
                     <voorschrijver>
                         <zorgverlener>
                             <zorgverlener_identificatie_nummer 
@@ -584,10 +633,9 @@
                                 </naamgegevens>
                             </naamgegevens>
                             <specialisme
-                                value="21"
                                 code="0313"
                                 codeSystem="2.16.840.1.113883.2.4.6.7"
-                                codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"
                                 codeSystemVersion="2017-12-14T00:00:00"
                                 displayName="Medisch specialisten, inwendige geneeskunde"/>
                             <zorgaanbieder>
@@ -617,27 +665,26 @@
                                     </naamgegevens>
                                 </zorgverlener_naam>
                                 <specialisme
-                                    value="21"
                                     code="0313"
                                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                                    codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                    codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"
                                     codeSystemVersion="2017-12-14T00:00:00"
                                     displayName="Medisch specialisten, inwendige geneeskunde"/>
-                                <zorgaanbieder>
-                                    <zorgaanbieder>
-                                        <zorgaanbieder_identificatie_nummer 
-                                           value="99901111"
-                                           root="2.16.528.1.1007.3.3"/>
-                                        <organisatie_naam value="Ziekenhuis Stitswerd"/>
-                                    </zorgaanbieder>
-                                </zorgaanbieder>
+                                 <zorgaanbieder>
+                                     <zorgaanbieder_identificatie_nummer 
+                                        value="99901111"
+                                        root="2.16.528.1.1007.3.3"/>
+                                     <organisatie_naam value="Ziekenhuis Stitswerd"/>
+                                 </zorgaanbieder>
                             </zorgverlener>
                         </auteur_is_zorgverlener>
                     </auteur>
+                   <reden_gebruik value="Lymfekanker"/>
                    <reden_wijzigen_of_stoppen_gebruik 
                       code="6" 
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" 
                       displayName="Te sterk effect"/>
+                   <toelichting value="Tabletten wat lastig door te slikken, maar het lukt uiteindelijk wel."/>
                 </medicatie_gebruik>
             </x:expect>
         </x:scenario>
@@ -645,7 +692,61 @@
       
       <!-- `scenario toevoegen voor dosage ipv dosageInstruction -->
        
-       
+       <x:scenario label="Gerelateerde afspraak">
+            <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement[1]">
+              <Bundle xmlns="http://hl7.org/fhir"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+               <type value="searchset"/>
+               <total value="1"/>
+               <entry>
+                  <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                  <resource>
+                     <MedicationStatement>
+                        <derivedFrom>
+                           <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5968"/>
+                           <display value="relatie naar medicatieafspraak"/>
+                        </derivedFrom>
+                     </MedicationStatement>
+                  </resource>
+               </entry>
+                 <entry>
+                    <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5968"/>
+                    <resource>
+                    <MedicationRequest xmlns="http://hl7.org/fhir">
+                       <id value="MBH-907-QA1-MA"/>
+                       <meta>
+                          <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                       </meta>
+                       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+                          <valueIdentifier>
+                             <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                             <value value="MBH_907_QA1"/>
+                          </valueIdentifier>
+                       </extension>
+                       <identifier>
+                          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                          <value value="MBH_907_QA1_MA"/>
+                       </identifier>
+                       <category>
+                          <coding>
+                             <code value="16076005"/>
+                          </coding>
+                       </category>
+                    </MedicationRequest>
+                    </resource>
+                 </entry>
+            </Bundle>
+            </x:context>
+            <x:expect label="'Gerelateerde afspraak / gerelateerde verstrekkingen'">
+                <medicatie_gebruik>
+                    <gerelateerde_afspraak>
+                        <identificatie_medicatieafspraak 
+                           value="MBH_907_QA1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>                    
+                    </gerelateerde_afspraak>
+                </medicatie_gebruik>
+            </x:expect>
+        </x:scenario>
     
     </x:scenario>
     

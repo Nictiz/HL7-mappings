@@ -150,7 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
                                         <xsl:element name="{$elemName}">
                                             <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                                            <xsl:call-template name="mp908-zorgaanbieder">
+                                            <xsl:call-template name="mp910-zorgaanbieder">
                                                 <xsl:with-param name="in" select="."/>
                                                 <xsl:with-param name="schema" select="$schema"/>
                                                 <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
