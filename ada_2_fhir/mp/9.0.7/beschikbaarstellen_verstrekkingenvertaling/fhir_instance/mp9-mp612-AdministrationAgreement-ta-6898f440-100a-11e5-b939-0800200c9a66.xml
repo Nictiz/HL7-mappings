@@ -3,13 +3,53 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationDispense. Subject: <a href="Patient/CREIENS">Carel C. Creiens</a>. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+               <span style="display: block;">Uitvoerende: <a href="Organization/012345672-16-528-1-1007-3-3">Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'.</a>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>6898f440-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1)</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -71}</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>
+                     <a href="Medication/14039303-2-16-840-1-113883-2-4-4-8">SEREVENT DISKUS INHPDR 50MCG 60DO</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>${DATE, T, D, -71} - ${DATE, T, D, +149}T23:59:59+02:00</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Vanaf T-287D tot en met T+149D 23:59, 2 maal per dag 2 inhalaties</div>
+                     <div>Timing: <div>2 maal per dag</div>
+                     </div>
+                     <div>Dosering: 2 Dosis</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-      <valueDateTime value="2007-09-01"/>
+      <valueDateTime value="${DATE, T, D, -71}"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2007-09-01T00:00:00+02:00"/>
-         <end value="2008-01-28T23:59:00+01:00"/>
+         <start value="${DATE, T, D, -71}"/>
+         <end value="${DATE, T, D, +149}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -36,7 +76,7 @@
    </subject>
    <performer>
       <actor>
-         <reference value="Organization/01234567"/>
+         <reference value="Organization/012345672-16-528-1-1007-3-3"/>
          <display value="Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'."/>
       </actor>
    </performer>

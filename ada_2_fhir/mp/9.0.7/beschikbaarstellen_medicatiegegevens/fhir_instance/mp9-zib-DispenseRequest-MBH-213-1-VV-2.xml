@@ -3,6 +3,46 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toedieningsverzoek. Subject: <a href="Patient/XXX-GOBEE">R. XXX_Gobee</a>. Id: MBH_213_1_VV_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/ba5542c8-bd3e-11ea-2117-020000000000">John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>Relatie naar medicatieafspraak, id = MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>
+                     <a href="Medication/48291-2-16-840-1-113883-2-4-4-10">MIZOLASTINE TABLET MGA  10MG</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>09:13:00, 25 juli 2018</td>
+               </tr>
+               <tr>
+                  <th>Toedieningsverzoek</th>
+                  <td>
+                     <div>Max Repeats: 1</div>
+                     <div>Hoeveelheid: </div>
+                     <div>Uitvoerende: <a href="Organization/012365782-16-528-1-1007-3-3">Apotheek De Gulle Gaper</a>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
       <valueReference>
          <identifier>
@@ -44,11 +84,11 @@
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
-               <reference value="PractitionerRole/010000001111"/>
+               <reference value="PractitionerRole/ba5542c8-bd3e-11ea-2117-020000000000"/>
                <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
             </valueReference>
          </extension>
-         <reference value="Practitioner/5fcc6e78-7597-11ea-1506-020000000000"/>
+         <reference value="Practitioner/ba553764-bd3e-11ea-2117-020000000000"/>
          <display value="John de Vries"/>
       </agent>
    </requester>
@@ -61,7 +101,7 @@
          <code value="245"/>
       </quantity>
       <performer>
-         <reference value="Organization/01236578APOTHEEKDEGULLEGAPER"/>
+         <reference value="Organization/012365782-16-528-1-1007-3-3"/>
          <display value="Apotheek De Gulle Gaper"/>
       </performer>
    </dispenseRequest>
