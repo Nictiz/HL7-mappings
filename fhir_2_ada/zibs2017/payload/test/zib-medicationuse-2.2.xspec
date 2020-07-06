@@ -674,11 +674,8 @@
                 </medicatie_gebruik>
             </x:expect>
         </x:scenario>
-        
-      
-      <!-- `scenario toevoegen voor dosage ipv dosageInstruction -->
        
-       <x:scenario label="Gerelateerde afspraak">
+       <x:scenario label="Gerelateerde afspraak o.b.v. reference.reference">
             <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement[1]">
               <Bundle xmlns="http://hl7.org/fhir"
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -733,6 +730,188 @@
                 </medicatie_gebruik>
             </x:expect>
         </x:scenario>
+       
+       <x:scenario label="Gerelateerde afspraak o.b.v. reference.identifier voor identificatie_medicatieafspraak">
+          <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement[1]">
+             <Bundle xmlns="http://hl7.org/fhir"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+                <type value="searchset"/>
+                <total value="1"/>
+                <entry>
+                   <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                   <resource>
+                      <MedicationStatement>
+                         <derivedFrom>
+                            <identifier>
+                               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                               <value value="AT-TEST-MBH_907_QA1_MA"/>
+                            </identifier>                            
+                            <display value="relatie naar medicatieafspraak"/>
+                         </derivedFrom>
+                      </MedicationStatement>
+                   </resource>
+                </entry>
+                <entry>
+                   <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5968"/>
+                   <resource>
+                      <MedicationRequest xmlns="http://hl7.org/fhir">
+                         <identifier>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                            <value value="AT-TEST-MBH_907_QA1_MA"/>
+                         </identifier>  
+                         <category>
+                            <coding>
+                               <code value="16076005"/>
+                            </coding>
+                         </category>
+                      </MedicationRequest>
+                   </resource>
+                </entry>
+             </Bundle>
+          </x:context>
+          <x:expect label="'Gerelateerde afspraak - identificatie_medicatieafspraak'">
+             <medicatie_gebruik>
+                <gerelateerde_afspraak>
+                   <identificatie_medicatieafspraak 
+                      value="AT-TEST-MBH_907_QA1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                </gerelateerde_afspraak>
+             </medicatie_gebruik>
+          </x:expect>
+       </x:scenario>
+    
+       <x:scenario label="Gerelateerde afspraak o.b.v. reference.identifier voor identificatie_medicatietoedieningsafspraak">
+          <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement[1]">
+             <Bundle xmlns="http://hl7.org/fhir"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+                <type value="searchset"/>
+                <total value="1"/>
+                <entry>
+                   <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                   <resource>
+                      <MedicationStatement>
+                         <derivedFrom>
+                            <identifier>
+                               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                               <value value="BT-TEST-MBH_907_QA1_MA"/>
+                            </identifier>                            
+                         </derivedFrom>
+                      </MedicationStatement>
+                   </resource>
+                </entry>
+                <entry>
+                   <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5968"/>
+                   <resource>
+                      <MedicationDispense xmlns="http://hl7.org/fhir">
+                         <identifier>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                            <value value="BT-TEST-MBH_907_QA1_MA"/>
+                         </identifier>  
+                         <category>
+                            <coding>
+                               <code value="422037009"/>
+                            </coding>
+                         </category>
+                      </MedicationDispense>
+                   </resource>
+                </entry>
+             </Bundle>
+          </x:context>
+          <x:expect label="'Gerelateerde afspraak - identificatie_toedieningsafspraak'">
+             <medicatie_gebruik>
+                <gerelateerde_afspraak>
+                   <identificatie_toedieningsafspraak 
+                      value="BT-TEST-MBH_907_QA1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                </gerelateerde_afspraak>
+             </medicatie_gebruik>
+          </x:expect>
+       </x:scenario>
+    
+       <x:scenario label="Gerelateerde verstrekking o.b.v. reference.identifier voor identificatie">
+          <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement[1]">
+             <Bundle xmlns="http://hl7.org/fhir"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+                <type value="searchset"/>
+                <total value="1"/>
+                <entry>
+                   <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                   <resource>
+                      <MedicationStatement>
+                         <derivedFrom>
+                            <identifier>
+                               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                               <value value="CT-TEST-MBH_907_QA1_MA"/>
+                            </identifier>                            
+                         </derivedFrom>
+                      </MedicationStatement>
+                   </resource>
+                </entry>
+                <entry>
+                   <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5968"/>
+                   <resource>
+                      <MedicationDispense xmlns="http://hl7.org/fhir">
+                         <identifier>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                            <value value="CT-TEST-MBH_907_QA1_MA"/>
+                         </identifier>  
+                         <category>
+                            <coding>
+                               <code value="373784005"/>
+                            </coding>
+                         </category>
+                      </MedicationDispense>
+                   </resource>
+                </entry>
+             </Bundle>
+          </x:context>
+          <x:expect label="'Gerelateerde verstrekking - identificatie'">
+             <medicatie_gebruik>
+                <gerelateerde_verstrekking>
+                   <identificatie 
+                      value="CT-TEST-MBH_907_QA1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                </gerelateerde_verstrekking>
+             </medicatie_gebruik>
+          </x:expect>
+       </x:scenario>
+    
+       <x:scenario label="Gerelateerde verstrekking o.b.v. reference.identifier.type voor identificatie">
+          <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement[1]">
+             <Bundle xmlns="http://hl7.org/fhir"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+                <type value="searchset"/>
+                <total value="1"/>
+                <entry>
+                   <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                   <resource>
+                      <MedicationStatement>
+                         <derivedFrom>
+                            <identifier>
+                               <type>
+                                  <coding>
+                                     <value value="373784005"/>
+                                  </coding>
+                               </type>
+                               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                               <value value="CT-TEST-MBH_907_QA1_MA"/>
+                            </identifier>                            
+                         </derivedFrom>
+                      </MedicationStatement>
+                   </resource>
+                </entry>
+             </Bundle>
+          </x:context>
+          <x:expect label="'Gerelateerde verstrekking - identificatie'">
+             <medicatie_gebruik>
+                <gerelateerde_verstrekking>
+                   <identificatie 
+                      value="CT-TEST-MBH_907_QA1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.12"/>
+                </gerelateerde_verstrekking>
+             </medicatie_gebruik>
+          </x:expect>
+       </x:scenario>
     
     </x:scenario>
     

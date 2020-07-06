@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
 
     <!--Uncomment imports for standalone use and testing.-->
-<!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
@@ -207,7 +207,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="resource" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource"/>
                 <xsl:choose>
                     <xsl:when
-                        test="$resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005' or $resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009' ">
+                        test="$resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005' 
+                        or $resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009' ">
                         <gerelateerde_afspraak>
                             <xsl:choose>
                                 <xsl:when test="$resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005'">
@@ -218,7 +219,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:when>
                                 <xsl:when test="$resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009'">
                                     <xsl:call-template name="Identifier-to-identificatie">
-                                        <xsl:with-param name="in" select="$resource/f:MedicationRequest/f:identifier"/>
+                                        <xsl:with-param name="in" select="$resource/f:MedicationDispense/f:identifier"/>
                                         <xsl:with-param name="adaElementName">identificatie_toedieningsafspraak</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:when>
@@ -236,15 +237,78 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                 </xsl:choose>
             </xsl:when>
-          <!-- WRONG! NEED TO CHECK THIS. -->
-          <!--  <xsl:when test="f:identifier">
-                <gerelateerde_afspraak>
-                    <xsl:call-template name="Identifier-to-identificatie">
-                    <xsl:with-param name="adaElementName">identificatie_medicatieafspraak</xsl:with-param>
-                    </xsl:call-template>
-                </gerelateerde_afspraak>
-            </xsl:when>-->
+            <xsl:when test="f:identifier">
+                <xsl:variable name="identifier_type" select="f:identifier/f:type/f:coding/f:value/@value"/>
+                <xsl:variable name="referenceValue" select="f:identifier/concat(f:system/@value,f:value/@value)"/>
+                <xsl:variable name="resource" select="ancestor::f:Bundle/f:entry/f:resource"/>
+                <xsl:variable name="medicationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005'"/>
+                <xsl:variable name="administrationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009'"/>
+                <xsl:variable name="dispense_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense/f:category/f:coding/f:code/@value='373784005'"/>             
+                <xsl:choose> 
+                    <!-- First try to use the f:reference/f:identifier based on the f:identifier/f:type -->
+                    <xsl:when test="$identifier_type = '16076005' or $identifier_type = '422037009' ">
+                        <gerelateerde_afspraak>
+                            <xsl:choose>
+                                <xsl:when test="$identifier_type = '16076005'">
+                                    <xsl:call-template name="Identifier-to-identificatie">
+                                        <xsl:with-param name="in" select="f:identifier"/>
+                                        <xsl:with-param name="adaElementName">identificatie_medicatieafspraak</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="$identifier_type = '422037009'">
+                                    <xsl:call-template name="Identifier-to-identificatie">
+                                        <xsl:with-param name="in" select="f:identifier"/>
+                                        <xsl:with-param name="adaElementName">identificatie_toedieningsafspraak</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                            </xsl:choose>    
+                        </gerelateerde_afspraak>
+                    </xsl:when>    
+                    <xsl:when test="$identifier_type = '373784005'">
+                        <gerelateerde_verstrekking>
+                            <xsl:call-template name="Identifier-to-identificatie">
+                                <xsl:with-param name="in" select="f:identifier"/>
+                                <xsl:with-param name="adaElementName">identificatie</xsl:with-param>
+                            </xsl:call-template>
+                        </gerelateerde_verstrekking>
+                    </xsl:when>
+                    <!-- Try to resolve identifier within Bundle -->
+                    <xsl:when test="($medicationagreement_resource and $resource/f:MedicationRequest/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]) 
+                        or ($administrationagreement_resource and $resource/f:MedicationDispense/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]) ">
+                        <gerelateerde_afspraak>
+                            <xsl:choose>
+                                <xsl:when test="$medicationagreement_resource">
+                                    <xsl:call-template name="Identifier-to-identificatie">
+                                        <xsl:with-param name="in" select="$resource/f:MedicationRequest/f:identifier"/>
+                                        <xsl:with-param name="adaElementName">identificatie_medicatieafspraak</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="$administrationagreement_resource and $resource/f:MedicationDispense/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]">
+                                    <xsl:call-template name="Identifier-to-identificatie">
+                                        <xsl:with-param name="in" select="$resource/f:MedicationDispense/f:identifier"/>
+                                        <xsl:with-param name="adaElementName">identificatie_toedieningsafspraak</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                            </xsl:choose>    
+                        </gerelateerde_afspraak>
+                    </xsl:when>
+                    <xsl:when
+                        test="$dispense_resource and $resource/f:MedicationDispense/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]">
+                        <gerelateerde_verstrekking>
+                            <xsl:call-template name="Identifier-to-identificatie">
+                                <xsl:with-param name="in" select="$resource/f:MedicationDispense/f:identifier"/>
+                                <xsl:with-param name="adaElementName">identificatie</xsl:with-param>
+                            </xsl:call-template>
+                        </gerelateerde_verstrekking>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:message terminate="no">MedicationStatement.derivedFrom reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier.type. Therefore information (gerelateerde_afspraak and gerelateerde_verstrekking) will be lost.</xsl:message>
+            </xsl:otherwise>
         </xsl:choose>
+        
+        
     </xsl:template>
     
     <xd:doc>
