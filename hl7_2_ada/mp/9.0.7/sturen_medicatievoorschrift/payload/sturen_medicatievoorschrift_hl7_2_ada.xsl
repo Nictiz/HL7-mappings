@@ -23,16 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:param name="schema" select="document('../ada_schemas/sturen_medicatievoorschrift.xsd')"/>
     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'sturen_medicatievoorschrift'))"/>
-   
-    <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9233', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9241', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>
-    <xsl:variable name="templateId-verstrekkingsverzoek" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9301', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9257'"/>
-    <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
-    <xsl:variable name="templateId-lichaamsgewicht" select="'2.16.840.1.113883.2.4.3.11.60.7.10.28', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123'"/>
-    <xsl:variable name="templateId-lichaamslengte" select="'2.16.840.1.113883.2.4.3.11.60.7.10.30', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122'"/>
-    <xsl:variable name="templateId-labuitslag" select="'2.16.840.1.113883.2.4.3.11.60.7.10.31'"/>
 
-
-    
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -41,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="Voorschrift-90-ADA">
             <xsl:with-param name="patient" select="$patient-recordTarget"/>
             <xsl:with-param name="xsd-mbh" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'medicamenteuze_behandeling'))"/>
-         </xsl:call-template>
+        </xsl:call-template>
     </xsl:template>
 
     <xd:doc>
@@ -117,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="HL7element2Zibroot"/>
                         </xsl:variable>
                         <xsl:call-template name="zib-Lichaamslengte-3.1">
-                            <xsl:with-param name="zibroot" select="$zibroot"/>                            
+                            <xsl:with-param name="zibroot" select="$zibroot"/>
                         </xsl:call-template>
                     </xsl:for-each>
                     <!-- lichaamsgewicht  -->
@@ -126,7 +117,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="HL7element2Zibroot"/>
                         </xsl:variable>
                         <xsl:call-template name="zib-Lichaamsgewicht-3.1">
-                            <xsl:with-param name="zibroot" select="$zibroot"/>                            
+                            <xsl:with-param name="zibroot" select="$zibroot"/>
                         </xsl:call-template>
                     </xsl:for-each>
                     <!-- labuitslag -->
@@ -181,7 +172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>zorgverlener_als_auteur</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:element name="{$elmZibroot}">
             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibroot))"/>
             <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
@@ -194,7 +185,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="elemName" select="$elmZibrootIdentification"/>
                 </xsl:call-template>
             </xsl:for-each>
-            
+
             <!-- author -->
             <!-- participant exists in HL7 template, don't want to throw that information away -->
             <!-- may be only one author in zibroot, could theoretically encounter both author and participant in HL7 -->
@@ -212,9 +203,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:element name="{$elmZibrootAuthor}">
                     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootAuthor))"/>
                     <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                    
+
                     <xsl:choose>
-                        <xsl:when test="hl7:patient | hl7:assignedAuthor[hl7:code/@code='ONESELF']">
+                        <xsl:when test="hl7:patient | hl7:assignedAuthor[hl7:code/@code = 'ONESELF']">
                             <xsl:element name="{$elmZibrootAuthorPatient}">
                                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootAuthorPatient))"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
@@ -226,14 +217,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:element>
                         </xsl:when>
                         <!-- healthprofessional as author -->
-                        <xsl:when test="(hl7:assignedPerson | hl7:assignedAuthor | hl7:participantRole)[not(hl7:code/@code='ONESELF')]">
+                        <xsl:when test="(hl7:assignedPerson | hl7:assignedAuthor | hl7:participantRole)[not(hl7:code/@code = 'ONESELF')]">
                             <xsl:for-each select="hl7:assignedPerson | hl7:assignedAuthor | hl7:participantRole">
                                 <xsl:element name="{$elmZibrootAuthorHealthProfessional}">
                                     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootAuthorHealthProfessional))"/>
                                     <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                                           <!-- output the actual healthcare professional -->
+                                    <!-- output the actual healthcare professional -->
                                     <xsl:call-template name="HandleHealthProfessional"/>
-                                   </xsl:element>
+                                </xsl:element>
                             </xsl:for-each>
                         </xsl:when>
                         <!-- related person as author not in HL7v3 template  -->
@@ -241,7 +232,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:element>
             </xsl:for-each>
-            
+
         </xsl:element>
     </xsl:template>
 

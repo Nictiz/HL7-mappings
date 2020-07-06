@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/uuid.xsl"/>
     <xsl:import href="../../util/utilities.xsl"/>
@@ -1169,8 +1169,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:if test="$in">
-            <xsl:variable name="telephoneNumbers" select="$in[matches(@value, '^(tel|fax):')] | $in[matches(@value, '^[\d\s\(\)+-]$')]"/>
-            <xsl:variable name="emailAddresses" select="$in[matches(@value, '^mailto:')] | $in[matches(@value, '.+@[^\.]+\.')]"/>
+            <xsl:variable name="telephoneNumbers" select="$in[matches(@value, '^(tel|fax):')] | $in[matches(@value, '^[\d\s\(\)+-]+$')]" as="element()*"/>
+            <xsl:variable name="emailAddresses" select="$in[matches(@value, '^mailto:')] | $in[matches(@value, '.+@[^\.]+\.')]" as="element()*"/>
+            
+            <xsl:for-each select="$in[not(matches(@value, '^(tel|fax):')) and not(matches(@value, '^[\d\s\(\)+-]+$')) and not(matches(@value, '^mailto:')) and not(matches(@value, '.+@[^\.]+\.'))]">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="terminate" select="false()"/>
+                    <xsl:with-param name="msg">Encountered a telecom value in HL7 which could not be translated into a telephone number or email address, the value that could not be translated: <xsl:value-of select="string-join(@value, ' ')"/>.</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
 
             <xsl:element name="{$elmContactInformation}">
                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactInformation))"/>
@@ -1263,7 +1271,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
 
                             <xsl:element name="{$elmTelephoneNumber}">
-                                <xsl:attribute name="value" select="@value"/>
+                                <!-- remove the tel: or fax: prefix, since that information is in telecomtype -->
+                                <xsl:attribute name="value" select="replace(@value, '^((tel|fax):)(.+)', '$3')"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelephoneNumber)))"/>
                             </xsl:element>
                             <xsl:if test="$outputTelecomType">
@@ -1301,7 +1310,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
 
                             <xsl:element name="{$elmEmailAddress}">
-                                <xsl:attribute name="value" select="@value"/>
+                                <xsl:attribute name="value" select="replace(@value, '^(mailto:)(.+)', '$2')"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmEmailAddress)))"/>
                             </xsl:element>
                             <xsl:if test="$emailType">
