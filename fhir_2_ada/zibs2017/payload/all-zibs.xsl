@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (c) Nictiz
+Copyright © Nictiz
 
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
@@ -13,8 +13,12 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    exclude-result-prefixes="#all" version="2.0">
+    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:f="http://hl7.org/fhir"
+    xmlns:local="urn:fhir:stu3:functions"
+    exclude-result-prefixes="#all"
+    version="2.0">
     
     <!--<!-\- Without this import, all depending XSLs need to import it -\->
     <xsl:import href="_zib2017.xsl"/>-->
