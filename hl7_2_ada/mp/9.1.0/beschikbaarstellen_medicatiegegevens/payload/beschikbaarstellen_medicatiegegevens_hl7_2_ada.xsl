@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="false()"/>
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:param name="schema" select="document('../ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
-    
+
     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'medicamenteuze_behandeling'))"/>
 
     <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235'"/>
@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="templateId-verstrekking" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9294', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9255'"/>
     <xsl:variable name="templateId-medicatiegebruik" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9279', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9208'"/>
     <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
-    
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="theId" select="replace($filename, concat('.', $extension, '$'), '')"/>
                         <xsl:attribute name="title" select="$theId"/>
                         <xsl:attribute name="id" select="$theId"/>
-                           
+
                         <xsl:for-each select="$patient">
                             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'beschikbaarstellen_medicatiegegevens'))"/>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180601000000">
@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:variable name="identificatie-complexType" select="$schemaFragment//xs:element[@name = 'identificatie']/@type"/>
                                 <xsl:for-each select="./hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id">
                                     <xsl:variable name="elemName">identificatie</xsl:variable>
-                                <xsl:element name="{$elemName}">
+                                    <xsl:element name="{$elemName}">
                                         <xsl:for-each select="@extension">
                                             <xsl:attribute name="value" select="."/>
                                         </xsl:for-each>
@@ -152,5 +152,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </data>
         </adaxml>
-        </xsl:template>
+    </xsl:template>
 </xsl:stylesheet>

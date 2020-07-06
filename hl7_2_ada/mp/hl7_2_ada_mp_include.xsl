@@ -24,8 +24,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
 
-    <xsl:variable name="transaction-name">beschikbaarstellen_medicatiegegevens</xsl:variable>
+    <xsl:param name="transaction-name">beschikbaarstellen_medicatiegegevens</xsl:param>
 
+
+    <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9233', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9241', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>
+    <xsl:variable name="templateId-verstrekkingsverzoek" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9301', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9257'"/>
+    <xsl:variable name="templateId-toedieningsafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9299', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9259', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9256'"/>
+    
+    <xsl:variable name="templateId-verstrekking" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9294', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9255'"/> <xsl:variable name="templateId-medicatiegebruik" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9279', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9250', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9246', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9208'"/>
+    <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
+
+    <xsl:variable name="templateId-lichaamsgewicht" select="'2.16.840.1.113883.2.4.3.11.60.7.10.28', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123'"/>
+    <xsl:variable name="templateId-lichaamslengte" select="'2.16.840.1.113883.2.4.3.11.60.7.10.30', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122'"/>
+    <xsl:variable name="templateId-labuitslag" select="'2.16.840.1.113883.2.4.3.11.60.7.10.31'"/>
+    
+    
 
     <xd:doc>
         <xd:desc> Outputs the contents of zorgaanbieder in 9.0.7 verstrekker </xd:desc>

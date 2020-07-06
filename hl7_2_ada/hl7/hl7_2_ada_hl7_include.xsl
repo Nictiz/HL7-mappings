@@ -1169,8 +1169,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:if test="$in">
-            <xsl:variable name="telephoneNumbers" select="$in[matches(@value, '^(tel|fax):')] | $in[matches(@value, '^[\d\s\(\)+-]$')]"/>
-            <xsl:variable name="emailAddresses" select="$in[matches(@value, '^mailto:')] | $in[matches(@value, '.+@[^\.]+\.')]"/>
+            <xsl:variable name="telephoneNumbers" select="$in[matches(@value, '^(tel|fax):')] | $in[matches(@value, '^[\d\s\(\)+-]+$')]" as="element()*"/>
+            <xsl:variable name="emailAddresses" select="$in[matches(@value, '^mailto:')] | $in[matches(@value, '.+@[^\.]+\.')]" as="element()*"/>
+
+            <xsl:for-each select="$in[not(matches(@value, '^(tel|fax):')) and not(matches(@value, '^[\d\s\(\)+-]+$')) and not(matches(@value, '^mailto:')) and not(matches(@value, '.+@[^\.]+\.'))]">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="terminate" select="false()"/>
+                    <xsl:with-param name="msg">Encountered a telecom value in HL7 which could not be translated into a telephone number or email address, the value that could not be translated: <xsl:value-of select="string-join(@value, ' ')"/>.</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
 
             <xsl:element name="{$elmContactInformation}">
                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactInformation))"/>
@@ -1263,7 +1271,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
 
                             <xsl:element name="{$elmTelephoneNumber}">
-                                <xsl:attribute name="value" select="@value"/>
+                                <xsl:attribute name="value" select="replace(@value, '^((tel|fax):)(.+)', '$3')"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelephoneNumber)))"/>
                             </xsl:element>
                             <xsl:if test="$outputTelecomType">
@@ -1301,7 +1309,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
 
                             <xsl:element name="{$elmEmailAddress}">
-                                <xsl:attribute name="value" select="@value"/>
+                                <xsl:attribute name="value" select="replace(@value, '^(mailto:)(.+)', '$2')"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmEmailAddress)))"/>
                             </xsl:element>
                             <xsl:if test="$emailType">
