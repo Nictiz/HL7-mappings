@@ -22,7 +22,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="schema" select="document('9.1.0/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
 
-    <xsl:variable name="transaction-name">beschikbaarstellen_medicatiegegevens</xsl:variable>
+    <xsl:param name="transaction-name">beschikbaarstellen_medicatiegegevens</xsl:param>
+    
+    <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9233'"/>
+    <xsl:variable name="templateId-toedieningsafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9299', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9256'"/>
+    <xsl:variable name="templateId-medicatiegebruik" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9279', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9250', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9208'"/>
+    <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
+    
 
     <xd:doc>
         <xd:desc> Outputs the contents of zorgaanbieder in 9.0.7 verstrekker </xd:desc>

@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
     <xd:doc>
-        <xd:desc>Dit is een conversie van MP 9.1.0 naar ADA 9.1 beschikbaarstellen medicatieoverzicht</xd:desc>
+        <xd:desc>Dit is een conversie van MP 9.0.7 naar ADA 9.0.7 beschikbaarstellen medicatieoverzicht</xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
@@ -26,17 +26,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'medicamenteuze_behandeling'))"/>
 
-    <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9233'"/>
-    <xsl:variable name="templateId-toedieningsafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9299', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9256'"/>
-    <xsl:variable name="templateId-medicatiegebruik" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9279', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9250', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9208'"/>
-    <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
+    <xsl:variable name="medicatieoverzicht-9" select="//(hl7:ClinicalDocument[hl7:code[@code = ('46057-6', '52981000146104')]] | hl7:organizer[hl7:code[@code = '129'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']])"/>
 
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <!-- todo, add CDA-variant to xpath -->
-        <xsl:variable name="medicatieoverzicht-9" select="//hl7:organizer[hl7:code[@code = '129'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
         <xsl:call-template name="Medicatieoverzicht-9-ADA">
             <xsl:with-param name="medicatieoverzicht-lijst" select="$medicatieoverzicht-9"/>
             <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
@@ -44,12 +39,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Handles HL7 9.1.0 medication overview, transforms it to ada.</xd:desc>
-        <xd:param name="medicatieoverzicht-lijst">HL7 9.1.0 organizer with medication overview.</xd:param>
+        <xd:desc>Handles HL7 9.0.7 medication overview, transforms it to ada.</xd:desc>
+        <xd:param name="medicatieoverzicht-lijst">HL7 9.0.7 organizer with medication overview.</xd:param>
         <xd:param name="schemaFragment">schemaFragment, in this case of medicamenteuze behandeling. Used for conceptIds.</xd:param>
     </xd:doc>
     <xsl:template name="Medicatieoverzicht-9-ADA">
-        <xsl:param name="medicatieoverzicht-lijst" select="//hl7:organizer[hl7:code[@code = '129'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
+        <xsl:param name="medicatieoverzicht-lijst" select="$medicatieoverzicht-9"/>
         <xsl:param name="schemaFragment" select="$schemaFragment"/>
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="$medicatieoverzicht-lijst/ancestor::*[hl7:ControlActProcess]"/>
@@ -66,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$medicatieoverzicht-lijst">
                     <xsl:call-template name="doGeneratedComment"/>
                     <xsl:variable name="patient" select="hl7:recordTarget/hl7:patientRole"/>
-                    <beschikbaarstellen_medicatieoverzicht app="mp-mp910" shortName="beschikbaarstellen_medicatieoverzicht" formName="uitwisselen_medicatieoverzicht" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" prefix="mp-" language="nl-NL" title="Generated" id="TODO">
+                    <beschikbaarstellen_medicatieoverzicht app="mp-mp907" shortName="beschikbaarstellen_medicatieoverzicht" formName="uitwisselen_medicatieoverzicht" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" prefix="mp-" language="nl-NL" title="Generated" id="TODO">
                         <xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/>
                         <xsl:variable name="extension" select="tokenize($filename, '\.')[last()]"/>
                         <xsl:variable name="theId" select="replace($filename, concat('.', $extension, '$'), '')"/>
@@ -171,50 +166,64 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
 
                             <!-- verificatie_patient -->
-                            <xsl:for-each select="hl7:participant[@typeCode = 'VRF'][hl7:participantRole[@classCode = 'PAT']]">
-                                <xsl:variable name="elemName">verificatie_patient</xsl:variable>
-                                <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName))"/>
+                            <xsl:variable name="elemName">verificatie_patient</xsl:variable>
+                            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName))"/>
+                            <xsl:element name="{$elemName}">
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                                <!-- geverifieerd_met_patientq -->
+                                <xsl:variable name="elemName">geverifieerd_met_patientq</xsl:variable>
                                 <xsl:element name="{$elemName}">
-                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                                    <!-- geverifieerd_met_patientq -->
-                                    <xsl:variable name="elemName">geverifieerd_met_patientq</xsl:variable>
-                                    <xsl:element name="{$elemName}">
-                                        <xsl:attribute name="value" select="true()"/>
-                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
-                                    </xsl:element>
-                                    <!-- verificatie_datum -->
-                                    <xsl:for-each select="hl7:time">
-                                        <xsl:variable name="elemName">verificatie_datum</xsl:variable>
-                                        <xsl:call-template name="handleTS">
-                                            <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
-                                            <xsl:with-param name="elemName" select="$elemName"/>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
+                                    <xsl:attribute name="value">
+                                        <xsl:choose>
+                                            <xsl:when test="hl7:participant[@typeCode = 'VRF'][(hl7:participantRole | hl7:associatedEntity)[@classCode = 'PAT']]">
+                                                <xsl:value-of select="true()"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="false()"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:attribute>
+                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
                                 </xsl:element>
-                            </xsl:for-each>
-                            
+                                <!-- verificatie_datum -->
+                                <xsl:for-each select="hl7:participant[@typeCode = 'VRF'][(hl7:participantRole | hl7:associatedEntity)[@classCode = 'PAT']]/hl7:time">
+                                    <xsl:variable name="elemName">verificatie_datum</xsl:variable>
+                                    <xsl:call-template name="handleTS">
+                                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
+                                        <xsl:with-param name="elemName" select="$elemName"/>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </xsl:element>
+
                             <!-- verificatie_zorgverlener -->
-                            <xsl:for-each select="hl7:participant[@typeCode = 'VRF'][hl7:participantRole[@classCode = 'ASSIGNED']]">
-                                <xsl:variable name="elemName">verificatie_zorgverlener</xsl:variable>
-                                <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName))"/>
+                            <xsl:variable name="elemName">verificatie_zorgverlener</xsl:variable>
+                            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName))"/>
+                            <xsl:element name="{$elemName}">
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                                <!-- geverifieerd_met_zorgverlenerq -->
+                                <xsl:variable name="elemName">geverifieerd_met_zorgverlenerq</xsl:variable>
                                 <xsl:element name="{$elemName}">
-                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                                    <!-- geverifieerd_met_patientq -->
-                                    <xsl:variable name="elemName">geverifieerd_met_zorgverlenerq</xsl:variable>
-                                    <xsl:element name="{$elemName}">
-                                        <xsl:attribute name="value" select="true()"/>
-                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
-                                    </xsl:element>
-                                    <!-- verificatie_datum -->
-                                    <xsl:for-each select="hl7:time">
-                                        <xsl:variable name="elemName">verificatie_datum</xsl:variable>
-                                        <xsl:call-template name="handleTS">
-                                            <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
-                                            <xsl:with-param name="elemName" select="$elemName"/>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
+                                    <xsl:attribute name="value">
+                                        <xsl:choose>
+                                            <xsl:when test="hl7:participant[@typeCode = 'VRF'][(hl7:participantRole | hl7:associatedEntity)[@classCode = 'ASSIGNED']]">
+                                                <xsl:value-of select="true()"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="false()"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:attribute>
+                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
                                 </xsl:element>
-                            </xsl:for-each>
+                                <!-- verificatie_datum -->
+                                <xsl:for-each select="hl7:participant[@typeCode = 'VRF'][(hl7:participantRole | hl7:associatedEntity)[@classCode = 'ASSIGNED']]/hl7:time">
+                                    <xsl:variable name="elemName">verificatie_datum</xsl:variable>
+                                    <xsl:call-template name="handleTS">
+                                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
+                                        <xsl:with-param name="elemName" select="$elemName"/>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </xsl:element>
 
                         </xsl:element>
 
