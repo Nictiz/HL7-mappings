@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../nl-core-contactpoint-1.0.xsl">
+    
+    <x:scenario label="nl-core-contactpoint-1.0">
+        <x:scenario label="Simple phone number">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone"/>
+                    <value value="099-12345678"/>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="099-12345678"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Mobile business phone number. Note: the mobile nature stems from the number being an 06-* number.">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone" />
+                    <value value="+31611234567" />
+                    <use value="work" />
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="+31611234567"/>
+                        <nummer_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Zakelijk telefoonnummer"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Mobile phone number undetermined private/business. Note: the mobile nature stems from the number being an 06-* number.">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone" />
+                    <value value="+31611234567" />
+                    <use value="mobile" />
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="+31611234567"/>
+                        <telecom_type code="MC" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Mobile Phone"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="Primary Home Land Line">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1" />
+                                    <code value="LL" />
+                                    <display value="Land Line" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </system>
+                    <value value="+31111234567" />
+                    <use value="home">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="HP" />
+                                    <display value="Primary Home" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="+31111234567"/>
+                        <telecom_type code="LL" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1" displayName="Land Line"/>
+                        <nummer_soort code="HP" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Primary Home"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="Temporary Land Line">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1" />
+                                    <code value="LL" />
+                                    <display value="Land Line" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </system>
+                    <value value="+31111234567" />
+                    <use value="temp">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="TMP" />
+                                    <display value="Temporary" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="+31111234567"/>
+                        <telecom_type code="LL" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1" displayName="Land Line"/>
+                        <nummer_soort code="TMP" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Temporary"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="Primary Work Land Line">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1" />
+                                    <code value="LL" />
+                                    <display value="Land Line" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </system>
+                    <value value="+31111234567" />
+                    <use value="work">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="WP" />
+                                    <display value="Primary Work" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="+31111234567"/>
+                        <telecom_type code="LL" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1" displayName="Land Line"/>
+                        <nummer_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Primary Work"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="Primary Home Mobile Phone">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="MC" />
+                                    <display value="Mobile Phone" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </system>
+                    <value value="+31611234567" />
+                    <use value="mobile">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="HP" />
+                                    <display value="Primary Home" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="+31611234567"/>
+                        <telecom_type code="MC" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Mobile Phone"/>
+                        <nummer_soort code="HP" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Primary Home"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="Temporary Mobile Phone">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="MC" />
+                                    <display value="Mobile Phone" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </system>
+                    <value value="099-12345678" />
+                    <use value="temp">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="TMP" />
+                                    <display value="Temporary" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="099-12345678"/>
+                        <telecom_type code="MC" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Mobile Phone"/>
+                        <nummer_soort code="TMP" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Temporary"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="Primary Work Mobile Phone">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="MC" />
+                                    <display value="Mobile Phone" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </system>
+                    <value value="099-12345678" />
+                    <use value="mobile">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="WP" />
+                                    <display value="Primary Work" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <telefoonnummers>
+                        <telefoonnummer value="099-12345678"/>
+                        <telecom_type code="MC" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Mobile Phone"/>
+                        <nummer_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Primary Work"/>
+                    </telefoonnummers>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="Private email address">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="email" />
+                    <value value="giesput@myweb.nl" />
+                    <use value="home">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                    <code value="HP" />
+                                    <display value="Primary Home" />
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <email_adressen>
+                        <email_adres value="giesput@myweb.nl"/>
+                        <email_soort code="HP" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Primary Home"/>
+                    </email_adressen>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="Work email address">
+            <x:context mode="nl-core-contactpoint-1.0">
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="email"/>
+                    <value value="o.vanbekhoven@testmedischcentrum.nl"/>
+                    <use value="work">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                                    <code value="WP"/>
+                                    <display value="Zakelijk e-mailadres"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+            </x:context>
+            <x:expect label="'contactgegevens' element">
+                <contactgegevens>
+                    <email_adressen>
+                        <email_adres value="o.vanbekhoven@testmedischcentrum.nl"/>
+                        <email_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" codeSystemName="HL7 AddressUse" displayName="Zakelijk e-mailadres"/>
+                    </email_adressen>
+                </contactgegevens>
+            </x:expect>
+        </x:scenario>
+        
+    </x:scenario>
+    
+</x:description>

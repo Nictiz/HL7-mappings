@@ -15,6 +15,25 @@
                     <value value="00001111"/>
                 </identifier>
                 <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                <telecom>
+                    <system value="phone"/>
+                    <value value="099-12345678"/>
+                </telecom>
+                <telecom>
+                    <system value="email"/>
+                    <value value="XXX-TEST-D@123mail.com"/>
+                    <use value="home">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                                    <code value="HP"/>
+                                    <display value="Privé e-mailadres"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
                 <address>
                     <use value="work"/>
                     <line value="Dorpsstraat 1">
@@ -37,15 +56,8 @@
                     root="2.16.528.1.1007.3.3"/>
                 <organisatie_naam
                     value="Huisartsenpraktijk Pulver &amp; Partners"/>
-                <adresgegevens>
-                    <straat value="Dorpsstraat"/>
-                    <huisnummer value="1"/>
-                    <postcode value="1234AA"/>
-                    <woonplaats value="Ons Dorp"/>
-                    <adres_soort code="WP"
-                        codeSystem="2.16.840.1.113883.5.1119"
-                        displayName="Werkadres"/>
-                </adresgegevens>
+                <contactgegevens>...</contactgegevens>
+                <adresgegevens>...</adresgegevens>
             </zorgaanbieder>
         </x:expect>
     </x:scenario>

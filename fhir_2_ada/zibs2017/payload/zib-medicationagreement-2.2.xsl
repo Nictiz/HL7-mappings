@@ -79,7 +79,7 @@
                     <xsl:with-param name="dateTime" select="@value"/>
                 </xsl:call-template>               
             </xsl:attribute>
-            <xsl:attribute name="datatype">datetime</xsl:attribute>
+            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
         </afspraakdatum>        
     </xsl:template>
     
