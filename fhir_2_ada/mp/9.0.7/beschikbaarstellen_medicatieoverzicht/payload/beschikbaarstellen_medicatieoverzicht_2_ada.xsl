@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="MedicationOverview-Verification" select="'http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification'"/>
     
     <xd:doc>
-        <xd:desc></xd:desc>
+        <xd:desc>Starts transformation for Medication Overview 9.0.7 from ADA to HL7 FHIR.</xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatieoverzicht.xsd">
@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     transactionEffectiveDate="2016-03-23T16:32:43"
                     prefix="mp-"
                     language="nl-NL">
-                    <xsl:attribute name="title">Generated from HL7 FHIR medicatieoverzicht 9.0.7 xml</xsl:attribute>
+                    <xsl:attribute name="title">Generated from HL7 FHIR Medication Overview 9.0.7 xml</xsl:attribute>
                     <xsl:attribute name="id">DUMMY</xsl:attribute>
                     
                     <xsl:choose>
@@ -63,25 +63,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </identificatie>
                             <!-- medicatieafspraak -->
                             <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='16076005']" mode="zib-MedicationAgreement-2.2"/>
-                            <!--<!-\- verstrekkingsverzoek -\->
-                            <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='52711000146108']" mode="zib-DispenseRequest-2.2"/>-->
                             <!-- toedieningsafspraak -->
                             <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='422037009']" mode="zib-AdministrationAgreement-2.2"/>
-                            <!--<!-\- verstrekking -\->
-                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.2"/>-->
                             <!-- medicatie_gebruik -->
                             <xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value='6']" mode="zib-MedicationUse-2.2"/>
                         </medicamenteuze_behandeling>
                     </xsl:for-each-group>
-                    <xsl:apply-templates select="f:Bundle[f:meta/f:profile/@value = $Bundle-MedicationOverview]/f:entry/f:resource/f:List[f:code/f:coding/f:code/@value = '11181000146103']" mode="MedicationOverview-2.0">
-                        
-                    </xsl:apply-templates>
-                    
+                    <xsl:apply-templates select="f:Bundle[f:meta/f:profile/@value = $Bundle-MedicationOverview]/f:entry/f:resource/f:List[f:code/f:coding/f:code/@value = '11181000146103']" mode="MedicationOverview-2.0"/>
                 </beschikbaarstellen_medicatieoverzicht>
             </data>
         </adaxml>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Transforms MedicationOverview f:List resource to ADA documentgegevens.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:List" mode="MedicationOverview-2.0">
         <documentgegevens>
             <!-- document_datum -->
@@ -94,6 +90,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </documentgegevens>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Transforms f:date to ADA document_datum.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:date" mode="MedicationOverview-2.0">
         <document_datum>
             <xsl:attribute name="value">
@@ -104,6 +103,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </document_datum>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Transforms f:source to ADA auteur with either auteur_is_zorgaanbieder or auteur_is_patient child.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:source" mode="MedicationOverview-2.0">
         <xsl:variable name="MedicationOverview-SourceOrganization" select="'http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization'"/>
         <auteur>
@@ -121,6 +123,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </auteur>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Transforms MedicationOverview-Verification f:extension to ADA verificatie_patient and ADA verificatie_zorgverlener children.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:extension[@url = $MedicationOverview-Verification]" mode="MedicationOverview-2.0">
         <verificatie_patient>
             <xsl:if test="f:extension[@url = 'VerificationPatient']">
