@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
-    <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>
+    <xsl:import href="ext-zib-medication-additional-information-2.0.xsl"/>
     <xsl:import href="zib-instructions-for-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>

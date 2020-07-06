@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-organization-2.0.xsl"/>
     <xsl:import href="nl-core-location-2.0.xsl"/>
     <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>
-    <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>-->
+    <xsl:import href="ext-zib-medication-additional-information-2.0.xsl"/>-->
     
     <xsl:variable name="zib-Dispense-RequestDate" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate'"/>
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
