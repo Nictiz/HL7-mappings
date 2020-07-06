@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
 
     <!--Uncomment imports for standalone use and testing.-->
-<!--    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
@@ -31,25 +31,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="nl-core-organization-2.0.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>
     <xsl:import href="zib-body-height-2.1.xsl"/>
     <xsl:import href="zib-body-weight-2.1.xsl"/>
-    <xsl:import href="zib-problem-2.1.xsl"/>-->
+    <xsl:import href="zib-problem-2.1.xsl"/>
 
-    <xsl:variable name="zib-MedicationUse"
-        select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse'"/>
-    <xsl:variable name="practitionerrole-reference"
-        select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
-    <xsl:variable name="prescriber-url"
-        select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber'"/>
-    <xsl:variable name="author-url"
-        select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author'"/>
-    <xsl:variable name="periodofuse-url"
-        select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
-    <xsl:variable name="zib-MedicationUse-Duration"
-        select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
-    <xsl:variable name="asAgreedIndicator-url"  select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator'"/>
-    <xsl:variable name="copyIndicator-url" 
-        select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
+    <xsl:variable name="zib-MedicationUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse'"/>
+    <xsl:variable name="prescriber-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber'"/>
+    <xsl:variable name="author-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author'"/>
+    <xsl:variable name="asAgreedIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator'"/>
+    <xsl:variable name="copyIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
     <xsl:variable name="reasonForChangeOrDiscontinuationOfUse-url"  select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>
     
     <xd:doc>
@@ -79,30 +70,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:extension[@url=$prescriber-url]" mode="#current"/>
             <!-- Informant -->
             <xsl:apply-templates select="f:informationSource" mode="#current"/>
-            <!-- auteur -->
+            <!-- Auteur -->
             <xsl:apply-templates select="f:extension[@url=$author-url]" mode="#current"/>
             <!-- Reden gebruik --> 
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
             <!-- Reden wijzigen of stoppen gebruik -->
             <xsl:apply-templates select="f:extension[@url=$reasonForChangeOrDiscontinuationOfUse-url]" mode="#current"/>
-            <!-- Kopie Indicator - LET OP kan ik niet vinden in voorbeelden of in schema - needs to move to an own xsl-->
-            <xsl:apply-templates select="f:extension[@url=$copyIndicator-url]" mode="#current"/>
+            <!-- Kopie indicator -->
+            <xsl:apply-templates select="f:extension[@url=$copyIndicator-url]" mode="ext-zib-Medication-CopyIndicator-2.0"/>
             <!-- Toelichting -->
             <xsl:apply-templates select="f:note" mode="#current"/>
         </medicatie_gebruik>
     </xsl:template>
 
-    <!-- identificatie -->
+    <xd:doc>
+        <xd:desc>Template to convert f:identifier to identificatie</xd:desc>
+    </xd:doc>
     <xsl:template match="f:identifier" mode="zib-MedicationUse-2.2">
         <xsl:call-template name="Identifier-to-identificatie"/>
     </xsl:template>
 
-    <!-- gebruiksperiode-->
+    <xd:doc>
+        <xd:desc>Templates to convert f:effectivePeriod to gebruiksperiode</xd:desc>
+    </xd:doc>
     <xsl:template match="f:effectivePeriod" mode="zib-MedicationUse-2.2">
         <xsl:apply-templates select="f:start" mode="#current"/>
         <xsl:apply-templates select="f:end" mode="#current"/>
     </xsl:template>
-    <!-- gebruiksperiode_start -->
     <xsl:template match="f:start" mode="zib-MedicationUse-2.2">
         <gebruiksperiode_start>
             <xsl:attribute name="value">
@@ -113,7 +107,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:attribute name="datatype">datetime</xsl:attribute>
         </gebruiksperiode_start>
     </xsl:template>
-    <!-- gebruiksperiode_eind -->
     <xsl:template match="f:end" mode="zib-MedicationUse-2.2">
         <gebruiksperiode_eind>
             <xsl:attribute name="value">
@@ -125,7 +118,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </gebruiksperiode_eind>
     </xsl:template>
 
-    <!-- registratiedatum -->
+    <xd:doc>
+        <xd:desc>Template to convert f:dateAsserted to registratiedatum</xd:desc>
+    </xd:doc>
     <xsl:template match="f:dateAsserted" mode="zib-MedicationUse-2.2">
         <registratiedatum>
             <xsl:attribute name="value">
@@ -137,16 +132,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </registratiedatum>
     </xsl:template>
 
-    <!-- gebruik_indicator -->
-    <!-- 
-    ADA = Boolean   
-    In FHIR:    
-    Code Display	Definition
-    y	Yes	Positive assertion that patient has taken medication
-    n	No	Negative assertion that patient has not taken medication
-    unk	Unknown	Unknown assertion if patient has taken medication
-    na	Not Applicable	Patient reporting does not apply -->
-
+    <xd:doc>
+        <xd:desc>Template to convert f:taken to gebruik_indicator</xd:desc>
+    </xd:doc>
     <xsl:template match="f:taken" mode="zib-MedicationUse-2.2">
         <gebruik_indicator>
             <xsl:choose>
@@ -163,11 +151,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="nullFlavor" select="'UNK'"/>
                 </xsl:otherwise>
             </xsl:choose>
-
         </gebruik_indicator>
     </xsl:template>
-
-    <!-- gebruiks_product -->
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:medicationReference to gebruiks_product</xd:desc>
+    </xd:doc>
     <xsl:template match="f:medicationReference" mode="zib-MedicationUse-2.2">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <gebruiks_product>
@@ -177,7 +166,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </gebruiks_product>
     </xsl:template>
 
-    <!-- informant -->
+    <xd:doc>
+        <xd:desc>Template to convert f:informationSource to informant</xd:desc>
+    </xd:doc>
     <xsl:template match="f:informationSource" mode="zib-MedicationUse-2.2">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <xsl:variable name="referenceValuePractitionerRole"
@@ -206,7 +197,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </informant>
     </xsl:template>
     
-    <!-- Gerelateerde afspraak en Gerelateerde verstrekking -->
+    <xd:doc>
+        <xd:desc>Template to convert f:derivedFrom to gerelateerde_afspraak and gerelateerde_verstrekking</xd:desc>
+    </xd:doc>
     <xsl:template match="f:derivedFrom" mode="zib-MedicationUse-2.2">
         <xsl:choose>
             <xsl:when test="f:reference">
@@ -243,7 +236,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                 </xsl:choose>
             </xsl:when>
-            
           <!-- WRONG! NEED TO CHECK THIS. -->
           <!--  <xsl:when test="f:identifier">
                 <gerelateerde_afspraak>
@@ -253,10 +245,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </gerelateerde_afspraak>
             </xsl:when>-->
         </xsl:choose>
-        
     </xsl:template>
     
-    <!-- Auteur -->
+    <xd:doc>
+        <xd:desc>Template to convert f:extension with extension url "$author-url" to auteur</xd:desc>
+    </xd:doc>
     <xsl:template match="f:extension[@url=$author-url]" mode="zib-MedicationUse-2.2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:*)[1]"/>
@@ -293,7 +286,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </auteur>   
     </xsl:template>
     
-    <!-- Voorschrijver -->
+    <xd:doc>
+        <xd:desc>Template to convert f:extension with extension url "$prescriber-url" to voorschrijver</xd:desc>
+    </xd:doc>
     <xsl:template match="f:extension[@url=$prescriber-url]" mode="zib-MedicationUse-2.2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:*)[1]"/>
@@ -313,28 +308,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </voorschrijver>
     </xsl:template> 
-
-    <!-- Volgens afspraak indicator -->
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:extension with extension url "$asAgreedIndicator-url" to volgens_afspraak_indicator</xd:desc>
+    </xd:doc>
     <xsl:template match="f:extension[@url=$asAgreedIndicator-url]" mode="zib-MedicationUse-2.2">
         <volgens_afspraak_indicator>
             <xsl:attribute name="value" select="f:valueBoolean/@value"/>
         </volgens_afspraak_indicator>
     </xsl:template>
     
-    <!-- Kopie Indicator -->
-    <xsl:template match="f:extension[@url=$copyIndicator-url]" mode="zib-MedicationUse-2.2">
-        <kopie_indicator>
-            <xsl:attribute name="value" select="f:valueBoolean/@value"/>
-        </kopie_indicator>
-    </xsl:template>
-    
-    <!-- Reden gebruik --> 
+    <xd:doc>
+        <xd:desc>Template to convert f:reasonCode to reden_gebruik</xd:desc>
+    </xd:doc>
     <xsl:template match="f:reasonCode" mode="zib-MedicationUse-2.2">
         <reden_gebruik value="{f:text/@value}"/>
     </xsl:template>
     
-    
-    <!-- Reden wijzigen of stoppen gebruik -->
+    <xd:doc>
+        <xd:desc>Template to convert f:extension with extension url "$reasonForChangeOrDiscontinuationOfUse-url" to reden_wijzigen_of_stoppen_gebruik</xd:desc>
+        <xd:param name="in">Input which is a FHIR CodeableConcept</xd:param>
+        <xd:param name="adaElementName">The desired output ADA element name</xd:param>
+    </xd:doc>
     <xsl:template match="f:extension[@url=$reasonForChangeOrDiscontinuationOfUse-url]" mode="zib-MedicationUse-2.2">         
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="f:valueCodeableConcept"/>
@@ -342,7 +337,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>    
     </xsl:template>
     
-    <!-- StopType -->
+    <xd:doc>
+        <xd:desc>Template to convert f:status to stoptype. Only the FHIR status values that map to a ADA stoptype value are mapped.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:status" mode="zib-MedicationUse-2.2">
         <xsl:choose>
             <xsl:when test="@value='on-hold'">
@@ -360,11 +357,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
-    <!-- toelichting -->
+    <xd:doc>
+        <xd:desc>Template to convert f:note to toelichting.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:note" mode="zib-MedicationUse-2.2">
         <toelichting value="{f:text/@value}"/>
     </xsl:template>
-    
-    
 
 </xsl:stylesheet>

@@ -40,6 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="zib-Medication-PeriodOfUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
     <xsl:variable name="zib-MedicationAgreement-BasedOnAgreementOrUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'"/>
     <xsl:variable name="zib-MedicationUse-Duration" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
+    <xsl:variable name="copyIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
             
     <xd:doc>
         <xd:desc>Template for converting f:MedicationRequest to medicatieafspraak</xd:desc>
@@ -69,6 +70,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:supportingInformation" mode="resolve-bodyWeight"/>
             <!-- aanvullende_informatie -->
             <xsl:apply-templates select="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation']" mode="ext-zib-Medication-AdditionalInformation-2.0"/>
+            <!-- kopie indicator -->
+            <xsl:apply-templates select="f:extension[@url=$copyIndicator-url]" mode="ext-zib-Medication-CopyIndicator-2.0"/>
             <!-- toelichting -->
             <xsl:apply-templates select="f:note" mode="#current"/>
         </medicatieafspraak>

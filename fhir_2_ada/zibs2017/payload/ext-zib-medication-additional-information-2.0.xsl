@@ -24,12 +24,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xsl:template match="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation']" mode="ext-zib-Medication-AdditionalInformation-2.0">
-        <!--<aanvullende_informatie>-->
-            <xsl:call-template name="CodeableConcept-to-code">
-                <xsl:with-param name="in" select="f:valueCodeableConcept"/>
-                <xsl:with-param name="adaElementName">aanvullende_informatie</xsl:with-param>
-            </xsl:call-template>
-        <!--</aanvullende_informatie>-->
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="f:valueCodeableConcept"/>
+            <xsl:with-param name="adaElementName">aanvullende_informatie</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
     
 </xsl:stylesheet>

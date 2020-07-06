@@ -37,6 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="zib-MedicationUse-Duration" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
     <xsl:variable name="zib-Medication-StopType" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType'"/>
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
+    <xsl:variable name="copyIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
     
     <xsl:template match="f:MedicationDispense" mode="zib-AdministrationAgreement-2.2">
         <toedieningsafspraak>
@@ -65,6 +66,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation']" mode="ext-zib-Medication-AdditionalInformation-2.0"/>
             <!--toelichting-->
             <xsl:apply-templates select="f:note" mode="#current"/>
+            <!--kopie_indicator -->
+            <xsl:apply-templates select="f:extension[@url=$copyIndicator-url]" mode="ext-zib-Medication-CopyIndicator-2.0"/>
             <!--relatie_naar_medicatieafspraak-->
             <xsl:apply-templates select="f:authorizingPrescription" mode="#current"/>
         </toedieningsafspraak>
