@@ -199,6 +199,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to convert f:derivedFrom to gerelateerde_afspraak and gerelateerde_verstrekking</xd:desc>
+        <xd:desc>First try to revolve reference.reference within Bundle, then try to use the reference.identifier based on identifier.type and lastly try to resolve based on identifier within the Bundle.</xd:desc>
     </xd:doc>
     <xsl:template match="f:derivedFrom" mode="zib-MedicationUse-2.2">
         <xsl:choose>
@@ -245,7 +246,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="administrationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009'"/>
                 <xsl:variable name="dispense_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense/f:category/f:coding/f:code/@value='373784005'"/>             
                 <xsl:choose> 
-                    <!-- First try to use the f:reference/f:identifier based on the f:identifier/f:type -->
+                    <!-- First try to use the f:derivedFrom/f:identifier based on the f:identifier/f:type -->
                     <xsl:when test="$identifier_type = '16076005' or $identifier_type = '422037009' ">
                         <gerelateerde_afspraak>
                             <xsl:choose>
@@ -272,7 +273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </gerelateerde_verstrekking>
                     </xsl:when>
-                    <!-- Try to resolve identifier within Bundle -->
+                    <!-- Try to resolve f:derivedFrom/f:identifier within Bundle -->
                     <xsl:when test="($medicationagreement_resource and $resource/f:MedicationRequest/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]) 
                         or ($administrationagreement_resource and $resource/f:MedicationDispense/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]) ">
                         <gerelateerde_afspraak>
