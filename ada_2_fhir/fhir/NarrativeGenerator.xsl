@@ -11340,6 +11340,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="textLang" select="$textLang"/>
                         </xsl:call-template>
                     </xsl:when>
+                    <xsl:when test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']">
+                        <xsl:call-template name="getLocalizedNullFlavor">
+                            <xsl:with-param name="in" select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']/f:valueCode"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
+                    </xsl:when>
                 </xsl:choose>
                 <xsl:if test="f:system/@value">
                     <xsl:text> (</xsl:text>
