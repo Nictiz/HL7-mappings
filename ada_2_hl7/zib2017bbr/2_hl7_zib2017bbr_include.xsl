@@ -151,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     $naamgegevens"/>
 
         <xsl:for-each select="$varNaamgegevens[.//(@value | @code | @nullFlavor)]">
-            <xsl:variable name="structuredContent" as="xs:boolean" select="string-length(string-join(*[not(local-name() = $unstructuredNameElement)]//(@value|@code),'')) gt 0"/>
+            <xsl:variable name="structuredContent" as="xs:boolean" select="string-length(string-join(*[not(local-name() = $unstructuredNameElement)]//(@value | @code), '')) gt 0"/>
             <xsl:choose>
                 <xsl:when test="not($structuredContent) and string-length(*[local-name() = $unstructuredNameElement]/@value) gt 0">
                     <!-- we only have an unstructured name -->
@@ -163,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:value-of select="@value"/>
                         </given>
                     </xsl:for-each>
-                    <xsl:for-each select="initialen[.//(@value | @code | @nullFlavor)]">
+                    <xsl:for-each select="initialen[@value | @nullFlavor]">
                         <!-- in HL7v3 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
                         <!-- https://hl7.nl/wiki/index.php?title=DatatypesR1:PN -->
                         <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier verwijderen van de officiële voornamen -->
@@ -194,7 +194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
                             <xsl:value-of select="string-join($init, '')"/>
                         </xsl:variable>
-                        <xsl:variable name="hl7Initials">
+                        <xsl:variable name="hl7Initials" as="xs:string?">
                             <xsl:choose>
                                 <xsl:when test="string-length($adaFirstNameInitials) gt 0 and string-length($adaInitials) gt 0">
                                     <xsl:value-of select="replace($adaInitials, concat('^', $adaFirstNameInitials), '')"/>

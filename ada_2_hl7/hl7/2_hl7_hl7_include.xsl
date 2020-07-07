@@ -13,9 +13,11 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all"  xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
+    <!-- only give dateT a value if you want conversion of relative T dates -->
+    <xsl:import href="../../util/utilities.xsl"/>
     <!-- only give dateT a value if you want conversion of relative T dates -->
     <xsl:param name="dateT" as="xs:date?"/>
     <xd:doc scope="stylesheet">
@@ -1017,40 +1019,61 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="use"/>
+        <xd:desc>Make an HL7 element for a datatype TEL</xd:desc>
+        <xd:param name="in">The ada element to be converted, defaults to context.</xd:param>
+        <xd:param name="elemName">The hl7 element name, for example: telecom.</xd:param>
+        <xd:param name="urlSchemeCode">The URL scheme code for this telecom value. For example: tel / fax / mailto. See http://www.hl7.nl/wiki/index.php?title=DatatypesR1:URL .</xd:param>
+        <xd:param name="use">The contents for the @use attribute on this HL7 element</xd:param>
+    <xd:param name="xsiType">The xsiType for the HL7 element, set to empty string when not needed.</xd:param>
     </xd:doc>
     <xsl:template name="makeTELValue">
-        <xsl:param name="xsiType">TEL</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="use"/>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:if test="$use">
-                <xsl:attribute name="use" select="$use"/>
-            </xsl:if>
-            <xsl:attribute name="value" select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="use"/>
-    </xd:doc>
-    <xsl:template name="makeTEL.NL.EXTENDEDValue">
-        <xsl:param name="xsiType">TEL</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="use"/>
-        <xsl:call-template name="makeTELValue">
-            <xsl:with-param name="elemName"/>
-            <xsl:with-param name="use"/>
-        </xsl:call-template>
+        <xsl:param name="in" select="."/>
+        <xsl:param name="elemName" as="xs:string">value</xsl:param>
+        <xsl:param name="urlSchemeCode" as="xs:string?"/>
+        <xsl:param name="use" as="xs:string*"/>
+    <xsl:param name="xsiType" as="xs:string?">TEL</xsl:param>        
+      
+        <xsl:for-each select="$in">
+            <!-- spaces are not allowed in URL scheme -->
+            <xsl:variable name="theValue" select="translate(@value, ' ', '')"/>
+            <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($xsiType) gt 0">
+                    <xsl:attribute name="xsi:type" select="$xsiType"/>
+                </xsl:if>
+                <xsl:if test="$use">
+                    <xsl:attribute name="use" select="$use"/>
+                </xsl:if>
+                <xsl:attribute name="value">
+                    <xsl:choose>
+                        <xsl:when test="matches($theValue, '^([a-z\-]+):.*')">
+                            <!-- there is already an url scheme code in the @value -->
+                            <xsl:value-of select="$theValue"/>
+                        </xsl:when>
+                        <xsl:when test="string-length($urlSchemeCode) gt 0">
+                            <xsl:value-of select="concat($urlSchemeCode, ':', $theValue)"/>                            
+                        </xsl:when>
+                        <xsl:when test="matches($theValue, '.+@[^\.]+\.')">
+                            <!-- email -->
+                            <xsl:value-of select="concat('mailto:', $theValue)"/>
+                        </xsl:when>
+                        <xsl:when test="matches($theValue, '^[\d\s\(\)+-]+$')">
+                            <!-- fax or tel number, but without $urlSchemeCode we have no way of knowing, 
+                                so we default to tel, since fax really is also a telephone number technically -->
+                            <xsl:value-of select="concat('tel:', $theValue)"/>                            
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- hmmm, should not happen, so log a message, but let's still output the input -->
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logERROR"/>
+                                <xsl:with-param name="terminate" select="false()"/>
+                                <xsl:with-param name="msg">Encountered a telecom value for which an Url scheme could not be found: '<xsl:value-of select="$theValue"/>'</xsl:with-param>
+                            </xsl:call-template>
+                            <xsl:value-of select="$theValue"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+            </xsl:element>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>

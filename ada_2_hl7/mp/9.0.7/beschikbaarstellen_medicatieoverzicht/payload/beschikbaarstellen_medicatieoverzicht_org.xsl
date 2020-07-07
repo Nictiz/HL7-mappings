@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 			<xsl:for-each select="$mbh">
 				<!-- eigen Medicatieafspraak -->
-				<xsl:for-each select="./medicatieafspraak[not(kopie_indicator/@value='true')]">
+				<xsl:for-each select="./medicatieafspraak[not(kopie_indicator/@value = 'true')]">
 					<component typeCode="COMP">
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9235_20181204143321">
 							<xsl:with-param name="ma" select="."/>
@@ -100,7 +100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</component>
 				</xsl:for-each>
 				<!-- andermans Medicatieafspraak -->
-				<xsl:for-each select="./medicatieafspraak[kopie_indicator/@value='true']">
+				<xsl:for-each select="./medicatieafspraak[kopie_indicator/@value = 'true']">
 					<component typeCode="COMP">
 					    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9241_20181204150624">
 							<xsl:with-param name="ma" select="."/>
@@ -108,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</component>
 				</xsl:for-each>
 				<!-- eigen Toedieningsafspraak -->
-				<xsl:for-each select="./toedieningsafspraak[not(kopie_indicator/@value='true')]">
+				<xsl:for-each select="./toedieningsafspraak[not(kopie_indicator/@value = 'true')]">
 					<component typeCode="COMP">
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9259_20181206160523">
 							<xsl:with-param name="ta" select="."/>
@@ -116,7 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</component>
 				</xsl:for-each>
 				<!-- andermans Toedieningsafspraak -->
-				<xsl:for-each select="./toedieningsafspraak[kopie_indicator/@value='true']">
+				<xsl:for-each select="./toedieningsafspraak[kopie_indicator/@value = 'true']">
 					<component typeCode="COMP">
 					    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9258_20181206160248">
 							<xsl:with-param name="ta" select="."/>
@@ -124,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</component>
 				</xsl:for-each>
 				<!-- eigen Medicatiegebruik -->
-				<xsl:for-each select="./medicatie_gebruik[not(kopie_indicator/@value='true')]">
+				<xsl:for-each select="./medicatie_gebruik[not(kopie_indicator/@value = 'true')]">
 					<component typeCode="COMP">
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9246_20181205101627">
 							<xsl:with-param name="gb" select="."/>
@@ -132,7 +132,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</component>
 				</xsl:for-each>
 				<!-- andermans Medicatiegebruik -->
-				<xsl:for-each select="./medicatie_gebruik[kopie_indicator/@value='true']">
+				<xsl:for-each select="./medicatie_gebruik[kopie_indicator/@value = 'true']">
 					<component typeCode="COMP">
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9248_20181205103359">
 							<xsl:with-param name="gb" select="."/>
