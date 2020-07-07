@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="#all">
-    <xsl:import href="../../util/constants.xsl"/>
+    <xsl:import href="../../../../../util/constants.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -17,7 +17,7 @@
     </xsl:template>
     
     <!-- update ada app -->
-    <xsl:template match="beschikbaarstellen_medicatiegegevens">
+    <xsl:template match="adaxml/data/*">
         <xsl:copy>
             <!-- bestaande attributen kopiëren -->
             <xsl:apply-templates select="@*"/>
@@ -88,11 +88,8 @@
             </xsl:choose>
         </xsl:copy>
     </xsl:template>
-
-
-
-
-    <!-- Kopieer verder alles 1-op-1 -->
+   
+    <!-- Update concept id, if an old one has been left behind -->
     <xsl:template match="gebruiksperiode_start[@conceptId='1.2.3.4.5.12345.20132.1']">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
@@ -108,13 +105,11 @@
         </xsl:copy>
     </xsl:template>
 
-
     <!-- Kopieer verder alles 1-op-1 -->
     <xsl:template match="@* | node()">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()"/>
         </xsl:copy>
     </xsl:template>
-
 
 </xsl:stylesheet>

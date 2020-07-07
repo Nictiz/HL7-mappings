@@ -15,7 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
     <xsl:import href="../../util/mp-functions.xsl"/>
-    <xsl:import href="../../util/utilities.xsl"/>
+     <!--    <xsl:import href="../../util/utilities.xsl"/>-->
 
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
@@ -2580,22 +2580,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Telecom gegevens</xd:desc>
+        <xd:desc>Telecom gegevens for ada contactgegevens</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9172_20170522143706">
-        <xsl:for-each select=".//telefoonnummers">
-            <telecom>
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000"/>
-            </telecom>
-        </xsl:for-each>
+        <xsl:call-template name="_CdaTelecom"/>
 
-        <xsl:for-each select=".//email_adressen">
-            <telecom>
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.104_20180611000000"/>
-            </telecom>
-        </xsl:for-each>
-
-    </xsl:template>
+        </xsl:template>
 
     <xd:doc>
         <xd:desc>MP CDA TA Aanvullende informatie </xd:desc>
