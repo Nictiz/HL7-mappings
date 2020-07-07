@@ -17,9 +17,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:f="http://hl7.org/fhir"
     xmlns:local="urn:fhir:stu3:functions"
+    xmlns:nf="http://www.nictiz.nl/functions" 
     exclude-result-prefixes="#all"
     version="2.0">
-
+    
     <!--Uncomment imports for standalone use and testing.-->
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>

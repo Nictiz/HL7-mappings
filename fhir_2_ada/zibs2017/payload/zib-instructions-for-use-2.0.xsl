@@ -18,6 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:f="http://hl7.org/fhir"
     xmlns:nf="http://www.nictiz.nl/functions"
     xmlns:local="urn:fhir:stu3:functions"
+    xmlns:nf="http://www.nictiz.nl/functions" 
     exclude-result-prefixes="#all"
     version="2.0">
     

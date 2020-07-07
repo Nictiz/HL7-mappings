@@ -17,11 +17,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:f="http://hl7.org/fhir"
     xmlns:local="urn:fhir:stu3:functions"
+    xmlns:nf="http://www.nictiz.nl/functions" 
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <!--<!-\- Without this import, all depending XSLs need to import it -\->
-    <xsl:import href="_zib2017.xsl"/>-->
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <!-- nl-core resources -->
     <xsl:import href="nl-core-patient-2.1.xsl"/>
@@ -47,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="ext-zib-medication-copy-indicator-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
-    <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>   
+    <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <!--<xsl:import href="ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>-->
     <!-- zibs -->
     <xsl:import href="zib-problem-2.1.xsl"/>
