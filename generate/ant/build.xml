@@ -37,7 +37,7 @@
     <!-- IVY -->
     
     <target name="check-ivy">
-        <condition property="ivy.exists" else="false">
+        <condition property="ivy.exists">
             <or>
                 <available file="${ivy.jar.file}" type="file"/>
                 <available file="${ivy.local.jar.file}" type="file"/>
@@ -80,7 +80,12 @@
     <!-- BUILD XML -->
     
     <target name="check-input">
-        <input message="Please input project name." addproperty="project"/><!-- Per definition only asks for input if project property is not set -->
+        <dirset id="src.contents" dir="${src.dir}">
+            <include name="*"/>
+            <exclude name="common-asserts"/>
+        </dirset>
+        <property name="prop.src.contents" refid="src.contents"/>
+        <input message="Please input project name (${prop.src.contents})." addproperty="project"/><!-- Per definition only asks for input if project property is not set -->
         
         <if>
             <not>
@@ -129,7 +134,7 @@
                 <!-- All variables extracted from xmlproperty should be declared local -->
                 <local name="TestScript(nts:scenario)"/>
                 
-                <basename property="file.basename" file="@{file}"/>
+                <basename property="file.basename" file="@{file}" suffix="xml"/>
                 <dirname property="file.dirname" file="@{file}"/>
                 <pathconvert property="file.reldir">
                     <path>
