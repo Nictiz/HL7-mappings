@@ -56,6 +56,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </valueIdentifier>
                                 </extension>
                                 <extension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse"/>
+                                <extension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+                                    <valueBoolean value="true"/>
+                                </extension>
                                 <modifierExtension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
                                     <valueCodeableConcept>
                                         <coding>
@@ -339,15 +342,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </x:context>
             <x:expect label="'medicatieafspraak' element with children">
                 <medicatieafspraak>
-                    <gebruiksperiode_start value="T-20D{{00:00:00}}"
-                        datatype="datetime"/>
-                    <gebruiksperiode_eind value="T+9D{{23:59:59}}"
-                        datatype="datetime"/>
+                    <gebruiksperiode_start value="T-20D{{00:00:00}}"/>
+                    <gebruiksperiode_eind value="T+9D{{23:59:59}}"/>
                     <identificatie
                         value="MBH_907_QA1_MA"
                         root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                    <afspraakdatum value="T-20D{{08:00:00}}"
-                        datatype="datetime"/>
+                    <afspraakdatum value="T-20D{{08:00:00}}"/>
                     <gebruiksperiode unit="week" value="3"/>
                     <geannuleerd_indicator value="true"/>
                     <stoptype code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Definitief"/>
@@ -361,6 +361,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <lichaamslengte>...</lichaamslengte>
                     <lichaamsgewicht>...</lichaamsgewicht>
                     <aanvullende_informatie code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050" displayName="Bewust hoge dosering"/>
+                    <kopie_indicator value="true"/>
                     <toelichting value="Voorbeeldtoelichting"/>
                 </medicatieafspraak>
             </x:expect>
@@ -384,7 +385,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <authoredOn xmlns="http://hl7.org/fhir" value="${{DATE, T, D, +0}}T12:00:00+02:00"/>
             </x:context>
             <x:expect label="'afspraakdatum' element">
-                <afspraakdatum value="T+0D{{12:00:00}}" datatype="datetime"/>
+                <afspraakdatum value="T+0D{{12:00:00}}"/>
             </x:expect>
         </x:scenario>
       
@@ -635,61 +636,490 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </x:expect>
         </x:scenario>
         
-        <x:scenario label="match 'f:extension/f:valueReference/f:identifier' BasedOnAgreementOrUse mode= 'zib-MedicationAgreement-2.2'">
-            <x:context mode="zib-MedicationAgreement-2.2" >
-                    <extension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-                        <valueReference>
-                            <identifier>
-                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                                <value value="MBH_907_aanvullendeinstructie_MA"/>
-                            </identifier>
-                            <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                        </valueReference>
-                    </extension>    
-            </x:context>
-            <x:expect label="'relatie_naar_afspraak_of_gebruik' element">
-                <relatie_naar_afspraak_of_gebruik>
-                    <identificatie value="MBH_907_aanvullendeinstructie_MA"
-                        root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                </relatie_naar_afspraak_of_gebruik>
-            </x:expect>
-         </x:scenario>
+        <x:scenario label="match 'f:extension' BasedOnAgreementOrUse mode='zibMedicationAgreement-2.2'">
+            <x:scenario label="'f:valueReference/f:reference' to MedicationAgreement">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <reference value="foo-1"></reference>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <fullUrl value="foo-1"/>
+                            <resource>
+                                <MedicationRequest>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="bar-1"/>
+                                    </identifier>
+                                    <category>
+                                        <coding>
+                                            <code value="16076005"/>
+                                        </coding>
+                                    </category>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie value="bar-1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:valueReference/f:reference' to AdministrationAgreement">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <reference value="foo-2"></reference>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <fullUrl value="foo-2"/>
+                            <resource>
+                                <MedicationDispense>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="bar-2"/>
+                                    </identifier>
+                                    <category>
+                                        <coding>
+                                            <code value="422037009"/>
+                                        </coding>
+                                    </category>
+                                </MedicationDispense>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie_23288' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie_23288 value="bar-2" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:valueReference/f:reference' to MedicationUse">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <reference value="foo-3"></reference>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <fullUrl value="foo-3"/>
+                            <resource>
+                                <MedicationStatement>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="bar-3"/>
+                                    </identifier>
+                                    <category>
+                                        <coding>
+                                            <code value="6"/>
+                                        </coding>
+                                    </category>
+                                </MedicationStatement>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie_23289' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie_23289 value="bar-3" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:valueReference/f:identifier' to MedicationAgreement based on f:type">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <identifier>
+                                                <type>
+                                                    <coding>
+                                                        <value value="16076005"/>
+                                                    </coding>
+                                                </type>
+                                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                                <value value="foo-4"/>
+                                            </identifier>
+                                            <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie value="foo-4" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:valueReference/f:identifier' to AdministrationAgreement based on f:type">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <identifier>
+                                                <type>
+                                                    <coding>
+                                                        <value value="422037009"/>
+                                                    </coding>
+                                                </type>
+                                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                                <value value="foo-5"/>
+                                            </identifier>
+                                            <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie_23288' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie_23288 value="foo-5" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:valueReference/f:identifier' to MedicationUse based on f:type">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <identifier>
+                                                <type>
+                                                    <coding>
+                                                        <value value="6"/>
+                                                    </coding>
+                                                </type>
+                                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                                <value value="foo-6"/>
+                                            </identifier>
+                                            <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie_23289' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie_23289 value="foo-6" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:valueReference/f:identifier' to MedicationAgreement resolved">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <identifier>
+                                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                                <value value="foo-7"/>
+                                            </identifier>
+                                            <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <resource>
+                                <MedicationRequest>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="foo-7"/>
+                                    </identifier>
+                                    <category>
+                                        <coding>
+                                            <code value="16076005"/>
+                                        </coding>
+                                    </category>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie value="foo-7" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:valueReference/f:identifier' to AdministrationAgreement resolved">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <identifier>
+                                                <type>
+                                                    <coding>
+                                                        <value value="422037009"/>
+                                                    </coding>
+                                                </type>
+                                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                                <value value="foo-8"/>
+                                            </identifier>
+                                            <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <resource>
+                                <MedicationDispense>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="foo-8"/>
+                                    </identifier>
+                                    <category>
+                                        <coding>
+                                            <code value="422037009"/>
+                                        </coding>
+                                    </category>
+                                </MedicationDispense>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie_23288' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie_23288 value="foo-8" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:valueReference/f:identifier' to MedicationUse resolved">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:extension">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                                        <valueReference>
+                                            <identifier>
+                                                <type>
+                                                    <coding>
+                                                        <value value="6"/>
+                                                    </coding>
+                                                </type>
+                                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                                <value value="foo-9"/>
+                                            </identifier>
+                                            <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        </valueReference>
+                                    </extension>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <resource>
+                                <MedicationStatement>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="foo-9"/>
+                                    </identifier>
+                                    <category>
+                                        <coding>
+                                            <code value="6"/>
+                                        </coding>
+                                    </category>
+                                </MedicationStatement>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relatie_naar_afspraak_of_gebruik' element with 'identificatie_23289' child">
+                    <relatie_naar_afspraak_of_gebruik>
+                        <identificatie_23289 value="foo-9" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
         
-        <x:scenario label="match 'f:extension/f:valueReference/f:reference' BasedOnAgreementOrUse mode= 'zib-MedicationAgreement-2.2'">
-            <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest/f:extension">
-                <Bundle xmlns="http://hl7.org/fhir">
-                   <entry>
-                    <fullUrl value="urn:uuid:446587cc-aa6b-11ea-1876-020000000000"/>
-                    <resource>
-                       <MedicationRequest>
-                          <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-                             <valueReference>
-                                <reference value="urn:uuid:446587cc-aa6b-11ea-1876-0200000000001111"/>                  
-                                <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                             </valueReference>
-                          </extension>
-                       </MedicationRequest>
-                    </resource>
-                 </entry>
-                 <entry>
-                    <fullUrl value="urn:uuid:446587cc-aa6b-11ea-1876-0200000000001111"/>
-                    <resource>
-                       <MedicationRequest>
-                          <identifier>
-                             <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                             <value value="MBH_907_aanvullendeinstructie_TEST"/>
-                          </identifier>
-                       </MedicationRequest>
-                    </resource>
-                 </entry>
-               </Bundle>        
-            </x:context>
-            <x:expect label="'relatie_naar_afspraak_of_gebruik' element">
-                <relatie_naar_afspraak_of_gebruik>
-                    <identificatie value="MBH_907_aanvullendeinstructie_TEST"
-                        root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                </relatie_naar_afspraak_of_gebruik>
-            </x:expect>
+        <x:scenario label="match 'f:context' mode='zibMedicationAgreement-2.2'">
+            <x:scenario label="'f:reference' to Encounter">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:context">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <context>
+                                        <reference value="foo-1"/>
+                                    </context>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <fullUrl value="foo-1"/>
+                            <resource>
+                                <Encounter>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="bar-1"/>
+                                    </identifier>
+                                </Encounter>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relaties_ketenzorg' element with 'identificatie_contactmoment' child">
+                    <relaties_ketenzorg>
+                        <identificatie_contactmoment value="bar-1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relaties_ketenzorg>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:reference' to EpisodeOfCare">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:context">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <context>
+                                        <reference value="foo-2"/>
+                                    </context>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <fullUrl value="foo-2"/>
+                            <resource>
+                                <EpisodeOfCare>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="bar-2"/>
+                                    </identifier>
+                                </EpisodeOfCare>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relaties_ketenzorg' element with 'identificatie_episode' child">
+                    <relaties_ketenzorg>
+                        <identificatie_episode value="bar-2" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relaties_ketenzorg>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:identifier' to Encounter resolved">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:context">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest xmlns="http://hl7.org/fhir">
+                                    <context>
+                                        <identifier>
+                                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                            <value value="bar-3"/>
+                                        </identifier>
+                                    </context>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <resource>
+                                <Encounter>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="bar-3"/>
+                                    </identifier>
+                                </Encounter>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relaties_ketenzorg' element with 'identificatie_contactmoment' child">
+                    <relaties_ketenzorg>
+                        <identificatie_contactmoment value="bar-3" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relaties_ketenzorg>
+                </x:expect>
+            </x:scenario>
+            
+            <x:scenario label="'f:identifier' to EpisodeOfCare resolved">
+                <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest[1]/f:context">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <entry>
+                            <resource>
+                                <MedicationRequest>
+                                    <context>
+                                        <identifier>
+                                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                            <value value="bar-4"/>
+                                        </identifier>
+                                    </context>
+                                </MedicationRequest>
+                            </resource>
+                        </entry>
+                        <entry>
+                            <resource>
+                                <EpisodeOfCare>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="bar-4"/>
+                                    </identifier>
+                                </EpisodeOfCare>
+                            </resource>
+                        </entry>
+                    </Bundle>
+                </x:context>
+                <x:expect label="'relaties_ketenzorg' element with 'identificatie_episode' child">
+                    <relaties_ketenzorg>
+                        <identificatie_episode value="bar-4" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relaties_ketenzorg>
+                </x:expect>
+            </x:scenario>
+            
         </x:scenario>
     
     </x:scenario>
