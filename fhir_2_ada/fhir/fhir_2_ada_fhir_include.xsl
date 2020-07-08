@@ -24,6 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/units.xsl"/>
+    <xsl:import href="../../util/utilities.xsl"/>
     
     <xsl:output indent="yes"/>
     <xsl:strip-space elements="*"/>

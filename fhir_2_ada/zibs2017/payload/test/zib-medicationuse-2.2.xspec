@@ -18,9 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <x:scenario label="zib-medicationuse-2.2">
         <x:scenario label="Full zib">
             <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement[1]">
-              <Bundle xmlns="http://hl7.org/fhir"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+              <Bundle xmlns="http://hl7.org/fhir">
                <type value="searchset"/>
                <total value="1"/>
                <entry>
@@ -925,6 +923,215 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
              </medicatie_gebruik>
           </x:expect>
        </x:scenario>
+        
+        <x:scenario label="Informant is persoon">
+            <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement/f:informationSource">
+                <Bundle xmlns="http://hl7.org/fhir"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+                    <entry>
+                        <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                        <resource>
+                            <MedicationStatement>
+                                <informationSource>
+                                    <reference value="urn:uuid:de849584-bd37-11ea-1242-020000000000"/>
+                                    <display value="M. XXX_Amaya"/>
+                                </informationSource>
+                            </MedicationStatement>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                    <entry>
+                        <fullUrl value="urn:uuid:de849584-bd37-11ea-1242-020000000000"/>
+                        <resource>
+                            <RelatedPerson xmlns="http://hl7.org/fhir">
+                                <id value="M-XXX-AMAYA"/>
+                                <meta>
+                                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+                                </meta>
+                                <text>
+                                    <status value="generated"/>
+                                    <div xmlns="http://www.w3.org/1999/xhtml">
+                                        <div>M. XXX_Amaya</div>
+                                        <div>
+                                            <span title="Mantelzorger (407542009 - SNOMED CT)">Mantelzorger</span> van <a href="Patient/XXX-AMAYA">J. XXX_Amaya</a>
+                                        </div>
+                                    </div>
+                                </text>
+                                <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+                                    <valueCodeableConcept>
+                                        <coding>
+                                            <system value="http://snomed.info/sct"/>
+                                            <code value="407542009"/>
+                                            <display value="Mantelzorger"/>
+                                        </coding>
+                                    </valueCodeableConcept>
+                                </extension>
+                                <patient>
+                                    <reference value="Patient/XXX-AMAYA"/>
+                                    <display value="J. XXX_Amaya"/>
+                                </patient>
+                                <name>
+                                    <family value="XXX_Amaya">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                            <valueString value="XXX_Amaya"/>
+                                        </extension>
+                                    </family>
+                                    <given value="M.">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                            <valueCode value="IN"/>
+                                        </extension>
+                                    </given>
+                                </name>
+                            </RelatedPerson>
+                        </resource>
+                    </entry>
+                </Bundle>
+            </x:context>
+            <x:expect label="'informant' element with 'persoon' child">
+                <informant>
+                    <persoon>...</persoon>
+                </informant>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Informant is zorgverlener">
+            <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement/f:informationSource">
+                <Bundle xmlns="http://hl7.org/fhir"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+                    <entry>
+                        <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                        <resource>
+                            <MedicationStatement>
+                                <informationSource>
+                                    <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                                </informationSource>
+                            </MedicationStatement>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                    <entry>
+                        <fullUrl value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                        <resource>
+                            <Practitioner>
+                                <meta>
+                                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+                                </meta>
+                                <text>
+                                    <status value="generated"/>
+                                    <div xmlns="http://www.w3.org/1999/xhtml">
+                                        <div>Id 999001112 (UZI-NR-PERS), Hans van Doorn</div>
+                                    </div>
+                                </text>
+                                <identifier>
+                                    <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                                    <value value="999001112"/>
+                                </identifier>
+                                <name>
+                                    <family value="van Doorn">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                            <valueString value="van"/>
+                                        </extension>
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                            <valueString value="Doorn"/>
+                                        </extension>
+                                    </family>
+                                    <given value="Hans">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                            <valueCode value="BR"/>
+                                        </extension>
+                                    </given>
+                                </name>
+                            </Practitioner>
+                        </resource>
+                        <search>
+                            <mode value="include"/>
+                        </search>
+                    </entry>
+                </Bundle>
+            </x:context>
+            <x:expect label="'informant' element with 'informant_is_zorgverlener' child">
+                <informant>
+                    <informant_is_zorgverlener>...</informant_is_zorgverlener>
+                </informant>
+            </x:expect>
+        </x:scenario>
+    
+        <x:scenario label="Auteur is patient">
+            <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement/f:extension">
+                <Bundle xmlns="http://hl7.org/fhir"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+                    <entry>
+                        <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                        <resource>
+                            <MedicationStatement>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+                                    <valueReference>
+                                        <reference value="urn:uuid:09e20357-b54a-11ea-7883-020000000000"/>
+                                    </valueReference>
+                                </extension>
+                            </MedicationStatement>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                    <entry>
+                        <fullUrl value="urn:uuid:09e20357-b54a-11ea-7883-020000000000"/>
+                        <resource>
+                            <Patient>
+                                <meta>
+                                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+                                </meta>
+                                <identifier>
+                                    <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                                    <value>
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                            <valueCode value="masked"/>
+                                        </extension>
+                                    </value>
+                                </identifier>
+                                <identifier>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
+                                    <value value="51107"/>
+                                </identifier>
+                                <name>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                                        <valueCode value="NL1"/>
+                                    </extension>
+                                    <family value="XXX_Amaya">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                            <valueString value="XXX_Amaya"/>
+                                        </extension>
+                                    </family>
+                                    <given value="J.">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                            <valueCode value="IN"/>
+                                        </extension>
+                                    </given>
+                                </name>
+                                <gender value="male"/>
+                                <birthDate value="1964-08-06"/>
+                            </Patient>
+                        </resource>
+                        <search>
+                            <mode value="include"/>
+                        </search>
+                    </entry>
+                </Bundle>
+            </x:context>
+            <x:expect label="'informant' element with 'informant_is_zorgverlener' child">
+                <auteur>
+                    <auteur_is_patient value="true"/>
+                </auteur>
+            </x:expect>
+        </x:scenario>
     
     </x:scenario>
     

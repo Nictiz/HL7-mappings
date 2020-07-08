@@ -18,6 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:f="http://hl7.org/fhir"
     xmlns:local="urn:fhir:stu3:functions"
     xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:util="urn:hl7:utilities" 
     exclude-result-prefixes="#all"
     version="2.0">
     
@@ -33,53 +34,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="nl-core-organization-2.0.xsl"/>
     <xsl:import href="nl-core-humanname-2.0.xsl"/>
+    <xsl:import href="nl-core-relatedperson-2.0.xsl"/>
     <xsl:import href="zib-body-height-2.1.xsl"/>
     <xsl:import href="zib-body-weight-2.1.xsl"/>
     <xsl:import href="zib-problem-2.1.xsl"/>-->
 
     <xsl:variable name="zib-MedicationUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse'"/>
-    <xsl:variable name="prescriber-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber'"/>
-    <xsl:variable name="author-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author'"/>
-    <xsl:variable name="asAgreedIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator'"/>
-    <xsl:variable name="copyIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
-    <xsl:variable name="reasonForChangeOrDiscontinuationOfUse-url"  select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>
+    <xsl:variable name="zib-MedicationUse-Prescriber" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber'"/>
+    <xsl:variable name="zib-MedicationUse-Author" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author'"/>
+    <xsl:variable name="zib-MedicationUse-AsAgreedIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator'"/>
+    <xsl:variable name="zib-Medication-CopyIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
+    <xsl:variable name="zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse"  select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>
     
     <xd:doc>
-        <xd:desc>Template for converting f:MedicationStatement to MedicationUse</xd:desc>
+        <xd:desc>Template to convert f:MedicationStatement to ADA medicatie_gebruik</xd:desc>
     </xd:doc>
     <xsl:template match="f:MedicationStatement" mode="zib-MedicationUse-2.2">
         <medicatie_gebruik>
-            <!-- Gebruiksperiode -->
+            <!-- gebruiksperiode_start -->
+            <!-- gebruiksperiode_eind -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
-            <!-- Identificatie  -->
+            <!-- identificatie  -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
-            <!-- Registratiedatum -->
+            <!-- registratiedatum -->
             <xsl:apply-templates select="f:dateAsserted" mode="#current"/>
-            <!-- GebruiksIndicator -->
+            <!-- gebruiks_iIndicator -->
             <xsl:apply-templates select="f:taken" mode="#current"/>
-            <!-- Volgens afspraak indicator -->
-            <xsl:apply-templates select="f:extension[@url=$asAgreedIndicator-url]" mode="#current"/>
-            <!-- Stoptype -->
+            <!-- volgens_afspraak_indicator -->
+            <xsl:apply-templates select="f:extension[@url = $zib-MedicationUse-AsAgreedIndicator]" mode="#current"/>
+            <!-- stoptype -->
             <xsl:apply-templates select="f:status" mode="#current"/>
-            <!-- GebruiksProduct -->
+            <!-- gebruiks_product -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
             <xsl:apply-templates select="f:dosage" mode="zib-instructions-for-use-2.0"/>
-            <!-- Gerelateerde afspraak en Gerelateerde verstrekking -->
+            <!-- gerelateerde_afspraak -->
+            <!-- gerelateerde_verstrekking -->
             <xsl:apply-templates select="f:derivedFrom" mode="#current"/>
-            <!-- Voorschrijver -->
-            <xsl:apply-templates select="f:extension[@url=$prescriber-url]" mode="#current"/>
-            <!-- Informant -->
+            <!-- voorschrijver -->
+            <xsl:apply-templates select="f:extension[@url = $zib-MedicationUse-Prescriber]" mode="#current"/>
+            <!-- informant -->
             <xsl:apply-templates select="f:informationSource" mode="#current"/>
-            <!-- Auteur -->
-            <xsl:apply-templates select="f:extension[@url=$author-url]" mode="#current"/>
-            <!-- Reden gebruik --> 
+            <!-- auteur -->
+            <xsl:apply-templates select="f:extension[@url = $zib-MedicationUse-Author]" mode="#current"/>
+            <!-- reden_gebruik --> 
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
-            <!-- Reden wijzigen of stoppen gebruik -->
-            <xsl:apply-templates select="f:extension[@url=$reasonForChangeOrDiscontinuationOfUse-url]" mode="#current"/>
-            <!-- Kopie indicator -->
-            <xsl:apply-templates select="f:extension[@url=$copyIndicator-url]" mode="ext-zib-Medication-CopyIndicator-2.0"/>
-            <!-- Toelichting -->
+            <!-- reden_wijzigen_of_stoppen_gebruik -->
+            <xsl:apply-templates select="f:extension[@url = $zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse]" mode="#current"/>
+            <!-- kopie_indicator -->
+            <xsl:apply-templates select="f:extension[@url = $zib-Medication-CopyIndicator]" mode="ext-zib-Medication-CopyIndicator-2.0"/>
+            <!-- toelichting -->
             <xsl:apply-templates select="f:note" mode="#current"/>
         </medicatie_gebruik>
     </xsl:template>
@@ -92,12 +96,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Templates to convert f:effectivePeriod to gebruiksperiode</xd:desc>
+        <xd:desc>Template to convert f:effectivePeriod to gebruiksperiode</xd:desc>
     </xd:doc>
     <xsl:template match="f:effectivePeriod" mode="zib-MedicationUse-2.2">
         <xsl:apply-templates select="f:start" mode="#current"/>
         <xsl:apply-templates select="f:end" mode="#current"/>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:start to gebruiksperiode_start</xd:desc>
+    </xd:doc>
     <xsl:template match="f:start" mode="zib-MedicationUse-2.2">
         <gebruiksperiode_start>
             <xsl:attribute name="value">
@@ -108,6 +116,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:attribute name="datatype">datetime</xsl:attribute>
         </gebruiksperiode_start>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:end to gebruiksperiode_eind</xd:desc>
+    </xd:doc>
     <xsl:template match="f:end" mode="zib-MedicationUse-2.2">
         <gebruiksperiode_eind>
             <xsl:attribute name="value">
@@ -174,6 +186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <xsl:variable name="referenceValuePractitionerRole"
             select="f:extension/f:valueReference/f:reference/@value"/>
+        <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:*)[1]"/>
         <informant>
             <xsl:choose>
                 <xsl:when
@@ -182,17 +195,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:attribute name="value" select="'true'"/>
                     </informant_is_patient>
                 </xsl:when>
-                <xsl:when
-                    test="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:Practitioner or ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValuePractitionerRole]/f:resource/f:PractitionerRole">
+                <xsl:when test="$resource/local-name() = 'Practitioner'">
                     <informant_is_zorgverlener>
-                        <xsl:attribute name="value" select="'true'"/>
-                    </informant_is_zorgverlener>
+                        <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0">
+                            <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
+                            <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
+                        </xsl:apply-templates>
+                    </informant_is_zorgverlener>    
+                </xsl:when>
+                <xsl:when test="$resource/local-name() = 'PractitionerRole'">
+                    <informant_is_zorgverlener>
+                        <xsl:apply-templates select="$resource" mode="resolve-practitionerRole">
+                            <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
+                            <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
+                            <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
+                        </xsl:apply-templates>
+                    </informant_is_zorgverlener>    
+                </xsl:when>
+                <xsl:when test="$resource/local-name() = 'Organization'">
+                    <informant_is_zorgverlener>
+                        <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0">
+                            <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
+                        </xsl:apply-templates>
+                    </informant_is_zorgverlener>   
                 </xsl:when>
                 <xsl:when
                     test="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:RelatedPerson">
-                    <persoon>
-                        <xsl:attribute name="value" select="'true'"/>
-                    </persoon>
+                    <xsl:apply-templates select="$resource" mode="nl-core-relatedperson-2.0">
+                        <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
+                    </xsl:apply-templates>
                 </xsl:when>
             </xsl:choose>
         </informant>
@@ -207,19 +238,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="f:reference">
                 <xsl:variable name="referenceValue" select="f:reference/@value"/>
                 <xsl:variable name="resource" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource"/>
+                <xsl:variable name="resourceCategoryCode" select="$resource/f:*/f:category/f:coding/f:code/@value"/>
                 <xsl:choose>
-                    <xsl:when
-                        test="$resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005' 
-                        or $resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009' ">
+                    <xsl:when test="$resourceCategoryCode = '16076005' or $resourceCategoryCode = '422037009' ">
                         <gerelateerde_afspraak>
                             <xsl:choose>
-                                <xsl:when test="$resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005'">
+                                <xsl:when test="$resourceCategoryCode = '16076005'">
                                     <xsl:call-template name="Identifier-to-identificatie">
                                         <xsl:with-param name="in" select="$resource/f:MedicationRequest/f:identifier"/>
                                         <xsl:with-param name="adaElementName">identificatie_medicatieafspraak</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:when>
-                                <xsl:when test="$resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009'">
+                                <xsl:when test="$resourceCategoryCode = '422037009'">
                                     <xsl:call-template name="Identifier-to-identificatie">
                                         <xsl:with-param name="in" select="$resource/f:MedicationDispense/f:identifier"/>
                                         <xsl:with-param name="adaElementName">identificatie_toedieningsafspraak</xsl:with-param>
@@ -228,8 +258,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>    
                         </gerelateerde_afspraak>
                     </xsl:when>
-                    <xsl:when
-                        test="$resource/f:MedicationDispense/f:category/f:coding/f:code/@value='373784005'">
+                    <xsl:when test="$resourceCategoryCode = '373784005'">
                         <gerelateerde_verstrekking>
                             <xsl:call-template name="Identifier-to-identificatie">
                                 <xsl:with-param name="in" select="$resource/f:MedicationDispense/f:identifier"/>
@@ -242,10 +271,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="f:identifier">
                 <xsl:variable name="identifier_type" select="f:identifier/f:type/f:coding/f:value/@value"/>
                 <xsl:variable name="referenceValue" select="f:identifier/concat(f:system/@value,f:value/@value)"/>
-                <xsl:variable name="resource" select="ancestor::f:Bundle/f:entry/f:resource"/>
-                <xsl:variable name="medicationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005'"/>
-                <xsl:variable name="administrationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009'"/>
-                <xsl:variable name="dispense_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense/f:category/f:coding/f:code/@value='373784005'"/>             
+                <xsl:variable name="medicationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationRequest[f:category/f:coding/f:code/@value='16076005']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
+                <xsl:variable name="administrationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense[f:category/f:coding/f:code/@value='422037009']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
+                <xsl:variable name="dispense_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense[f:category/f:coding/f:code/@value='373784005']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
                 <xsl:choose> 
                     <!-- First try to use the f:derivedFrom/f:identifier based on the f:identifier/f:type -->
                     <xsl:when test="$identifier_type = '16076005' or $identifier_type = '422037009' ">
@@ -275,30 +303,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </gerelateerde_verstrekking>
                     </xsl:when>
                     <!-- Try to resolve f:derivedFrom/f:identifier within Bundle -->
-                    <xsl:when test="($medicationagreement_resource and $resource/f:MedicationRequest/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]) 
-                        or ($administrationagreement_resource and $resource/f:MedicationDispense/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]) ">
+                    <xsl:when test="$medicationagreement_resource or $administrationagreement_resource">
                         <gerelateerde_afspraak>
                             <xsl:choose>
                                 <xsl:when test="$medicationagreement_resource">
                                     <xsl:call-template name="Identifier-to-identificatie">
-                                        <xsl:with-param name="in" select="$resource/f:MedicationRequest/f:identifier"/>
+                                        <xsl:with-param name="in" select="$medicationagreement_resource"/>
                                         <xsl:with-param name="adaElementName">identificatie_medicatieafspraak</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:when>
-                                <xsl:when test="$administrationagreement_resource and $resource/f:MedicationDispense/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]">
+                                <xsl:when test="$administrationagreement_resource">
                                     <xsl:call-template name="Identifier-to-identificatie">
-                                        <xsl:with-param name="in" select="$resource/f:MedicationDispense/f:identifier"/>
+                                        <xsl:with-param name="in" select="$administrationagreement_resource"/>
                                         <xsl:with-param name="adaElementName">identificatie_toedieningsafspraak</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:when>
                             </xsl:choose>    
                         </gerelateerde_afspraak>
                     </xsl:when>
-                    <xsl:when
-                        test="$dispense_resource and $resource/f:MedicationDispense/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]">
+                    <xsl:when test="$dispense_resource">
                         <gerelateerde_verstrekking>
                             <xsl:call-template name="Identifier-to-identificatie">
-                                <xsl:with-param name="in" select="$resource/f:MedicationDispense/f:identifier"/>
+                                <xsl:with-param name="in" select="$dispense_resource"/>
                                 <xsl:with-param name="adaElementName">identificatie</xsl:with-param>
                             </xsl:call-template>
                         </gerelateerde_verstrekking>
@@ -306,42 +332,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message terminate="no">MedicationStatement.derivedFrom reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier.type. Therefore information (gerelateerde_afspraak and gerelateerde_verstrekking) will be lost.</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">
+                        <xsl:text>MedicationStatement.derivedFrom reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier.type. Therefore information (gerelateerde_afspraak or gerelateerde_verstrekking) will be lost.</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
-        
-        
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url "$author-url" to auteur</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url=$author-url]" mode="zib-MedicationUse-2.2">
+    <xsl:template match="f:extension[@url = $zib-MedicationUse-Author]" mode="zib-MedicationUse-2.2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:*)[1]"/>
         <auteur>
             <xsl:choose>
-                <xsl:when test="$resource/local-name()='Patient'">        
+                <xsl:when test="$resource/local-name() = 'Patient'">        
                     <auteur_is_patient>
                         <xsl:attribute name="value" select="'true'"/>
                     </auteur_is_patient>
                 </xsl:when>
-                <xsl:when test="$resource/local-name()='Practitioner'">
+                <xsl:when test="$resource/local-name() = 'Practitioner'">
                     <auteur_is_zorgverlener>
                         <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0">
                             <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
+                            <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
                         </xsl:apply-templates>
                     </auteur_is_zorgverlener>    
                 </xsl:when>
-                <xsl:when test="$resource/local-name()='PractitionerRole'">
+                <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <auteur_is_zorgverlener>
                         <xsl:apply-templates select="$resource" mode="resolve-practitionerRole">
                             <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
                             <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
+                            <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
                         </xsl:apply-templates>
                     </auteur_is_zorgverlener>    
                 </xsl:when>
-                <xsl:when test="$resource/local-name()='Organization'">
+                <xsl:when test="$resource/local-name() = 'Organization'">
                     <auteur_is_zorgverlener>
                         <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0">
                             <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
@@ -353,20 +384,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to convert f:extension with extension url "$prescriber-url" to voorschrijver</xd:desc>
+        <xd:desc>Template to convert f:extension with f:extension zib-MedicationUse-Prescriber to voorschrijver</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url=$prescriber-url]" mode="zib-MedicationUse-2.2">
+    <xsl:template match="f:extension[@url = $zib-MedicationUse-Prescriber]" mode="zib-MedicationUse-2.2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:*)[1]"/>
         <voorschrijver>
             <xsl:choose>
-                <xsl:when test="$resource/local-name()='PractitionerRole'">
+                <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitionerRole">
                         <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                         <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
                     </xsl:apply-templates>
                 </xsl:when>
-                <xsl:when test="$resource/local-name()='Practitioner'">
+                <xsl:when test="$resource/local-name() = 'Practitioner'">
                     <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0">
                         <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
                     </xsl:apply-templates>
@@ -378,7 +409,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url "$asAgreedIndicator-url" to volgens_afspraak_indicator</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url=$asAgreedIndicator-url]" mode="zib-MedicationUse-2.2">
+    <xsl:template match="f:extension[@url = $zib-MedicationUse-AsAgreedIndicator]" mode="zib-MedicationUse-2.2">
         <volgens_afspraak_indicator>
             <xsl:attribute name="value" select="f:valueBoolean/@value"/>
         </volgens_afspraak_indicator>
@@ -393,10 +424,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url "$reasonForChangeOrDiscontinuationOfUse-url" to reden_wijzigen_of_stoppen_gebruik</xd:desc>
-        <xd:param name="in">Input which is a FHIR CodeableConcept</xd:param>
-        <xd:param name="adaElementName">The desired output ADA element name</xd:param>
     </xd:doc>
-    <xsl:template match="f:extension[@url=$reasonForChangeOrDiscontinuationOfUse-url]" mode="zib-MedicationUse-2.2">         
+    <xsl:template match="f:extension[@url = $zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse]" mode="zib-MedicationUse-2.2">         
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="f:valueCodeableConcept"/>
             <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_stoppen_gebruik'"/>
