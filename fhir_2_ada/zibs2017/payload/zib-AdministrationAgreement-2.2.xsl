@@ -136,8 +136,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:template match="f:authorizingPrescription" mode="zib-AdministrationAgreement-2.2">
         <relatie_naar_medicatieafspraak>
-            <xsl:call-template name="Identifier-to-identificatie">
-                <xsl:with-param name="in" select="f:identifier"/>
+            <xsl:call-template name="Reference-to-identificatie">
+                <xsl:with-param name="resourceList" select="('MedicationRequest')"/>
             </xsl:call-template>
         </relatie_naar_medicatieafspraak>
     </xsl:template>

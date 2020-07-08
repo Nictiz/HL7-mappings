@@ -18,6 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:f="http://hl7.org/fhir"
     xmlns:local="urn:fhir:stu3:functions"
     xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:util="urn:hl7:utilities" 
     exclude-result-prefixes="#all"
     version="2.0">
     
@@ -296,6 +297,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
             <xsl:attribute name="root" select="local:getOid($in/f:system/@value)"/>
         </xsl:element>
+    </xsl:template>
+    
+    <xsl:template name="Reference-to-identificatie">
+        <xsl:param name="resourceList"/>
+        <xsl:choose>
+            <xsl:when test="f:reference">
+                <xsl:variable name="referenceValue" select="f:reference/@value"/>
+                <xsl:variable name="resource" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*[local-name()=$resourceList]"/>
+                <xsl:choose>
+                    <xsl:when test="$resource/f:identifier">
+                        <xsl:call-template name="Identifier-to-identificatie">
+                            <xsl:with-param name="in" select="$resource/f:identifier"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logERROR"/>
+                            <xsl:with-param name="msg">
+                                <xsl:value-of select="ancestor::f:resource/f:*/local-name()"/>
+                                <xsl:text> with fullUrl '</xsl:text>
+                                <xsl:value-of select="ancestor::f:resource/preceding-sibling::f:fullUrl/@value"/>
+                                <xsl:text>' .</xsl:text>
+                                <xsl:value-of select="parent::f:*/local-name()"/>
+                                <xsl:text> reference cannot be resolved within the Bundle. Therefore information will be lost.</xsl:text>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:when test="f:identifier">
+                <xsl:call-template name="Identifier-to-identificatie">
+                    <xsl:with-param name="in" select="f:identifier"/>
+                </xsl:call-template>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     
     <xd:doc>
