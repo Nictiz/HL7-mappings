@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir=".." name="generateTestScripts" default="clean">
-    <!--<property name="project" value="Medication-9-0-7"/>-->
+<!-- Common ANT build script for Nictiz NTS projects.
+    
+    The normal use of this build script is to import it from another ANT build script, where a particular folder
+    structure is expected:
+    - build.xml            : the file that imports this build script
+    - src/                 : the dir containing the source files 
+       - common-asserts/   : the common components across all projects
+       - Project1/         : a project dir
+         - InputFolder1/   : one or more dirs containg NTS files
+         - _components/    : the components specific for that project
+         - _reference/     : the fixtures for that project
+    - build/               : the dir where the output will be placed
+    - lib/                 :
+       - ant-dependencies/ : where the dependencies for ANT will be placed (you probably want to add this to .gitignore)
+
+    The script will ask you for one of the project dirs inside the "src/" dir. Alternatively, this can be passed in the
+    ANT call with the -Dproject= option.
+-->
+     
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="clean">
     <property name="outputXisInternal" value="false"/>
+
+    <!-- The basedir property is the basedir of the including script. This property sets _our_ basedir. -->
+    <dirname property="included.basedir" file="${ant.file.generateTestScripts}/.."/>
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
-    <property name="ivy.dep.file" value="_ant/ivy.xml" />
+    <property name="ivy.dep.file" value="${included.basedir}/ant/ivy.xml" />
     
+    <property name="xslt.dir" value="${included.basedir}/xslt" />
     <property name="build.dir" value="${basedir}/build" />
     <property name="src.dir" value="${basedir}/src" />
-    <property name="lib.dir" value="${basedir}/lib"/>
+    <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
-    
+        
     <!-- IVY -->
     
     <target name="check-ivy">
@@ -41,8 +63,9 @@
     <!-- SAXON, ANT-CONTRIB -->
     
     <target name="retrieve" depends="check-ivy, install-ivy">
-        <ivy:retrieve/>
-        <ivy:artifactproperty name="[module].[artifact]" value="lib/[artifact]-[revision].[ext]" />
+        <ivy:retrieve pattern="${lib.dir}/[type]/[artifact]-[revision].[ext]"/>
+        <ivy:artifactproperty name="[module].[artifact]" value="${lib.dir}/[type]/[artifact]-[revision].[ext]" />
+        <ivy:artifactproperty name="[artifact].[type]" value="${lib.dir}/[type]/[artifact]-[revision].[ext]" />
     </target>
     
     <target name="load" depends="retrieve" unless="ant.contrib.loaded">
@@ -61,7 +84,7 @@
         
         <if>
             <not>
-                <available file="${basedir}/${project}" type="dir"/>
+                <available file="${src.dir}/${project}" type="dir"/>
             </not>
             <then>
                 <fail message="Project directory '${project}' does not exist."/>
@@ -69,7 +92,7 @@
         </if>
         <if>
             <not>
-                <available file="${basedir}/${project}/_components" type="dir"/>
+                <available file="${src.dir}/${project}/_components" type="dir"/>
             </not>
             <then>
                 <echo message="WARNING: Project components directory '${project}/_components' does not exist."/>
@@ -80,16 +103,15 @@
     <target name="prepare" depends="check-input">
         <tempfile property="temp.dir" destDir="${java.io.tmpdir}" prefix="generateTestScripts-${project}-"/>
         <mkdir dir="${temp.dir}"/>
-        <!--<echo>${temp.dir}</echo>-->
     </target>
     
     <target name="build" depends="load, prepare, check-input">
         <path id="projectdir.path">
-            <pathelement path="${basedir}/${project}" />
+            <pathelement path="${src.dir}/${project}" />
         </path>
         <pathconvert targetos="unix" property="projectdir.unix" refid="projectdir.path"/>
         
-        <fileset id="input" dir="${basedir}/${project}">
+        <fileset id="input" dir="${src.dir}/${project}">
             <include name="**/*.xml"/>
             <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
         </fileset>
@@ -113,7 +135,7 @@
                     <path>
                         <dirset dir="${file.dirname}"/>
                     </path>
-                    <map from="${basedir}/${project}" to=""/>
+                    <map from="${src.dir}/${project}" to=""/>
                 </pathconvert>
                 
                 <xmlproperty file="@{file}"/>
@@ -134,17 +156,17 @@
                         <local name="file.reldirXisInternal"/>
                         <property name="file.newname" value="${file.basename}-@{expectedResponseFormat}.xml"/>
                         
-                        <xslt force="true" style="${src.dir}/xslt/generateTestScript.xsl" in="@{file}" out="${temp.dir}/${file.reldir}/${file.newname}">                            
+                        <xslt force="true" style="${xslt.dir}/generateTestScript.xsl" in="@{file}" out="${temp.dir}/${file.reldir}/${file.newname}">                            
                             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-                            <classpath location="${net.sf.saxon.Saxon-HE}"/>
-                            <param name="inputDir" expression="file:/${projectdir.unix}"/>
+                            <classpath location="${Saxon-HE.jar}"/>
+                            <param name="inputDir" expression="file://${projectdir.unix}"/>
                             <param name="referenceFolder" expression="_reference"/>
                             <param name="commonComponentFolder" expression="../${src.dir}/common-asserts"/>
                             <param name="projectComponentFolder" expression="_components"/>
                             <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                         </xslt>
-                        <xslt force="true" style="${src.dir}/xslt/stripSetup.xsl" in="${temp.dir}/${file.reldir}/${file.newname}" out="${build.dir}/${project}/${file.reldir}/${file.newname}">                            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-                            <classpath location="${net.sf.saxon.Saxon-HE}"/>
+                        <xslt force="true" style="${xslt.dir}/stripSetup.xsl" in="${temp.dir}/${file.reldir}/${file.newname}" out="${build.dir}/${project}/${file.reldir}/${file.newname}">                             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                            <classpath location="${Saxon-HE.jar}"/>
                         </xslt>
                         
                         <if>
