@@ -24,6 +24,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--Uncomment imports for standalone use and testing.-->
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
+    <xd:doc>
+        <xd:desc>Template to resolve f:PractitionerRole and apply f:Practitioner</xd:desc>
+    </xd:doc>
     <xsl:template match="f:PractitionerRole" mode="resolve-practitionerRole">
         <xsl:variable name="practionerReference" select="f:practitioner/f:reference/@value"/>
         <xsl:variable name="organizationReference" select="f:organization/f:reference/@value"/>
@@ -34,10 +37,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:apply-templates>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to apply f:specialty within f:PractitionerRole</xd:desc>
+    </xd:doc>
     <xsl:template match="f:PractitionerRole" mode="nl-core-practitionerrole-2.0">
         <xsl:apply-templates select="f:specialty"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:specialty to ADA specialisme</xd:desc>
+    </xd:doc>
     <xsl:template match="f:specialty">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="adaElementName" select="'specialisme'"/>

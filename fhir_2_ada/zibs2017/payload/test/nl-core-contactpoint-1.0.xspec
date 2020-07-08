@@ -40,11 +40,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <value value="+31611234567" />
                     <use value="work" />
                 </telecom>
+                <telecom xmlns="http://hl7.org/fhir">
+                    <system value="phone" />
+                    <value value="+31611234568" />
+                    <use value="work" />
+                </telecom>
             </x:context>
             <x:expect label="'contactgegevens' element">
                 <contactgegevens>
                     <telefoonnummers>
                         <telefoonnummer value="+31611234567"/>
+                        <nummer_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Zakelijk telefoonnummer"/>
+                    </telefoonnummers>
+                    <telefoonnummers>
+                        <telefoonnummer value="+31611234568"/>
                         <nummer_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Zakelijk telefoonnummer"/>
                     </telefoonnummers>
                 </contactgegevens>

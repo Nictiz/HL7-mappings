@@ -22,8 +22,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
-    <xsl:import href="nl-core-humanname-2.0.xsl"/>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
     
     <xsl:variable name="nl-core-relatedperson-role" select="'http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role'"/>
     

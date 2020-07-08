@@ -28,6 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="nl-core-organization-2.0.xsl"/>
     <xsl:import href="nl-core-location-2.0.xsl"/>
+    <xsl:import href="nl-core-relatedperson-2.0.xsl"/>
     <!-- nl-core datatypes -->
     <xsl:import href="nl-core-address-2.0.xsl"/>
     <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
@@ -47,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
-    <!--<xsl:import href="ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>-->
+    <!--ext-zib-medication-repeat-period-cyclical-schedule-2.0 is included in zib-instructions-for-use-2.0-->
     <!-- zibs -->
     <xsl:import href="zib-problem-2.1.xsl"/>
     <xsl:import href="zib-body-height-2.1.xsl"/>

@@ -561,24 +561,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Remove unhandled nodes</xd:desc>
     </xd:doc>
-    <xsl:template match="f:*" mode="#all"/>
-    
-    <!--<xd:doc>
-        <xd:desc>Identity transformation</xd:desc>
-    </xd:doc>
-    <xsl:template match="node()|@*" priority="-1">
-        <xsl:copy>
-            <xsl:apply-templates select="node()|@*"/>
-        </xsl:copy>
+    <xsl:template match="f:*" mode="#all">
+        <xsl:comment>Unhandled FHIR node: f:<xsl:value-of select="local-name()"/></xsl:comment>
     </xsl:template>
-    
-    
-    
-    <xd:doc>
-        <xd:desc>Throw process if an unhandled FHIR element is matched.</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:*" mode="#all" priority="-1">
-        <xsl:message terminate="yes">Unhandled FHIR element: <xsl:value-of select="local-name()"/></xsl:message>
-    </xsl:template>-->
     
 </xsl:stylesheet>

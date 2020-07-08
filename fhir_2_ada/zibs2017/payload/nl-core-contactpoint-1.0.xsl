@@ -26,6 +26,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:variable name="code-specification" select="'http://nictiz.nl/fhir/StructureDefinition/code-specification'"/>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:telecom and siblings to ADA contactgegevens with telefoonnummers and email_adressen</xd:desc>
+    </xd:doc>
     <xsl:template match="f:telecom" mode="nl-core-contactpoint-1.0">
         <xsl:choose>
             <xsl:when test="not(preceding-sibling::f:telecom)">

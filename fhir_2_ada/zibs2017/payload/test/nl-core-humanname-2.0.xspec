@@ -38,8 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <x:expect label="'naamgegevens' element with 'initialen', 'naamgebruik' and 'geslachtsnaam' child elements">
                 <naamgegevens>
                     <initialen value="..."/>
-                    <naamgebruik value="..."
-                        code="..."
+                    <naamgebruik code="..."
                         codeSystem="..."
                         displayName="..."/>
                     <geslachtsnaam>...</geslachtsnaam>
@@ -93,9 +92,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <f:valueCode value="NL1"/>
                     </f:extension>
                 </x:context>
-                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL1">
-                    <naamgebruik value="1" 
-                        code="NL1"
+                <x:expect label="'naamgebruik' element with @code, @codeSystem and @displayName following NL1">
+                    <naamgebruik code="NL1"
                         codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                         displayName="Eigen geslachtsnaam"/>
                 </x:expect>
@@ -107,7 +105,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <f:valueCode value="NL1"/>
                     </f:extension>
                 </x:context>
-                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL1">
+                <x:expect label="'naamgebruik' element with @code, @codeSystem and @displayName following NL1">
                     <naamgebruik value="1" 
                         code="NL1"
                         codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -121,9 +119,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <f:valueCode value="NL2"/>
                     </f:extension>
                 </x:context>
-                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL2">
-                    <naamgebruik value="2" 
-                        code="NL2"
+                <x:expect label="'naamgebruik' element with @code, @codeSystem and @displayName following NL2">
+                    <naamgebruik code="NL2"
                         codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                         displayName="Geslachtsnaam partner"/>
                 </x:expect>
@@ -135,9 +132,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <f:valueCode value="NL3"/>
                     </f:extension>
                 </x:context>
-                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL3">
-                    <naamgebruik value="3" 
-                        code="NL3"
+                <x:expect label="'naamgebruik' element with @code, @codeSystem and @displayName following NL3">
+                    <naamgebruik code="NL3"
                         codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                         displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
                 </x:expect>
@@ -149,9 +145,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <f:valueCode value="NL4"/>
                     </f:extension>
                 </x:context>
-                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL4">
-                    <naamgebruik value="4" 
-                        code="NL4"
+                <x:expect label="'naamgebruik' element with @code, @codeSystem and @displayName following NL4">
+                    <naamgebruik code="NL4"
                         codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                         displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
                 </x:expect>
@@ -163,9 +158,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <f:valueCode value="NL4"/>
                     </f:extension>
                 </x:context>
-                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL4">
-                    <naamgebruik value="4" 
-                        code="NL4"
+                <x:expect label="'naamgebruik' element with @code, @codeSystem and @displayName following NL4">
+                    <naamgebruik code="NL4"
                         codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                         displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
                 </x:expect>
@@ -194,11 +188,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <geslachtsnaam>
                     <voorvoegsels value="van der "/>
                     <achternaam value="XXX_Jankie"/>
-                    <voorvoegsels_partner value="van der "/>
-                    <achternaam_partner value="XXX_Jankie"/>
                 </geslachtsnaam>
             </x:expect>
-            <x:expect label="'geslachtsnaam' element with child element from @value" test="/*[2]">
+            <x:expect label="'geslachtsnaam_partner' element with child elements from extension" test="/*[2]">
+                <geslachtsnaam_partner>
+                    <voorvoegsels_partner value="van der "/>
+                    <achternaam_partner value="XXX_Jankie"/>
+                </geslachtsnaam_partner>
+            </x:expect>
+            <x:expect label="'geslachtsnaam' element with child element from @value" test="/*[3]">
                 <geslachtsnaam>
                     <achternaam value="XXX_Jankie"/>
                 </geslachtsnaam>
