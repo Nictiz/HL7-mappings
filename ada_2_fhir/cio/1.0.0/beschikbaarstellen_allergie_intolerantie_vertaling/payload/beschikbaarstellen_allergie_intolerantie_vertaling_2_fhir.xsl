@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- dateT may be given for relative dates, only applicable for test instances -->
     <xsl:param name="dateT" as="xs:date?" select="current-date()"/>
-    <!--<xsl:param name="dateT" as="xs:date?"/>-->
+<!--    <xsl:param name="dateT" as="xs:date?"/>-->
     
      <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $relatedPersons/f:entry"/>

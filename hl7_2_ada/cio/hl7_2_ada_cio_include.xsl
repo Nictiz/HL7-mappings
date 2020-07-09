@@ -633,7 +633,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:element>
                             </xsl:element>
                         </xsl:when>
-                        <!-- health care professional -->
+                       <!-- health care professional -->
                         <xsl:when test="hl7:assignedPerson">
                             <xsl:for-each select="hl7:assignedPerson">
                                 <xsl:variable name="ref" select="generate-id(.)"/>

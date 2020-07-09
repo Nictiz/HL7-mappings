@@ -45,7 +45,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="./schematron_href">
                 <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="./@value"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:for-each>
-            <!--<ABCD>-->
             <xsl:if test="$testSchematron">
                 <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="concat('file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/2.3.3/sturen_kernset_geboortezorg/test-xslt_instance/', $payload_xml/adaxml/data/*/@id, '.sch')"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:if>
