@@ -24,6 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
     <xsl:param name="xsdAda" as="node()*" select="document('../ada_schemas/beschikbaarstellen_allergie_intolerantie_vertaling.xsd')"/>
+    
+    <!-- debug parameter whether to output the $transactionResult variable in a debug dir -->
     <xsl:param name="debug" as="xs:boolean?" select="false()"/>
     
    <xsl:variable name="adaFormname">beschikbaarstellen_allergie_intolerantie_vertaling</xsl:variable>
@@ -116,4 +118,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     </xsl:template>
 
-    </xsl:stylesheet>
+</xsl:stylesheet>

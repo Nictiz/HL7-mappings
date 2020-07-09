@@ -108,5 +108,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </data>
         </adaxml>
-        </xsl:template>
+    </xsl:template>
 </xsl:stylesheet>
