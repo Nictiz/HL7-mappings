@@ -75,4 +75,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:result-document>
     </xsl:template>   
     
-    </xsl:stylesheet>
+</xsl:stylesheet>

@@ -27,11 +27,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'medicamenteuze_behandeling'))"/>
 
     <xsl:variable name="medicatieoverzicht-9" select="//(hl7:ClinicalDocument[hl7:code[@code = ('46057-6', '52981000146104')]] | hl7:organizer[hl7:code[@code = '129'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']])"/>
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <!-- todo, add CDA-variant to xpath -->
         <xsl:call-template name="Medicatieoverzicht-9-ADA">
             <xsl:with-param name="medicatieoverzicht-lijst" select="$medicatieoverzicht-9"/>
             <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
@@ -170,6 +170,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName))"/>
                             <xsl:element name="{$elemName}">
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                                <!-- geverifieerd_met_patientq -->
                                 <xsl:variable name="elemName">geverifieerd_met_patientq</xsl:variable>
                                 <xsl:element name="{$elemName}">
                                     <xsl:attribute name="value">
@@ -182,10 +183,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:attribute>
-                                    <!-- geverifieerd_met_patientq -->
                                     <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
-                                    </xsl:element>
-                            <xsl:for-each select="hl7:participant[@typeCode = 'VRF'][(hl7:participantRole | hl7:associatedEntity)[@classCode = 'PAT']]/hl7:time">
+                                </xsl:element>
+                                <!-- verificatie_datum -->
+                                <xsl:for-each select="hl7:participant[@typeCode = 'VRF'][(hl7:participantRole | hl7:associatedEntity)[@classCode = 'PAT']]/hl7:time">
                                     <xsl:variable name="elemName">verificatie_datum</xsl:variable>
                                     <xsl:call-template name="handleTS">
                                         <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
@@ -193,12 +194,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </xsl:for-each>
                             </xsl:element>
-                            
+
                             <!-- verificatie_zorgverlener -->
                             <xsl:variable name="elemName">verificatie_zorgverlener</xsl:variable>
                             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName))"/>
                             <xsl:element name="{$elemName}">
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                                <!-- geverifieerd_met_zorgverlenerq -->
                                 <xsl:variable name="elemName">geverifieerd_met_zorgverlenerq</xsl:variable>
                                 <xsl:element name="{$elemName}">
                                     <xsl:attribute name="value">
@@ -212,8 +214,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:choose>
                                     </xsl:attribute>
                                     <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>
-                                    </xsl:element>
-                            <xsl:for-each select="hl7:participant[@typeCode = 'VRF'][(hl7:participantRole | hl7:associatedEntity)[@classCode = 'ASSIGNED']]/hl7:time">
+                                </xsl:element>
+                                <!-- verificatie_datum -->
+                                <xsl:for-each select="hl7:participant[@typeCode = 'VRF'][(hl7:participantRole | hl7:associatedEntity)[@classCode = 'ASSIGNED']]/hl7:time">
                                     <xsl:variable name="elemName">verificatie_datum</xsl:variable>
                                     <xsl:call-template name="handleTS">
                                         <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName)))"/>

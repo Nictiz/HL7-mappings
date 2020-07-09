@@ -30,19 +30,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Helper template to fill telecom details based on ada contactgegevens</xd:desc>
     </xd:doc>
     <xsl:template name="_CdaTelecom">
-        <!--Telecom gegevens-->
         <xsl:for-each select=".//(telefoonnummers | telephone_numbers)">
             <xsl:variable name="hl7Use" as="xs:string*">
                 <xsl:if test="(nummer_soort | number_type)[@code] or telecom_type/@code = 'MC'">
                     <xsl:if test="(nummer_soort | number_type)[@code]">
                         <xsl:value-of select="(nummer_soort | number_type)/@code"/>
                     </xsl:if>
-                <xsl:if test="telecom_type/@code = 'MC'">
+                    <xsl:if test="telecom_type/@code = 'MC'">
                         <xsl:value-of select="telecom_type/@code"/>
                     </xsl:if>
                 </xsl:if>
-                </xsl:variable>
-        <xsl:call-template name="makeTELValue">
+            </xsl:variable>
+            <xsl:call-template name="makeTELValue">
                 <xsl:with-param name="in" select="(telefoonnummer | telephone_number)"/>
                 <xsl:with-param name="elemName">telecom</xsl:with-param>
                 <xsl:with-param name="urlSchemeCode">
@@ -57,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeTELValue">
                 <xsl:with-param name="in" select="(email_adres | email_address)"/>
                 <xsl:with-param name="elemName">telecom</xsl:with-param>
-            <xsl:with-param name="use" select="(email_soort | email_address_type)/@code"/>
+                <xsl:with-param name="use" select="(email_soort | email_address_type)/@code"/>
                 <xsl:with-param name="xsiType"/>
             </xsl:call-template>
         </xsl:for-each>
@@ -121,8 +120,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:for-each>
         
-    </xsl:template>
+    </xsl:template>  
     
-    
-  
 </xsl:stylesheet>
