@@ -21,6 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
     <xsl:param name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
+    <xsl:param name="testSchematron" as="xs:boolean" select="true()"/>
     <xsl:include href="../payload/REPC_EX004014NL_Kernset_2_3_3.xsl"/>
 
     <xsl:template name="MakeWrapper">
@@ -44,6 +45,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="./schematron_href">
                 <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="./@value"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:for-each>
+            <!--<ABCD>-->
+            <xsl:if test="$testSchematron">
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="concat('file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/2.3.3/sturen_kernset_geboortezorg/test-xslt_instance/', $payload_xml/adaxml/data/*/@id, '.sch')"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+            </xsl:if>
+
             <!--<ABCD>-->
             <xsl:element name="{./root_xml_element/@value}">
                 <xsl:namespace name="hl7" select="'urn:hl7-org:v3'"/>
