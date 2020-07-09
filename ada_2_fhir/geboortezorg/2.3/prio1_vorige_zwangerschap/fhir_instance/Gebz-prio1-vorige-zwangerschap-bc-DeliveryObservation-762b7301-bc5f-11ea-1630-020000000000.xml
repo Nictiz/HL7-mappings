@@ -1,0 +1,36 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="762b7301-bc5f-11ea-1630-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+      <valueReference>
+         <reference value="Procedure/762b72fd-bc5f-11ea-1630-020000000000"/>
+         <display value="bevalling zwangerschap 3 wouden"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364297003"/>
+         <display value="Female perineum observable (observable entity)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WOUDENVANDER"/>
+      <display value="Wouden van der"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/762b72f8-bc5f-11ea-1630-020000000000"/>
+      <display value="Zwangerschap 3 wouden"/>
+   </context>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="289854007"/>
+         <display value="Gaaf"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>

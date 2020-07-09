@@ -1,0 +1,32 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="762b72f9-bc5f-11ea-1630-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Gravidity"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/762b72f8-bc5f-11ea-1630-020000000000"/>
+         <display value="Zwangerschap 3 wouden"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="11996-6"/>
+         <display value="Gravidity"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WOUDENVANDER"/>
+      <display value="Wouden van der"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/762b72f8-bc5f-11ea-1630-020000000000"/>
+      <display value="Zwangerschap 3 wouden"/>
+   </context>
+   <valueQuantity>
+      <value value="3"/>
+   </valueQuantity>
+</Observation>
