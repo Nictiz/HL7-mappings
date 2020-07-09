@@ -25,8 +25,8 @@
     <property name="project.license" value="GNU-LGPL"/>
     <property name="project.copyright" value="true"/>
     
-    <property name="build.dir1" value="beschikbaarstellen_all_int_vertaling"/>
-    <property name="build.dir2" value="beschikbaarstellen_icavertaling"/>
+    <property name="build.dir1" value="beschikbaarstellen_allergie_intolerantie"/>
+    <property name="build.dir2" value="beschikbaarstellen_allergie_intolerantie_vertaling"/>
     <property name="project.source.dir" value="${build.dir}/../../../../../projects/cio"/>
     
     <target name="convert_ada_2_fhir">
@@ -40,8 +40,8 @@
             </fileset>
         </copy>
         
-        <property name="xsl_cio_resources1" value="${build.dir1}/payload/beschikbaarstellen_all_int_vertaling_2_fhir_resources.xsl"/>
-        <property name="xsl_cio1" value="${build.dir1}/payload/beschikbaarstellen_all_int_vertaling_2_fhir.xsl"/>
+        <property name="xsl_cio_resources1" value="${build.dir1}/payload/beschikbaarstellen_allergie_intolerantie_2_fhir_resources.xsl"/>
+        <property name="xsl_cio1" value="${build.dir1}/payload/beschikbaarstellen_allergie_intolerantie_2_fhir.xsl"/>
         
         <property name="xsl.input1" value="${build.dir1}/ada_instance"/>
         <property name="xsl.output1" value="${build.dir1}/fhir_instance"/>
@@ -77,8 +77,8 @@
             </fileset>
         </copy>
         
-        <!--<property name="xsl_cio_resources" value="${build.dir}/payload/beschikbaarstellen_icavertaling_2_fhir_resources.xsl"/>-->
-        <property name="xsl_cio2" value="${build.dir2}/payload/beschikbaarstellen_icavertaling_2_fhir.xsl"/>
+        <property name="xsl_cio_resources2" value="${build.dir2}/payload/beschikbaarstellen_allergie_intolerantie_vertaling_2_fhir_resources.xsl"/>
+        <property name="xsl_cio2" value="${build.dir2}/payload/beschikbaarstellen_allergie_intolerantie_vertaling_2_fhir.xsl"/>
         
         <property name="xsl.input2" value="${build.dir2}/ada_instance"/>
         <property name="xsl.output2" value="${build.dir2}/fhir_instance"/>
@@ -88,6 +88,14 @@
         
         <sequential>
             <fileset id="inputfilesCio" dir="${xsl.input2}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_cio_resources2}</echo>
+            <xslt force="true" style="${xsl_cio_resources2}" destdir="${xsl.output2}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesCio"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
             
             <echo/>
             <echo>${echo.label} ${xsl_cio2}</echo>

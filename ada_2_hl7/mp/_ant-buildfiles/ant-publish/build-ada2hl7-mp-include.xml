@@ -73,6 +73,7 @@
             </fileset>
         </copy>
 
+        <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="schema.string" value="*${usecase.mo}*"/>
@@ -167,7 +168,7 @@
 
         <echo>Deleting previous results, if any</echo>
         <delete>
-            <fileset dir="${xsl.output}" includes="*.xml"/>            
+            <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
 
         <sequential>

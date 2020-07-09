@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:util="urn:hl7:utilities" version="2.0">
+<xsl:stylesheet xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/uuid.xsl"/>
     <xsl:import href="../../util/utilities.xsl"/>
@@ -32,13 +32,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision. 
-            <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
+        <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision. <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
             <xd:p><xd:b>return</xd:b> date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and <xd:ref type="parameter" name="input-hl7-date"/> is returned as-is</xd:p>
         </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
-        <xd:param name="precision">Coded string indicator for requested precision. Use DAY for date and SECOND for dateTime. 
-            Note that if the input does not allow for dateTime, fallback to date is applied.</xd:param>
+        <xd:param name="precision">Coded string indicator for requested precision. Use DAY for date and SECOND for dateTime. Note that if the input does not allow for dateTime, fallback to date is applied.</xd:param>
     </xd:doc>
     <xsl:function name="nf:formatHL72XMLDate" as="xs:string">
         <xsl:param name="input-hl7-date" as="xs:string?"/>
@@ -115,8 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Returns possibly vague date or dateTime string based on HL7v3 ts input string, and requested precision. 
-            <xd:p>Example nf:formatHL72VagueAdaDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
+        <xd:desc>Returns possibly vague date or dateTime string based on HL7v3 ts input string, and requested precision. <xd:p>Example nf:formatHL72VagueAdaDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
             <xd:p><xd:b>return</xd:b> date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and <xd:ref type="parameter" name="input-hl7-date"/> is returned as-is</xd:p>
         </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
@@ -212,9 +209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>
-            Returns DAY if the input is &lt;= 8 characters, or SECOND otherwise. 
-        </xd:desc>
+        <xd:desc> Returns DAY if the input is &lt;= 8 characters, or SECOND otherwise. </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
     </xd:doc>
     <xsl:function name="nf:determine_date_precision">
@@ -318,18 +313,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc> Returns an array of ADA elements based on an array of HL7v3 AND elements that have an @xsi:type attribute to determine the type with. 
-            <xd:p>After the type is determined, the element is handed off to handleXX for further processing. Failure to determine type is a fatal error.</xd:p>
+        <xd:desc> Returns an array of ADA elements based on an array of HL7v3 AND elements that have an @xsi:type attribute to determine the type with. <xd:p>After the type is determined, the element is handed off to handleXX for further processing. Failure to determine type is a fatal error.</xd:p>
             <xd:p>Supported values for @xsi:type (datatypes releases 1 in namespace "urn:hl7-org:v3"): BL (boolean), CS (code), CV (code), CE (code), CD (code), CO (code), II (identifier), PQ (quantity), ST (string), TS (date)</xd:p></xd:desc>
         <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
         <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
         <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
         <xd:param name="dodatatype">Boolean. If true creates relevant @datatype attribute on the output.</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
-            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
-            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
-                In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
-                are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
         <xd:param name="codeSystem">CS has no codeSystem so it has to be supplied from external. Usually <xd:ref type="variable" name="oidHL7ActStatus"/> or <xd:ref type="variable" name="oidHL7RoleStatus"/></xd:param>
         <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
@@ -776,12 +767,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> Copy address parts as faithful as possible to HCIM 2017 nl.zorg.part.AddressInformation. Calculate address code. Submit unstructured address in street
-            Note: copies @code and @codeSystem for city, county and country too...
-        </xd:desc>
+        <xd:desc> Copy address parts as faithful as possible to HCIM 2017 nl.zorg.part.AddressInformation. Calculate address code. Submit unstructured address in street Note: copies @code and @codeSystem for city, county and country too... </xd:desc>
         <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
-        <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype. 
-            Also determines the displayName for adress type, since this is not available in HL7 instances. This defaults to english due to backwards compatibility reasons.</xd:param>
+        <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype. Also determines the displayName for adress type, since this is not available in HL7 instances. This defaults to english due to backwards compatibility reasons.</xd:param>
         <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
         <xd:param name="schemaFragment">Optional. XSD Schema complexType for parent of adresgegevens</xd:param>
     </xd:doc>
@@ -1270,6 +1258,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
 
                             <xsl:element name="{$elmTelephoneNumber}">
+                                <!-- remove the tel: or fax: prefix, since that information is in telecomtype -->
                                 <xsl:attribute name="value" select="replace(@value, '^((tel|fax):)(.+)', '$3')"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelephoneNumber)))"/>
                             </xsl:element>
@@ -1328,11 +1317,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
         <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
         <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
-            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
-            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
-                In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
-                are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
         <xd:param name="codeSystem">CS has no codeSystem so it has to be supplied from external. Usually <xd:ref type="variable" name="oidHL7ActStatus"/> or <xd:ref type="variable" name="oidHL7RoleStatus"/></xd:param>
         <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
@@ -1376,11 +1362,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
         <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
         <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
-            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
-            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
-            In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
-            are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
         <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
     </xd:doc>
@@ -1768,7 +1751,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc>CDArecordTargetSDTC</xd:desc>
         <xd:param name="in">hl7 patient to be converted</xd:param>
         <xd:param name="language">optional, defaults to nl-NL</xd:param>

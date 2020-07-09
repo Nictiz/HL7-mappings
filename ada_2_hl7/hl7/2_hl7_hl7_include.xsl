@@ -16,7 +16,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
-    <!-- only give dateT a value if you want conversion of relative T dates -->
     <xsl:import href="../../util/utilities.xsl"/>
     <!-- only give dateT a value if you want conversion of relative T dates -->
     <xsl:param name="dateT" as="xs:date?"/>
@@ -1024,14 +1023,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="elemName">The hl7 element name, for example: telecom.</xd:param>
         <xd:param name="urlSchemeCode">The URL scheme code for this telecom value. For example: tel / fax / mailto. See http://www.hl7.nl/wiki/index.php?title=DatatypesR1:URL .</xd:param>
         <xd:param name="use">The contents for the @use attribute on this HL7 element</xd:param>
-    <xd:param name="xsiType">The xsiType for the HL7 element, set to empty string when not needed.</xd:param>
+        <xd:param name="xsiType">The xsiType for the HL7 element, set to empty string when not needed.</xd:param>
     </xd:doc>
     <xsl:template name="makeTELValue">
         <xsl:param name="in" select="."/>
         <xsl:param name="elemName" as="xs:string">value</xsl:param>
         <xsl:param name="urlSchemeCode" as="xs:string?"/>
         <xsl:param name="use" as="xs:string*"/>
-    <xsl:param name="xsiType" as="xs:string?">TEL</xsl:param>        
+        <xsl:param name="xsiType" as="xs:string?">TEL</xsl:param>        
       
         <xsl:for-each select="$in">
             <!-- spaces are not allowed in URL scheme -->

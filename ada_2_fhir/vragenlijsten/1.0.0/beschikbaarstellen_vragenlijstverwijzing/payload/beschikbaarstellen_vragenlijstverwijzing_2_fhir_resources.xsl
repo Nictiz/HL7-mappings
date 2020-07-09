@@ -46,8 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:call-template name="vragenlijstverwijzing_101"/>
-         
+        <xsl:call-template name="vragenlijstverwijzing_101"/>         
     </xsl:template>
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
