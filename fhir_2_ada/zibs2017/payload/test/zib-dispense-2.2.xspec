@@ -38,6 +38,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
                                 <valueDateTime value="2018-09-03T14:32:00+02:00"/>
                             </extension>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
+                                        <code value="1"/>
+                                        <display value="Bewust hoge dosering"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                                 <valueIdentifier>
                                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
@@ -94,6 +103,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <reference value="urn:uuid:2b5ce229-b526-11ea-8547-020000000000"/>
                                 <display value="Huisadres patiënt"/>
                             </destination>
+                            <note>
+                                <text value="Testtoelichting"/>
+                            </note>
                         </MedicationDispense>
                     </entry>
                     <entry>
@@ -195,7 +207,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <verstrekking>
                     <identificatie value="MBH_513_2_MVE_1" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
                     <datum value="2018-08-29T09:45:00+02:00"/>
-                    <datum nullFlavor="UNK"/>
                     <aanschrijfdatum value="2018-09-03T14:32:00+02:00"/>
                     <verstrekker>
                         <zorgaanbieder>
@@ -217,11 +228,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <verbruiksduur unit="dag" value="30"/>
                     <afleverlocatie value="Huisadres patiënt"/>
                     <distributievorm code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8" displayName="Geïndividualiseerd distributiesysteem"/>
-                    <aanvullende_informatie/>
-                    <toelichting/>
+                    <aanvullende_informatie code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050" displayName="Bewust hoge dosering"/>
+                    <toelichting value="Testtoelichting"/>
                     <relatie_naar_verstrekkingsverzoek>
                         <identificatie value="MBH_513_2_VV_2" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                     </relatie_naar_verstrekkingsverzoek>
+                </verstrekking>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Date unknown">
+            <x:context mode="zib-Dispense-2.2" select="f:Bundle/f:entry/f:MedicationDispense">
+                <Bundle xmlns="http://hl7.org/fhir">
+                    <entry>
+                        <MedicationDispense xmlns="http://hl7.org/fhir"/>
+                    </entry>
+                </Bundle>
+            </x:context>
+            <x:expect label="'verstrekking' element with all possible children">
+                <verstrekking>
+                    <datum nullFlavor="UNK"/>
                 </verstrekking>
             </x:expect>
         </x:scenario>

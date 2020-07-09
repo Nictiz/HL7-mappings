@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xd:doc>
-        <xd:desc>Template to resolve extention</xd:desc>
+        <xd:desc>Template to resolve f:extension</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse']" mode="ext-zib-Medication-PeriodOfUse-2.0">
         <xsl:apply-templates select="f:valuePeriod" mode="ext-zib-Medication-PeriodOfUse-2.0"/>
@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="dateTime" select="@value"/>
                 </xsl:call-template>               
             </xsl:attribute>
-            <xsl:attribute name="datatype">datetime</xsl:attribute>
+            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
         </gebruiksperiode_start>
     </xsl:template>
     
@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="dateTime" select="@value"/>
                 </xsl:call-template>                          
             </xsl:attribute>
-            <xsl:attribute name="datatype">datetime</xsl:attribute>
+            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
         </gebruiksperiode_eind>
     </xsl:template>
     

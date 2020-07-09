@@ -22,19 +22,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-additional-information-2.0.xsl"/>
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="nl-core-organization-2.0.xsl"/>
     <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>
     <xsl:import href="nl-core-address-2.0.xsl"/>
-    <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>
     
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
     <xsl:variable name="zib-Dispense-Location" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location'"/>
     <xsl:variable name="zib-DispenseRequest-RelatedMedicationAgreement" select="'http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement'"/>
-        
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:MedicationRequest to ADA verstrekkingsverzoek</xd:desc>
+    </xd:doc>
     <xsl:template match="f:MedicationRequest" mode="zib-DispenseRequest-2.2"> 
         <verstrekkingsverzoek>
             <!--identificatie-->

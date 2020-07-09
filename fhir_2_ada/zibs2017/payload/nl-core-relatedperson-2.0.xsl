@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:MedicationStatement to ADA medicatie_gebruik</xd:desc>
     </xd:doc>
     <xsl:template match="f:RelatedPerson" mode="nl-core-relatedperson-2.0">
-        <!-- Not everything mapped, only elements needed fo MP907 -->
+        <!-- Not everything mapped, only elements needed for MP907 -->
         <persoon>
             <!-- naamgegevens -->
             <xsl:apply-templates select="f:name" mode="nl-core-humanname-2.0"/>

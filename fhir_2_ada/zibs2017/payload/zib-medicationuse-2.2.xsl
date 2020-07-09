@@ -141,7 +141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="dateTime" select="@value"/>
                 </xsl:call-template>
             </xsl:attribute>
-            <xsl:attribute name="datatype">datetime</xsl:attribute>
+            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
         </registratiedatum>
     </xsl:template>
 
@@ -271,9 +271,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="f:identifier">
                 <xsl:variable name="identifier_type" select="f:identifier/f:type/f:coding/f:value/@value"/>
                 <xsl:variable name="referenceValue" select="f:identifier/concat(f:system/@value,f:value/@value)"/>
-                <xsl:variable name="medicationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationRequest[f:category/f:coding/f:code/@value='16076005']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
-                <xsl:variable name="administrationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense[f:category/f:coding/f:code/@value='422037009']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
-                <xsl:variable name="dispense_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense[f:category/f:coding/f:code/@value='373784005']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
+                <xsl:variable name="medicationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationRequest[f:category/f:coding/f:code/@value = '16076005']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
+                <xsl:variable name="administrationagreement_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense[f:category/f:coding/f:code/@value = '422037009']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
+                <xsl:variable name="dispense_resource" select="ancestor::f:Bundle/f:entry/f:resource/f:MedicationDispense[f:category/f:coding/f:code/@value = '373784005']/f:identifier[concat(f:system/@value,f:value/@value) = $referenceValue]"/>
                 <xsl:choose> 
                     <!-- First try to use the f:derivedFrom/f:identifier based on the f:identifier/f:type -->
                     <xsl:when test="$identifier_type = '16076005' or $identifier_type = '422037009' ">
@@ -335,7 +335,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="util:logMessage">
                     <xsl:with-param name="level" select="$logERROR"/>
                     <xsl:with-param name="msg">
-                        <xsl:text>MedicationStatement.derivedFrom reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier.type. Therefore information (gerelateerde_afspraak or gerelateerde_verstrekking) will be lost.</xsl:text>
+                        <xsl:text>MedicationStatement with fullUrl '</xsl:text>
+                        <xsl:value-of select="parent::f:MedicationStatement/parent::f:resource/preceding-sibling::f:fullUrl/@value"/>
+                        <xsl:text>' .derivedFrom reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier.type. Therefore information (gerelateerde_afspraak or gerelateerde_verstrekking) will be lost.</xsl:text>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:otherwise>

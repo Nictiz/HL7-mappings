@@ -19,9 +19,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <!--Uncomment imports for standalone use and testing.-->
-    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
-    
     <xsl:template match="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator']" mode="ext-zib-Medication-CopyIndicator-2.0">
         <!--<kopie_indicator>-->
         <kopie_indicator>

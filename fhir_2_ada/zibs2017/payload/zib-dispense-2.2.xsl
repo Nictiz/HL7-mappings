@@ -34,6 +34,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
     <xsl:variable name="zib-Dispense-DistributionForm" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-DistributionForm'"/>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:MedicationDispense to ADA verstrekking</xd:desc>
+    </xd:doc>
     <xsl:template match="f:MedicationDispense" mode="zib-Dispense-2.2">
         <verstrekking>
             <!-- identificatie -->
@@ -70,10 +73,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </verstrekking>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:identifier to identificatie</xd:desc>
+    </xd:doc>
     <xsl:template match="f:identifier" mode="zib-Dispense-2.2">
         <xsl:call-template name="Identifier-to-identificatie"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:whenHandedOver to datum</xd:desc>
+    </xd:doc>
     <xsl:template match="f:whenHandedOver" mode="zib-Dispense-2.2">
         <datum>
             <xsl:attribute name="value">
@@ -84,6 +93,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </datum>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:extension zib-Dispense-RequestDate to aanschrijfdatum</xd:desc>
+    </xd:doc>
     <xsl:template match="f:extension[@url=$zib-Dispense-RequestDate]" mode="zib-Dispense-2.2">
         <aanschrijfdatum>
             <xsl:attribute name="value">
@@ -94,6 +106,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </aanschrijfdatum>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:performer to verstrekker</xd:desc>
+    </xd:doc>
     <xsl:template match="f:performer" mode="zib-Dispense-2.2">
         <verstrekker>
             <xsl:choose>
@@ -123,6 +138,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </verstrekker>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:quantity to verstrekte_hoeveelheid</xd:desc>
+    </xd:doc>
     <xsl:template match="f:quantity" mode="zib-Dispense-2.2">
         <verstrekte_hoeveelheid>
             <xsl:call-template name="Quantity-to-hoeveelheid-complex">
@@ -131,6 +149,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </verstrekte_hoeveelheid>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:medicationReference to verstrekt_geneesmiddel</xd:desc>
+    </xd:doc>
     <xsl:template match="f:medicationReference" mode="zib-Dispense-2.2">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <verstrekt_geneesmiddel>
@@ -138,17 +159,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </verstrekt_geneesmiddel>        
     </xsl:template>
     
-    <!--<verbruiksduur/>
-                <afleverlocatie/>
-                <distributievorm/>-->
+    <xd:doc>
+        <xd:desc>Template to convert f:daysSupply to verbruiksduur</xd:desc>
+    </xd:doc>
     <xsl:template match="f:daysSupply" mode="zib-Dispense-2.2">
-        <!--<verbruiksduur>-->
-            <xsl:call-template name="Duration-to-hoeveelheid">
-                <xsl:with-param name="adaElementName">verbruiksduur</xsl:with-param>
-            </xsl:call-template>
-        <!--</verbruiksduur>-->
+        <xsl:call-template name="Duration-to-hoeveelheid">
+            <xsl:with-param name="adaElementName">verbruiksduur</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:destination to afleverlocatie</xd:desc>
+    </xd:doc>
     <xsl:template match="f:destination" mode="zib-Dispense-2.2">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <afleverlocatie>
@@ -156,23 +178,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </afleverlocatie>  
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:extension zib-Dispense-DistributionFrom to distributievorm</xd:desc>
+    </xd:doc>
     <xsl:template match="f:extension[@url=$zib-Dispense-DistributionForm]" mode="zib-Dispense-2.2">
-        <!--<distributievorm>-->
-            <xsl:call-template name="CodeableConcept-to-code">
-                <xsl:with-param name="in" select="f:valueCodeableConcept"/>
-                <xsl:with-param name="adaElementName">distributievorm</xsl:with-param>
-            </xsl:call-template>
-        <!--</distributievorm>-->
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="f:valueCodeableConcept"/>
+            <xsl:with-param name="adaElementName">distributievorm</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:note to toelichting</xd:desc>
+    </xd:doc>
     <xsl:template match="f:note" mode="zib-Dispense-2.2">
         <toelichting value="{f:text/@value}"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:authorizingPrescription to relatie_naar_verstrekkingsverzoek</xd:desc>
+    </xd:doc>
     <xsl:template match="f:authorizingPrescription" mode="zib-Dispense-2.2">
         <relatie_naar_verstrekkingsverzoek>
-            <xsl:call-template name="Identifier-to-identificatie">
-                <xsl:with-param name="in" select="f:identifier"/>
+            <xsl:call-template name="Reference-to-identificatie">
+                <xsl:with-param name="resourceList" select="('MedicationRequest')"/>
             </xsl:call-template>
         </relatie_naar_verstrekkingsverzoek>
     </xsl:template>

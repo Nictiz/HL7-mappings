@@ -17,94 +17,99 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     stylesheet="../zib-AdministrationAgreement-2.2.xsl">
     
     <x:scenario label="zib-AdministrationAgreement-2.2">
-        <x:context mode="zib-AdministrationAgreement-2.2" select="f:Bundle/f:entry/f:MedicationDispense">
+        <x:context mode="zib-AdministrationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationDispense">
             <Bundle xmlns="http://hl7.org/fhir">
                 <entry>
-                    <MedicationDispense xmlns="http://hl7.org/fhir">
-                        <meta>
-                            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
-                        </meta>
-                        <text/>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-                            <valueDateTime value="2018-09-03T12:25:00+02:00"/>
-                        </extension>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-                            <valuePeriod>
-                                <start value="2018-09-03T00:00:00+02:00"/>
-                            </valuePeriod>
-                        </extension>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-                            <valueDuration>
-                                <value value="1"/>
-                                <unit value="jaar"/>
-                                <system value="http://unitsofmeasure.org"/>
-                                <code value="a"/>
-                            </valueDuration>
-                        </extension>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-                            <valueIdentifier>
-                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                                <value value="MBH_513_1"/>
-                            </valueIdentifier>
-                        </extension>
-                        <identifier>
-                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                            <value value="MBH_513_1_TA_1"/>
-                        </identifier>
-                        <category>
-                            <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="422037009"/>
-                                <display value="Provider medication administration instructions (procedure)"/>
-                            </coding>
-                            <text value="Toedieningsafspraak"/>
-                        </category>
-                        <medicationReference>
-                            <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1110837"/>
-                            <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
-                        </medicationReference>
-                        <subject>
-                            <reference value="urn:uuid:2b5cd5a3-b526-11ea-8547-020000000000"/>
-                            <display value="J. XXX_Amaya"/>
-                        </subject>
-                        <performer>
-                            <actor>
-                                <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                                <display value="Apotheek De Gulle Gaper"/>
-                            </actor>
-                        </performer>
-                        <authorizingPrescription>
+                    <resource>
+                        <MedicationDispense xmlns="http://hl7.org/fhir">
+                            <meta>
+                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+                            </meta>
+                            <text/>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+                                <valueDateTime value="2018-09-03T12:25:00+02:00"/>
+                            </extension>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+                                <valuePeriod>
+                                    <start value="2018-09-03T00:00:00+02:00"/>
+                                </valuePeriod>
+                            </extension>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                                <valueDuration>
+                                    <value value="1"/>
+                                    <unit value="jaar"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="a"/>
+                                </valueDuration>
+                            </extension>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+                                <valueIdentifier>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                                    <value value="MBH_513_1"/>
+                                </valueIdentifier>
+                            </extension>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+                                <valueBoolean value="true"/>
+                            </extension>
                             <identifier>
-                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                                <value value="MBH_513_1_MA_2"/>
+                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                                <value value="MBH_513_1_TA_1"/>
                             </identifier>
-                            <display value="relatie naar medicatieafspraak: MBH_513_1_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                        </authorizingPrescription>
-                        <dosageInstruction>
-                            <sequence value="1"/>
-                            <text value="Vanaf 3 sep 2018, gedurende 1 jaar, 1 maal per dag 1 stuk, oraal"/>
-                            <timing>
-                                <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                </repeat>
-                            </timing>
-                            <route>
+                            <category>
                                 <coding>
-                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                                    <code value="9"/>
-                                    <display value="Oraal"/>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="422037009"/>
+                                    <display value="Provider medication administration instructions (procedure)"/>
                                 </coding>
-                            </route>
-                            <doseQuantity>
-                                <value value="1"/>
-                                <unit value="stuk"/>
-                                <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                                <code value="245"/>
-                            </doseQuantity>
-                        </dosageInstruction>
-                    </MedicationDispense>
+                                <text value="Toedieningsafspraak"/>
+                            </category>
+                            <medicationReference>
+                                <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1110837"/>
+                                <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                            </medicationReference>
+                            <subject>
+                                <reference value="urn:uuid:2b5cd5a3-b526-11ea-8547-020000000000"/>
+                                <display value="J. XXX_Amaya"/>
+                            </subject>
+                            <performer>
+                                <actor>
+                                    <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                                    <display value="Apotheek De Gulle Gaper"/>
+                                </actor>
+                            </performer>
+                            <authorizingPrescription>
+                                <identifier>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                    <value value="MBH_513_1_MA_2"/>
+                                </identifier>
+                                <display value="relatie naar medicatieafspraak: MBH_513_1_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                            </authorizingPrescription>
+                            <dosageInstruction>
+                                <sequence value="1"/>
+                                <text value="Vanaf 3 sep 2018, gedurende 1 jaar, 1 maal per dag 1 stuk, oraal"/>
+                                <timing>
+                                    <repeat>
+                                        <frequency value="1"/>
+                                        <period value="1"/>
+                                        <periodUnit value="d"/>
+                                    </repeat>
+                                </timing>
+                                <route>
+                                    <coding>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                                        <code value="9"/>
+                                        <display value="Oraal"/>
+                                    </coding>
+                                </route>
+                                <doseQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuk"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </doseQuantity>
+                            </dosageInstruction>
+                        </MedicationDispense>
+                    </resource>
                 </entry>
                 <entry>
                     <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
@@ -229,6 +234,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </dosering>
                     </doseerinstructie>
                 </gebruiksinstructie>
+                <kopie_indicator value="true"/>
                 <relatie_naar_medicatieafspraak>
                     <identificatie value="MBH_513_1_MA_2" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                 </relatie_naar_medicatieafspraak>
