@@ -169,8 +169,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="dateTime" select="xs:string((gewicht_datum_tijd | weight_date_time)/@value)"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
-                            </xsl:when>
-                            <xsl:otherwise>
+                                </xsl:when>
+                        <xsl:otherwise>
                                 <extension url="{$urlExtHL7DataAbsentReason}">
                                     <valueCode value="unknown"/>
                                 </extension>
