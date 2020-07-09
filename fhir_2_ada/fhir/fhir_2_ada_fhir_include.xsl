@@ -334,6 +334,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
+    <xsl:template name="Period-to-dates">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="adaElementNameStart"/>
+        <xsl:param name="adaElementNameEnd"/>
+        
+        <xsl:for-each select="$in/f:start">
+            <xsl:element name="{$adaElementNameStart}">
+                <xsl:attribute name="value">
+                    <xsl:call-template name="format2ADADate">
+                        <xsl:with-param name="dateTime" select="@value"/>
+                    </xsl:call-template>               
+                </xsl:attribute>
+            </xsl:element>
+        </xsl:for-each>
+        <xsl:for-each select="$in/f:end">
+            <xsl:element name="{$adaElementNameEnd}">
+                <xsl:attribute name="value">
+                    <xsl:call-template name="format2ADADate">
+                        <xsl:with-param name="dateTime" select="@value"/>
+                    </xsl:call-template>               
+                </xsl:attribute>
+            </xsl:element>
+        </xsl:for-each>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Transforms ada element to FHIR Range</xd:desc>
         <xd:param name="in">ada element with sub ada elements min and max (both with datatype aantal/count) and a sibling ada element eenheid (datatype code)</xd:param>
