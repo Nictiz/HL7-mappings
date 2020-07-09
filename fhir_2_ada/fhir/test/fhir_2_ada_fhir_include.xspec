@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    xmlns:local="urn:fhir:stu3:functions" stylesheet="../fhir_2_ada_fhir_include.xsl">
+    
+    <x:scenario label="fhir_2_ada_fhir_include">
+        
+        <x:scenario label="template name code-to-code">
+            <x:call template="code-to-code">
+                <x:param name="value" select="f:gender/@value">
+                    <f:gender value="female"/>
+                </x:param>
+                <x:param name="codeMap">
+                    <map code="M" codeSystem="2.16.840.1.113883.5.1" inValue="male" displayName="Man"/>
+                    <map code="F" codeSystem="2.16.840.1.113883.5.1" inValue="female" displayName="Vrouw"/>
+                    <map code="UN" codeSystem="2.16.840.1.113883.5.1" inValue="other" displayName="Ongedifferentieerd"/>
+                    <map code="UNK" codeSystem="2.16.840.1.113883.5.1008" inValue="unknown" displayName="Onbekend"/>
+                </x:param>
+            </x:call>
+            <x:expect label="attributes" select="geslacht/@*">
+                <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template name CodeableConcept-to-code">
+            <x:scenario label="CodeableConcept with 2 Codings and text">
+                <x:call template="CodeableConcept-to-code">
+                    <x:param name="in">
+                        <code xmlns="http://hl7.org/fhir">
+                            <coding>
+                                <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                                <code value="17469"/>
+                                <display value="IBUPROFEN TABLET 600MG"/>
+                                <userSelected value="true"/>
+                            </coding>
+                            <coding>
+                                <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                                <code value="42080"/>
+                                <display value="IBUPROFEN TABLET 600MG"/>
+                            </coding>
+                            <text value="IBUPROFEN TABLET 600MG"/>
+                        </code>
+                    </x:param>
+                    <x:param name="adaElementName" select="'product_code'"/>
+                    <x:param name="inElementName" select="'coding'"/>
+                </x:call>
+                <x:expect label="2 'product_code' elements with code attributes">
+                    <product_code
+                        code="17469"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        codeSystemName="G-Standaard PRK"
+                        displayName="IBUPROFEN TABLET 600MG"
+                        preferred="true"/>
+                    <product_code
+                        code="42080"
+                        codeSystem="2.16.840.1.113883.2.4.4.1"
+                        codeSystemName="G-Standaard GPK"
+                        displayName="IBUPROFEN TABLET 600MG"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="CodeableConcept with nullFlavor extension">
+                <x:call template="CodeableConcept-to-code">
+                    <x:param name="in">
+                        <code xmlns="http://hl7.org/fhir">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <valueCode value="OTH"/>
+                            </extension>
+                        </code>
+                    </x:param>
+                    <x:param name="adaElementName" select="'product_code'"/>
+                </x:call>
+                <x:expect label="Return product_code @code='OTH'">
+                    <product_code code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="CodeableConcept with nullFlavor extension and originalText">
+                <x:call template="CodeableConcept-to-code">
+                    <x:param name="in">
+                        <code xmlns="http://hl7.org/fhir">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <valueCode value="OTH"/>
+                            </extension>
+                        </code>
+                    </x:param>
+                    <x:param name="adaElementName" select="'product_code'"/>
+                    <x:param name="originalText" select="'Ureum 10% in eucerine cum aqua 100gr'"/>
+                </x:call>
+                <x:expect label="Return product_code @code='OTH'">
+                    <product_code code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig" originalText="Ureum 10% in eucerine cum aqua 100gr"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="CodeableConcept with nullFlavor Coding and originalText">
+                <x:call template="CodeableConcept-to-code">
+                    <x:param name="in">
+                        <additionalInstruction xmlns="http://hl7.org/fhir">
+                            <coding>
+                                <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                                <code value="OTH"/>
+                                <display value="overig"/>
+                            </coding>
+                            <text value="Bij het eten innemen"/>
+                        </additionalInstruction>
+                    </x:param>
+                    <x:param name="adaElementName" select="'aanvullende_instructie'"/>
+                    <x:param name="originalText" select="'Bij het eten innemen'"/>
+                </x:call>
+                <x:expect label="Return product_code @code='OTH'">
+                    <aanvullende_instructie code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig" originalText="Bij het eten innemen"/>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="template name Coding-to-code">
+            <x:scenario label="userSelected">
+                <x:call template="Coding-to-code">
+                    <x:param name="in">
+                        <coding xmlns="http://hl7.org/fhir">
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                            <code value="17469"/>
+                            <display value="IBUPROFEN TABLET 600MG"/>
+                            <userSelected value="true"/>
+                        </coding>                               
+                    </x:param>
+                </x:call>
+                <x:expect label="code with @preferred attribute" select="product_code/@*">
+                    <product_code code="17469" 
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        codeSystemName="G-Standaard PRK"
+                        displayName="IBUPROFEN TABLET 600MG"
+                        preferred="true"/>
+                </x:expect>
+            </x:scenario>            
+        </x:scenario>
+        
+        <x:scenario label="template name Duration-to-hoeveelheid">
+            <x:scenario label="adaElementName='doseerduur'">
+                <x:context>
+                    <boundsDuration xmlns="http://hl7.org/fhir">
+                        <value value="2"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                    </boundsDuration>
+                </x:context>
+                <x:call template="Duration-to-hoeveelheid">
+                    <x:param name="adaElementName">doseerduur</x:param>
+                </x:call>
+                <x:expect label="'doseerduur' element with @value and @unit">
+                    <doseerduur value="2" unit="week"/>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="template name Quantity-to-hoeveelheid-complex">
+            <x:scenario label="No params">
+                <x:context>
+                    <numerator xmlns="http://hl7.org/fhir">
+                        <value value="90"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </numerator>
+                </x:context>
+                <x:call template="Quantity-to-hoeveelheid-complex"/>
+                <x:expect label="'waarde' and 'eenheid' elements">
+                    <waarde value="90"/>
+                    <eenheid code="215"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                        displayName="gram"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="withRange=true()">
+                <x:context>
+                    <doseQuantity xmlns="http://hl7.org/fhir">
+                        <value value="2"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                    </doseQuantity>
+                </x:context>
+                <x:call template="Quantity-to-hoeveelheid-complex">
+                    <x:param name="withRange" select="true()"/>
+                </x:call>
+                <x:expect label="'aantal' and 'eenheid' elements">
+                    <aantal>
+                        <vaste_waarde value="2"/>
+                    </aantal>
+                    <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                        displayName="stuk"/>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="template name Ratio-to-hoeveelheid-complex">
+            <x:context>
+                <amount xmlns="http://hl7.org/fhir">
+                    <numerator>
+                        <value value="90"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </numerator>
+                    <denominator>
+                        <value value="100"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </denominator>
+                </amount>
+            </x:context>
+            <x:call template="Ratio-to-hoeveelheid-complex">
+                <x:param name="numeratorAdaName" select="'hoeveelheid_ingredient'"/>
+                <x:param name="denominatorAdaName" select="'hoeveelheid_product'"/>
+            </x:call>
+            <x:expect label="'hoeveelheid_ingredient' and 'hoeveelheid_product' elements">
+                <hoeveelheid_ingredient>...</hoeveelheid_ingredient>
+                <hoeveelheid_product>...</hoeveelheid_product>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template name 'Identifier-to-identificatie'">
+            <x:scenario label="No params">
+                <x:context>
+                    <identifier xmlns="http://hl7.org/fhir">
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value value="999910437"/>
+                    </identifier>
+                </x:context>
+                <x:call template="Identifier-to-identificatie"/>
+                <x:expect label="'identificatie' element">
+                    <identificatie value="999910437" root="2.16.840.1.113883.2.4.6.3"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="adaElementName='zorgverlener_identificatienummer'">
+                <x:context>
+                    <identifier xmlns="http://hl7.org/fhir">
+                        <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                        <value value="000001111"/>
+                    </identifier>
+                </x:context>
+                <x:call template="Identifier-to-identificatie">
+                    <x:param name="adaElementName" select="'zorgverlener_identificatienummer'"/>
+                </x:call>
+                <x:expect label="'zorgverlener_identificatienummer' element">
+                    <zorgverlener_identificatienummer
+                        value="000001111"
+                        root="2.16.528.1.1007.3.1"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="data-absent-reason masked">
+                <x:context>
+                    <identifier xmlns="http://hl7.org/fhir">
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                <valueCode value="masked"/>
+                            </extension>
+                        </value>
+                    </identifier>
+                </x:context>
+                <x:call template="Identifier-to-identificatie"/>
+                <x:expect label="'identificatie' element with @nullFlavor">
+                    <identificatie nullFlavor="MSK" root="2.16.840.1.113883.2.4.6.3"/>
+                </x:expect>
+            </x:scenario>
+            
+        </x:scenario>
+        
+        <x:scenario label="template name Range-to-minmax">
+            <x:scenario label="Normal">
+                <x:context>
+                    <doseRange xmlns="http://hl7.org/fhir">
+                        <low>
+                            <value value="1"/>
+                            <unit value="stuk"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="245"/>
+                        </low>
+                        <high>
+                            <value value="2"/>
+                            <unit value="stuk"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="245"/>
+                        </high>
+                    </doseRange>
+                </x:context>
+                <x:call template="Range-to-minmax"/>
+                <x:expect label="combined 'aantal' element and 'eenheid' element">
+                    <aantal>
+                        <min value="1"/>
+                        <max value="2"/>
+                    </aantal>
+                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="nullvalue input">
+                <x:context>
+                    <doseRange xmlns="http://hl7.org/fhir">
+                        <low>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <valueCode value="OTH"/>
+                            </extension>
+                        </low>
+                        <high>
+                            <value value="2"/>
+                            <unit value="stuk"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="245"/>
+                        </high>
+                    </doseRange>
+                </x:context>
+                <x:call template="Range-to-minmax"/>
+                <x:expect label="combined 'aantal' element and 'eenheid' element">
+                    <aantal>
+                        <min nullFlavor="OTH"/>
+                        <max value="2"/>
+                    </aantal>
+                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="template name Ratio-to-quotient">
+            <x:scenario label="Normal">
+                <x:context>
+                    <maxDosePerPeriod xmlns="http://hl7.org/fhir">
+                        <numerator>
+                            <value value="6"/>
+                            <unit value="stuk"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="245"/>
+                        </numerator>
+                        <denominator>
+                            <value value="1"/>
+                            <unit value="dag"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="d"/>
+                        </denominator>
+                    </maxDosePerPeriod>
+                </x:context>
+                <x:call template="Ratio-to-quotient"/>
+                <x:expect label="'aantal', 'eenheid' and 'tijdseenheid'">
+                    <aantal value="6"/>
+                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+                    <tijdseenheid unit="dag" value="1"/>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="function format2ADADate">
+            <!--<x:call template="format2ADADate">
+                <x:param name="dateTime" select="'no_value'"/>
+                <x:param name="precision" select="'no_value'"/>
+                <x:param name="dateT" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented"/>-->
+            <x:scenario label="dateTime = '1954'">
+                <x:call template="format2ADADate">
+                    <x:param name="dateTime" select="'1954'"/>
+                </x:call>
+                <x:expect label="Return same">1954</x:expect>
+            </x:scenario>            
+            <x:scenario label="dateTime = '1954-05'">
+                <x:call template="format2ADADate">
+                    <x:param name="dateTime" select="'1954-05'"/>
+                </x:call>
+                <x:expect label="Return same">1954-05</x:expect>
+            </x:scenario>
+            <x:scenario label="dateTime = '1954-05-08'">
+                <x:call template="format2ADADate">
+                    <x:param name="dateTime" select="'1954-05-08'"/>
+                </x:call>
+                <x:expect label="Return same">1954-05-08</x:expect>
+            </x:scenario>
+            <x:scenario label="dateTime = '2013-01-14T10:00'">
+                <x:call template="format2ADADate">
+                    <x:param name="dateTime" select="'2013-01-14T10:00:00+01:00'"/>
+                </x:call>
+                <x:expect label="Add seconds and Amsterdam time zone">2013-01-14T10:00:00+01:00</x:expect>
+            </x:scenario>
+            <x:scenario label="dateTime = '2020-06-03T13:12:16.805+00:00'">
+                <x:call template="format2ADADate">
+                    <x:param name="dateTime" select="'2020-06-03T13:12:16.805+00:00'"/>
+                </x:call>
+                <x:expect label="Remove milliseconds">2020-06-03T13:12:16+00:00</x:expect>
+            </x:scenario>
+            <x:scenario label="dateTime = '${{DATE, T, D, -20}}T00:00:00+02:00'">
+                <x:call template="format2ADADate">
+                    <x:param name="dateTime" select="'${DATE, T, D, -20}T00:00:00+02:00'"/>
+                </x:call>
+                <x:expect label="Transcribe TouchStone-T to ADA-T">T-20D{00:00:00}</x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="function getOid">
+            <x:scenario label="uri = 'http://fhir.nl/fhir/NamingSystem/bsn'">
+                <x:call function="local:getOid">
+                    <x:param name="uri" select="'http://fhir.nl/fhir/NamingSystem/bsn'"/>
+                </x:call>
+                <x:expect label="Return bsn oid." select="'2.16.840.1.113883.2.4.6.3'"/>
+            </x:scenario>
+            <x:scenario label="uri = 'urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1'">
+                <x:call function="local:getOid">
+                    <x:param name="uri" select="'urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1'"/>
+                </x:call>
+                <x:expect label="Remove urn:oid:" select="'2.16.840.1.113883.2.4.3.11.999.77.1.1'"/>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="function getDisplayName">
+            <x:scenario label="Valid oid">
+                <x:call function="local:getDisplayName">
+                    <x:param name="oid" select="'2.16.840.1.113883.2.4.4.10'"/>
+                </x:call>
+                <x:expect label="Return displayName" select="'G-Standaard PRK'"/>
+            </x:scenario>
+            <x:scenario label="Oid without displayName mapped">
+                <x:call function="local:getDisplayName">
+                    <x:param name="oid" select="'test'"/>
+                </x:call>
+                <x:expect label="Return supplied oid" select="'test'"/>
+            </x:scenario>
+        </x:scenario>
+        
+        <!--<x:scenario label="template with match 'comment()" pending="">
+            <x:context/>
+            <x:expect label="Not yet implemented"/>
+        </x:scenario>
+        
+        <x:scenario label="template with match 'text()" pending="">
+            <x:context/>
+            <x:expect label="Not yet implemented"/>
+        </x:scenario>-->
+
+    </x:scenario>
+    
+</x:description>

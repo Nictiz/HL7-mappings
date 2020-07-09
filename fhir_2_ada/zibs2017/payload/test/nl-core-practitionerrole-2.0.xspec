@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../nl-core-practitionerrole-2.0.xsl">
+    
+    <x:scenario label="nl-core-practitionerrole-2.0">
+        <x:scenario label="mode 'resolve-practitionerRole'">
+            <x:context mode="resolve-practitionerRole" select="/f:entry/f:resource/f:PractitionerRole">
+                <entry xmlns="http://hl7.org/fhir">
+                    <fullUrl value="urn:uuid:de182881-9e98-11ea-2050-020000000000"/>
+                    <resource>
+                        <PractitionerRole>
+                            <meta>
+                                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                            </meta>
+                            <text/>
+                            <practitioner>
+                                <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                                <display value="Peter van Pulver"/>
+                            </practitioner>
+                            <organization>
+                                <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                            </organization>
+                            <specialty>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                                    <code value="0100"/>
+                                    <display value="Huisartsen, niet nader gespecificeerd"/>
+                                </coding>
+                            </specialty>
+                        </PractitionerRole>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
+            </x:context>
+            <x:expect label="Returns nothing"/>
+            <!-- Not possible to catch XSLT variable contents in Xspec? -->
+        </x:scenario>
+        
+        <x:scenario label="mode 'nl-core-practitionerrole-2.0'">
+            <x:context mode="nl-core-practitionerrole-2.0">
+                <PractitionerRole xmlns="http://hl7.org/fhir">
+                    <meta>
+                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                    </meta>
+                    <text/>
+                    <practitioner>
+                        <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                        <display value="Peter van Pulver"/>
+                    </practitioner>
+                    <organization>
+                        <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                        <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                    </organization>
+                    <specialty>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                            <version value="2017-12-14T00:00:00"/>
+                            <code value="0100"/>
+                            <display value="Huisartsen, niet nader gespecificeerd"/>
+                        </coding>
+                    </specialty>
+                </PractitionerRole>
+            </x:context>
+            <x:expect label="'specialisme' element with attributes">
+                <specialisme code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2017-12-14T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
+            </x:expect>
+        </x:scenario>
+        
+    </x:scenario>
+    
+</x:description>
