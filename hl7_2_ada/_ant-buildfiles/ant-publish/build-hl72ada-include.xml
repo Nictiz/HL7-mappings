@@ -58,7 +58,7 @@
     <target name="setup_sub_instances" description="Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.include})">
 
         <echo/>
-        <echo>Setup ${sub.build.dir}  containing refreshed hl7 instances (${fileset.include})</echo>
+        <echo>Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.include})</echo>
 
         <delete>
             <fileset dir="${sub.build.dir}/${fileset.dir}" includes="${fileset.include}"/>
@@ -70,8 +70,8 @@
         </copy>
 
     </target>
-
-<target name="convert_hl7_2_ada_sub">
+    
+    <target name="convert_hl7_2_ada_sub">
         
         <property name="xsl.hl72ada" value="${sub.build.dir}/${xsl.name}"/>
         

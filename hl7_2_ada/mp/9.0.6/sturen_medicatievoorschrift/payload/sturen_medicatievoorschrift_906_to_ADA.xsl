@@ -19,12 +19,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="false()"/>
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
-    
     <xsl:param name="xsd-ada" select="document('../ada_schemas/sturen_medicatievoorschrift.xsd')"/>
     <xsl:variable name="mbh-complexType" select="$xsd-ada//xs:schema/xs:complexType[@name = 'sturen_medicatievoorschrift_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
     <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
 
-<!-- if this xslt is used stand alone the template below could be used. -->
+    <!-- if this xslt is used stand alone the template below could be used. -->
     <xsl:template match="/">
         <xsl:variable name="patient-recordTarget" select="//hl7:recordTarget/hl7:patientRole"/>
         <xsl:call-template name="Voorschrift-90-ADA">
@@ -81,5 +80,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </sturen_medicatievoorschrift>
             </data>
         </adaxml>
-        </xsl:template>
+    </xsl:template>
 </xsl:stylesheet>
