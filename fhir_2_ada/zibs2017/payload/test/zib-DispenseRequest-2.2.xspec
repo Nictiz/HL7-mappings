@@ -23,10 +23,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <fullUrl value="urn:uuid:2b5ce060-b526-11ea-8547-020000000000"/>
                     <resource>
                         <MedicationRequest>
+                            <id value="sdfsdf"/>
                             <meta>
                                 <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
                             </meta>
                             <text/>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"/>
+                                        <code value="3"/>
+                                        <display value="Bezorgen"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
                                 <valueReference>
                                     <identifier>
@@ -80,12 +90,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <text value="Extra verstrekkingsverzoek omdat patiënt de medicatie is kwijt geraakt"/>
                             </note>
                             <dispenseRequest>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
+                                    <valueReference>
+                                        <reference value="urn:uuid:de849699-bd37-11ea-1242-020000000000"/>
+                                        <display value="Huisadres patiënt"/>
+                                    </valueReference>
+                                </extension>
+                                <validityPeriod>
+                                    <start value="2018-08-01T00:00:00+02:00"/>
+                                    <end value="2019-08-01T00:00:00+02:00"/>
+                                </validityPeriod>
+                                <numberOfRepeatsAllowed value="2"/>
                                 <quantity>
                                     <value value="30"/>
                                     <unit value="stuk"/>
                                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                                     <code value="245"/>
                                 </quantity>
+                                <expectedSupplyDuration>
+                                    <value value="30"/>
+                                    <unit value="dag"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="d"/>
+                                </expectedSupplyDuration>
                                 <performer>
                                     <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
                                     <display value="Apotheek De Gulle Gaper"/>
@@ -95,6 +122,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </resource>
                     <search>
                         <mode value="match"/>
+                    </search>
+                </entry>
+                <entry>
+                    <fullUrl value="urn:uuid:de849699-bd37-11ea-1242-020000000000"/>
+                    <resource>
+                        <Location>
+                            <meta>
+                                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-location"/>
+                            </meta>
+                            <name value="Huisadres patiënt"/>
+                        </Location>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
                     </search>
                 </entry>
                 <entry>
@@ -317,47 +358,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <identificatie value="MBH_513_2_VV_2" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                 <datum value="2018-08-16T14:32:00+02:00"/>
                 <auteur>
-                    <zorgverlener>
-                        <zorgverlener_identificatie_nummer value="999001112" root="2.16.528.1.1007.3.1"/>
-                        <naamgegevens>
-                            <naamgegevens>
-                                <voornamen value="Hans"/>
-                                <geslachtsnaam>
-                                    <voorvoegsels value="van"/>
-                                    <achternaam value="Doorn"/>
-                                </geslachtsnaam>
-                            </naamgegevens>
-                        </naamgegevens>
-                        <specialisme code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2017-12-14T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
-                        <zorgaanbieder>
-                            <zorgaanbieder_identificatie_nummer value="99901111" root="2.16.528.1.1007.3.3"/>
-                            <organisatie_naam value="Ziekenhuis Stitswerd"/>
-                            <adresgegevens>
-                                <straat value="Dorpsstraat"/>
-                                <huisnummer value="1"/>
-                                <postcode value="1234AA"/>
-                                <woonplaats value="Ons Dorp"/>
-                                <adres_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
-                            </adresgegevens>
-                        </zorgaanbieder>
-                    </zorgverlener>
+                    <zorgverlener>...</zorgverlener>
                 </auteur>
                 <te_verstrekken_hoeveelheid>
                     <aantal value="30"/>
                     <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
                 </te_verstrekken_hoeveelheid>
+                <aantal_herhalingen value="2"/>
                 <te_verstrekken_geneesmiddel>
-                    <product>
-                        <product_code code="5967" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="FUROSEMIDE TABLET 40MG" preferred="true"/>
-                        <product_code code="16810" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="FUROSEMIDE TABLET 40MG"/>
-                    </product>
+                    <product>...</product>
                 </te_verstrekken_geneesmiddel>
+                <verbruiksperiode>
+                    <ingangsdatum value="2018-08-01T00:00:00+02:00"/>
+                    <einddatum value="2019-08-01T00:00:00+02:00"/>
+                    <duur value="30" unit="dag"/>
+                </verbruiksperiode>
                 <beoogd_verstrekker>
-                    <zorgaanbieder>
-                        <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
-                        <organisatie_naam value="Apotheek De Gulle Gaper"/>
-                    </zorgaanbieder>
+                    <zorgaanbieder>...</zorgaanbieder>
                 </beoogd_verstrekker>
+                <afleverlocatie value="Huisadres patiënt"/>
+                <aanvullende_wensen code="3"
+                    codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"
+                    displayName="Bezorgen"/>
                 <toelichting value="Extra verstrekkingsverzoek omdat patiënt de medicatie is kwijt geraakt"/>
                 <relatie_naar_medicatieafspraak>
                     <identificatie value="MBH_513_2_MA_2" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>

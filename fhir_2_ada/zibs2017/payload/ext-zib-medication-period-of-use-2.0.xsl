@@ -25,14 +25,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xd:doc>
-        <xd:desc>Template to resolve f:extension</xd:desc>
+        <xd:desc>Template to resolve f:extension zib-Medication-PeriodOfUse</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse']" mode="ext-zib-Medication-PeriodOfUse-2.0">
         <xsl:apply-templates select="f:valuePeriod" mode="ext-zib-Medication-PeriodOfUse-2.0"/>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template for http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-PeriodOfUse</xd:desc>
+        <xd:desc>Template to resolve f:valuePeriod</xd:desc>
     </xd:doc>
     <xsl:template match="f:valuePeriod" mode="ext-zib-Medication-PeriodOfUse-2.0">
         <xsl:apply-templates select="f:start" mode="#current"/>
@@ -40,7 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template for converting f:start to gebruiksperiode_start</xd:desc>
+        <xd:desc>Template to convert f:start to gebruiksperiode_start</xd:desc>
     </xd:doc>
     <xsl:template match="f:start" mode="ext-zib-Medication-PeriodOfUse-2.0">
         <gebruiksperiode_start>
@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template for converting f:end to gebruiksperiode_eind</xd:desc>
+        <xd:desc>Template to convert f:end to gebruiksperiode_eind</xd:desc>
     </xd:doc>
     <xsl:template match="f:end" mode="ext-zib-Medication-PeriodOfUse-2.0">
         <gebruiksperiode_eind>

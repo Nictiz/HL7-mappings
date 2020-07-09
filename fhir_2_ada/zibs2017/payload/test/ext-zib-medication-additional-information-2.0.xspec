@@ -17,20 +17,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     stylesheet="../ext-zib-medication-additional-information-2.0.xsl">
     
     <x:scenario label="ext-zib-Medication-AdditionalInformation-2.0">
-        <x:context mode="ext-zib-Medication-AdditionalInformation-2.0">
-            <extension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
-                <valueCodeableConcept>
-                    <coding>
-                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
-                        <code value="1"/>
-                        <display value="Bewust hoge dosering"/>
-                    </coding>
-                </valueCodeableConcept>
-            </extension>
-        </x:context>
-        <x:expect label="'aanvullende_informatie' element">
-            <aanvullende_informatie code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050" displayName="Bewust hoge dosering"/>
-        </x:expect>
+        <x:scenario label="No param">
+            <x:context mode="ext-zib-Medication-AdditionalInformation-2.0">
+                <extension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
+                            <code value="1"/>
+                            <display value="Bewust hoge dosering"/>
+                        </coding>
+                    </valueCodeableConcept>
+                </extension>
+            </x:context>
+            <x:expect label="'aanvullende_informatie' element">
+                <aanvullende_informatie code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050" displayName="Bewust hoge dosering"/>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="adaElementName param">
+            <x:context mode="ext-zib-Medication-AdditionalInformation-2.0">
+                <x:param name="adaElementName" tunnel="yes">aanvullende_wensen</x:param>
+                <extension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
+                            <code value="1"/>
+                            <display value="Bewust hoge dosering"/>
+                        </coding>
+                    </valueCodeableConcept>
+                </extension>
+            </x:context>
+            <x:expect label="'aanvullende_wensen' element">
+                <aanvullende_wensen code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050" displayName="Bewust hoge dosering"/>
+            </x:expect>
+        </x:scenario>
+        
     </x:scenario>
     
 </x:description>
