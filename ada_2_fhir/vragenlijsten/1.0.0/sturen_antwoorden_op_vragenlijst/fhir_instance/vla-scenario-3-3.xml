@@ -1,0 +1,241 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="${task-fullurl}"/>
+      <resource>
+         <Task>
+            <id value="${task-id}"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireProvisioningTask"/>
+            </meta>
+            <status value="completed"/>
+            <intent value="order"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="74468-0"/>
+                  <display value="Questionnaire form definition Document"/>
+               </coding>
+            </code>
+            <description value="De vragenlijst 'Intake nieuwe patiënt' is beschikbaar om in te vullen"/>
+            <authoredOn value="${DATE, T, D, -4}T13:00:00+02:00"/>
+            <lastModified value="${DATE, T, D, -4}T19:30:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/000001111"/>
+                        <display value="Frans Lijster || Gezondheidscentrum Quaestionario"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
+                  <display value="Frans Lijster"/>
+               </agent>
+            </requester>
+            <owner>
+               <reference value="Patient/MARIEDEBIEVERKEULEN"/>
+               <display value="Marie de Bie Verkeulen"/>
+            </owner>
+            <input>
+               <type>
+                  <text value="Questionnaire"/>
+               </type>
+               <valueReference>
+                  <reference value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
+                  <display value="Intake nieuwe patiënt"/>
+               </valueReference>
+            </input>
+            <input>
+               <type>
+                  <text value="Subject"/>
+               </type>
+               <valueReference>
+                  <reference value="Patient/MARIEDEBIEVERKEULEN"/>
+                  <display value="Marie de Bie Verkeulen"/>
+               </valueReference>
+            </input>
+            <output>
+               <type>
+                  <text value="QuestionnaireResponse"/>
+               </type>
+               <valueReference>
+                  <reference value="urn:uuid:9cd04e79-a347-11ea-7601-020000000000"/>
+                  <display value="Antwoord op vragenlijst: 'Intake nieuwe patiënt'."/>
+               </valueReference>
+            </output>
+         </Task>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Task/${task-id}"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:9cd04e79-a347-11ea-7601-020000000000"/>
+      <resource>
+         <QuestionnaireResponse>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireResponse"/>
+            </meta>
+            <questionnaire>
+               <reference value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
+               <display value="Intake nieuwe patiënt"/>
+            </questionnaire>
+            <status value="completed"/>
+            <subject>
+               <reference value="${server-base}Patient/MARIEDEBIEVERKEULEN"/>
+               <display value="Marie de Bie Verkeulen"/>
+            </subject>
+            <authored value="${DATE, T, D, -4}T19:30:00+02:00"/>
+            <author>
+               <reference value="${server-base}Patient/MARIEDEBIEVERKEULEN"/>
+               <display value="Marie de Bie Verkeulen"/>
+            </author>
+            <item>
+               <linkId value="algemeen"/>
+               <item>
+                  <linkId value="gewicht"/>
+                  <answer>
+                     <valueDecimal value="67.1"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="lengte"/>
+                  <answer>
+                     <valueInteger value="168"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="roken"/>
+                  <answer>
+                     <valueBoolean value="false"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="ooitgerookt"/>
+                  <answer>
+                     <valueBoolean value="false"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="drinken"/>
+                  <answer>
+                     <valueBoolean value="false"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="lichamelijkegezondheid"/>
+                  <answer>
+                     <valueString value="Ik voel me fit en gezond"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="opstaan"/>
+                  <answer>
+                     <valueTime value="07:00:00"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="sport"/>
+                  <answer>
+                     <valueBoolean value="true"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="welkesport"/>
+                  <answer>
+                     <valueCoding>
+                        <code value="YOG"/>
+                        <display value="Yoga"/>
+                     </valueCoding>
+                  </answer>
+               </item>
+            </item>
+            <item>
+               <linkId value="voorgeschiedenis"/>
+               <item>
+                  <linkId value="onderbehandeling"/>
+                  <answer>
+                     <valueBoolean value="false"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="geneesmiddelen"/>
+                  <answer>
+                     <valueBoolean value="false"/>
+                  </answer>
+               </item>
+            </item>
+            <item>
+               <linkId value="socialemedia"/>
+               <item>
+                  <linkId value="facebook"/>
+                  <answer>
+                     <valueBoolean value="true"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="instagram"/>
+                  <answer>
+                     <valueBoolean value="false"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="linkedin"/>
+                  <answer>
+                     <valueBoolean value="false"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="anderplatform"/>
+                  <answer>
+                     <valueBoolean value="true"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="hoeveelandere"/>
+                  <answer>
+                     <valueInteger value="1"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="welkplatform"/>
+                  <answer>
+                     <valueString value="Pinterest"/>
+                  </answer>
+               </item>
+            </item>
+            <item>
+               <linkId value="contactgegevens"/>
+               <item>
+                  <linkId value="mobiel"/>
+                  <answer>
+                     <valueString value="0621212121"/>
+                  </answer>
+               </item>
+               <item>
+                  <linkId value="mail"/>
+                  <answer>
+                     <valueString value="mariedebie@vraagje.nl"/>
+                  </answer>
+               </item>
+            </item>
+            <item>
+               <linkId value="belafspraak"/>
+               <item>
+                  <linkId value="toestemmingbelafspraak"/>
+                  <answer>
+                     <valueBoolean value="true"/>
+                  </answer>
+               </item>
+            </item>
+         </QuestionnaireResponse>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="QuestionnaireResponse"/>
+      </request>
+   </entry>
+</Bundle>

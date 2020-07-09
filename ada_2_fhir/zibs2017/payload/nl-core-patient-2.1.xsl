@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
     <xsl:template name="patientReference" match="patient" mode="doPatientReference-2.1" as="element()*">
-        <xsl:variable name="theIdentifier" select="identificatienummer[@value] | patient_identificatie_nummer[@value] | patient_identification_number[@value]"/>
+        <xsl:variable name="theIdentifier" select="(identificatienummer|patient_identificatie_nummer|patient_identification_number)[@value|@nullFlavor]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPatient(.)"/>
         <xsl:variable name="theGroupElement" select="$patients[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
@@ -120,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
                     </meta>
                     <!-- patient_identificatienummer  -->
-                    <xsl:for-each select="identificatienummer[@value] | patient_identificatienummer[@value] | patient_identification_number[@value]">
+                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number)[@value|@nullFlavor]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
@@ -129,14 +129,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!-- naamgegevens -->
                     <xsl:call-template name="nl-core-humanname-2.0">
-                        <xsl:with-param name="in" select="naamgegevens | name_information" as="element()*"/>
+                        <!-- in some datasets the name_information is unfortunately unnecessary nested in an extra group, hence the extra predicate -->
+                        <xsl:with-param name="in" select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])" as="element()*"/>
                     </xsl:call-template>
                     <!-- contactgegevens -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
                         <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
                     </xsl:call-template>
                     <!-- geslacht -->
-                    <xsl:for-each select="geslacht[@value | @code] | gender[@value | @code]">
+                    <xsl:for-each select="(geslacht | gender)[@value | @code]">
                         <gender>
                             <xsl:call-template name="code-to-code">
                                 <xsl:with-param name="in" select="."/>
@@ -150,11 +151,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </gender>
                     </xsl:for-each>
                     <!-- geboortedatum -->
-                    <xsl:for-each select="geboortedatum[@value] | date_of_birth[./@value]">
+                    <xsl:for-each select="(geboortedatum | date_of_birth)[@value]">
                         <birthDate value="{./@value}">
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                     <xsl:with-param name="precision" select="'DAY'"/>
                                 </xsl:call-template>
                             </xsl:attribute>
@@ -234,7 +235,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:get-resourceid-from-token" as="xs:string?">
         <xsl:param name="adaPatient" as="element(patient)?"/>
 
-        <xsl:variable name="adaBsn" select="normalize-space($adaPatient/identificatienummer[@root = $oidBurgerservicenummer]/@value)"/>
+        <xsl:variable name="adaBsn" select="normalize-space($adaPatient/(identificatienummer | patient_identificatienummer | patient_identification_number)[@root = $oidBurgerservicenummer]/@value)"/>
         <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[bsn/normalize-space(text()) = $adaBsn]/resourceId"/>
 
         <xsl:choose>
@@ -254,7 +255,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <!-- not found using bsn, let's try exact match on family name -->
-                <xsl:variable name="adaEigenAchternaam" select="upper-case(normalize-space($adaPatient/naamgegevens/geslachtsnaam/achternaam/@value))"/>
+                <xsl:variable name="adaEigenAchternaam" select="upper-case(normalize-space($adaPatient//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])/geslachtsnaam/achternaam/@value))"/>
                 <xsl:variable name="tokenResourceId" select="($patientTokensXml//*[familyName/upper-case(normalize-space(text())) = $adaEigenAchternaam]/resourceId)"/>
 
                 <xsl:choose>

@@ -1,13 +1,14 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="MO-XXX-Herweijer"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:31cd42ba-8fac-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:b7f6e30e-bd3e-11ea-7489-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -32,14 +33,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:31cd584b-8fac-11ea-1291-020000000000"/>
+               <reference value="urn:uuid:b7f6f845-bd3e-11ea-7489-020000000000"/>
                <display value="A. XXX_Herweijer"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="urn:uuid:31cd42be-8fac-11ea-1291-020000000000"/>
+                     <reference value="urn:uuid:b7f6e312-bd3e-11ea-7489-020000000000"/>
                      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
@@ -47,7 +48,7 @@
             </source>
             <entry>
                <item>
-                  <reference value="urn:uuid:31cd428b-8fac-11ea-1291-020000000000"/>
+                  <reference value="urn:uuid:b7f6e2df-bd3e-11ea-7489-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_aanvullendeinformatiewensen_MA_onderbreken', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
@@ -58,7 +59,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31cd428b-8fac-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:b7f6e2df-bd3e-11ea-7489-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -73,7 +74,7 @@
                      </caption>
                      <tbody>
                         <tr>
-                           <th colspan="2">Medicatie is gestopt: <span title="Onderbreking (1 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Onderbreking</span>
+                           <th colspan="2">Medicatie is gestopt: <span title="Tijdelijk (1 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Tijdelijk</span>
                            </th>
                         </tr>
                         <tr>
@@ -160,7 +161,7 @@
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
                      <code value="1"/>
-                     <display value="Onderbreking"/>
+                     <display value="Tijdelijk"/>
                   </coding>
                </valueCodeableConcept>
             </modifierExtension>
@@ -182,7 +183,7 @@
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:31cd584b-8fac-11ea-1291-020000000000"/>
+               <reference value="urn:uuid:b7f6f845-bd3e-11ea-7489-020000000000"/>
                <display value="A. XXX_Herweijer"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T18:12:00+02:00"/>
@@ -190,7 +191,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:31cd4293-8fac-11ea-1291-020000000000"/>
+                        <reference value="urn:uuid:b7f6e2e7-bd3e-11ea-7489-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -235,7 +236,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31cd584b-8fac-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:b7f6f845-bd3e-11ea-7489-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -244,12 +245,16 @@
             <text>
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999911466 (BSN), A. XXX_Herweijer, Vrouw, 2 augustus 1954</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), A. XXX_Herweijer, Vrouw, 2 augustus 1954</div>
                </div>
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999911466"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -362,7 +367,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31cd42be-8fac-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:b7f6e312-bd3e-11ea-7489-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -420,7 +425,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31cd4293-8fac-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:b7f6e2e7-bd3e-11ea-7489-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

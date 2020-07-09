@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_fhir_mp90_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -37,7 +37,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
     <xsl:param name="logLevel" select="$logDEBUG" as="xs:string"/>
-
+    <!-- whether or not to output kopie bouwstenen, defaults to true if not set -->
+    <xsl:param name="outputKopieBouwstenen" as="xs:boolean?" select="false()"/>
+    
     <xsl:variable name="usecase">mp9</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $relatedPersons/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>

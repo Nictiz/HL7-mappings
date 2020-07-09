@@ -36,6 +36,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->    
+    <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>    
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $locations/f:entry"/>
     </xsl:variable>
@@ -63,6 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+            <id value="{concat('MO-', nf:removeSpecialCharacters(($patients/f:entry/f:resource/f:Patient/f:name/f:family)[1]/@value))}"/>
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
             </meta>

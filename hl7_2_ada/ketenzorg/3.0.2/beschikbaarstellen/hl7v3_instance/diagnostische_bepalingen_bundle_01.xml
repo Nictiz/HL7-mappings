@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Bundle was designed to support 2 different responses both deriving from NHG Table 45. One of type lab (L) and one of type diagnostic (D) -->
+<SOAP-ENV:Envelope xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/' xmlns:s='http://www.w3.org/2001/XMLSchema' xmlns:wss='http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.0.xsd' >
+    <SOAP-ENV:Body>
+        <MCCI_IN200101 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <id extension="114605" root="2.16.840.1.113883.2.4.6.6.1.1.33"/>
+            <creationTime value="20181127115825"/>
+            <versionCode code="NICTIZEd2005-Okt"/>
+            <interactionId extension="MCCI_IN200101" root="2.16.840.1.113883.1.6"/>
+            <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+            <transmissionQuantity value="3"/>
+            <acknowledgement typeCode="AA">
+                <targetTransmission>
+                    <id extension="34745ef4-6429-4142-8efc-99e4714e887e" root="2.16.528.1.1007.3.3.1234567.1"/>
+                </targetTransmission>
+            </acknowledgement>
+            <receiver>
+                <device>
+                    <id extension="4003" root="2.16.840.1.113883.2.4.6.6"/>
+                </device>
+            </receiver>
+            <sender>
+                <device>
+                    <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+                </device>
+            </sender>
+            <POOB_IN990003NL xmlns="urn:hl7-org:v3" xmlns:sd="urn:hl7-org:sdtc" xmlns:ph="urn:ihe:pharm:medication" xmlns:nl="urn:hl7-nl:v3">
+                    <id extension="XIS-20190301-1227-8d67e0cb-0872-4552-b736-f32bb544a650" root="2.16.840.1.113883.2.4.6.6.90000258.1"/>
+                    <creationTime value="20190301140628"/>
+                    <versionCode code="NICTIZEd2005-Okt"/>
+                    <interactionId extension="POOB_IN990003NL" root="2.16.840.1.113883.1.6"/>
+                    <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+                    <processingCode code="P"/>
+                    <processingModeCode code="T"/>
+                    <acceptAckCode code="NE"/>
+                    <acknowledgement typeCode="AA">
+                        <targetMessage>
+                            <id extension="894f58ce-34de-4f42-bc18-bc4997e3806a" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+                        </targetMessage>
+                    </acknowledgement>
+                    <receiver>
+                        <device>
+                            <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+                        </device>
+                    </receiver>
+                    <sender>
+                        <device>
+                            <id extension="90000258" root="2.16.840.1.113883.2.4.6.6"/>
+                            <name>XIS LSP</name>
+                        </device>
+                    </sender>
+                    <ControlActProcess moodCode="EVN">
+                        <authorOrPerformer typeCode="AUT">
+                            <participant>
+                                <AssignedDevice>
+                                    <id extension="900017472" root="2.16.528.1.1007.3.2"/>
+                                    <Organization>
+                                        <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                        <name>Tést Zorginstelling 04</name>
+                                    </Organization>
+                                </AssignedDevice>
+                            </participant>
+                        </authorOrPerformer>
+                        <subject>
+                            <organizer classCode="CLUSTER" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.8"/>
+                                <code code="27899-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnostic studies non lab"/>
+                                <statusCode code="completed"/>
+                                <recordTarget>
+                                    <patientRole>
+                                        <id extension="999911624" root="2.16.840.1.113883.2.4.6.3"/>
+                                        <addr use="HP">
+                                            <streetName>Knolweg</streetName>
+                                            <houseNumber>1001</houseNumber>
+                                            <postalCode>9999 XX</postalCode>
+                                            <city>STITSWERD</city>
+                                            <country>Nederland</country>
+                                        </addr>
+                                        <patient>
+                                            <name>
+                                                <given qualifier="IN">E.</given>
+                                                <family qualifier="BR">XXX_Zegers</family>
+                                            </name>
+                                            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                                            <birthTime value="19640802"/>
+                                        </patient>
+                                    </patientRole>
+                                </recordTarget>
+                                <participant typeCode="CST">
+                                    <participantRole classCode="ASSIGNED">
+                                        <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                    </participantRole>
+                                </participant>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21103" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1744" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="systolische bloeddruk"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20170709"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="mm[Hg]" value="184" xsi:type="PQ"/>
+                                        <interpretationCode code="H" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="High"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low nullFlavor="NINF"/>
+                                                    <high unit="mm[Hg]" value="140"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21104" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1740" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="diastolische bloeddruk"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20170709"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="mm[Hg]" value="93" xsi:type="PQ"/>
+                                        <interpretationCode code="H" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="High"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low nullFlavor="NINF"/>
+                                                    <high unit="mm[Hg]" value="89"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21105" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1875" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="polsfrequentie"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20170709"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="/min" value="120" xsi:type="PQ"/>
+                                        <interpretationCode code="H" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="High"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low unit="/min" value="60"/>
+                                                    <high unit="/min" value="100"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21106" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="2102" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="polsritme"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20170709"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="202" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="irregulair" xsi:type="CE"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21107" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="2126" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="pols opmerkingen"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20170709"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ST">linker pols C01@ST-600@</value>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21108" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1744" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="systolische bloeddruk"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="mm[Hg]" value="180" xsi:type="PQ"/>
+                                        <interpretationCode code="H" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="High"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low nullFlavor="NINF"/>
+                                                    <high unit="mm[Hg]" value="140"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21109" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1740" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="diastolische bloeddruk"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="mm[Hg]" value="89" xsi:type="PQ"/>
+                                        <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low nullFlavor="NINF"/>
+                                                    <high unit="mm[Hg]" value="89"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21110" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="2102" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="polsritme"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="201" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="regulair" xsi:type="CE"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21111" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="560" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="lengte patiënt"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="m" value="1.72" xsi:type="PQ"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21112" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="357" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="gewicht patiënt"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="kg" value="80" xsi:type="PQ"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21113" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1589" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="ademhalingsfrequentie"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="/min" value="19" xsi:type="PQ"/>
+                                        <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low nullFlavor="NINF"/>
+                                                    <high unit="/min" value="20"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21114" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1675" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="FEV1/FVC ratio pré-BD"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="%" value="66" xsi:type="PQ"/>
+                                        <interpretationCode code="L" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Low"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low unit="%" value="70"/>
+                                                    <high nullFlavor="PINF"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21115" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1704" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="conclusie longfunctieonderzoek"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ST">CPOD C03@ST-30@</value>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21116" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1739" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="roken"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="4" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="voorheen" xsi:type="CE"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21117" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1991" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="aantal jaren gerookt"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="a" value="10" xsi:type="PQ"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21118.0.97" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="2025" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="specificatie longaandoeningen in familie"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190130"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="97" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="astma" xsi:type="CE"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21122" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1272" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="Quetelet-index (BMI) patiënt"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190203"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="kg/m2" value="27" xsi:type="PQ"/>
+                                        <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low nullFlavor="NINF"/>
+                                                    <high unit="kg/m2" value="27"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21125" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1744" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="systolische bloeddruk"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190202"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="mm[Hg]" value="160" xsi:type="PQ"/>
+                                        <interpretationCode code="H" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="High"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low nullFlavor="NINF"/>
+                                                    <high unit="mm[Hg]" value="140"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21126" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1740" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="diastolische bloeddruk"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190202"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="mm[Hg]" value="80" xsi:type="PQ"/>
+                                        <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low nullFlavor="NINF"/>
+                                                    <high unit="mm[Hg]" value="89"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21127" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1875" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="polsfrequentie"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190202"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="/min" value="72" xsi:type="PQ"/>
+                                        <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange typeCode="REFV">
+                                            <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                    <low unit="/min" value="60"/>
+                                                    <high unit="/min" value="100"/>
+                                                </value>
+                                                <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21128" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="2209" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="ernst/stadium COPD (GOLD classificatie)"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190202"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="255" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="1: mild COPD" xsi:type="CE"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21129" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1913" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="temperatuur patiënt (in oor gemeten)"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190202"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="Cel" value="37.5" xsi:type="PQ"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21130" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="1659" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="kortademigheid (anamnese)"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190202"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="1" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="ja" xsi:type="CE"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                                        <id extension="21131" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                        <code code="3258" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="hartkloppingen (anamnese)"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20190202"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="8" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="onduidelijk" xsi:type="CE"/>
+                                        <participant typeCode="RESP">
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
+                            </organizer>
+                        </subject>
+                        <queryAck>
+                            <queryId extension="a23e089a-0601-4829-809f-387288d4a010" root="2.16.840.1.113883.2.4.6.6.1.1.1"/>
+                            <queryResponseCode code="OK"/>
+                            <resultTotalQuantity value="1"/>
+                            <resultCurrentQuantity value="1"/>
+                            <resultRemainingQuantity value="0"/>
+                        </queryAck>
+                    </ControlActProcess>
+                </POOB_IN990003NL>
+            <POLB_IN364001NL03 xmlns="urn:hl7-org:v3" xmlns:sd="urn:hl7-org:sdtc" xmlns:ph="urn:ihe:pharm:medication" xmlns:nl="urn:hl7-nl:v3">
+                <id extension="XIS-20190304-1353-96cc26ad-687f-4c69-a518-90762890aef6" root="2.16.840.1.113883.2.4.6.6.90000258.1"/>
+                <creationTime value="20190304152606"/>
+                <versionCode code="NICTIZEd2005-Okt"/>
+                <interactionId extension="POLB_IN364001NL03" root="2.16.840.1.113883.1.6"/>
+                <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+                <processingCode code="P"/>
+                <processingModeCode code="T"/>
+                <acceptAckCode code="NE"/>
+                <acknowledgement typeCode="AA">
+                    <targetMessage>
+                        <id extension="2714ccb1-abcb-4d30-9e6f-b734d2f00cde" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+                    </targetMessage>
+                </acknowledgement>
+                <receiver>
+                    <device>
+                        <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+                    </device>
+                </receiver>
+                <sender>
+                    <device>
+                        <id extension="90000258" root="2.16.840.1.113883.2.4.6.6"/>
+                        <name>XIS LSP</name>
+                    </device>
+                </sender>
+                <ControlActProcess moodCode="EVN">
+                    <authorOrPerformer typeCode="AUT">
+                        <participant>
+                            <AssignedDevice>
+                                <id extension="900017472" root="2.16.528.1.1007.3.2"/>
+                                <Organization>
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                </Organization>
+                            </AssignedDevice>
+                        </participant>
+                    </authorOrPerformer>
+                    <subject>
+                        <organizer classCode="CLUSTER" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.77"/>
+                            <code code="26436-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Laboratory studies"/>
+                            <statusCode code="completed"/>
+                            <recordTarget>
+                                <patientRole>
+                                    <id extension="999911624" root="2.16.840.1.113883.2.4.6.3"/>
+                                    <addr use="HP">
+                                        <streetName>Knolweg</streetName>
+                                        <houseNumber>1001</houseNumber>
+                                        <postalCode>9999 XX</postalCode>
+                                        <city>STITSWERD</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                    <patient>
+                                        <name>
+                                            <given qualifier="IN">E.</given>
+                                            <family qualifier="BR">XXX_Zegers</family>
+                                        </name>
+                                        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                                        <birthTime value="19640802"/>
+                                    </patient>
+                                </patientRole>
+                            </recordTarget>
+                            <participant typeCode="CST">
+                                <participantRole classCode="ASSIGNED">
+                                    <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                </participantRole>
+                            </participant>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <observation classCode="OBS" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+                                    <id extension="21120" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                    <code code="852" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="Multi-rast (Phadiatop)"/>
+                                    <statusCode code="completed"/>
+                                    <effectiveTime value="20190130"/>
+                                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="32" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="positief" xsi:type="CE"/>
+                                    <participant typeCode="RESP">
+                                        <participantRole classCode="ROL">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.27"/>
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                        </participantRole>
+                                    </participant>
+                                </observation>
+                            </component>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <observation classCode="OBS" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+                                    <id extension="21121" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                    <code code="2680" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="zuurstofsaturatie (pulsoximeter)"/>
+                                    <statusCode code="completed"/>
+                                    <effectiveTime value="20190130"/>
+                                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="%" value="97" xsi:type="PQ"/>
+                                    <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                    <participant typeCode="RESP">
+                                        <participantRole classCode="ROL">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.27"/>
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                        </participantRole>
+                                    </participant>
+                                    <referenceRange typeCode="REFV">
+                                        <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                <low unit="%" value="95"/>
+                                                <high unit="%" value="99"/>
+                                            </value>
+                                            <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                        </observationRange>
+                                    </referenceRange>
+                                </observation>
+                            </component>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <observation classCode="OBS" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+                                    <id extension="21123" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                    <code code="2626" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="huidtest hond epitheel"/>
+                                    <statusCode code="completed"/>
+                                    <effectiveTime value="20190203"/>
+                                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="312" codeSystem="2.16.840.1.113883.2.4.4.30.1045" displayName="twijfelachtig" xsi:type="CE"/>
+                                    <participant typeCode="RESP">
+                                        <participantRole classCode="ROL">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.27"/>
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                        </participantRole>
+                                    </participant>
+                                </observation>
+                            </component>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <observation classCode="OBS" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+                                    <id extension="21124" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                    <code code="372" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="glucose nuchter, veneus (lab)"/>
+                                    <statusCode code="completed"/>
+                                    <effectiveTime value="20190205"/>
+                                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="mmol/L" value="4.5" xsi:type="PQ"/>
+                                    <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                    <participant typeCode="RESP">
+                                        <participantRole classCode="ROL">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.27"/>
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                        </participantRole>
+                                    </participant>
+                                    <referenceRange typeCode="REFV">
+                                        <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                <low unit="mmol/L" value="4"/>
+                                                <high unit="mmol/L" value="8"/>
+                                            </value>
+                                            <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                        </observationRange>
+                                    </referenceRange>
+                                </observation>
+                            </component>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <observation classCode="OBS" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+                                    <id extension="21132" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                                    <code code="2680" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="Codes diagnostische bepalingen" codeSystemVersion="v29" displayName="zuurstofsaturatie (pulsoximeter)"/>
+                                    <statusCode code="completed"/>
+                                    <effectiveTime value="20190202"/>
+                                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unit="%" value="95" xsi:type="PQ"/>
+                                    <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                    <participant typeCode="RESP">
+                                        <participantRole classCode="ROL">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.27"/>
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                        </participantRole>
+                                    </participant>
+                                    <referenceRange typeCode="REFV">
+                                        <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_PQ">
+                                                <low unit="%" value="95"/>
+                                                <high unit="%" value="99"/>
+                                            </value>
+                                            <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                                        </observationRange>
+                                    </referenceRange>
+                                </observation>
+                            </component>
+                        </organizer>
+                    </subject>
+                    <queryAck>
+                        <queryId extension="143695ca-f138-4edb-9be1-6bb853f4951c" root="2.16.840.1.113883.2.4.6.6.1.1.1"/>
+                        <queryResponseCode code="OK"/>
+                        <resultTotalQuantity value="1"/>
+                        <resultCurrentQuantity value="1"/>
+                        <resultRemainingQuantity value="0"/>
+                    </queryAck>
+                </ControlActProcess>
+            </POLB_IN364001NL03>
+        </MCCI_IN200101>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

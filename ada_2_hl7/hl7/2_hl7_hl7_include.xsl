@@ -13,9 +13,10 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
+    <xsl:import href="../../util/utilities.xsl"/>
     <!-- only give dateT a value if you want conversion of relative T dates -->
     <xsl:param name="dateT" as="xs:date?"/>
     <xd:doc scope="stylesheet">
@@ -48,10 +49,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <!-- relative Date when first character is 'T' -->
                 <xsl:when test="starts-with($inputDateTime, 'T')">
-                    <xsl:value-of select="normalize-space(nf:calculate-t-date($inputDateTime, $inputDateT))"/>
+                    <xsl:value-of select="nf:calculate-t-date($inputDateTime, $inputDateT)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="normalize-space($inputDateTime)"/>
+                    <xsl:value-of select="$inputDateTime"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -392,10 +393,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Makes a HL7 code type element based on ada element with datatype code</xd:desc>
         <xd:param name="originalText">Optional to supply originalText with OTH code. Defaults to originalText attribute, if any</xd:param>
         <xd:param name="elemName">The HL7 xml element name. Defaults to code.</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input ADA codes to output HL7v3 codes if those differ. For codeMap expect one or more elements like this:
-            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
-            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
-                If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input ADA codes to output HL7v3 codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
     </xd:doc>
     <xsl:template name="makeCode">
@@ -577,23 +576,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:if test="$mediaType">
+            <xsl:if test="string-length($mediaType) gt 0">
                 <xsl:attribute name="mediaType" select="$mediaType"/>
             </xsl:if>
             <xsl:choose>
-                <xsl:when test="$representation">
+                <xsl:when test="string-length($representation) gt 0">
                     <xsl:attribute name="representation" select="$representation"/>
                 </xsl:when>
-                <xsl:when test="not($mediaType = 'text/plain')">
+                <xsl:when test="string-length($mediaType) gt 0 and not($mediaType = 'text/plain')">
                     <xsl:attribute name="representation" select="'B64'"/>
                 </xsl:when>
             </xsl:choose>
             <xsl:value-of select="@value"/>
-            <xsl:if test="$reference">
+            <xsl:if test="string-length($reference) gt 0">
                 <reference value="{$reference}"/>
             </xsl:if>
         </xsl:element>
     </xsl:template>
+
     <xd:doc>
         <xd:desc>Make HL7 effectiveTime based on ada input element</xd:desc>
         <xd:param name="effectiveTime">ada input element with date(time), defaults to context element</xd:param>
@@ -615,18 +615,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:template>
+
     <xd:doc>
         <xd:desc>make ENXP Value</xd:desc>
         <xd:param name="xsiType">Optional. The xsi:type to be outputted. Defaults to ENXP. However: is not used in this template.</xd:param>
         <xd:param name="elemName">Optional. The element name to be outputted. Defaults to value.</xd:param>
-        <xd:param name="qualifier">Optional. Not used in this template.</xd:param>
+        <xd:param name="qualifier">Optional. The qualifier string to add as attribute</xd:param>
     </xd:doc>
     <xsl:template name="makeENXPValue">
         <xsl:param name="xsiType" as="xs:string?">ENXP</xsl:param>
         <xsl:param name="elemName" as="xs:string?">value</xsl:param>
         <xsl:param name="qualifier" as="xs:string*"/>
         <xsl:element name="{$elemName}">
-            <!-- ENXP never occurs outside AD and never needs xsi:type -->
+            <xsl:if test="string-length($qualifier) gt 0">
+                <xsl:attribute name="qualifier" select="$qualifier"/>
+            </xsl:if>
+            <!-- ENXP never occurs outside EN/PN/ON and never needs xsi:type -->
             <xsl:value-of select="@value"/>
         </xsl:element>
     </xsl:template>
@@ -795,7 +799,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
         <xsl:param name="root" select="@root"/>
-        <xsl:param name="nullFlavor">NI</xsl:param>
+        <xsl:param name="nullFlavor" select="(@nullFlavor, 'NI')[1]"/>
         <xsl:element name="{$elemName}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
@@ -992,7 +996,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
             <xsl:copy-of select="@code"/>
             <xsl:copy-of select="@codeSystem"/>
-            <xsl:value-of select="@value"/>
+            <!-- Not always clear what the input looks like -->
+            <xsl:value-of select="(@displayName, @value)[1]"/>
         </xsl:element>
     </xsl:template>
 
@@ -1013,40 +1018,61 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="use"/>
+        <xd:desc>Make an HL7 element for a datatype TEL</xd:desc>
+        <xd:param name="in">The ada element to be converted, defaults to context.</xd:param>
+        <xd:param name="elemName">The hl7 element name, for example: telecom.</xd:param>
+        <xd:param name="urlSchemeCode">The URL scheme code for this telecom value. For example: tel / fax / mailto. See http://www.hl7.nl/wiki/index.php?title=DatatypesR1:URL .</xd:param>
+        <xd:param name="use">The contents for the @use attribute on this HL7 element</xd:param>
+        <xd:param name="xsiType">The xsiType for the HL7 element, set to empty string when not needed.</xd:param>
     </xd:doc>
     <xsl:template name="makeTELValue">
-        <xsl:param name="xsiType">TEL</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="use"/>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:if test="$use">
-                <xsl:attribute name="use" select="$use"/>
-            </xsl:if>
-            <xsl:attribute name="value" select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="use"/>
-    </xd:doc>
-    <xsl:template name="makeTEL.NL.EXTENDEDValue">
-        <xsl:param name="xsiType">TEL</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="use"/>
-        <xsl:call-template name="makeTELValue">
-            <xsl:with-param name="elemName"/>
-            <xsl:with-param name="use"/>
-        </xsl:call-template>
+        <xsl:param name="in" select="."/>
+        <xsl:param name="elemName" as="xs:string">value</xsl:param>
+        <xsl:param name="urlSchemeCode" as="xs:string?"/>
+        <xsl:param name="use" as="xs:string*"/>
+        <xsl:param name="xsiType" as="xs:string?">TEL</xsl:param>        
+      
+        <xsl:for-each select="$in">
+            <!-- spaces are not allowed in URL scheme -->
+            <xsl:variable name="theValue" select="translate(@value, ' ', '')"/>
+            <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($xsiType) gt 0">
+                    <xsl:attribute name="xsi:type" select="$xsiType"/>
+                </xsl:if>
+                <xsl:if test="$use">
+                    <xsl:attribute name="use" select="$use"/>
+                </xsl:if>
+                <xsl:attribute name="value">
+                    <xsl:choose>
+                        <xsl:when test="matches($theValue, '^([a-z\-]+):.*')">
+                            <!-- there is already an url scheme code in the @value -->
+                            <xsl:value-of select="$theValue"/>
+                        </xsl:when>
+                        <xsl:when test="string-length($urlSchemeCode) gt 0">
+                            <xsl:value-of select="concat($urlSchemeCode, ':', $theValue)"/>                            
+                        </xsl:when>
+                        <xsl:when test="matches($theValue, '.+@[^\.]+\.')">
+                            <!-- email -->
+                            <xsl:value-of select="concat('mailto:', $theValue)"/>
+                        </xsl:when>
+                        <xsl:when test="matches($theValue, '^[\d\s\(\)+-]+$')">
+                            <!-- fax or tel number, but without $urlSchemeCode we have no way of knowing, 
+                                so we default to tel, since fax really is also a telephone number technically -->
+                            <xsl:value-of select="concat('tel:', $theValue)"/>                            
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- hmmm, should not happen, so log a message, but let's still output the input -->
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logERROR"/>
+                                <xsl:with-param name="terminate" select="false()"/>
+                                <xsl:with-param name="msg">Encountered a telecom value for which an Url scheme could not be found: '<xsl:value-of select="$theValue"/>'</xsl:with-param>
+                            </xsl:call-template>
+                            <xsl:value-of select="$theValue"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+            </xsl:element>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>

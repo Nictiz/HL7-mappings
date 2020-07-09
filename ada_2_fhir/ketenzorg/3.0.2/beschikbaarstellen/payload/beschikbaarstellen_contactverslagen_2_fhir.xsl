@@ -39,6 +39,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
     <xsl:param name="mask-ids" select="$oidBurgerservicenummer" as="xs:string"/>
     
+    <xsl:param name="matchResource" select="('Composition')" as="xs:string*"/>
+    
     <xd:doc>
         <xd:desc>
             <xd:p>The "Richtlijn Online inzage in het H-EPD door patiënt" that underlies this mapping, suggests not to send S-O journal entries.</xd:p>
@@ -88,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
                 <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
                     <type value="searchset"/>
-                    <total value="{count($bouwstenen)}"/>
+                    <total value="{count($bouwstenen/f:resource/f:Composition)}"/>
                     <xsl:copy-of select="$entries"/>
                 </Bundle>
             </xsl:otherwise>

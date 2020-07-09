@@ -2,130 +2,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="1"/>
+   <total value="0"/>
    <entry>
-      <fullUrl value="urn:uuid:2c7b550a-8fac-11ea-1262-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <text>
-               <status value="generated"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <caption>Medicatieafspraak. Subject: H. van XXX_Zutphen. Id: MBH_907_VVandermansMA_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-                        <span style="display: block;">Aangevraagd door: Marcha van Partners || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
-                     </caption>
-                     <tbody>
-                        <tr>
-                           <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_VVandermansMA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
-                        </tr>
-                        <tr>
-                           <th>Medicatie</th>
-                           <td>DICLOFENAC NATRIUM TABLET MGA 100MG</td>
-                        </tr>
-                        <tr>
-                           <th>Gemaakt</th>
-                           <td>${DATE, T, D, -14}T09:00:00+02:00</td>
-                        </tr>
-                        <tr>
-                           <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -14}T00:00:00+02:00 - ${DATE, T, D, +6}T23:59:59+02:00</td>
-                        </tr>
-                        <tr>
-                           <th>Doseerinstructie</th>
-                           <td>
-                              <div>Tekst: Vanaf &lt;T-14D{00:00:00}&gt; t/m &lt;T+6D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal</div>
-                              <div>Timing: <div>eenmalig per dag</div>
-                              </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
-                              </div>
-                              <div>Dosering: 1 stuk</div>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="${DATE, T, D, -14}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +6}T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_VVandermansMA"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_VVandermansMA_MA"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.8052"/>
-               <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:2c7b4aa3-8fac-11ea-1262-020000000000"/>
-               <display value="H. van XXX_Zutphen"/>
-            </subject>
-            <authoredOn value="${DATE, T, D, -14}T09:00:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:2c7b550f-8fac-11ea-1262-020000000000"/>
-                        <display value="Marcha van Partners || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1115"/>
-                  <display value="Marcha van Partners"/>
-               </agent>
-            </requester>
-            <dosageInstruction>
-               <text value="Vanaf &lt;T-14D{00:00:00}&gt; t/m &lt;T+6D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <search>
-         <mode value="match"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:2c7b4aa3-8fac-11ea-1262-020000000000"/>
+      <fullUrl value="urn:uuid:b5080d0b-bd3e-11ea-3633-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -210,7 +89,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.5111"/>
       <resource>
          <Organization>
             <meta>
@@ -220,15 +99,15 @@
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00001111 (URA)</caption>
+                     <caption>OrganisatieId: 00005111 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
-                           <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                           <td>Huisartsenpraktijk Itis</td>
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Langelaan 1, 1234ZZ Onze Stad (Werk)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -236,21 +115,21 @@
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
+               <value value="00005111"/>
             </identifier>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <name value="Huisartsenpraktijk Itis"/>
             <address>
                <use value="work"/>
-               <line value="Dorpsstraat 1">
+               <line value="Langelaan 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Dorpsstraat"/>
+                     <valueString value="Langelaan"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
                      <valueString value="1"/>
                   </extension>
                </line>
-               <city value="Ons Dorp"/>
-               <postalCode value="1234AA"/>
+               <city value="Onze Stad"/>
+               <postalCode value="1234ZZ"/>
             </address>
          </Organization>
       </resource>
@@ -259,7 +138,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2c7b550f-8fac-11ea-1262-020000000000"/>
+      <fullUrl value="urn:uuid:b507f7bf-bd3e-11ea-3633-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -275,7 +154,7 @@
                            <th>Zorgverlener</th>
                            <td>
                               <div>Marcha van Partners</div>
-                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                              <div>Huisartsenpraktijk Itis</div>
                            </td>
                         </tr>
                         <tr>
@@ -293,12 +172,13 @@
                <display value="Marcha van Partners"/>
             </practitioner>
             <organization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
-               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.5111"/>
+               <display value="Huisartsenpraktijk Itis"/>
             </organization>
             <specialty>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
                   <code value="0100"/>
                   <display value="Huisartsen, niet nader gespecificeerd"/>
                </coding>

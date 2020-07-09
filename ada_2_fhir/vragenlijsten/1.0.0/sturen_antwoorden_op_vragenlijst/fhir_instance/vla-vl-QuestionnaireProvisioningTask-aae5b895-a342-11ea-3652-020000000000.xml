@@ -1,0 +1,61 @@
+<Task xmlns="http://hl7.org/fhir">
+   <id value="aae5b895-a342-11ea-3652-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireProvisioningTask"/>
+   </meta>
+   <status value="completed"/>
+   <intent value="order"/>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="74468-0"/>
+         <display value="Questionnaire form definition Document"/>
+      </coding>
+   </code>
+   <description value="De vragenlijst 'Intake nieuwe patiënt' is beschikbaar om in te vullen"/>
+   <authoredOn value="${DATE, T, D, -4}T13:00:00+02:00"/>
+   <lastModified value="${DATE, T, D, -4}T19:30:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/000001111"/>
+               <display value="Frans Lijster || Gezondheidscentrum Quaestionario"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
+         <display value="Frans Lijster"/>
+      </agent>
+   </requester>
+   <owner>
+      <reference value="Patient/VERKEULEN"/>
+      <display value="Jan Verkeulen"/>
+   </owner>
+   <input>
+      <type>
+         <text value="Questionnaire"/>
+      </type>
+      <valueReference>
+         <reference value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
+         <display value="Intake nieuwe patiënt"/>
+      </valueReference>
+   </input>
+   <input>
+      <type>
+         <text value="Subject"/>
+      </type>
+      <valueReference>
+         <reference value="Patient/VERKEULEN"/>
+         <display value="Jan Verkeulen"/>
+      </valueReference>
+   </input>
+   <output>
+      <type>
+         <text value="QuestionnaireResponse"/>
+      </type>
+      <valueReference>
+         <reference value="QuestionnaireResponse/aae5c087-a342-11ea-3652-020000000000"/>
+         <display value="Antwoord op vragenlijst: 'Intake nieuwe patiënt'."/>
+      </valueReference>
+   </output>
+</Task>

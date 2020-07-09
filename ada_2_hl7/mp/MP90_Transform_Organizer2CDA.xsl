@@ -3,11 +3,18 @@
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
+    <!-- param to influence whether to output schematron references, typically only needed for test instances -->
+    <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
+
+
     <xd:doc>
         <xd:desc> Transforms HL7 organizer example message into CDA version of the same thing. For publication 9.0.6 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:organizer">
-        <ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/CDANL_extended.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication">
+        <ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication">
+            <xsl:if test="$schematronRef">
+                <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/CDANL_extended.xsd</xsl:attribute>
+            </xsl:if>
             <realmCode code="NL"/>
             <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
             <!-- select the correct templateId -->
@@ -124,15 +131,15 @@
             <!-- This is from 9.0.6 onwards, and not compatible with 9.0.5 -->
             <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medication section (record artifact)"/>
             <!-- parameterize the title based on input, this is not perfect -->
-            <xsl:variable name="hl7Docdate">
+            <xsl:variable name="hl7Docdate" as="xs:string?">
                 <xsl:choose>
                     <!-- for medicatieoverzicht there will be an organizer/effectiveTime, but not for medicatievoorschrift -->
                     <xsl:when test="hl7:effectiveTime[@value]">
                         <xsl:value-of select="@value"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <!-- use the first author time we find -->
-                        <xsl:value-of select="(.//hl7:author/hl7:time[@value])[1]/@value"/>
+                        <!-- use the max (most recent) author time we find -->
+                        <xsl:value-of select="xs:string(xs:integer(max(hl7:component/*/hl7:author/hl7:time/@value)))"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
@@ -173,31 +180,37 @@
             <effectiveTime value="{$hl7DocdateApptime}"/>
             <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
             <languageCode code="nl-NL"/>
-            <xsl:copy-of select="./hl7:recordTarget" copy-namespaces="no" />
+            <xsl:copy-of select="./hl7:recordTarget" copy-namespaces="no"/>
 
             <!-- author -->
-            <xsl:choose>
-                <xsl:when test="hl7:author">
-                    <xsl:copy-of select="hl7:author" copy-namespaces="no"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- should not happen but let's use the first author we encounter -->
-                    <xsl:copy-of select="(hl7:component/*/hl7:author)[1]" copy-namespaces="no"/>
-                </xsl:otherwise>
-            </xsl:choose>
-
-            <!-- custodian -->
+            <xsl:variable name="cdaAuthor" as="element()?">
+                <xsl:choose>
+                    <!-- organizer author, should be present in transaction medicatieoverzicht -->
+                    <xsl:when test="hl7:author">
+                        <xsl:copy-of select="hl7:author" copy-namespaces="no"/>
+                    </xsl:when>
+                    <!-- use the author of verstrekkingsverzoek (if present) for transaction voorschrift -->
+                    <xsl:when test=".[hl7:code[@code = '95' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]/hl7:component/hl7:supply">
+                        <xsl:variable name="vvAuthor" select="hl7:component/hl7:supply[hl7:code[@code = '52711000146108'][@codeSystem = '2.16.840.1.113883.6.96']]/hl7:author"/>
+                        <xsl:copy-of select="($vvAuthor[hl7:time[@value = $vvAuthor/hl7:time/xs:integer(max(@value))]])[1]" copy-namespaces="no"/>
+                    </xsl:when>
+                    <!-- otherwise use the author of most recent medicatieafspraak for transaction voorschrift -->
+                    <xsl:when test=".[hl7:code[@code = '95' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
+                        <xsl:variable name="maAuthor" select="hl7:component/hl7:substanceAdministration[hl7:code[@code = '16076005'][@codeSystem = '2.16.840.1.113883.6.96']]/hl7:author"/>
+                        <xsl:copy-of select="($maAuthor[hl7:time[@value = $maAuthor/hl7:time/xs:integer(max(@value))]])[1]" copy-namespaces="no"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- don't know which author to use, CDA still requires one, let's use the first author we encounter -->
+                        <xsl:copy-of select="(hl7:component/*/hl7:author)[1]" copy-namespaces="no"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:copy-of select="$cdaAuthor" copy-namespaces="no"/>
+            <!-- custodian, the organization of the author -->
             <custodian>
                 <assignedCustodian>
                     <representedCustodianOrganization>
-                        <xsl:choose>
-                            <xsl:when test="(hl7:author | hl7:component/*/hl7:author)[hl7:assignedAuthor/hl7:representedOrganization]">
-                                <xsl:apply-templates select="(hl7:author | hl7:component/*/hl7:author)[1]/hl7:assignedAuthor/hl7:representedOrganization/node()[not(self::hl7:telecom[preceding-sibling::hl7:telecom])][not(self::hl7:addr[preceding-sibling::hl7:addr])]"/>
-                            </xsl:when>
-                            <xsl:when test="(hl7:author | hl7:component/*/hl7:author)[hl7:assignedAuthor[hl7:code/@code = 'ONESELF']]">
-                                <xsl:apply-templates select="(hl7:author | hl7:component/*/hl7:author)/hl7:assignedAuthor/hl7:id"/>
-                            </xsl:when>
-                        </xsl:choose>
+                        <xsl:copy-of select="$cdaAuthor/hl7:assignedAuthor/hl7:representedOrganization/*" copy-namespaces="no"/>
                     </representedCustodianOrganization>
                 </assignedCustodian>
             </custodian>

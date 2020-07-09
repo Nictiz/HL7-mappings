@@ -190,7 +190,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </pertinentInformation3>
                 </xsl:for-each>
                 <!-- Postnatale fase -->
-                <xsl:for-each select="$param_postnatale_fase[diagnoseinterventie_postpartum]">
+                <xsl:for-each select="$param_postnatale_fase[diagnoseinterventie_postpartum | diagnoseinterventie_postnataal]">
                     <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900983_20161202180940"/>
                     </pertinentInformation3>

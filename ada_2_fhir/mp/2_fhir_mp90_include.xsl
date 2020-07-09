@@ -15,26 +15,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="2_fhir_mp91_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
-    
+
     <!-- all the stuff only relevant for 9.0 or before and no longer for 9.1 is in this xsl, goal is to eventually phase out this xsl  -->
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    <!-- whether or not to output kopie bouwstenen, defaults to true if not set -->
+    <xsl:param name="outputKopieBouwstenen" as="xs:boolean?" select="true()"/>
 
     <xsl:variable name="bouwstenen-907" as="element(f:entry)*">
         <xsl:variable name="searchMode" as="xs:string">match</xsl:variable>
 
         <!-- medicatieafspraken -->
-        <xsl:for-each select="//medicatieafspraak">
+        <xsl:variable name="mas" as="element()*">
+            <xsl:choose>
+                <xsl:when test="not($outputKopieBouwstenen)">
+                    <xsl:sequence select="//medicatieafspraak[not(kopie_indicator/@value = 'true')]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//medicatieafspraak"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:for-each select="$mas">
             <!-- entry for MedicationRequest -->
             <xsl:call-template name="MedicationAgreementEntry-2.2">
                 <xsl:with-param name="searchMode" select="$searchMode"/>
             </xsl:call-template>
         </xsl:for-each>
+        <xsl:variable name="vvs" as="element()*">
+            <xsl:choose>
+                <xsl:when test="not($outputKopieBouwstenen)">
+                    <xsl:sequence select="//verstrekkingsverzoek[not(kopie_indicator/@value = 'true')]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//verstrekkingsverzoek"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <!-- verstrekkingsverzoeken -->
-        <xsl:for-each select="//verstrekkingsverzoek">
+        <xsl:for-each select="$vvs">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -50,7 +72,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- toedieningsafspraken -->
-        <xsl:for-each select="//toedieningsafspraak">
+        <xsl:variable name="tas" as="element()*">
+            <xsl:choose>
+                <xsl:when test="not($outputKopieBouwstenen)">
+                    <xsl:sequence select="//toedieningsafspraak[not(kopie_indicator/@value = 'true')]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//toedieningsafspraak"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:for-each select="$tas">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -71,7 +103,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- verstrekkingen -->
-        <xsl:for-each select="//verstrekking">
+        <xsl:variable name="mves" as="element()*">
+            <xsl:choose>
+                <xsl:when test="not($outputKopieBouwstenen)">
+                    <xsl:sequence select="//verstrekking[not(kopie_indicator/@value = 'true')]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//verstrekking"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:for-each select="$mves">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -92,7 +134,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- medicatie_gebruik -->
-        <xsl:for-each select="//medicatie_gebruik">
+        <xsl:variable name="mgbs" as="element()*">
+            <xsl:choose>
+                <xsl:when test="not($outputKopieBouwstenen)">
+                    <xsl:sequence select="//medicatie_gebruik[not(kopie_indicator/@value = 'true')]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//medicatie_gebruik"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:for-each select="$mgbs">
             <!-- entry for MedicationRequest -->
             <xsl:call-template name="MedicationUseEntry-2.2">
                 <xsl:with-param name="searchMode" select="$searchMode"/>

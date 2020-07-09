@@ -1,12 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <MedicationStatement xmlns="http://hl7.org/fhir">
    <id value="MBH-123-1-MGB-1"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationStatement. Subject: <a href="Patient/XXX-BOURGONJE">Pauline P. XXX_Bourgonje</a>. Id: MBH_123_1_MGB_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Auteur: <a href="Patient/XXX-BOURGONJE">Pauline P. XXX_Bourgonje</a>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_123_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Voorschrijver</th>
+                  <td>
+                     <a href="PractitionerRole/ba0f57da-bd3e-11ea-8625-020000000000">Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>
+                     <a href="Medication/133329-2-16-840-1-113883-2-4-4-1">Cetomacrogolcreme met vaseline</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Datum/tijd</th>
+                  <td>Vanaf 00:00:00, 11 augustus 2018, 2 dag</td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>20:58:00, 12 augustus 2018</td>
+               </tr>
+               <tr>
+                  <th>Ondersteunende informatie</th>
+                  <td>relatie naar medicatieafspraak (Id: MBH_123_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf T-5 dagen, gedurende 2 dagen, 2 maal per dag aanbrengen</div>
+                     <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
+                     </div>
+                     <div>Timing: <div>2 maal per dag</div>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie gebruikt</th>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/bce24492-11d9-11ea-1402-020000000000"/>
+         <reference value="PractitionerRole/ba0f57da-bd3e-11ea-8625-020000000000"/>
          <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
       </valueReference>
    </extension>
@@ -26,7 +81,11 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
       <value value="MBH_123_1_MGB_1"/>
    </identifier>
-   <status value="active"/>
+   <status>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </status>
    <category>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

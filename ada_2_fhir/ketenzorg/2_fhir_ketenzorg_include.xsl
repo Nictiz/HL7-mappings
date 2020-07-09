@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="gp-DiagnosticResult"/>
                 </resource>
                 <search>
-                    <mode value="match"/>
+                    <mode value="{if ($matchResource = 'Observation') then 'match' else 'include'}"/>
                 </search>
             </entry>
         </xsl:for-each>
@@ -94,7 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
                 <search>
-                    <mode value="match"/>
+                    <mode value="{if ($matchResource = 'AllergyIntolerance') then 'match' else 'include'}"/>
                 </search>
             </entry>
         </xsl:for-each>
@@ -129,23 +129,71 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
                 <search>
-                    <mode value="match"/>
+                    <mode value="{if ($matchResource = 'Composition') then 'match' else 'include'}"/>
                 </search>
             </entry>
         </xsl:for-each>
         <!-- Contactmomenten -->
-        <xsl:for-each select="//*[bundle]/encounter">
+        <xsl:copy-of select="$theEncounters"/>
+        <!-- Episodes -->
+        <xsl:copy-of select="$theEpisodes"/>
+        <!-- Alerts -->
+        <xsl:for-each select="//*[bundle]/alert">
             <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])}"/>
+                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
                 <resource>
-                    <xsl:call-template name="gp-Encounter"/>
+                    <xsl:call-template name="zib-Alert"/>
                 </resource>
                 <search>
-                    <mode value="match"/>
+                    <mode value="{if ($matchResource = 'Flag') then 'match' else 'include'}"/>
                 </search>
             </entry>
         </xsl:for-each>
-        <!-- Episodes -->
+    </xsl:variable>
+    
+    <xsl:variable name="theEncounters" as="element(f:entry)*">
+        <!-- Contactmomenten -->
+        <xsl:choose>
+            <xsl:when test="$matchResource = 'Composition'">
+                <xsl:variable name="referencedEncounterIds" as="xs:string*">
+                    <xsl:for-each select="//encounter_notes_response/encounter_note/encounter">
+                        <xsl:value-of select="concat(@value, '-', @root)"/>
+                    </xsl:for-each>
+                </xsl:variable>
+                
+                <xsl:for-each select="//*[bundle]/encounter">
+                    <xsl:variable name="encounterIds" select="(hcimroot/identification_number | identifier)/concat(@value, '-', @root)" as="xs:string*"/>
+                    <xsl:variable name="fullUrl" select="nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])"/>
+                    <xsl:if test="$referencedEncounterIds[. = $encounterIds]">
+                        <entry xmlns="http://hl7.org/fhir">
+                            <fullUrl value="{$fullUrl}"/>
+                            <resource>
+                                <xsl:call-template name="gp-Encounter"/>
+                            </resource>
+                            <search>
+                                <mode value="include"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="//*[bundle]/encounter">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])}"/>
+                        <resource>
+                            <xsl:call-template name="gp-Encounter"/>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    
+    <xsl:variable name="theEpisodes" as="element(f:entry)*">
         <xsl:for-each select="//*[bundle]/episode">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(identifier)}"/>
@@ -158,19 +206,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
                 <search>
-                    <mode value="match"/>
-                </search>
-            </entry>
-        </xsl:for-each>
-        <!-- Alerts -->
-        <xsl:for-each select="//*[bundle]/alert">
-            <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
-                <resource>
-                    <xsl:call-template name="zib-Alert"/>
-                </resource>
-                <search>
-                    <mode value="match"/>
+                    <mode value="{if ($matchResource = 'EpisodeOfCare') then 'match' else 'include'}"/>
                 </search>
             </entry>
         </xsl:for-each>
@@ -509,9 +545,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="../bundle/subject/patient" mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:if>
-                <xsl:if test="contact_reason/episode">
-                    <!-- TODO: episodeOfCare can map to contact_reason/episode -->
-                </xsl:if>
+                <xsl:for-each select="contact_reason/episode">
+                    <xsl:variable name="theValue" select="@value"/>
+                    <xsl:variable name="theRoot" select="local:getUri(@root)"/>
+                    <xsl:variable name="theReference" select="$theEpisodes[f:resource/f:EpisodeOfCare/f:identifier[f:system/@value = $theRoot][f:value/@value = $theValue]]" as="element(f:entry)*"/>
+                    <episodeOfCare>
+                        <xsl:choose>
+                            <xsl:when test="empty($theReference)">
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                                <display value="Episode: {string-join((@value, @root), ' ')}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <reference value="{$theReference/f:fullUrl/@value}"/>
+                                <display value="Episode: {string-join((@value, $theReference/f:resource/f:EpisodeOfCare/(f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title']/f:valueString/@value, f:period/f:start/@value)), ' ')}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </episodeOfCare>
+                </xsl:for-each>
                 <!-- The information model sees the details of the healthcare provider as a complete description, while FHIR wants a reference. And what's the role or the health professional in the bundle?
                     The sending GP of the Bundle does not need to be the same authoring GP for all contained in the Bundle. Hence we always pick the author 'closest' hierarchically to the object we need it on.
                     All Practitioner(Role) resources are generated and deduplicated in the variable by that name
@@ -647,13 +701,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
                     <xsl:for-each select="../encounter">
+                        <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
                         <context>
-                            <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
-                            <identifier>
-                                <xsl:call-template name="id-to-Identifier">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </identifier>
+                            <xsl:choose>
+                                <xsl:when test="$theEncounters/f:fullUrl[@value = $theReference]">
+                                    <reference value="{$theReference}"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <identifier>
+                                        <xsl:call-template name="id-to-Identifier">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </identifier>
+                                </xsl:otherwise>
+                            </xsl:choose>
                             <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                         </context>
                     </xsl:for-each>
@@ -774,13 +835,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
                 <xsl:for-each select="../encounter">
+                    <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
                     <context>
-                        <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
+                        <xsl:choose>
+                            <xsl:when test="$theEncounters/f:fullUrl[@value = $theReference]">
+                                <reference value="{$theReference}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                            </xsl:otherwise>
+                        </xsl:choose>
                         <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </context>
                 </xsl:for-each>
@@ -875,7 +943,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
                 <search>
-                    <mode value="include"/>
+                    <mode value="{if ($matchResource = 'Composition') then 'match' else 'include'}"/>
                 </search>
             </entry>
 
@@ -929,13 +997,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
                 <xsl:for-each select="../encounter">
+                    <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
                     <context>
-                        <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
+                        <xsl:choose>
+                            <xsl:when test="$theEncounters/f:fullUrl[@value = $theReference]">
+                                <reference value="{$theReference}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                            </xsl:otherwise>
+                        </xsl:choose>
                         <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </context>
                 </xsl:for-each>
@@ -1024,14 +1099,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
                 <xsl:for-each select="encounter">
+                    <xsl:variable name="theValue" select="@value"/>
+                    <xsl:variable name="theRoot" select="local:getUri(@root)"/>
+                    <xsl:variable name="theReference" select="$theEncounters[f:resource/f:Encounter/f:identifier[f:system/@value = $theRoot][f:value/@value = $theValue]]" as="element(f:entry)*"/>
                     <encounter>
-                        <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
-                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
+                        <xsl:choose>
+                            <xsl:when test="empty($theReference)">
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                                <display value="Contactmoment: {string-join((@value, @root), ' ')}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <reference value="{$theReference/f:fullUrl/@value}"/>
+                                <display value="Contactmoment: {string-join((@value, $theReference/f:resource/f:Encounter/(f:type/f:coding/f:display/@value, f:period/f:start/@value)), ' ')}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </encounter>
                 </xsl:for-each>
                 <date>

@@ -1,9 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <MedicationRequest xmlns="http://hl7.org/fhir">
    <id value="MBH-313-3-MA-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-CNOSSEN">J. XXX_Cnossen</a>. Id: MBH_313_3_MA_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/010000001111">John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th colspan="2">Medicatie is gestopt: <span title="Tijdelijk (1 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Tijdelijk</span>
+                  </th>
+               </tr>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_313_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>
+                     <a href="Medication/13072-2-16-840-1-113883-2-4-4-10">CARBASALAATCALCIUM 100MG PO</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>13:54:00, 30 augustus 2018</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>26 mei 2018 00:00:00 - 29 augustus 2018 23:59:00</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf 26 mei 2018 tot en met 29 aug 2018, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken</div>
+                     <div>Timing: <div>eenmalig per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                     </div>
+                     <div>Dosering: 1 stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
          <start value="2018-05-26T00:00:00+02:00"/>
@@ -21,7 +67,7 @@
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
             <code value="1"/>
-            <display value="Onderbreking"/>
+            <display value="Tijdelijk"/>
          </coding>
       </valueCodeableConcept>
    </modifierExtension>
@@ -55,7 +101,7 @@
                <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
             </valueReference>
          </extension>
-         <reference value="Practitioner/JOHNDEVRIES"/>
+         <reference value="Practitioner/ba1bd13a-bd3e-11ea-2034-020000000000"/>
          <display value="John de Vries"/>
       </agent>
    </requester>

@@ -164,7 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- Conceptmap: https://simplifier.net/NictizSTU3-Zib2017/AllergieStatusCodelijst-to-allergy-status -->
                     <verificationStatus>
                         <xsl:choose>
-                            <xsl:when test="allergy_status[@code = 'nullified']">
+                            <xsl:when test="(allergie_status | allergy_status)[@code = 'nullified']">
                                 <xsl:attribute name="value">entered-in-error</xsl:attribute>
                             </xsl:when>
                             <xsl:otherwise>
@@ -345,7 +345,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <onsetDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                     <xsl:with-param name="dateT" select="$dateT"/>
                                 </xsl:call-template>
                             </xsl:attribute>
@@ -358,7 +358,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <assertedDate>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                     <xsl:with-param name="dateT" select="$dateT"/>
                                 </xsl:call-template>
                             </xsl:attribute>
@@ -374,7 +374,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:sequence select="$zibrootAuteur"/>
                             </xsl:when>
                             <xsl:when test="$zibrootAuteur[not(@datatype) or @datatype = 'reference'][@value]">
-                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootAuteur/@value]"/>
+                                <xsl:sequence select="(ancestor::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootAuteur/@value])[1]"/>
                             </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
@@ -411,7 +411,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:sequence select="$zibrootInformant"/>
                             </xsl:when>
                             <xsl:when test="$zibrootInformant[not(@datatype) or @datatype = 'reference'][@value]">
-                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
+                                <xsl:sequence select="(ancestor::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value])[1]"/>
                             </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
@@ -445,7 +445,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <lastOccurrence>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                 </xsl:call-template>
                             </xsl:attribute>
                         </lastOccurrence>
@@ -489,7 +489,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <onset>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="@value"/>
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                         </xsl:call-template>
                                     </xsl:attribute>
                                 </onset>

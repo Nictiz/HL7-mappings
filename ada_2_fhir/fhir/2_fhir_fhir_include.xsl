@@ -37,8 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="mask-ids-var" select="tokenize($mask-ids, ',')" as="xs:string*"/>
 
     <xd:doc>
-        <xd:desc>Returns an array of FHIR elements based on an array of ADA that a @datatype attribute to determine the type with. 
-            <xd:p>After the type is determined, the element is handed off for further processing. Failure to determine type is a fatal error.</xd:p>
+        <xd:desc>Returns an array of FHIR elements based on an array of ADA that a @datatype attribute to determine the type with. <xd:p>After the type is determined, the element is handed off for further processing. Failure to determine type is a fatal error.</xd:p>
             <xd:p>Supported values for @datatype are ADA/DECOR datatypes boolean, code, identifier, quantity, string, text, blob, date, datetime</xd:p>
             <xd:p>FIXME: ‘ordinal’, ‘ratio' support</xd:p>
         </xd:desc>
@@ -68,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:when>
                 <!-- Observation//value does not do valueDecimal, hence quantity without unit -->
-                <xsl:when test="$theDatatype = ('quantity', 'duration', 'currency', 'decimal') or @unit">
+                <xsl:when test="$theDatatype = ('quantity', 'duration', 'currency', 'decimal','integer') or @unit">
                     <xsl:element name="{concat($elemName, 'Quantity')}" namespace="http://hl7.org/fhir">
                         <xsl:call-template name="hoeveelheid-to-Quantity">
                             <xsl:with-param name="in" select="."/>
@@ -131,19 +130,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada string element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#string">@value</xd:a></xd:desc>
         <xd:param name="in">the ada string element, may have any name but should have ada datatype string</xd:param>
+        <xd:param name="inAttributeName">name of the attribute to use as input (as string), optional, defaults to 'value'</xd:param>
     </xd:doc>
     <xsl:template name="string-to-string" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="inAttributeName" as="xs:string">value</xsl:param>
+        
+        <xsl:variable name="inNoLeadTrailSpace" select="replace($in/@*[local-name()=$inAttributeName], '(^\s+)|(\s+$)', '')"/>
 
         <xsl:choose>
-            <xsl:when test="$in/@value">
-                <xsl:attribute name="value" select="replace($in/@value, '(^\s+)|(\s+$)', '')"/>
+            <xsl:when test="string-length($inNoLeadTrailSpace) gt 0">
+                <xsl:attribute name="value" select="$inNoLeadTrailSpace"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
                 <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
+            <xsl:otherwise>
+                <!-- value attribute may not be empty in FHIR, but it really is empty, let's stick a nbsp in it ;-) -->
+                <xsl:attribute name="value" select="'&#160;'"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <xd:doc>
@@ -187,9 +194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#code">@value</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
-            
-            <xd:p>Example. if you only want to translate ActStatus completed into a FHIR ObservationStatus final, this would suffice:</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation. <xd:p>Example. if you only want to translate ActStatus completed into a FHIR ObservationStatus final, this would suffice:</xd:p>
             <xd:p><code>&lt;map inCode="completed" inCodeSystem="$codeSystem" code="final"/&gt;</code>
                 <div>to produce</div>
                 <code>&lt;$elemName value="final"/&gt;</code></xd:p>
@@ -248,8 +253,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="elementName">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
         <xd:param name="userSelected">Optionally provide a user selected boolean.</xd:param>
-        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. 
-            Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
+        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
         <xsl:param name="in" as="element()?"/>
@@ -291,11 +295,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Coding">Coding contents</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="userSelected">Optionally provide a user selected boolean.</xd:param>
-        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. 
-            Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
+        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-Coding" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="userSelected" as="xs:boolean?"/>
         <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
         <xsl:choose>
@@ -305,10 +308,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </xsl:when>
             <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or $treatNullFlavorAsCoding]">
-                <system value="{local:getUri($in/@codeSystem)}"/>
+                <!-- system is 0..1 in FHIR, let's not output an empty string in case the codeSystem is absent -->
+                <xsl:for-each select="$in/@codeSystem">
+                    <system value="{local:getUri(.)}"/>
+                </xsl:for-each>
+                <xsl:if test="$in/@codeSystemVersion">
+                    <version>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="$in"/>
+                            <xsl:with-param name="inAttributeName" select="'codeSystemVersion'"/>
+                        </xsl:call-template>
+                    </version>
+                </xsl:if>
                 <code value="{$in/@code}"/>
                 <xsl:if test="$in/@displayName">
-                    <display value="{replace($in/@displayName, '(^\s+)|(\s+$)', '')}"/>
+                    <display>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="$in"/>
+                            <xsl:with-param name="inAttributeName" select="'displayName'"/>
+                        </xsl:call-template>
+                    </display>
                 </xsl:if>
                 <xsl:if test="exists($userSelected)">
                     <userSelected value="{$userSelected}"/>
@@ -432,12 +451,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="id-to-Identifier" as="element()*">
         <xsl:param name="in" as="element()?"/>
         <xsl:choose>
-            <xsl:when test="$in[@nullFlavor]">
+            <xsl:when test="$in[@nullFlavor and not(string-length(@root) gt 0 and @nullFlavor='MSK')]">
                 <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
-            <xsl:when test="$in[string-length(@root) gt 0][@root = $mask-ids-var]">
+            <xsl:when test="$in[string-length(@root) gt 0][@root = $mask-ids-var] or $in[@nullFlavor='MSK' and string-length(@root) gt 0]">
                 <system value="{local:getUri($in/@root)}"/>
                 <value>
                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
@@ -769,7 +788,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="sign" >
                     <xsl:variable name="temp" select="replace($dateTime, 'T(([+\-]).*)?', '$2')"/>
                     <xsl:choose>
-                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <xsl:when test="string-length($temp) gt 0">
+                            <xsl:value-of select="$temp"/>
+                        </xsl:when>
                         <!-- default -->
                         <xsl:otherwise>+</xsl:otherwise>
                     </xsl:choose>
@@ -777,21 +798,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="amount">
                     <xsl:variable name="temp" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)[YMD].*)?', '$2')"/>
                     <xsl:choose>
-                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <xsl:when test="string-length($temp) gt 0">
+                            <xsl:value-of select="$temp"/>
+                        </xsl:when>
                         <!-- default -->
                         <xsl:otherwise>0</xsl:otherwise>
-                    </xsl:choose>                    
+                    </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="yearMonthDay">
                     <xsl:variable name="temp" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?([YMD]).*)?', '$3')"/>
                     <xsl:choose>
-                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <xsl:when test="string-length($temp) gt 0">
+                            <xsl:value-of select="$temp"/>
+                        </xsl:when>
                         <!-- default -->
                         <xsl:otherwise>D</xsl:otherwise>
-                    </xsl:choose>      
+                    </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)([YMD]).*)?', 'P$2$4')"/>
-                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)})?)?', '$4')"/>
+                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)\})?)?', '$4')"/>
                 <xsl:variable name="time">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 5">
@@ -919,7 +944,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getGroupingKeyPatient" as="xs:string?">
         <xsl:param name="patient" as="element()?"/>
         <xsl:if test="$patient">
-            <xsl:value-of select="concat(nf:getGroupingKeyDefault($patient/identificatienummer[not(@root = $oidBurgerservicenummer)] | $patient/patient_identificatie_nummer[not(@root = $oidBurgerservicenummer)] | $patient/patient_identification_number[not(@root = $oidBurgerservicenummer)]), nf:getGroupingKeyDefault($patient/patient_naam | $patient/name_information), nf:getGroupingKeyDefault($patient/adres | $patient/address_information), nf:getGroupingKeyDefault($patient/telefoon_email | $patient/contact_information))"/>
+            <xsl:value-of select="concat(nf:getGroupingKeyDefault($patient/(identificatienummer | patient_identificatie_nummer | patient_identification_number)[not(@root = $oidBurgerservicenummer)]), nf:getGroupingKeyDefault($patient/(patient_naam | .//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)])), nf:getGroupingKeyDefault($patient/(adres | .//adresgegevens[not(adresgegevens)] | .//address_information[not(address_information)])), nf:getGroupingKeyDefault($patient/(telefoon_email | .//contactgegevens[not(contactgegevens)] | .//contact_information[not(contact_information)])))"/>
         </xsl:if>
     </xsl:function>
 

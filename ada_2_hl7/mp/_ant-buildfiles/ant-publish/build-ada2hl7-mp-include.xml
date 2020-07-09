@@ -13,19 +13,19 @@
     <property name="build.dir" value="../.."/>
     <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
     <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\${is.version}"/>
-    
+
     <!-- place import exactly here, otherwise it can't resolve the properties above, or we can't resolve some properties below, such as ${echo.label.in} -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-include.xml"/>
-    
+
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
 
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
-    
+
     <target name="setup" description="Setup subdirectories in ${build.dir}">
-        <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <!-- sturen_medicatievoorschrift copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="schema.string" value="*${usecase.mv}*"/>
@@ -33,8 +33,18 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
         </antcall>
+        <!-- sturen_medicatievoorschrift POC Praktijktest -->
+        <mkdir dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase.mv}/ada_instance_POCPraktijktest">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
 
-        <!-- MA -->
+        <!-- beschikbaarstellen_medicatiegegevens MA -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="schema.string" value="*${usecase.mg}*"/>
@@ -42,15 +52,28 @@
             <param name="fileset.include" value="*MA*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
-        <!-- VV -->
-        <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
-            <param name="schema.string" value="*${usecase.mg}*"/>
-            <param name="fileset.dir" value="ada_instance_VV"/>
-            <param name="fileset.include" value="*VV*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
-        </antcall>
+        <!-- beschikbaarstellen_medicatiegegevens VV -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_VV"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_VV" includes="*VV*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mg}/ada_instance_VV" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance">
+                <include name="*VV*.xml"/>
+            </fileset>
+        </copy>
+        <!-- beschikbaarstellen_medicatiegegevens POC Praktijktest -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance_POCPraktijktest">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
 
+        <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="schema.string" value="*${usecase.mo}*"/>
@@ -82,6 +105,22 @@
             <param name="xsl.out" value="cda_instance"/>
         </antcall>
 
+        <!-- POC Praktijktest -->
+        <!-- convert medicatievoorschrift -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.name" value="payload/${usecase.mv}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
+            <param name="xsl.out" value="hl7_instance_POCPraktijktest"/>
+        </antcall>
+        <!-- medicatievoorschrift also to CDA-->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.name" value="../../MP90_Transform_Organizer2CDA.xsl"/>
+            <param name="xsl.in" value="hl7_instance_POCPraktijktest"/>
+            <param name="xsl.out" value="cda_instance_POCPraktijktest"/>
+        </antcall>
+
         <!-- convert medicatiegegevens -->
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
@@ -95,7 +134,15 @@
             <param name="xsl.in" value="ada_instance_VV"/>
             <param name="xsl.out" value="hl7_instance_VV"/>
         </antcall>
+        <!-- POC Praktijktest -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.name" value="payload/${usecase.mg}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
+            <param name="xsl.out" value="hl7_instance_POCPraktijktest"/>
+        </antcall>
 
+        <!-- medicatieoverzicht -->
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="xsl.name" value="payload/${usecase.mo}_org.xsl"/>
@@ -120,7 +167,9 @@
         <property name="xsl.output" value="${sub.build.dir}/${xsl.out}"/>
 
         <echo>Deleting previous results, if any</echo>
-        <delete dir="${xsl.output}"/>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.xml"/>
+        </delete>
 
         <sequential>
             <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>

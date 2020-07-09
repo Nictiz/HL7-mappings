@@ -1,13 +1,14 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="MO-XXX-Klokgieters"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:31c3650b-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eba953-bd3e-11ea-2848-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -32,14 +33,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:31c35a71-8fac-11ea-4093-020000000000"/>
+               <reference value="urn:uuid:b7eb9adb-bd3e-11ea-2848-020000000000"/>
                <display value="A. XXX_Klokgieters"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="urn:uuid:31c3650f-8fac-11ea-4093-020000000000"/>
+                     <reference value="urn:uuid:b7eba957-bd3e-11ea-2848-020000000000"/>
                      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
@@ -47,37 +48,37 @@
             </source>
             <entry>
                <item>
-                  <reference value="urn:uuid:31c35ee7-8fac-11ea-4093-020000000000"/>
+                  <reference value="urn:uuid:b7eb9fab-bd3e-11ea-2848-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_aanvullendeinstructie_MA_staken', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:31c35f19-8fac-11ea-4093-020000000000"/>
+                  <reference value="urn:uuid:b7eb9fdd-bd3e-11ea-2848-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_toelichting_MA_wijzigingmetVV', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:31c3645c-8fac-11ea-4093-020000000000"/>
+                  <reference value="urn:uuid:b7eba8a4-bd3e-11ea-2848-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:31c3648a-8fac-11ea-4093-020000000000"/>
+                  <reference value="urn:uuid:b7eba8d2-bd3e-11ea-2848-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_chronisch_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:31c364b7-8fac-11ea-4093-020000000000"/>
+                  <reference value="urn:uuid:b7eba8ff-bd3e-11ea-2848-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_logistiekeverbruiksperiode_start_eind_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:31c364e1-8fac-11ea-4093-020000000000"/>
+                  <reference value="urn:uuid:b7eba929-bd3e-11ea-2848-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_logistiekeverbruiksperiode_start_eind_MA_1', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
@@ -88,7 +89,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c35ee7-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eb9fab-bd3e-11ea-2848-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -103,7 +104,7 @@
                      </caption>
                      <tbody>
                         <tr>
-                           <th colspan="2">Medicatie is gestopt: <span title="Staking (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Staking</span>
+                           <th colspan="2">Medicatie is gestopt: <span title="Definitief (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Definitief</span>
                            </th>
                         </tr>
                         <tr>
@@ -174,7 +175,7 @@
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
                      <code value="2"/>
-                     <display value="Staking"/>
+                     <display value="Definitief"/>
                   </coding>
                </valueCodeableConcept>
             </modifierExtension>
@@ -196,7 +197,7 @@
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:31c35a71-8fac-11ea-4093-020000000000"/>
+               <reference value="urn:uuid:b7eb9adb-bd3e-11ea-2848-020000000000"/>
                <display value="A. XXX_Klokgieters"/>
             </subject>
             <authoredOn value="${DATE, T, D, -10}T18:00:00+02:00"/>
@@ -204,7 +205,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:31c35eef-8fac-11ea-4093-020000000000"/>
+                        <reference value="urn:uuid:b7eb9fb3-bd3e-11ea-2848-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -257,7 +258,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c35f19-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eb9fdd-bd3e-11ea-2848-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -350,7 +351,7 @@
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:31c35a71-8fac-11ea-4093-020000000000"/>
+               <reference value="urn:uuid:b7eb9adb-bd3e-11ea-2848-020000000000"/>
                <display value="A. XXX_Klokgieters"/>
             </subject>
             <authoredOn value="${DATE, T, D, -2}T08:02:00+02:00"/>
@@ -358,7 +359,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:31c35eef-8fac-11ea-4093-020000000000"/>
+                        <reference value="urn:uuid:b7eb9fb3-bd3e-11ea-2848-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -403,7 +404,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c3645c-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eba8a4-bd3e-11ea-2848-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -480,11 +481,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.141631"/>
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:31c35a71-8fac-11ea-4093-020000000000"/>
+               <reference value="urn:uuid:b7eb9adb-bd3e-11ea-2848-020000000000"/>
                <display value="A. XXX_Klokgieters"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
@@ -492,7 +493,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:31c35eef-8fac-11ea-4093-020000000000"/>
+                        <reference value="urn:uuid:b7eb9fb3-bd3e-11ea-2848-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -537,7 +538,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c3648a-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eba8d2-bd3e-11ea-2848-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -611,7 +612,7 @@
                <display value="APACOF 250/250/50MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:31c35a71-8fac-11ea-4093-020000000000"/>
+               <reference value="urn:uuid:b7eb9adb-bd3e-11ea-2848-020000000000"/>
                <display value="A. XXX_Klokgieters"/>
             </subject>
             <authoredOn value="${DATE, T, D, -30}T11:32:00+02:00"/>
@@ -619,7 +620,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:31c3648e-8fac-11ea-4093-020000000000"/>
+                        <reference value="urn:uuid:b7eba8d6-bd3e-11ea-2848-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -657,7 +658,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c364b7-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eba8ff-bd3e-11ea-2848-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -732,7 +733,7 @@
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:31c35a71-8fac-11ea-4093-020000000000"/>
+               <reference value="urn:uuid:b7eb9adb-bd3e-11ea-2848-020000000000"/>
                <display value="A. XXX_Klokgieters"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:00:00+02:00"/>
@@ -740,7 +741,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:31c35eef-8fac-11ea-4093-020000000000"/>
+                        <reference value="urn:uuid:b7eb9fb3-bd3e-11ea-2848-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -778,7 +779,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c364e1-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eba929-bd3e-11ea-2848-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -853,7 +854,7 @@
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:31c35a71-8fac-11ea-4093-020000000000"/>
+               <reference value="urn:uuid:b7eb9adb-bd3e-11ea-2848-020000000000"/>
                <display value="A. XXX_Klokgieters"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T10:59:59+02:00"/>
@@ -861,7 +862,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:31c35eef-8fac-11ea-4093-020000000000"/>
+                        <reference value="urn:uuid:b7eb9fb3-bd3e-11ea-2848-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -899,7 +900,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c35a71-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eb9adb-bd3e-11ea-2848-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -908,12 +909,16 @@
             <text>
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999910668 (BSN), A. XXX_Klokgieters, Vrouw, 10 augustus 1954</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), A. XXX_Klokgieters, Vrouw, 10 augustus 1954</div>
                </div>
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999910668"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -1064,7 +1069,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c3650f-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eba957-bd3e-11ea-2848-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -1122,7 +1127,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c35eef-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eb9fb3-bd3e-11ea-2848-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1162,6 +1167,7 @@
             <specialty>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
                   <code value="0100"/>
                   <display value="Huisartsen, niet nader gespecificeerd"/>
                </coding>
@@ -1173,7 +1179,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31c3648e-8fac-11ea-4093-020000000000"/>
+      <fullUrl value="urn:uuid:b7eba8d6-bd3e-11ea-2848-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1213,6 +1219,7 @@
             <specialty>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
                   <code value="0100"/>
                   <display value="Huisartsen, niet nader gespecificeerd"/>
                </coding>
@@ -1308,7 +1315,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.141631"/>
       <resource>
          <Medication>
             <meta>
@@ -1322,7 +1329,7 @@
                         <tr>
                            <th>Code</th>
                            <td>
-                              <span title="Methotrexaat tablet 2,5mg (6009 - G-Standaard PRK)">Methotrexaat tablet 2,5mg</span>
+                              <span title="Methotrexaat tablet 2,5mg (141631 - G-Standaard PRK)">Methotrexaat tablet 2,5mg</span>
                            </td>
                         </tr>
                      </tbody>
@@ -1332,13 +1339,13 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="6009"/>
+                  <code value="141631"/>
                   <display value="Methotrexaat tablet 2,5mg"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="42609"/>
+                  <code value="16918"/>
                   <display value="Methotrexaat tablet 2,5mg"/>
                </coding>
                <text value="Methotrexaat tablet 2,5mg"/>

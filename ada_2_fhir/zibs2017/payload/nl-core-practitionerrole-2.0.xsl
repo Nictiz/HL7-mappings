@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:naf="http://www.nictiz.nl/ada-functions"  xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="nl-core-organization-2.0.xsl"/>
@@ -260,10 +260,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="healthProfessional" as="element()?"/>
         <xsl:for-each select="$healthProfessional">
             <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1] | zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])"/>
-            <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
-            <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
-            <xsl:variable name="specialty" select=".//specialisme/@displayName | .//specialty/@displayName"/>
-            <xsl:variable name="role" select=".//zorgverleners_rol/(@displayName, @code)[1] | .//health_professional_role/(@displayName, @code)[1]"/>
+            <xsl:variable name="personName" select=".//naamgegevens[not(naamgegevens)][1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[not(name_information)][1]//*[not(name() = 'name_usage')]/@value"/>
+            <xsl:variable name="theHealthCareProvider" select="naf:resolve-ada-reference(.//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]))"/>
+            <xsl:variable name="organizationName" select="$theHealthCareProvider//(organisatie_naam | organization_name)[1]/@value"/>
+            <xsl:variable name="specialty" select=".//(specialisme | specialty)/@displayName"/>
+            <xsl:variable name="role" select=".//(zorgverleners_rol | health_professional_role)[1]/(@displayName, @code)[1]"/>
 
             <xsl:choose>
                 <xsl:when test="$personName | $specialty | $organizationName">

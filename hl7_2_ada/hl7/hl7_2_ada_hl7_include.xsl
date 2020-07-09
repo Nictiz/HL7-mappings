@@ -13,9 +13,10 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/uuid.xsl"/>
+    <xsl:import href="../../util/utilities.xsl"/>
 
     <xd:doc>
         <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and calculated precision <xd:p>Calculation is done by calling nf:determine_date_precision($dateTime)</xd:p>
@@ -31,13 +32,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision. 
-            <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
+        <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision. <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
             <xd:p><xd:b>return</xd:b> date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and <xd:ref type="parameter" name="input-hl7-date"/> is returned as-is</xd:p>
         </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
-        <xd:param name="precision">Coded string indicator for requested precision. Use DAY for date and SECOND for dateTime. 
-            Note that if the input does not allow for dateTime, fallback to date is applied.</xd:param>
+        <xd:param name="precision">Coded string indicator for requested precision. Use DAY for date and SECOND for dateTime. Note that if the input does not allow for dateTime, fallback to date is applied.</xd:param>
     </xd:doc>
     <xsl:function name="nf:formatHL72XMLDate" as="xs:string">
         <xsl:param name="input-hl7-date" as="xs:string?"/>
@@ -114,8 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Returns possibly vague date or dateTime string based on HL7v3 ts input string, and requested precision. 
-            <xd:p>Example nf:formatHL72VagueAdaDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
+        <xd:desc>Returns possibly vague date or dateTime string based on HL7v3 ts input string, and requested precision. <xd:p>Example nf:formatHL72VagueAdaDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
             <xd:p><xd:b>return</xd:b> date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and <xd:ref type="parameter" name="input-hl7-date"/> is returned as-is</xd:p>
         </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
@@ -210,11 +208,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-
     <xd:doc>
-        <xd:desc>
-            Returns DAY if the input is &lt;= 8 characters, or SECOND otherwise. 
-        </xd:desc>
+        <xd:desc> Returns DAY if the input is &lt;= 8 characters, or SECOND otherwise. </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
     </xd:doc>
     <xsl:function name="nf:determine_date_precision">
@@ -273,7 +268,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getADAComplexTypeName" as="xs:string?">
         <xsl:param name="schemaFragment" as="node()*"/>
         <xsl:param name="elementName" as="xs:string?"/>
-        <xsl:value-of select="$schemaFragment/xs:sequence/xs:element[@name = $elementName]/@type"/>
+        <xsl:value-of select="$schemaFragment/(xs:sequence | xs:schema)/xs:element[@name = $elementName]/@type"/>
     </xsl:function>
 
     <xd:doc>
@@ -318,18 +313,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc> Returns an array of ADA elements based on an array of HL7v3 AND elements that have an @xsi:type attribute to determine the type with. 
-            <xd:p>After the type is determined, the element is handed off to handleXX for further processing. Failure to determine type is a fatal error.</xd:p>
+        <xd:desc> Returns an array of ADA elements based on an array of HL7v3 AND elements that have an @xsi:type attribute to determine the type with. <xd:p>After the type is determined, the element is handed off to handleXX for further processing. Failure to determine type is a fatal error.</xd:p>
             <xd:p>Supported values for @xsi:type (datatypes releases 1 in namespace "urn:hl7-org:v3"): BL (boolean), CS (code), CV (code), CE (code), CD (code), CO (code), II (identifier), PQ (quantity), ST (string), TS (date)</xd:p></xd:desc>
         <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
         <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
         <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
         <xd:param name="dodatatype">Boolean. If true creates relevant @datatype attribute on the output.</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
-            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
-            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
-                In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
-                are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
         <xd:param name="codeSystem">CS has no codeSystem so it has to be supplied from external. Usually <xd:ref type="variable" name="oidHL7ActStatus"/> or <xd:ref type="variable" name="oidHL7RoleStatus"/></xd:param>
         <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
@@ -776,12 +767,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> Copy address parts as faithful as possible to HCIM 2017 nl.zorg.part.AddressInformation. Calculate address code. Submit unstructured address in street
-            Note: copies @code and @codeSystem for city, county and country too...
-        </xd:desc>
+        <xd:desc> Copy address parts as faithful as possible to HCIM 2017 nl.zorg.part.AddressInformation. Calculate address code. Submit unstructured address in street Note: copies @code and @codeSystem for city, county and country too... </xd:desc>
         <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
-        <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype. 
-            Also determines the displayName for adress type, since this is not available in HL7 instances. This defaults to english due to backwards compatibility reasons.</xd:param>
+        <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype. Also determines the displayName for adress type, since this is not available in HL7 instances. This defaults to english due to backwards compatibility reasons.</xd:param>
         <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
         <xd:param name="schemaFragment">Optional. XSD Schema complexType for parent of adresgegevens</xd:param>
     </xd:doc>
@@ -1168,8 +1156,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:if test="$in">
-            <xsl:variable name="telephoneNumbers" select="$in[matches(@value, '^(tel|fax):')] | $in[matches(@value, '^[\d\s\(\)+-]$')]"/>
-            <xsl:variable name="emailAddresses" select="$in[matches(@value, '^mailto:')] | $in[matches(@value, '.+@[^\.]+\.')]"/>
+            <xsl:variable name="telephoneNumbers" select="$in[matches(@value, '^(tel|fax):')] | $in[matches(@value, '^[\d\s\(\)+-]+$')]" as="element()*"/>
+            <xsl:variable name="emailAddresses" select="$in[matches(@value, '^mailto:')] | $in[matches(@value, '.+@[^\.]+\.')]" as="element()*"/>
+
+            <xsl:for-each select="$in[not(matches(@value, '^(tel|fax):')) and not(matches(@value, '^[\d\s\(\)+-]+$')) and not(matches(@value, '^mailto:')) and not(matches(@value, '.+@[^\.]+\.'))]">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="terminate" select="false()"/>
+                    <xsl:with-param name="msg">Encountered a telecom value in HL7 which could not be translated into a telephone number or email address, the value that could not be translated: <xsl:value-of select="string-join(@value, ' ')"/>.</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
 
             <xsl:element name="{$elmContactInformation}">
                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactInformation))"/>
@@ -1262,7 +1258,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
 
                             <xsl:element name="{$elmTelephoneNumber}">
-                                <xsl:attribute name="value" select="@value"/>
+                                <!-- remove the tel: or fax: prefix, since that information is in telecomtype -->
+                                <xsl:attribute name="value" select="replace(@value, '^((tel|fax):)(.+)', '$3')"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelephoneNumber)))"/>
                             </xsl:element>
                             <xsl:if test="$outputTelecomType">
@@ -1300,7 +1297,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
 
                             <xsl:element name="{$elmEmailAddress}">
-                                <xsl:attribute name="value" select="@value"/>
+                                <xsl:attribute name="value" select="replace(@value, '^(mailto:)(.+)', '$2')"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmEmailAddress)))"/>
                             </xsl:element>
                             <xsl:if test="$emailType">
@@ -1320,11 +1317,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
         <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
         <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
-            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
-            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
-                In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
-                are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
         <xd:param name="codeSystem">CS has no codeSystem so it has to be supplied from external. Usually <xd:ref type="variable" name="oidHL7ActStatus"/> or <xd:ref type="variable" name="oidHL7RoleStatus"/></xd:param>
         <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
@@ -1368,11 +1362,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
         <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
         <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
-            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
-            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
-            In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
-            are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
         <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
     </xd:doc>
@@ -1760,728 +1751,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    <!--<xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeADXPValue">
-        <xsl:param name="xsiType">ADXP</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
-            <!-\- ADXP never occurs outside AD and never needs xsi:type -\->
-            <xsl:copy-of select="@code"/>
-            <xsl:copy-of select="@codeSystem"/>
-            <xsl:value-of select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="inputValue"/>
-    </xd:doc>
-    <xsl:template name="makeBLAttribute">
-        <xsl:param name="inputValue"/>
-        <xsl:choose>
-            <xsl:when test="$inputValue castable as xs:boolean">
-                <xsl:attribute name="value" select="$inputValue"/>
-            </xsl:when>
-            <xsl:when test="lower-case($inputValue) = ('ja', 'yes', 'ja', 'oui', 'si')">
-                <xsl:attribute name="value" select="true()"/>
-            </xsl:when>
-            <xsl:when test="lower-case($inputValue) = ('nee', 'no', 'nein', 'non', 'no')">
-                <xsl:attribute name="value" select="false()"/>
-            </xsl:when>
-            <xsl:when test="string-length($inputValue) = 0">
-                <!-\- Do nothing -\->
-            </xsl:when>
-            <xsl:otherwise>
-                <!-\- assume nullFlavor -\->
-                <xsl:attribute name="nullFlavor" select="$inputValue"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeBLValue">
-        <xsl:param name="xsiType">BL</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:variable name="inputValue" select="@value"/>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:call-template name="makeBLAttribute">
-                <xsl:with-param name="inputValue" select="$inputValue"/>
-            </xsl:call-template>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeBNValue">
-        <xsl:param name="xsiType">BN</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeBLValue">
-            <xsl:with-param name="xsiType" select="$xsiType"/>
-            <xsl:with-param name="elemName" select="$elemName"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="code"/>
-        <xd:param name="codeSystem"/>
-        <xd:param name="displayName"/>
-        <xd:param name="elemName"/>
-        <xd:param name="originalText"/>
-        <xd:param name="strOriginalText"/>
-        <xd:param name="translations"/>
-        <xd:param name="xsiType"/>
-    </xd:doc>
-    <xsl:template name="makeCDValue">
-        <xsl:param name="code" as="xs:string?" select="./@code"/>
-        <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
-        <xsl:param name="displayName" as="xs:string?" select="./@displayName"/>
-        <xsl:param name="elemName" as="xs:string?">value</xsl:param>
-        <xsl:param name="originalText"/>
-        <xsl:param name="strOriginalText" as="xs:string?"/>
-        <xsl:param name="translations" as="element(hl7:translation)*"/>
-        <xsl:param name="xsiType" as="xs:string?">CD</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:call-template name="makeCodeAttribs">
-                <xsl:with-param name="code" select="$code"/>
-                <xsl:with-param name="codeSystem" select="$codeSystem"/>
-                <xsl:with-param name="displayName" select="$displayName"/>
-                <xsl:with-param name="originalText" select="$originalText"/>
-                <xsl:with-param name="strOriginalText" select="$strOriginalText"/>
-            </xsl:call-template>
-            <xsl:copy-of select="$translations"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="code"/>
-        <xd:param name="codeSystem"/>
-        <xd:param name="displayName"/>
-        <xd:param name="elemName"/>
-        <xd:param name="originalText"/>
-        <xd:param name="strOriginalText"/>
-        <xd:param name="translations"/>
-        <xd:param name="xsiType"/>
-    </xd:doc>
-    <xsl:template name="makeCEValue">
-        <xsl:param name="code" as="xs:string?" select="./@code"/>
-        <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
-        <xsl:param name="displayName" as="xs:string?" select="@displayName"/>
-        <xsl:param name="elemName" as="xs:string?">value</xsl:param>
-        <xsl:param name="originalText"/>
-        <xsl:param name="strOriginalText" as="xs:string?"/>
-        <xsl:param name="translations" as="element(hl7:translation)*"/>
-        <xsl:param name="xsiType" as="xs:string?">CE</xsl:param>
-        <xsl:call-template name="makeCDValue">
-            <xsl:with-param name="code" select="$code"/>
-            <xsl:with-param name="codeSystem" select="$codeSystem"/>
-            <xsl:with-param name="displayName" select="$displayName"/>
-            <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="originalText" select="$originalText"/>
-            <xsl:with-param name="strOriginalText" select="$strOriginalText"/>
-            <xsl:with-param name="translations" select="$translations"/>
-            <xsl:with-param name="xsiType" select="$xsiType"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="code"/>
-        <xd:param name="codeSystem"/>
-        <xd:param name="displayName"/>
-        <xd:param name="elemName"/>
-        <xd:param name="xsiType"/>
-        <xd:param name="originalText"/>
-        <xd:param name="translations"/>
-    </xd:doc>
-    <xsl:template name="makeCVValue">
-        <xsl:param name="code" as="xs:string?" select="./@code"/>
-        <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
-        <xsl:param name="displayName" as="xs:string?" select="./@displayName"/>
-        <xsl:param name="elemName" as="xs:string?">value</xsl:param>
-        <xsl:param name="xsiType">CV</xsl:param>
-        <xsl:param name="originalText"/>
-        <xsl:param name="translations" as="element(hl7:translation)*"/>
-        <xsl:call-template name="makeCDValue">
-            <xsl:with-param name="code" select="$code"/>
-            <xsl:with-param name="codeSystem" select="$codeSystem"/>
-            <xsl:with-param name="displayName" select="$displayName"/>
-            <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="originalText" select="$originalText"/>
-            <xsl:with-param name="xsiType" select="$xsiType"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="originalText"/>
-    </xd:doc>
-    <xsl:template name="makeCSValue">
-        <xsl:param name="xsiType">CS</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="originalText"/>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:choose>
-                <xsl:when test="@codeSystem = $oidHL7NullFlavor">
-                    <!-\- NullFlavor -\->
-                    <xsl:attribute name="nullFlavor" select="@code"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="code" select="@code"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="originalText"/>
-    </xd:doc>
-    <xsl:template name="makeCode">
-        <xsl:param name="originalText"/>
-        <code>
-            <xsl:call-template name="makeCodeAttribs">
-                <xsl:with-param name="originalText" select="$originalText"/>
-            </xsl:call-template>
-        </code>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="code"/>
-        <xd:param name="codeSystem"/>
-        <xd:param name="displayName"/>
-        <xd:param name="originalText"/>
-        <xd:param name="strOriginalText"/>
-        <xd:param name="value"/>
-    </xd:doc>
-    <xsl:template name="makeCodeAttribs">
-        <xsl:param name="code" as="xs:string?" select="./@code"/>
-        <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
-        <xsl:param name="displayName" as="xs:string?" select="./@displayName"/>
-        <xsl:param name="originalText"/>
-        <xsl:param name="strOriginalText" as="xs:string?"/>
-        <xsl:param name="value" select="./@value"/>
-        <xsl:choose>
-            <xsl:when test="string-length($code) = 0 and (string-length($value) gt 0 or string-length($strOriginalText) gt 0)">
-                <xsl:attribute name="nullFlavor" select="'OTH'"/>
-            </xsl:when>
-            <xsl:when test="$codeSystem = $oidHL7NullFlavor">
-                <!-\- NullFlavor -\->
-                <xsl:attribute name="nullFlavor" select="$code"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:attribute name="code" select="$code"/>
-                <xsl:attribute name="codeSystem" select="$codeSystem"/>
-                <xsl:attribute name="displayName" select="$displayName"/>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:choose>
-            <xsl:when test="string-length($strOriginalText) gt 0">
-                <xsl:call-template name="makeoriginalText2">
-                    <xsl:with-param name="strOriginalText" select="$strOriginalText"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:call-template name="makeoriginalText">
-                    <xsl:with-param name="originalText" as="element()*">
-                        <xsl:choose>
-                            <xsl:when test="$originalText">
-                                <xsl:copy-of select="$originalText"/>
-                            </xsl:when>
-                            <xsl:when test="not(@code) and @value">
-                                <xsl:copy-of select="."/>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc> OriginalText with element() param </xd:desc>
-        <xd:param name="originalText"/>
-    </xd:doc>
-    <xsl:template name="makeoriginalText">
-        <xsl:param name="originalText" as="element()*"/>
-        <xsl:if test="$originalText">
-            <originalText>
-                <xsl:value-of select="$originalText/@value"/>
-            </originalText>
-        </xsl:if>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc> OriginalText with string param </xd:desc>
-        <xd:param name="strOriginalText"/>
-    </xd:doc>
-    <xsl:template name="makeoriginalText2">
-        <xsl:param name="strOriginalText" as="xs:string?"/>
-        <xsl:if test="string-length($strOriginalText) gt 0">
-            <originalText>
-                <xsl:value-of select="$strOriginalText"/>
-            </originalText>
-        </xsl:if>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="mediaType"/>
-        <xd:param name="representation"/>
-        <xd:param name="reference"/>
-    </xd:doc>
-    <xsl:template name="makeEDValue">
-        <xsl:param name="xsiType">ED</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="mediaType" as="xs:string?"/>
-        <xsl:param name="representation" as="xs:string?"/>
-        <xsl:param name="reference" as="xs:string?"/>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:if test="$mediaType">
-                <xsl:attribute name="mediaType" select="$mediaType"/>
-            </xsl:if>
-            <xsl:choose>
-                <xsl:when test="$representation">
-                    <xsl:attribute name="representation" select="$representation"/>
-                </xsl:when>
-                <xsl:when test="not($mediaType = 'text/plain')">
-                    <xsl:attribute name="representation" select="'B64'"/>
-                </xsl:when>
-            </xsl:choose>
-            <xsl:value-of select="@value"/>
-            <xsl:if test="$reference">
-                <reference value="{$reference}"/>
-            </xsl:if>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="qualifier"/>
-    </xd:doc>
-    <xsl:template name="makeENXPValue">
-        <xsl:param name="xsiType">ENXP</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="qualifier"/>
-        <xsl:element name="{$elemName}">
-            <!-\- ENXP never occurs outside AD and never needs xsi:type -\->
-            <xsl:value-of select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeINTValue">
-        <xsl:param name="xsiType">INT</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:attribute name="value" select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeINT.NONNEGValue">
-        <xsl:param name="xsiType">INT</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeINTValue">
-            <xsl:with-param name="xsiType" select="$xsiType"/>
-            <xsl:with-param name="elemName" select="$elemName"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeINT.POSValue">
-        <xsl:param name="xsiType">INT</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeINTValue">
-            <xsl:with-param name="xsiType" select="$xsiType"/>
-            <xsl:with-param name="elemName" select="$elemName"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
-    <xsl:template name="makeIIid">
-        <xsl:call-template name="makeIIValue">
-            <xsl:with-param name="xsiType" select="''"/>
-            <xsl:with-param name="elemName">id</xsl:with-param>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeIIValueBSN">
-        <xsl:param name="xsiType">II</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeII.NL.BSNValue">
-            <xsl:with-param name="elemName" select="$elemName"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeII.NL.AGBValue">
-        <xsl:param name="xsiType">II</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeIIValue">
-            <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="$oidAGB"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeII.NL.BIGValue">
-        <xsl:param name="xsiType">II</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeIIValue">
-            <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="$oidBIGregister"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeII.NL.BSNValue">
-        <xsl:param name="xsiType"/>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeIIValue">
-            <xsl:with-param name="xsiType" select="$xsiType"/>
-            <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="$oidBurgerservicenummer"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeII.NL.URAValue">
-        <xsl:param name="xsiType">II</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeIIValue">
-            <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="$oidURAOrganizations"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeII.NL.UZIValue">
-        <xsl:param name="xsiType">II</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:call-template name="makeIIValue">
-            <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="$oidUZIPersons"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="root"/>
-        <xd:param name="nullFlavor"/>
-    </xd:doc>
-    <xsl:template name="makeIIValue">
-        <xsl:param name="xsiType"/>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="root" select="@root"/>
-        <xsl:param name="nullFlavor">NI</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:choose>
-                <!-\- extension + root ... the regular case -\->
-                <xsl:when test="string-length($root) gt 0 and string-length(@value) gt 0">
-                    <xsl:attribute name="extension" select="@value"/>
-                    <xsl:attribute name="root" select="$root"/>
-                </xsl:when>
-                <!-\- extension + nullFlavor=UNC. Extension MAY NOT appear on its own unless with nullFlavor=UNC -\->
-                <xsl:when test="string-length($root) = 0 and string-length(@value) gt 0">
-                    <xsl:attribute name="extension" select="@value"/>
-                    <xsl:attribute name="nullFlavor">UNC</xsl:attribute>
-                </xsl:when>
-                <!-\- nullFlavor -\->
-                <xsl:otherwise>
-                    <xsl:attribute name="nullFlavor" select="$nullFlavor"/>
-                </xsl:otherwise>
-                <!-\-<xsl:when test="string-length($root) gt 0 and string-length(@value) = 0">
-                    <xsl:attribute name="nullFlavor" select="$nullFlavor"/>
-                </xsl:choose>
-                <xsl:when test="string-length($root) = 0 and string-length(@value) = 0">
-                    <xsl:attribute name="nullFlavor" select="$nullFlavor"/>
-                </xsl:when>-\->
-            </xsl:choose>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="inputValue"/>
-    </xd:doc>
-    <xsl:template name="makeNegationAttr">
-        <xsl:param name="inputValue" select="@value"/>
-        <xsl:choose>
-            <xsl:when test="$inputValue castable as xs:boolean">
-                <xsl:attribute name="negationInd" select="$inputValue = 'false'"/>
-            </xsl:when>
-            <xsl:when test="lower-case($inputValue) = ('ja', 'yes', 'ja', 'oui', 'si', 'waar')">
-                <xsl:attribute name="negationInd" select="false()"/>
-            </xsl:when>
-            <xsl:when test="lower-case($inputValue) = ('nee', 'no', 'nein', 'non', 'no', 'onwaar')">
-                <xsl:attribute name="negationInd" select="true()"/>
-            </xsl:when>
-            <xsl:when test="string-length($inputValue) = 0">
-                <!-\- Do nothing -\->
-            </xsl:when>
-            <xsl:otherwise>
-                <!-\- assume nullFlavor -\->
-                <xsl:attribute name="nullFlavor" select="$inputValue"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
-    <xsl:template name="makeNullflavorWithToelichting">
-        <xsl:attribute name="nullFlavor" select="'OTH'"/>
-        <xsl:call-template name="makeoriginalText">
-            <xsl:with-param name="originalText" select="."/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeONValue">
-        <xsl:param name="xsiType">ON</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:value-of select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makePNValue">
-        <xsl:param name="xsiType">PN</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:value-of select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="inputValue"/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="unit"/>
-    </xd:doc>
-    <xsl:template name="makePQValue">
-        <xsl:param name="inputValue" select="./@value"/>
-        <xsl:param name="xsiType">PQ</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="unit" select="./@unit"/>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:call-template name="makePQValueAttribs">
-                <xsl:with-param name="value" select="$inputValue"/>
-                <xsl:with-param name="unit" select="$unit"/>
-            </xsl:call-template>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="value"/>
-        <xd:param name="unit"/>
-    </xd:doc>
-    <xsl:template name="makePQValueAttribs">
-        <xsl:param name="value" select="@value"/>
-        <xsl:param name="unit" select="@unit"/>
-        <xsl:if test="$value">
-            <xsl:attribute name="value" select="$value"/>
-        </xsl:if>
-        <xsl:if test="$unit">
-            <xsl:attribute name="unit" select="$unit"/>
-        </xsl:if>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeSCValue">
-        <xsl:param name="xsiType">SC</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:copy-of select="@code"/>
-            <xsl:copy-of select="@codeSystem"/>
-            <xsl:value-of select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeSTValue">
-        <xsl:param name="xsiType">ST</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:value-of select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="use"/>
-    </xd:doc>
-    <xsl:template name="makeTELValue">
-        <xsl:param name="xsiType">TEL</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="use"/>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:if test="$use">
-                <xsl:attribute name="use" select="$use"/>
-            </xsl:if>
-            <xsl:attribute name="value" select="@value"/>
-        </xsl:element>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="use"/>
-    </xd:doc>
-    <xsl:template name="makeTEL.NL.EXTENDEDValue">
-        <xsl:param name="xsiType">TEL</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="use"/>
-        <xsl:call-template name="makeTELValue">
-            <xsl:with-param name="elemName"/>
-            <xsl:with-param name="use"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
-    <xsl:template name="makeText">
-        <text>
-            <xsl:value-of select="@value"/>
-        </text>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-    </xd:doc>
-    <xsl:template name="makeTNValue">
-        <xsl:param name="xsiType">TN</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="string-length($xsiType) gt 0">
-                <xsl:attribute name="xsi:type" select="$xsiType"/>
-            </xsl:if>
-            <xsl:value-of select="@value"/>
-        </xsl:element>
-    </xsl:template>-->
-
     <xd:doc>
         <xd:desc>CDArecordTargetSDTC</xd:desc>
         <xd:param name="in">hl7 patient to be converted</xd:param>
@@ -2588,7 +1857,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc> CDArecordTargetSDTC-NL-BSN-Minimal </xd:desc>
         <xd:param name="in"/>
@@ -2687,8 +1955,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
-
-
     <xd:doc>
         <xd:desc>Returns an XML comment on the output that marks that the output is generated content, and shows what instance (element name + hl7:id or hl7:code or hl7:templateId) it came from</xd:desc>
         <xd:param name="in">Optional explicit element to start from, if not the context node.</xd:param>
@@ -2750,7 +2016,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
         </xsl:copy>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc>Do not copy elements with id, they should be copied by other template/mode, for example mode adaOutputHcim</xd:desc>

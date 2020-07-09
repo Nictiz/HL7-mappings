@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     TODO: build more generic support for (modifier)Extensions
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:util="urn:hl7:utilities" version="2.0" exclude-result-prefixes="#all">
-    <xsl:import href="utilities.xsl"/>
+    <xsl:import href="../../util/utilities.xsl"/>
     <xsl:param name="override" select="'true'"/>
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
     
@@ -11337,6 +11337,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="f:value/f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']">
                         <xsl:call-template name="getLocalizedNullFlavor">
                             <xsl:with-param name="in" select="f:value/f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']/f:valueCode"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']">
+                        <xsl:call-template name="getLocalizedNullFlavor">
+                            <xsl:with-param name="in" select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']/f:valueCode"/>
                             <xsl:with-param name="textLang" select="$textLang"/>
                         </xsl:call-template>
                     </xsl:when>

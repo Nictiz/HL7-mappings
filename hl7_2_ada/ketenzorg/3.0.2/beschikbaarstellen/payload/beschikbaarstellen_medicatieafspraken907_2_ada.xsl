@@ -73,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                             <!-- medicatieafspraak -->
                             <xsl:for-each select="current-group()[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235']">
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9216_20180423130413">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9235_20181204143321">
                                     <xsl:with-param name="ma_hl7_90" select="."/>
                                     <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                                     <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>

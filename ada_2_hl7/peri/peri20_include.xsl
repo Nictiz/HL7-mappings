@@ -13,9 +13,11 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="xs xsl sdtc nf xd" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
+    <xsl:import href="../zib2017bbr/2_hl7_zib2017bbr_include.xsl"/>
     <xsl:import href="peri20_30_shared.xsl"/>
     <xsl:output method="xml" indent="yes"/>
+
+
 
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20110128000000">
         <!-- Graviditeit -->
