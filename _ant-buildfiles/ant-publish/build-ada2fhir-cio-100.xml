@@ -77,7 +77,7 @@
             </fileset>
         </copy>
         
-        <!--<property name="xsl_cio_resources" value="${build.dir}/payload/beschikbaarstellen_allergie_intolerantie_vertaling_2_fhir_resources.xsl"/>-->
+        <property name="xsl_cio_resources2" value="${build.dir2}/payload/beschikbaarstellen_allergie_intolerantie_vertaling_2_fhir_resources.xsl"/>
         <property name="xsl_cio2" value="${build.dir2}/payload/beschikbaarstellen_allergie_intolerantie_vertaling_2_fhir.xsl"/>
         
         <property name="xsl.input2" value="${build.dir2}/ada_instance"/>
@@ -88,6 +88,14 @@
         
         <sequential>
             <fileset id="inputfilesCio" dir="${xsl.input2}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_cio_resources2}</echo>
+            <xslt force="true" style="${xsl_cio_resources2}" destdir="${xsl.output2}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesCio"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
             
             <echo/>
             <echo>${echo.label} ${xsl_cio2}</echo>
