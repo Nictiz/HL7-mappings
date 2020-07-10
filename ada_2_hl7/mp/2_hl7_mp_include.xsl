@@ -2583,7 +2583,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Telecom gegevens for ada contactgegevens</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9172_20170522143706">
-        <xsl:call-template name="_CdaTelecom"/>     
+        <xsl:call-template name="_CdaTelecom"/>
     </xsl:template>
 
     <xd:doc>
@@ -2994,7 +2994,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
                     <text mediaType="text/plain">
-                        <xsl:value-of select="nf:replaceTDateString(@value, $dateT)"/>
+                        <xsl:value-of select="@value"/>
                     </text>
                 </xsl:for-each>
             </xsl:otherwise>
@@ -3767,31 +3767,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="$ada-product-code[1]"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Converts a string like $T-12D (date T minus 12 days) to an actual date in a nice formatted string</xd:desc>
-        <xd:param name="in">Total input string potentially containing a string like $T-12D</xd:param>
-        <xd:param name="inputDateT">The input date T to be used. Optional, but nothing is converted if not given.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:replaceTDateString" as="xs:string?">
-        <xsl:param name="in" as="xs:string?"/>
-        <xsl:param name="inputDateT" as="xs:date?"/>
-
-        <xsl:choose>
-            <xsl:when test="not(empty($inputDateT))">
-                <xsl:variable name="tString" select="replace($in, '.*?\$(T[+\-]\d+(\.\d+)?[YMD](\{([0|1]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?).*', '$1')"/>
-                <xsl:variable name="newDateTime" select="nf:calculate-t-date($tString, $inputDateT)"/>
-                <xsl:variable name="formattedDateTime" select="nf:datetime-2-timestring($newDateTime)"/>
-                <!-- Fix me, this is wrong, only the tString should be replaced with proper date -->
-                <xsl:value-of select="$tString"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$in"/>
-            </xsl:otherwise>
-        </xsl:choose>
-
-
     </xsl:function>
 
     <xd:doc>

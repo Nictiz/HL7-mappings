@@ -7,6 +7,8 @@
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>  
 
     <xd:doc>
         <xd:desc>Calculates the start date of a dosage instruction</xd:desc>
@@ -280,7 +282,7 @@
         <xsl:param name="start-date"/>
         <xsl:param name="periode"/>
         <xsl:param name="end-date"/>
-        
+
         <xsl:for-each select="$current-bouwsteen">
             <xsl:variable name="waarde" as="xs:string*">
                 <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
@@ -288,44 +290,85 @@
                     <xsl:value-of select="', '"/>
                 </xsl:if>
                 <xsl:if test="$periode/@value">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
-                  <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
+                <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
                 </xsl:if>
                 <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
                 <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
             </xsl:variable>
             <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
         </xsl:for-each>
-    </xsl:function>    
-    
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Does some preprocessing steps needed to know whether a usage instruction text may be generated. 
+            If so, it calls the function to generate the usage instruction text and outputs it in value attribute of ada element. 
+            If not, it outputs the input. 
+        </xd:desc>
+        <xd:param name="in"/>
+        <xd:param name="generateInstructionText"/>
+    </xd:doc>
+    <xsl:function name="nf:gebruiksinstructie-ada-preprocess" as="element()?">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="generateInstructionText" as="xs:boolean?"/>
+
+        <xsl:for-each select="$in">
+            <xsl:choose>
+                <xsl:when test="$generateInstructionText">
+                    <!-- we have an instance for which we want to generate the instructions for use description, based on the structured fields in ada -->
+                    <!-- typically only done for test instances -->
+                    <!-- let's see if we even can, considering what has been given to use here in $in -->
+                    <xsl:choose>                        
+                        <xsl:when test="local-name(.) = 'omschrijving' and local-name(..) = 'gebruiksinstructie'">
+                            <!-- okay, let's generate the usage instruction text -->
+                            <xsl:element name="{local-name(.)}">
+                                 <xsl:copy-of select="@*"/>
+                                <xsl:attribute name="value" select="nf:gebruiksintructie-string(..)"/>
+                            </xsl:element>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- fallback on input -->
+                            <xsl:sequence select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- return the input element -->
+                    <xsl:sequence select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+
+    </xsl:function>
+
     <xd:doc>
         <xd:desc>Generates omschrijving based on structured fields</xd:desc>
         <xd:param name="gebruiksinstructie">Input ada element for usage instruction</xd:param>
     </xd:doc>
     <xsl:function name="nf:gebruiksintructie-string" as="xs:string?">
         <xsl:param name="gebruiksinstructie" as="element()?"/>
-        
+
         <xsl:for-each select="$gebruiksinstructie">
             <xsl:variable name="amount-doseerinstructies" select="count(doseerinstructie[.//(@value | @code)])" as="xs:integer"/>
             <xsl:variable name="non-parallel-doseerinstructie">
                 <xsl:value-of select="exists(doseerinstructie[volgnummer/@value != preceding-sibling::doseerinstructie/volgnummer/@value])"/>
             </xsl:variable>
-            
+
             <!-- generate omschrijving using structured fields -->
             <xsl:variable name="theOmschrijving" as="xs:string*">
-                
+
                 <!-- gebruiksperiode -->
                 <xsl:variable name="periodeString" select="nf:periode-string(., ../gebruiksperiode_start, ../gebruiksperiode, ../gebruiksperiode_eind)"/>
                 <xsl:if test="string-length($periodeString) gt 0">
                     <xsl:value-of select="$periodeString"/>
                 </xsl:if>
-                
+
                 <!-- Herhaalperiode cyclisch schema -->
                 <xsl:variable name="herhaalperiodeString" as="xs:string*">
                     <xsl:for-each select="herhaalperiode_cyclisch_schema[@value | @unit]">
                         <xsl:value-of select="concat('cyclus van ', concat(./@value, ' ', nwf:unit-string(./@value, ./@unit)), ': steeds ')"/>
                     </xsl:for-each>
                 </xsl:variable>
-                
+
                 <!-- doseerinstructie(s) (schema) -->
                 <xsl:variable name="doseerinstructieText" as="xs:string*">
                     <xsl:for-each select="doseerinstructie">
@@ -335,7 +378,7 @@
                 <xsl:if test="string-length(string-join($doseerinstructieText, '')) gt 0">
                     <xsl:value-of select="concat(string-join($herhaalperiodeString, ' '), string-join($doseerinstructieText, ', '))"/>
                 </xsl:if>
-                
+
                 <!-- aanvullende instructie(s) -->
                 <xsl:for-each select="aanvullende_instructie">
                     <xsl:choose>
@@ -349,7 +392,7 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
-                
+
                 <!-- toedieningsweg -->
                 <xsl:for-each select="toedieningsweg[not(@code = 'NI' and @codeSystem = $oidHL7NullFlavor)]">
                     <xsl:choose>
@@ -370,7 +413,7 @@
             <xsl:value-of select="string-join($theOmschrijving, ', ')"/>
         </xsl:for-each>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Returns a unit string for display purposes, depending on the given unit ánd whether the value is singular or plural</xd:desc>
         <xd:param name="value">Input param to determine whether to return the singular or plural form for display</xd:param>
@@ -482,7 +525,7 @@
         <xd:desc>Formats ada relativeDate(time) to a display date(Time)</xd:desc>
         <xd:param name="relativeDate">Input ada relativeDate(Time)</xd:param>
         <xd:param name="output0time">Whether or not a time of 00:00 should be outputted in the text. Defaults to true.</xd:param>
-        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text.  Defaults to true.</xd:param>
+        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text. Defaults to true.</xd:param>
     </xd:doc>
     <xsl:function name="nf:formatTDate" as="xs:string*">
         <xsl:param name="relativeDate" as="xs:string?"/>

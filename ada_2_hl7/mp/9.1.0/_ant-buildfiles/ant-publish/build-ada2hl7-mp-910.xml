@@ -13,5 +13,18 @@
     <!-- place import after properties, otherwise it can't resolve the properties used. -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-mp-include.xml"/>
     
+    <target name="setup-910" description="Setup subdirectories in ${build.dir}">
+        <!-- the generic setup stuff for all mp versions -->
+        <antcall target="setup"/>
+        
+        <!-- specific stuff only for mp 910 -->
+        <!-- nothing yet -->        
+       
+        <!-- let's convert to hl7 too while we're at it -->
+        <antcall target="convert_ada_2_hl7"/>
+        
+    </target>
+    
+    
 
 </project>
