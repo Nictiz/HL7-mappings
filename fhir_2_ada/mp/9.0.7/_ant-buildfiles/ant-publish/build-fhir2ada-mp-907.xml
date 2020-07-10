@@ -30,6 +30,7 @@
     <target name="convert_fhir_2_ada">
         <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
         <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
+        <property name="usecase-vv" value="beschikbaarstellen_verstrekkingenvertaling"/>
         
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_fhir_2_ada_sub">
@@ -41,6 +42,13 @@
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="build.dir" value="${usecase-mo}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- beschikbaarstellen_verstrekkingenvertaling -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="build.dir" value="${usecase-vv}"/>
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
@@ -64,35 +72,6 @@
             <echo>${echo.label} ${xsl_mp}</echo>
             <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesMP"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="C:/SaxonHE9-9-1-7J/saxon9he.jar"/>
-            </xslt>
-            
-            <echo/>
-            <echo>Short roundtrip for testing: ${echo.label.out} to ${echo.label.in} ${xsl_mp}</echo>
-            <xslt force="true" style="${build.dir}/../../../../ada_2_fhir/mp/9.0.7/${build.dir}/payload/${build.dir}_2_fhir.xsl" destdir="${xsl.output}/fhir_roundtrip_test" extension=".xml" useImplicitFileset="false">
-                <fileset dir="${xsl.output}" includes="*.xml"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="C:/SaxonHE9-9-1-7J/saxon9he.jar"/>
-            </xslt>
-            
-            <echo/>
-            <echo>Long roundtrip for testing: ${echo.label.out} to ${echo.label.in} ${xsl_mp}</echo>
-            <xslt force="true" style="${build.dir}/../../../../ada_2_hl7/mp/9.0.7/${build.dir}/payload/${build.dir}_org.xsl" destdir="${xsl.output}/fhir_long_roundtrip_test/1" extension=".xml" useImplicitFileset="false">
-                <fileset dir="${xsl.output}" includes="*.xml"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="C:/SaxonHE9-9-1-7J/saxon9he.jar"/>
-            </xslt>
-            <echo/>
-            <echo>Step 2</echo>
-            <xslt force="true" style="${build.dir}/../../../../hl7_2_ada/mp/9.0.7/${build.dir}/payload/${build.dir}_hl7_2_ada.xsl" destdir="${xsl.output}/fhir_long_roundtrip_test/2" extension=".xml" useImplicitFileset="false">
-                <fileset dir="${xsl.output}/fhir_long_roundtrip_test/1" includes="*.xml"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="C:/SaxonHE9-9-1-7J/saxon9he.jar"/>
-            </xslt>
-            <echo>Step 3</echo>
-            <xslt force="true" style="${build.dir}/../../../../ada_2_fhir/mp/9.0.7/${build.dir}/payload/${build.dir}_2_fhir.xsl" destdir="${xsl.output}/fhir_long_roundtrip_test/3" extension=".xml" useImplicitFileset="false">
-                <fileset dir="${xsl.output}/fhir_long_roundtrip_test/2" includes="*.xml"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="C:/SaxonHE9-9-1-7J/saxon9he.jar"/>
             </xslt>
