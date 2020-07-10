@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright © Nictiz
+    
+    This program is free software; you can redistribute it and/or modify it under the terms of the
+    GNU Lesser General Public License as published by the Free Software Foundation; either version
+    2.1 of the License, or (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Lesser General Public License for more details.
+    
+    The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../ext-zib-medication-copy-indicator-2.0.xsl">
+    
+    <x:scenario label="ext-zib-medication-copy-indicator-2.0">
+        <x:context mode="ext-zib-Medication-CopyIndicator-2.0">
+            <extension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+                <valueBoolean value="true"/>
+            </extension>
+        </x:context>
+        <x:expect label="'kopie_indicator' element">
+            <kopie_indicator value="true"/>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>
