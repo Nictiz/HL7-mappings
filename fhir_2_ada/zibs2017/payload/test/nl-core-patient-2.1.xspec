@@ -23,12 +23,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <meta>
                         <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
                     </meta>
-                    <text>
-                        <status value="generated"/>
-                        <div xmlns="http://www.w3.org/1999/xhtml">
-                            <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), S. XXX_Jankie, Vrouw, 8 mei 1954</div>
-                        </div>
-                    </text>
                     <identifier>
                         <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                         <value value="999910437"/>
@@ -50,6 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </name>
                     <gender value="female"/>
                     <birthDate value="1954-05-08"/>
+                    <multipleBirthBoolean value="true"/>
                 </Patient>
             </x:context>
             <x:expect label="'patient' element with 'naamgegevens', 'identificatienummer', 'geboortedatum' and 'geslacht' child elements.">
@@ -58,6 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <identificatienummer value="..." root="..."/>
                     <geboortedatum value="..."/>
                     <geslacht code="..." codeSystem="..." displayName="..."/>
+                    <meerling_indicator value="true"/>
                 </patient>
             </x:expect>
         </x:scenario>
@@ -104,6 +100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
             </x:expect>
         </x:scenario>
+        
     </x:scenario>
     
 </x:description>

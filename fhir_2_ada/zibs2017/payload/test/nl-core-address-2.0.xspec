@@ -60,6 +60,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <extension xmlns="http://hl7.org/fhir" url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
                     <valueString value="A"/>
                 </extension>
+                <extension xmlns="http://hl7.org/fhir" url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                    <valueString value="B C"/>
+                </extension>
+                <extension xmlns="http://hl7.org/fhir" url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                    <valueString value=" D"/>
+                </extension>
                 <extension xmlns="http://hl7.org/fhir" url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
                     <valueString value="Huis op de hoek"/>
                 </extension>
@@ -67,82 +73,85 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <x:expect label="various elements">
                 <straat value="Dorpsstraat"/>
                 <huisnummer value="1"/>
-                <huisnummertoevoeging value="A"/>
+                <huisnummerletter value="A"/>
+                <huisnummerletter value="B"/>
+                <huisnummertoevoeging value="C"/>
+                <huisnummertoevoeging value="D"/>
                 <aanduiding_bij_nummer value="Huis op de hoek"/>
             </x:expect>
         </x:scenario>
-    </x:scenario>
     
-    <x:scenario label="name 'address-use-type' mode 'nl-code-address-2.0">
-        <x:context>
-            <address xmlns="http://hl7.org/fhir">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                    <valueCode value="PST"/>
-                </extension>
-            </address>
-            <address xmlns="http://hl7.org/fhir">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                    <valueCode value="HP"/>
-                </extension>
-            </address>
-            <address xmlns="http://hl7.org/fhir">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                    <valueCode value="PHYS"/>
-                </extension>
-            </address>
-            <address xmlns="http://hl7.org/fhir">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                    <valueCode value="HV"/>
-                </extension>
-            </address>
-            <address xmlns="http://hl7.org/fhir">
-                <use value="work"/>
-            </address>
-            <address xmlns="http://hl7.org/fhir">
-                <use value="temp"/>
-            </address>
-            <address xmlns="http://hl7.org/fhir">
-                <type value="postal"/>
-            </address>
-        </x:context>
-        <x:call template="address-use-type"/>
-        <x:expect label="6 different address types">
-            <adres_soort code="PST" codeSystem="2.16.840.1.113883.5.1119" displayName="Postadres"/>
-            <adres_soort code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Officieel adres"/>
-            <adres_soort code="PHYS" codeSystem="2.16.840.1.113883.5.1119" displayName="Woon-/verblijfadres"/>
-            <adres_soort code="HV" codeSystem="2.16.840.1.113883.5.1119" displayName="Vakantie adres"/>
-            <adres_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
-            <adres_soort code="TMP" codeSystem="2.16.840.1.113883.5.1119" displayName="Tijdelijk adres"/>
-            <adres_soort code="PST" codeSystem="2.16.840.1.113883.5.1119" displayName="Postadres"/>
-        </x:expect>
-    </x:scenario>
-    
-    <x:scenario label="match 'f:country'">
-        <x:scenario label="country as string">
-            <x:context mode="nl-core-address-2.0">
-                <country xmlns="http://hl7.org/fhir" value="Nederland"/>
+        <x:scenario label="name 'address-use-type' mode 'nl-code-address-2.0">
+            <x:context>
+                <address xmlns="http://hl7.org/fhir">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                        <valueCode value="PST"/>
+                    </extension>
+                </address>
+                <address xmlns="http://hl7.org/fhir">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                        <valueCode value="HP"/>
+                    </extension>
+                </address>
+                <address xmlns="http://hl7.org/fhir">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                        <valueCode value="PHYS"/>
+                    </extension>
+                </address>
+                <address xmlns="http://hl7.org/fhir">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                        <valueCode value="HV"/>
+                    </extension>
+                </address>
+                <address xmlns="http://hl7.org/fhir">
+                    <use value="work"/>
+                </address>
+                <address xmlns="http://hl7.org/fhir">
+                    <use value="temp"/>
+                </address>
+                <address xmlns="http://hl7.org/fhir">
+                    <type value="postal"/>
+                </address>
             </x:context>
-            <x:expect label="'land' element with @displayName">
-                <land displayName="Nederland"/>
+            <x:call template="address-use-type"/>
+            <x:expect label="6 different address types">
+                <adres_soort code="PST" codeSystem="2.16.840.1.113883.5.1119" displayName="Postadres"/>
+                <adres_soort code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Officieel adres"/>
+                <adres_soort code="PHYS" codeSystem="2.16.840.1.113883.5.1119" displayName="Woon-/verblijfadres"/>
+                <adres_soort code="HV" codeSystem="2.16.840.1.113883.5.1119" displayName="Vakantie adres"/>
+                <adres_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+                <adres_soort code="TMP" codeSystem="2.16.840.1.113883.5.1119" displayName="Tijdelijk adres"/>
+                <adres_soort code="PST" codeSystem="2.16.840.1.113883.5.1119" displayName="Postadres"/>
             </x:expect>
         </x:scenario>
-        <x:scenario label="country as string">
-            <x:context mode="nl-core-address-2.0">
-                <country xmlns="http://hl7.org/fhir">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                        <valueCodeableConcept>
-                            <coding>
-                                <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
-                                <code value="6030"/>
-                                <display value="Nederland"/>
-                            </coding>
-                        </valueCodeableConcept>
-                    </extension>
-                </country>
-            </x:context>
-            <x:expect label="'land' element with @code, etc.">
-                <land code="6030" codeSystem="2.16.840.1.113883.2.4.4.16.34" displayName="Nederland"/>
-            </x:expect>
+        
+        <x:scenario label="match 'f:country'">
+            <x:scenario label="country as string">
+                <x:context mode="nl-core-address-2.0">
+                    <country xmlns="http://hl7.org/fhir" value="Nederland"/>
+                </x:context>
+                <x:expect label="'land' element with @displayName">
+                    <land displayName="Nederland"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="country as string">
+                <x:context mode="nl-core-address-2.0">
+                    <country xmlns="http://hl7.org/fhir">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                                    <code value="6030"/>
+                                    <display value="Nederland"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </country>
+                </x:context>
+                <x:expect label="'land' element with @code, etc.">
+                    <land code="6030" codeSystem="2.16.840.1.113883.2.4.4.16.34" displayName="Nederland"/>
+                </x:expect>
+            </x:scenario>
         </x:scenario>
     </x:scenario>
     

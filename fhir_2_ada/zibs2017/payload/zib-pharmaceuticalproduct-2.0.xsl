@@ -25,21 +25,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xsl:variable name="zib-Product-Description" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description'"/>
- 
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:Medication to ADA product</xd:desc>
+    </xd:doc>
     <xsl:template match="f:Medication" mode="zib-PharmaceuticalProduct-2.0">  
         <product>
+            <!-- product_code -->
             <xsl:apply-templates select="f:code" mode="#current"/>
             <xsl:if test="f:extension|f:form|f:ingredient or (f:code/f:extension/@url=$urlExtHL7NullFlavor and (f:extension|f:form|f:ingredient))">
+                <!-- product_specificatie -->
                 <product_specificatie>
+                    <!-- product_naam -->
                     <xsl:apply-templates select="f:code/f:text" mode="#current"/>
+                    <!-- omschrijving -->
                     <xsl:apply-templates select="f:extension[@url =$zib-Product-Description]" mode="#current"/>
+                    <!-- farmaceutische_vorm -->
                     <xsl:apply-templates select="f:form" mode="#current"/>
+                    <!-- ingredient -->
                     <xsl:apply-templates select="f:ingredient" mode="#current"/>
                 </product_specificatie>
             </xsl:if>
         </product>
     </xsl:template>
-        
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:code to product_code</xd:desc>
+    </xd:doc>
     <xsl:template match="f:code" mode="zib-PharmaceuticalProduct-2.0">
         <xsl:variable name="addOriginalText" select="not(preceding-sibling::f:extension[@url=$zib-Product-Description]) and not(following-sibling::f:form|following-sibling::f:ingredient) and not(f:coding/f:display)"/>   
         <xsl:variable name="addOriginalTextValue" select="if ($addOriginalText) then f:text/@value else ''"/>
@@ -69,7 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>ProductNaam (NL-CM:9.7.19929) is mapped to Medication.code.text</xd:desc>
+        <xd:desc>Template to convert f:code/f:text to product_naam</xd:desc>
     </xd:doc>
     <xsl:template match="f:code/f:text" mode="zib-PharmaceuticalProduct-2.0">
         <product_naam>
@@ -77,26 +89,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </product_naam>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:extension zib-Product-Description to omschrijving</xd:desc>
+    </xd:doc>
     <xsl:template match="f:extension[@url=$zib-Product-Description]" mode="zib-PharmaceuticalProduct-2.0">
         <omschrijving>
             <xsl:attribute name="value" select="f:valueString/@value"/>
         </omschrijving>
     </xsl:template>
-        
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:ingredient to ingredient</xd:desc>
+    </xd:doc>
     <xsl:template match="f:ingredient" mode="zib-PharmaceuticalProduct-2.0">
-            <ingredient>                 
+            <ingredient>
+                <!-- sterkte -->
                 <xsl:apply-templates select="f:amount" mode="zib-PharmaceuticalProduct-2.0"/>
+                <!-- ingredient_code -->
                 <xsl:apply-templates select="f:itemCodeableConcept" mode="zib-PharmaceuticalProduct-2.0"/>
             </ingredient>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:form to farmaceutische_vorm</xd:desc>
+    </xd:doc>
     <xsl:template match="f:form" mode="zib-PharmaceuticalProduct-2.0">
             <xsl:call-template name="CodeableConcept-to-code">
                 <xsl:with-param name="in" select="."/>
                 <xsl:with-param name="adaElementName" select="'farmaceutische_vorm'"/>
             </xsl:call-template>                
     </xsl:template>
-
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:ingredient/f:itemCodeableConcept to ingredient_code</xd:desc>
+    </xd:doc>
     <xsl:template match="f:ingredient/f:itemCodeableConcept" mode="zib-PharmaceuticalProduct-2.0">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
@@ -104,6 +130,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:ingredient/f:amount to sterkte with hoeveelheid_ingredient and hoeveelheid_product children, both of which have waarde and eenheid children.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:ingredient/f:amount" mode="zib-PharmaceuticalProduct-2.0">
         <sterkte>
             <xsl:call-template name="Ratio-to-hoeveelheid-complex">
@@ -112,6 +141,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </sterkte>
     </xsl:template>          
-
 
 </xsl:stylesheet>

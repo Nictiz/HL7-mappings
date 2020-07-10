@@ -24,6 +24,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--Uncomment imports for standalone use and testing.-->
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
+    <xd:doc>
+        <xd:desc>Template to convert f:Condition to ADA probleem.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:Condition" mode="zib-problem-2.1">
         <probleem>
             <!-- Voor MedicationAgreement alleen probleem_naam -->
@@ -31,6 +34,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </probleem>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:code to probleem_naam</xd:desc>
+    </xd:doc>
     <xsl:template match="f:code" mode="zib-problem-2.1">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="adaElementName">probleem_naam</xsl:with-param>

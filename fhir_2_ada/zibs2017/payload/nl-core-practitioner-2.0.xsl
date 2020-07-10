@@ -28,7 +28,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-organization-2.0.xsl"/>-->
     
     <xd:doc>
-        <xd:desc>Template to convert f:MedicationStatement to ADA medicatie_gebruik</xd:desc>
+        <xd:desc>Template to convert f:Practitioner to ADA zorgverlener</xd:desc>
+        <xd:param name="organizationReference">Optional reference to the Organization the Practitioner belongs to e.g. the ADA zorgaanbieder</xd:param>
+        <xd:param name="specialtyReference">Optional reference to the PractitionerRole the Practitioner belongs to e.g. the ADA specialisme</xd:param>
     </xd:doc>
     <xsl:template match="f:Practitioner" mode="nl-core-practitioner-2.0">
         <xsl:param name="organizationReference"/>
@@ -52,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to convert f:identifier to ADA zorgverlener_identificatienummer</xd:desc>
+        <xd:desc>Template to convert f:identifier to zorgverlener_identificatienummer</xd:desc>
         <xd:param name="practitionerIdUnderscore">Optional boolean to create ADA element zorgverlener_identificatie_nummer</xd:param>
     </xd:doc>
     <xsl:template match="f:identifier" mode="nl-core-practitioner-2.0">
@@ -69,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to convert f:name to ADA naamgegevens</xd:desc>
+        <xd:desc>Template to convert f:name to naamgegevens</xd:desc>
         <xd:param name="practitionerNaamgegevensElement">Optional string to create ADA element with alternative name</xd:param>
     </xd:doc>
     <xsl:template match="f:name" mode="nl-core-practitioner-2.0">

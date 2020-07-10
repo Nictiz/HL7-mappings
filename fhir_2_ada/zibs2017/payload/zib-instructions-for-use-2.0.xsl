@@ -26,40 +26,60 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:variable name="zib-Medication-RepeatPeriodCyclicalSchedule" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule'"/>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:dosageInstruction or f:dosage to ADA gebruiksinstructie. Multiple following f:dosage(Instruction) siblings are merged into one gebruiksinstructie.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:dosageInstruction | f:dosage" mode="zib-instructions-for-use-2.0">
         <xsl:choose>
             <xsl:when test="not(preceding-sibling::*[self::f:dosageInstruction or self::f:dosage])">
                 <gebruiksinstructie>
+                    <!-- omschrijving -->
                     <xsl:apply-templates select="f:text" mode="#current"/>
+                    <!-- toedieningsweg -->
                     <xsl:apply-templates select="f:route" mode="#current"/>
+                    <!-- aanvullende_instructie -->
                     <xsl:apply-templates select="f:additionalInstruction" mode="#current"/>
+                    <!-- herhaalperiode_cyclisch_schema -->
                     <xsl:apply-templates select="parent::f:MedicationRequest/f:modifierExtension[@url=$zib-Medication-RepeatPeriodCyclicalSchedule]" mode="#current"/>
                     <xsl:for-each select="(.|following-sibling::*[self::f:dosageInstruction or self::f:dosage])">
-                        <xsl:if test="f:sequence|f:asNeededCodeableConcept|f:doseQuantity|f:doseRange|f:timing|f:asNeededCodeableConcept|f:maxDosePerPeriod|f:rateRatio|f:rateRange|f:rateQuantity">
+                        <xsl:if test="f:sequence|f:asNeededCodeableConcept|f:doseQuantity|f:doseRange|f:timing|f:asNeededCodeableConcept|f:maxDosePerPeriod|f:rateRatio|f:rateRange">
+                            <!-- doseerinstructie -->
                             <doseerinstructie>
+                                <!-- volgnummer -->
                                 <xsl:apply-templates select="f:sequence" mode="#current"/>
+                                <!-- dosserduur -->
                                 <xsl:apply-templates select="f:timing/f:repeat/f:boundsDuration" mode="#current"/>
+                                <!-- dosering -->
                                 <dosering>
+                                    <!-- keerdosis -->
                                     <xsl:if test="f:doseQuantity|f:doseRange">
                                         <keerdosis>
                                             <xsl:apply-templates select="f:doseQuantity" mode="#current"/>
                                             <xsl:apply-templates select="f:doseRange" mode="#current"/>
                                         </keerdosis>
                                     </xsl:if>
+                                    <!-- toedieningsschema -->
                                     <xsl:apply-templates select="f:timing" mode="#current"/>
+                                    <!-- zo_nodig -->
                                     <xsl:if test="f:asNeededCodeableConcept|f:maxDosePerPeriod">
                                         <zo_nodig>
+                                            <!-- criterium -->
                                             <xsl:apply-templates select="f:asNeededCodeableConcept" mode="#current"/>
+                                            <!-- maximale_dosering -->
                                             <xsl:apply-templates select="f:maxDosePerPeriod" mode="#current"/>
                                         </zo_nodig>
                                     </xsl:if>
-                                    <xsl:if test="f:rateRatio|f:rateRange|f:rateQuantity">
+                                    <!-- toedieningssnelheid -->
+                                    <xsl:if test="f:rateRatio|f:rateRange">
                                         <toedieningssnelheid>
+                                            <!-- waarde -->
+                                            <!-- eenheid -->
+                                            <!-- tijdseenheid -->
                                             <xsl:apply-templates select="f:rateRatio" mode="#current"/>
                                             <xsl:apply-templates select="f:rateRange" mode="#current"/>
-                                            <xsl:apply-templates select="f:rateQuantity" mode="#current"/>
                                         </toedieningssnelheid>
                                     </xsl:if>
+                                    <!-- toedieningsduur -->
                                     <xsl:apply-templates select="f:timing/f:repeat/f:duration"/>
                                 </dosering>
                             </doseerinstructie>
@@ -71,12 +91,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:text to omschrijving</xd:desc>
+    </xd:doc>
     <xsl:template match="f:text" mode="zib-instructions-for-use-2.0">
         <omschrijving>
             <xsl:attribute name="value" select="@value"/>
         </omschrijving>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:additionalInstruction to aanvullende_instructie</xd:desc>
+    </xd:doc>
     <xsl:template match="f:additionalInstruction" mode="zib-instructions-for-use-2.0">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
@@ -85,6 +111,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:modifierExtension zib-Medication-RepeatPeriodCyclicalSchedule to herhaalperiode_cyclisch_schema</xd:desc>
+    </xd:doc>
     <xsl:template match="f:modifierExtension[@url=$zib-Medication-RepeatPeriodCyclicalSchedule]" mode="zib-instructions-for-use-2.0">
         <xsl:call-template name="Duration-to-hoeveelheid">
             <xsl:with-param name="in" select="f:valueDuration"/>
@@ -92,6 +121,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:route to toedieningsweg</xd:desc>
+    </xd:doc>
     <xsl:template match="f:route" mode="zib-instructions-for-use-2.0">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
@@ -99,41 +131,65 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:sequence to volgnummer</xd:desc>
+    </xd:doc>
     <xsl:template match="f:sequence" mode="zib-instructions-for-use-2.0">
         <volgnummer value="{@value}"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:boundsDuration to doseerduur</xd:desc>
+    </xd:doc>
     <xsl:template match="f:boundsDuration" mode="zib-instructions-for-use-2.0">
         <xsl:call-template name="Duration-to-hoeveelheid">
             <xsl:with-param name="adaElementName">doseerduur</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:doseQuantity to aantal (with vaste_waarde child) and eenheid elements.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:doseQuantity" mode="zib-instructions-for-use-2.0">
         <xsl:call-template name="Quantity-to-hoeveelheid-complex">
             <xsl:with-param name="withRange" select="true()"/>
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:doseRange to aantal (with min and max children) and eenheid elements.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:doseRange" mode="zib-instructions-for-use-2.0">
         <xsl:call-template name="Range-to-minmax"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:timing to toedieningsschema</xd:desc>
+    </xd:doc>
     <xsl:template match="f:timing" mode="zib-instructions-for-use-2.0">
         <toedieningsschema>
             <xsl:apply-templates select="f:repeat" mode="#current"/>
         </toedieningsschema>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:repeat to frequentie and other siblings</xd:desc>
+    </xd:doc>
     <xsl:template match="f:repeat" mode="zib-instructions-for-use-2.0">
         <xsl:choose>
             <xsl:when test="f:frequency|f:frequencyMax">
+                <!-- frequentie -->
                 <frequentie>
+                    <!-- aantal -->
                     <aantal>
+                        <!-- min -->
+                        <!-- vaste_waarde -->
                         <xsl:apply-templates select="f:frequency" mode="#current"/>
+                        <!-- max -->
                         <xsl:apply-templates select="f:frequencyMax" mode="#current"/>
                     </aantal>
                     <xsl:if test="f:period|f:periodUnit">
+                        <!-- tijdseenheid -->
                         <tijdseenheid>
                             <xsl:apply-templates select="f:period" mode="#current"/>
                             <xsl:apply-templates select="f:periodUnit" mode="#current"/>
@@ -142,21 +198,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </frequentie>
             </xsl:when>
             <xsl:when test="f:period|f:periodUnit">
+                <!-- interval -->
                 <interval>
                     <xsl:apply-templates select="f:period" mode="#current"/>
                     <xsl:apply-templates select="f:periodUnit" mode="#current"/>
                 </interval>
             </xsl:when>
         </xsl:choose>
+        <!-- toedientijd -->
         <xsl:apply-templates select="f:timeOfDay" mode="#current"/>
+        <!-- weekdag -->
         <xsl:apply-templates select="f:dayOfWeek" mode="#current"/>
+        <!-- dagdeel -->
         <xsl:apply-templates select="f:when" mode="#current"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:duration to toedieningsduur</xd:desc>
+    </xd:doc>
     <xsl:template match="f:duration">
         <toedieningsduur value="{@value}" unit="{nf:convertTime_UCUM_FHIR2ADA_unit(following-sibling::f:durationUnit/@value)}"></toedieningsduur>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:frequency to either min or vaste_waarde</xd:desc>
+    </xd:doc>
     <xsl:template match="f:frequency" mode="zib-instructions-for-use-2.0">
         <xsl:choose>
             <xsl:when test="following-sibling::f:frequencyMax">
@@ -167,17 +233,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:frequencyMax to max</xd:desc>
+    </xd:doc>
     <xsl:template match="f:frequencyMax" mode="zib-instructions-for-use-2.0">
         <max value="{@value}"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:periodUnit to @unit attribute</xd:desc>
+    </xd:doc>
     <xsl:template match="f:periodUnit" mode="zib-instructions-for-use-2.0">
         <xsl:attribute name="unit" select="nf:convertTime_UCUM_FHIR2ADA_unit(@value)"/>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:period to @value attribute</xd:desc>
+    </xd:doc>
     <xsl:template match="f:period" mode="zib-instructions-for-use-2.0">
         <xsl:attribute name="value" select="@value"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:timeOfDay to toedientijd</xd:desc>
+    </xd:doc>
     <xsl:template match="f:timeOfDay" mode="zib-instructions-for-use-2.0">
         <toedientijd>
             <xsl:variable name="value">
@@ -198,6 +278,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </toedientijd>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:dayOfWeek to weekdag</xd:desc>
+    </xd:doc>
     <xsl:template match="f:dayOfWeek" mode="zib-instructions-for-use-2.0">
         <weekdag>
             <xsl:call-template name="code-to-code">
@@ -215,6 +298,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </weekdag>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:when to dagdeel</xd:desc>
+    </xd:doc>
     <xsl:template match="f:when" mode="zib-instructions-for-use-2.0">
         <dagdeel>
             <xsl:call-template name="code-to-code">
@@ -229,6 +315,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </dagdeel>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:asNeededCodeableConcept to criterium with code and omschrijving children</xd:desc>
+    </xd:doc>
     <xsl:template match="f:asNeededCodeableConcept" mode="zib-instructions-for-use-2.0">
         <criterium>
             <xsl:call-template name="CodeableConcept-to-code"/>
@@ -239,12 +328,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </criterium>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:maxDosePerPeriod to maximale_dosering with aantal and eenheid children</xd:desc>
+    </xd:doc>
     <xsl:template match="f:maxDosePerPeriod" mode="zib-instructions-for-use-2.0">
         <maximale_dosering>
             <xsl:call-template name="Ratio-to-quotient"/>
         </maximale_dosering>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:rateRatio to waarde (with vaste_waarde child), eenheid and tijdseenheid</xd:desc>
+    </xd:doc>
     <xsl:template match="f:rateRatio" mode="zib-instructions-for-use-2.0">
         <xsl:call-template name="Ratio-to-quotient">
             <xsl:with-param name="withRange" select="true()"/>
@@ -252,6 +347,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:rateRange to waarde (with min and max children), eenheid and tijdseenheid</xd:desc>
+    </xd:doc>
     <xsl:template match="f:rateRange" mode="zib-instructions-for-use-2.0">
         <xsl:variable name="unit" select="(*/f:unit/@value)[1]"/>
         <xsl:variable name="unit-UCUM" select="substring-before($unit,'/')"/>
@@ -282,10 +380,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:variable name="ucum-tijdseenheid-unit" select="concat($firstChar, substring-after($ucum-tijdseenheid, $firstChar))"/>
         <tijdseenheid value="{$ucum-tijdseenheid-value}" unit="{nf:convertTime_UCUM_FHIR2ADA_unit($ucum-tijdseenheid-unit)}"/>
-    </xsl:template>
-    
-    <xsl:template match="f:rateQuantity" mode="zib-instructions-for-use-2.0">
-        <xsl:message terminate="yes"/>
     </xsl:template>
     
 </xsl:stylesheet>

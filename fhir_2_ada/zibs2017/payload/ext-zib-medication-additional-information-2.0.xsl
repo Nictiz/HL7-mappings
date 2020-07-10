@@ -22,8 +22,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
+    <xd:doc>
+        <xd:desc>Template to convert f:extension zib-Medication-AdditionalInformation to aanvullende_informatie element.</xd:desc>
+        <xd:param name="adaElementName">Optional alternative ADA element name.</xd:param>
+    </xd:doc>
     <xsl:template match="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation']" mode="ext-zib-Medication-AdditionalInformation-2.0">
         <xsl:param name="adaElementName" tunnel="yes" select="'aanvullende_informatie'"/>
         <xsl:call-template name="CodeableConcept-to-code">

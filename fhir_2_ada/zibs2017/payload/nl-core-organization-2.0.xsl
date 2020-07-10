@@ -26,6 +26,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-address-2.0.xsl"/>
     <xsl:import href="nl-core-contactpoint-1.0.xsl"/>-->
     
+    <xd:doc>
+        <xd:desc>Template to convert f:Organization to ADA zorgaanbieder</xd:desc>
+    </xd:doc>
     <xsl:template match="f:Organization" mode="nl-core-organization-2.0">
         <zorgaanbieder>
             <!-- zorgaanbieder_identificatienummer -->
@@ -39,6 +42,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </zorgaanbieder>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:identifier to zorgverlener_identificatienummer</xd:desc>
+        <xd:param name="organizationIdUnderscore">Optional boolean to create ADA element zorgaanbieder_identificatie_nummer</xd:param>
+    </xd:doc>
     <xsl:template match="f:identifier" mode="nl-core-organization-2.0">
         <xsl:param name="organizationIdUnderscore" select="false()" tunnel="yes"/>
         <xsl:variable name="adaElementName">
@@ -52,6 +59,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:name to organisatie_naam</xd:desc>
+    </xd:doc>
     <xsl:template match="f:name" mode="nl-core-organization-2.0">
         <organisatie_naam value="{@value}"/>
     </xsl:template>

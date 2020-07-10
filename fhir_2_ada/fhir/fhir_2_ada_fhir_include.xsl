@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc>
-        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#code">@value</xd:a> to ada code element</xd:desc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#code">code @value</xd:a> to ADA code attributes</xd:desc>
         <xd:param name="value">The FHIR @value</xd:param>
         <xd:param name="codeMap">Array of map elements to be used to map input FHIR codes to output ADA codes.</xd:param>
     </xd:doc>
@@ -60,7 +60,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#CodeableConcept">CodeableConcept contents</xd:a> to ada code element.</xd:desc>
         <xd:param name="in">the FHIR CodeableConcept element</xd:param>
-        <xd:param name="inElementName">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
+        <xd:param name="adaElementName">Optional string to provide the name for the output ada element. Default is 'code.</xd:param>
+        <xd:param name="inElementName">Optional string to provide the name of the child of the CodeableConcept. Default is 'coding'.</xd:param>
+        <xd:param name="originalText">Optional string that needs to be mapped to an 'originalText' attribute on the output element.</xd:param>
     </xd:doc>
     <xsl:template name="CodeableConcept-to-code" as="element()*">
         <xsl:param name="in" as="element()?" select="."/>
@@ -132,8 +134,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Transforms FHIR Duration to ada 'hoeveelheid' element</xd:desc>
-        <!--<xd:param name="in">the ada 'hoeveelheid' element, may have any name but should have ada datatype hoeveelheid (quantity)</xd:param>-->
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Duration">Duration</xd:a> to ada hoeveelheid</xd:desc>
+        <xd:param name="in">The FHIR Duration element</xd:param>
+        <xd:param name="adaElementName">Optional string to provide the name of the ada output element. Default is 'tijdseenheid'.</xd:param>
     </xd:doc>
     <xsl:template name="Duration-to-hoeveelheid" as="element()*">
         <xsl:param name="in" as="element()?" select="."/>
@@ -146,27 +149,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="unit" select="$unit"/>
                 </xsl:element>
             </xsl:when>
-            <!--<xsl:when test="$in[@nullFlavor]">
-                <extension url="{$urlExtHL7NullFlavor}">
-                    <valueCode value="{$in/@nullFlavor}"/>
-                </extension>
-            </xsl:when>-->
+            <xsl:when test="$in/f:extension/@url = $urlExtHL7NullFlavor">
+                <xsl:element name="{$adaElementName}">
+                    <xsl:attribute name="nullFlavor" select="$in/f:extension[@url = $urlExtHL7NullFlavor]/f:valueCode/@value"/>
+                </xsl:element>
+            </xsl:when>
         </xsl:choose>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Transforms FHIR Quantity to ada waarde and eenheid elements</xd:desc>
-        <xd:param name="quantity">FHIR Quantity element</xd:param>
-        
-        <!--<xd:param name="waarde">ada element may have any name but should have datatype aantal (count)</xd:param>
-        <xd:param name="eenheid">ada element may have any name but should have datatype code</xd:param>-->
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Quantity">Quantity</xd:a> to ada waarde and eenheid elements</xd:desc>
+        <xd:param name="adaWaarde">Optional string to provide the name of one of the ada output elements. Default (empty string) leads to 'aantal' or 'waarde' element.</xd:param>
+        <xd:param name="adaEenheid">Optional string to provide the name of one of the ada output elements. Default is 'eenheid'.</xd:param>
+        <xd:param name="withRange">Optional boolean. If true, leads to 'waarde' element having a 'vaste_waarde' child element. Default is false.</xd:param>
+        <xd:param name="adaRangeName">Optional string to provide the name of the child of the 'waarde' element. Default is 'vaste_waarde'</xd:param>
     </xd:doc>
     <xsl:template name="Quantity-to-hoeveelheid-complex" as="element()*">
-        <!--<xsl:param name="quantity" as="element()"/>-->
         <xsl:param name="adaWaarde"/>
         <xsl:param name="adaEenheid">eenheid</xsl:param>
         <xsl:param name="withRange" select="false()"/>
-        <xsl:param name="withMinMax"/>
+        <xsl:param name="adaRangeName">vaste_waarde</xsl:param>
         <xsl:variable name="adaWaardeElementName">
             <xsl:choose>
                 <xsl:when test="not($adaWaarde='')">
@@ -177,128 +179,99 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
         
-        <xsl:choose>
-            <xsl:when test="f:extension/@url=$urlExtHL7NullFlavor">
-                <xsl:element name="{$adaWaardeElementName}">
+        <xsl:element name="{$adaWaardeElementName}">
+            <xsl:choose>
+                <xsl:when test="$withRange=true()">
                     <xsl:choose>
-                        <xsl:when test="not($withMinMax='')">
-                            <xsl:element name="{$withMinMax}">
+                        <xsl:when test="f:extension/@url=$urlExtHL7NullFlavor">
+                            <xsl:element name="{$adaRangeName}">
                                 <xsl:attribute name="nullFlavor" select="(f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"></xsl:attribute>
                             </xsl:element>
                         </xsl:when>
                         <xsl:otherwise>
-                            <vaste_waarde>
-                                <xsl:attribute name="nullFlavor" select="(f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"></xsl:attribute>
-                            </vaste_waarde>
+                            <xsl:element name="{$adaRangeName}">
+                                <xsl:attribute name="value" select="f:value/@value"/>
+                            </xsl:element>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:element>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:choose>
-                    <xsl:when test="$withRange=true()">
-                        <xsl:element name="{$adaWaardeElementName}">
-                            <xsl:choose>
-                                <xsl:when test="not($withMinMax='')">
-                                    <xsl:element name="{$withMinMax}">
-                                        <xsl:attribute name="value" select="f:value/@value"/>
-                                    </xsl:element>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <vaste_waarde>
-                                        <xsl:attribute name="value" select="f:value/@value"/>
-                                    </vaste_waarde>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:element>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:element name="{$adaWaardeElementName}">
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:choose>
+                        <xsl:when test="f:extension/@url=$urlExtHL7NullFlavor">
+                            <xsl:attribute name="nullFlavor" select="(f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"></xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
                             <xsl:attribute name="value" select="f:value/@value"/>
-                        </xsl:element>
-                    </xsl:otherwise>
-                </xsl:choose>
-                
-                <xsl:element name="{$adaEenheid}">
-                    <xsl:variable name="oid" select="local:getOid(f:system/@value)"/>
-                    <xsl:attribute name="code" select="f:code/@value"/>
-                    <xsl:attribute name="codeSystem" select="$oid"></xsl:attribute>
-                    <xsl:attribute name="codeSystemName" select="local:getDisplayName($oid)"></xsl:attribute>
-                    <xsl:attribute name="displayName" select="f:unit/@value"></xsl:attribute>
-                </xsl:element>
-            </xsl:otherwise>
-        </xsl:choose>
-        <!--
-                <value value="{$waarde/@value}"/>
-                <xsl:for-each select="$eenheid[@code]">
-                    <xsl:for-each select="./@displayName">
-                        <unit value="{replace(., '(^\s+)|(\s+$)', '')}"/>
-                    </xsl:for-each>
-                    <xsl:for-each select="./@codeSystem">
-                        <system value="{local:getUri(.)}"/>
-                    </xsl:for-each>
-                    <code value="{if (@codeSystem = $oidUCUM) then nf:convert_ADA_unit2UCUM_FHIR($eenheid/@code) else $eenheid/@code}"/>
-                </xsl:for-each>
-            </xsl:otherwise>
-        </xsl:choose>-->
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:element>
+        
+        <xsl:if test="not(f:extension/@url=$urlExtHL7NullFlavor)">
+            <xsl:element name="{$adaEenheid}">
+                <xsl:variable name="oid" select="local:getOid(f:system/@value)"/>
+                <xsl:attribute name="code" select="f:code/@value"/>
+                <xsl:attribute name="codeSystem" select="$oid"></xsl:attribute>
+                <xsl:attribute name="codeSystemName" select="local:getDisplayName($oid)"></xsl:attribute>
+                <xsl:attribute name="displayName" select="f:unit/@value"></xsl:attribute>
+            </xsl:element>
+        </xsl:if>
+            
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Ratio">Ratio</xd:a> to ada complex 'hoeveelheid'</xd:desc>
+        <xd:param name="numeratorAdaName">Required string to name the ada element the f:numerator Quantity gets transformed to.</xd:param>
+        <xd:param name="denominatorAdaName">Required string to name the ada element the f:denominator Quantity gets transformed to.</xd:param>
+    </xd:doc>
     <xsl:template name="Ratio-to-hoeveelheid-complex" as="element()*">
-        <!--<xsl:param name="numerator" as="element()"/>
-        <xsl:param name="denominator" as="element()"/>-->
         <xsl:param name="numeratorAdaName" as="xs:string"/>
         <xsl:param name="denominatorAdaName" as="xs:string"/>
         
         <xsl:for-each select="f:numerator">
             <xsl:element name="{$numeratorAdaName}">
-                <xsl:call-template name="Quantity-to-hoeveelheid-complex">
-                    <!--<xsl:with-param name="quantity" select="f:numerator"/>-->
-                </xsl:call-template>
+                <xsl:call-template name="Quantity-to-hoeveelheid-complex"/>
             </xsl:element>
         </xsl:for-each>
         
         <xsl:for-each select="f:denominator">
             <xsl:element name="{$denominatorAdaName}">
-                <xsl:call-template name="Quantity-to-hoeveelheid-complex">
-                    <!--<xsl:with-param name="quantity" select="f:denominator"/>-->
-                </xsl:call-template>
+                <xsl:call-template name="Quantity-to-hoeveelheid-complex"/>
             </xsl:element>
         </xsl:for-each>
-        
-        <!--<xsl:for-each select="$numerator">
-            <numerator>
-                <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                    <xsl:with-param name="eenheid" select="./eenheid"/>
-                    <xsl:with-param name="waarde" select="./waarde"/>
-                </xsl:call-template>
-            </numerator>
-        </xsl:for-each>
-        <xsl:for-each select="$denominator">
-            <denominator>
-                <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                    <xsl:with-param name="eenheid" select="./eenheid"/>
-                    <xsl:with-param name="waarde" select="./waarde"/>
-                </xsl:call-template>
-            </denominator>
-        </xsl:for-each>-->
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#identifier">Identifier</xd:a> to ada 'identificatie'</xd:desc>
+        <xd:param name="in">Optional input element. Should be of type FHIR Identifier. Defaults to self (.)</xd:param>
+        <xd:param name="adaElementName">Optional string for the output ada element name. Default is 'identificatie'.</xd:param>
+    </xd:doc>
     <xsl:template name="Identifier-to-identificatie" as="element()">
         <xsl:param name="in" select="."/>
         <xsl:param name="adaElementName">identificatie</xsl:param>
         <xsl:element name="{$adaElementName}">
             <xsl:choose>
-                <xsl:when test="f:value/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason'">
+                <xsl:when test="$in/f:extension/@url = $urlExtHL7NullFlavor">
+                    <xsl:attribute name="nullFlavor" select="($in/f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"/>
+                </xsl:when>
+                <xsl:when test="$in/f:value/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason'">
                     <xsl:attribute name="nullFlavor" select="'MSK'"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:attribute name="value" select="$in/f:value/@value"/>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:attribute name="root" select="local:getOid($in/f:system/@value)"/>
+            <xsl:if test="$in/f:system/@value">
+                <xsl:attribute name="root" select="local:getOid($in/f:system/@value)"/>
+            </xsl:if>
         </xsl:element>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/references.html#Reference">Reference</xd:a> to ada 'identificatie'</xd:desc>
+        <xd:param name="resourceList">Xpath sequence of the resource names as strings that are allowed when resolving the reference (e.g. "('MedicationUse','MedicationStatement')</xd:param>
+    </xd:doc>
     <xsl:template name="Reference-to-identificatie">
         <xsl:param name="resourceList"/>
         <xsl:choose>
@@ -334,10 +307,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/references.html#Period">Period</xd:a> to two ada date elements (start and eind)</xd:desc>
+        <xd:param name="in">Optional input element. Shoulfd be FHIR Period. Defaults to self (.).</xd:param>
+        <xd:param name="adaElementNameStart">Optional string to name the ada element where f:start is mapped to. Default is 'start'.</xd:param>
+        <xd:param name="adaElementNameEnd">Optional string to name the ada element where f:end is mapped to. Default is 'eind'.</xd:param>
+    </xd:doc>
     <xsl:template name="Period-to-dates">
         <xsl:param name="in" select="."/>
-        <xsl:param name="adaElementNameStart"/>
-        <xsl:param name="adaElementNameEnd"/>
+        <xsl:param name="adaElementNameStart">start</xsl:param>
+        <xsl:param name="adaElementNameEnd">eind</xsl:param>
         
         <xsl:for-each select="$in/f:start">
             <xsl:element name="{$adaElementNameStart}">
@@ -360,17 +339,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Transforms ada element to FHIR Range</xd:desc>
-        <xd:param name="in">ada element with sub ada elements min and max (both with datatype aantal/count) and a sibling ada element eenheid (datatype code)</xd:param>
+        <xd:desc>Transforms FHIR Range to ada 'aantal' element with 'min' and 'max' children and 'eenheid' sibling.</xd:desc>
+        <xd:param name="in">Optional input element. Should be FHIR Range with f:low and f:high children. Defaults to self (.).</xd:param>
     </xd:doc>
     <xsl:template name="Range-to-minmax" as="element()*">
         <xsl:param name="in" as="element()?" select="."/>
-        
-        <!--<xsl:choose>
-            <xsl:when test="$in/f:low/f:extension/@url=$urlExtHL7NullFlavor">
-                
-            </xsl:when>
-            <xsl:otherwise>-->
+
         <xsl:variable name="intermediate">
             <xsl:for-each select="(f:low|f:high)">
                 <xsl:variable name="adaWaarde">
@@ -381,7 +355,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <xsl:call-template name="Quantity-to-hoeveelheid-complex">
                     <xsl:with-param name="withRange" select="true()"/>
-                    <xsl:with-param name="withMinMax">
+                    <xsl:with-param name="adaRangeName">
                         <xsl:choose>
                             <xsl:when test="self::f:low">min</xsl:when>
                             <xsl:when test="self::f:high">max</xsl:when>
@@ -399,32 +373,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each-group select="$intermediate/eenheid" group-by="concat(@code,'|',@codeSystem,'|',@dislayName)">
             <xsl:copy-of select="current-group()[1]"/>
         </xsl:for-each-group>
-                        
-            <!--</xsl:otherwise>
-        </xsl:choose>-->
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Transforms ada element numerator-aantal, -eenheid and denominator to FHIR Ratio</xd:desc>
-        <xd:param name="numeratorAantal">ada element of datatype aantal (count)</xd:param>
-        <xd:param name="numeratorEenheid">ada element of datatype code</xd:param>
-        <xd:param name="denominator">ada element of datatype hoeveelheid (quantity)</xd:param>
+        <xd:desc>Transforms FHIR Ratio to ada element aantal, eenheid and tijdseenheid</xd:desc>
+        <xd:param name="in">Optional input element. Should be FHIR Ratio with f:numerator and f:denominator children. Defaults to self (.).</xd:param>
+        <xd:param name="withRange">Gives ada 'aantal' output a 'vaste_waarde' child to make it a range.</xd:param>
+        <xd:param name="adaWaarde">Name of ada output element. Defaults to 'aantal'</xd:param>
     </xd:doc>
     <xsl:template name="Ratio-to-quotient" as="element()*">
         <xsl:param name="in" select="."/>
         <xsl:param name="withRange" select="false()"/>
         <xsl:param name="adaWaarde">aantal</xsl:param>
-        <!--<xsl:param name="numeratorAantal" as="element()?"/>
-        <xsl:param name="numeratorEenheid" as="element()?"/>
-        <xsl:param name="denominator" as="element()?"/>-->
-        <!--<xsl:if test="$numeratorAantal | $numeratorEenheid">
-            <numerator>
-                <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                    <xsl:with-param name="eenheid" select="$numeratorEenheid"/>
-                    <xsl:with-param name="waarde" select="$numeratorAantal"/>
-                </xsl:call-template>
-            </numerator>
-        </xsl:if>-->
+        
         <xsl:for-each select="$in/f:numerator">
             <xsl:call-template name="Quantity-to-hoeveelheid-complex">
                 <xsl:with-param name="adaWaarde" select="$adaWaarde"/>
@@ -434,6 +395,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in/f:denominator">
             <xsl:call-template name="Duration-to-hoeveelheid"/>
         </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#boolean">boolean @value</xd:a> to ada boolean element</xd:desc>
+        <xd:param name="in">the FHIR boolean element. Defaults to self (.).</xd:param>
+    </xd:doc>
+    <xsl:template name="boolean-to-boolean" as="attribute()*">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:choose>
+            <xsl:when test="$in/f:extension/@url = $urlExtHL7NullFlavor">
+                <xsl:attribute name="nullFlavor" select="f:extension[@url = $urlExtHL7NullFlavor]/f:valueCode/@value"/>
+            </xsl:when>
+            <xsl:when test="$in/@value">
+                <xsl:attribute name="value" select="$in/@value"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     
     <xd:doc>

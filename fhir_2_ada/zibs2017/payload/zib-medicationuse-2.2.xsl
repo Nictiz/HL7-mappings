@@ -113,7 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="dateTime" select="@value"/>
                 </xsl:call-template>
             </xsl:attribute>
-            <xsl:attribute name="datatype">datetime</xsl:attribute>
+            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
         </gebruiksperiode_start>
     </xsl:template>
     
@@ -127,7 +127,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="dateTime" select="@value"/>
                 </xsl:call-template>
             </xsl:attribute>
-            <xsl:attribute name="datatype">datetime</xsl:attribute>
+            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
         </gebruiksperiode_eind>
     </xsl:template>
 

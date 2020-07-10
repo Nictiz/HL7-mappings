@@ -28,20 +28,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="nl-core-patient" select="'http://fhir.nl/fhir/StructureDefinition/nl-core-patient'"/>
     
     <xd:doc>
-        <xd:desc></xd:desc>
+        <xd:desc>Template to convert f:Patient to ADA patient</xd:desc>
     </xd:doc>
     <xsl:template match="f:Patient" mode="nl-core-patient-2.1">
         <patient>
-            <!-- Additional narrative as @comment? -->
+            <!-- naamgegevens -->
             <xsl:apply-templates select="f:name" mode="nl-core-humanname-2.0"/>
+            <!-- identificatienummer -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
+            <!-- geboortedatum -->
             <xsl:apply-templates select="f:birthDate" mode="#current"/>
+            <!-- geslacht -->
             <xsl:apply-templates select="f:gender" mode="#current"/>
+            <!-- meerling_indicator -->
+            <xsl:apply-templates select="f:multipleBirthBoolean" mode="#current"/>
         </patient>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc></xd:desc>
+        <xd:desc>Template to convert f:identifier to identificatienummer</xd:desc>
     </xd:doc>
     <xsl:template match="f:identifier" mode="nl-core-patient-2.1">
         <xsl:call-template name="Identifier-to-identificatie">
@@ -50,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc></xd:desc>
+        <xd:desc>Template to convert f:birthDate to geboortedatum</xd:desc>
     </xd:doc>
     <xsl:template match="f:birthDate" mode="nl-core-patient-2.1">
         <geboortedatum>
@@ -65,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc></xd:desc>
+        <xd:desc>Template to convert f:gender to geslacht</xd:desc>
     </xd:doc>
     <xsl:template match="f:gender" mode="nl-core-patient-2.1">
         <geslacht>
@@ -80,6 +85,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
             <!-- displayName attribute? -->
         </geslacht>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:multipleBirthBoolean to meerling_indicator</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:multipleBirthBoolean" mode="nl-core-patient-2.1">
+        <meerling_indicator>
+            <xsl:call-template name="boolean-to-boolean"/>
+        </meerling_indicator>
     </xsl:template>
     
 </xsl:stylesheet>

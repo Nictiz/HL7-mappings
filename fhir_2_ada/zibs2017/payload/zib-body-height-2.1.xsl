@@ -24,11 +24,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--Uncomment imports for standalone use and testing.-->
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
+    <xd:doc>
+        <xd:desc>Template to resolve f:supportingInformation to correct Observation resource.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:supportingInformation" mode="resolve-bodyHeight">
         <xsl:variable name="reference" select="f:reference/@value"/>
         <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$reference]/f:resource/f:Observation[f:meta/f:profile/@value='http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight']" mode="zib-body-height-2.1"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:Observation to ADA lichaamslengte.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:Observation" mode="zib-body-height-2.1">
         <lichaamslengte>
             <!-- lengte_waarde -->
@@ -38,10 +44,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </lichaamslengte>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:valueQuantity to lengte_waarde.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:valueQuantity" mode="zib-body-height-2.1">
         <lengte_waarde value="{f:value/@value}" unit="{f:unit/@value}"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:effectiveDateTime to lengte_datum_tijd.</xd:desc>
+    </xd:doc>
     <xsl:template match="f:effectiveDateTime" mode="zib-body-height-2.1">
         <lengte_datum_tijd>
             <xsl:choose>

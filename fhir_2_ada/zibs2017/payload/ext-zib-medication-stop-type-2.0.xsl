@@ -25,14 +25,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xd:doc>
-        <xd:desc>Resolves zib-Medication-StopType f:modifierExtension.</xd:desc>
+        <xd:desc>Template to resolve f:modifierExtension zib-Medication-StopType.</xd:desc>
     </xd:doc>
     <xsl:template match="f:modifierExtension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType']" mode="ext-zib-Medication-Stop-Type-2.0">
         <xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Transforms f:valueCodeableConcept to ADA stoptype.</xd:desc>
+        <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
     </xd:doc>
     <xsl:template match="f:valueCodeableConcept" mode="ext-zib-Medication-Stop-Type-2.0">
         <xsl:call-template name="CodeableConcept-to-code">
