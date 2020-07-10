@@ -17,6 +17,7 @@ The repo is organized along the following folders:
 * `ada_2_ada`: mappings to translate from ADA to ADA formats.
 * `ada_2_fhir`: mappings to translate from ADA to FHIR formats.
 * `ada_2_hl7`: mappings to translate from ADA to HL7v3 formats.
+* `fhir_2_ada`: mappings to translate from FHIR to ADA formats.
 * `hl7_2_ada`: mappings to translate from HL7v3 to ADA formats.
 * `hl7_2_fhir`: mappings to directly translate from HL7v3 to FHIR formats, without the intermediate ADA format.
 * `util`: general building blocks used across all mappings
