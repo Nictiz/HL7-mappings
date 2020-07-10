@@ -164,7 +164,7 @@
                         <xslt force="true" style="${xslt.dir}/generateTestScript.xsl" in="@{file}" out="${temp.dir}/${file.reldir}/${file.newname}">                            
                             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                             <classpath location="${Saxon-HE.jar}"/>
-                            <param name="inputDir" expression="file://${projectdir.unix}"/>
+                            <param name="inputDir" expression="file:///${projectdir.unix}"/>
                             <param name="referenceFolder" expression="_reference"/>
                             <param name="commonComponentFolder" expression="../common-asserts"/>
                             <param name="projectComponentFolder" expression="_components"/>
