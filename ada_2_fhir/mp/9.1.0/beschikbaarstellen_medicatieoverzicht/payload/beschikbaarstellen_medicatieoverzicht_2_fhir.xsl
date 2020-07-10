@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
     <xsl:import href="../../../2_fhir_mp91_include.xsl"/>
+     
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -28,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:output method="xml" indent="yes"/>
+    <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 and may not be used in a production situation -->

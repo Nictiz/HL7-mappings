@@ -28,15 +28,6 @@
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
 
-        <!-- sturen_medicatievoorschrift -->
-        <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="schema.string" value="*${usecase.mv}*"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
-        </antcall>
-
         <!-- beschikbaarstellen_medicatiegegevens -->
         <!-- beschikbaarstellen_medicatiegegevens MA -->
         <antcall target="setup_sub">

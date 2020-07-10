@@ -1,5 +1,6 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:import href="../../../util/mp-functions.xsl"/>-->
 
     <xd:doc>
         <xd:desc>does some processing for ada element 'toedieningsweg' based on whether it is in transaction for verstrekkingenvertaling (toedieningsweg 0..1 R) or other transactions (toedieningsweg 1..1 R)</xd:desc>
@@ -87,7 +88,7 @@
                 <xsl:if test="../../doseerduur or ../toedieningsduur or .//*[@value or @code]">
                     <repeat>
                         <!-- exact / is_flexibel -->
-                        <xsl:for-each select="is_flexibel[@value|@nullFlavor]">
+                        <xsl:for-each select="is_flexibel[@value | @nullFlavor]">
                             <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                 <valueBoolean>
                                     <xsl:choose>
@@ -103,7 +104,7 @@
                                 </valueBoolean>
                             </extension>
                         </xsl:for-each>
-                        
+
                         <!-- doseerduur -->
                         <xsl:for-each select="../../doseerduur[@value]">
                             <boundsDuration>
@@ -112,13 +113,13 @@
                                 </xsl:call-template>
                             </boundsDuration>
                         </xsl:for-each>
-                        
+
                         <!-- toedieningsduur -->
                         <xsl:for-each select="../toedieningsduur[@value]">
                             <duration value="{./@value}"/>
                             <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:for-each>
-                        
+
                         <!-- frequentie -->
                         <xsl:for-each select="frequentie/aantal/(vaste_waarde | min)[@value]">
                             <frequency value="{./@value}"/>
@@ -126,19 +127,19 @@
                         <xsl:for-each select="frequentie/aantal/(max)[@value]">
                             <frequencyMax value="{./@value}"/>
                         </xsl:for-each>
-                        
+
                         <!-- frequentie/tijdseenheid -->
                         <xsl:for-each select="frequentie/tijdseenheid">
                             <period value="{./@value}"/>
                             <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:for-each>
-                        
+
                         <!-- interval -->
                         <xsl:for-each select="interval">
                             <period value="{./@value}"/>
                             <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:for-each>
-                        
+
                         <!-- weekdag -->
                         <xsl:for-each select="weekdag">
                             <dayOfWeek>
@@ -155,30 +156,30 @@
                                 </xsl:attribute>
                             </dayOfWeek>
                         </xsl:for-each>
-                        
+
                         <!-- toedientijd -->
                         <xsl:for-each select="toedientijd[@value]">
                             <xsl:choose>
                                 <xsl:when test="nf:add-Amsterdam-timezone-to-dateTimeString(@value) castable as xs:dateTime">
-                                    <timeOfDay value="{format-dateTime(xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>                                    
+                                    <timeOfDay value="{format-dateTime(xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>
                                 </xsl:when>
                                 <xsl:when test="nf:add-Amsterdam-timezone-to-dateTimeString(@value) castable as xs:time">
-                                    <timeOfDay value="{format-time(xs:time(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>                                    
+                                    <timeOfDay value="{format-time(xs:time(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>
                                 </xsl:when>
-                                    <!-- not a dateTime or Time as input, let's check for an ada T date -->
+                                <!-- not a dateTime or Time as input, let's check for an ada T date -->
                                 <xsl:when test="nf:calculate-t-date(@value, xs:date('1970-01-01')) castable as xs:dateTime">
                                     <!-- ada T date as input (T+0D{08:00:00}), lets convert it to a proper dateTime using date 1 Jan 1970, 
                                         this date is not relevant for toedientijd -->
-                                    <timeOfDay value="{format-dateTime(xs:dateTime(nf:calculate-t-date(@value, xs:date('1970-01-01'))), '[H01]:[m01]:[s01]')}"/>                                    
-                                 </xsl:when>
+                                    <timeOfDay value="{format-dateTime(xs:dateTime(nf:calculate-t-date(@value, xs:date('1970-01-01'))), '[H01]:[m01]:[s01]')}"/>
+                                </xsl:when>
                                 <xsl:otherwise>
                                     <!-- Should not happen, let's at least make it visible and output the unexpected ada value in FHIR timeOfDay -->
                                     <!-- Will most likely cause invalid FHIR, but at least that will be noticed -->
-                                    <timeOfDay value="{@value}"/> 
+                                    <timeOfDay value="{@value}"/>
                                 </xsl:otherwise>
                             </xsl:choose>
-                          </xsl:for-each>
-                        
+                        </xsl:for-each>
+
                         <!-- dagdeel -->
                         <xsl:for-each select="dagdeel[@code][not(@codeSystem = $oidHL7NullFlavor)]">
                             <when>
@@ -190,9 +191,9 @@
                                         <xsl:when test="./@code = '2546009'">NIGHT</xsl:when>
                                     </xsl:choose>
                                 </xsl:attribute>
-                            </when>                            
+                            </when>
                         </xsl:for-each>
-                        
+
                     </repeat>
                 </xsl:if>
             </timing>
@@ -217,8 +218,11 @@
         <xsl:if test="$outputText">
             <xsl:for-each select="../../omschrijving[@value]">
                 <text>
-                    <xsl:call-template name="string-to-string"/>
+                    <xsl:call-template name="string-to-string">
+                        <xsl:with-param name="in" select="nf:gebruiksinstructie-ada-preprocess(., $generateInstructionText)"/>
+                    </xsl:call-template>
                 </text>
+
             </xsl:for-each>
         </xsl:if>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
@@ -372,7 +376,7 @@
             Without the FHIR element dosage / dosageInstruction, 
             the name of that FHIR-element differs between MedicationStatement and MedicationRequest
         </xd:desc>
-        <xd:param name="outputText">Optional, defaults to true.Whether or not to output the text. From 9.1.0  onwards the text is in an extension on the resource level.</xd:param>
+        <xd:param name="outputText">Optional, defaults to true. Whether or not to output the text. From 9.1.0 onwards the text is in an extension on the resource level.</xd:param>
     </xd:doc>
     <xsl:template name="zib-InstructionsForUse-3.0-di" match="doseerinstructie" mode="doDosageContents-3.0">
         <xsl:param name="outputText" as="xs:boolean?" select="true()"/>
@@ -380,7 +384,11 @@
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:if test="$outputText">
             <xsl:for-each select="../omschrijving[@value]">
-                <text value="{./@value}"/>
+                <text>
+                    <xsl:call-template name="string-to-string">
+                        <xsl:with-param name="in" select="nf:gebruiksinstructie-ada-preprocess(., $generateInstructionText)"/>
+                    </xsl:call-template>
+                </text>
             </xsl:for-each>
         </xsl:if>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
@@ -426,7 +434,11 @@
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:if test="$outputText">
             <xsl:for-each select="omschrijving[@value]">
-                <text value="{./@value}"/>
+                <text>
+                    <xsl:call-template name="string-to-string">
+                        <xsl:with-param name="in" select="nf:gebruiksinstructie-ada-preprocess(., $generateInstructionText)"/>
+                    </xsl:call-template>
+                </text>
             </xsl:for-each>
         </xsl:if>
 
@@ -439,7 +451,7 @@
                 </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>
-        
+
         <!-- gebruiksinstructie/toedieningsweg -->
         <xsl:apply-templates select="toedieningsweg" mode="_handleToedieningsweg-3.0"/>
 
