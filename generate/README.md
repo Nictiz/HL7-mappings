@@ -178,7 +178,7 @@ For the project build file, a particular folder structure is expected:
         - \_components/  : the components specific for that project
         - \_reference/   : the fixtures for that project
 - build/                 : the dir where the output will be placed (you probably want to add this to `.gitignore`)
-- lib/                   :
+- lib/                   : the dir where build tools should be placed
     - ant-dependencies/  : the dir where the dependencies for ANT will be placed (you probably want to add this to `.gitignore`)
 
 The script will ask you for one of the project dirs inside the `src/` dir. Alternatively, this can be passed in the ANT call with the `-Dproject=` option.
