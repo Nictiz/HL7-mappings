@@ -157,16 +157,19 @@ The transformation is performed with the `generateTestScript.xsl` stylesheet, wh
 
 ## Building
 
-There is an [Apache ANT](http://ant.apache.org/) based build file available (`ant/ant.xml`) to facilitate building of NTS projects. The normal use of this build script is to import it from another ANT build script, like:
+There is an [Apache ANT](http://ant.apache.org/) based build file available (`ant/build.xml`) to facilitate building of NTS projects. The normal use of this build script is to keep it in the current folder structure and call it from another ANT build script, like:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." name="generateTestScriptsForProject" default="clean">
-    <import file="path/to/this/dir/ant/build.xml"/>
+<project basedir="." name="generateTestScriptsForProject">
+
+    <target name="build">
+        <ant file="path/to/this/dir/ant/build.xml" target="clean/>
+    </target>        
 </project>
 ```
 
-A particular folder structure relative to this new build file is expected:
+For the project build file, a particular folder structure is expected:
 - build.xml              : the file that imports this build script
 - src/                   : the dir containing the source files 
     - common-asserts/    : the common components across all projects
@@ -174,9 +177,9 @@ A particular folder structure relative to this new build file is expected:
         - InputFolder1/  : one or more dirs containg NTS files
         - \_components/  : the components specific for that project
         - \_reference/   : the fixtures for that project
-- build/                 : the dir where the output will be placed
+- build/                 : the dir where the output will be placed (you probably want to add this to `.gitignore`)
 - lib/                   :
-    - ant-dependencies/  : the dir where the dependencies for ANT will be placed (you probably want to add this to .gitignore)
+    - ant-dependencies/  : the dir where the dependencies for ANT will be placed (you probably want to add this to `.gitignore`)
 
 The script will ask you for one of the project dirs inside the `src/` dir. Alternatively, this can be passed in the ANT call with the `-Dproject=` option.
 
