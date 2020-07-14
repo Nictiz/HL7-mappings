@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../nl-core-practitioner-2.0.xsl">
+    
+    <x:scenario label="nl-core-practitioner-2.0">
+        
+        <x:scenario label="match 'f:Practitioner' mode 'nl-core-practitioner-2.0'">
+            <x:context mode="nl-core-practitioner-2.0" select="f:Bundle/f:entry/f:resource/f:Practitioner">
+                <x:param name="specialtyReference" select="'urn:uuid:de182881-9e98-11ea-2050-020000000000'"/>
+                <x:param name="organizationReference" select="'urn:oid:2.16.528.1.1007.3.3.1111'"/>
+                <Bundle xmlns="http://hl7.org/fhir">
+                    <entry>
+                        <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                        <resource>
+                            <Practitioner>
+                                <meta>
+                                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+                                </meta>
+                                <text/>
+                                <identifier>
+                                    <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                                    <value value="000001111"/>
+                                </identifier>
+                                <name>
+                                    <family value="van Pulver">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                            <valueString value="van"/>
+                                        </extension>
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                            <valueString value="Pulver"/>
+                                        </extension>
+                                    </family>
+                                    <given value="Peter">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                            <valueCode value="BR"/>
+                                        </extension>
+                                    </given>
+                                </name>
+                            </Practitioner>
+                        </resource>
+                    </entry>
+                    <entry>
+                        <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                        <resource>
+                            <Organization>
+                                <meta>
+                                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                                </meta>
+                                <text/>
+                                <identifier>
+                                    <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                                    <value value="00001111"/>
+                                </identifier>
+                                <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                                <address>
+                                    <use value="work"/>
+                                    <line value="Dorpsstraat 1">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                                            <valueString value="Dorpsstraat"/>
+                                        </extension>
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                                            <valueString value="1"/>
+                                        </extension>
+                                    </line>
+                                    <city value="Ons Dorp"/>
+                                    <postalCode value="1234AA"/>
+                                </address>
+                            </Organization>
+                        </resource>
+                    </entry>
+                    <entry>
+                        <fullUrl value="urn:uuid:de182881-9e98-11ea-2050-020000000000"/>
+                        <resource>
+                            <PractitionerRole>
+                                <meta>
+                                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                                </meta>
+                                <text/>
+                                <practitioner>
+                                    <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                                    <display value="Peter van Pulver"/>
+                                </practitioner>
+                                <organization>
+                                    <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                                    <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                                </organization>
+                                <specialty>
+                                    <coding/>
+                                </specialty>
+                            </PractitionerRole>
+                        </resource>
+                    </entry>
+                </Bundle>
+            </x:context>
+            <x:expect label="'zorgverlener' element">
+                <zorgverlener>
+                    <zorgverlener_identificatienummer
+                        value="000001111"
+                        root="2.16.528.1.1007.3.1"/>
+                    <naamgegevens>...</naamgegevens>
+                    <specialisme/>
+                    <zorgaanbieder>...</zorgaanbieder>
+                </zorgverlener>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="match 'f:Practitioner' mode 'nl-core-practitioner-2.0' with tunnel parameter 'practitionerNaamgegevensElement">
+            <x:context mode="nl-core-practitioner-2.0" select="f:Bundle/f:entry/f:resource/f:Practitioner">
+                <x:param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
+                <Bundle xmlns="http://hl7.org/fhir">
+                    <entry>
+                        <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                        <resource>
+                            <Practitioner>
+                                <name>
+                                    <family value="van Pulver">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                            <valueString value="van"/>
+                                        </extension>
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                            <valueString value="Pulver"/>
+                                        </extension>
+                                    </family>
+                                    <given value="Peter">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                            <valueCode value="BR"/>
+                                        </extension>
+                                    </given>
+                                </name>
+                            </Practitioner>
+                        </resource>
+                    </entry>
+                </Bundle>
+            </x:context>
+            <x:expect label="'zorgverlener' element with 'zorgverlener_naam' child">
+                <zorgverlener>
+                    <zorgverlener_naam>...</zorgverlener_naam>
+                </zorgverlener>
+            </x:expect>
+        </x:scenario>
+        
+    </x:scenario>
+    
+</x:description>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../nl-core-organization-2.0.xsl">
+    
+    <x:scenario label="nl-core-organization-2.0">
+        <x:context mode="nl-core-organization-2.0">
+            <Organization xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                </meta>
+                <text/>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                    <value value="00001111"/>
+                </identifier>
+                <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                <telecom>
+                    <system value="phone"/>
+                    <value value="099-12345678"/>
+                </telecom>
+                <telecom>
+                    <system value="email"/>
+                    <value value="XXX-TEST-D@123mail.com"/>
+                    <use value="home">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                                    <code value="HP"/>
+                                    <display value="Privé e-mailadres"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </use>
+                </telecom>
+                <address>
+                    <use value="work"/>
+                    <line value="Dorpsstraat 1">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                            <valueString value="Dorpsstraat"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                            <valueString value="1"/>
+                        </extension>
+                    </line>
+                    <city value="Ons Dorp"/>
+                    <postalCode value="1234AA"/>
+                </address>
+            </Organization>
+        </x:context>
+        <x:expect label="'zorgaanbieder' element">
+            <zorgaanbieder>
+                <zorgaanbieder_identificatienummer
+                    value="00001111"
+                    root="2.16.528.1.1007.3.3"/>
+                <organisatie_naam
+                    value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                <contactgegevens>...</contactgegevens>
+                <adresgegevens>...</adresgegevens>
+            </zorgaanbieder>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>

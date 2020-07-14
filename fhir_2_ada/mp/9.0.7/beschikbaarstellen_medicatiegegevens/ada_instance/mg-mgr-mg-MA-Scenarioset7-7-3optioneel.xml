@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2020-07-10T15:56:12.742+02:00"
+         last-update-date="2020-07-10T15:56:12.742+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens 9.0.7 xml"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <initialen value="R."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX-TEST-E"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer nullFlavor="MSK" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1970-05-05"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_907_magistraal90miljoennr"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <gebruiksperiode_start value="T+0D{00:00:00}"/>
+               <gebruiksperiode_eind value="T+30D{23:59:59}"/>
+               <identificatie value="MBH_907_magistraal90miljoennr_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{12:08:00}"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam>
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens>
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="90000001"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"
+                                   displayName="Eigen artikel: ureumzalf"
+                                   preferred="true"/>
+                     <product_specificatie>
+                        <product_naam value="Eigen artikel: ureumzalf"/>
+                        <omschrijving value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
+                        <ingredient>
+                           <sterkte>
+                              <hoeveelheid_ingredient>
+                                 <waarde value="10"/>
+                                 <eenheid code="215"
+                                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                          codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                                          displayName="gram"/>
+                              </hoeveelheid_ingredient>
+                              <hoeveelheid_product>
+                                 <waarde value="100"/>
+                                 <eenheid code="215"
+                                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                          codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                                          displayName="gram"/>
+                              </hoeveelheid_product>
+                           </sterkte>
+                           <ingredient_code code="15219127"
+                                            codeSystem="2.16.840.1.113883.2.4.4.7"
+                                            codeSystemName="G-Standaard HPK"
+                                            displayName="UREUM"/>
+                        </ingredient>
+                     </product_specificatie>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+30D{23:59:59}&gt;, 1x per dag, cutaan"/>
+                  <toedieningsweg code="7"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard TH007 Toedieningswegen"
+                                  displayName="cutaan"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
