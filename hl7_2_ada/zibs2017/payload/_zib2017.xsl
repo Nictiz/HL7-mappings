@@ -38,9 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
 
     <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-    <!-- Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema -->
-    <xsl:param name="schema" as="node()*"/>
-
+  
     <xsl:variable name="elmContactPerson">
         <xsl:choose>
             <xsl:when test="$language = 'en-US'">contact_person</xsl:when>
@@ -69,8 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- variable which contains all information needed to create ada patient (reference) for the transaction being handled -->
     <xsl:variable name="patients" as="element()*">
-        <xsl:variable name="schema" select="$schema"/>
-        <!-- each hcim zibroot has patient, but those must be identical in a transaction according to standard, 
+         <!-- each hcim zibroot has patient, but those must be identical in a transaction according to standard, 
                 let's assume that's true and only evaluate the first patient we find -->
         <xsl:variable name="patient" select="(//hl7:patient | //hl7:recordTarget/hl7:patientRole)[1]"/>
 
@@ -87,36 +84,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create ada contact_point using an hl7 element</xd:desc>
         <xd:param name="adaId">Optional parameter to specify the ada id for this ada element. Defaults to a generate-id of context element</xd:param>
-        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
-        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada transaction</xd:param>
-    </xd:doc>
+        </xd:doc>
     <xsl:template name="HandleContactPerson" match="hl7:responsibleParty" mode="HandleContactPerson">
         <xsl:param name="adaId" as="xs:string?" select="generate-id(.)"/>
-        <xsl:param name="schema" as="node()*" select="$schema"/>
-        <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
-
+      
         <xsl:element name="{$elmContactPerson}">
             <xsl:attribute name="id" select="$adaId"/>
 
             <xsl:call-template name="handleENtoNameInformation">
                 <xsl:with-param name="in" select="hl7:agentPerson/hl7:name"/>
                 <xsl:with-param name="language" select="$language"/>
-
-
             </xsl:call-template>
 
             <xsl:call-template name="handleTELtoContactInformation">
                 <xsl:with-param name="in" select="hl7:telecom"/>
                 <xsl:with-param name="language" select="$language"/>
-
-
             </xsl:call-template>
 
             <xsl:call-template name="handleADtoAddressInformation">
                 <xsl:with-param name="in" select="hl7:addr"/>
                 <xsl:with-param name="language" select="$language"/>
-
-
             </xsl:call-template>
 
         </xsl:element>
@@ -288,14 +275,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create ada healthcare_provider using hl7:Organization</xd:desc>
         <xd:param name="adaId">Optional parameter to specify the ada id for this ada element. Defaults to a generate-id of context element</xd:param>
-        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
-        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada parent of this concept</xd:param>
-    </xd:doc>
+      </xd:doc>
     <xsl:template name="HandleOrganization" match="hl7:Organization" mode="HandleOrganization">
         <xsl:param name="adaId" as="xs:string?" select="generate-id(.)"/>
-        <xsl:param name="schema" as="node()*" select="$schema"/>
-        <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
-        <!-- ada language aware element names -->
+           <!-- ada language aware element names -->
         <xsl:variable name="elmHealthcareProvider">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">healthcare_provider</xsl:when>

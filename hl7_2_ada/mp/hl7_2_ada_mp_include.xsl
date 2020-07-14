@@ -5427,14 +5427,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Verstrekkingsverzoek MP 9.0.7</xd:desc>
         <xd:param name="in">input hl7 verstrekkingsverzoek</xd:param>
-        <xd:param name="schema">ada schema</xd:param>
-        <xd:param name="schemaFragment">Fragment of schema of parent of current element being outputted</xd:param>
-    </xd:doc>
+      </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9257_20181204143321" match="hl7:supply" mode="HandleVV910">
         <xsl:param name="in" as="element(hl7:supply)*" select="."/>
-        <xsl:param name="schema"/>
-        <xsl:param name="schemaFragment"/>
-
+   
         <xsl:for-each select="$in">
             <verstrekkingsverzoek>
 
@@ -5453,13 +5449,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <auteur>
 
                         <xsl:variable name="author-hl7" select="."/>
-                        <xsl:variable name="xsd-ada" select="$schema"/>
-                        <xsl:variable name="xsd-auteur" select="$schemaFragment"/>
-
+                     
                         <xsl:for-each select="$author-hl7/hl7:assignedAuthor">
-                            <xsl:variable name="zorgverlener-complexType" select="$xsd-auteur//xs:element[@name = 'zorgverlener']/@type"/>
-                            <xsl:variable name="xsd-zorgverlener" select="$xsd-ada//xs:complexType[@name = $zorgverlener-complexType]"/>
-                            <zorgverlener>
+                              <zorgverlener>
                                 <xsl:for-each select="./hl7:id">
                                     <zorgverlener_identificatie_nummer value="{./@extension}" root="{./@root}"/>
                                 </xsl:for-each>

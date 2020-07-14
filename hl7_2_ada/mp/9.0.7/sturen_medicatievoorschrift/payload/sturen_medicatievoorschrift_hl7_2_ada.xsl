@@ -83,8 +83,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-verstrekkingsverzoek]">
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9257_20181204143321">
                                     <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="schema" select="$schema"/>
-                                 </xsl:call-template>
+                                    </xsl:call-template>
                             </xsl:for-each>
                         </medicamenteuze_behandeling>
                     </xsl:for-each-group>
