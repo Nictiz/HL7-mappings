@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
+    <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 and may not be used in a production situation -->

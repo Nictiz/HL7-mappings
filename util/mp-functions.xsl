@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!--    <xsl:import href="constants.xsl"/>
     <xsl:import href="datetime.xsl"/>-->
-    <xsl:strip-space elements="*"/>
+<xsl:strip-space elements="*"/>
 
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
@@ -159,7 +159,7 @@
                                     <xsl:when test="count($toedientijd) = 1">
                                         <xsl:if test="not($frequentie)">elke dag</xsl:if>
                                         <xsl:value-of select="'om'"/>
-                                        <xsl:value-of select="string-join($toedientijd[1]/nf:datetime-2-timestring(@value), ', ')"/>
+                                        <xsl:value-of select="string-join(nf:datetime-2-timestring($toedientijd[1]/@value), ', ')"/>
                                     </xsl:when>
                                     <xsl:when test="$toedientijd">
                                         <xsl:if test="not($frequentie)">elke dag</xsl:if>
@@ -463,7 +463,7 @@
 
     <xd:doc>
         <xd:desc>Takes an inputTime as string and outputs the time in format '14:32' (24 hour clock, hoours and minutes only)</xd:desc>
-        <xd:param name="in">xs:dateTime or xs:time castable string</xd:param>
+        <xd:param name="in">xs:dateTime or xs:time castable string or ada relative datetimestring</xd:param>
         <xd:return>HH:mm or nothing</xd:return>
     </xd:doc>
     <xsl:function name="nf:datetime-2-timestring" as="xs:string?">
@@ -475,6 +475,18 @@
             </xsl:when>
             <xsl:when test="$in castable as xs:time">
                 <xsl:value-of select="format-time(xs:time($in), '[H01]:[m01]')"/>
+            </xsl:when>
+            <xsl:when test="matches($in, 'T.*')">
+                <!-- relative T-date -->
+                <xsl:variable name="timePart" select="replace($in, 'T[+\-]?\d*(\.\d+)?[YMD]?(\{(.*)})?', '$3')"/>
+                <xsl:choose>
+                    <xsl:when test="(string-length($timePart) gt 0)">
+                        <xsl:value-of select="$timePart"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$in"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$in"/>
@@ -525,7 +537,7 @@
         <xd:desc>Formats ada relativeDate(time) to a display date(Time)</xd:desc>
         <xd:param name="relativeDate">Input ada relativeDate(Time)</xd:param>
         <xd:param name="output0time">Whether or not a time of 00:00 should be outputted in the text. Defaults to true.</xd:param>
-        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text. Defaults to true.</xd:param>
+        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text.  Defaults to true.</xd:param>
     </xd:doc>
     <xsl:function name="nf:formatTDate" as="xs:string*">
         <xsl:param name="relativeDate" as="xs:string?"/>
@@ -534,10 +546,10 @@
 
         <xsl:choose>
             <!-- double check for expected relative date(time) like "T-50D{12:34:56}" in the input -->
-            <xsl:when test="matches($relativeDate, 'T[+\-]\d+(\.\d+)?[YMD]')">
+            <xsl:when test="matches($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?')">
                 <xsl:variable name="sign" select="replace($relativeDate, 'T([+\-]).*', '$1')"/>
-                <xsl:variable name="amount" select="replace($relativeDate, 'T[+\-](\d+(\.\d+)?)[YMD].*', '$1')"/>
-                <xsl:variable name="yearMonthDay" select="replace($relativeDate, 'T[+\-]\d+(\.\d+)?([YMD]).*', '$2')"/>
+                <xsl:variable name="amount" select="replace($relativeDate, 'T([+\-](\d+(\.\d+)?)[YMD])?.*', '$2')"/>
+                <xsl:variable name="yearMonthDay" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?([YMD]))?.*', '$3')"/>
                 <xsl:variable name="displayYearMonthDay">
                     <xsl:choose>
                         <xsl:when test="$yearMonthDay = 'Y'">jaar</xsl:when>
@@ -548,7 +560,7 @@
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($relativeDate, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
-                <xsl:variable name="timePart" select="replace($relativeDate, 'T[+\-]\d+(\.\d+)?[YMD](\{(.*)})?', '$3')"/>
+                <xsl:variable name="timePart" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)})?', '$4')"/>
                 <xsl:variable name="time" select="$timePart"/>
 
                 <!-- output a relative date for display -->

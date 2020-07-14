@@ -1073,6 +1073,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="subject" select="../bundle/subject/patient" as="element()*"/>
         <xsl:param name="encounterreport-id" as="xs:string?"/>
         <xsl:param name="gp-JournalEntries" as="element()*"/>
+        
+        <xsl:variable name="episodeofcare" select="episode" as="element()*"/>
         <xsl:variable name="resource">
             <Composition xmlns="http://hl7.org/fhir">
                 <xsl:if test="$referById">
@@ -1159,7 +1161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="$journalEntryObservation/f:code"/>
     
                         <text>
-                            <status value="additional"/>
+                            <status value="generated"/>
                             <div xmlns="http://www.w3.org/1999/xhtml">
                                 <xsl:value-of select="$journalEntryObservation/f:valueString/@value"/>
                             </div>
@@ -1168,6 +1170,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <entry>
                             <xsl:apply-templates select="." mode="doObservationReference"/>
                         </entry>
+                        <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                        <xsl:for-each select="$episodeofcare">
+                            <xsl:variable name="theValue" select="@value"/>
+                            <xsl:variable name="theRoot" select="local:getUri(@root)"/>
+                            <xsl:variable name="theReference" select="$theEpisodes[f:resource/f:EpisodeOfCare/f:identifier[f:system/@value = $theRoot][f:value/@value = $theValue]]" as="element(f:entry)*"/>
+                            <entry>
+                                <xsl:choose>
+                                    <xsl:when test="empty($theReference)">
+                                        <identifier>
+                                            <xsl:call-template name="id-to-Identifier">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </identifier>
+                                        <display value="Episode: {string-join((@value, @root), ' ')}"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <reference value="{$theReference/f:fullUrl/@value}"/>
+                                        <display value="Episode: {string-join((@value, $theReference/f:resource/f:EpisodeOfCare/(f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title']/f:valueString/@value, f:status/@value)), ' ')}"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </entry>
+                        </xsl:for-each>
                     </section>
                 </xsl:for-each>
             </Composition>
