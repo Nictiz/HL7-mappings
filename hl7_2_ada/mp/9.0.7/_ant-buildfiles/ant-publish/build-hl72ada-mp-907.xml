@@ -42,6 +42,14 @@
                
         <!-- now the specific stuff only relevant for 907 -->  
         
+        <!-- convert medicatievoorschrift to ada -->
+        <antcall target="convert_hl7_2_ada_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.name" value="payload/${usecase.mv}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="cda_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>  
+        
         <!-- convert beschikbaarstellen_verstrekkingenvertaling -->
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vv}"/>
