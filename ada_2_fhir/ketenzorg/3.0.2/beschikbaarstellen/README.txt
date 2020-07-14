@@ -22,6 +22,9 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-07-14 - 
+* Add support for Composition.section.entry episodeofcare link as suggested by the profile and as present in the input
+* Change Composition.section.text.status from additional to generated. Additional suggests it contains unqiue data compared to the entries and has separate value
 2020-06-30 - 
 * Add support for Encounter.episodeOfCare 
 2020-06-28 - 
@@ -41,7 +44,7 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 * HL7-123 Normalize-space() on Address, Name and Contact parts. FHIR does not allow leading or trailing spaces
 * HL7-123 NarrativeGenerator will use div instead of br tags to avoid conversion to JSON issues in some reference frameworks
 * NarrativeGenerator
-  * Replaced table.caption.div with equivalent span style="diplay: block;"
+  * Replaced table.caption.div with equivalent span style="display: block;"
   * Fixed separator usage when calling DoDT
   * Fixed Observation.comment - used wrong datatype and would thus not be rendered
   * Add support for Observation.specimen and Observation.issued
@@ -59,7 +62,6 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
   * Add support for RelatedPerson http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role
   * Add support for Patient.active (only if false)
   * Harmonized date handling. Now always emits dd mmm yyyy
-  
 2020-04-09 -
 * MM-1056 Improved display on codes in AllergyIntolerance.category and .criticality. The previous fix introduced an error which is now fixed
 2020-04-07 -
