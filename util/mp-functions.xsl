@@ -157,7 +157,7 @@
                                     <xsl:when test="count($toedientijd) = 1">
                                         <xsl:if test="not($frequentie)">elke dag</xsl:if>
                                         <xsl:value-of select="'om'"/>
-                                        <xsl:value-of select="string-join($toedientijd[1]/nf:datetime-2-timestring(@value), ', ')"/>
+                                        <xsl:value-of select="string-join(nf:datetime-2-timestring($toedientijd[1]/@value), ', ')"/>
                                     </xsl:when>
                                     <xsl:when test="$toedientijd">
                                         <xsl:if test="not($frequentie)">elke dag</xsl:if>
@@ -280,7 +280,7 @@
         <xsl:param name="start-date"/>
         <xsl:param name="periode"/>
         <xsl:param name="end-date"/>
-        
+
         <xsl:for-each select="$current-bouwsteen">
             <xsl:variable name="waarde" as="xs:string*">
                 <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
@@ -288,44 +288,44 @@
                     <xsl:value-of select="', '"/>
                 </xsl:if>
                 <xsl:if test="$periode/@value">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
-                  <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
+                <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
                 </xsl:if>
                 <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
                 <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
             </xsl:variable>
             <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
         </xsl:for-each>
-    </xsl:function>    
-    
+    </xsl:function>
+
     <xd:doc>
         <xd:desc>Generates omschrijving based on structured fields</xd:desc>
         <xd:param name="gebruiksinstructie">Input ada element for usage instruction</xd:param>
     </xd:doc>
     <xsl:function name="nf:gebruiksintructie-string" as="xs:string?">
         <xsl:param name="gebruiksinstructie" as="element()?"/>
-        
+
         <xsl:for-each select="$gebruiksinstructie">
             <xsl:variable name="amount-doseerinstructies" select="count(doseerinstructie[.//(@value | @code)])" as="xs:integer"/>
             <xsl:variable name="non-parallel-doseerinstructie">
                 <xsl:value-of select="exists(doseerinstructie[volgnummer/@value != preceding-sibling::doseerinstructie/volgnummer/@value])"/>
             </xsl:variable>
-            
+
             <!-- generate omschrijving using structured fields -->
             <xsl:variable name="theOmschrijving" as="xs:string*">
-                
+
                 <!-- gebruiksperiode -->
                 <xsl:variable name="periodeString" select="nf:periode-string(., ../gebruiksperiode_start, ../gebruiksperiode, ../gebruiksperiode_eind)"/>
                 <xsl:if test="string-length($periodeString) gt 0">
                     <xsl:value-of select="$periodeString"/>
                 </xsl:if>
-                
+
                 <!-- Herhaalperiode cyclisch schema -->
                 <xsl:variable name="herhaalperiodeString" as="xs:string*">
                     <xsl:for-each select="herhaalperiode_cyclisch_schema[@value | @unit]">
                         <xsl:value-of select="concat('cyclus van ', concat(./@value, ' ', nwf:unit-string(./@value, ./@unit)), ': steeds ')"/>
                     </xsl:for-each>
                 </xsl:variable>
-                
+
                 <!-- doseerinstructie(s) (schema) -->
                 <xsl:variable name="doseerinstructieText" as="xs:string*">
                     <xsl:for-each select="doseerinstructie">
@@ -335,7 +335,7 @@
                 <xsl:if test="string-length(string-join($doseerinstructieText, '')) gt 0">
                     <xsl:value-of select="concat(string-join($herhaalperiodeString, ' '), string-join($doseerinstructieText, ', '))"/>
                 </xsl:if>
-                
+
                 <!-- aanvullende instructie(s) -->
                 <xsl:for-each select="aanvullende_instructie">
                     <xsl:choose>
@@ -349,7 +349,7 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
-                
+
                 <!-- toedieningsweg -->
                 <xsl:for-each select="toedieningsweg[not(@code = 'NI' and @codeSystem = $oidHL7NullFlavor)]">
                     <xsl:choose>
@@ -370,7 +370,7 @@
             <xsl:value-of select="string-join($theOmschrijving, ', ')"/>
         </xsl:for-each>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Returns a unit string for display purposes, depending on the given unit ánd whether the value is singular or plural</xd:desc>
         <xd:param name="value">Input param to determine whether to return the singular or plural form for display</xd:param>
@@ -420,7 +420,7 @@
 
     <xd:doc>
         <xd:desc>Takes an inputTime as string and outputs the time in format '14:32' (24 hour clock, hoours and minutes only)</xd:desc>
-        <xd:param name="in">xs:dateTime or xs:time castable string</xd:param>
+        <xd:param name="in">xs:dateTime or xs:time castable string or ada relative datetimestring</xd:param>
         <xd:return>HH:mm or nothing</xd:return>
     </xd:doc>
     <xsl:function name="nf:datetime-2-timestring" as="xs:string?">
@@ -432,6 +432,18 @@
             </xsl:when>
             <xsl:when test="$in castable as xs:time">
                 <xsl:value-of select="format-time(xs:time($in), '[H01]:[m01]')"/>
+            </xsl:when>
+            <xsl:when test="matches($in, 'T.*')">
+                <!-- relative T-date -->
+                <xsl:variable name="timePart" select="replace($in, 'T[+\-]?\d*(\.\d+)?[YMD]?(\{(.*)})?', '$3')"/>
+                <xsl:choose>
+                    <xsl:when test="(string-length($timePart) gt 0)">
+                        <xsl:value-of select="$timePart"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$in"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$in"/>
@@ -484,17 +496,23 @@
         <xd:param name="output0time">Whether or not a time of 00:00 should be outputted in the text. Defaults to true.</xd:param>
         <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text.  Defaults to true.</xd:param>
     </xd:doc>
+    <xd:doc>
+        <xd:desc>Formats ada relativeDate(time) to a display date(Time)</xd:desc>
+        <xd:param name="relativeDate">Input ada relativeDate(Time)</xd:param>
+        <xd:param name="output0time">Whether or not a time of 00:00 should be outputted in the text. Defaults to true.</xd:param>
+        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text.  Defaults to true.</xd:param>
+    </xd:doc>
     <xsl:function name="nf:formatTDate" as="xs:string*">
         <xsl:param name="relativeDate" as="xs:string?"/>
         <xsl:param name="output0time" as="xs:boolean?"/>
         <xsl:param name="outputEndtime" as="xs:boolean?"/>
-
+        
         <xsl:choose>
             <!-- double check for expected relative date(time) like "T-50D{12:34:56}" in the input -->
-            <xsl:when test="matches($relativeDate, 'T[+\-]\d+(\.\d+)?[YMD]')">
+            <xsl:when test="matches($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?')">
                 <xsl:variable name="sign" select="replace($relativeDate, 'T([+\-]).*', '$1')"/>
-                <xsl:variable name="amount" select="replace($relativeDate, 'T[+\-](\d+(\.\d+)?)[YMD].*', '$1')"/>
-                <xsl:variable name="yearMonthDay" select="replace($relativeDate, 'T[+\-]\d+(\.\d+)?([YMD]).*', '$2')"/>
+                <xsl:variable name="amount" select="replace($relativeDate, 'T([+\-](\d+(\.\d+)?)[YMD])?.*', '$2')"/>
+                <xsl:variable name="yearMonthDay" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?([YMD]))?.*', '$3')"/>
                 <xsl:variable name="displayYearMonthDay">
                     <xsl:choose>
                         <xsl:when test="$yearMonthDay = 'Y'">jaar</xsl:when>
@@ -505,9 +523,9 @@
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($relativeDate, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
-                <xsl:variable name="timePart" select="replace($relativeDate, 'T[+\-]\d+(\.\d+)?[YMD](\{(.*)})?', '$3')"/>
+                <xsl:variable name="timePart" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)})?', '$4')"/>
                 <xsl:variable name="time" select="$timePart"/>
-
+                
                 <!-- output a relative date for display -->
                 <xsl:choose>
                     <xsl:when test="string-length($amount) = 0 or xs:integer($amount) = 0">
@@ -527,7 +545,6 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
 
     <xd:doc>
         <xd:desc>Return Dutch month name from month number (1-12)</xd:desc>
