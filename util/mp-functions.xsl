@@ -496,12 +496,6 @@
         <xd:param name="output0time">Whether or not a time of 00:00 should be outputted in the text. Defaults to true.</xd:param>
         <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text.  Defaults to true.</xd:param>
     </xd:doc>
-    <xd:doc>
-        <xd:desc>Formats ada relativeDate(time) to a display date(Time)</xd:desc>
-        <xd:param name="relativeDate">Input ada relativeDate(Time)</xd:param>
-        <xd:param name="output0time">Whether or not a time of 00:00 should be outputted in the text. Defaults to true.</xd:param>
-        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text.  Defaults to true.</xd:param>
-    </xd:doc>
     <xsl:function name="nf:formatTDate" as="xs:string*">
         <xsl:param name="relativeDate" as="xs:string?"/>
         <xsl:param name="output0time" as="xs:boolean?"/>
