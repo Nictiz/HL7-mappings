@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apache ANT build file that sets up (target = setup) or by default converts transaction with references to full ada xml (target = resolve-refs)
+    Apache ANT is based on Java and may be found here: https://ant.apache.org/
+    run on command line or from a batch file: 
+        ant [-f build.xml] [target]
+        
+    If you just run ant, it expects a build.xml in the working dir and runs the default target.
+-->
+<project basedir="." default="convert_hl7_2_ada" name="build-hl72ada-cio-100-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property name="is.version" value="1.0.0"/>
+    <property name="is.version.short" value="100"/>
+
+    <!-- place import after properties, otherwise it can't resolve the properties used above. -->
+    <import file="../../../_ant-buildfiles/ant-publish/build-hl72ada-cio-include.xml"/>
+    
+    <target name="setup_907" description="Setup subdirectories in ${build.dir}">
+        <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
+        
+        <!-- first the generic mp stuff -->
+        <antcall target="setup"/>        
+      
+        <!-- now the specific stuff only relevant for 907 -->  
+        
+        <!-- beschikbaarstellen_verstrekkingenvertaling -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vv}"/>
+            <param name="schema.string" value="*${usecase.vv}*"/>
+            <param name="fileset.dir" value="hl7_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.vv}"/>
+        </antcall>
+        
+        <!-- let's convert to ada too while we're at it -->
+        <antcall target="convert_hl7_2_ada"/>
+        
+    </target>   
+
+</project>
