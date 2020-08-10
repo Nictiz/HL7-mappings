@@ -11726,7 +11726,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="sep" select="', '" as="xs:string?"/>
         <xsl:for-each select="$in">
             <xsl:variable name="str">
-                <xsl:choose>
+                <img xmlns="http://www.w3.org/1999/xhtml">
+                    <xsl:choose>
+                        <xsl:when test="f:url[starts-with(@value, 'urn:uuid:') or starts-with(@value, 'urn:oid:')]">
+                            <xsl:variable name="theUrl" select="f:url/@value"/>
+                            <xsl:variable name="base64" select="$in/ancestor-or-self::f:Bundle/f:entry[f:fullUrl/@value = $theUrl]/f:resource/f:Binary/f:content/@value"/>
+                            
+                            <!-- is this smart? It could duplicate many megabytes... -->
+                            <xsl:attribute name="src" select="concat('data:', f:contentType/@value, ';base64,', $base64)"/>
+                        </xsl:when>
+                        <xsl:when test="f:url">
+                            <xsl:attribute name="src" select="f:url/@value"/>
+                        </xsl:when>
+                        <xsl:when test="f:data">
+                            <!-- is this smart? It could duplicate many megabytes... -->
+                            <xsl:attribute name="src" select="concat('data:', f:contentType/@value, ';base64,', f:data/@value)"/>
+                        </xsl:when>
+                    </xsl:choose>
+                    <xsl:attribute name="alt"/>
+                    <xsl:if test="f:title">
+                        <xsl:attribute name="title" select="f:title/@value"/>
+                    </xsl:if>
+                    <xsl:if test="../f:height">
+                        <xsl:attribute name="height" select="../f:height/@value"/>
+                    </xsl:if>
+                    <xsl:if test="../f:width">
+                        <xsl:attribute name="width" select="../f:width/@value"/>
+                    </xsl:if>
+                </img>
+                <!-- FHIR XHTML does not allow iframe -->
+                <!--<xsl:choose>
                     <xsl:when test="f:contentType[starts-with(@value, 'image')]">
                         <img xmlns="http://www.w3.org/1999/xhtml">
                             <xsl:choose>
@@ -11734,14 +11763,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:variable name="theUrl" select="f:url/@value"/>
                                     <xsl:variable name="base64" select="$in/ancestor-or-self::f:Bundle/f:entry[f:fullUrl/@value = $theUrl]/f:resource/f:Binary/f:content/@value"/>
                                     
-                                    <!-- is this smart? It could duplicate many megabytes... -->
+                                    <!-\- is this smart? It could duplicate many megabytes... -\->
                                     <xsl:attribute name="src" select="concat('data:', f:contentType/@value, ';base64,', $base64)"/>
                                 </xsl:when>
                                 <xsl:when test="f:url">
                                     <xsl:attribute name="src" select="f:url/@value"/>
                                 </xsl:when>
                                 <xsl:when test="f:data">
-                                    <!-- is this smart? It could duplicate many megabytes... -->
+                                    <!-\- is this smart? It could duplicate many megabytes... -\->
                                     <xsl:attribute name="src" select="concat('data:', f:contentType/@value, ';base64,', f:data/@value)"/>
                                 </xsl:when>
                             </xsl:choose>
@@ -11759,7 +11788,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:otherwise>
                         <iframe xmlns="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="name" select="generate-id(.)"/>
+                            <xsl:attribute name="id" select="generate-id(.)"/>
                             <xsl:choose>
                                 <xsl:when test="f:url">
                                     <xsl:attribute name="src" select="f:url/@value"/>
@@ -11779,7 +11808,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </iframe>
                     </xsl:otherwise>
-                </xsl:choose>
+                </xsl:choose>-->
             </xsl:variable>
             <xsl:call-template name="doSeparator">
                 <xsl:with-param name="str" select="$str"/>
