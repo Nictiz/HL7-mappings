@@ -161,34 +161,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                 </xsl:variable>
                 
-                <xsl:for-each select="//*[bundle]/encounter">
-                    <xsl:variable name="encounterIds" select="(hcimroot/identification_number | identifier)/concat(@value, '-', @root)" as="xs:string*"/>
-                    <xsl:variable name="fullUrl" select="nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])"/>
-                    <xsl:if test="$referencedEncounterIds[. = $encounterIds]">
+                <xsl:for-each-group select="//*[bundle]/encounter" group-by="((hcimroot/identification_number | identifier)/concat(@value, '-', @root))[1]">
+                    <xsl:for-each select="current-group()[1]">
+                        <xsl:variable name="encounterIds" select="(hcimroot/identification_number | identifier)/concat(@value, '-', @root)" as="xs:string*"/>
+                        <xsl:variable name="fullUrl" select="nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])"/>
+                        <xsl:if test="not(empty($referencedEncounterIds[. = $encounterIds]))">
+                            <entry xmlns="http://hl7.org/fhir">
+                                <fullUrl value="{$fullUrl}"/>
+                                <resource>
+                                    <xsl:call-template name="gp-Encounter"/>
+                                </resource>
+                                <search>
+                                    <mode value="include"/>
+                                </search>
+                            </entry>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each-group>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each-group select="//*[bundle]/encounter" group-by="((hcimroot/identification_number | identifier)/concat(@value, '-', @root))[1]">
+                    <xsl:for-each select="current-group()[1]">
                         <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{$fullUrl}"/>
+                            <fullUrl value="{nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])}"/>
                             <resource>
                                 <xsl:call-template name="gp-Encounter"/>
                             </resource>
                             <search>
-                                <mode value="include"/>
+                                <mode value="match"/>
                             </search>
                         </entry>
-                    </xsl:if>
-                </xsl:for-each>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:for-each select="//*[bundle]/encounter">
-                    <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])}"/>
-                        <resource>
-                            <xsl:call-template name="gp-Encounter"/>
-                        </resource>
-                        <search>
-                            <mode value="match"/>
-                        </search>
-                    </entry>
-                </xsl:for-each>
+                    </xsl:for-each>
+                </xsl:for-each-group>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
