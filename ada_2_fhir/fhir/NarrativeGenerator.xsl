@@ -12809,11 +12809,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="sep" select="$sep"/>
                         </xsl:call-template>
                     </xsl:when>
+                    <xsl:when test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']">
+                        <!-- Don't warn when only the extension for PractitionerRole is present -->
+                    </xsl:when>
                     <xsl:otherwise>
                         <xsl:call-template name="util:logMessage">
                             <xsl:with-param name="level" select="$logWARN"/>
                             <xsl:with-param name="msg">
-                                <xsl:text>TODO doDT_Reference without reference, display or identifier</xsl:text>
+                                <xsl:text>TODO doDT_Reference without reference, display or identifier. </xsl:text>
+                                <xsl:value-of select="string-join($in/ancestor-or-self::*/local-name(), '/')"/>
                             </xsl:with-param>
                         </xsl:call-template>
                     </xsl:otherwise>
@@ -12821,57 +12825,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <xsl:variable name="displayForPractitionerRole">
                 <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']/f:valueReference">
-                    <xsl:choose>
-                        <xsl:when test="f:display and f:identifier">
-                            <xsl:call-template name="doDT_String">
-                                <xsl:with-param name="in" select="f:display"/>
-                                <xsl:with-param name="textLang" select="$textLang"/>
-                                <xsl:with-param name="sep" select="$sep"/>
-                            </xsl:call-template>
-                            <xsl:text> (</xsl:text>
-                            <xsl:call-template name="util:getLocalizedString">
-                                <xsl:with-param name="key">id</xsl:with-param>
-                                <xsl:with-param name="textLang" select="$textLang"/>
-                                <xsl:with-param name="post" select="': '"/>
-                            </xsl:call-template>
-                            <xsl:call-template name="doDT_Identifier">
-                                <xsl:with-param name="in" select="f:identifier"/>
-                                <xsl:with-param name="textLang" select="$textLang"/>
-                                <xsl:with-param name="sep" select="$sep"/>
-                            </xsl:call-template>
-                            <xsl:text>)</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="f:display">
-                            <xsl:call-template name="doDT_String">
-                                <xsl:with-param name="in" select="f:display"/>
-                                <xsl:with-param name="textLang" select="$textLang"/>
-                                <xsl:with-param name="sep" select="$sep"/>
-                            </xsl:call-template>
-                        </xsl:when>
-                        <xsl:when test="f:identifier">
-                            <xsl:call-template name="doDT_Identifier">
-                                <xsl:with-param name="in" select="f:identifier"/>
-                                <xsl:with-param name="textLang" select="$textLang"/>
-                                <xsl:with-param name="sep" select="$sep"/>
-                            </xsl:call-template>
-                        </xsl:when>
-                        <xsl:when test="f:reference">
-                            <xsl:call-template name="doDT_String">
-                                <xsl:with-param name="in" select="f:reference"/>
-                                <xsl:with-param name="textLang" select="$textLang"/>
-                                <xsl:with-param name="sep" select="$sep"/>
-                            </xsl:call-template>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="util:logMessage">
-                                <xsl:with-param name="level" select="$logWARN"/>
-                                <xsl:with-param name="msg">
-                                    <xsl:text>TODO doDT_Reference without reference, display or identifier</xsl:text>
-                                </xsl:with-param>
-                            </xsl:call-template>
-                            <xsl:text>TODO Reference PractitionerRole without reference, display or identifier</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                    <xsl:call-template name="doDT_Reference">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                    </xsl:call-template>
                 </xsl:for-each>
             </xsl:variable>
             <xsl:variable name="str">
