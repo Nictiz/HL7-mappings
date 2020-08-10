@@ -11658,7 +11658,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="normalize-space(string-join((f:text/@value, f:line/@value, string-join((f:postalCode/@value, f:city/@value, f:district/@value, f:state/@value), ' '), f:country/@value), ', '))"/>
                 <xsl:if test="not(empty($official) and empty($use) and empty($period))">
                     <xsl:text> (</xsl:text>
-                    <xsl:value-of select="string-join(($official[not(. = '')], $use[not(. = '')], $type[not(. = '')], $period[not(. = '')]), ' ')"/>
+                    <xsl:value-of select="string-join(($official[not(. = '')], distinct-values(($use[not(. = '')], $type[not(. = '')])), $period[not(. = '')]), ' ')"/>
                     <xsl:text>)</xsl:text>
                 </xsl:if>
             </xsl:variable>
