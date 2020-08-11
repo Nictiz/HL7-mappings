@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-07-16 -
+* Fixed an issue where duplicates Encounter were not de-duplicated 
 2020-07-14 - 
 * Add support for Composition.section.entry episodeofcare link as suggested by the profile and as present in the input
 * Change Composition.section.text.status from additional to generated. Additional suggests it contains unqiue data compared to the entries and has separate value
