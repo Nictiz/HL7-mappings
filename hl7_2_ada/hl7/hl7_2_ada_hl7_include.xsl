@@ -1543,6 +1543,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in[@root]">
             <xsl:choose>
                 <xsl:when test="matches(@root, $OIDpattern)"/>
+                <xsl:when test="matches(@root, $UUIDpattern)"><!-- Rare but technically possible --></xsl:when>
                 <xsl:when test="matches(@root, $OIDpatternlenient)">
                     <xsl:call-template name="util:logMessage" xmlns:util="urn:hl7:utilities">
                         <xsl:with-param name="level" select="$logERROR"/>
