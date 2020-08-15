@@ -688,6 +688,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="matches($oid, $OIDpattern)">
                 <xsl:value-of select="concat('urn:oid:', $oid)"/>
             </xsl:when>
+            <xsl:when test="matches($oid, $OIDpatternlenient)">
+                <xsl:call-template name="util:logMessage" xmlns:util="urn:hl7:utilities">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">OID SHALL NOT have leading zeroes in its nodes: <xsl:value-of select="$oid"/>. This MUST be fixed in the source application before continuing.</xsl:with-param>
+                    <!-- Is this too strict? -->
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
+                <xsl:value-of select="concat('urn:oid:', $oid)"/>
+            </xsl:when>
             <xsl:when test="matches($oid, $UUIDpattern)">
                 <xsl:value-of select="concat('urn:uuid:', $oid)"/>
             </xsl:when>

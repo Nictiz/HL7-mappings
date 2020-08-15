@@ -178,7 +178,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
     </xsl:variable>
 
+    <!-- leniently recognize OID as OID even when nodes contain illegal leading zeroes -->
+    <xsl:variable name="OIDpatternlenient" select="'^[0-2](\.\d+)*$'"/>
+    <!-- official OID pattern -->
     <xsl:variable name="OIDpattern" select="'^[0-2](\.(0|[1-9]\d*))*$'"/>
+    <!-- official UUID pattern -->
     <xsl:variable name="UUIDpattern" select="'^[A-Fa-f\d]{8}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{12}$'"/>
     
     <!-- http://hl7.org/fhir/v3/ObservationInterpretation/cs.html -->

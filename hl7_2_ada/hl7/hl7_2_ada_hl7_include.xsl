@@ -1539,7 +1539,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         <xsl:param name="datatype" as="xs:string?"/>
         <xsl:param name="nullIfMissing" as="xs:string?"/>
-
+        
+        <xsl:for-each select="$in[@root]">
+            <xsl:choose>
+                <xsl:when test="matches(@root, $OIDpattern)"/>
+                <xsl:when test="matches(@root, $OIDpatternlenient)">
+                    <xsl:call-template name="util:logMessage" xmlns:util="urn:hl7:utilities">
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="msg">OID SHALL NOT have leading zeroes in its nodes: <xsl:value-of select="@root"/>. This MUST be fixed in the source application before continuing.</xsl:with-param>
+                        <!-- Is this too strict? -->
+                        <xsl:with-param name="terminate" select="true()"/>
+                    </xsl:call-template>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+        
         <xsl:if test="empty($in) and string-length($nullIfMissing) gt 0">
             <xsl:element name="{$elemName}">
                 <xsl:if test="string-length($datatype) gt 0">
