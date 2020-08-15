@@ -162,6 +162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 
                 <xsl:for-each-group select="//*[bundle]/encounter" group-by="((hcimroot/identification_number | identifier)/concat(@value, '-', @root))[1]">
+                    <xsl:variable name="encounterGroup" select="current-group()" as="element()+"/>
                     <xsl:for-each select="current-group()[1]">
                         <xsl:variable name="encounterIds" select="(hcimroot/identification_number | identifier)/concat(@value, '-', @root)" as="xs:string*"/>
                         <xsl:variable name="fullUrl" select="nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])"/>
@@ -169,7 +170,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <entry xmlns="http://hl7.org/fhir">
                                 <fullUrl value="{$fullUrl}"/>
                                 <resource>
-                                    <xsl:call-template name="gp-Encounter"/>
+                                    <xsl:call-template name="gp-Encounter">
+                                        <xsl:with-param name="encounterGroup" select="$encounterGroup"/>
+                                    </xsl:call-template>
                                 </resource>
                                 <search>
                                     <mode value="include"/>
@@ -181,11 +184,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each-group select="//*[bundle]/encounter" group-by="((hcimroot/identification_number | identifier)/concat(@value, '-', @root))[1]">
+                    <xsl:variable name="encounterGroup" select="current-group()" as="element()+"/>
                     <xsl:for-each select="current-group()[1]">
                         <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])}"/>
                             <resource>
-                                <xsl:call-template name="gp-Encounter"/>
+                                <xsl:call-template name="gp-Encounter">
+                                    <xsl:with-param name="encounterGroup" select="$encounterGroup"/>
+                                </xsl:call-template>
                             </resource>
                             <search>
                                 <mode value="match"/>
@@ -427,8 +433,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Template based on FHIR Profile <xd:a href="https://simplifier.net/resolve?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/gp-Encounter">http://nictiz.nl/fhir/StructureDefinition/gp-Encounter</xd:a>. <xd:b>NOTE: this template is preliminary, some things are missing</xd:b> </xd:desc>
+        <xd:param name="encounterGroup">Some systems send as many copies of an encounter as there as episode links. We need all links.</xd:param>
     </xd:doc>
     <xsl:template name="gp-Encounter" as="element()">
+        <xsl:param name="encounterGroup" as="element()+"/>
         <xsl:variable name="resource">
             <Encounter xmlns="http://hl7.org/fhir">
                 <meta>
@@ -549,7 +557,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="../bundle/subject/patient" mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:if>
-                <xsl:for-each select="contact_reason/episode">
+                <xsl:for-each select="$encounterGroup/contact_reason/episode">
                     <xsl:variable name="theValue" select="@value"/>
                     <xsl:variable name="theRoot" select="local:getUri(@root)"/>
                     <xsl:variable name="theReference" select="$theEpisodes[f:resource/f:EpisodeOfCare/f:identifier[f:system/@value = $theRoot][f:value/@value = $theValue]]" as="element(f:entry)*"/>
