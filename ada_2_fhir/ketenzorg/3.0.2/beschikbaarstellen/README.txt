@@ -22,6 +22,10 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-08-15
+* Identifiers. Terminates upon detection of an OID with leading zeroes in a node
+* Diagnostic Results and Lab Results, now properly converts HCIM codes (SNOMED CT) to the required HL7v2 Table 0078 codes. 
+* Fixed issues with div tags in table/caption that FHIR has declared illegal
 2020-07-16 -
 * Fixed an issue where duplicates Encounter were not de-duplicated 
 2020-07-14 - 
