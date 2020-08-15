@@ -772,6 +772,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- TODO: map V3 to V2 codes as required in FHIR -->
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="codeMap" select="$zibInterpretatieVlaggen_to_hl7v2Table0078AbnormalFlags/*" as="element()+"/>
                             </xsl:call-template>
                         </interpretation>
                     </xsl:for-each>
@@ -897,6 +898,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- TODO: map V3 to V2 codes as required in FHIR -->
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="codeMap" select="$zibInterpretatieVlaggen_to_hl7v2Table0078AbnormalFlags/*" as="element()+"/>
                         </xsl:call-template>
                     </interpretation>
                 </xsl:for-each>
