@@ -813,8 +813,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                         
                         <xsl:call-template name="handleCV">
-                            <xsl:with-param name="in" select="hl7:interpretationCode"/>
+                            <xsl:with-param name="in" select="hl7:interpretationCode[not(@code = 'N' and @codeSystem = '2.16.840.1.113883.5.83')]"/>
                             <xsl:with-param name="elemName">result_flags</xsl:with-param>
+                            <xsl:with-param name="codeMap" select="$hl7v3ObservationInterpretation_to_zibInterpretatieVlaggen/*" as="element()*"/>
                         </xsl:call-template>
                     </measurement_result>
                 </general_measurement>
@@ -1393,8 +1394,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         
                         <!-- result_flags -->
                         <xsl:call-template name="handleCV">
-                            <xsl:with-param name="in" select="hl7:interpretationCode"/>
+                            <xsl:with-param name="in" select="hl7:interpretationCode[not(@code = 'N' and @codeSystem = '2.16.840.1.113883.5.83')]"/>
                             <xsl:with-param name="elemName">result_flags</xsl:with-param>
+                            <xsl:with-param name="codeMap" select="$hl7v3ObservationInterpretation_to_zibInterpretatieVlaggen/*" as="element()*"/>
                         </xsl:call-template>
                         
                         <!-- result_interpretation -->

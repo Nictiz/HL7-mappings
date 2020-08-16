@@ -178,7 +178,96 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
     </xsl:variable>
 
+    <!-- leniently recognize OID as OID even when nodes contain illegal leading zeroes -->
+    <xsl:variable name="OIDpatternlenient" select="'^[0-2](\.\d+)*$'"/>
+    <!-- official OID pattern -->
     <xsl:variable name="OIDpattern" select="'^[0-2](\.(0|[1-9]\d*))*$'"/>
+    <!-- official UUID pattern -->
     <xsl:variable name="UUIDpattern" select="'^[A-Fa-f\d]{8}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{12}$'"/>
-
+    
+    <!-- http://hl7.org/fhir/v3/ObservationInterpretation/cs.html -->
+    <!-- https://zibs.nl/wiki/LaboratoryTestResult-v4.1(2017EN)#ResultFlagsCodelist -->
+    <xsl:variable name="hl7v3ObservationInterpretation_to_zibInterpretatieVlaggen" as="element(map)">
+        <map>
+            <!--<map inCode="(_GeneticObservationInterpretation)" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="CAR" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="Carrier" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="(_ObservationInterpretationChange)" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="B" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="D" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="U" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="W" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="(_ObservationInterpretationExceptions)" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>-->
+            <map inCode="&lt;" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281300000" codeSystem="{$oidSNOMEDCT}" displayName="Below reference range"/>
+            <map inCode="&gt;" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008" codeSystem="{$oidSNOMEDCT}" displayName="Above reference range"/>
+            <!--<map inCode="AC" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="IE" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="QCF" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="TOX" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="(_ObservationInterpretationNormality)" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="A" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="AA" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>-->
+            <map inCode="HH" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008" codeSystem="{$oidSNOMEDCT}" displayName="Above reference range"/>
+            <map inCode="LL" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281300000" codeSystem="{$oidSNOMEDCT}" displayName="Below reference range"/>
+            <map inCode="H" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008" codeSystem="{$oidSNOMEDCT}" displayName="Above reference range"/>
+            <map inCode="H&gt;" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008" codeSystem="{$oidSNOMEDCT}" displayName="Above reference range"/>
+            <map inCode="HH" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008" codeSystem="{$oidSNOMEDCT}" displayName="Above reference range"/>
+            <map inCode="HU" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008" codeSystem="{$oidSNOMEDCT}" displayName="Above reference range"/>
+            <map inCode="HH" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008" codeSystem="{$oidSNOMEDCT}" displayName="Above reference range"/>
+            <map inCode="L" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281300000" codeSystem="{$oidSNOMEDCT}" displayName="Below reference range"/>
+            <map inCode="L&lt;" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281300000" codeSystem="{$oidSNOMEDCT}" displayName="Below reference range"/>
+            <map inCode="LL" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281300000" codeSystem="{$oidSNOMEDCT}" displayName="Below reference range"/>
+            <map inCode="LU" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281300000" codeSystem="{$oidSNOMEDCT}" displayName="Below reference range"/>
+            <map inCode="LL" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281300000" codeSystem="{$oidSNOMEDCT}" displayName="Below reference range"/>
+            <!--<map inCode="N" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="(_ObservationInterpretationSusceptibility)" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="IE" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>-->
+            <map inCode="I" inCodeSystem="{$oidHL7ObservationInterpretation}" code="11896004" codeSystem="{$oidSNOMEDCT}" displayName="Intermediate"/>
+            <!--<map inCode="MS" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="NCL" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="NS" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>-->
+            <map inCode="R" inCodeSystem="{$oidHL7ObservationInterpretation}" code="30714006" codeSystem="{$oidSNOMEDCT}" displayName="Resistant"/>
+            <map inCode="SYN-R" inCodeSystem="{$oidHL7ObservationInterpretation}" code="30714006" codeSystem="{$oidSNOMEDCT}" displayName="Resistant"/>
+            <map inCode="S" inCodeSystem="{$oidHL7ObservationInterpretation}" code="131196009" codeSystem="{$oidSNOMEDCT}" displayName="Susceptible"/>
+            <map inCode="SDD" inCodeSystem="{$oidHL7ObservationInterpretation}" code="131196009" codeSystem="{$oidSNOMEDCT}" displayName="Susceptible"/>
+            <map inCode="SYN-S" inCodeSystem="{$oidHL7ObservationInterpretation}" code="131196009" codeSystem="{$oidSNOMEDCT}" displayName="Susceptible"/>
+            <map inCode="VS" inCodeSystem="{$oidHL7ObservationInterpretation}" code="131196009" codeSystem="{$oidSNOMEDCT}" displayName="Susceptible"/>
+            <!--<map inCode="EX" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="HX" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="LX" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="HM" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="(ObservationInterpretationDetection)" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="IND" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="E" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="NEG" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="ND" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="POS" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="DET" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="(ObservationInterpretationExpectation)" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="EXP" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="UNE" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="OBX" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="(ReactivityObservationInterpretation)" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="NR" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="RR" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>
+            <map inCode="WR" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>-->
+        </map>
+    </xsl:variable>
+    
+    <!-- https://zibs.nl/wiki/LaboratoryTestResult-v4.1(2017EN)#ResultFlagsCodelist -->
+    <!-- http://hl7.org/fhir/v2/0078/index.html -->
+    <xsl:variable name="zibInterpretatieVlaggen_to_hl7v2Table0078AbnormalFlags" as="element(map)">
+        <map>
+            <!-- Above reference range || Boven referentiewaarde -->
+            <map inCode="281302008" inCodeSystem="{$oidSNOMEDCT}" code="H" codeSystem="http://hl7.org/fhir/v2/0078" displayName="High"/>
+            <!--Below reference range || Onder referentiewaarde-->
+            <map inCode="281300000" inCodeSystem="{$oidSNOMEDCT}" code="L" codeSystem="http://hl7.org/fhir/v2/0078" displayName="Low"/>
+            <!--Intermediate || Intermediair-->
+            <map inCode="11896004" inCodeSystem="{$oidSNOMEDCT}" code="I" codeSystem="http://hl7.org/fhir/v2/0078" displayName="Intermediate"/>
+            <!--Resistant || Resistent-->
+            <map inCode="30714006" inCodeSystem="{$oidSNOMEDCT}" code="R" codeSystem="http://hl7.org/fhir/v2/0078" displayName="Resistant"/>
+            <!--Susceptible || Sensitief-->
+            <map inCode="131196009" inCodeSystem="{$oidSNOMEDCT}" code="S" codeSystem="http://hl7.org/fhir/v2/0078" displayName="Susceptible"/>
+        </map>
+    </xsl:variable>
 </xsl:stylesheet>
