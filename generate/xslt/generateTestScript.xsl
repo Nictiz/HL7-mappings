@@ -17,6 +17,9 @@
     <xsl:param name="commonComponentFolder" select="'../../general/common-tests'"/>
     
     <xsl:param name="inputDir" as="xs:string"/>
+    
+    <xsl:param name="expectedResponseFormat" select="if(@nts:scenario = 'server') then 'xml' else ''"/>
+    
     <!-- The main template, which will call the remaining templates.
          param inputDir is a string describing the direcory where the input file resides. The 
                         'project/commonComponentFolder' template parameters are relative to this directory.
@@ -29,7 +32,6 @@
     -->
     <xsl:template name="generate" match="f:TestScript">
         
-        <xsl:param name="expectedResponseFormat" select="if(@nts:scenario = 'server') then 'xml' else ''"/>
         <xsl:variable name="scenario" select="@nts:scenario"/>
         
         <!-- Sanity check the expectedResponseFormat parameter -->
