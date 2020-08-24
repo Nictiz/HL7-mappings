@@ -1,7 +1,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
    <xs:complexType name="meta_type">
       <xs:sequence>
-         <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:any namespace="##any" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="status" type="xs:string"/>
       <xs:attribute name="created-by" type="xs:string"/>
