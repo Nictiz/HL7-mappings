@@ -13356,7 +13356,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:choose>
-                            <xsl:when test="f:reference[@value][not(starts-with(@value, 'urn:'))]">
+                            <xsl:when test="f:reference[@value][matches(@value, '^https?://')]">
                                 <a href="{f:reference/@value}" xmlns="http://www.w3.org/1999/xhtml">
                                     <xsl:for-each select="$display">
                                         <xsl:choose>
