@@ -1,5 +1,5 @@
 <MedicationRequest xmlns="http://hl7.org/fhir">
-   <id value="MBH-907-QA5-MA"/>
+   <id value="MBH-907-QA6-MA"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
@@ -7,35 +7,35 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_907_QA5_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+            <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_907_QA6_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
             </caption>
             <tbody>
                <tr>
                   <th>Medicamenteuze behandel-id</th>
-                  <td>MBH_907_QA5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                  <td>MBH_907_QA6 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                </tr>
                <tr>
                   <th>Medicatie</th>
-                  <td>ACENOCOUMAROL TABLET 1MG</td>
+                  <td>OXAZEPAM TABLET 10MG</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>${DATE, T, D, -50}T08:15:00+02:00</td>
+                  <td>${DATE, T, D, -5}T08:18:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -44}T23:59:59+02:00</td>
+                  <td>${DATE, T, D, -5}T00:00:00+02:00 - ${DATE, T, D, +1}T23:59:59+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
-                     <div>Tekst: Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk</div>
-                     <div>Timing: <div>eenmalig per dag</div>
+                     <div>Tekst: Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+1D{23:59:59}&gt;, 2 maal per dag 2 stuk</div>
+                     <div>Timing: <div>2 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
                      </div>
-                     <div>Dosering: 1 stuk</div>
+                     <div>Dosering: 2 stuk</div>
                   </td>
                </tr>
             </tbody>
@@ -44,19 +44,19 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
-         <end value="${DATE, T, D, -44}T23:59:59+02:00"/>
+         <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +1}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
       <valueIdentifier>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-         <value value="MBH_907_QA5"/>
+         <value value="MBH_907_QA6"/>
       </valueIdentifier>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-      <value value="MBH_907_QA5_MA"/>
+      <value value="MBH_907_QA6_MA"/>
    </identifier>
    <intent value="order"/>
    <category>
@@ -68,14 +68,14 @@
       <text value="Medicatieafspraak"/>
    </category>
    <medicationReference>
-      <reference value="Medication/7323-2-16-840-1-113883-2-4-4-10"/>
-      <display value="ACENOCOUMAROL TABLET 1MG"/>
+      <reference value="Medication/353-2-16-840-1-113883-2-4-4-10"/>
+      <display value="OXAZEPAM TABLET 10MG"/>
    </medicationReference>
    <subject>
       <reference value="Patient/XXX-JANKIE"/>
       <display value="S. XXX_Jankie"/>
    </subject>
-   <authoredOn value="${DATE, T, D, -50}T08:15:00+02:00"/>
+   <authoredOn value="${DATE, T, D, -5}T08:18:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -89,10 +89,10 @@
       </agent>
    </requester>
    <dosageInstruction>
-      <text value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk"/>
+      <text value="Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+1D{23:59:59}&gt;, 2 maal per dag 2 stuk"/>
       <timing>
          <repeat>
-            <frequency value="1"/>
+            <frequency value="2"/>
             <period value="1"/>
             <periodUnit value="d"/>
          </repeat>
@@ -105,7 +105,7 @@
          </coding>
       </route>
       <doseQuantity>
-         <value value="1"/>
+         <value value="2"/>
          <unit value="stuk"/>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
          <code value="245"/>
