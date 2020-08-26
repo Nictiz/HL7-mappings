@@ -329,7 +329,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
         <xsl:if test="$in[@originalText]">
-            <text value="{replace($in/@originalText, '(^\s+)|(\s+$)', '')}"/>
+            <text>
+                <xsl:call-template name="string-to-string">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="inAttributeName">originalText</xsl:with-param>
+                </xsl:call-template>                
+            </text>
         </xsl:if>
     </xsl:template>
     <xd:doc>

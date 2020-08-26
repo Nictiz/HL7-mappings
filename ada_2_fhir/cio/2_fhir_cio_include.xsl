@@ -27,7 +27,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="bouwstenen-all-int-gegevens" as="element(f:entry)*">
         <!-- allergie_intolerantie -->
         <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
-            <xsl:call-template name="allergyIntoleranceEntry">
+            <!-- This is the 3.0 profile in the 2020.01 MedMij publication
+                 The 3.0 mapping  is backwards compatible with 2.1, only an addition of a nullFlavor in code (edge use case)
+                 so no need to support the 2.1 version of the profile here -->
+            <xsl:call-template name="allergyIntoleranceEntry-3.0">
                 <xsl:with-param name="adaPatient" select="../patient"/>
                 <xsl:with-param name="dateT" select="$dateT"/>
                 <xsl:with-param name="searchMode">match</xsl:with-param>
