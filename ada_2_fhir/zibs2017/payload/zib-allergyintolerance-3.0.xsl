@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="all-zibs.xsl"/>-->
+    <!--    <xsl:import href="all-zibs.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -342,7 +342,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </code>
                         </xsl:otherwise>
                     </xsl:choose>
-                    
+
                     <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
                     <patient>
                         <xsl:copy-of select="$patientRef[self::f:extension]"/>
@@ -353,7 +353,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                     <!--TS    NL-CM:0.0.14    DatumTijd    0..1-->
                     <!-- onsetDateTime -->
-                    <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
+                    <!-- MM-616, both start_date_time and hcimroot/date_time map to onsetDateTime which has a max cardinality of 1 -->
+                    <!-- the zib start_date_time takes precedence over het hcimroot/date_time,
+                        which only serves as a fallback in case the zib start_date_time does not have a value -->
+                    <xsl:variable name="theOnsetDateTime" as="element()?">
+                        <xsl:choose>
+                            <xsl:when test="(begin_datum_tijd | start_date_time)[@value]">
+                                <xsl:sequence select="begin_datum_tijd | start_date_time"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:sequence select="(zibroot/datum_tijd | hcimroot/date_time)[@value]"/>                                
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:for-each select="$theOnsetDateTime">
                         <onsetDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
@@ -362,19 +375,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:attribute>
                         </onsetDateTime>
-                    </xsl:for-each>
-
-                    <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
-                    <!-- assertedDate -->
-                    <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
-                        <assertedDate>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                    <xsl:with-param name="dateT" select="$dateT"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </assertedDate>
                     </xsl:for-each>
 
                     <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
