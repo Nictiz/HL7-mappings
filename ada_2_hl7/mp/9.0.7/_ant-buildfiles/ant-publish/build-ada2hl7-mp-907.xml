@@ -6,11 +6,75 @@
         
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
-<project basedir="." default="convert_ada_2_hl7" name="build-ada2hl7-mp-907-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+<project basedir="." default="convert_ada_2_hl7_mp907" name="build-ada2hl7-mp-907-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <property name="is.version" value="9.0.7"/>
     <property name="is.version.short" value="907"/>
+    <property name="date.T"  value="2020-06-08"/>
 
     <!-- place import after properties, otherwise it can't resolve the properties used. -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-mp-include.xml"/>
+    
+    <target name="setup_mp907" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
+        
+        <!-- generic stuff for all mp versions -->
+        <antcall target="setup"/>
+        
+        <!-- sturen_medicatievoorschrift POC Praktijktest -->
+        <mkdir dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase.mv}/ada_instance_POCPraktijktest">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
+        
+        <!-- beschikbaarstellen_medicatiegegevens POC Praktijktest -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance_POCPraktijktest">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
+        
+        <!-- let's convert to hl7 too while we're at it -->
+        <antcall target="convert_ada_2_hl7_mp907"/>       
+        
+    </target>
+    
+    <target name="convert_ada_2_hl7_mp907">
+        
+        <!-- generic stuff for all mp versions -->
+        <antcall target="convert_ada_2_hl7"/>
+        
+        <!-- POC Praktijktest -->
+        <!-- convert medicatievoorschrift -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.name" value="payload/${usecase.mv}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
+            <param name="xsl.out" value="hl7_instance_POCPraktijktest"/>
+        </antcall>
+        <!-- medicatievoorschrift also to CDA-->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.name" value="../../MP90_Transform_Organizer2CDA.xsl"/>
+            <param name="xsl.in" value="hl7_instance_POCPraktijktest"/>
+            <param name="xsl.out" value="cda_instance_POCPraktijktest"/>
+        </antcall>
+        <!-- POC Praktijktest -->
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.name" value="payload/${usecase.mg}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
+            <param name="xsl.out" value="hl7_instance_POCPraktijktest"/>
+        </antcall>       
+        
+    </target>
 
 </project>
