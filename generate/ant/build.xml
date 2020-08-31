@@ -19,8 +19,6 @@
 -->
      
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="clean">
-    <property name="outputXisInternal" value="false"/>
-
     <!-- The basedir property is the basedir of the including script. This property sets _our_ basedir. -->
     <dirname property="included.basedir" file="${ant.file.generateTestScripts}/.."/>
     
@@ -105,13 +103,7 @@
         </if>
     </target>
     
-    <target name="prepare" depends="check-input">
-        <tempfile property="temp.dir" destDir="${java.io.tmpdir}" prefix="generateTestScripts-${project}-"/>
-        <mkdir dir="${temp.dir}"/>
-    </target>
-    
-    <!-- Custom task to run an XSLT transformation using Saxon (HE). -->
-    <macrodef name="saxon-transform">
+    <macrodef name="saxon-transform" description="Custom task to run an XSLT transformation using Saxon (HE)">
         <attribute name="style" description="The path to the stylesheet to use for the transformation"/>
         <attribute name="in" description="The path to the input file"/>
         <attribute name="out" description="The path to the output file"/>
@@ -126,26 +118,16 @@
         </sequential>
     </macrodef>
 
-    <!-- Custom task to perform the transformation of an NTS file -->
-    <macrodef name="transform-NTS-file">
-        <attribute name="nts.file" description="The path to the input file"/>
+    <macrodef name="transform-NTS-file" description="Custom task to perform the transformation of an NTS file">
+        <attribute name="nts.file" description="The (full) path to the input file."/>
+        <attribute name="project.dir" description="The base dir of the project."/>
+        <attribute name="output.dir" description="The target dir (not just the base) of the transformed file. The name of the actual file will be determined by this task."/>
 
         <sequential>
             <!-- Get the raw file name without suffix -->
             <local name="nts.file.basename"/>
             <basename property="nts.file.basename" file="@{nts.file}" suffix="xml"/>
-
-            <!-- Get the relative directory of the input file within the base directory -->
-            <local name="nts.file.reldir"/>
-            <local name="nts.file.dir"/>
-            <dirname property="nts.file.dir" file="@{nts.file}"/>
-            <pathconvert property="nts.file.reldir">
-                <path>
-                    <dirset dir="${nts.file.dir}"/>
-                </path>
-                <map from="${src.dir}/${project}" to=""/>
-            </pathconvert>
-            
+           
             <!-- Load the NTS file as an "xmlproperty" file. All variables extracted from xmlproperty should be
                  declared local. -->
             <local name="TestScript(nts:scenario)"/>
@@ -159,9 +141,7 @@
                             <local name="nts.file.newname"/>
                             <property name="nts.file.newname" value="${nts.file.basename}-@{expectedResponseFormat}.xml"/>
 
-                            <local name="nts.file.reldirXisInternal"/>
-                            
-                            <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="${temp.dir}/${nts.file.reldir}/${nts.file.newname}">
+                            <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                                 <parameters>
                                     <param name="inputDir" expression="file:///${project.dir.unix}"/>
                                     <param name="referenceFolder" expression="_reference"/>
@@ -170,24 +150,11 @@
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                                 </parameters>
                             </saxon-transform>
-                            <saxon-transform style="${xslt.dir}/stripSetup.xsl" in="${temp.dir}/${nts.file.reldir}/${nts.file.newname}" out="${build.dir}/${project}/${nts.file.reldir}/${nts.file.newname}"/>
-                            
-                            <if>
-                                <and>
-                                    <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
-                                    <equals arg1="${outputXisInternal}" arg2="true"/>
-                                </and>
-                                <then>
-                                    <propertyregex property="nts.file.reldirXisInternal" input="${nts.file.reldir}" regexp="XIS-Server" replace="XIS-Server-nictizintern"/>
-                                    <!--<echo message="${file.reldirXisInternal}"/>-->
-                                    <copy file="${temp.dir}/${nts.file.reldir}/${nts.file.newname}" tofile="${build.dir}/${project}/${nts.file.reldirXisInternal}/${nts.file.basename}-@{expectedResponseFormat}.xml"/>
-                                </then>
-                            </if>
                         </sequential>
                     </for>
                 </then>
                 <else>
-                    <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="${build.dir}/${project}/${nts.file.reldir}/${nts.file.basename}.xml">
+                    <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.basename}.xml">
                         <parameters>
                             <param name="inputDir" expression="file:///${project.dir.unix}"/>
                             <param name="referenceFolder" expression="_reference"/>
@@ -201,7 +168,7 @@
         </sequential>
     </macrodef>
 
-    <target name="build" depends="load, prepare, check-input">
+    <target name="build" depends="load, check-input">
         <!-- Get a unix-style version of the full project path, which is needed as an argument to the stylesheet -->
         <path id="project.dir">
             <pathelement path="${src.dir}/${project}" />
@@ -210,7 +177,7 @@
         
         <!-- Collect the XML files to transform -->
         <fileset id="nts.files" dir="${src.dir}/${project}">
-            <include name="**/*.xml"/>
+            <include name="*/*.xml"/>
             <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
         </fileset>
         
@@ -220,13 +187,20 @@
             </path>
 
             <sequential>
-                <transform-NTS-file nts.file="@{nts.file}"/>
+                <!-- Get the relative directory of the input file within the base directory -->
+                <local name="nts.file.reldir"/>
+                <local name="nts.file.dir"/>
+                <dirname property="nts.file.dir" file="@{nts.file}"/>
+                <pathconvert property="nts.file.reldir">
+                    <path>
+                        <dirset dir="${nts.file.dir}"/>
+                    </path>
+                    <map from="${src.dir}/${project}" to=""/>
+                </pathconvert>
+
+                <!-- Apply the transformation -->
+                <transform-NTS-file nts.file="@{nts.file}" project.dir="${src.dir}/${project}" output.dir="${build.dir}/${project}/${nts.file.reldir}"/>
             </sequential>
         </for>
     </target>
-    
-    <target name="clean" depends="build">
-        <delete dir="${temp.dir}"/>
-    </target>
-    
 </project>
