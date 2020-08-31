@@ -127,59 +127,64 @@
     </macrodef>
 
     <target name="build" depends="load, prepare, check-input">
-        <path id="projectdir.path">
+        <!-- Get a unix-style version of the full project path -->
+        <path id="project.dir">
             <pathelement path="${src.dir}/${project}" />
         </path>
-        <pathconvert targetos="unix" property="projectdir.unix" refid="projectdir.path"/>
+        <pathconvert targetos="unix" property="project.dir.unix" refid="project.dir"/>
         
-        <fileset id="input" dir="${src.dir}/${project}">
+        <!-- Collect the XML files to transform -->
+        <fileset id="nts.files" dir="${src.dir}/${project}">
             <include name="**/*.xml"/>
             <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
         </fileset>
         
-        <for param="file">
+        <for param="nts.file">
             <path>
-                <fileset refid="input"/>
+                <fileset refid="nts.files"/>
             </path>
+
             <sequential>
-                <local name="file.basename"/>
-                <local name="file.dirname"/>
-                <local name="file.reldir"/>
-                
-                <!-- All variables extracted from xmlproperty should be declared local -->
-                <local name="TestScript(nts:scenario)"/>
-                
-                <basename property="file.basename" file="@{file}" suffix="xml"/>
-                <dirname property="file.dirname" file="@{file}"/>
-                <pathconvert property="file.reldir">
+                <!-- Raw file name without suffix -->
+                <local name="nts.file.basename"/>
+                <basename property="nts.file.basename" file="@{nts.file}" suffix="xml"/>
+
+                <!-- Get the relative directory of the input file within the base directory -->
+                <local name="nts.file.reldir"/>
+                <local name="nts.file.dir"/>
+                <dirname property="nts.file.dir" file="@{nts.file}"/>
+                <pathconvert property="nts.file.reldir">
                     <path>
-                        <dirset dir="${file.dirname}"/>
+                        <dirset dir="${nts.file.dir}"/>
                     </path>
                     <map from="${src.dir}/${project}" to=""/>
                 </pathconvert>
                 
-                <xmlproperty file="@{file}"/>
+                <!-- Load the NTS file as an "xmlproperty" file. All variables extracted from xmlproperty should be
+                     declared local. -->
+                <local name="TestScript(nts:scenario)"/>
+                <xmlproperty file="@{nts.file}"/>
                 
                 <if>
                     <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
                     <then>
-                        <for list="xml,json" param="expectedResponseFormat"> <!-- XIS scripts are generated in both XML and JSON flavor -->
+                        <for param="expectedResponseFormat" list="xml,json"> <!-- XIS scripts are generated in both XML and JSON flavor -->
                             <sequential>
-                                <local name="file.newname"/>
-                                <property name="file.newname" value="${file.basename}-@{expectedResponseFormat}.xml"/>
+                                <local name="nts.file.newname"/>
+                                <property name="nts.file.newname" value="${nts.file.basename}-@{expectedResponseFormat}.xml"/>
 
-                                <local name="file.reldirXisInternal"/>
+                                <local name="nts.file.reldirXisInternal"/>
                                 
-                                <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{file}" out="${temp.dir}/${file.reldir}/${file.newname}">
+                                <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="${temp.dir}/${nts.file.reldir}/${nts.file.newname}">
                                     <parameters>
-                                        <param name="inputDir" expression="file:///${projectdir.unix}"/>
+                                        <param name="inputDir" expression="file:///${project.dir.unix}"/>
                                         <param name="referenceFolder" expression="_reference"/>
                                         <param name="commonComponentFolder" expression="../common-asserts"/>
                                         <param name="projectComponentFolder" expression="_components"/>
                                         <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                                     </parameters>
                                 </saxon-transform>
-                                <saxon-transform style="${xslt.dir}/stripSetup.xsl" in="${temp.dir}/${file.reldir}/${file.newname}" out="${build.dir}/${project}/${file.reldir}/${file.newname}"/>
+                                <saxon-transform style="${xslt.dir}/stripSetup.xsl" in="${temp.dir}/${nts.file.reldir}/${nts.file.newname}" out="${build.dir}/${project}/${nts.file.reldir}/${nts.file.newname}"/>
                                 
                                 <if>
                                     <and>
@@ -187,18 +192,18 @@
                                         <equals arg1="${outputXisInternal}" arg2="true"/>
                                     </and>
                                     <then>
-                                        <propertyregex property="file.reldirXisInternal" input="${file.reldir}" regexp="XIS-Server" replace="XIS-Server-nictizintern"/>
+                                        <propertyregex property="nts.file.reldirXisInternal" input="${nts.file.reldir}" regexp="XIS-Server" replace="XIS-Server-nictizintern"/>
                                         <!--<echo message="${file.reldirXisInternal}"/>-->
-                                        <copy file="${temp.dir}/${file.reldir}/${file.newname}" tofile="${build.dir}/${project}/${file.reldirXisInternal}/${file.basename}-@{expectedResponseFormat}.xml"/>
+                                        <copy file="${temp.dir}/${nts.file.reldir}/${nts.file.newname}" tofile="${build.dir}/${project}/${nts.file.reldirXisInternal}/${nts.file.basename}-@{expectedResponseFormat}.xml"/>
                                     </then>
                                 </if>
                             </sequential>
                         </for>
                     </then>
                     <else>
-                        <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{file}" out="${build.dir}/${project}/${file.reldir}/${file.basename}.xml">
+                        <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="${build.dir}/${project}/${nts.file.reldir}/${nts.file.basename}.xml">
                             <parameters>
-                                <param name="inputDir" expression="file:///${projectdir.unix}"/>
+                                <param name="inputDir" expression="file:///${project.dir.unix}"/>
                                 <param name="referenceFolder" expression="_reference"/>
                                 <param name="commonComponentFolder" expression="../common-asserts"/>
                                 <param name="projectComponentFolder" expression="_components"/>
