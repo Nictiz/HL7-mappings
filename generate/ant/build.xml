@@ -110,6 +110,22 @@
         <mkdir dir="${temp.dir}"/>
     </target>
     
+    <!-- Custom task to run an XSLT transformation using Saxon (HE). -->
+    <macrodef name="saxon-transform">
+        <attribute name="style" description="The path to the stylesheet to use for the transformation"/>
+        <attribute name="in" description="The path to the input file"/>
+        <attribute name="out" description="The path to the output file"/>
+        <element name="parameters" optional="yes" description="Optionally, a group of 'param' elements as understood by the XSLT task"/>
+
+        <sequential>
+            <xslt force="true" style="@{style}" in="@{in}" out="@{out}">
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${Saxon-HE.jar}"/>
+                <parameters/>
+            </xslt>
+        </sequential>
+    </macrodef>
+
     <target name="build" depends="load, prepare, check-input">
         <path id="projectdir.path">
             <pathelement path="${src.dir}/${project}" />
@@ -126,7 +142,6 @@
                 <fileset refid="input"/>
             </path>
             <sequential>
-                <local name="expectedResponseFormatList"/>
                 <local name="file.basename"/>
                 <local name="file.dirname"/>
                 <local name="file.reldir"/>
@@ -148,45 +163,49 @@
                 <if>
                     <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
                     <then>
-                        <property name="expectedResponseFormatList" value="xml,json"/>
+                        <for list="xml,json" param="expectedResponseFormat"> <!-- XIS scripts are generated in both XML and JSON flavor -->
+                            <sequential>
+                                <local name="file.newname"/>
+                                <property name="file.newname" value="${file.basename}-@{expectedResponseFormat}.xml"/>
+
+                                <local name="file.reldirXisInternal"/>
+                                
+                                <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{file}" out="${temp.dir}/${file.reldir}/${file.newname}">
+                                    <parameters>
+                                        <param name="inputDir" expression="file:///${projectdir.unix}"/>
+                                        <param name="referenceFolder" expression="_reference"/>
+                                        <param name="commonComponentFolder" expression="../common-asserts"/>
+                                        <param name="projectComponentFolder" expression="_components"/>
+                                        <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
+                                    </parameters>
+                                </saxon-transform>
+                                <saxon-transform style="${xslt.dir}/stripSetup.xsl" in="${temp.dir}/${file.reldir}/${file.newname}" out="${build.dir}/${project}/${file.reldir}/${file.newname}"/>
+                                
+                                <if>
+                                    <and>
+                                        <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
+                                        <equals arg1="${outputXisInternal}" arg2="true"/>
+                                    </and>
+                                    <then>
+                                        <propertyregex property="file.reldirXisInternal" input="${file.reldir}" regexp="XIS-Server" replace="XIS-Server-nictizintern"/>
+                                        <!--<echo message="${file.reldirXisInternal}"/>-->
+                                        <copy file="${temp.dir}/${file.reldir}/${file.newname}" tofile="${build.dir}/${project}/${file.reldirXisInternal}/${file.basename}-@{expectedResponseFormat}.xml"/>
+                                    </then>
+                                </if>
+                            </sequential>
+                        </for>
                     </then>
                     <else>
-                        <property name="expectedResponseFormatList" value="xml"/>
+                        <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{file}" out="${build.dir}/${project}/${file.reldir}/${file.basename}.xml">
+                            <parameters>
+                                <param name="inputDir" expression="file:///${projectdir.unix}"/>
+                                <param name="referenceFolder" expression="_reference"/>
+                                <param name="commonComponentFolder" expression="../common-asserts"/>
+                                <param name="projectComponentFolder" expression="_components"/>
+                            </parameters>
+                        </saxon-transform>
                     </else>
                 </if>
-                
-                <for list="${expectedResponseFormatList}" param="expectedResponseFormat">
-                    <sequential>
-                        <local name="file.newname"/>
-                        <local name="file.reldirXisInternal"/>
-                        <property name="file.newname" value="${file.basename}-@{expectedResponseFormat}.xml"/>
-                        
-                        <xslt force="true" style="${xslt.dir}/generateTestScript.xsl" in="@{file}" out="${temp.dir}/${file.reldir}/${file.newname}">                            
-                            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-                            <classpath location="${Saxon-HE.jar}"/>
-                            <param name="inputDir" expression="file:///${projectdir.unix}"/>
-                            <param name="referenceFolder" expression="_reference"/>
-                            <param name="commonComponentFolder" expression="../common-asserts"/>
-                            <param name="projectComponentFolder" expression="_components"/>
-                            <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
-                        </xslt>
-                        <xslt force="true" style="${xslt.dir}/stripSetup.xsl" in="${temp.dir}/${file.reldir}/${file.newname}" out="${build.dir}/${project}/${file.reldir}/${file.newname}">                             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-                            <classpath location="${Saxon-HE.jar}"/>
-                        </xslt>
-                        
-                        <if>
-                            <and>
-                                <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
-                                <equals arg1="${outputXisInternal}" arg2="true"/>
-                            </and>
-                            <then>
-                                <propertyregex property="file.reldirXisInternal" input="${file.reldir}" regexp="XIS-Server" replace="XIS-Server-nictizintern"/>
-                                <!--<echo message="${file.reldirXisInternal}"/>-->
-                                <copy file="${temp.dir}/${file.reldir}/${file.newname}" tofile="${build.dir}/${project}/${file.reldirXisInternal}/${file.basename}-@{expectedResponseFormat}.xml"/>
-                            </then>
-                        </if>
-                    </sequential>
-                </for>
                 
             </sequential>
         </for>
