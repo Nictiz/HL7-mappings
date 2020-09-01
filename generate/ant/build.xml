@@ -122,7 +122,7 @@
         <attribute name="nts.file" description="The (full) path to the input file."/>
         <attribute name="project.dir" description="The base dir of the project."/>
         <attribute name="output.dir" description="The target dir (not just the base) of the transformed file. The name of the actual file will be determined by this task."/>
-        <attribute name="fixtures.file" description="The (temporary) text file to collect the list of fixtures to. See the collect-fixtures macrodef for more information."/>
+        <attribute name="references.file" description="The (temporary) text file to collect the list of fixtures to. See the collect-fixtures macrodef for more information."/>
 
         <sequential>
             <!-- Get the raw file name without suffix -->
@@ -166,23 +166,82 @@
                 </else>
             </if>
 
-            <collect-fixtures testscript.path="@{output.dir}/${nts.file.newname}" fixtures.file="${fixtures.file}"/>
+            <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}"/>
         </sequential>
     </macrodef>
     
-    <macrodef name="collect-fixtures" description="Analyze a FHIR TestScript for the fixtures used and store them.">
+    <macrodef name="collect-references" description="Analyze a FHIR TestScript for the fixtures and rules used, and store them in a file.">
         <attribute name="testscript.path" description="The FHIR TestScript to analyze."/>
-        <attribute name="fixtures.file" description="The file to store the list of fixtures to, formatted as an Ant property file with the property 'fixtures' and as value the list of fixtures separated by a semicolon. If there are already fixtures listed in this file, the new fixtures are appended."/>
+        <attribute name="references.file" description="The file to store the list of references fixtures and rules to, formatted as an Ant property file with the property's 'fixtures' and 'rules', each containing a list of files separated by a semicolon. If there are already fixtures/rules listed in this file, the new ones are appended."/>
         
         <sequential>
+            <!-- Load the already known fixtures and rules from the file -->
             <local name="fixtures"/>
-            <property file="@{fixtures.file}"/>
-            <saxon-transform style="${xslt.dir}/collectFixtures.xsl" in="@{testscript.path}" out="@{fixtures.file}">
+            <local name="rules"/>
+            <property file="@{references.file}"/>
+            
+            <!-- Analyze the TestScript using an external stylesheet, feeding it the known fixtures and rules as 
+                 parameters -->
+            <saxon-transform style="${xslt.dir}/collectReferences.xsl" in="@{testscript.path}" out="@{references.file}">
                 <parameters>
-                    <param name="additional" expression="${fixtures}" if="fixtures"/>
+                    <param name="additionalFixtures" expression="${fixtures}" if="fixtures"/>
+                    <param name="additionalRules" expression="${rules}" if="rules"/>
                     <param name="includesDir" expression="../_reference/"/>
                 </parameters>
             </saxon-transform>
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="copy-references" description="Copy all the referenced files to the build folder. A check will be done if all referenced files are available.">
+        <attribute name="references.file" description="A property file with the fixtures and rules. See the documentation on collect-references for more info."/>
+        
+        <sequential>
+            <!-- Load the list of fixtures and rules that are referenced in the FHIR TestScripts -->
+            <local name="fixtures"/>
+            <local name="rules"/>
+            <property file="@{references.file}"/>
+            
+            <!-- Check if all declared fixtures exist -->
+            <for param="fixture" list="${fixtures}" delimiter=";">
+                <sequential>
+                    <if>
+                        <not>
+                            <available file="${src.dir}/${project}/_reference/@{fixture}"/>
+                        </not>
+                        <then>
+                            <fail message="Fixture '@{fixture}' is referenced but doesn't exist"/>
+                        </then>
+                    </if>
+                </sequential>
+            </for>
+            
+            <!-- Copy over the _reference dir with fixtures and rules -->
+            <copy todir="${build.dir}/${project}/_reference">
+                <fileset dir="${src.dir}/${project}/_reference"/>
+            </copy>
+            
+            <!-- Copy all rules from the global scope if they don't exist in the local scope, or fail if they don't
+                 exist there as well. -->
+            <for param="rule" list="${rules}" delimiter=";">
+                <sequential>
+                    <if>
+                        <not>
+                            <available file="${src.dir}/${project}/_reference/@{rule}"/>
+                        </not>
+                        <then>
+                            <if>
+                                <available file="${src.dir}/common-asserts/_reference/@{rule}"/>
+                            </if>
+                            <then>
+                                <copy file="${src.dir}/common-asserts/_reference/@{rule}" tofile="${build.dir}/${project}/_reference/@{rule}"/>
+                            </then>
+                            <else>
+                                <fail message="Rule '@{rule}' is referenced but doesn't exist in the local or global scope"/>
+                            </else>
+                        </then>
+                    </if>
+                </sequential>
+            </for>
         </sequential>
     </macrodef>
 
@@ -194,7 +253,7 @@
         </fileset>
         
         <!-- Create a temporary file to collect all the used fixtures -->
-        <tempfile property="fixtures.file" suffix=".txt" createfile="true" deleteonexit="true"/>
+        <tempfile property="references.file" suffix=".txt" createfile="true" deleteonexit="true"/>
         
         <sequential>
             <for param="nts.file">
@@ -219,18 +278,12 @@
                         nts.file="@{nts.file}"
                         project.dir="${src.dir}/${project}" 
                         output.dir="${build.dir}/${project}/${nts.file.reldir}" 
-                        fixtures.file="${fixtures.file}"/>
+                        references.file="${references.file}"/>
                 </sequential>
             </for>
             
-            <!-- Copy over the collected fixtures -->
-            <local name="fixtures"/>
-            <property file="${fixtures.file}"/>
-            <for param="fixture" list="${fixtures}" delimiter=";">
-                <sequential>
-                    <copy file="${src.dir}/${project}/_reference/@{fixture}" tofile="${build.dir}/${project}/_reference/@{fixture}"/>
-                </sequential>
-            </for>
+            <!-- Copy over all fixtures and rules -->
+            <copy-references references.file="${references.file}"/>
         </sequential>
     </target>
 </project>
