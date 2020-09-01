@@ -16,15 +16,15 @@
     <!-- The folder where the common components for TestScript generation can be found, relative to the XIS or PHR input dir. -->
     <xsl:param name="commonComponentFolder" select="'../../general/common-tests'"/>
     
-    <xsl:param name="inputDir" as="xs:string"/>
+    <!-- A string describing the directory where the input file resides, as an absolute path.
+         The 'project/commonComponentFolder' template parameters are relative to this directory.
+         This parameter is only needed when applying this template on a document that's not read from disk (i.e. a 
+         generated/rewritten document). -->
+    <xsl:param name="inputDir" as="xs:string" select="'.'"/>
     
     <xsl:param name="expectedResponseFormat" select="if(@nts:scenario = 'server') then 'xml' else ''"/>
     
     <!-- The main template, which will call the remaining templates.
-         param inputDir is a string describing the direcory where the input file resides. The 
-                        'project/commonComponentFolder' template parameters are relative to this directory.
-                        This parameter is only needed when applying this template on a document that's not read from 
-                        disk (i.e. a generated/rewritten document).
          param expectedResponseFormat is the format for responses (either 'xml' (default) or 'json') that this 
                                       TestScript expects when it tests a server (i.e. it has no meaning when 
                                       nts:scenario is set to 'client'). This value is added as 'Accept' header on all
@@ -290,7 +290,7 @@
             <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
             <xsl:when test="$scenario='server'">
                 <xsl:variable name="patientTokenFixture">
-                    <xsl:copy-of select="document(string-join(($inputDir, $referenceFolder, @href), '/'))"/>
+                    <xsl:copy-of select="document(string-join(($inputDir, $referenceFolder, @href), '/'), .)"/>
                 </xsl:variable>
                 <variable>
                     <name value="patient-token-id"/>
@@ -326,7 +326,7 @@
         </xsl:variable>
         
         <xsl:variable name="document" as="node()*">
-            <xsl:copy-of select="document(string-join(($inputDir, @href), '/'))"/>
+            <xsl:copy-of select="document(string-join(($inputDir, @href), '/'), .)"/>
         </xsl:variable>
         <xsl:apply-templates select="$document/nts:component/(element()|comment())" mode="expand">
             <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
@@ -359,7 +359,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:apply-templates select="document(string-join(($inputDir, $filePath), '/'))/nts:component/(element()|comment())" mode="expand">
+        <xsl:apply-templates select="document(string-join(($inputDir, $filePath), '/'), .)/nts:component/(element()|comment())" mode="expand">
             <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
