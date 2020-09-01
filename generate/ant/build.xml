@@ -122,6 +122,7 @@
         <attribute name="nts.file" description="The (full) path to the input file."/>
         <attribute name="project.dir" description="The base dir of the project."/>
         <attribute name="output.dir" description="The target dir (not just the base) of the transformed file. The name of the actual file will be determined by this task."/>
+        <attribute name="fixtures.file" description="The (temporary) text file to collect the list of fixtures to. See the collect-fixtures macrodef for more information."/>
 
         <sequential>
             <!-- Get the raw file name without suffix -->
@@ -133,20 +134,20 @@
             <local name="TestScript(nts:scenario)"/>
             <xmlproperty file="@{nts.file}"/>
 
+            <local name="nts.file.newname"/>
+            
             <if>
                 <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
                 <then>
                     <for param="expectedResponseFormat" list="xml,json"> <!-- XIS scripts are generated in both XML and JSON flavor -->
                         <sequential>
-                            <local name="nts.file.newname"/>
                             <property name="nts.file.newname" value="${nts.file.basename}-@{expectedResponseFormat}.xml"/>
 
                             <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                                 <parameters>
-                                    <param name="inputDir" expression="file:///${project.dir.unix}"/>
-                                    <param name="referenceFolder" expression="_reference"/>
-                                    <param name="commonComponentFolder" expression="../common-asserts"/>
-                                    <param name="projectComponentFolder" expression="_components"/>
+                                    <param name="referenceFolder" expression="../_reference"/>
+                                    <param name="commonComponentFolder" expression="../../common-asserts"/>
+                                    <param name="projectComponentFolder" expression="../_components"/>
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                                 </parameters>
                             </saxon-transform>
@@ -154,53 +155,82 @@
                     </for>
                 </then>
                 <else>
-                    <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.basename}.xml">
+                    <property name="nts.file.newname" value="${nts.file.basename}.xml"/>
+                    <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                         <parameters>
-                            <param name="inputDir" expression="file:///${project.dir.unix}"/>
-                            <param name="referenceFolder" expression="_reference"/>
-                            <param name="commonComponentFolder" expression="../common-asserts"/>
-                            <param name="projectComponentFolder" expression="_components"/>
+                            <param name="referenceFolder" expression="../_reference"/>
+                            <param name="commonComponentFolder" expression="../../common-asserts"/>
+                            <param name="projectComponentFolder" expression="../_components"/>
                         </parameters>
                     </saxon-transform>
                 </else>
             </if>
 
+            <collect-fixtures testscript.path="@{output.dir}/${nts.file.newname}" fixtures.file="${fixtures.file}"/>
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="collect-fixtures" description="Analyze a FHIR TestScript for the fixtures used and store them.">
+        <attribute name="testscript.path" description="The FHIR TestScript to analyze."/>
+        <attribute name="fixtures.file" description="The file to store the list of fixtures to, formatted as an Ant property file with the property 'fixtures' and as value the list of fixtures separated by a semicolon. If there are already fixtures listed in this file, the new fixtures are appended."/>
+        
+        <sequential>
+            <local name="fixtures"/>
+            <property file="@{fixtures.file}"/>
+            <saxon-transform style="${xslt.dir}/collectFixtures.xsl" in="@{testscript.path}" out="@{fixtures.file}">
+                <parameters>
+                    <param name="additional" expression="${fixtures}" if="fixtures"/>
+                    <param name="includesDir" expression="../_reference/"/>
+                </parameters>
+            </saxon-transform>
         </sequential>
     </macrodef>
 
     <target name="build" depends="load, check-input">
-        <!-- Get a unix-style version of the full project path, which is needed as an argument to the stylesheet -->
-        <path id="project.dir">
-            <pathelement path="${src.dir}/${project}" />
-        </path>
-        <pathconvert targetos="unix" property="project.dir.unix" refid="project.dir"/>
-        
         <!-- Collect the XML files to transform -->
         <fileset id="nts.files" dir="${src.dir}/${project}">
             <include name="*/*.xml"/>
             <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
         </fileset>
         
-        <for param="nts.file">
-            <path>
-                <fileset refid="nts.files"/>
-            </path>
-
-            <sequential>
-                <!-- Get the relative directory of the input file within the base directory -->
-                <local name="nts.file.reldir"/>
-                <local name="nts.file.dir"/>
-                <dirname property="nts.file.dir" file="@{nts.file}"/>
-                <pathconvert property="nts.file.reldir">
-                    <path>
-                        <dirset dir="${nts.file.dir}"/>
-                    </path>
-                    <map from="${src.dir}/${project}" to=""/>
-                </pathconvert>
-
-                <!-- Apply the transformation -->
-                <transform-NTS-file nts.file="@{nts.file}" project.dir="${src.dir}/${project}" output.dir="${build.dir}/${project}/${nts.file.reldir}"/>
-            </sequential>
-        </for>
+        <!-- Create a temporary file to collect all the used fixtures -->
+        <tempfile property="fixtures.file" suffix=".txt" createfile="true" deleteonexit="true"/>
+        
+        <sequential>
+            <for param="nts.file">
+                <path>
+                    <fileset refid="nts.files"/>
+                </path>
+    
+                <sequential>
+                    <!-- Get the relative directory of the input file within the base directory -->
+                    <local name="nts.file.reldir"/>
+                    <local name="nts.file.dir"/>
+                    <dirname property="nts.file.dir" file="@{nts.file}"/>
+                    <pathconvert property="nts.file.reldir">
+                        <path>
+                            <dirset dir="${nts.file.dir}"/>
+                        </path>
+                        <map from="${src.dir}/${project}" to=""/>
+                    </pathconvert>
+    
+                    <!-- Apply the transformation -->
+                    <transform-NTS-file 
+                        nts.file="@{nts.file}"
+                        project.dir="${src.dir}/${project}" 
+                        output.dir="${build.dir}/${project}/${nts.file.reldir}" 
+                        fixtures.file="${fixtures.file}"/>
+                </sequential>
+            </for>
+            
+            <!-- Copy over the collected fixtures -->
+            <local name="fixtures"/>
+            <property file="${fixtures.file}"/>
+            <for param="fixture" list="${fixtures}" delimiter=";">
+                <sequential>
+                    <copy file="${src.dir}/${project}/_reference/@{fixture}" tofile="${build.dir}/${project}/_reference/@{fixture}"/>
+                </sequential>
+            </for>
+        </sequential>
     </target>
 </project>
