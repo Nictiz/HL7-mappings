@@ -44,7 +44,7 @@ Alternatively, the following form may be used:
 <nts:include href="..."/>
 ```
 
-to refer to a file directly.
+to refer to a file directly, relative from the input file.
 
 *Note*: the transformation will take care of putting all included variables, fixtures, etc. in the right place in the resulting TestScript. If different components define the same variable, fixture, etc., it will be deduplicated. If they define a different variable, fixture, etc. with the same id, an error will be thrown.
 
