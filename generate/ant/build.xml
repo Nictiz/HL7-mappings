@@ -231,13 +231,13 @@
                         <then>
                             <if>
                                 <available file="${src.dir}/common-asserts/_reference/@{rule}"/>
+                                <then>
+                                    <copy file="${src.dir}/common-asserts/_reference/@{rule}" tofile="${build.dir}/${project}/_reference/@{rule}"/>
+                                </then>
+                                <else>
+                                    <fail message="Rule '@{rule}' is referenced but doesn't exist in the local or global scope"/>
+                                </else>
                             </if>
-                            <then>
-                                <copy file="${src.dir}/common-asserts/_reference/@{rule}" tofile="${build.dir}/${project}/_reference/@{rule}"/>
-                            </then>
-                            <else>
-                                <fail message="Rule '@{rule}' is referenced but doesn't exist in the local or global scope"/>
-                            </else>
                         </then>
                     </if>
                 </sequential>
@@ -245,7 +245,11 @@
         </sequential>
     </macrodef>
 
-    <target name="build" depends="load, check-input">
+    <target name="cleanBuildDir">
+        <delete dir="${build.dir}/${project}"/>
+    </target>
+    
+    <target name="build" depends="load, check-input, cleanBuildDir">
         <!-- Collect the XML files to transform -->
         <fileset id="nts.files" dir="${src.dir}/${project}">
             <include name="*/*.xml"/>
