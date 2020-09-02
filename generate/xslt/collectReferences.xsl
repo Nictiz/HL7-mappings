@@ -15,12 +15,13 @@
          
     <xsl:param name="additionalFixtures" as="xs:string" select="''"/>
     <xsl:param name="additionalRules" as="xs:string" select="''"/>
-    <xsl:param name="includesDir" select="'../_reference/'"/>
+    <xsl:param name="includesDir" select="'../_reference'"/>
 
     <xsl:template match="f:TestScript">
+        <xsl:message select="$includesDir"></xsl:message>
         <xsl:variable name="fixtures" as="xs:string*">
             <xsl:for-each select="//f:fixture">
-                <xsl:value-of select="substring-after(f:resource/f:reference/@value, $includesDir)"/>        
+                <xsl:value-of select="substring-after(f:resource/f:reference/@value, concat($includesDir,'/'))"/>        
             </xsl:for-each>
             <xsl:for-each select="tokenize($additionalFixtures, ';')">
                 <xsl:if test="string-length(.) &gt; 0">

@@ -7,11 +7,11 @@
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
         
-    <!-- The base of the folder where fixtures can be found, relative to the folder where the output TestScript will reside. -->
-    <xsl:param name="referenceFolder" select="'../_reference'"/>
+    <!-- The folder where fixtures can be found.-->
+    <xsl:param name="referenceFolder"/>
     
-    <!-- The folder where components for this project can be found, relative to the XIS or PHR input dir. -->
-    <xsl:param name="projectComponentFolder" select="'components'"/>
+    <!-- The relative path to referenceFolder is calculated by ant. Defaults to '../_reference'. -->
+    <xsl:param name="referenceBase"/>
     
     <!-- The folder where components for this project can be found. -->
     <xsl:param name="projectComponentFolder"/>
@@ -252,7 +252,7 @@
     <xsl:template match="nts:fixture[@id and @href]" mode="expand">
         <fixture id="{@id}">
             <resource>
-                <reference value="{nts:constructFilePath($referenceFolder, @href)}"/>
+                <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
             </resource>
         </fixture>
     </xsl:template>
@@ -271,7 +271,7 @@
             <xsl:when test="$scenario='client'">
                 <fixture id="patient-token-fixture">
                     <resource>
-                        <reference value="{nts:constructFilePath($referenceFolder, @href)}"/>
+                        <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
                     </resource>
                 </fixture>
                 <variable>
@@ -283,13 +283,13 @@
             <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
             <xsl:when test="$scenario='server'">
                 <xsl:variable name="patientTokenFixture">
-                    <xsl:copy-of select="document(string-join(($inputDir, $referenceFolder, @href), '/'), .)"/>
+                    <xsl:copy-of select="document(string-join(($referenceFolder, @href), '/'))"/>
                 </xsl:variable>
                 <variable>
                     <name value="patient-token-id"/>
                     <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
                     <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
-                        <xsl:comment>patientTokenFixture <xsl:value-of select="string-join(($inputDir, $referenceFolder, @href), '/')"/> not available</xsl:comment>
+                        <xsl:comment>patientTokenFixture <xsl:value-of select="string-join(($referenceFolder, @href), '/')"/> not available</xsl:comment>
                     </xsl:if>
                     <description value="OAuth Token for current patient"/>
                 </variable>
@@ -327,10 +327,8 @@
 
     <!-- Expand a nts:include element that uses relative references with value and scope.
          It will convert value to a full file path, read all f:parts elements in the referenced file and process them
-         further.
-         param inputDir is the base to include files relative to. --> 
+         further. --> 
     <xsl:template match="nts:include[@value]" mode="expand">
-        <xsl:param name="inputDir" tunnel="yes"/>
         <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
         
         <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
@@ -360,7 +358,7 @@
     <xsl:template match="nts:rule[@id and @href]" mode="expand">
         <rule id="{@id}">
             <resource>
-                <reference value="{nts:constructFilePath($referenceFolder, @href)}"/>
+                <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
             </resource>
             <xsl:copy-of select="./*"/>
         </rule>

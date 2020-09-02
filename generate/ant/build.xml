@@ -34,6 +34,7 @@
     
     <property name="commonasserts.dir" value="${src.dir}/common-asserts"/>
     <property name="project.dir" value="${src.dir}/${project}"/>
+    <property name="reference.dir" value="${project.dir}/_reference"/>
     <property name="components.dir" value="${project.dir}/_components"/>
         
     <!-- IVY -->
@@ -138,8 +139,18 @@
             <local name="TestScript(nts:scenario)"/>
             <xmlproperty file="@{nts.file}"/>
 
-            <local name="nts.file.newname"/>
             
+            <!-- Calculate the relative path to the reference dir -->
+            <local name="reference.dir.rel.temp"/>
+            <local name="reference.dir.rel"/>
+            <local name="nts.file.dir"/>
+            
+            <dirname property="nts.file.dir" file="@{nts.file}"/>
+            <!-- Unfortunately this is needed to correct backwards slashes in the output -->
+            <property name="reference.dir.rel.temp" location="${reference.dir}" relative="true" basedir="${nts.file.dir}"/>
+            <propertyregex property="reference.dir.rel" input="${reference.dir.rel.temp}" regexp="[\\]" replace="/"/>
+            
+            <local name="nts.file.newname"/>
             <if>
                 <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
                 <then>
@@ -149,7 +160,8 @@
 
                             <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                                 <parameters>
-                                    <param name="referenceFolder" expression="../_reference"/>
+                                    <param name="referenceFolder" expression="${reference.dir}"/>
+                                    <param name="referenceBase" expression="${reference.dir.rel}"/>
                                     <param name="commonComponentFolder" expression="${commonasserts.dir}"/>
                                     <param name="projectComponentFolder" expression="${components.dir}"/>
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
@@ -162,7 +174,8 @@
                     <property name="nts.file.newname" value="${nts.file.basename}.xml"/>
                     <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                         <parameters>
-                            <param name="referenceFolder" expression="../_reference"/>
+                            <param name="referenceFolder" expression="${reference.dir}"/>
+                            <param name="referenceBase" expression="${reference.dir.rel}"/>
                             <param name="commonComponentFolder" expression="${commonasserts.dir}"/>
                             <param name="projectComponentFolder" expression="${components.dir}"/>
                         </parameters>
@@ -170,13 +183,14 @@
                 </else>
             </if>
 
-            <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}"/>
+            <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>
         </sequential>
     </macrodef>
     
     <macrodef name="collect-references" description="Analyze a FHIR TestScript for the fixtures and rules used, and store them in a file.">
         <attribute name="testscript.path" description="The FHIR TestScript to analyze."/>
         <attribute name="references.file" description="The file to store the list of references fixtures and rules to, formatted as an Ant property file with the property's 'fixtures' and 'rules', each containing a list of files separated by a semicolon. If there are already fixtures/rules listed in this file, the new ones are appended."/>
+        <attribute name="reference.dir.rel" description="The relative path to reference.dir, calculated from nts.file.dir (the location of the input NTS file)."/>
         
         <sequential>
             <!-- Load the already known fixtures and rules from the file -->
@@ -190,7 +204,7 @@
                 <parameters>
                     <param name="additionalFixtures" expression="${fixtures}" if="fixtures"/>
                     <param name="additionalRules" expression="${rules}" if="rules"/>
-                    <param name="includesDir" expression="../_reference/"/>
+                    <param name="includesDir" expression="${reference.dir.rel}"/>
                 </parameters>
             </saxon-transform>
         </sequential>
