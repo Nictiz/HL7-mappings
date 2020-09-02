@@ -157,14 +157,16 @@ The transformation is performed with the `generateTestScript.xsl` stylesheet, wh
 
 ## Building
 
-There is an [Apache ANT](http://ant.apache.org/) based build file available (`ant/build.xml`) to facilitate building of NTS projects. The normal use of this build script is to keep it in the current folder structure and call it from another ANT build script, like:
+There is an [Apache ANT](http://ant.apache.org/) based build file available (`ant/build.xml`) to facilitate building of NTS projects. The normal use of this build script is to keep it in the current folder structure and include/import it from another ANT build script, like:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." name="generateTestScriptsForProject">
 
-    <target name="build">
-        <ant file="path/to/this/dir/ant/build.xml" target="clean/>
+    <include file="path/to/this/build.xml" as="base"/>
+    
+    <target name="build" depends="base.build">
+        ...
     </target>        
 </project>
 ```
@@ -182,6 +184,8 @@ For the project build file, a particular folder structure is expected:
     - ant-dependencies/  : the dir where the dependencies for ANT will be placed (you probably want to add this to `.gitignore`)
 
 The script will ask you for one of the project dirs inside the `src/` dir. Alternatively, this can be passed in the ANT call with the `-Dproject=` option.
+
+If you want to send the output to another dir, you can override the build dir usng the `-Dbuild.dir=` option. The folder structure, including the project folder, will be recreated here. 
 
 ## Schematron
 
