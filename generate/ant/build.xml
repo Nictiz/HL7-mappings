@@ -223,9 +223,12 @@
             <for param="fixture" list="${fixtures}" delimiter=";">
                 <sequential>
                     <if>
-                        <not>
-                            <available file="${project.dir}/_reference/@{fixture}"/>
-                        </not>
+                        <and>
+                            <isset property="@{fixture}"/>
+                            <not>
+                                <available file="${project.dir}/_reference/@{fixture}"/>
+                            </not>
+                        </and>
                         <then>
                             <fail message="Fixture '@{fixture}' is referenced but doesn't exist"/>
                         </then>
@@ -243,9 +246,12 @@
             <for param="rule" list="${rules}" delimiter=";">
                 <sequential>
                     <if>
-                        <not>
-                            <available file="${reference.dir}/@{rule}"/>
-                        </not>
+                        <and>
+                            <isset property="@{rule}"/>
+                            <not>
+                                <available file="${reference.dir}/@{rule}"/>
+                            </not>
+                        </and>
                         <then>
                             <if>
                                 <available file="${commonasserts.dir}/_reference/@{rule}"/>
