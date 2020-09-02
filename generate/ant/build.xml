@@ -150,12 +150,12 @@
             <property name="reference.dir.rel.temp" location="${reference.dir}" relative="true" basedir="${nts.file.dir}"/>
             <propertyregex property="reference.dir.rel" input="${reference.dir.rel.temp}" regexp="[\\]" replace="/"/>
             
-            <local name="nts.file.newname"/>
             <if>
                 <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
                 <then>
                     <for param="expectedResponseFormat" list="xml,json"> <!-- XIS scripts are generated in both XML and JSON flavor -->
                         <sequential>
+                            <local name="nts.file.newname"/>
                             <property name="nts.file.newname" value="${nts.file.basename}-@{expectedResponseFormat}.xml"/>
 
                             <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
@@ -167,10 +167,18 @@
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                                 </parameters>
                             </saxon-transform>
+                            
+                            <if>
+                                <equals arg1="expectedResponseFormat" arg2="xml"/>
+                                <then>
+                                    <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>
+                                </then>
+                            </if>
                         </sequential>
                     </for>
                 </then>
                 <else>
+                    <local name="nts.file.newname"/>
                     <property name="nts.file.newname" value="${nts.file.basename}.xml"/>
                     <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                         <parameters>
@@ -180,10 +188,9 @@
                             <param name="projectComponentFolder" expression="${components.dir}"/>
                         </parameters>
                     </saxon-transform>
+                    <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>
                 </else>
             </if>
-
-            <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>
         </sequential>
     </macrodef>
     

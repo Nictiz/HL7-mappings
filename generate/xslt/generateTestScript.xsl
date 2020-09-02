@@ -19,7 +19,7 @@
     <!-- The folder where the common components for TestScript generation can be found. -->
     <xsl:param name="commonComponentFolder"/>
     
-    <xsl:param name="expectedResponseFormat" select="if(@nts:scenario = 'server') then 'xml' else ''"/>
+    <xsl:param name="expectedResponseFormat"/>
     
     <!-- The main template, which will call the remaining templates.
          param expectedResponseFormat is the format for responses (either 'xml' (default) or 'json') that this 
@@ -28,7 +28,6 @@
                                       requests and to the name and id of the TestScript.
     -->
     <xsl:template name="generate" match="f:TestScript">
-        
         <xsl:variable name="scenario" select="@nts:scenario"/>
         
         <!-- Sanity check the expectedResponseFormat parameter -->
