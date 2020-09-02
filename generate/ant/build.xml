@@ -259,35 +259,52 @@
         <!-- Create a temporary file to collect all the used fixtures -->
         <tempfile property="references.file" suffix=".txt" createfile="true" deleteonexit="true"/>
         
-        <sequential>
-            <for param="nts.file">
-                <path>
-                    <fileset refid="nts.files"/>
-                </path>
-    
+        <!-- Check if there are files in the fileset. -->
+        <condition property="nts.files.available">
+            <resourcecount count="0" when="gt">
+                <fileset refid="nts.files"/>
+            </resourcecount>
+        </condition>
+        
+        <!-- Fail if no input files are found - otherwise the build just fails at copy-references without any warning -->
+        <if>
+            <equals arg1="${nts.files.available}" arg2="true"/>
+            <then>
                 <sequential>
-                    <!-- Get the relative directory of the input file within the base directory -->
-                    <local name="nts.file.reldir"/>
-                    <local name="nts.file.dir"/>
-                    <dirname property="nts.file.dir" file="@{nts.file}"/>
-                    <pathconvert property="nts.file.reldir">
+                    <for param="nts.file">
                         <path>
-                            <dirset dir="${nts.file.dir}"/>
+                            <fileset refid="nts.files"/>
                         </path>
-                        <map from="${src.dir}/${project}" to=""/>
-                    </pathconvert>
-    
-                    <!-- Apply the transformation -->
-                    <transform-NTS-file 
-                        nts.file="@{nts.file}"
-                        project.dir="${src.dir}/${project}" 
-                        output.dir="${build.dir}/${project}/${nts.file.reldir}" 
-                        references.file="${references.file}"/>
+                        
+                        <sequential>
+                            <!-- Get the relative directory of the input file within the base directory -->
+                            <local name="nts.file.reldir"/>
+                            <local name="nts.file.dir"/>
+                            <dirname property="nts.file.dir" file="@{nts.file}"/>
+                            <pathconvert property="nts.file.reldir">
+                                <path>
+                                    <dirset dir="${nts.file.dir}"/>
+                                </path>
+                                <map from="${src.dir}/${project}" to=""/>
+                            </pathconvert>
+                            
+                            <!-- Apply the transformation -->
+                            <transform-NTS-file 
+                                nts.file="@{nts.file}"
+                                project.dir="${src.dir}/${project}" 
+                                output.dir="${build.dir}/${project}/${nts.file.reldir}" 
+                                references.file="${references.file}"/>
+                        </sequential>
+                    </for>
+                    
+                    <!-- Copy over all fixtures and rules -->
+                    <copy-references references.file="${references.file}"/>
                 </sequential>
-            </for>
-            
-            <!-- Copy over all fixtures and rules -->
-            <copy-references references.file="${references.file}"/>
-        </sequential>
+            </then>
+            <else>
+                <fail message="No input files found in ${src.dir}/${project}."/>
+            </else>
+        </if>
+        
     </target>
 </project>
