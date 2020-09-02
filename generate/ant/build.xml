@@ -31,6 +31,10 @@
     <property name="src.dir" value="${basedir}/src" />
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
+    
+    <property name="commonasserts.dir" value="${src.dir}/common-asserts"/>
+    <property name="project.dir" value="${src.dir}/${project}"/>
+    <property name="components.dir" value="${project.dir}/_components"/>
         
     <!-- IVY -->
     
@@ -87,7 +91,7 @@
         
         <if>
             <not>
-                <available file="${src.dir}/${project}" type="dir"/>
+                <available file="${project.dir}" type="dir"/>
             </not>
             <then>
                 <fail message="Project directory '${project}' does not exist."/>
@@ -95,10 +99,10 @@
         </if>
         <if>
             <not>
-                <available file="${src.dir}/${project}/_components" type="dir"/>
+                <available file="${components.dir}/" type="dir"/>
             </not>
             <then>
-                <echo message="WARNING: Project components directory '${project}/_components' does not exist."/>
+                <echo message="WARNING: Project components directory '${components.dir}' does not exist."/>
             </then>
         </if>
     </target>
@@ -146,8 +150,8 @@
                             <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                                 <parameters>
                                     <param name="referenceFolder" expression="../_reference"/>
-                                    <param name="commonComponentFolder" expression="../../common-asserts"/>
-                                    <param name="projectComponentFolder" expression="../_components"/>
+                                    <param name="commonComponentFolder" expression="${commonasserts.dir}"/>
+                                    <param name="projectComponentFolder" expression="${components.dir}"/>
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                                 </parameters>
                             </saxon-transform>
@@ -159,8 +163,8 @@
                     <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                         <parameters>
                             <param name="referenceFolder" expression="../_reference"/>
-                            <param name="commonComponentFolder" expression="../../common-asserts"/>
-                            <param name="projectComponentFolder" expression="../_components"/>
+                            <param name="commonComponentFolder" expression="${commonasserts.dir}"/>
+                            <param name="projectComponentFolder" expression="${components.dir}"/>
                         </parameters>
                     </saxon-transform>
                 </else>
@@ -206,7 +210,7 @@
                 <sequential>
                     <if>
                         <not>
-                            <available file="${src.dir}/${project}/_reference/@{fixture}"/>
+                            <available file="${project.dir}/_reference/@{fixture}"/>
                         </not>
                         <then>
                             <fail message="Fixture '@{fixture}' is referenced but doesn't exist"/>
@@ -217,7 +221,7 @@
             
             <!-- Copy over the _reference dir with fixtures and rules -->
             <copy todir="${build.dir}/${project}/_reference">
-                <fileset dir="${src.dir}/${project}/_reference"/>
+                <fileset dir="${reference.dir}"/>
             </copy>
             
             <!-- Copy all rules from the global scope if they don't exist in the local scope, or fail if they don't
@@ -226,13 +230,13 @@
                 <sequential>
                     <if>
                         <not>
-                            <available file="${src.dir}/${project}/_reference/@{rule}"/>
+                            <available file="${reference.dir}/@{rule}"/>
                         </not>
                         <then>
                             <if>
-                                <available file="${src.dir}/common-asserts/_reference/@{rule}"/>
+                                <available file="${commonasserts.dir}/_reference/@{rule}"/>
                                 <then>
-                                    <copy file="${src.dir}/common-asserts/_reference/@{rule}" tofile="${build.dir}/${project}/_reference/@{rule}"/>
+                                    <copy file="${commonasserts.dir}/_reference/@{rule}" tofile="${reference.dir}/@{rule}"/>
                                 </then>
                                 <else>
                                     <fail message="Rule '@{rule}' is referenced but doesn't exist in the local or global scope"/>

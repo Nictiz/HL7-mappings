@@ -13,14 +13,11 @@
     <!-- The folder where components for this project can be found, relative to the XIS or PHR input dir. -->
     <xsl:param name="projectComponentFolder" select="'components'"/>
     
-    <!-- The folder where the common components for TestScript generation can be found, relative to the XIS or PHR input dir. -->
-    <xsl:param name="commonComponentFolder" select="'../../general/common-tests'"/>
+    <!-- The folder where components for this project can be found. -->
+    <xsl:param name="projectComponentFolder"/>
     
-    <!-- A string describing the directory where the input file resides, as an absolute path.
-         The 'project/commonComponentFolder' template parameters are relative to this directory.
-         This parameter is only needed when applying this template on a document that's not read from disk (i.e. a 
-         generated/rewritten document). -->
-    <xsl:param name="inputDir" as="xs:string" select="'.'"/>
+    <!-- The folder where the common components for TestScript generation can be found. -->
+    <xsl:param name="commonComponentFolder"/>
     
     <xsl:param name="expectedResponseFormat" select="if(@nts:scenario = 'server') then 'xml' else ''"/>
     
@@ -45,7 +42,6 @@
         <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
         <xsl:variable name="expanded">
             <xsl:apply-templates mode="expand" select=".">
-                <xsl:with-param name="inputDir" select="$inputDir" tunnel="yes"/>
                 <xsl:with-param name="scenario" select="$scenario" tunnel="yes"/>
             </xsl:apply-templates>
         </xsl:variable>
@@ -266,12 +262,9 @@
          - for a server script, it will be provided with a default value read from the fixture, which can be overridden
            by the TestScript executor.
          - for a client script, the fixture will be included as TestScript fixture and the variable will be read from
-           it using a FHIRPath experssion.
-         
-         param inputDir is the base to include files relative to. --> 
+           it using a FHIRPath experssion. --> 
     <xsl:template match="nts:patientTokenFixture" mode="expand">
         <xsl:param name="scenario" tunnel="yes"/>
-        <xsl:param name="inputDir" tunnel="yes"/>
         
         <xsl:choose>
             <!-- Expand the nts:patientTokenFixture element for 'phr' type scripts -->
@@ -317,7 +310,6 @@
          It will read all f:parts elements in the referenced file and process them further.
          param inputDir is the base to include files relative to. --> 
     <xsl:template match="nts:include[@href]" mode="expand">
-        <xsl:param name="inputDir" tunnel="yes"/>
         <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
         
         <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
@@ -359,7 +351,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:apply-templates select="document(string-join(($inputDir, $filePath), '/'), .)/nts:component/(element()|comment())" mode="expand">
+        <xsl:apply-templates select="document(string-join(($filePath), '/'), .)/nts:component/(element()|comment())" mode="expand">
             <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
@@ -442,7 +434,7 @@
         <xsl:param name="filename" as="xs:string" />
         
         <xsl:variable name="fullFilename" select="nts:addXMLExtension($filename)"/>
-        <xsl:value-of select="nts:constructFilePath($base,$fullFilename)"/>
+        <xsl:value-of select="concat('file:///',nts:constructFilePath($base,$fullFilename))"/>
     </xsl:function>
 
     <!-- Add .xml to the filename if it doesn't have it already.
