@@ -192,3 +192,7 @@ If you want to send the output to another dir, you can override the build dir us
 A schematron is available that can be used to check both the input TestScript files and the component files. It is reasonably complete and covers everything on the root level of the input files.
 
 It can be found at `schematron/NictizTestScript.sch` relative to this README.
+
+## Output logging
+
+Because of the verbosity of the ANT build, the logging level is set to 1 (warning) and Saxon is set to not try to recover. When more verbose output is wanted, the logging level can be changed by setting the `-DoutputLevel=` parameter on the ANT build.

@@ -32,9 +32,18 @@
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
         
+    <property name="outputLevel" value="1" />
+    <!-- Gives a script warning. It is advised to switch to Groovy, haven't figured that one out. -->
+    <target name="set-log">
+        <script language="javascript">
+            var verboseMode = project.getProperty( "outputLevel" )
+            project.getBuildListeners().firstElement().setMessageOutputLevel(verboseMode);
+        </script>
+    </target>
+    
     <!-- IVY -->
     
-    <target name="check-ivy">
+    <target name="check-ivy" depends="set-log">
         <condition property="ivy.exists">
             <or>
                 <available file="${ivy.jar.file}" type="file"/>
@@ -103,7 +112,9 @@
 
         <sequential>
             <xslt force="true" style="@{style}" in="@{in}" out="@{out}">
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl">
+                    <attribute name="http://saxon.sf.net/feature/recoveryPolicy" value="2"/>
+                </factory>
                 <classpath location="${Saxon-HE.jar}"/>
                 <parameters/>
             </xslt>
