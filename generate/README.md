@@ -26,9 +26,9 @@ To define a component, simply create an .xml file with the necessary content enc
 </nts:component>
 ```
 
-Normally, these components are collected in a subdirectory called "components" relative to the TestScript. This location may be overridden using the `projectComponentFolder` parameter of the stylesheet when applying the transformation.
+Normally, these components are collected in a subdirectory called "_components" in the project folder. This path is passed from the ANT build script to the stylesheet. This location may be overridden by passing the `components.dir` property to the ANT build.
 
-Additionally, the subdirectory "common-components" next to where this README resides contains building blocks that can be used across *all* projects. The location of this folder, relative to the TestScript, may be set using the `commonComponentFolder` parameter of the stylesheet during transformation.
+Additionally, the subdirectory "common-components" in the src-folder contains building blocks that can be used across *all* projects. The location of this folder may be overridden using the `commonasserts.dir` property to the ANT build.
 
 A building block can then be included using:
 
@@ -36,7 +36,7 @@ A building block can then be included using:
 <nts:include value=".." scope="project|common"/>
 ```
 
-Where `value` should be the name of the file to include (the ".xml" part may be omitted). The `scope` attribute defaults to "project" if it is ommitted
+Where `value` should be the name of the file to include (the ".xml" part may be omitted). The `scope` attribute defaults to "project" if it is ommitted.
 
 Alternatively, the following form may be used:
 
@@ -112,7 +112,7 @@ Fixtures and rules can be defined using:
 <nts:rule id=".." href=".."/>
 ```
 
-As a convenience, `href` is considered to be relative to a predefined fixtures folder. It defaults to "../_reference", but this may be overridden using the `referenceBase` stylesheet parameter when applying the transformation.
+`href` is considered to be relative to a predefined fixtures folder. It defaults to the "_reference"-folder in the project-folder. The relative value is calculated from the input file by the ANT build. The default location may be overridden by passing the `reference.dir` property to the ANT build.
 
 Profiles may be defined using:
 
@@ -130,7 +130,7 @@ The first one for including the patient authorization token in the TestScript:
 <nts:patientTokenFixture href="..">
 ```
 
-The `href` attribute should point to the `Patient` instance containing the token, as is commonly done with the Nictiz test scripts. The `nts:scenario` attribute on the TestScript root determines how this tag is expanded:
+The `href` attribute should point to the `Patient` instance containing the token, as is commonly done with the Nictiz test scripts, placed in the "_reference"-folder. The `nts:scenario` attribute on the TestScript root determines how this tag is expanded:
 
 * for "server", a variable will be created which the test script executor can set, defaulting to the value from the fixture.
 * for "client", the fixture will be included and a variable called "patient-token-id" will be created that reads the value from the fixture
@@ -153,7 +153,7 @@ nts:scenario="server|client"
 
 ## Running the transformation
 
-The transformation is performed with the `generateTestScript.xsl` stylesheet, which may be found in the `xslt` folder. See the stylesheet documentation for the available parameters.
+The transformation is called by the ANT build in `ant/build.xml`. For more information on the location of the inputs and outputs, see [the readme in the TestScripts repository](https://github.com/Nictiz/Nictiz-STU3-testscripts/blob/master/Generate/README.md).
 
 ## Building
 
