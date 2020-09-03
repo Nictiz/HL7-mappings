@@ -32,18 +32,16 @@
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
         
+    <!-- Set the verbosity level of the output. A higher value means more verbose output -->
     <property name="outputLevel" value="1" />
-    <!-- Gives a script warning. It is advised to switch to Groovy, haven't figured that one out. -->
-    <target name="set-log">
-        <script language="javascript">
-            var verboseMode = project.getProperty( "outputLevel" )
-            project.getBuildListeners().firstElement().setMessageOutputLevel(verboseMode);
-        </script>
-    </target>
+    <script language="javascript"> <!-- Gives a script warning. It is advised to switch to Groovy, haven't figured that one out. -->
+        var verboseMode = project.getProperty( "outputLevel" )
+        project.getBuildListeners().firstElement().setMessageOutputLevel(verboseMode);
+    </script>
     
     <!-- IVY -->
     
-    <target name="check-ivy" depends="set-log">
+    <target name="check-ivy">
         <condition property="ivy.exists">
             <or>
                 <available file="${ivy.jar.file}" type="file"/>
@@ -54,7 +52,7 @@
     </target>
     
     <target name="download-ivy" depends="check-ivy" unless="ivy.exists">
-        <echo message="installing ivy..."/>
+        <echo message="Installing Ivy"/>
         <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
             dest="${ivy.local.jar.file}" usetimestamp="true"/>
     </target>
@@ -136,7 +134,6 @@
                  declared local. -->
             <local name="TestScript(nts:scenario)"/>
             <xmlproperty file="@{nts.file}"/>
-
             
             <!-- Calculate the relative path to the reference dir -->
             <local name="reference.dir.rel.temp"/>
@@ -275,7 +272,10 @@
     </macrodef>
 
     <target name="cleanBuildDir">
-        <delete dir="${build.dir}/${project}"/>
+        <sequential>
+            <echo message="Deleting previous build dir"/>
+            <delete dir="${build.dir}/${project}"/>
+        </sequential>
     </target>
     
     <target name="build" depends="load, check-input, cleanBuildDir">
@@ -308,6 +308,7 @@
             <equals arg1="${nts.files.available}" arg2="true"/>
             <then>
                 <sequential>
+                    <echo message="Transforming NTS files"/>
                     <for param="nts.file">
                         <path>
                             <fileset refid="nts.files"/>
@@ -335,6 +336,7 @@
                     </for>
                     
                     <!-- Copy over all fixtures and rules -->
+                    <echo message="Copying fixtures"/>
                     <copy-references references.file="${references.file}"/>
                 </sequential>
             </then>
