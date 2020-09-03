@@ -294,6 +294,9 @@
         <!-- Create a temporary file to collect all the used fixtures -->
         <tempfile property="references.file" suffix=".txt" createfile="true" deleteonexit="true"/>
         
+        <!-- Delete previous build output -->
+        <delete dir="${build.dir}/${project}"/>
+        
         <!-- Check if there are files in the fileset. -->
         <condition property="nts.files.available">
             <resourcecount count="0" when="gt">
