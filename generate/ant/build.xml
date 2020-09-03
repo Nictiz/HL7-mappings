@@ -279,10 +279,10 @@
     </target>
     
     <target name="build" depends="load, check-input, cleanBuildDir">
-        <property name="commonasserts.dir" value="${src.dir}/common-asserts"/>
-        <property name="project.dir" value="${src.dir}/${project}"/>
-        <property name="reference.dir" value="${project.dir}/_reference"/>
-        <property name="components.dir" value="${project.dir}/_components"/>
+        <property name="commonasserts.dir" location="${src.dir}/common-asserts"/>
+        <property name="project.dir" location="${src.dir}/${project}"/>
+        <property name="reference.dir" location="${project.dir}/_reference"/>
+        <property name="components.dir" location="${project.dir}/_components"/>
         
         <!-- Collect the XML files to transform -->
         <fileset id="nts.files" dir="${src.dir}/${project}">
