@@ -282,7 +282,7 @@
             <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
             <xsl:when test="$scenario='server'">
                 <xsl:variable name="patientTokenFixture">
-                    <xsl:copy-of select="document(string-join(($referenceFolder, @href), '/'))"/>
+                    <xsl:copy-of select="document(string-join(($referenceFolder, @href), '/'),.)"/>
                 </xsl:variable>
                 <variable>
                     <name value="patient-token-id"/>
@@ -348,7 +348,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:apply-templates select="document(string-join(($filePath), '/'), .)/nts:component/(element()|comment())" mode="expand">
+        <xsl:apply-templates select="document(string-join(($filePath), '/'), .)/nts:component/(element()|comment(),.)" mode="expand">
             <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
