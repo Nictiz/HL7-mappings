@@ -18,7 +18,6 @@
     <xsl:param name="includesDir" select="'../_reference'"/>
 
     <xsl:template match="f:TestScript">
-        <xsl:message select="$includesDir"></xsl:message>
         <xsl:variable name="fixtures" as="xs:string*">
             <xsl:for-each select="//f:fixture">
                 <xsl:value-of select="substring-after(f:resource/f:reference/@value, concat($includesDir,'/'))"/>        
