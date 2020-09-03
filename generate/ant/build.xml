@@ -31,11 +31,6 @@
     <property name="src.dir" value="${basedir}/src" />
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
-    
-    <property name="commonasserts.dir" value="${src.dir}/common-asserts"/>
-    <property name="project.dir" value="${src.dir}/${project}"/>
-    <property name="reference.dir" value="${project.dir}/_reference"/>
-    <property name="components.dir" value="${project.dir}/_components"/>
         
     <!-- IVY -->
     
@@ -92,18 +87,10 @@
         
         <if>
             <not>
-                <available file="${project.dir}" type="dir"/>
+                <available file="${src.dir}/${project}" type="dir"/>
             </not>
             <then>
-                <fail message="Project directory '${project}' does not exist."/>
-            </then>
-        </if>
-        <if>
-            <not>
-                <available file="${components.dir}/" type="dir"/>
-            </not>
-            <then>
-                <echo message="WARNING: Project components directory '${components.dir}' does not exist."/>
+                <fail message="Project directory '${src.dir}/${project}' does not exist."/>
             </then>
         </if>
     </target>
@@ -281,6 +268,11 @@
     </target>
     
     <target name="build" depends="load, check-input, cleanBuildDir">
+        <property name="commonasserts.dir" value="${src.dir}/common-asserts"/>
+        <property name="project.dir" value="${src.dir}/${project}"/>
+        <property name="reference.dir" value="${project.dir}/_reference"/>
+        <property name="components.dir" value="${project.dir}/_components"/>
+        
         <!-- Collect the XML files to transform -->
         <fileset id="nts.files" dir="${src.dir}/${project}">
             <include name="**/*.xml"/>
