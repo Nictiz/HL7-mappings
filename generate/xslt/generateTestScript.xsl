@@ -216,15 +216,8 @@
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:apply-templates select="f:*[local-name()=$pre-accept]" mode="#current"/>
-            <xsl:if test="not(f:accept)">
-                <xsl:choose>
-                    <xsl:when test="$scenario='server' and $expectedResponseFormat != ''">
-                        <accept value="{lower-case($expectedResponseFormat)}"/>
-                    </xsl:when>
-                    <xsl:when test="$scenario='client'">
-                        <accept value="xml"/>
-                    </xsl:when>
-                </xsl:choose>
+            <xsl:if test="$scenario='server' and not(f:accept) and $expectedResponseFormat != ''">
+                <accept value="{lower-case($expectedResponseFormat)}"/>
             </xsl:if>
             <xsl:apply-templates select="f:*[not(local-name()=$pre-accept)]" mode="#current"/>
         </xsl:copy>
