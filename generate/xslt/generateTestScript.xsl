@@ -59,7 +59,7 @@
         <xsl:param name="scenario" tunnel="yes"/>
         <xsl:param name="expectedResponseFormat" tunnel="yes"/>
         <xsl:variable name="url">
-            <xsl:text>http://nictiz.nl/fhir/fhir3-0-1/TestScript/</xsl:text>
+            <xsl:text>http://nictiz.nl/fhir/TestScript/</xsl:text>
             <xsl:value-of select="@value"/>
             <xsl:if test="$scenario='server'">
                 <xsl:text>-</xsl:text>
