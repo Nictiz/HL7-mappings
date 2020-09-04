@@ -26,9 +26,9 @@ To define a component, simply create an .xml file with the necessary content enc
 </nts:component>
 ```
 
-Normally, these components are collected in a subdirectory called "_components" in the project folder. This path is passed from the ANT build script to the stylesheet. This location may be overridden by passing the `components.dir` property to the ANT build.
+Normally, these components are collected in a subdirectory called "_components" in the project folder. This path is passed from the ANT build script to the stylesheet. This location may be overridden by passing the `components.dir` property to the ANT build as an absolute path or a path relative to the input NTS-files (note: it should be relative to _all_ input files).
 
-Additionally, the subdirectory "common-components" in the src-folder contains building blocks that can be used across *all* projects. The location of this folder may be overridden using the `commonasserts.dir` property to the ANT build.
+Additionally, the subdirectory "common-components" in the src-folder contains building blocks that can be used across *all* projects. The location of this folder may be overridden using the `commonasserts.dir` property to the ANT build (absolute path or path relative to all input NTS-files).
 
 A building block can then be included using:
 
@@ -112,7 +112,7 @@ Fixtures and rules can be defined using:
 <nts:rule id=".." href=".."/>
 ```
 
-`href` is considered to be relative to a predefined fixtures folder. It defaults to the "_reference"-folder in the project-folder. The relative value is calculated from the input file by the ANT build. The default location may be overridden by passing the `reference.dir` property to the ANT build.
+`href` is considered to be relative to a predefined fixtures folder. It defaults to the "_reference"-folder in the project-folder. The relative value is calculated from the input file by the ANT build. The default location may be overridden by passing the `reference.dir` property to the ANT build  (absolute path or path relative to all input NTS-files). All fixtures and rules in the "_reference"-folder are copied to the output folder.
 
 Profiles may be defined using:
 
