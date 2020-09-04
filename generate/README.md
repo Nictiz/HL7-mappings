@@ -26,9 +26,7 @@ To define a component, simply create an .xml file with the necessary content enc
 </nts:component>
 ```
 
-Normally, these components are collected in a subdirectory called "_components" in the project folder. This path is passed from the ANT build script to the stylesheet. This location may be overridden by passing the `components.dir` property to the ANT build as an absolute path or a path relative to the input NTS-files (note: it should be relative to _all_ input files).
-
-Additionally, the subdirectory "common-components" in the src-folder contains building blocks that can be used across *all* projects. The location of this folder may be overridden using the `commonasserts.dir` property to the ANT build (absolute path or path relative to all input NTS-files).
+Normally, these components are collected in a subdirectory called "_components" in the project folder. Additionally, the subdirectory "common-components" in the src-folder contains building blocks that can be used across *all* projects. See the section on building to override these locations.
 
 A building block can then be included using:
 
@@ -112,7 +110,7 @@ Fixtures and rules can be defined using:
 <nts:rule id=".." href=".."/>
 ```
 
-`href` is considered to be relative to a predefined fixtures folder. It defaults to the "_reference"-folder in the project-folder. The relative value is calculated from the input file by the ANT build. The default location may be overridden by passing the `reference.dir` property to the ANT build  (absolute path or path relative to all input NTS-files). All fixtures and rules in the "_reference"-folder are copied to the output folder.
+`href` is considered to be relative to a predefined fixtures folder. It defaults to the "_reference" folder directly beneath the project-folder. See the section on building to set an alternate location. All fixtures and rules in the "_reference"-folder are copied to the output folder.
 
 Profiles may be defined using:
 
@@ -171,21 +169,30 @@ There is an [Apache ANT](http://ant.apache.org/) based build file available (`an
 </project>
 ```
 
+### Folder structure
+
 For the project build file, a particular folder structure is expected:
-- build.xml              : the file that imports this build script
-- src/                   : the dir containing the source files 
-    - common-asserts/    : the common components across all projects
-    - Project1/          : a project dir
-        - InputFolder1/  : one or more dirs containg NTS files
-        - \_components/  : the components specific for that project
-        - \_reference/   : the fixtures for that project
-- build/                 : the dir where the output will be placed (you probably want to add this to `.gitignore`)
-- lib/                   : the dir where build tools should be placed
-    - ant-dependencies/  : the dir where the dependencies for ANT will be placed (you probably want to add this to `.gitignore`)
+- build.xml              : A file that imports the build script from this repository
+- src/                   : The dir containing the NTS files, components and fixtures, orderded in project folders.  
+    - common-asserts/    : The common components across all projects.
+    - Project1/          : A project dir
+        - InputFolder1/  : One or more dirs containg NTS files. _Warning_: all folder names starting with an underscore are ignored, while all other folders are included!
+        - \_components/  : The components specific for that project
+        - \_reference/   : The fixtures and rules for that project. This folder is copied verbatim to the output folder. 
+- build/                 : The dir where the output will be placed (you probably want to add this to `.gitignore`)
+- lib/                   : The dir where build tools should be placed (you probably want to add this to `.gitignore`)
+    - ant-dependencies/  : The dir where the dependencies for ANT will be placed
 
-The script will ask you for one of the project dirs inside the `src/` dir. Alternatively, this can be passed in the ANT call with the `-Dproject=` option.
+By default, the script will ask you for one of the project dirs inside the `src/` dir and place the output in a folder with the project name in the `build/` dir. See below for the parameters to override this behavior. 
 
-If you want to send the output to another dir, you can override the build dir usng the `-Dbuild.dir=` option. The folder structure, including the project folder, will be recreated here. 
+### Build script parameters
+
+The build script recognizes several parameters:
+- `-Dproject=<ProjectFolderName>`: Use this project folder instead of asking for it.
+- `-Dbuild.dir=path/to/output/base`: Location to use instead of `build/`. Should be an absolute or relative path, compared to `build.xml`. The output will be placed in a folder with the same name as the project folder within this directory. _Warning_: existing content in this project output folder will be removed. Use with caution!
+- `-Dreference.dir=/path/to/project/fixtures`: The (base) location for the fixtures for this project. Should be an absolute or relative location, compared to `build.xml`.
+- `-Dcommoncomponents.dir=/path/to/common/components`: An alternative location for common NTS components. Should be an absolute or relative path, compared to `build.xml`.
+- `-Dcomponents.dir=/path/to/project/components`: An alternative location for project specific NTS components. Should be an absolute or relative path, compared to `build.xml`.
 
 ## Schematron
 
