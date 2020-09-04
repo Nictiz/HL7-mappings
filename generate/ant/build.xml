@@ -155,8 +155,8 @@
                             <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                                 <parameters>
                                     <param name="referenceBase" expression="${reference.dir.relative.normalized}"/>
-                                    <param name="commonComponentFolder" expression="${commonasserts.dir}"/>
-                                    <param name="projectComponentFolder" expression="${components.dir}"/>
+                                    <param name="commonComponentFolder" expression="${commoncomponents.dir.absolute}"/>
+                                    <param name="projectComponentFolder" expression="${components.dir.absolute}"/>
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                                 </parameters>
                             </saxon-transform>
@@ -171,8 +171,8 @@
                     <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                         <parameters>
                             <param name="referenceBase" expression="${reference.dir.relative.normalized}"/>
-                            <param name="commonComponentFolder" expression="${commonasserts.dir}"/>
-                            <param name="projectComponentFolder" expression="${components.dir}"/>
+                            <param name="commonComponentFolder" expression="${commoncomponents.dir.absolute}"/>
+                            <param name="projectComponentFolder" expression="${components.dir.absolute}"/>
                         </parameters>
                     </saxon-transform>
                     <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>
@@ -248,9 +248,9 @@
                         </and>
                         <then>
                             <if>
-                                <available file="${commonasserts.dir}/_reference/@{rule}"/>
+                                <available file="${commoncomponents.dir.absolute}/_reference/@{rule}"/>
                                 <then>
-                                    <copy file="${commonasserts.dir}/_reference/@{rule}" tofile="${reference.dir}/@{rule}"/>
+                                    <copy file="${commoncomponents.dir.absolute}/_reference/@{rule}" tofile="${reference.dir}/@{rule}"/>
                                 </then>
                                 <else>
                                     <fail message="Rule '@{rule}' is referenced but doesn't exist in the local or global scope"/>
@@ -271,10 +271,14 @@
     </target>
     
     <target name="build" depends="load, check-input, cleanBuildDir">
-        <property name="commonasserts.dir" location="${src.dir}/common-asserts"/>
         <property name="project.dir" location="${src.dir}/${project}"/>
+        <property name="commoncomponents.dir" location="${src.dir}/common-asserts"/>
         <property name="reference.dir" location="${project.dir}/_reference"/>
         <property name="components.dir" location="${project.dir}/_components"/>
+        
+        <!-- Convert relative paths given on the command line to absolute paths -->
+        <property name="components.dir.absolute" location="${components.dir}"/>
+        <property name="commoncomponents.dir.absolute" location="${commoncomponents.dir}"/>
         
         <!-- Collect the XML files to transform -->
         <fileset id="nts.files" dir="${src.dir}/${project}">
