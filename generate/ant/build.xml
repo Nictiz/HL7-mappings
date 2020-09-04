@@ -135,15 +135,14 @@
             <local name="TestScript(nts:scenario)"/>
             <xmlproperty file="@{nts.file}"/>
             
-            <!-- Calculate the relative path to the reference dir -->
-            <local name="reference.dir.rel.temp"/>
-            <local name="reference.dir.rel"/>
+            <!-- Calculate the relative path to the reference dir from the NTS file-->
             <local name="nts.file.dir"/>
-            
+            <local name="reference.dir.relative"/>
+            <local name="reference.dir.relative.normalized"/>
             <dirname property="nts.file.dir" file="@{nts.file}"/>
-            <!-- Unfortunately this is needed to correct backwards slashes in the output -->
-            <property name="reference.dir.rel.temp" location="${reference.dir}" relative="true" basedir="${nts.file.dir}"/>
-            <propertyregex property="reference.dir.rel" input="${reference.dir.rel.temp}" regexp="[\\]" replace="/"/>
+            <property name="reference.dir.relative" location="${reference.dir}" relative="true" basedir="${nts.file.dir}"/>
+            <!-- Convert backslashes to forward slashes if needed -->
+            <propertyregex property="reference.dir.relative.normalized" input="${reference.dir.relative}" regexp="[\\]" replace="/" global="true" defaultValue="${reference.dir.relative}"/>
             
             <if>
                 <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
@@ -155,8 +154,7 @@
 
                             <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                                 <parameters>
-                                    <param name="referenceFolder" expression="${reference.dir}"/>
-                                    <param name="referenceBase" expression="${reference.dir.rel}"/>
+                                    <param name="referenceBase" expression="${reference.dir.relative.normalized}"/>
                                     <param name="commonComponentFolder" expression="${commonasserts.dir}"/>
                                     <param name="projectComponentFolder" expression="${components.dir}"/>
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
@@ -177,8 +175,7 @@
                     <property name="nts.file.newname" value="${nts.file.basename}.xml"/>
                     <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                         <parameters>
-                            <param name="referenceFolder" expression="${reference.dir}"/>
-                            <param name="referenceBase" expression="${reference.dir.rel}"/>
+                            <param name="referenceBase" expression="${reference.dir.relative.normalized}"/>
                             <param name="commonComponentFolder" expression="${commonasserts.dir}"/>
                             <param name="projectComponentFolder" expression="${components.dir}"/>
                         </parameters>

@@ -7,17 +7,14 @@
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
         
-    <!-- The folder where fixtures can be found.-->
-    <xsl:param name="referenceFolder"/>
+    <!-- The path to the base folder of fixtures, relative to the output. Defaults to '../_reference'. -->
+    <xsl:param name="referenceBase" select="'../_reference/'"/>
     
-    <!-- The relative path to referenceFolder is calculated by ant. Defaults to '../_reference'. -->
-    <xsl:param name="referenceBase"/>
-    
-    <!-- The folder where components for this project can be found. -->
-    <xsl:param name="projectComponentFolder"/>
+    <!-- The folder where components for this project can be found, relative to this file. -->
+    <xsl:param name="projectComponentFolder" select="'../_componenents/'"/>
     
     <!-- The folder where the common components for TestScript generation can be found. -->
-    <xsl:param name="commonComponentFolder"/>
+    <xsl:param name="commonComponentFolder" select="'../../common-asserts/'"/>
     
     <xsl:param name="expectedResponseFormat"/>
     
@@ -282,13 +279,13 @@
             <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
             <xsl:when test="$scenario='server'">
                 <xsl:variable name="patientTokenFixture">
-                    <xsl:copy-of select="document(string-join(($referenceFolder, @href), '/'),.)"/>
+                    <xsl:copy-of select="document(string-join(($referenceBase, @href), '/'),.)"/>
                 </xsl:variable>
                 <variable>
                     <name value="patient-token-id"/>
                     <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
                     <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
-                        <xsl:comment>patientTokenFixture <xsl:value-of select="string-join(($referenceFolder, @href), '/')"/> not available</xsl:comment>
+                        <xsl:comment>patientTokenFixture <xsl:value-of select="string-join(($referenceBase, @href), '/')"/> not available</xsl:comment>
                     </xsl:if>
                     <description value="OAuth Token for current patient"/>
                 </variable>
