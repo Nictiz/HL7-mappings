@@ -161,12 +161,7 @@
                                 </parameters>
                             </saxon-transform>
                             
-                            <if>
-                                <equals arg1="expectedResponseFormat" arg2="xml"/>
-                                <then>
-                                    <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>
-                                </then>
-                            </if>
+                            <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>
                         </sequential>
                     </for>
                 </then>
@@ -289,9 +284,6 @@
         
         <!-- Create a temporary file to collect all the used fixtures -->
         <tempfile property="references.file" suffix=".txt" createfile="true" deleteonexit="true"/>
-        
-        <!-- Delete previous build output -->
-        <delete dir="${build.dir}/${project}"/>
         
         <!-- Check if there are files in the fileset. -->
         <condition property="nts.files.available">
