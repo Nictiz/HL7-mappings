@@ -2977,7 +2977,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template for Medicatieafspraak resuable parts 1 for MP 9.0.8 due to https://bits.nictiz.nl/browse/MP-57: cancelled indicator (geannuleerd indicator) has been removed</xd:desc>
+        <xd:desc>Template for Medicatieafspraak resuable parts 1 for MP 9.1.0 due to https://bits.nictiz.nl/browse/MP-57: cancelled indicator (geannuleerd indicator) has been removed</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9184_20191121170300" match="medicatieafspraak | medication_agreement">
         <!-- MP CDA Medicatieafspraak onderdelen 1 -->
@@ -2994,7 +2994,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
                     <text mediaType="text/plain">
-                        <xsl:value-of select="nf:replaceTDateString(@value, $dateT)"/>
+                        <xsl:value-of select="@value"/>
                     </text>
                 </xsl:for-each>
             </xsl:otherwise>
