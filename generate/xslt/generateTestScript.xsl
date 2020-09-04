@@ -422,7 +422,7 @@
         
         <xsl:variable name="fullFilename" select="nts:addXMLExtension($filename)"/>
         <xsl:choose>
-            <!-- If path is absolute - Linux and Windows -->
+            <!-- If path is absolute - Unix/MacOS and Windows -->
             <xsl:when test="not(starts-with($base, 'file:')) and (starts-with($base,'/') or matches($base,'^[A-Za-z]:[/\\]'))">
                 <xsl:value-of select="concat('file:///',nts:constructFilePath($base,$fullFilename))"/>
             </xsl:when>
