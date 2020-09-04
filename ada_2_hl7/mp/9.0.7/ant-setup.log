@@ -15,7 +15,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 74ms :: artifacts dl 11ms
+[ivy:resolve] :: resolution report :: resolve 79ms :: artifacts dl 13ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -24,7 +24,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/8ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -46,7 +46,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 54ms :: artifacts dl 10ms
+[ivy:resolve] :: resolution report :: resolve 56ms :: artifacts dl 9ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -55,7 +55,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/3ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/5ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -77,7 +77,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 82ms :: artifacts dl 10ms
+[ivy:resolve] :: resolution report :: resolve 72ms :: artifacts dl 9ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -86,12 +86,80 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/4ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/5ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
 setup_sub:
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 60ms :: artifacts dl 9ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/5ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+setup_sub_schemas:
+     [echo] 
+     [echo] Setup ../../sturen_medicatievoorschrift containing refreshed ada schemas (*sturen_medicatievoorschrift.xsd)
+     [copy] Copying 3 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\ada_schemas
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 50ms :: artifacts dl 8ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/5ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+setup_sub_instances:
+     [echo] 
+     [echo] Setup ../../sturen_medicatievoorschrift containing refreshed ada production instances (*.xml)
+     [copy] Copying 46 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\ada_instance
 
 download-ivy:
      [echo] installing ivy...
@@ -122,74 +190,6 @@ fetch-imports:
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
-setup_sub_schemas:
-     [echo] 
-     [echo] Setup ../../sturen_medicatievoorschrift containing refreshed ada schemas (*sturen_medicatievoorschrift.xsd)
-     [copy] Copying 3 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\ada_schemas
-
-download-ivy:
-     [echo] installing ivy...
-      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
-      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
-      [get] Not modified - so not downloaded
-
-install-ivy:
-
-fetch-imports:
-[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
-[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
-[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
-[ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
-[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 51ms :: artifacts dl 9ms
-	---------------------------------------------------------------------
-	|                  |            modules            ||   artifacts   |
-	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
-	---------------------------------------------------------------------
-	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
-	---------------------------------------------------------------------
-[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
-[ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/4ms)
-[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
-[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
-[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
-
-setup_sub_instances:
-     [echo] 
-     [echo] Setup ../../sturen_medicatievoorschrift containing refreshed ada production instances (*.xml)
-     [copy] Copying 46 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\ada_instance
-
-download-ivy:
-     [echo] installing ivy...
-      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
-      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
-      [get] Not modified - so not downloaded
-
-install-ivy:
-
-fetch-imports:
-[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
-[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
-[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
-[ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
-[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 110ms :: artifacts dl 21ms
-	---------------------------------------------------------------------
-	|                  |            modules            ||   artifacts   |
-	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
-	---------------------------------------------------------------------
-	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
-	---------------------------------------------------------------------
-[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
-[ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/8ms)
-[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
-[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
-[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
-
 setup_sub:
 
 download-ivy:
@@ -207,7 +207,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 69ms :: artifacts dl 14ms
+[ivy:resolve] :: resolution report :: resolve 48ms :: artifacts dl 6ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -216,7 +216,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/5ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/4ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -241,7 +241,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 56ms :: artifacts dl 8ms
+[ivy:resolve] :: resolution report :: resolve 45ms :: artifacts dl 7ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -276,7 +276,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 98ms :: artifacts dl 16ms
+[ivy:resolve] :: resolution report :: resolve 57ms :: artifacts dl 14ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -285,7 +285,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/8ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -307,7 +307,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 48ms :: artifacts dl 7ms
+[ivy:resolve] :: resolution report :: resolve 44ms :: artifacts dl 7ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -316,7 +316,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/7ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/4ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -341,7 +341,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 101ms :: artifacts dl 23ms
+[ivy:resolve] :: resolution report :: resolve 55ms :: artifacts dl 7ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -350,7 +350,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/8ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/4ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -362,7 +362,7 @@ setup_sub_instances:
      [copy] Copying 7 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\xml-voorbeelden\ada_schemas
      [echo] 
      [echo] Setup ../../xml-voorbeelden containing refreshed ada production instances (C:\SVN\art_decor\trunk\ada-data\adarefs2ada\mp\9.0.7/xml-voorbeelden/ada_instance/*example*.xml)
-     [copy] Copying 1 file to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\xml-voorbeelden\ada_instance
+     [copy] Copying 4 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\xml-voorbeelden\ada_instance
      [copy] Copying 16 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\ada_instance_POCPraktijktest
      [copy] Copying 46 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\ada_instance_TestSet
      [copy] Copying 2 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\beschikbaarstellen_medicatiegegevens\ada_instance_POCPraktijktest
@@ -382,7 +382,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 67ms :: artifacts dl 9ms
+[ivy:resolve] :: resolution report :: resolve 73ms :: artifacts dl 11ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -391,7 +391,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/8ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/10ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -413,7 +413,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 86ms :: artifacts dl 11ms
+[ivy:resolve] :: resolution report :: resolve 45ms :: artifacts dl 7ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -422,7 +422,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/4ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -444,7 +444,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 96ms :: artifacts dl 16ms
+[ivy:resolve] :: resolution report :: resolve 51ms :: artifacts dl 9ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -453,7 +453,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/7ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/5ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -525,7 +525,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 83ms :: artifacts dl 12ms
+[ivy:resolve] :: resolution report :: resolve 73ms :: artifacts dl 14ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -606,7 +606,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 80ms :: artifacts dl 11ms
+[ivy:resolve] :: resolution report :: resolve 75ms :: artifacts dl 10ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -685,7 +685,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 114ms :: artifacts dl 27ms
+[ivy:resolve] :: resolution report :: resolve 76ms :: artifacts dl 13ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -694,7 +694,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/9ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -739,7 +739,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 90ms :: artifacts dl 13ms
+[ivy:resolve] :: resolution report :: resolve 76ms :: artifacts dl 12ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -748,7 +748,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/7ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -779,7 +779,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 86ms :: artifacts dl 16ms
+[ivy:resolve] :: resolution report :: resolve 73ms :: artifacts dl 14ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -788,7 +788,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/7ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -819,7 +819,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 80ms :: artifacts dl 18ms
+[ivy:resolve] :: resolution report :: resolve 86ms :: artifacts dl 12ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -828,7 +828,47 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/11ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/7ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_ada_2_hl7_examples:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../sturen_medicatievoorschrift/payload/sturen_medicatievoorschrift_org.xsl input dir ../../xml-voorbeelden/ada_instance
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\xml-voorbeelden\ada_instance\mv-example-MBH_907_1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\xml-voorbeelden\hl7_instance\mv-example-MBH_907_1.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\payload\sturen_medicatievoorschrift_org.xsl
+     [echo] 
+     [echo] ADA to HL7 ../../../MP90_Transform_Organizer2CDA.xsl input dir ../../xml-voorbeelden/hl7_instance
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\xml-voorbeelden\hl7_instance\mv-example-MBH_907_1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\xml-voorbeelden\cda_instance\mv-example-MBH_907_1.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\MP90_Transform_Organizer2CDA.xsl
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 69ms :: artifacts dl 10ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -870,7 +910,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 64ms :: artifacts dl 12ms
+[ivy:resolve] :: resolution report :: resolve 75ms :: artifacts dl 9ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -879,7 +919,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/5ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -921,7 +961,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 102ms :: artifacts dl 18ms
+[ivy:resolve] :: resolution report :: resolve 59ms :: artifacts dl 8ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -930,7 +970,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/7ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/4ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -958,7 +998,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 65ms :: artifacts dl 11ms
+[ivy:resolve] :: resolution report :: resolve 50ms :: artifacts dl 8ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -1039,7 +1079,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 69ms :: artifacts dl 14ms
+[ivy:resolve] :: resolution report :: resolve 55ms :: artifacts dl 8ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -1048,7 +1088,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/7ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/5ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -1106,4 +1146,4 @@ convert_ada_2_hl7_sub:
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\hl7_instance_TestSet\mv-mvr-TestSet-scen9_MBH_907_logistiekeverbruiksperiode_start_eind.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.0.7\sturen_medicatievoorschrift\cda_instance_TestSet\mv-mvr-TestSet-scen9_MBH_907_logistiekeverbruiksperiode_start_eind.xml
 
 BUILD SUCCESSFUL
-Total time: 21 seconds
+Total time: 19 seconds
