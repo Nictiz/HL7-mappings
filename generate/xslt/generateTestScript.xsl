@@ -421,7 +421,16 @@
         <xsl:param name="filename" as="xs:string" />
         
         <xsl:variable name="fullFilename" select="nts:addXMLExtension($filename)"/>
-        <xsl:value-of select="concat('file:///',nts:constructFilePath($base,$fullFilename))"/>
+        <xsl:choose>
+            <!-- If path is absolute - Linux and Windows -->
+            <xsl:when test="not(starts-with($base, 'file:')) and (starts-with($base,'/') or matches($base,'^[A-Za-z]:[/\\]'))">
+                <xsl:value-of select="concat('file:///',nts:constructFilePath($base,$fullFilename))"/>
+            </xsl:when>
+            <!-- Else relative -->
+            <xsl:otherwise>
+                <xsl:value-of select="nts:constructFilePath($base,$fullFilename)"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:function>
 
     <!-- Add .xml to the filename if it doesn't have it already.
