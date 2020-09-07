@@ -3103,11 +3103,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="makeIIid"/>
             </xsl:for-each>
             <code code="422037009" displayName="Toedieningsafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
-            <xsl:for-each select="gebruiksinstructie/omschrijving">
-                <text mediaType="text/plain">
-                    <xsl:value-of select="@value"/>
-                </text>
-            </xsl:for-each>
+            <!-- gebruiksinstructie/omschrijving -->
+            <xsl:choose>
+                <xsl:when test="$generateInstructionText">
+                     <text mediaType="text/plain">
+                        <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
+                    </text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                        <text mediaType="text/plain">
+                            <xsl:value-of select="@value"/>
+                        </text>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>
 
             <!-- statusCode: voor foutcorrectie -->
             <xsl:if test="geannuleerd_indicator/@value = 'true'">
@@ -3288,11 +3298,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <code code="6" displayName="Medicatiegebruik" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" codeSystemName="Medicatieproces acts"/>
 
             <!-- text -->
-            <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
-                <text mediaType="text/plain">
-                    <xsl:value-of select="./@value"/>
-                </text>
-            </xsl:for-each>
+            <!-- gebruiksinstructie/omschrijving -->
+            <xsl:choose>
+                <xsl:when test="$generateInstructionText">
+                     <text mediaType="text/plain">
+                        <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
+                    </text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                        <text mediaType="text/plain">
+                            <xsl:value-of select="@value"/>
+                        </text>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>
 
             <!-- effectiveTime -->
             <xsl:if test="(gebruiksperiode | gebruiksperiode_start | gebruiksperiode_eind)[.//(@value | @nullFlavor)]">

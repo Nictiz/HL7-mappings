@@ -135,7 +135,7 @@
                 <xsl:choose>
                     <!-- for medicatieoverzicht there will be an organizer/effectiveTime, but not for medicatievoorschrift -->
                     <xsl:when test="hl7:effectiveTime[@value]">
-                        <xsl:value-of select="@value"/>
+                        <xsl:value-of select="hl7:effectiveTime/@value"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- use the max (most recent) author time we find -->
@@ -210,6 +210,16 @@
             <custodian>
                 <assignedCustodian>
                     <representedCustodianOrganization>
+                        <!-- id is required for representedCustodianOrganization, let's check if we have one -->
+                        <xsl:choose>
+                            <xsl:when test="$cdaAuthor/hl7:assignedAuthor/hl7:representedOrganization/hl7:id">
+                                <!-- ok, no worries, it is copied in the next step -->
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- ouch, lets add an id element with a nullFlavor -->
+                                <id nullFlavor="NI"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                         <xsl:copy-of select="$cdaAuthor/hl7:assignedAuthor/hl7:representedOrganization/*" copy-namespaces="no"/>
                     </representedCustodianOrganization>
                 </assignedCustodian>

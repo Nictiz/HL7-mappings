@@ -924,27 +924,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeIIid"/>
         </xsl:for-each>
         <code code="16076005" displayName="Medicatieafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
-<!--        <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">-->
-            <!--     <text mediaType="text/plain">
-                <xsl:value-of select="@value"/>
-            </text>            
-    -->
-            <xsl:choose>
-                <xsl:when test="$generateInstructionText">
-                    <xsl:comment>in when test="$generateInstructionText"</xsl:comment>
+        <xsl:choose>
+            <xsl:when test="$generateInstructionText">
+                <xsl:comment>in when test="$generateInstructionText"</xsl:comment>
+                <text mediaType="text/plain">
+                    <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
+                </text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
                     <text mediaType="text/plain">
-                        <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
+                        <xsl:value-of select="@value"/>
                     </text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
-                        <text mediaType="text/plain">
-                            <xsl:value-of select="@value"/>
-                        </text>
-                    </xsl:for-each>
-                </xsl:otherwise>
-            </xsl:choose>
-        <!--</xsl:for-each>-->
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
         <!-- statusCode: voor foutcorrectie -->
         <xsl:if test="geannuleerd_indicator/@value = 'true'">
             <statusCode code="nullified"/>
@@ -2491,11 +2485,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="makeIIid"/>
             </xsl:for-each>
             <code code="422037009" displayName="Toedieningsafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
-            <xsl:for-each select="./gebruiksinstructie/omschrijving">
-                <text mediaType="text/plain">
-                    <xsl:value-of select="./@value"/>
-                </text>
-            </xsl:for-each>
+            <!-- gebruiksinstructie/omschrijving -->
+            <xsl:choose>
+                <xsl:when test="$generateInstructionText">
+                     <text mediaType="text/plain">
+                        <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
+                    </text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                        <text mediaType="text/plain">
+                            <xsl:value-of select="@value"/>
+                        </text>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>
             <!-- statusCode: voor foutcorrectie -->
             <xsl:if test="geannuleerd_indicator/@value = 'true'">
                 <statusCode code="nullified"/>

@@ -94,15 +94,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                                 <!-- medicatieafspraak -->
                                 <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-medicatieafspraak]">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9275_20191121115247">
-                                        <xsl:with-param name="in" select="."/>
-                                        <xsl:with-param name="schema" select="$schema"/>
-                                        <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9235_20181204143321">
+                                        <xsl:with-param name="ma_hl7_90" select="."/>
+                                        <xsl:with-param name="xsd-ada" select="$schema"/>
+                                        <xsl:with-param name="xsd-mbh" select="$schemaFragment"/>
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <!-- toedieningsafspraak -->
                                 <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-toedieningsafspraak]">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9299_20191125140232">
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9259_20181206160523">
                                         <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="schema" select="$schema"/>
                                         <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
@@ -110,7 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                                 <!-- medicatiegebruik -->
                                 <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-medicatiegebruik]">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9281_20191121142645">
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9246_20181205101627">
                                         <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="schema" select="$schema"/>
                                         <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
