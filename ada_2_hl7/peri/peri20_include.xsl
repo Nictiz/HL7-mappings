@@ -1307,7 +1307,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                      <xsl:for-each select="$vrouw/taalvaardigheid_vrouw_nederlandse_taal">
+                    <xsl:for-each select="$vrouw/taalvaardigheid_vrouw_nederlandse_taal">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900727_20120503000000"/>
                     </xsl:for-each>
                 </patientPerson>
@@ -1456,11 +1456,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000">
                     <xsl:with-param name="inputValue" select="$vrouw/adres/postcode/@value"/>
                 </xsl:call-template>
-                 <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                <patientPerson classCode="PSN" determinerCode="INSTANCE">
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                      <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
+                    <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
                     <!-- Altijd aanroepen, bij geen gegeven maternale_sterfte (0..1 R) in ADA deceasedInd='false' opnemen -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
                         <!-- AvdW, 20200228 added input parameter, otherwise the mother may never be deceased -->
@@ -1487,11 +1487,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000">
                     <xsl:with-param name="inputValue" select="$vrouw/adres/postcode/@value"/>
                 </xsl:call-template>
-                 <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                <patientPerson classCode="PSN" determinerCode="INSTANCE">
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                       <xsl:for-each select="$zwangerschap/maternale_sterfteq">
+                    <xsl:for-each select="$zwangerschap/maternale_sterfteq">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
                     </xsl:for-each>
                     <xsl:for-each select="$vrouw/etniciteit">
@@ -1518,7 +1518,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000">
                         <xsl:with-param name="inputValue" select="$vrouw/geboortedatum/@value"/>
                     </xsl:call-template>
-                       <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
                         <xsl:with-param name="inputValue" select="$zwangerschap/maternale_sterfteq/@value"/>
                     </xsl:call-template>
                     <xsl:for-each select="$vrouw/etniciteit">
@@ -1565,7 +1565,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="matches($input-ns, '^[0-9]{4}[A-Z]{2}$')">
                                 <xsl:value-of select="replace($input-ns, '([0-9]{4})([A-Z]{2})', '$1 $2')"/>
-                              </xsl:when>
+                            </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="$input-ns"/>
                             </xsl:otherwise>
@@ -2215,7 +2215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </component>
                 </xsl:for-each>
             </xsl:if>
-            </organizer>
+        </organizer>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900964_20141027000000">
         <!-- Type vrouwelijke genitale verminking -->
@@ -2912,7 +2912,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <outboundRelationship typeCode="COMP">
                     <procedure classCode="PROC" moodCode="EVN" negationInd="true">
                         <id nullFlavor="NI"/>
-                    <code code="278414003" codeSystem="{$oidSNOMEDCT}" displayName="Pijnbestrijding"/>
+                        <code code="278414003" codeSystem="{$oidSNOMEDCT}" displayName="Pijnbestrijding"/>
                     </procedure>
                 </outboundRelationship>
             </xsl:if>
@@ -4684,7 +4684,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="xsiType">CE</xsl:with-param>
                 <!-- TEDOEN originalText nullFlavor OTH -->
-</xsl:call-template>
+            </xsl:call-template>
         </observation>
     </xsl:template>
 
@@ -4697,7 +4697,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="xsiType">CE</xsl:with-param>
                 <!-- TEDOEN originalText nullFlavor OTH -->
-</xsl:call-template>
+            </xsl:call-template>
         </observation>
     </xsl:template>
 
@@ -5895,11 +5895,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900724"/>
             <id nullFlavor="NI"/>
             <code code="230126006" codeSystem="{$oidSNOMEDCT}"/>
-            <xsl:for-each select="voeding_kind_datum">
-                <xsl:call-template name="makeTSValue">
-                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                </xsl:call-template>
-            </xsl:for-each>
+            <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="inputValue" select="voeding_kind_datum/@value"/>
+                <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+            </xsl:call-template>
             <xsl:for-each select="substantie_voeding_kind">
                 <product typeCode="PRD">
                     <product classCode="ACCESS">
@@ -6669,7 +6668,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </component>
                 </xsl:for-each>
             </xsl:if>
-            </organizer>
+        </organizer>
     </xsl:template>
     <!-- Anamnese PRN -->
     <!-- Type vrouwelijke genitale verminking -->
@@ -7160,7 +7159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </procedure>
     </xsl:template>
-       <!-- Chromosomale afwijkingen (ja nee) -->
+    <!-- Chromosomale afwijkingen (ja nee) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900981_20161206103540">
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr"/>
@@ -7284,7 +7283,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <outboundRelationship typeCode="COMP">
                         <procedure classCode="PROC" moodCode="EVN">
                             <id nullFlavor="NI"/>
-                        <code code="PijnbestrOverig" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Pijnbestrijding met overig middel"/>
+                            <code code="PijnbestrOverig" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Pijnbestrijding met overig middel"/>
                             <!-- Item(s) :: middel-->
                             <xsl:if test="middel or toediening">
                                 <xsl:for-each select="middel">
@@ -7308,7 +7307,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                             </xsl:if>
                         </procedure>
-                        </outboundRelationship>
+                    </outboundRelationship>
                 </xsl:for-each>
             </xsl:if>
         </procedure>
@@ -8426,7 +8425,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </procedure>
     </xsl:template>
 
- 
+
     <xd:doc>
         <xd:desc>Make observation for gravidity based on ada graviditeit</xd:desc>
     </xd:doc>
@@ -8452,4 +8451,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
 
-    </xsl:stylesheet>
+</xsl:stylesheet>
