@@ -229,10 +229,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
                             </xsl:for-each>
                             <xsl:for-each select="gebruiksperiode_start[@value]">
-                                <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                                <start>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </start>
                             </xsl:for-each>
                             <xsl:for-each select="gebruiksperiode_eind[@value]">
-                                <end value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                                <end>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </end>
                             </xsl:for-each>
                         </effectivePeriod>
                     </xsl:for-each>

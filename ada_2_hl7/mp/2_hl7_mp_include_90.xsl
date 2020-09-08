@@ -16,7 +16,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="2_hl7_mp_include.xsl"/>
 
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
-
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+    
     <xd:doc>
         <xd:desc> MP CDA Author Participation </xd:desc>
         <xd:param name="authorTime"/>
@@ -926,7 +928,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <code code="16076005" displayName="Medicatieafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
         <xsl:choose>
             <xsl:when test="$generateInstructionText">
-                <xsl:comment>in when test="$generateInstructionText"</xsl:comment>
                 <text mediaType="text/plain">
                     <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
                 </text>

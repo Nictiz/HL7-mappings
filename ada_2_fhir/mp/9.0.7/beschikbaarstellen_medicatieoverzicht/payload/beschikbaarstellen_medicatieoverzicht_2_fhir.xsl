@@ -38,6 +38,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->    
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>    
+    <!-- only give dateT a value if you want conversion of relative T dates to actual dates, otherwise a Touchstone relative T-date string will be generated -->
+    <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
+<!--    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>-->
+        <xsl:param name="dateT" as="xs:date?"/>
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $locations/f:entry"/>
     </xsl:variable>
@@ -75,7 +83,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <total value="1"/>
             <!-- documentgegevens in List entry -->
             <xsl:for-each select="$adaTransaction/documentgegevens">
-                <xsl:call-template name="medicatieoverzicht-9.0.6">
+                <xsl:call-template name="medicatieoverzicht-9.0.7">
                     <xsl:with-param name="documentgegevens" select="."/>
                     <xsl:with-param name="entries" select="$entries"/>
                 </xsl:call-template>

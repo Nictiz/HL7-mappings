@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="3"/>
    <entry>
-      <fullUrl value="urn:uuid:3e276ed0-e787-11ea-1641-020000000000"/>
+      <fullUrl value="urn:uuid:b762c2a5-f1e1-11ea-9513-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -37,7 +37,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-100D{00:00:00}&gt; t/m T-72D{23:59:59}, 1 maal per dag 10 ml</div>
+                              <div>Tekst: Vanaf T-100D{00:00:00}, tot en met T-72D{23:59:59}, 1 maal per dag 10 ml, oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -79,7 +79,7 @@
                <display value="SENNOSIDEN A+B 2MG/ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:3e275fa6-e787-11ea-1641-020000000000"/>
+               <reference value="urn:uuid:b762c28a-f1e1-11ea-9513-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <authoredOn value="${DATE, T, D, -100}T08:04:00+02:00"/>
@@ -87,7 +87,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:3e276ed5-e787-11ea-1641-020000000000"/>
+                        <reference value="urn:uuid:b762c2af-f1e1-11ea-9513-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -96,7 +96,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-100D{00:00:00}&gt; t/m T-72D{23:59:59}, 1 maal per dag 10 ml"/>
+               <text value="Vanaf T-100D{00:00:00}, tot en met T-72D{23:59:59}, 1 maal per dag 10 ml, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -125,7 +125,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3e276efd-e787-11ea-1641-020000000000"/>
+      <fullUrl value="urn:uuid:b762bf90-f1e1-11ea-9513-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -158,7 +158,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-50D{00:00:00}&gt;t/m &lt;T-11D{23:59:59}&gt;, 2 maal per dag 50 ml, oraal</div>
+                              <div>Tekst: Vanaf T-50D{00:00:00}, tot en met T-11D{23:59:59}, 2 maal per dag 50 ml, oraal</div>
                               <div>Timing: <div>2 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -200,7 +200,7 @@
                <display value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:3e275fa6-e787-11ea-1641-020000000000"/>
+               <reference value="urn:uuid:b762c28a-f1e1-11ea-9513-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <authoredOn value="${DATE, T, D, -50}T08:10:00+02:00"/>
@@ -208,7 +208,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:3e276ed5-e787-11ea-1641-020000000000"/>
+                        <reference value="urn:uuid:b762c2af-f1e1-11ea-9513-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -217,7 +217,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-50D{00:00:00}&gt;t/m &lt;T-11D{23:59:59}&gt;, 2 maal per dag 50 ml, oraal"/>
+               <text value="Vanaf T-50D{00:00:00}, tot en met T-11D{23:59:59}, 2 maal per dag 50 ml, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -246,7 +246,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3e276a16-e787-11ea-1641-020000000000"/>
+      <fullUrl value="urn:uuid:b762bffe-f1e1-11ea-9513-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -274,12 +274,17 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -44}T23:59:59+02:00</td>
+                           <td>
+                              <ul>
+                                 <li>Vanaf ${DATE, T, D, -50}T00:00:00+02:00</li>
+                                 <li>7 dag</li>
+                              </ul>
+                           </td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk</div>
+                              <div>Tekst: Vanaf T-50D{00:00:00}, gedurende 7 dagen, 1 maal per dag 1 stuk, oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -294,8 +299,15 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
                   <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, -44}T23:59:59+02:00"/>
                </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="7"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
@@ -321,7 +333,7 @@
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:3e275fa6-e787-11ea-1641-020000000000"/>
+               <reference value="urn:uuid:b762c28a-f1e1-11ea-9513-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <authoredOn value="${DATE, T, D, -50}T08:15:00+02:00"/>
@@ -329,7 +341,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:3e276ed5-e787-11ea-1641-020000000000"/>
+                        <reference value="urn:uuid:b762c2af-f1e1-11ea-9513-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -338,7 +350,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk"/>
+               <text value="Vanaf T-50D{00:00:00}, gedurende 7 dagen, 1 maal per dag 1 stuk, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -367,7 +379,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3e275fa6-e787-11ea-1641-020000000000"/>
+      <fullUrl value="urn:uuid:b762c28a-f1e1-11ea-9513-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -498,7 +510,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3e276ed5-e787-11ea-1641-020000000000"/>
+      <fullUrl value="urn:uuid:b762c2af-f1e1-11ea-9513-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

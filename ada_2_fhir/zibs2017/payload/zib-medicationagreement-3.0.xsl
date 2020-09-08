@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--    <xsl:import href="_zib2017.xsl"/>
+    <!--<xsl:import href="_zib2017.xsl"/>
     <xsl:import href="ext-zib-medication-additional-information-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-copy-indicator-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-instructions-for-use-description-1.0.xsl"/>
@@ -157,7 +157,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                     <!-- instructionsForUseDescription -->
                     <xsl:call-template name="ext-zib-Medication-InstructionsForUseDescription-1.0">
-                        <xsl:with-param name="in" select="gebruiksinstructie/omschrijving[@value | @nullFlavor]"/>
+                        <xsl:with-param name="in" as="element()?">
+                            <xsl:choose>
+                                <xsl:when test="$generateInstructionText">
+                                    <omschrijving value="{nf:gebruiksintructie-string(.)}"/>
+                                 </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:sequence select="gebruiksinstructie/omschrijving[@value | @nullFlavor]"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:with-param>
                     </xsl:call-template>
 
                     <!-- stoptype -->
@@ -230,7 +239,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                     <!-- afspraakdatum afspraak_datum_tijd -->
                     <xsl:for-each select="(afspraakdatum | afspraak_datum_tijd)[@value]">
-                        <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                        <authoredOn>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </authoredOn>
                     </xsl:for-each>
 
                     <!-- voorschrijver -->
