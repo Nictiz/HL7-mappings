@@ -216,11 +216,12 @@
                                 <!-- ok, no worries, it is copied in the next step -->
                             </xsl:when>
                             <xsl:otherwise>
-                                <!-- ouch, lets add an id element with a nullFlavor -->
+                                <!-- ouch, lets add an id element with a nullFlavor, even though the schematron does not like that either... -->
                                 <id nullFlavor="NI"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <xsl:copy-of select="$cdaAuthor/hl7:assignedAuthor/hl7:representedOrganization/*" copy-namespaces="no"/>
+                        <!-- copy everything except the extra telecom elements, the cda schema only allows one telecom element -->
+                        <xsl:copy-of select="$cdaAuthor/hl7:assignedAuthor/hl7:representedOrganization/*[not(self::hl7:telecom and preceding-sibling::hl7:telecom)]" copy-namespaces="no"/>
                     </representedCustodianOrganization>
                 </assignedCustodian>
             </custodian>
