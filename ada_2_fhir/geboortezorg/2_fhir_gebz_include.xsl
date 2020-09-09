@@ -25,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-maternalrecord.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-observation.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_zib-laboratory-testresult-observation.xsl"/>
+    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-condition.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-procedure.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-composition.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_mappings.xsl"/>
@@ -320,6 +321,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>       
             </unieke-problem>
         </xsl:for-each>
+<!--        TODO: ADD CONDITION ELEMENTS -->
+<!--        <xsl:for-each-group select="/" group-by="nf:getGroupingKeyDefault(.)">
+            <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <xsl:variable name="elementName" select="name(.)"/>
+            <unieke-bccondition xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display xmlns="">
+                    <xsl:value-of select="concat(replace($elementName, '_', ' '),$vrouwId)"/>
+                </reference-display>
+                <xsl:call-template name="bcConditionEntry">
+                    <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                    <xsl:with-param name="adaChild" select="$kind-ada"/>
+                </xsl:call-template>
+            </unieke-bccondition>
+        </xsl:for-each-group>-->
     </xsl:variable>    
 
     <!-- observations -->

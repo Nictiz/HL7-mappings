@@ -1,0 +1,1290 @@
+<dataset id="2.16.840.1.113883.2.4.3.11.60.90.77.1.6" effectiveDate="2016-09-08T00:00:00" statusCode="draft" prefix="peri20-" transactionId="2.16.840.1.113883.2.4.3.11.60.90.77.4.2499" transactionEffectiveDate="2020-01-08T13:47:27" transactionStatusCode="draft" transactionType="initial" transactionIddisplay="peri-transaction-2499" shortName="prio1_vorige_zwangerschap" iddisplay="peri23-dataset-"><!--
+ This is a view of the transaction "Prio1 vorige zwangerschap" containing DECOR specifications for a transaction or dataset in a single, hierarchical view. 
+ All inheritances are resolved, for transactions the dataset is filtered for those concepts occurring in the transaction.
+ Valuesets are contained within the concept for easy reference. 
+ Xpaths are calculated on a best effort basis. The should be considered a starting point for application logic, not an endpoint. -->
+    <name language="nl-NL">Prio1 vorige zwangerschap</name>
+    <desc language="nl-NL"></desc>
+    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.1" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-1" shortName="zorgverlenerzorginstelling">
+        <implementation shortName="zorgverlenerzorginstelling"></implementation>
+        <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1"></inherit>
+        <name language="nl-NL">Zorgverlener/Zorginstelling</name>
+        <desc language="nl-NL">Persoon (met bijbehorende instelling) die verantwoordelijk of uitvoerder was voor de zorg van de patiënt en aanleveraar van de gegevens.</desc>
+        <community name="prn">
+            <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering relevante data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+        </community>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10020" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10020" shortName="zorginstelling">
+            <implementation shortName="zorginstelling"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.10020" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-10020"></inherit>
+            <name language="nl-NL">Zorginstelling</name>
+            <desc language="nl-NL">Organisatie (instelling) die de zorg levert / heeft geleverd</desc>
+            <community name="prn">
+                <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek is voor PRN relevant. Er is geen expliciete mapping naar dit data element. </data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">nl-core-organization</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-2</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <div>
+    <pre>GET [base]/Organization/[zorginstellingid]
+GET [base]/Organization?identifier=[lvrid]</pre>
+</div>
+                </data>
+            </community>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10021" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10021" shortName="zorginstelling_oid">
+                <implementation shortName="zorginstelling_oid"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.10021" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" refdisplay="peri22-dataelement-10021"></inherit>
+                <name language="nl-NL">Zorginstelling OID</name>
+                <desc language="nl-NL">Identificatie van de instelling met behulp van een unieke root-OID (Object Identificatie). <br clear="none" />Dit gegeven wordt ingesteld in de software van de zorginstelling en dan automatisch meegegeven bij informatie-uitwisseling (met andere woorden: het is géén invulveld voor een zorgverlener). </desc>
+                <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.10021" flexibility="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-10021">
+                    <name language="nl-NL">Zorginstelling OID</name>
+                </relationship>
+                <valueDomain type="identifier"></valueDomain>
+                <community name="prn">
+                    <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Dit data element is voor PRN van belang om de instelling te herkennen bij de berichten / aanlevering. Het is niet een apart item in de PRN registratie. </data>
+                </community>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10022" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10022" shortName="zorginstelling_agbid">
+                <implementation shortName="zorginstelling_agbid"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.10022" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-10022"></inherit>
+                <name language="nl-NL">Zorginstelling AGB-ID</name>
+                <desc language="nl-NL">Unieke AGB-ID van de instelling</desc>
+                <operationalization language="nl-NL">Vektis AGB-codelijst</operationalization>
+                <valueDomain type="identifier">
+                    <property minLength="8" maxLength="8"></property>
+                </valueDomain>
+                <community name="prn">
+                    <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Dit item is voor PRN van belang ter identificatie van de aanleverende instelling. Het is geen eigen item in de registratie. </data>
+                </community>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10023" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10023" shortName="zorginstelling_lvrid">
+                <implementation shortName="zorginstelling_lvrid"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.10023" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" refdisplay="peri22-dataelement-10023"></inherit>
+                <name language="nl-NL">Zorginstelling LVR-ID</name>
+                <desc language="nl-NL">Unieke LVR-identificatie van de zorginstelling. </desc>
+                <valueDomain type="identifier">
+                    <property minLength="4" maxLength="5"></property>
+                </valueDomain>
+                <community name="prn">
+                    <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">1.1.03</data>
+                    <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Zorgverlener, praktijknummer<br clear="none" />Kernitem PRN</data>
+                    <data type="prn13bijzonderheden" label="PRN dataset 1.3 bijzonderheden" datatype="text">Dit item heet nu 'lvr1-id'. Het geldt echter niet alleen voor LVR1 (en dus verloskundigen), maar ook voor gynaecologen, huisartsen en kinderartsen/neonatologen.</data>
+                </community>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10024" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10024" shortName="zorginstelling_ura">
+                <implementation shortName="zorginstelling_ura"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.10024" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-10024"></inherit>
+                <name language="nl-NL">Zorginstelling URA</name>
+                <desc language="nl-NL">Unieke UZI-register abonneenummer van de instelling</desc>
+                <operationalization language="nl-NL">UZI-register abonneenummer</operationalization>
+                <valueDomain type="identifier">
+                    <property minLength="8" maxLength="8"></property>
+                </valueDomain>
+                <community name="prn">
+                    <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Unieke UZI-register abonneenummer van de instelling die de zorg levert.<br clear="none" />N.B. Als de zorginstelling (praktijk) een URA heeft die gelijk is aan die van een (of meer) andere zorginstellingen, dan moet ook tevens een andere uniek identificerende id worden meegestuurd.</data>
+                </community>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10026" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10026" shortName="naam_zorginstelling">
+                <implementation shortName="naam_zorginstelling"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.10026" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-10026"></inherit>
+                <name language="nl-NL">Naam zorginstelling</name>
+                <desc language="nl-NL">Naam van de instelling</desc>
+                <valueDomain type="complex"></valueDomain>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10027" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10027" shortName="adres_zorginstelling">
+                <implementation shortName="adres_zorginstelling"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.10027" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-10027"></inherit>
+                <name language="nl-NL">Adres zorginstelling</name>
+                <desc language="nl-NL">Adres van de instelling</desc>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10032" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10032" shortName="straatnaam">
+                    <implementation shortName="straatnaam"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1205" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1205"></inherit>
+                    <name language="nl-NL">Straatnaam</name>
+                    <desc language="nl-NL">Straatnaam (zonder nummer) van het adres</desc>
+                    <valueDomain type="string"></valueDomain>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10033" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10033" shortName="huisnummer">
+                    <implementation shortName="huisnummer"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1210" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1210"></inherit>
+                    <name language="nl-NL">Huisnummer</name>
+                    <desc language="nl-NL">Huisnummer van het adres. Het is verplicht indien de straatnaam ook wordt doorgegeven.</desc>
+                    <valueDomain type="string"></valueDomain>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10034" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10034" shortName="huisletterhuisnummertoevoeging">
+                    <implementation shortName="huisletterhuisnummertoevoeging"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1215" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1215"></inherit>
+                    <name language="nl-NL">Huisletter/huisnummertoevoeging</name>
+                    <desc language="nl-NL">Huisletter/huisnummertoevoeging van het huisnummer</desc>
+                    <valueDomain type="string"></valueDomain>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10041" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10041" shortName="postcode">
+                    <implementation shortName="postcode"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1220" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1220"></inherit>
+                    <name language="nl-NL">Postcode</name>
+                    <desc language="nl-NL">Postcode van het adres</desc>
+                    <valueDomain type="string"></valueDomain>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10036" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10036" shortName="plaatsnaam">
+                    <implementation shortName="plaatsnaam"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1225" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1225"></inherit>
+                    <name language="nl-NL">Plaatsnaam</name>
+                    <desc language="nl-NL">Plaatsnaam als onderdeel van het adres; De naam van een stad, dorp of ander woongebied of bezorgcentrum. Merk op: dit is de woonplaats, niet de eventuele gemeente waartoe de woonplaats behoort. Voorbeeld: Haren, gemeente Groningen.</desc>
+                    <valueDomain type="string"></valueDomain>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10037" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10037" shortName="gemeentenaam">
+                    <implementation shortName="gemeentenaam"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1230" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1230"></inherit>
+                    <name language="nl-NL">Gemeentenaam</name>
+                    <desc language="nl-NL">Gemeentenaam als onderdeel van het adres; In Nederland wordt dit element gebruikt om de gemeente door te geven (in andere landen kan een ander type administratieve eenheid binnen een staat/provincie gebruikt worden). De gemeente kan, maar hoeft niet, overeen te komen met de stad. Sommige gemeenten, bijvoorbeeld "Waterland", hebben een naam die geheel afwijkt van de steden die erin gelegen zijn. </desc>
+                    <valueDomain type="string"></valueDomain>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10038" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10038" shortName="land">
+                    <implementation shortName="land"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1235" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1235"></inherit>
+                    <name language="nl-NL">Land</name>
+                    <desc language="nl-NL">Land</desc>
+                    <valueDomain type="string"></valueDomain>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10039" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10039" shortName="adrestype">
+                    <implementation shortName="adrestype"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.1240" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-1240"></inherit>
+                    <name language="nl-NL">Adrestype</name>
+                    <desc language="nl-NL">Adrestype</desc>
+                    <valueDomain type="code">
+                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.0">
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.1">
+                                <name language="nl-NL">thuisadres</name>
+                                <desc language="nl-NL">Het primaire thuisadres</desc>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.2">
+                                <name language="nl-NL">bezoekadres</name>
+                                <desc language="nl-NL">Het primaire telecommunicatiecontact, om een persoon te bereiken, kan meerdere malen voorkomen</desc>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.3">
+                                <name language="nl-NL">postadres</name>
+                                <desc language="nl-NL">Gebruikt om post naar te sturen; voorbeeld: postbusnummer, antwoordnummer, (voor personen) postadres dat anders is dan verblijfsadres</desc>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.4">
+                                <name language="nl-NL">vakantie huis</name>
+                                <desc language="nl-NL">Een vakantiehuis, om een persoon te bereiken tijdens de vakantie</desc>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.5">
+                                <name language="nl-NL">fysiek woonadres</name>
+                                <desc language="nl-NL">Een adres dat bezocht kan worden (dus bijvoorbeeld geen postbus</desc>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.6">
+                                <name language="nl-NL">tijdelijk adres</name>
+                                <desc language="nl-NL">Een tijdelijk adres</desc>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.7">
+                                <name language="nl-NL">tijdelijk fysiek woonadres</name>
+                                <desc language="nl-NL">Een tijdelijk bezoekadres, om bijvoorbeeld materiaal af te nemen zodat hierop uitslagen kunnen worden gegenereerd</desc>
+                            </concept>
+                        </conceptList>
+                    </valueDomain>
+                    <valueSet>
+                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.1240.0"></conceptList>
+                    </valueSet>
+                </concept>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10029" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10029" shortName="type_zorginstelling">
+                <implementation shortName="type_zorginstelling"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.10029" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-10029"></inherit>
+                <name language="nl-NL">Type zorginstelling</name>
+                <desc language="nl-NL">Aanduiding van het type van de zorginstelling</desc>
+                <valueDomain type="code">
+                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.0">
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.1">
+                            <name language="nl-NL">Huisartsenpraktijk</name>
+                        </concept>
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.2">
+                            <name language="nl-NL">Verloskundigenpraktijk</name>
+                        </concept>
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.3">
+                            <name language="nl-NL">Ziekenhuis</name>
+                        </concept>
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.4">
+                            <name language="nl-NL">Echocentrum</name>
+                        </concept>
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.5">
+                            <name language="nl-NL">Laboratorium</name>
+                        </concept>
+                    </conceptList>
+                </valueDomain>
+                <valueSet name="ZorgaanbiederType" displayName="ZorgaanbiederType" effectiveDate="2011-01-28T00:00:00" id="2.16.840.1.113883.2.4.11.59" statusCode="final">
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.0" valueSet="2.16.840.1.113883.2.4.11.59" effectiveDate="2011-01-28T00:00:00"></terminologyAssociation>
+                    <sourceCodeSystem id="2.16.840.1.113883.2.4.15.1060" identifierName="RoleCodeNL&#160;-&#160;zorgaanbiedertype&#160;(organisaties)" canonicalUri="http://nictiz.nl/fhir/NamingSystem/organization-type" canonicalUriDSTU2="http://nictiz.nl/fhir/NamingSystem/organization-type" canonicalUriSTU3="http://nictiz.nl/fhir/NamingSystem/organization-type" canonicalUriR4="http://nictiz.nl/fhir/NamingSystem/organization-type"></sourceCodeSystem>
+                    <publishingAuthority name="KNOV">
+                        <addrLine>Koninklijke Nederlandse Organisatie van Verloskundigen</addrLine>
+                        <addrLine>Mercatorlaan 1200</addrLine>
+                        <addrLine>3528 BL Utrecht</addrLine>
+                        <addrLine>T 030 282 31 00</addrLine>
+                    </publishingAuthority>
+                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.0">
+                        <concept localId="1" code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartsenpraktijk" level="0" type="L">
+                            <name language="nl-NL">Huisartsenpraktijk</name>
+                        </concept>
+                        <concept localId="2" code="G3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verloskundigenpraktijk" level="0" type="L">
+                            <name language="nl-NL">Verloskundigenpraktijk</name>
+                        </concept>
+                        <concept localId="3" code="V4" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Ziekenhuis" level="0" type="L">
+                            <name language="nl-NL">Ziekenhuis</name>
+                        </concept>
+                        <concept localId="4" code="B2" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Echocentrum" level="0" type="L">
+                            <name language="nl-NL">Echocentrum</name>
+                        </concept>
+                        <concept localId="5" code="L1" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Laboratorium" level="0" type="L">
+                            <name language="nl-NL">Laboratorium</name>
+                        </concept>
+                    </conceptList>
+                </valueSet>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.0" valueSet="2.16.840.1.113883.2.4.11.59" effectiveDate="2011-01-28T00:00:00"></terminologyAssociation>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.1" code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartsenpraktijk" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"></terminologyAssociation>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.2" code="G3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verloskundigenpraktijk" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"></terminologyAssociation>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.3" code="V4" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Ziekenhuis" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"></terminologyAssociation>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.4" code="B2" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Echocentrum" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"></terminologyAssociation>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.2.10029.5" code="L1" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Laboratorium" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"></terminologyAssociation>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82019" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-82019" shortName="type_zorginstelling_bij_verwijzing">
+                <implementation shortName="type_zorginstelling_bij_verwijzing"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.82019" effectiveDate="2013-09-19T15:01:34" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-19T15:01:34" iVersionLabel="22" refdisplay="peri22-dataelement-82019"></inherit>
+                <name language="nl-NL">Type zorginstelling (bij verwijzing)</name>
+                <desc language="nl-NL">Type zorginstelling bij een verwijzing.</desc>
+                <valueDomain type="code">
+                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.82019.0">
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.82019.1">
+                            <name language="nl-NL">Huisartsenpraktijk</name>
+                        </concept>
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.82019.2">
+                            <name language="nl-NL">Verloskundigenpraktijk</name>
+                        </concept>
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.82019.3">
+                            <name language="nl-NL">Ziekenhuis</name>
+                        </concept>
+                    </conceptList>
+                    <property></property>
+                </valueDomain>
+                <valueSet>
+                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.82019.0"></conceptList>
+                </valueSet>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.82019.1" code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartsenpraktijk" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"></terminologyAssociation>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.82019.2" code="G3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verloskundigenpraktijk" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"></terminologyAssociation>
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.82019.3" code="V4" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Ziekenhuis" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"></terminologyAssociation>
+            </concept>
+        </concept>
+    </concept>
+    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.2" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-2" shortName="vrouw">
+        <implementation shortName="vrouw"></implementation>
+        <name language="nl-NL">Vrouw</name>
+        <desc language="nl-NL">Vrouw die obstetrische zorgdiensten afneemt / heeft afgenomen.</desc>
+        <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.2" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-2">
+            <name language="nl-NL">Vrouw</name>
+        </relationship>
+        <community name="prn">
+            <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering essentiele data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+        </community>
+        <community name="fhirmapping">
+            <data type="base" label="FHIR profile" datatype="enum">bc-Woman</data>
+            <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/patient-example-duplicate-3</data>
+            <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                <div>
+<ul>
+        <li>GET [base]/Patient/[vrouwid]</li>
+        <li>GET [base]/Patient?identifier=[bsn]</li>
+    </ul>
+</div>
+            </data>
+        </community>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10030" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10030" shortName="burgerservicenummer">
+            <implementation shortName="burgerservicenummer"></implementation>
+            <name language="nl-NL">Burgerservicenummer</name>
+            <desc language="nl-NL">Het burgerservicenummer (BSN) is een uniek en persoonsgebonden identificerend nummer. Dit nummer wordt automatisch toegekend bij geboorte en wanneer iemand zich inschrijft bij de Basisregistratie personen (BRP). </desc>
+            <comment language="nl-NL">Modulo 11-proef</comment>
+            <comment language="nl-NL">Modulo 11-proef</comment>
+            <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.1.10030" flexibility="2009-10-01T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.1" datasetEffectiveDate="2009-10-01T00:00:00" datasetStatusCode="deprecated" iType="item" iStatusCode="final" iEffectiveDate="2009-10-01T00:00:00" refdisplay="spirit1a-dataelement-10030">
+                <name language="nl-NL">Burgerservicenummer</name>
+            </relationship>
+            <valueDomain type="identifier">
+                <property minLength="9" maxLength="9"></property>
+            </valueDomain>
+            <community name="prn">
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 1.2.07.01</data>
+                <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Vrouw, Burger Service Nummer<br clear="none" /><br clear="none" />HL7v3: Item 10030 en 10040 zijn altijd van de vrouw, dit is uit de context van de HL7 CMET person/patient af te leiden die over de vrouw gaat. Het kind krijgt een eigen CMET voor deze gegevens.</data>
+            </community>
+        </concept>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10035" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10035" shortName="naamgegevens">
+            <implementation shortName="naamgegevens"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.10035" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-10035"></inherit>
+            <name language="nl-NL">Naamgegevens</name>
+            <desc language="nl-NL">Naamgegevens van de vrouw.</desc>
+            <community name="prn">
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 1.2.02.01 t/m 1.2.02.05</data>
+            </community>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10042" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10042" shortName="voornamen">
+                <implementation shortName="voornamen"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.101.2.1.10020" effectiveDate="2013-03-25T21:46:30" prefix="naw-" datasetId="2.16.840.1.113883.2.4.3.11.60.101.1.1" datasetEffectiveDate="2013-03-25T14:13:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-03-25T21:46:30" refdisplay="naw-dataelement-10020"></inherit>
+                <name language="nl-NL">Voornamen</name>
+                <desc language="nl-NL">De verzameling officiële voornamen die bij de geboorte zijn vastgelegd.</desc>
+                <valueDomain type="string">
+                    <example>Johanna Henriette Maria</example>
+                </valueDomain>
+                <community name="prn">
+                    <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">1.2.02.01</data>
+                    <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Vrouw, voorletters</data>
+                    <data type="prn13bijzonderheden" label="PRN dataset 1.3 bijzonderheden" datatype="text">PRN is alleen geïnteresseerd in de voorletters van de vrouw, niet in de hele voornaam.</data>
+                </community>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82359" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-82359" shortName="initialen">
+                <implementation shortName="initialen"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.101.2.1.10030" effectiveDate="2013-03-25T21:46:30" prefix="naw-" datasetId="2.16.840.1.113883.2.4.3.11.60.101.1.1" datasetEffectiveDate="2013-03-25T14:13:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-03-25T21:46:30" refdisplay="naw-dataelement-10030"></inherit>
+                <name language="nl-NL">Initialen</name>
+                <desc language="nl-NL">Voorletters gebaseerd op de voornamen van de persoon.</desc>
+                <valueDomain type="string">
+                    <example>J.H.M.</example>
+                </valueDomain>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82360" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-82360" shortName="roepnaam">
+                <implementation shortName="roepnaam"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.101.2.1.10040" effectiveDate="2013-03-25T21:46:30" prefix="naw-" datasetId="2.16.840.1.113883.2.4.3.11.60.101.1.1" datasetEffectiveDate="2013-03-25T14:13:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-03-25T21:46:30" refdisplay="naw-dataelement-10040"></inherit>
+                <name language="nl-NL">Roepnaam</name>
+                <desc language="nl-NL">Naam, die de persoon voert en die niet de officiële naam is.</desc>
+                <valueDomain type="string">
+                    <example>Jet</example>
+                </valueDomain>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82361" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-82361" shortName="achternaam">
+                <implementation shortName="achternaam"></implementation>
+                <inherit ref="2.16.840.1.113883.2.4.3.11.60.101.2.1.10050" effectiveDate="2013-03-25T21:46:30" prefix="naw-" datasetId="2.16.840.1.113883.2.4.3.11.60.101.1.1" datasetEffectiveDate="2013-03-25T14:13:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-03-25T21:46:30" refdisplay="naw-dataelement-10050"></inherit>
+                <name language="nl-NL">Achternaam</name>
+                <desc language="nl-NL"></desc>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82362" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-82362" shortName="soort_naam">
+                    <implementation shortName="soort_naam"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.101.2.1.10060" effectiveDate="2013-03-25T21:46:30" prefix="naw-" datasetId="2.16.840.1.113883.2.4.3.11.60.101.1.1" datasetEffectiveDate="2013-03-25T14:13:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-03-25T21:46:30" refdisplay="naw-dataelement-10060"></inherit>
+                    <name language="nl-NL">Soort naam</name>
+                    <desc language="nl-NL">Aanduiding die aangeeft welke functie de naam heeft.</desc>
+                    <valueDomain type="code">
+                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.101.2.1.10060.0"></conceptList>
+                        <example>Geboortenaam partner</example>
+                    </valueDomain>
+                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.101.11.9" name="AchternaamSoort" displayName="Achternaam soort" effectiveDate="2013-03-25T14:13:00" statusCode="final">
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.101.2.1.10060.0" valueSet="2.16.840.1.113883.2.4.3.11.60.101.11.9"></terminologyAssociation>
+                        <sourceCodeSystem id="2.16.840.1.113883.5.43" identifierName="Entity&#160;Name&#160;Part&#160;Qualifier" canonicalUri="urn:oid:2.16.840.1.113883.5.43" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.5.43" canonicalUriSTU3="urn:oid:2.16.840.1.113883.5.43" canonicalUriR4="urn:oid:2.16.840.1.113883.5.43"></sourceCodeSystem>
+                        <publishingAuthority name="KNOV">
+                            <addrLine>Koninklijke Nederlandse Organisatie van Verloskundigen</addrLine>
+                            <addrLine>Mercatorlaan 1200</addrLine>
+                            <addrLine>3528 BL Utrecht</addrLine>
+                            <addrLine>T 030 282 31 00</addrLine>
+                        </publishingAuthority>
+                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.101.2.1.10060.0">
+                            <concept localId="1" code="BR" codeSystem="2.16.840.1.113883.5.43" displayName="Geslachtsnaam" level="0" type="L">
+                                <name language="nl-NL">Geslachtsnaam</name>
+                                <desc language="nl-NL">Geslachtsnaam</desc>
+                            </concept>
+                            <concept localId="2" code="SP" codeSystem="2.16.840.1.113883.5.43" displayName="Geslachtsnaam partner" level="0" type="L">
+                                <name language="nl-NL">Geslachtsnaam partner</name>
+                                <desc language="nl-NL">Geslachtsnaam partner</desc>
+                            </concept>
+                        </conceptList>
+                    </valueSet>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.101.2.1.10060.0" valueSet="2.16.840.1.113883.2.4.3.11.60.101.11.9"></terminologyAssociation>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82363" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-82363" shortName="voorvoegsel">
+                    <implementation shortName="voorvoegsel"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.101.2.1.10070" effectiveDate="2013-03-25T21:46:30" prefix="naw-" datasetId="2.16.840.1.113883.2.4.3.11.60.101.1.1" datasetEffectiveDate="2013-03-25T14:13:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-03-25T21:46:30" refdisplay="naw-dataelement-10070"></inherit>
+                    <name language="nl-NL">Voorvoegsel</name>
+                    <desc language="nl-NL">Deel van de achternaam dat het voorvoegsel bevat.</desc>
+                    <comment language="nl-NL">GBA tabel 36 is een opsomming van te gebruiken voorvoegsels zonder bijbehorende code. Het gebruik wordt aanbevolen, maar is niet verplicht. Bij vulling via de SBV-Z zullen de voorzetsels overeenkomen met tabel 36.</comment>
+                    <operationalization language="nl-NL">GBA tabel 36</operationalization>
+                    <valueDomain type="string">
+                        <example>van</example>
+                    </valueDomain>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10043" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-10043" shortName="achternaam">
+                    <implementation shortName="achternaam"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.101.2.1.10080" effectiveDate="2013-03-25T21:46:30" prefix="naw-" datasetId="2.16.840.1.113883.2.4.3.11.60.101.1.1" datasetEffectiveDate="2013-03-25T14:13:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-03-25T21:46:30" refdisplay="naw-dataelement-10080"></inherit>
+                    <name language="nl-NL">Achternaam</name>
+                    <desc language="nl-NL">De achternaam van een persoon die bij de geboorte is vastgelegd. Afhankeljk van de soort naam is dit de geboortenaam van de persoon of van de partner</desc>
+                    <valueDomain type="string">
+                        <example>Putten</example>
+                    </valueDomain>
+                    <community name="prn">
+                        <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">1.2.02.02, 1.2.02.03, 1.2.02.04 en 1.2.02.05</data>
+                        <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Vrouw, meisjesachternaam<br clear="none" />Vrouw, tussenvoegsel meisjesachternaam<br clear="none" />Vrouw, naam partner/huwelijksnaam<br clear="none" />Vrouw, tussenvoegsel naam partner/huwelijksnaam<br clear="none" /><br clear="none" />PRN verwacht de gehele uitwerking uit de persoonsgegevens conform HL7 CMET.</data>
+                    </community>
+                </concept>
+            </concept>
+        </concept>
+    </concept>
+    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.3" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-3" shortName="zwangerschap">
+        <implementation shortName="zwangerschap"></implementation>
+        <name language="nl-NL">Zwangerschap</name>
+        <desc language="nl-NL">De al dan niet afgesloten zwangerschap waarop de gegevens betrekking hebben.</desc>
+        <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.3" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-3">
+            <name language="nl-NL">Zwangerschap</name>
+        </relationship>
+        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.3" conceptFlexibility="2016-09-08T00:00:00" code="118185001" codeSystem="2.16.840.1.113883.6.96" displayName="bevinding betreffende zwangerschap (bevinding)" effectiveDate="2020-01-06T12:00:59" codeSystemName="SNOMED CT"></terminologyAssociation>
+        <community name="prn">
+            <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering relevante data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+        </community>
+        <community name="fhirmapping">
+            <data type="base" label="FHIR profile" datatype="enum">zib-Pregnancy</data>
+            <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/condition-example-duplicate-10</data>
+            <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                <div>
+<ul>
+        <li>GET [base]/Condition/[zwangerschapid]</li>
+        <li>GET [base]/Condition?clinicalstatus=active</li>
+        <li>GET [base]/Condition?clinicalstatus=inactive&amp;_sort=_-id&amp;_count=1</li>
+        <li>GET [base]/Condition?subject=[patientid]&amp;_revinclude=Observation:focus</li>
+    </ul>
+</div>
+            </data>
+        </community>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.20010" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-20010" shortName="graviditeit">
+            <implementation shortName="graviditeit"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.1.20010" effectiveDate="2009-10-01T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.1" datasetEffectiveDate="2009-10-01T00:00:00" datasetStatusCode="deprecated" iType="item" iStatusCode="final" iEffectiveDate="2009-10-01T00:00:00" refdisplay="spirit1a-dataelement-20010"></inherit>
+            <name language="nl-NL">Graviditeit</name>
+            <desc language="nl-NL">Het aantal keren dat de vrouw zwanger is geworden (inclusief deze).</desc>
+            <comment language="nl-NL">1 - 75</comment>
+            <valueDomain type="count">
+                <property minInclude="1" maxInclude="75"></property>
+            </valueDomain>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.1.20010" code="Gravidity" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Graviditeit" codeSystemName="Perinatologische observatiecodes"></terminologyAssociation>
+            <community name="prn">
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">PRN data element 3.2.01</data>
+                <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">I: Het aantal doorgemaakte zwangerschappen (inclusief deze).</data>
+                <data type="prn13bijzonderheden" label="PRN dataset 1.3 bijzonderheden" datatype="text">Er lijkt nog verschil in omschrijving. <br clear="none" />PRN dataset 1.35:&#160; Op verzoek van PRN is onbekend toegestaan.<br clear="none" />ART-DECOR: Onbekend niet, of indien toch, dan anders vastleggen! <br clear="none" /><br clear="none" />Niet verplicht voor neonatologen ?</data>
+                <data type="prnKSinfo" label="PRN kernset info" datatype="text">Behoort tot PRN kernset</data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">zib-Pregnancy-Gravidity</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-84</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <div>
+    <pre>GET [base]/Observation?code=11996-6{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[zwangerschapid]}</pre>
+</div>
+                </data>
+            </community>
+        </concept>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.20150" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-20150" shortName="pariteit_voor_deze_zwangerschap">
+            <implementation shortName="pariteit_voor_deze_zwangerschap"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20150" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" refdisplay="peri22-dataelement-20150"></inherit>
+            <name language="nl-NL">Pariteit (vóór deze zwangerschap)</name>
+            <desc language="nl-NL">Aantal voorafgaande zwangerschappen vóór deze zwangerschap die eindigden met een partus (&gt;= 16w 0d / 112 dagen).<br clear="none" />De waarde van dit item is minimaal 1 minder dan graviditeit. </desc>
+            <valueDomain type="count">
+                <property minInclude="0" maxInclude="30"></property>
+            </valueDomain>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20150" effectiveDate="2014-10-20T17:15:53" code="Parturit" displayName="Pariteit (vóór deze zwangerschap)" codeSystem="2.16.840.1.113883.2.4.4.13" codeSystemName="Perinatologische observatiecodes"></terminologyAssociation>
+            <community name="prn">
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 3.2.02</data>
+                <data type="prn13bijzonderheden" label="PRN dataset 1.3 bijzonderheden" datatype="text">I: Het aantal doorgemaakte zwangerschappen (inclusief deze).<br clear="none" /><br clear="none" />Operationalisatie: aanpassen naar pariteit moet altijd minimaal 1 minder zijn dan graviditeit.</data>
+                <data type="prnKSinfo" label="PRN kernset info" datatype="text">Behoort tot PRN Kernset</data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">zib-Pregnancy-Parity</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-88</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <div>
+    <pre>GET [base]/Observation?code=11977-6{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[zwangerschapid]}</pre>
+</div>
+                </data>
+            </community>
+        </concept>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80625" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-80625" shortName="wijze_einde_zwangerschap">
+            <implementation shortName="wijze_einde_zwangerschap"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.80623" effectiveDate="2013-02-18T16:16:04" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-02-18T16:16:04" refdisplay="peri21-dataelement-80623"></inherit>
+            <name language="nl-NL">Wijze einde zwangerschap</name>
+            <desc language="nl-NL">De wijze waarop de zwangerschap geëindigd is.<br clear="none" /><br clear="none" />TOP (Termination of Pregnancy) is zwangerschapsafbreking na 16+0 weken (16w0d). Bij TOP wordt hier 'Partus' geregistreerd, zodat dit meegenomen wordt als pariteit. Dit in tegenstelling tot APLA, waarmee een zwangerschapsafbreking (abortus) van minder dan 16 weken wordt bedoeld.</desc>
+            <valueDomain type="code">
+                <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.0">
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.1">
+                        <name language="nl-NL">Partus</name>
+                        <desc language="nl-NL"></desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.2">
+                        <name language="nl-NL">Miskraam</name>
+                        <desc language="nl-NL"></desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.3">
+                        <name language="nl-NL">Miskraam - Spontaan</name>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.4">
+                        <name language="nl-NL">Miskraam - Medicamenteus</name>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.5">
+                        <name language="nl-NL">Miskraam - Instrumenteel</name>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.6">
+                        <name language="nl-NL">APLA</name>
+                        <desc language="nl-NL">Zwangerschapsafbreking vóór 16 weken</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.7">
+                        <name language="nl-NL">APLA - Medicamenteus</name>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.8">
+                        <name language="nl-NL">APLA - Instrumenteel</name>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.9">
+                        <name language="nl-NL">EUG</name>
+                        <desc language="nl-NL">Het gaat hier om een behandelde EUG - de behandeling wordt niet nader gespecificeerd</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.10">
+                        <name language="nl-NL">(Partiële) Mola</name>
+                        <desc language="nl-NL">Het gaat hier om een behandelde (Partiële) Mola - de behandeling wordt niet nader gespecificeerd</desc>
+                    </concept>
+                </conceptList>
+                <property></property>
+            </valueDomain>
+            <valueSet id="2.16.840.1.113883.2.4.11.171" effectiveDate="2013-03-20T00:00:00" name="WijzeEindeZwangerschap" displayName="WijzeEindeZwangerschap" statusCode="final">
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.0" effectiveDate="2013-04-04T16:17:49" valueSet="2.16.840.1.113883.2.4.11.171" flexibility="2013-03-20T00:00:00"></terminologyAssociation>
+                <sourceCodeSystem id="2.16.840.1.113883.2.4.4.13.46" identifierName="WijzeEindeZwangerschap" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.13.46" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.2.4.4.13.46" canonicalUriSTU3="urn:oid:2.16.840.1.113883.2.4.4.13.46" canonicalUriR4="urn:oid:2.16.840.1.113883.2.4.4.13.46"></sourceCodeSystem>
+                <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor" canonicalUri="urn:oid:2.16.840.1.113883.5.1008" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.5.1008" canonicalUriSTU3="urn:oid:2.16.840.1.113883.5.1008" canonicalUriR4="urn:oid:2.16.840.1.113883.5.1008"></sourceCodeSystem>
+                <publishingAuthority name="KNOV">
+                    <addrLine>Koninklijke Nederlandse Organisatie van Verloskundigen</addrLine>
+                    <addrLine>Mercatorlaan 1200</addrLine>
+                    <addrLine>3528 BL Utrecht</addrLine>
+                    <addrLine>T 030 282 31 00</addrLine>
+                </publishingAuthority>
+                <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.0">
+                    <concept localId="1" code="1" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Partus" level="0" type="L">
+                        <name language="nl-NL">Partus</name>
+                    </concept>
+                    <concept localId="2" code="2" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Miskraam" level="0" type="L">
+                        <name language="nl-NL">Miskraam</name>
+                    </concept>
+                    <concept localId="3" code="21" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Miskraam - Spontaan" level="1" type="L">
+                        <name language="nl-NL">Miskraam - Spontaan</name>
+                    </concept>
+                    <concept localId="4" code="22" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Miskraam - Medicamenteus" level="1" type="L">
+                        <name language="nl-NL">Miskraam - Medicamenteus</name>
+                    </concept>
+                    <concept localId="5" code="23" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Miskraam - Instrumenteel" level="1" type="L">
+                        <name language="nl-NL">Miskraam - Instrumenteel</name>
+                    </concept>
+                    <concept localId="6" code="3" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="APLA" level="0" type="L">
+                        <name language="nl-NL">APLA</name>
+                    </concept>
+                    <concept localId="7" code="31" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="APLA - Medicamenteus" level="1" type="L">
+                        <name language="nl-NL">APLA - Medicamenteus</name>
+                    </concept>
+                    <concept localId="8" code="32" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="APLA - Instrumenteel" level="1" type="L">
+                        <name language="nl-NL">APLA - Instrumenteel</name>
+                    </concept>
+                    <concept localId="9" code="4" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="EUG - behandeld" level="0" type="L">
+                        <name language="nl-NL">EUG</name>
+                    </concept>
+                    <concept localId="10" code="5" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="(partiële) Mola - behandeld" level="0" type="L">
+                        <name language="nl-NL">(Partiële) Mola</name>
+                    </concept>
+                    <exception localId="11" code="NI" codeSystem="2.16.840.1.113883.5.1008" displayName="geen informatie" level="0" type="L">
+                        <name language="nl-NL">geen informatie</name>
+                    </exception>
+                </conceptList>
+            </valueSet>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.0" effectiveDate="2013-04-04T16:17:49" valueSet="2.16.840.1.113883.2.4.11.171" flexibility="2013-03-20T00:00:00"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.80623" effectiveDate="2014-10-20T18:57:02" code="EindeZw" displayName="Wijze einde zwangerschap" codeSystem="2.16.840.1.113883.2.4.4.13" codeSystemName="Perinatologische observatiecodes"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.10" code="5" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="(partiële) Mola - behandeld" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.9" code="4" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="EUG - behandeld" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.8" code="32" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Instrumenteel" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.7" code="31" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Medicamenteus" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.6" code="3" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="APLA" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.5" code="23" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Instrumenteel" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.4" code="22" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Medicamenteus" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.3" code="21" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Spontaan" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.2" code="2" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Miskraam" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.4.80623.1" code="1" codeSystem="2.16.840.1.113883.2.4.4.13.46" displayName="Partus" codeSystemName="WijzeEindeZwangerschap"></terminologyAssociation>
+            <community name="prn">
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">8.1.03</data>
+                <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Onderdeel van kernset</data>
+                <data type="prnKSmapping" label="PRN kernset mapping" datatype="text">8.1.03</data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">bc-PregnancyObservation</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-72</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <div>
+    <pre>GET [base]/Observation?code=EindeZw{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[zwangerschapid]}</pre>
+</div>
+                </data>
+            </community>
+        </concept>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.20540" effectiveDate="2016-09-08T00:00:00" statusCode="draft" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-20540" shortName="datum_einde_zwangerschap">
+            <implementation shortName="datum_einde_zwangerschap"></implementation>
+            <name language="nl-NL">Datum einde zwangerschap</name>
+            <desc language="nl-NL">Moment (datum en tijd) waarop de zwangerschap medisch gezien is geëindigd, met uitzondering van de partus (bij een partus wordt dit item niet ingevuld).</desc>
+            <comment language="nl-NL">
+                <div>
+                    <div>Dit element is gekoppeld aan het element 'Wijze einde zwangerschap'. Bij de waarde 'partus' wordt op een andere plaats in het dossier geregistreerd: geboortedatum per kind én geboortedatum/tijd van de placenta(e).</div>
+                    <div>Bij alle andere waarden dient de datum einde zwangerschap ingevuld te zijn.</div>
+                </div>
+            </comment>
+            <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20540" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-20540">
+                <name language="nl-NL">Datum einde zwangerschap</name>
+            </relationship>
+            <valueDomain type="datetime">
+                <property timeStampPrecision="YMD"></property>
+            </valueDomain>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.20540" conceptFlexibility="2016-09-08T00:00:00" code="118951000146109" codeSystem="2.16.840.1.113883.6.96" displayName="datum van einde van zwangerschap (waarneembare entiteit)" effectiveDate="2020-03-26T15:55:35" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <community name="prn">
+                <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Onderdeel van kernset icm wijze einde zwangerschap kan hieruit partusdatum worden afgeleid.</data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">bc-PregnancyObservation</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-69</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <div>
+    <pre>GET [base]/Observation?code=code=118951000146109{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[zwangerschapid]}</pre>
+</div>
+                </data>
+            </community>
+        </concept>
+    </concept>
+    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.6" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-6" shortName="bevalling">
+        <implementation shortName="bevalling"></implementation>
+        <name language="nl-NL">Bevalling</name>
+        <desc language="nl-NL">Gegevens over de partus</desc>
+        <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.6" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-6">
+            <name language="nl-NL">Bevalling</name>
+        </relationship>
+        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.6" effectiveDate="2016-11-06T16:07:42" code="236973005" displayName="Delivery procedure (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+        <community name="prn">
+            <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering relevante data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+        </community>
+        <community name="fhirmapping">
+            <data type="base" label="FHIR profile" datatype="enum">bc-DeliveryProcedure</data>
+            <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/procedure-example-duplicate-3</data>
+            <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                <div>
+<ul>
+                        <li>GET [base]/Procedure?code=236973005{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;reasonReference=[zwangerschapid]}</li>
+                    </ul>
+</div>
+            </data>
+        </community>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.20590" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-20590" shortName="tijdstip_begin_actieve_ontsluiting">
+            <implementation shortName="tijdstip_begin_actieve_ontsluiting"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20590" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" refdisplay="peri22-dataelement-20590"></inherit>
+            <name language="nl-NL">Tijdstip begin actieve ontsluiting</name>
+            <desc language="nl-NL">Datum en tijd begin actieve ontsluiting<br clear="none" /><br clear="none" />KNOV definitie van actieve ontsluting:<br clear="none" />
+                <ul>
+                    <li>dunne verstreken cervix én</li>
+                    <li>ten minste 3 cm ontsluiting én</li>
+                    <li>krachtige, pijnlijke weeën om de 2 à 3 minuten.</li>
+                </ul>
+            </desc>
+            <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.1.20590" flexibility="2009-10-01T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.1" datasetEffectiveDate="2009-10-01T00:00:00" datasetStatusCode="deprecated" iType="item" iStatusCode="final" iEffectiveDate="2009-10-01T00:00:00" refdisplay="spirit1a-dataelement-20590">
+                <name language="nl-NL">Tijdstip begin actieve ontsluiting</name>
+            </relationship>
+            <valueDomain type="datetime">
+                <property timeStampPrecision="YMDHM"></property>
+            </valueDomain>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20590" effectiveDate="2015-10-12T14:22:36" code="PRN520301" displayName="Tijdstip begin actieve ontsluiting" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" codeSystemName="PerinatologyObservationsPRN"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20590" effectiveDate="2015-10-12T14:22:36" code="249120008" codeSystem="2.16.840.1.113883.6.96" displayName="Onset of labour first stage" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <community name="prn">
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 5.2.03.01</data>
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 5.2.03.02</data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">bc-DeliveryObservation</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-63</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <ul>
+                        <li>
+<pre>GET [base]/Observation?code=249120008{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[bevallingid]}</pre>
+</li>
+                    </ul>
+                </data>
+            </community>
+        </concept>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82869" effectiveDate="2020-01-24T11:34:59" statusCode="draft" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-82869" shortName="duur_actieve_ontsluitingsfase_ontsluitingsduur">
+            <implementation shortName="duur_actieve_ontsluitingsfase_ontsluitingsduur"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.10601" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-10601"></inherit>
+            <name language="nl-NL">Duur actieve ontsluitingsfase (Ontsluitingsduur)</name>
+            <desc language="nl-NL">Ontsluitingsduur in uren</desc>
+            <source language="nl-NL">PRN dataset 1.3 item #5.6.02.02</source>
+            <operationalization language="nl-NL">Berekend veld: duur vanaf ontsluitingsfase baring tot duur actief meepersen.</operationalization>
+            <valueDomain type="quantity">
+                <property unit="h" minInclude="0"></property>
+            </valueDomain>
+        </concept>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82870" effectiveDate="2020-01-24T11:45:27" statusCode="draft" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-82870" shortName="duur_uitdrijving_vanaf_actief_meepersen">
+            <implementation shortName="duur_uitdrijving_vanaf_actief_meepersen"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.10602" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-10602"></inherit>
+            <name language="nl-NL">Duur uitdrijving vanaf actief meepersen</name>
+            <desc language="nl-NL">Duur uitdrijving in minuten.</desc>
+            <operationalization language="nl-NL">Indien bekend in systeem berekend veld: baringsduur vanaf actief meepersen tot en met de geboorte van het kind.</operationalization>
+            <valueDomain type="quantity">
+                <property unit="min" minInclude="0"></property>
+            </valueDomain>
+        </concept>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.20640" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-20640" shortName="hoeveelheid_bloedverlies">
+            <implementation shortName="hoeveelheid_bloedverlies"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20640" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" refdisplay="peri22-dataelement-20640"></inherit>
+            <name language="nl-NL">Hoeveelheid bloedverlies</name>
+            <desc language="nl-NL">Hoeveelheid bloedverlies tijdens baring/nageboortetijdperk</desc>
+            <valueDomain type="quantity">
+                <property unit="ml" fractionDigits="0!"></property>
+            </valueDomain>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20640" effectiveDate="2014-11-17T17:47:34" code="364332008" codeSystem="2.16.840.1.113883.6.96" displayName="Blood loss in labour" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <community name="prn">
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 5.7.03</data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">bc-DeliveryObservation</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-55</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <ul>
+                        <li>
+<pre>GET [base]/Observation?code=64332008{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[bevallingid]}</pre>
+</li>
+                    </ul>
+                </data>
+            </community>
+        </concept>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80673" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-80673" shortName="conditie_perineum_postpartum">
+            <implementation shortName="conditie_perineum_postpartum"></implementation>
+            <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.80673" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" refdisplay="peri22-dataelement-80673"></inherit>
+            <name language="nl-NL">Conditie perineum postpartum</name>
+            <desc language="nl-NL">Conditie perineum postpartum. Het gaat hier om de conditie aan het einde van de bevalling/partus.</desc>
+            <valueDomain type="code">
+                <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.0">
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.1" exception="false">
+                        <name language="nl-NL">Gaaf</name>
+                        <desc language="nl-NL"></desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.2" exception="false">
+                        <name language="nl-NL">1e graads perineumruptuur</name>
+                        <desc language="nl-NL">Alleen beschadiging aan de huid.</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.3" exception="false">
+                        <name language="nl-NL">2e graads perineumruptuur</name>
+                        <desc language="nl-NL">Beschadiging van het perineum en de perineale spieren, maar niet van de anale sfincter.</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.4" exception="false">
+                        <name language="nl-NL">3e graads ruptuur</name>
+                        <desc language="nl-NL">Beschadiging van het perineum en van de anale sfincter.</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.41" exception="false">
+                        <name language="nl-NL">3a - sfincterlaesie externum &lt; 50%</name>
+                        <desc language="nl-NL">Minder dan 50% van de externe sfincter diameter is beschadigd.</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.42" exception="false">
+                        <name language="nl-NL">3b - sfincterlaesie externum ≥ 50%</name>
+                        <desc language="nl-NL">Meer dan 50% van de externe sfincter diameter is beschadigd.</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.43" exception="false">
+                        <name language="nl-NL">3c - sfincterlaesie externum en internum</name>
+                        <desc language="nl-NL">Naast de externe sfincter is ook de interne sfincter beschadigd.</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.5" exception="false">
+                        <name language="nl-NL">4e graads ruptuur</name>
+                        <desc language="nl-NL">Beschadiging van het perineum, de externe en interne sfincter en het rectum slijmvlies</desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.6" exception="false">
+                        <name language="nl-NL">Episiotomiewond</name>
+                        <desc language="nl-NL"></desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.7" exception="true">
+                        <name language="nl-NL">Anders</name>
+                        <desc language="nl-NL"></desc>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.8" exception="true">
+                        <name language="nl-NL">Onbekend</name>
+                        <desc language="nl-NL"></desc>
+                    </concept>
+                </conceptList>
+            </valueDomain>
+            <valueSet id="2.16.840.1.113883.2.4.11.192" statusCode="final" name="Conditieperineum22" displayName="Conditie perineum (2.2)" effectiveDate="2014-01-22T11:04:47">
+                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.0" effectiveDate="2016-08-30T11:34:38" valueSet="2.16.840.1.113883.2.4.11.192" flexibility="2014-01-22T11:04:47"></terminologyAssociation>
+                <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED&#160;CT" canonicalUri="urn:oid:2.16.840.1.113883.6.96" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.6.96" canonicalUriSTU3="urn:oid:2.16.840.1.113883.6.96" canonicalUriR4="urn:oid:2.16.840.1.113883.6.96"></sourceCodeSystem>
+                <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor" canonicalUri="urn:oid:2.16.840.1.113883.5.1008" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.5.1008" canonicalUriSTU3="urn:oid:2.16.840.1.113883.5.1008" canonicalUriR4="urn:oid:2.16.840.1.113883.5.1008"></sourceCodeSystem>
+                <publishingAuthority name="KNOV">
+                    <addrLine>Koninklijke Nederlandse Organisatie van Verloskundigen</addrLine>
+                    <addrLine>Mercatorlaan 1200</addrLine>
+                    <addrLine>3528 BL Utrecht</addrLine>
+                    <addrLine>T 030 282 31 00</addrLine>
+                </publishingAuthority>
+                <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.0">
+                    <concept localId="1" code="289854007" codeSystem="2.16.840.1.113883.6.96" displayName="Perineum intact  (finding)" level="0" type="L">
+                        <name language="nl-NL">Gaaf</name>
+                    </concept>
+                    <concept localId="2" code="199916005" codeSystem="2.16.840.1.113883.6.96" displayName="First degree perineal tear during delivery - delivered (disorder)" level="0" type="L">
+                        <name language="nl-NL">1e graads perineumruptuur</name>
+                    </concept>
+                    <concept localId="3" code="199925004" codeSystem="2.16.840.1.113883.6.96" displayName="Second degree perineal tear during delivery - delivered  (disorder)" level="0" type="L">
+                        <name language="nl-NL">2e graads perineumruptuur</name>
+                    </concept>
+                    <concept localId="4" code="199930000" codeSystem="2.16.840.1.113883.6.96" displayName="Third degree perineal tear during delivery - delivered  (disorder)" level="0" type="L">
+                        <name language="nl-NL">3e graads ruptuur</name>
+                    </concept>
+                    <concept localId="5" code="449807005" codeSystem="2.16.840.1.113883.6.96" displayName="Type 3a third degree laceration of perineum  (disorder)" level="1" type="L">
+                        <name language="nl-NL">3a - sfincterlaesie externum &lt; 50%</name>
+                    </concept>
+                    <concept localId="6" code="449808000" codeSystem="2.16.840.1.113883.6.96" displayName="Type 3b third degree laceration of perineum (disorder)" level="1" type="L">
+                        <name language="nl-NL">3b - sfincterlaesie externum ≥ 50%</name>
+                    </concept>
+                    <concept localId="7" code="449809008" codeSystem="2.16.840.1.113883.6.96" displayName="Type 3c third degree laceration of perineum (disorder)" level="1" type="L">
+                        <name language="nl-NL">3c - sfincterlaesie externum en internum</name>
+                    </concept>
+                    <concept localId="8" code="199934009" codeSystem="2.16.840.1.113883.6.96" displayName="Fourth degree perineal tear during delivery - delivered  (disorder)" level="0" type="L">
+                        <name language="nl-NL">4e graads ruptuur</name>
+                    </concept>
+                    <concept localId="9" code="609344008" codeSystem="2.16.840.1.113883.6.96" displayName="Episiotomy wound  (morphologic abnormality)" level="0" type="L">
+                        <name language="nl-NL">Episiotomiewond</name>
+                    </concept>
+                    <exception localId="10" code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="Anders" level="0" type="L">
+                        <name language="nl-NL">Anders</name>
+                    </exception>
+                    <exception localId="11" code="UNK" codeSystem="2.16.840.1.113883.5.1008" displayName="Onbekend" level="0" type="L">
+                        <name language="nl-NL">Onbekend</name>
+                    </exception>
+                    <exception localId="12" code="NI" codeSystem="2.16.840.1.113883.5.1008" displayName="Geen informatie" level="0" type="L">
+                        <name language="nl-NL">Geen informatie</name>
+                    </exception>
+                </conceptList>
+            </valueSet>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.0" effectiveDate="2016-08-30T11:34:38" valueSet="2.16.840.1.113883.2.4.11.192" flexibility="2014-01-22T11:04:47"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.8" code="UNK" codeSystem="2.16.840.1.113883.5.1008" displayName="unknown" codeSystemName="NullFlavor"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.7" code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="anders" codeSystemName="NullFlavor"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.1" code="289854007" displayName="Perineum intact (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.80673" effectiveDate="2014-10-20T19:18:05" code="364297003" displayName="Female perineum observable (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.6" code="609344008" displayName="Episiotomy wound (morphologic abnormality)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.5" code="199934009" displayName="Fourth degree perineal tear during delivery - delivered (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.43" code="449809008" displayName="Type 3c third degree laceration of perineum (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.42" code="449808000" displayName="Type 3b third degree laceration of perineum (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.41" code="449807005" displayName="Type 3a third degree laceration of perineum (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.4" code="199930000" displayName="Third degree perineal tear during delivery - delivered (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.3" code="199925004" displayName="Second degree perineal tear during delivery - delivered (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.80673.2" code="199916005" displayName="First degree perineal tear during delivery - delivered (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <community name="prn">
+                <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">5.7.04</data>
+                <data type="prn13bijzonderheden" label="PRN dataset 1.3 bijzonderheden" datatype="text">Waardenset lijkt niet geheel te matchen. Harmonisatie gewenst om te voorkomen dat hier twee items voor ontstaan. <br clear="none" /><br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; A&#160;&#160;&#160; gaaf<br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; B&#160;&#160;&#160; 1e graads perineumruptuur<br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; C&#160;&#160;&#160; 2e graads perineumruptuur<br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; D&#160;&#160;&#160; 3e graads ruptuur (sfincterlaesie, rectumslijmvlies intact)<br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; E&#160;&#160;&#160; 4e graads ruptuur (sfincterlaesie en rectumslijmvlieslaesie)<br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; F&#160;&#160;&#160; episiotomiewond<br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; G&#160;&#160;&#160; episiotomie anterior ivm vrouwelijke genitale verminking (VGV)<br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; H&#160;&#160;&#160; clitoris en/of labia minora gedeeltelijk of geheel
+                afwezig tgv vrouwelijke genitale verminking (VGV)<br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; OTH&#160;&#160;&#160; anders <br clear="none" />2.16.840.1.113883.2.4.11.27&#160;&#160;&#160; &#160;&#160;&#160; UNK&#160;&#160;&#160; onbekend </data>
+                <data type="prn13HL7" label="PRN dataset 1.3 mapping HL7" datatype="text">item 30040&#160; <br clear="none" />codeCode PRN5704</data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">bc-DeliveryObservation</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-75</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <ul>
+                        <li>
+<pre>GET [base]/Observation?code=364297003{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[bevallingid]}</pre>
+</li>
+                    </ul>
+                </data>
+            </community>
+        </concept>
+    </concept>
+    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.7" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="*" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-7" shortName="uitkomst_per_kind">
+        <implementation shortName="uitkomst_per_kind"></implementation>
+        <name language="nl-NL">Uitkomst (per kind)</name>
+        <desc language="nl-NL">Groepering om de gegevens van elke uitkomst (kind) samen te vatten.</desc>
+        <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.7" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-7">
+            <name language="nl-NL">Uitkomst (per kind)</name>
+        </relationship>
+        <community name="prn">
+            <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering relevante data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+        </community>
+        <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40002" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-40002" shortName="baring">
+            <implementation shortName="baring"></implementation>
+            <name language="nl-NL">Baring</name>
+            <desc language="nl-NL">Baring is het geboren laten worden van één uitkomst (kind).</desc>
+            <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.40002" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-40002">
+                <name language="nl-NL">Baring</name>
+            </relationship>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40002" effectiveDate="2016-10-26T22:19:19" code="Baring" displayName="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" codeSystemName="PerinatologyProceduresPRN"></terminologyAssociation>
+            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40002" conceptFlexibility="2016-09-08T00:00:00" code="3950001" codeSystem="2.16.840.1.113883.6.96" displayName="geboorte (bevinding)" effectiveDate="2020-03-23T12:05:14" codeSystemName="SNOMED CT"></terminologyAssociation>
+            <community name="prn">
+                <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Was voorheen 30010, zie oplossing bij 20260. Dit is niet naar een specifiek PRN data element te mappen. De gegevens uit deze rubriek zijn wel relevant voor PRN. </data>
+            </community>
+            <community name="fhirmapping">
+                <data type="base" label="FHIR profile" datatype="enum">bc-Birth</data>
+                <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/procedure-example-duplicate-4</data>
+                <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                    <ul>
+                        <li>
+<pre>GET [base]/Observation?code=3950001{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[geboorteid]&amp;focus=[kindid]}</pre>
+</li>
+                    </ul>
+                </data>
+            </community>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40006" effectiveDate="2016-09-08T00:00:00" statusCode="draft" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-40006" shortName="demografische_gegevens">
+                <implementation shortName="demografische_gegevens"></implementation>
+                <name language="nl-NL">Demografische gegevens</name>
+                <desc language="nl-NL">Demografische gegevens</desc>
+                <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.40006" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-40006">
+                    <name language="nl-NL">Demografische gegevens</name>
+                </relationship>
+                <community name="prn">
+                    <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering relevante data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+                </community>
+                <community name="fhirmapping">
+                    <data type="base" label="FHIR profile" datatype="enum">bc-Child</data>
+                    <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/patient-example</data>
+                    <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                        <ul>
+                            <li>
+<pre>GET [base]/Patient/[kindid]</pre>
+</li>
+                        </ul>
+                    </data>
+                </community>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40050" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-40050" shortName="geboortedatum">
+                    <implementation shortName="geboortedatum"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.18265" effectiveDate="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-18265"></inherit>
+                    <name language="nl-NL">Geboortedatum</name>
+                    <desc language="nl-NL">Moment van geboorte. Datum en (zo mogelijk) tijd</desc>
+                    <valueDomain type="datetime">
+                        <property timeStampPrecision="YMD"></property>
+                    </valueDomain>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.18265" conceptFlexibility="2012-08-06T00:00:00" code="21112-8" codeSystem="2.16.840.1.113883.6.1" displayName="Birth date" effectiveDate="2019-07-12T15:10:11" codeSystemName="LOINC"></terminologyAssociation>
+                    <community name="prn">
+                        <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">1.3.05 (datum)</data>
+                        <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">1.3.06 (tijdstip)</data>
+                        <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">I: Geboortedatum kind in HL7 / ISO notatie yyyymmddhhmm</data>
+                    </community>
+                    <community name="fhirmapping">
+                        <data type="base" label="FHIR profile" datatype="enum">bc-Child</data>
+                        <data type="path" label="FHIR path" datatype="string">Patient.birthdate</data>
+                        <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/patient-example-duplicate-4</data>
+                        <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                            <ul>
+                                <li>
+<pre>GET [base]/Patient/[kindid]</pre>
+</li>
+                            </ul>
+                        </data>
+                    </community>
+                </concept>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.71" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-71" shortName="kindspecifieke_maternale_gegevens">
+                <implementation shortName="kindspecifieke_maternale_gegevens"></implementation>
+                <name language="nl-NL">Kindspecifieke maternale gegevens</name>
+                <desc language="nl-NL">Kindspecifieke maternale gegevens</desc>
+                <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.71" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-71">
+                    <name language="nl-NL">Kindspecifieke maternale gegevens</name>
+                </relationship>
+                <community name="prn">
+                    <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering relevante data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+                </community>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.30030" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-30030" shortName="tijdstip_actief_meepersen">
+                    <implementation shortName="tijdstip_actief_meepersen"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.3.30030" effectiveDate="2012-01-01T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.3" datasetEffectiveDate="2012-01-01T00:00:00" datasetStatusCode="deprecated" iType="item" iStatusCode="final" iEffectiveDate="2012-01-01T00:00:00" refdisplay="peri20-dataelement-30030"></inherit>
+                    <name language="nl-NL">Tijdstip actief meepersen</name>
+                    <desc language="nl-NL">Tijdstip actief meepersen</desc>
+                    <valueDomain type="datetime">
+                        <property timeStampPrecision="YMDHM"></property>
+                    </valueDomain>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.3.30030" effectiveDate="2014-10-20T19:30:49" code="PRN530401" displayName="Tijdstip actief meepersen" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" codeSystemName="PerinatologyObservationsPRN"></terminologyAssociation>
+                    <community name="prn">
+                        <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 5.3.04.01</data>
+                        <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 5.3.04.02</data>
+                        <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">ddmmjjjj en 31-12-1900=n.v.t. (wegens geplande sectio)<br clear="none" />Uur, minuten en 88,88=n.v.t. (wegens geplande sectio)</data>
+                    </community>
+                    <community name="fhirmapping">
+                        <data type="base" label="FHIR profile" datatype="enum">bc-BirthObservation</data>
+                        <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-65</data>
+                        <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                            <ul>
+                                <li>
+<pre>GET [base]/Observation?code=249163006{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[geboorteid]}</pre>
+</li>
+                            </ul>
+                        </data>
+                    </community>
+                </concept>
+            </concept>
+            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.72" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-72" shortName="kindspecifieke_uitkomstgegevens">
+                <implementation shortName="kindspecifieke_uitkomstgegevens"></implementation>
+                <name language="nl-NL">Kindspecifieke uitkomstgegevens</name>
+                <desc language="nl-NL">Kindspecifieke uitkomstgegevens</desc>
+                <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.72" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-72">
+                    <name language="nl-NL">Kindspecifieke uitkomstgegevens</name>
+                </relationship>
+                <community name="prn">
+                    <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering relevante data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+                </community>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-80626" shortName="type_partus">
+                    <implementation shortName="type_partus"></implementation>
+                    <name language="nl-NL">Type partus</name>
+                    <desc language="nl-NL">Type partus.<br clear="none" /><br clear="none" />Een primaire sectio is een geplande sectio en wordt óók als zodanig geregistreerd als deze uitgevoerd wordt wanneer de weeën al zijn begonnen, de vliezen zijn gebroken en/of de uitdrijving is begonnen.<br clear="none" /><br clear="none" />TOP (Termination of Pregnancy) is zwangerschapsafbreking na 16 weken. Dit in tegenstelling tot APLA, waarmee een zwangerschapsafbreking (abortus) van minder dan 16 weken wordt bedoeld.</desc>
+                    <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.80626" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" refdisplay="peri22-dataelement-80626">
+                        <name language="nl-NL">Type partus</name>
+                    </relationship>
+                    <valueDomain type="code">
+                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.10">
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.1" level="0" type="L">
+                                <name language="nl-NL">Spontaan</name>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.2" level="0" type="L">
+                                <name language="nl-NL">Vaginale kunstverlossing</name>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.3" level="0" type="S">
+                                <name language="nl-NL">Sectio Caesarea</name>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.4" level="1" type="L">
+                                <name language="nl-NL">Primair</name>
+                                <synonym language="nl-NL">Gepland</synonym>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.5" level="1" type="L">
+                                <name language="nl-NL">Secundair</name>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.6" level="0" type="S">
+                                <name language="nl-NL">Termination Of Pregnancy (TOP)</name>
+                                <desc language="nl-NL">Zwangerschapsafbreking na 16 weken</desc>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.11" level="1" type="L">
+                                <name language="nl-NL">Chemische inleiding</name>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.12" level="1" type="L">
+                                <name language="nl-NL">Sectio Caesarea</name>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.13" level="1" type="L">
+                                <name language="nl-NL">Overig</name>
+                            </concept>
+                        </conceptList>
+                    </valueDomain>
+                    <valueSet id="2.16.840.1.113883.2.4.11.182" name="TypePartus22" displayName="TypePartus" statusCode="final" effectiveDate="2016-11-22T14:00:45">
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.10" effectiveDate="2016-11-22T14:11:47" valueSet="2.16.840.1.113883.2.4.11.182" flexibility="2016-11-22T14:00:45"></terminologyAssociation>
+                        <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED&#160;CT" canonicalUri="urn:oid:2.16.840.1.113883.6.96" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.6.96" canonicalUriSTU3="urn:oid:2.16.840.1.113883.6.96" canonicalUriR4="urn:oid:2.16.840.1.113883.6.96"></sourceCodeSystem>
+                        <sourceCodeSystem id="2.16.840.1.113883.2.4.4.14" identifierName="Perinatologische&#160;procedurecodes" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.14" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.2.4.4.14" canonicalUriSTU3="urn:oid:2.16.840.1.113883.2.4.4.14" canonicalUriR4="urn:oid:2.16.840.1.113883.2.4.4.14"></sourceCodeSystem>
+                        <sourceCodeSystem id="2.16.840.1.113883.2.4.4.14.10" identifierName="TerminationOfPregnancy" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.14.10" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.2.4.4.14.10" canonicalUriSTU3="urn:oid:2.16.840.1.113883.2.4.4.14.10" canonicalUriR4="urn:oid:2.16.840.1.113883.2.4.4.14.10"></sourceCodeSystem>
+                        <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor" canonicalUri="urn:oid:2.16.840.1.113883.5.1008" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.5.1008" canonicalUriSTU3="urn:oid:2.16.840.1.113883.5.1008" canonicalUriR4="urn:oid:2.16.840.1.113883.5.1008"></sourceCodeSystem>
+                        <publishingAuthority name="KNOV">
+                            <addrLine>Koninklijke Nederlandse Organisatie van Verloskundigen</addrLine>
+                            <addrLine>Mercatorlaan 1200</addrLine>
+                            <addrLine>3528 BL Utrecht</addrLine>
+                            <addrLine>T 030 282 31 00</addrLine>
+                        </publishingAuthority>
+                        <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.10">
+                            <concept localId="1" code="177184002" codeSystem="2.16.840.1.113883.6.96" displayName="Normal delivery procedure (procedure)" level="0" type="L">
+                                <name language="nl-NL">Spontaan</name>
+                            </concept>
+                            <concept localId="2" code="3311000146109" codeSystem="2.16.840.1.113883.6.96" displayName="Assisted delivery of fetus (procedure)" level="0" type="L">
+                                <name language="nl-NL">Vaginale kunstverlossing</name>
+                            </concept>
+                            <concept localId="3" code="11466000" codeSystem="2.16.840.1.113883.6.96" displayName="Cesarean section (procedure)" level="0" type="S">
+                                <name language="nl-NL">Sectio Caesarea</name>
+                            </concept>
+                            <concept localId="4" code="177141003" codeSystem="2.16.840.1.113883.6.96" displayName="Elective cesarian delivery (procedure)" level="1" type="L">
+                                <name language="nl-NL">Primair</name>
+                                <designation language="nl-NL" type="synonym" displayName="Gepland"></designation>
+                            </concept>
+                            <concept localId="5" code="274130007" codeSystem="2.16.840.1.113883.6.96" displayName="Emergency cesarian section (procedure)" level="1" type="L">
+                                <name language="nl-NL">Secundair</name>
+                            </concept>
+                            <concept localId="6" code="10" codeSystem="2.16.840.1.113883.2.4.4.14" displayName="Termination of Pregnancy (TOP)" level="0" type="S">
+                                <name language="nl-NL">Termination Of Pregnancy (TOP)</name>
+                            </concept>
+                            <concept localId="7" code="447972007" codeSystem="2.16.840.1.113883.6.96" displayName="Medical termination of pregnancy using prostaglandin (procedure)" level="1" type="L">
+                                <name language="nl-NL">Chemische inleiding</name>
+                            </concept>
+                            <concept localId="8" code="236990004" codeSystem="2.16.840.1.113883.6.96" displayName="Postmortem cesarean section (procedure)" level="1" type="L">
+                                <name language="nl-NL">Sectio Caesarea</name>
+                            </concept>
+                            <concept localId="9" code="9" codeSystem="2.16.840.1.113883.2.4.4.14.10" displayName="Overig" level="1" type="L">
+                                <name language="nl-NL">Overig</name>
+                                <desc language="nl-NL">Overige TOP (Termination of Pregnancy - zwangerschapsafbreking ná 16 weken)</desc>
+                            </concept>
+                            <exception localId="10" code="NI" codeSystem="2.16.840.1.113883.5.1008" displayName="Geen informatie" level="0" type="L">
+                                <name language="nl-NL">Geen informatie</name>
+                            </exception>
+                        </conceptList>
+                    </valueSet>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.10" effectiveDate="2016-11-22T14:11:47" valueSet="2.16.840.1.113883.2.4.11.182" flexibility="2016-11-22T14:00:45"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.6" effectiveDate="2016-11-22T14:20:40" code="10" displayName="Termination of Pregnancy (TOP)" codeSystem="2.16.840.1.113883.2.4.4.14" codeSystemName="Perinatologische procedurecodes"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.13" effectiveDate="2016-11-22T14:10:39" code="9" displayName="Overig" codeSystem="2.16.840.1.113883.2.4.4.14.10" codeSystemName="TerminationOfPregnancy"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626" effectiveDate="2016-11-22T13:54:36" code="364336006" displayName="Pattern of delivery (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.11" effectiveDate="2016-11-22T14:10:24" code="447972007" displayName="Medical termination of pregnancy using prostaglandin (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.12" effectiveDate="2016-11-22T14:10:32" code="236990004" displayName="Postmortem cesarean section (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.1" effectiveDate="2016-11-22T14:19:56" code="177184002" displayName="Normal delivery procedure (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.2" effectiveDate="2016-11-22T14:20:18" code="3311000146109" displayName="Assisted delivery of fetus (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.3" effectiveDate="2016-11-22T14:20:24" code="11466000" displayName="Cesarean section (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.4" effectiveDate="2016-11-22T14:20:28" code="177141003" displayName="Elective cesarian delivery (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80626.5" effectiveDate="2016-11-22T14:20:33" code="274130007" displayName="Emergency cesarian section (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <community name="fhirmapping">
+                        <data type="base" label="FHIR profile" datatype="enum">bc-BirthObservation</data>
+                        <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-67</data>
+                        <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                            <ul>
+                                <li>
+<pre>GET [base]/Observation?code=364336006{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;focus=[geboorteid]}</pre>
+</li>
+                            </ul>
+                        </data>
+                    </community>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.20062" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-20062" shortName="zwangerschapsduur">
+                    <implementation shortName="zwangerschapsduur"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20062" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-20062"></inherit>
+                    <name language="nl-NL">Zwangerschapsduur</name>
+                    <desc language="nl-NL">Zwangerschapsduur in dagen bij geboorte kinderen.<br clear="none" />De dataset definieert de zwangerschapsduur in dagen.<br clear="none" />Zorgverleners zien de zwangerschapsduur het liefste in weken/dagen. Dus bijvoorbeeld: 36w2d of 40+2.</desc>
+                    <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.20062" flexibility="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-20062">
+                        <name language="nl-NL">Zwangerschapsduur</name>
+                    </relationship>
+                    <operationalization language="nl-NL">Berekend veld: zwangerschapsduur in dagen bij geboorte kind. Berekend veld ((geboortedatum-atermedatum)+280) geven.</operationalization>
+                    <valueDomain type="quantity">
+                        <property unit="d" minInclude="0"></property>
+                    </valueDomain>
+                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.20062" effectiveDate="2015-09-08T15:23:31" code="412726003" codeSystem="2.16.840.1.113883.6.96" displayName="Length of gestation at birth" codeSystemName="SNOMED CT"></terminologyAssociation>
+                    <community name="prn">
+                        <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text">5.6.01</data>
+                        <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">In weken en in dagen weergeven in dagen vastleggen .<br clear="none" />PWD: voorgaande zwangerschappen<br clear="none" />Range 154-308 in geharmoniseerde set<br clear="none" />Range 112-321 in oude PRN databestand. </data>
+                        <data type="prn13HL7" label="PRN dataset 1.3 mapping HL7" datatype="text">code<br clear="none" />effectivetime.width&#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; IVL &lt;TS&gt;, unit=d<br clear="none" />subject.R_RelatedParty(code= MOTH) <br clear="none" /><br clear="none" />codeCode 18185-9 (LOINC 2.16.840.1.113883.6.1). </data>
+                    </community>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40189" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-40189" shortName="vaginale_kunstverlossing_groep">
+                    <implementation shortName="vaginale_kunstverlossing_groep"></implementation>
+                    <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.40189" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-40189"></inherit>
+                    <name language="nl-NL">Vaginale kunstverlossing (groep)</name>
+                    <desc language="nl-NL">Vaginale kunstverlossing (groep)</desc>
+                    <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.4.40189" flexibility="2012-08-06T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.4" datasetEffectiveDate="2012-08-06T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2012-08-06T00:00:00" refdisplay="peri21-dataelement-40189">
+                        <name language="nl-NL">Vaginale kunstverlossing (groep)</name>
+                    </relationship>
+                    <community name="prn">
+                        <data type="prn13info" label="PRN dataset 1.3 info" datatype="text">Deze rubriek bevat voor PRN aanlevering relevante data elementen. Er is geen rechtstreekse mapping van de rubriek naar een PRN data element. </data>
+                    </community>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40190" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-40190" shortName="vaginale_kunstverlossing">
+                        <implementation shortName="vaginale_kunstverlossing"></implementation>
+                        <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.40190" effectiveDate="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="item" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" refdisplay="peri22-dataelement-40190"></inherit>
+                        <name language="nl-NL">Vaginale kunstverlossing</name>
+                        <desc language="nl-NL">Vaginale kunstverlossing</desc>
+                        <valueDomain type="code">
+                            <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.0">
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.1">
+                                    <name language="nl-NL">Forceps</name>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.2">
+                                    <name language="nl-NL">Vacuüm</name>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.3">
+                                    <name language="nl-NL">Versie en extractie</name>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.4">
+                                    <name language="nl-NL">Partiële stuitextractie</name>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.40190.5">
+                                    <name language="nl-NL">Stuitextractie</name>
+                                    <desc language="nl-NL"></desc>
+                                </concept>
+                            </conceptList>
+                            <property></property>
+                        </valueDomain>
+                        <valueSet name="VaginaleKunstverlossing22" displayName="VaginaleKunstverlossing22" id="2.16.840.1.113883.2.4.11.181" statusCode="final" effectiveDate="2014-01-02T00:00:00">
+                            <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.0" effectiveDate="2016-08-30T12:47:55" valueSet="2.16.840.1.113883.2.4.11.181" flexibility="2014-01-02T00:00:00"></terminologyAssociation>
+                            <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED&#160;CT" canonicalUri="urn:oid:2.16.840.1.113883.6.96" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.6.96" canonicalUriSTU3="urn:oid:2.16.840.1.113883.6.96" canonicalUriR4="urn:oid:2.16.840.1.113883.6.96"></sourceCodeSystem>
+                            <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor" canonicalUri="urn:oid:2.16.840.1.113883.5.1008" canonicalUriDSTU2="urn:oid:2.16.840.1.113883.5.1008" canonicalUriSTU3="urn:oid:2.16.840.1.113883.5.1008" canonicalUriR4="urn:oid:2.16.840.1.113883.5.1008"></sourceCodeSystem>
+                            <publishingAuthority name="KNOV">
+                                <addrLine>Koninklijke Nederlandse Organisatie van Verloskundigen</addrLine>
+                                <addrLine>Mercatorlaan 1200</addrLine>
+                                <addrLine>3528 BL Utrecht</addrLine>
+                                <addrLine>T 030 282 31 00</addrLine>
+                            </publishingAuthority>
+                            <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                            <conceptList id="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.0">
+                                <concept localId="1" code="302383004" codeSystem="2.16.840.1.113883.6.96" displayName="Forceps delivery (procedure)" level="0" type="L">
+                                    <name language="nl-NL">Forceps</name>
+                                </concept>
+                                <concept localId="2" code="61586001" codeSystem="2.16.840.1.113883.6.96" displayName="Delivery by vacuum extraction (procedure)" level="0" type="L">
+                                    <name language="nl-NL">Vacuüm</name>
+                                </concept>
+                                <concept localId="3" code="699999008" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrical version with extraction (procedure)" level="0" type="L">
+                                    <name language="nl-NL">Versie en extractie</name>
+                                </concept>
+                                <concept localId="4" code="359940006" codeSystem="2.16.840.1.113883.6.96" displayName="Partial breech extraction (procedure)" level="0" type="L">
+                                    <name language="nl-NL">Partiële stuitextractie</name>
+                                </concept>
+                                <concept localId="5" code="416055001" codeSystem="2.16.840.1.113883.6.96" displayName="Total breech extraction (procedure)" level="0" type="L">
+                                    <name language="nl-NL">Stuitextractie</name>
+                                </concept>
+                                <exception localId="6" code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="anders" level="0" type="L">
+                                    <name language="nl-NL">anders</name>
+                                </exception>
+                                <exception localId="7" code="NI" codeSystem="2.16.840.1.113883.5.1008" displayName="geen informatie" level="0" type="L">
+                                    <name language="nl-NL">geen informatie</name>
+                                </exception>
+                            </conceptList>
+                        </valueSet>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.0" effectiveDate="2016-08-30T12:47:55" valueSet="2.16.840.1.113883.2.4.11.181" flexibility="2014-01-02T00:00:00"></terminologyAssociation>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.1" effectiveDate="2014-03-28T13:14:29" code="302383004" displayName="Forceps delivery (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.2" effectiveDate="2014-03-28T13:14:48" code="61586001" displayName="Delivery by vacuum extraction (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.3" effectiveDate="2014-03-28T13:15:00" code="699999008" displayName="Obstetrical version with extraction (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.8.5.40190.4" effectiveDate="2014-03-28T13:15:11" code="359940006" displayName="Partial breech extraction (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.40190.5" effectiveDate="2014-03-28T13:15:20" code="416055001" displayName="Total breech extraction (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.40190" effectiveDate="2015-01-12T17:31:34" code="3311000146109" displayName="Assisted delivery of fetus (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"></terminologyAssociation>
+                        <community name="prn">
+                            <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 5.4.05.02</data>
+                            <data type="prn13bijzonderheden" label="PRN dataset 1.3 bijzonderheden" datatype="text">Hier heeft de drang Snomed CT te gebruiken de correctheid van informatie overtroefd. Er missen nu details over uitgang, lage dan wel midden of hoge vacuum en verschil tussen partiele en gehele stuitextractie kan niet meer worden gemaakt. </data>
+                        </community>
+                        <community name="fhirmapping">
+                            <data type="base" label="FHIR profile" datatype="enum">bc-ObstetricProcedure</data>
+                            <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/procedure-example-duplicate-5</data>
+                            <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                                <div>
+    <pre>GET [base]/Procedure?code=3311000146109{&amp;subject=[vrouwid]&amp;context=[dossierid]&amp;partof=[bevallingid,uitdrijvingsfaseid]}</pre>
+</div>
+                            </data>
+                        </community>
+                    </concept>
+                </concept>
+                <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80766" statusCode="draft" effectiveDate="2016-09-08T00:00:00" type="group" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-80766" shortName="lichamelijk_onderzoek_kind">
+                    <implementation shortName="lichamelijk_onderzoek_kind"></implementation>
+                    <name language="nl-NL">Lichamelijk onderzoek kind</name>
+                    <desc language="nl-NL">Lichamelijk onderzoek pasgeborene direct postpartum </desc>
+                    <source language="nl-NL">Mede gebaseerd op LESA richtlijn</source>
+                    <relationship type="SPEC" ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.5.80766" flexibility="2013-09-10T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.5" datasetEffectiveDate="2013-09-10T00:00:00" datasetStatusCode="final" iType="group" iStatusCode="final" iEffectiveDate="2013-09-10T00:00:00" iVersionLabel="22" refdisplay="peri22-dataelement-80766">
+                        <name language="nl-NL">Lichamelijk onderzoek kind</name>
+                    </relationship>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40071" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-40071" shortName="apgarscore_na_5_min">
+                        <implementation shortName="apgarscore_na_5_min"></implementation>
+                        <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.1.40071" effectiveDate="2009-10-01T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.1" datasetEffectiveDate="2009-10-01T00:00:00" datasetStatusCode="deprecated" iType="item" iStatusCode="final" iEffectiveDate="2009-10-01T00:00:00" refdisplay="spirit1a-dataelement-40071"></inherit>
+                        <name language="nl-NL">Apgarscore na 5 min.</name>
+                        <desc language="nl-NL">Apgarscore na 5 min.</desc>
+                        <valueDomain type="count">
+                            <property minInclude="0" maxInclude="10"></property>
+                        </valueDomain>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.1.40071" code="9274-2" codeSystem="2.16.840.1.113883.6.1" displayName="Apgarscore na 5 min." codeSystemName="LOINC"></terminologyAssociation>
+                        <community name="prn">
+                            <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 5.6.03.02</data>
+                        </community>
+                        <community name="fhirmapping">
+                            <data type="base" label="FHIR profile" datatype="enum">zib-ApgarScore</data>
+                            <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-77</data>
+                            <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                                <div>
+    <pre>GET [base]/Observation?code=9274-2{&amp;subject=[kindid]&amp;context=[dossierid]}</pre>
+</div>
+                            </data>
+                        </community>
+                    </concept>
+                    <concept id="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.40060" statusCode="final" effectiveDate="2016-09-08T00:00:00" type="item" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R" isMandatory="false" iddisplay="peri23-dataelement-40060" shortName="geboortegewicht">
+                        <implementation shortName="geboortegewicht"></implementation>
+                        <inherit ref="2.16.840.1.113883.2.4.3.11.60.90.77.2.2.40060" effectiveDate="2011-01-28T00:00:00" prefix="peri20-" datasetId="2.16.840.1.113883.2.4.3.11.60.90.77.1.2" datasetEffectiveDate="2011-01-28T00:00:00" datasetStatusCode="deprecated" iType="item" iStatusCode="final" iEffectiveDate="2011-01-28T00:00:00" refdisplay="spirit1c-dataelement-40060"></inherit>
+                        <name language="nl-NL">Geboortegewicht</name>
+                        <desc language="nl-NL">Meting van het lichaamsgewicht zo kort mogelijk na de geboorte.</desc>
+                        <comment language="nl-NL">N.B. De hierbij gebruikte LOINC-code is niet uitsluitend beperkt tot het gebruik voor het concept 'neonataal geboortegewicht', maar kan ook gebruikt worden voor het concept 'maternaal lichaamsgewicht, bij de geboorte'.</comment>
+                        <valueDomain type="quantity">
+                            <property minInclude="0" unit="gram" fractionDigits="0!"></property>
+                        </valueDomain>
+                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.2.40060" code="8339-4" codeSystem="2.16.840.1.113883.6.1" displayName="Geboortegewicht" codeSystemName="LOINC"></terminologyAssociation>
+                        <community name="prn">
+                            <data type="prn13mapping" label="PRN dataset 1.3 mapping" datatype="text"> 5.6.06.01</data>
+                            <data type="prn13bijzonderheden" label="PRN dataset 1.3 bijzonderheden" datatype="text"> Onbekend toegestaan</data>
+                        </community>
+                        <community name="fhirmapping">
+                            <data type="base" label="FHIR profile" datatype="enum">bc-BirthWeight</data>
+                            <data type="example" label="FHIR example" datatype="string">https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-29</data>
+                            <data type="searchurl" label="FHIR search URL examples" datatype="text">
+                                <div>
+    <pre>GET [base]/Observation?code=8339-4{&amp;subject=[kindid]&amp;context=[dossierid]}</pre>
+</div>
+                            </data>
+                        </community>
+                    </concept>
+                </concept>
+            </concept>
+        </concept>
+    </concept>
+</dataset>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--auto generated example-->
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="example-efw-2.16.840.1.113883.2.4.3.11.60.90.77.2.6.82340"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetusObservation"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+      <valueReference>
+         <reference value="BodySite/Foetus"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="2.16.840.1.113883.6.1"/>
+         <code value="11727-5"/>
+         <display value="Fetal Body weight estimated by US"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/EXAMPLE"/>
+      <display value="example"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/Zwangerschapsdossier"/>
+   </context>
+   <valueQuantity>
+      <value value="1"/>
+      <unit value="g"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="g"/>
+   </valueQuantity>
+</Observation>

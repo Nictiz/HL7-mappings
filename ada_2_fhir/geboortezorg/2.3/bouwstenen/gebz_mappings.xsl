@@ -15,169 +15,98 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:date="http://exslt.org/dates-and-times" extension-element-prefixes="date" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xsl:variable name="dataset-doc" select="document('../dataset2-3.xml')"/>
+    <xsl:key name="dataset-concept-lookup" match="//concept" use="@id"/>
+    <xsl:variable name="fhirmapping" select="document('../fhirmapping.xml')"/>
+    <xsl:key name="fhirmapping-lookup" match="dataset/record" use="ID"/>
 
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg concepts to profiles.</xd:desc>
     </xd:doc>
     <xsl:template name="bc-profile" mode="doProfileMapping" match="bevalling | baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">
-        <xsl:variable name="elementName" select="name(.)"/>
-
-        <xsl:for-each select=".">
+        <xsl:variable name="concept" select="key('dataset-concept-lookup', @conceptId, $dataset-doc)"/>   
+        <xsl:variable name="conceptID" select="$concept/@iddisplay"/>
+        <xsl:variable name="profile" select="$fhirmapping/dataset/record[ID=$conceptID]/profile"/>     
             <xsl:choose>
-                <xsl:when test="$elementName = 'graviditeit'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Gravidity"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'pariteit' or $elementName = 'pariteit_voor_deze_zwangerschap'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Parity"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'a_terme_datum' or $elementName = 'definitieve_a_terme_datum'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-TermDate"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'wijze_einde_zwangerschap' or $elementName = 'datum_einde_zwangerschap' or $elementName = 'voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie' or $elementName = 'voorgenomen_voeding'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'tijdstip_begin_actieve_ontsluiting' or $elementName = 'hoeveelheid_bloedverlies' or $elementName = 'conditie_perineum_postpartum'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'tijdstip_actief_meepersen' or $elementName = 'type_partus' or $elementName = 'geboortegewicht'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'apgarscore_na_5_min'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'baring'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'bevalling'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryProcedure"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'vaginale_kunstverlossing'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+                <xsl:when test="$profile!='nl-core-observation'">       
+                    <profile value="{concat('http://nictiz.nl/fhir/StructureDefinition/',$profile)}"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <profile value=""/>
-                </xsl:otherwise>
+                    <profile value="{concat('http://fhir.nl/fhir/StructureDefinition/',$profile)}"/>
+                </xsl:otherwise>            
             </xsl:choose>
-        </xsl:for-each>
+        <!--</xsl:for-each>-->
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Mapping of ADA geboortezorg categories for Conditions.</xd:desc>
+    </xd:doc>
+    <xsl:template name="bc-category" mode="doCategoryMapping" match="/" as="element()">
+        <xsl:variable name="concept" select="key('dataset-concept-lookup', @conceptId, $dataset-doc)"/>   
+        <xsl:variable name="conceptID" select="$concept/@iddisplay"/>
+        <xsl:variable name="profile" select="$fhirmapping/dataset/record[ID=$conceptID]/profile"/>   
+            <xsl:choose>
+                <xsl:when test="$profile!='bc-DisorderOfPregnancy'">    
+                    <category>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="173300003"/>
+                            <display value="Disorder of pregnancy (disorder)"/>
+                        </coding>
+                    </category>
+                </xsl:when>
+                <xsl:when test="$profile!='bc-DisorderOfLaborAndDelivery'">    
+                    <category>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="362972006"/>
+                            <display value="Disorder of labor / delivery (disorder)"/>
+                        </coding>
+                    </category>
+                </xsl:when>
+                <xsl:when test="$profile!='bc-DisorderPostPartum'">    
+                    <category>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="362973001"/>
+                            <display value="Postpartum disorder"/>
+                        </coding>
+                    </category>
+                </xsl:when>
+                <xsl:when test="$profile!='bc-DisorderOfChild'">    
+                    <category>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="414025005"/>
+                            <display value="Disorder of fetus or newborn (disorder)"/>
+                        </coding>
+                    </category>
+                 </xsl:when>           
+            </xsl:choose>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg terminology for Observations.</xd:desc>
     </xd:doc>
-    <xsl:template name="bc-observation-coding" mode="doObservationTerminologyMapping" match="bevalling | baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">      
-        <xsl:variable name="elementName" select="name(.)"/>
-        <xsl:for-each select=".">
+    <xsl:template name="bc-coding" mode="doTerminologyMapping" match="/" as="element()">      
+        <xsl:variable name="concept" select="key('dataset-concept-lookup', @conceptId, $dataset-doc)"/>     
+        <xsl:for-each select="$concept">
+           <xsl:variable name="terminologies">
+                <xsl:perform-sort select="terminologyAssociation" >
+                    <xsl:sort select="@conceptId"/>
+                </xsl:perform-sort>
+            </xsl:variable> 
+            <xsl:variable name="terminology" select="($terminologies/terminologyAssociation[@codeSystemName='SNOMED CT'] | $terminologies/terminologyAssociation[@codeSystemName='LOINC'] | $terminologies/terminologyAssociation)[1]"/>
             <coding>
-                <xsl:choose>
-                    <xsl:when test="$elementName = 'graviditeit'">
-                        <system value="http://loinc.org"/>
-                        <code value="11996-6"/>
-                        <display value="Gravidity"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'pariteit' or $elementName = 'pariteit_voor_deze_zwangerschap'">
-                        <system value="http://loinc.org"/>
-                        <code value="11977-6"/>
-                        <display value="Parity"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'a_terme_datum'">
-                        <system value="http://loinc.org"/>
-                        <code value="11778-8"/>
-                        <display value="Deliv date Clin est"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'wijze_einde_zwangerschap'">
-                        <system value="urn:oid:2.16.840.1.113883.2.4.4.13"/>
-                        <code value="EindeZw"/>
-                        <display value="Wijze einde zwangerschap"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'datum_einde_zwangerschap'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="118951000146109"/>
-                        <display value="Date of end of pregnancy (observable entity)"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'tijdstip_begin_actieve_ontsluiting'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="249120008"/>
-                        <display value="Onset of labor first stage (observable entity)"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'hoeveelheid_bloedverlies'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="364332008"/>
-                        <display value="Blood loss in labour"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'conditie_perineum_postpartum'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="364297003"/>
-                        <display value="Female perineum observable (observable entity)"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'tijdstip_actief_meepersen'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="249163006"/>
-                        <display value="Onset of pushing (in labor) (observable entity)"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'type_partus'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="364336006"/>
-                        <display value="Pattern of delivery (observable entity)"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'baring'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="3950001"/>
-                        <display value="Birth (finding)"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'apgarscore_na_5_min'">
-                        <system value="http://loinc.org"/>
-                        <code value="9274-2"/>
-                        <display value="5 minute Apgar Score"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'geboortegewicht'">
-                        <system value="http://loinc.org"/>
-                        <code value="8339-4"/>
-                        <display value="Birth weight Measured"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName='voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie'">
-                        <system value="PerinatologyProcedurePRN" />
-                        <code value="PRN4209"/>
-                        <display value="Voorgenomen plaats baring tijdens zwangerschap"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName='voorgenomen_voeding'">
-                        <system value="https://snomed.info/sct" />
-                        <code value="169740003"/>
-                        <display value="Infant feeding method (observable entity)"/>
-                    </xsl:when>
-                </xsl:choose>
-            </coding>
+                <system value="{$terminology/(@system|@codeSystem)}"/>
+                <code value="{$terminology/@code}"/>
+                <display value="{$terminology/(@display|@displayName)}"/>
+            </coding>   
         </xsl:for-each>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Mapping of ADA geboortezorg terminology for Procedures.</xd:desc>
-    </xd:doc>
-    <xsl:template name="bc-procedure-coding" mode="doProcedureTerminologyMapping" match="bevalling | vaginale_kunstverlossing" as="element()">
-        <xsl:variable name="elementName" select="name(.)"/>
-        <xsl:for-each select=".">
-            <coding>
-                <xsl:choose>
-                    <xsl:when test="$elementName = 'bevalling'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="236973005"/>
-                        <display value="Delivery procedure (procedure)"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'baring'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="3950001"/>
-                        <display value="Birth (finding)"/>
-                    </xsl:when>
-                    <xsl:when test="$elementName = 'vaginale_kunstverlossing'">
-                        <system value="http://snomed.info/sct"/>
-                        <code value="3311000146109"/>
-                        <display value="Vaginale kunstverlossing"/>
-                    </xsl:when>
-                </xsl:choose>
-            </coding>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xsl:template name="any-to-date" match="/">
+    <xsl:template name="any-to-date" match="/" mode="doAnyToDate">
         <xsl:variable name="dateValue" select="nf:calculate-t-date(@value, current-date())"/>
         <valueDateTime value="{$dateValue}"/>
     </xsl:template>

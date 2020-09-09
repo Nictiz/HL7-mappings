@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="bcObservationReference" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" mode="doBcObservationReference" as="element()*">
+    <xsl:template name="bcObservationReference" match="/" mode="doBcObservationReference" as="element()*">
         <xsl:variable name="theIdentifier" select="."/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$observations[group-key = $theGroupKey]" as="element()?"/>
@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcObservationEntry" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" mode="doBcObservationEntry" as="element(f:entry)">
+    <xsl:template name="bcObservationEntry" match="/" mode="doBcObservationEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>
-                    <xsl:when test="not($uuid) and false">
+                    <xsl:when test="not($uuid) and false()">
                         <!-- TODO: vullen met zinnige checks/data -->
                     </xsl:when>
                     <xsl:otherwise>
@@ -98,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="adaChild">Optional. ADA child patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">
+    <xsl:template name="bc-observation" mode="doObservationResource" match="/" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
@@ -112,8 +112,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
-                    <xsl:call-template name="bc-profile"/>
+                    <xsl:variable name="profiles" as="element()*">
+                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+                        <xsl:call-template name="bc-profile"/>    
+                    </xsl:variable>
+                    <xsl:for-each-group select="$profiles" group-by="@value">
+                        <xsl:copy-of select="."/>
+                    </xsl:for-each-group>
                 </meta>
                 <xsl:if test="$parentElemName!='lichamelijk_onderzoek_kind'">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
@@ -124,12 +129,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:for-each select="ancestor::bevalling | ancestor::baring">
                                 <xsl:call-template name="bcProcedureReference"/>
                             </xsl:for-each>
+                            <xsl:for-each select="ancestor::foetusspecifieke_onderzoeksgegevens">
+                                <!--<xsl:call-template name="bcFetusReference"/>-->
+                            </xsl:for-each>
                         </valueReference>
                     </extension>
                 </xsl:if>
                 <status value="final"/>
                 <code>
-                    <xsl:call-template name="bc-observation-coding"/>
+                    <xsl:call-template name="bc-coding"/>
                 </code>
                 <xsl:choose>
                     <xsl:when test="$adaChild and $parentElemName='lichamelijk_onderzoek_kind'">

@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>
-                    <xsl:when test="not($uuid) and false">
+                    <xsl:when test="not($uuid) and false()">
                         <!-- TODO: vullen met zinnige checks/data -->
                     </xsl:when>
                     <xsl:otherwise>
@@ -120,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
                     <xsl:call-template name="bc-profile"/>
                 </meta>
-                <xsl:for-each select="ancestor::bevalling | ancestor::*/bevalling | ancestor::baring">
+                <xsl:for-each select="ancestor::bevalling | ancestor::*/bevalling | ancestor::baring |ancestor::postnatale_fase">
                     <xsl:if test="$elementName!='bevalling'">
                         <partOf>
                             <xsl:call-template name="bcProcedureReference"/>
@@ -136,7 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>               
                 <code>
-                    <xsl:call-template name="bc-procedure-coding"/>
+                    <xsl:call-template name="bc-coding"/>
                 </code>
                 <xsl:choose>
                     <xsl:when test="$elementName='baring'">

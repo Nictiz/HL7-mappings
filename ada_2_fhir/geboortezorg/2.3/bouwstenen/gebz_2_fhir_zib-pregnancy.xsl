@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>
-                    <xsl:when test="not($uuid) and false">
+                    <xsl:when test="not($uuid) and false()">
                         <!-- TODO: vullen met zinnige checks/data -->
                     </xsl:when>
                     <xsl:otherwise>
