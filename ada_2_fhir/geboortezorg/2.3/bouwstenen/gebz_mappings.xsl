@@ -47,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="conceptID" select="$concept/@iddisplay"/>
         <xsl:variable name="profile" select="$fhirmapping/dataset/record[ID=$conceptID]/profile"/>   
             <xsl:choose>
-                <xsl:when test="$profile!='bc-DisorderOfPregnancy'">    
+                <xsl:when test="$profile='bc-DisorderOfPregnancy'">    
                     <category>
                         <coding>
                             <system value="http://snomed.info/sct"/>
@@ -56,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </category>
                 </xsl:when>
-                <xsl:when test="$profile!='bc-DisorderOfLaborAndDelivery'">    
+                <xsl:when test="$profile='bc-DisorderOfLaborAndDelivery'">    
                     <category>
                         <coding>
                             <system value="http://snomed.info/sct"/>
@@ -65,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </category>
                 </xsl:when>
-                <xsl:when test="$profile!='bc-DisorderPostPartum'">    
+                <xsl:when test="$profile='bc-DisorderPostPartum'">    
                     <category>
                         <coding>
                             <system value="http://snomed.info/sct"/>
@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </category>
                 </xsl:when>
-                <xsl:when test="$profile!='bc-DisorderOfChild'">    
+                <xsl:when test="$profile='bc-DisorderOfChild'">    
                     <category>
                         <coding>
                             <system value="http://snomed.info/sct"/>
