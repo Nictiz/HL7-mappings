@@ -45,7 +45,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="zib-medicationuse-2.2.xsl"/>
     <xsl:import href="zib-medicationuse-3.0.xsl"/>
     <xsl:import href="zib-problem-2.1.xsl"/>
-    
+    <xsl:import href="mp-medicationagreement-0.1.xsl"/>
+    <xsl:import href="mp-medicationuse-0.1.xsl"/>
+    <xsl:import href="ext-mp-medication-copy-indicator-0.1.xsl"/>
     <!--<xsl:template match="/">
         <xsl:copy-of select="$labSpecimens"></xsl:copy-of>
     </xsl:template>-->

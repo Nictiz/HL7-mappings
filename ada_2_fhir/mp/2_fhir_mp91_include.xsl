@@ -138,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- medicatieafspraken -->
         <xsl:for-each select="//medicatieafspraak">
             <!-- entry for MedicationRequest -->
-            <xsl:call-template name="MedicationAgreementEntry-3.0">
+            <xsl:call-template name="mp-MedicationAgreementEntry-0.1">
                 <xsl:with-param name="searchMode" select="$searchMode"/>
             </xsl:call-template>
         </xsl:for-each>
@@ -203,7 +203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- medicatie_gebruik -->
         <xsl:for-each select="//medicatie_gebruik">
             <!-- entry for MedicationRequest -->
-            <xsl:call-template name="MedicationUseEntry-3.0">
+            <xsl:call-template name="mp-MedicationUseEntry-0.1">
                 <xsl:with-param name="searchMode" select="$searchMode"/>
             </xsl:call-template>
         </xsl:for-each>
@@ -541,7 +541,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <id value="{.}"/>
                     </xsl:for-each>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
                     </meta>
                     <!-- aanvullende_wensen in extensie -->
                     <xsl:for-each select="aanvullende_wensen[@code]">
@@ -555,7 +555,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!-- relatie naar medicatieafspraak -->
                     <xsl:for-each select="relatie_naar_medicatieafspraak/identificatie[not(@root = $oidHL7NullFlavor)][@value]">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest-RelatedMedicationAgreement">
                             <valueReference>
                                 <identifier>
                                     <xsl:call-template name="id-to-Identifier">
@@ -700,7 +700,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <xd:doc>
-        <xd:desc>Template based on FHIR Profile http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement </xd:desc>
+        <xd:desc>Template based on FHIR Profile http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement </xd:desc>
         <xd:param name="in">Optional, defaults to context element. Input ada element which had toedieningsafspraak.</xd:param>
         <xd:param name="resource-id">Optional, the resource logical id</xd:param>
     </xd:doc>
@@ -715,7 +715,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <id value="{.}"/>
                     </xsl:for-each>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                     </meta>
 
                     <!-- afspraakdatum -->
@@ -933,7 +933,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <id value="{.}"/>
                     </xsl:for-each>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-Dispense"/>
                     </meta>
                     <!-- distributievorm -->
                     <xsl:for-each select="distributievorm[@code]">
@@ -1206,12 +1206,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="in">Node to process. Defaults to context node</xd:param>
-        <xd:param name="profile-uri">Resource.meta.profile. Defaults to http://nictiz.nl/fhir/StructureDefinition/zib-Product</xd:param>
+        <xd:param name="profile-uri">Resource.meta.profile. Defaults to http://nictiz.nl/fhir/StructureDefinition/mp-Product</xd:param>
         <xd:param name="medication-id">Resource.id. Resource.id is created when this parameter is populated. Default is empty</xd:param>
     </xd:doc>
     <xsl:template name="zib-Product" match="product" mode="doMedication">
         <xsl:param name="in" select="."/>
-        <xsl:param name="profile-uri" as="xs:string">http://nictiz.nl/fhir/StructureDefinition/zib-Product</xsl:param>
+        <xsl:param name="profile-uri" as="xs:string">http://nictiz.nl/fhir/StructureDefinition/mp-Product</xsl:param>
         <xsl:param name="medication-id" as="xs:string?"/>
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
@@ -1220,7 +1220,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <id value="{$medication-id}"/>
                     </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-Product"/>
                     </meta>
                     <xsl:for-each select="product_specificatie/omschrijving[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
