@@ -203,3 +203,17 @@ It can be found at `schematron/NictizTestScript.sch` relative to this README.
 ## Output logging
 
 Because of the verbosity of the ANT build, the logging level is set to 1 (warning) and Saxon is set to not try to recover. When more verbose output is wanted, the logging level can be changed by setting the `-DoutputLevel=` parameter on the ANT build.
+
+## Changelog
+
+### 1.1.2
+- Enabled `<nts:parameter>` within `<nts:component>` to be given an empty value.
+
+### 1.1.1
+- MM-1116 - Removed FHIR version from canonical.
+
+### 1.1.0
+- Restructuring and improving ANT build - enabling derived scripts, improving workflow. 
+
+### 1.0.0
+- First working version to build TestScripts from the NTS-format using ANT.
