@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <total value="1"/>
             <!-- documentgegevens in List entry -->
             <xsl:for-each select="$adaTransaction/documentgegevens">
-                <xsl:call-template name="medicatieoverzicht-9.0.6">
+                <xsl:call-template name="medicatieoverzicht-9.0.7">
                     <xsl:with-param name="documentgegevens" select="."/>
                     <xsl:with-param name="entries" select="$entries"/>
                 </xsl:call-template>

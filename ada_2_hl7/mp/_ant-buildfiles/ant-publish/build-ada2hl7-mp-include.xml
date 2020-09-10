@@ -27,41 +27,35 @@
     <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
 
     <target name="setup" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir}">
-        
+
         <!-- sturen_medicatievoorschrift copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="schema.string" value="*${usecase.mv}.xsd"/>
+            <param name="usecase" value="${usecase.mv}"/>
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
 
         <!-- beschikbaarstellen_medicatiegegevens MA -->
         <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
-            <param name="schema.string" value="*${usecase.mg}*"/>
-            <param name="fileset.dir" value="ada_instance_MA"/>
+            <param name="usecase" value="${usecase.mg}"/>
+             <param name="fileset.dir" value="ada_instance_MA"/>
             <param name="fileset.include" value="*MA*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens VV -->
-        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_VV"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_VV" includes="*VV*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg}/ada_instance_VV" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance">
-                <include name="*VV*.xml"/>
-            </fileset>
-        </copy>
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="fileset.dir" value="ada_instance_VV"/>
+            <param name="fileset.include" value="*VV*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
-            <param name="schema.string" value="*${usecase.mo}*"/>
-            <param name="fileset.dir" value="ada_instance_mp"/>
+            <param name="usecase" value="${usecase.mo}"/>
+             <param name="fileset.dir" value="ada_instance_mp"/>
             <param name="fileset.include" value="*output*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
 
         <!-- xml voorbeelden -->
@@ -192,7 +186,7 @@
         <!-- medicatieoverzicht -->
         <sequential>
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mo*.xml"/>
-            
+
             <echo/>
             <echo>${echo.label} ${build.dir}/${usecase.mo}/payload/${usecase.mo}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
             <xslt force="true" style="${build.dir}/${usecase.mo}/payload/${usecase.mo}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
@@ -203,11 +197,11 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
-        
+
         <!-- medicatiegebruik -->
         <sequential>
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mgb*.xml"/>
-            
+
             <echo/>
             <echo>${echo.label} ${build.dir}/${usecase.mgb}/payload/${usecase.mgb}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
             <xslt force="true" style="${build.dir}/${usecase.mgb}/payload/${usecase.mgb}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
@@ -218,7 +212,7 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
-        
+
         <!-- afhandelen medicatievoorschrift -->
         <sequential>
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="av*.xml"/>

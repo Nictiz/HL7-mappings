@@ -4,12 +4,11 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
    <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-JANKIE">S. XXX_Jankie</a>. Id: MBH_910_QA4_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001111010000001111">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
-               </span>
+            <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_910_QA4_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
             </caption>
             <tbody>
                <tr>
@@ -18,13 +17,11 @@
                </tr>
                <tr>
                   <th>Medicatie</th>
-                  <td>
-                     <a href="Medication/3956-2-16-840-1-113883-2-4-4-10">ACETYLSALICYLZUUR TABLET 100MG</a>
-                  </td>
+                  <td>ACETYLSALICYLZUUR TABLET 100MG</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>T-10D{08:12:00}</td>
+                  <td>${DATE, T, D, -10}T08:12:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
@@ -57,7 +54,7 @@
       </valueIdentifier>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+19D{23:59:59}&gt;, 1 keer per dag 3 stuks, oraal"/>
+      <valueString value=" "/>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -80,7 +77,7 @@
       <reference value="Patient/XXX-JANKIE"/>
       <display value="S. XXX_Jankie"/>
    </subject>
-   <authoredOn value="T-10D{08:12:00}"/>
+   <authoredOn value="${DATE, T, D, -10}T08:12:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">

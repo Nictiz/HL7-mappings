@@ -65,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:variable name="medicatieoverzicht-list" as="element(f:entry)*">
             <xsl:for-each select="$mbh[1]/../documentgegevens">
-                <xsl:call-template name="medicatieoverzicht-9.0.6">
+                <xsl:call-template name="medicatieoverzicht-9.0.7">
                     <xsl:with-param name="documentgegevens" select="."/>
                     <xsl:with-param name="entries" select="$entries"/>
                 </xsl:call-template>
