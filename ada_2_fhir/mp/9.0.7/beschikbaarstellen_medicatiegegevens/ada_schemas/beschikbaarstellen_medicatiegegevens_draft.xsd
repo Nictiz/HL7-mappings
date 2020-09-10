@@ -84,6 +84,16 @@
          <xs:documentation>Type for concept group: Patient</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="patient-afko-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.4"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="patient-afko"
+                     type="patient-afko_type_2_16_840_1_113883_2_4_3_11_999_77_11_1_19798_4"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="naamgegevens-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799"/>
@@ -7121,6 +7131,26 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.3"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="text"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Patiënt afkorting - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="patient-afko_type_2_16_840_1_113883_2_4_3_11_999_77_11_1_19798_4">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.4"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>

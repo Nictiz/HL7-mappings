@@ -1406,7 +1406,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Makes the List entry for MP 9.0.6, still valid for 9.0.7</xd:desc>
+        <xd:desc>Makes the List entry for MP 9.0.7 and 9.1</xd:desc>
         <xd:param name="documentgegevens">Document data for medication overview. Defaults to context.</xd:param>
         <xd:param name="entries">FHIR entries for the List</xd:param>
         <xd:param name="searchMode">The search mode, defaults to 'match'</xd:param>
