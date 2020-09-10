@@ -367,7 +367,7 @@
                         <xsl:matching-substring>
                             <xsl:variable name="paramName" select="regex-group(1)"/>
                             <xsl:variable name="replacement" select="$inclusionParameters[@name = $paramName]"/>
-                            <xsl:variable name="default" select="$defaultParameters[@name=$paramName and not(@value='')]"/>
+                            <xsl:variable name="default" select="$defaultParameters[@name=$paramName and @value]"/>
                             <xsl:choose>
                                 <xsl:when test="$paramName != '' and count($replacement) = 1">
                                     <xsl:value-of select="$replacement/@value"/>
