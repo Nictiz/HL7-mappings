@@ -251,7 +251,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- registratiedatum -->
                     <xsl:for-each select="./registratiedatum[@value]">
-                        <dateAsserted value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                        <dateAsserted>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </dateAsserted>
                     </xsl:for-each>
                     <xsl:for-each select="./registratiedatum[@nullFlavor]">
                         <dateAsserted>
