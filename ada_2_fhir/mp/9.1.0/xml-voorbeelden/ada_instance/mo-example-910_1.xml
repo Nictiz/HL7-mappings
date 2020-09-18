@@ -1,0 +1,240 @@
+<adaxml xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pharm="urn:ihe:pharm:medication" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatieoverzicht.xsd">
+    <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2020-09-04T14:57:12.883+02:00" last-update-date="2020-09-04T14:57:12.883+02:00"/>
+    <data>
+        <beschikbaarstellen_medicatieoverzicht app="mp-mp910" shortName="beschikbaarstellen_medicatieoverzicht" formName="medicatieoverzicht" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.148" transactionEffectiveDate="2016-11-08T10:34:41" prefix="mp-" language="nl-NL" title="MP Voorbeelden Medicatieoverzicht 910_moEx_1" id="mo-example-910_1">
+            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
+                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
+                    <voornamen value="Joris" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
+                    <naamgebruik code="UNK" codeSystem="2.16.840.1.113883.5.1008" displayName="Unknown" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"/>
+                    <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804">
+                        <achternaam value="Hansman" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
+                    </geslachtsnaam>
+                </naamgegevens>
+                <identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"/>
+                <geboortedatum value="1984-05-12" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830"/>
+                <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831"/>
+                <meerling_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832"/>
+            </patient>
+            <medicamenteuze_behandeling>
+                <identificatie value="#MB_01h" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                <medicatieafspraak>
+                    <gebruiksperiode_start value="T"/>
+                    <identificatie value="#MB_01h#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <afspraak_datum_tijd value="T{10:54:23}"/>
+                    <voorschrijver>
+                        <zorgverlener>
+                            <zorgverlener_identificatienummer value="012345678" root="2.16.528.1.1007.3.1"/>
+                            <naamgegevens>
+                                <naamgegevens>
+                                    <geslachtsnaam>
+                                        <achternaam value="Dr Jansen"/>
+                                    </geslachtsnaam>
+                                </naamgegevens>
+                            </naamgegevens>
+                            <specialisme code="01.016" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)" displayName="Internist"/>
+                            <zorgaanbieder>
+                                <zorgaanbieder_identificatienummer value="URAnummer" root="1.2.3.4"/>
+                                <organisatie_naam value="Ziekenhuis zus en zo"/>
+                                <adresgegevens>
+                                    <straat value="Dorpsstraat"/>
+                                    <huisnummer value="10"/>
+                                    <postcode value="1111 AA"/>
+                                    <woonplaats value="Ons Dorp"/>
+                                    <adres_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+                                </adresgegevens>
+                            </zorgaanbieder>
+                        </zorgverlener>
+                    </voorschrijver>
+                    <afgesproken_geneesmiddel>
+                        <product>
+                            <product_code code="6939" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="Metoclopramide zetpil 20mg"/>
+                            <product_code code="63630" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="METOCLOPRAMIDE ZETPIL 20MG"/>
+                        </product>
+                    </afgesproken_geneesmiddel>
+                    <gebruiksinstructie>
+                        <omschrijving value="tobegenerated"/>
+                        <toedieningsweg code="12" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007" displayName="rectaal"/>
+                        <doseerinstructie>
+                            <volgnummer value="1"/>
+                            <dosering>
+                                <keerdosis>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                </keerdosis>
+                                <toedieningsschema>
+                                    <frequentie>
+                                        <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
+                                            <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
+                                        </aantal>
+                                        <tijdseenheid value="1" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
+                                    </frequentie>
+                                </toedieningsschema>
+                                <zo_nodig>
+                                    <criterium>
+                                        <code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23269" code="1137" displayName="zo nodig" codeSystem="2.16.840.1.113883.2.4.4.5"/>
+                                    </criterium>
+                                </zo_nodig>
+                            </dosering>
+                        </doseerinstructie>
+                    </gebruiksinstructie>
+                    <kopie_indicator value="false"/>
+                </medicatieafspraak>
+                <toedieningsafspraak>
+                    <gebruiksperiode_start value="T"/>
+                    <gebruiksperiode_eind nullFlavor="NI"/>
+                    <identificatie value="1546339-f6753t65r" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                    <afspraak_datum_tijd value="T{10:54:12}"/>
+                    <verstrekker>
+                        <zorgaanbieder>
+                            <zorgaanbieder_identificatienummer value="22343221" root="2.16.528.1.1007.3.3"/>
+                            <organisatie_naam value="Apotheek Boomsma"/>
+                        </zorgaanbieder>
+                    </verstrekker>
+                    <geneesmiddel_bij_toedieningsafspraak>
+                        <product>
+                            <product_code code="14983265" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="PRIMPERAN ZETPIL 20MG"/>
+                            <product_code code="229709" codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK" displayName="PRIMPERAN ZETPIL 20MG"/>
+                            <product_code code="6939" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="METOCLOPRAMIDE ZETPIL 20MG"/>
+                            <product_code code="63630" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="METOCLOPRAMIDE ZETPIL 20MG"/>
+                        </product>
+                    </geneesmiddel_bij_toedieningsafspraak>
+                    <gebruiksinstructie>
+                        <omschrijving value="todo"/>
+                        <toedieningsweg code="12" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007" displayName="rectaal"/>
+                        <doseerinstructie>
+                            <volgnummer value="1"/>
+                            <dosering>
+                                <toedieningsschema>
+                                    <frequentie>
+                                        <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22633">
+                                            <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22702"/>
+                                        </aantal>
+                                        <tijdseenheid value="1" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22634"/>
+                                    </frequentie>
+                                </toedieningsschema>
+                            </dosering>
+                        </doseerinstructie>
+                    </gebruiksinstructie>
+                    <aanvullende_informatie code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053" displayName="Niet leverbaar"/>
+                    <toelichting value="Tekstuele toelichting bij deze toedieningsafspraak"/>
+                    <kopie_indicator value="false"/>
+                    <relatie_naar_medicatieafspraak>
+                        <identificatie value="#MB_01h#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </relatie_naar_medicatieafspraak>
+                </toedieningsafspraak>
+            </medicamenteuze_behandeling>
+            <medicamenteuze_behandeling>
+                <identificatie value="#MB_01i1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                <medicatie_gebruik>
+                    <gebruiksperiode_start value="T+43D"/>
+                    <identificatie value="#MB_01i1#GE_01" root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+                    <registratiedatum value="T+43D"/>
+                    <gebruik_indicator value="true"/>
+                    <volgens_afspraak_indicator value="true"/>
+                    <gebruiksperiode value="30" unit="dag"/>
+                    <gebruiks_product>
+                        <product>
+                            <product_code code="67903" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="PARACETAMOL TABLET 500MG"/>
+                            <product_code code="2194" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="PARACETAMOL TABLET 500MG"/>
+                        </product>
+                    </gebruiks_product>
+                    <gebruiksinstructie>
+                        <omschrijving value="Vanaf 25 juli 2017, Gedurende 30 dagen, Zo nodig 4 maal per dag 1 à 2 stuks, max 6 per dag"/>
+                        <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007" displayName="ORAAL"/>
+                        <doseerinstructie>
+                            <volgnummer value="1"/>
+                            <dosering>
+                                <keerdosis>
+                                    <aantal>
+                                        <min value="1"/>
+                                        <max value="2"/>
+                                    </aantal>
+                                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                                </keerdosis>
+                                <toedieningsschema>
+                                    <frequentie>
+                                        <aantal>
+                                            <max value="4"/>
+                                        </aantal>
+                                        <tijdseenheid value="1" unit="dag"/>
+                                    </frequentie>
+                                </toedieningsschema>
+                                <zo_nodig>
+                                    <criterium>
+                                        <code code="1137" displayName="zo nodig" codeSystem="2.16.840.1.113883.2.4.4.5"/>
+                                    </criterium>
+                                    <maximale_dosering>
+                                        <aantal value="6"/>
+                                        <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                                        <tijdseenheid value="1" unit="dag"/>
+                                    </maximale_dosering>
+                                </zo_nodig>
+                            </dosering>
+                        </doseerinstructie>
+                    </gebruiksinstructie>
+                    <gerelateerde_afspraak>
+                        <identificatie_medicatieafspraak value="#MB_01i1#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </gerelateerde_afspraak>
+                    <auteur>
+                        <auteur_is_zorgverlener>
+                            <zorgverlener>
+                                <zorgverlener_identificatienummer value="012345678" root="2.16.528.1.1007.3.1"/>
+                                <zorgverlener_naam>
+                                    <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22903">
+                                        <ongestructureerde_naam value="Dr Jansen"/>
+                                        <geslachtsnaam>
+                                            <achternaam nullFlavor="NI"/>
+                                        </geslachtsnaam>
+                                    </naamgegevens>
+                                </zorgverlener_naam>
+                                <specialisme code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                                <zorgaanbieder>
+                                    <zorgaanbieder>
+                                        <zorgaanbieder_identificatienummer value="URAnummer" root="1.2.3.4"/>
+                                        <organisatie_naam value="Ziekenhuis zus en zo"/>
+                                    </zorgaanbieder>
+                                </zorgaanbieder>
+                            </zorgverlener>
+                        </auteur_is_zorgverlener>
+                    </auteur>
+                    <kopie_indicator value="false"/>
+                </medicatie_gebruik>
+            </medicamenteuze_behandeling>
+            <documentgegevens>
+                <document_datum value="2016-06-23T14:15:18"/>
+                <auteur>
+                    <auteur_is_zorgaanbieder>
+                        <zorgaanbieder>
+                            <zorgaanbieder_identificatienummer value="URAnummer" root="1.2.3.4"/>
+                            <organisatie_naam value="Ziekenhuis zus en zo"/>
+                            <contactgegevens>
+                                <telefoonnummers>
+                                    <telefoonnummer value="+31101234567"/>
+                                </telefoonnummers>
+                                <email_adressen>
+                                    <email_adres value="dialyse@centrum-rotterdam.nl"/>
+                                </email_adressen>
+                            </contactgegevens>
+                            <adresgegevens>
+                                <straat value="Kerkstraat"/>
+                                <huisnummer value="1"/>
+                                <postcode value="1234 AB"/>
+                                <woonplaats value="Amsterdam"/>
+                            </adresgegevens>
+                        </zorgaanbieder>
+                    </auteur_is_zorgaanbieder>
+                </auteur>
+                <verificatie_patient>
+                    <geverifieerd_met_patientq value="true"/>
+                    <verificatie_datum value="T+43D{14:15:17}"/>
+                </verificatie_patient>
+                <verificatie_zorgverlener>
+                    <geverifieerd_met_zorgverlenerq value="true"/>
+                    <verificatie_datum value="T+43D{14:15:17}"/>
+                </verificatie_zorgverlener>
+            </documentgegevens>
+        </beschikbaarstellen_medicatieoverzicht>
+    </data>
+</adaxml>

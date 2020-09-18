@@ -4,12 +4,11 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
    <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-KLOKGIETERS">A. XXX_Klokgieters</a>. Id: MBH_910_toelichting_MA_wijzigingmetVV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001112010000001111">Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
-               </span>
+            <caption>Medicatieafspraak. Subject: A. XXX_Klokgieters. Id: MBH_910_toelichting_MA_wijzigingmetVV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
             </caption>
             <tbody>
                <tr>
@@ -22,13 +21,11 @@
                </tr>
                <tr>
                   <th>Medicatie</th>
-                  <td>
-                     <a href="Medication/5967-2-16-840-1-113883-2-4-4-10">FUROSEMIDE 40MG TABLET</a>
-                  </td>
+                  <td>FUROSEMIDE 40MG TABLET</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>T-2D{08:02:00}</td>
+                  <td>${DATE, T, D, -2}T08:02:00+02:00</td>
                </tr>
                <tr>
                   <th>Reden</th>
@@ -75,7 +72,7 @@
       </valueReference>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-2D{00:00:00}&gt; 1 maal daags 2 stuk, oraal"/>
+      <valueString value=" "/>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -98,7 +95,7 @@
       <reference value="Patient/XXX-KLOKGIETERS"/>
       <display value="A. XXX_Klokgieters"/>
    </subject>
-   <authoredOn value="T-2D{08:02:00}"/>
+   <authoredOn value="${DATE, T, D, -2}T08:02:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
