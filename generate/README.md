@@ -206,6 +206,9 @@ Because of the verbosity of the ANT build, the logging level is set to 1 (warnin
 
 ## Changelog
 
+### 1.1.3
+- Fixed a bug where the `-Dtestscripttools.localdir` property did not work as expected. 
+
 ### 1.1.2
 - Enabled `<nts:parameter>` within `<nts:component>` to be given an empty value.
 
