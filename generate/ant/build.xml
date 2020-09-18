@@ -17,16 +17,16 @@
     The script will ask you for one of the project dirs inside the "src/" dir. Alternatively, this can be passed in the
     ANT call with the -Dproject= option.
 -->
-     
+
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
-    <!-- The basedir property is the basedir of the including script. This property sets _our_ basedir. -->
-    <dirname property="included.basedir" file="${ant.file.generateTestScripts}/.."/>
+    <!-- Set testscripttools.dir if it is not supplied by including build file. -->
+    <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
-    <property name="ivy.dep.file" value="${included.basedir}/ant/ivy.xml" />
+    <property name="ivy.dep.file" value="${testscripttools.dir}/ant/ivy.xml" />
     
-    <property name="xslt.dir" value="${included.basedir}/xslt" />
+    <property name="xslt.dir" value="${testscripttools.dir}/xslt" />
     <property name="build.dir" value="${basedir}/build" />
     <property name="src.dir" value="${basedir}/src" />
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
