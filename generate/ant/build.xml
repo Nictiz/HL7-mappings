@@ -20,11 +20,7 @@
 
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
     <!-- Set testscripttools.dir if it is not supplied by including build file. -->
-    <condition property="testscripttools.dir" value="${ant.file.generateTestScripts}/..">
-        <not>  
-            <isset property="testscripttools.dir"/>
-        </not>
-    </condition>
+    <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
