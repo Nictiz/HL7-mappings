@@ -19,8 +19,13 @@
 -->
      
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
-    <!-- The basedir property is the basedir of the including script. This property sets _our_ basedir. -->
-    <dirname property="included.basedir" file="${ant.file.generateTestScripts}/.."/>
+    <!-- The basedir property is the basedir of the including script. This property sets _our_ basedir.
+        When we run the build file from Github, we have to set the location where this file expects the 
+        testscripttools repo dir to be. Else, get the parent folder of this file's builddir -->
+    <dirname property="included.basedir.build" file="${ant.file.generateTestScripts}/.."/>
+    <condition property="included.basedir" value="${testscripttools.repo.dir}" else="${included.basedir.build}">
+        <istrue value="${download.repo}"/>
+    </condition>
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
