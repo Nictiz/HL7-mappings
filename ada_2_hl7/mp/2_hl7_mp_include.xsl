@@ -3810,29 +3810,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="$in"/>
             </xsl:otherwise>
         </xsl:choose>
-
-
     </xsl:function>
 
-    <xd:doc>
-        <xd:desc>Takes an inputTime as string and outputs the time in format '14:32' (24 hour clock, hoours and minutes only)</xd:desc>
-        <xd:param name="in">xs:dateTime or xs:time castable string</xd:param>
-        <xd:return>HH:mm or nothing</xd:return>
-    </xd:doc>
-    <xsl:function name="nf:datetime-2-timestring" as="xs:string?">
-        <xsl:param name="in" as="xs:string?"/>
-
-        <xsl:choose>
-            <xsl:when test="$in castable as xs:dateTime">
-                <xsl:value-of select="format-dateTime(xs:dateTime($in), '[H01]:[m01]')"/>
-            </xsl:when>
-            <xsl:when test="$in castable as xs:time">
-                <xsl:value-of select="format-time(xs:time($in), '[H01]:[m01]')"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$in"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-
+  
 </xsl:stylesheet>
