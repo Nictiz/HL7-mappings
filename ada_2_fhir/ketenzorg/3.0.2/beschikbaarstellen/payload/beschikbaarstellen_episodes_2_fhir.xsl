@@ -59,7 +59,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:copy-of select="$bouwstenen"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
-            <xsl:if test="$bouwstenen"><xsl:copy-of select="$commonEntries"/></xsl:if>
+            <xsl:if test="$bouwstenen">
+                <xsl:apply-templates select="$commonEntries" mode="updateSearchMode">
+                    <xsl:with-param name="mode">include</xsl:with-param>
+                </xsl:apply-templates>
+            </xsl:if>
         </xsl:variable>
         
         <xsl:choose>

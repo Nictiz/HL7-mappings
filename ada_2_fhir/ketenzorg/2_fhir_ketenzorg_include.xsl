@@ -1296,4 +1296,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
+
+    <xsl:template match="f:search/f:mode" mode="updateSearchMode">
+        <xsl:param name="mode">include</xsl:param>
+        <xsl:element name="mode" namespace="http://hl7.org/fhir">
+            <xsl:attribute name="value" select="$mode"></xsl:attribute>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="f:entry/f:resource" mode="updateSearchMode">
+         <xsl:copy-of select="."/>
+    </xsl:template>
+    
+    <xsl:template match="node() | @*" mode="updateSearchMode">
+        <xsl:param name="mode">include</xsl:param>
+        <xsl:copy>
+            <xsl:apply-templates select="node() | @*" mode="#current">
+                <xsl:with-param name="mode" select="$mode"/>
+            </xsl:apply-templates>
+        </xsl:copy>
+    </xsl:template>
 </xsl:stylesheet>
