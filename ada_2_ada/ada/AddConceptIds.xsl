@@ -9,33 +9,36 @@
 
     <xd:doc>
         <xd:desc>Add missing conceptId to all elements in ada instance based on ada schema fixed value.</xd:desc>
+        <xd:param name="in">The input ada element for which to add conceptIds. Defaults to context.</xd:param>
         <xd:param name="schemaFragment">The schemaFragment of the parent of the current ada element. Defaults to the schemaFragment of the transaction (adaxml/data/*) when not given. This is needed for the top level dataset concepts.</xd:param>
     </xd:doc>
-    <xsl:template match="adaxml/data/*//*">
-        <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, local-name(/adaxml/data/*)))"/>
+    <xsl:template name="addConceptIds" match="adaxml/data/*//*" mode="addConceptId">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, local-name(ancestor::adaxml/data/*)))"/>
 
-        <xsl:variable name="elemName" select="local-name()"/>
-        <xsl:variable name="newSchemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
+        <xsl:for-each select="$in">
+            <xsl:variable name="elemName" select="local-name()"/>
+            <xsl:variable name="newSchemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
 
-        <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:if test="not(@conceptId)">
-                <xsl:copy-of select="nf:getADAComplexTypeConceptId($newSchemaFragment)"/>
-            </xsl:if>
-            <xsl:apply-templates select="node()">
-                <xsl:with-param name="schemaFragment" select="$newSchemaFragment"/>
-            </xsl:apply-templates>
+            <xsl:copy>
+                <xsl:apply-templates select="@*" mode="addConceptId"/>
+                <xsl:if test="not(@conceptId)">
+                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($newSchemaFragment)"/>
+                </xsl:if>
+                <xsl:apply-templates select="node()" mode="addConceptId">
+                    <xsl:with-param name="schemaFragment" select="$newSchemaFragment"/>
+                </xsl:apply-templates>
 
-        </xsl:copy>
-
+            </xsl:copy>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Default copy template</xd:desc>
     </xd:doc>
-    <xsl:template match="@* | node()">
+    <xsl:template match="@* | node()" mode="addConceptId">
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
+            <xsl:apply-templates select="@* | node()" mode="addConceptId"/>
         </xsl:copy>
     </xsl:template>
 
