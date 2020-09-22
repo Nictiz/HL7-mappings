@@ -961,14 +961,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor. Else return empty</xd:desc>
+        <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor. Else return empty. In case of multiple input, prefer UZI above other identification/code systems, next prefer AGB above other systems.</xd:desc>
         <xd:param name="in"/>
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyDefault" as="xs:string?">
-        <xsl:param name="in" as="element()?"/>
-        <xsl:if test="$in">
-            <xsl:value-of select="upper-case(string-join(($in//@value, $in//@root, $in//@unit, $in//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>
-        </xsl:if>
+        <xsl:param name="in" as="element()*"/>
+        <xsl:choose>
+            <xsl:when test="$in[@root = $oidUZIPersons]">
+                <xsl:variable name="in1" select="($in[@root = $oidUZIPersons])[1]" as="element()"/>
+                <xsl:value-of select="upper-case(string-join(($in1//@value, $in1//@root, $in1//@unit, $in1//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in1//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>    
+            </xsl:when>
+            <xsl:when test="$in[@root = $oidUZISystems]">
+                <xsl:variable name="in1" select="($in[@root = $oidUZISystems])[1]" as="element()"/>
+                <xsl:value-of select="upper-case(string-join(($in1//@value, $in1//@root, $in1//@unit, $in1//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in1//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>    
+            </xsl:when>
+            <xsl:when test="$in[@root = $oidURAOrganizations]">
+                <xsl:variable name="in1" select="($in[@root = $oidURAOrganizations])[1]" as="element()"/>
+                <xsl:value-of select="upper-case(string-join(($in1//@value, $in1//@root, $in1//@unit, $in1//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in1//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>    
+            </xsl:when>
+            <xsl:when test="$in[@root = $oidAGB]">
+                <xsl:variable name="in1" select="($in[@root = $oidAGB])[1]" as="element()"/>
+                <xsl:value-of select="upper-case(string-join(($in1//@value, $in1//@root, $in1//@unit, $in1//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in1//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>    
+            </xsl:when>
+            <xsl:when test="$in[@root = $oidUZIRoleCode]">
+                <xsl:variable name="in1" select="($in[@codeSystem = $oidUZIRoleCode])[1]" as="element()"/>
+                <xsl:value-of select="upper-case(string-join(($in1//@value, $in1//@root, $in1//@unit, $in1//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in1//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>    
+            </xsl:when>
+            <xsl:when test="$in">
+                <xsl:variable name="in1" select="$in[1]" as="element()"/>
+                <xsl:value-of select="upper-case(string-join(($in1//@value, $in1//@root, $in1//@unit, $in1//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in1//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:function>
 
     <xd:doc>
