@@ -175,18 +175,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty</xd:desc>
+        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty.
+        There is a specific function for determining uniqueness of healthProfessional, because it also may hold information about the organization, which should not be taken into account for determining uniqueness (that information is in FHIR resource practitionerRole)</xd:desc>
         <xd:param name="healthProfessional"/>
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyPractitioner" as="xs:string?">
         <xsl:param name="healthProfessional" as="element()?"/>
         <xsl:if test="$healthProfessional">
-            <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number)"/>
-            <xsl:variable name="personName" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_naam | $healthProfessional/naamgegevens | $healthProfessional/name_information)"/>
-            <xsl:variable name="personAddress" select="nf:getGroupingKeyDefault($healthProfessional/adres | $healthProfessional/adresgegevens | $healthProfessional/address_information)"/>
-            <xsl:variable name="contactInformation" select="nf:getGroupingKeyDefault($healthProfessional/telefoon_email | $healthProfessional/contactgegevens | $healthProfessional/contact_information)"/>
+            <!-- MM-1436 allow for more than one healthProfessional identification -->
+            <xsl:variable name="personIdentifier" as="xs:string*">
+                <xsl:for-each select="$healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number">
+                    <xsl:value-of select="nf:getGroupingKeyDefault(.)"/>
+                </xsl:for-each>
+            </xsl:variable> 
+            <xsl:variable name="personName" as="xs:string?" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_naam | $healthProfessional/naamgegevens | $healthProfessional/name_information)"/>
+            <xsl:variable name="personAddress" as="xs:string?" select="nf:getGroupingKeyDefault($healthProfessional/adres | $healthProfessional/adresgegevens | $healthProfessional/address_information)"/>
+            <xsl:variable name="contactInformation" as="xs:string?" select="nf:getGroupingKeyDefault($healthProfessional/telefoon_email | $healthProfessional/contactgegevens | $healthProfessional/contact_information)"/>
 
-            <xsl:value-of select="concat($personIdentifier, $personName, $personAddress, $contactInformation)"/>
+            <xsl:value-of select="concat(string-join($personIdentifier, ''), $personName, $personAddress, $contactInformation)"/>
         </xsl:if>
     </xsl:function>
 
