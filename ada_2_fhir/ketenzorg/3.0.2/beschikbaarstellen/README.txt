@@ -23,9 +23,9 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 
 ===Release Notes===
 2020-09-22
-* Fixed an issue for input where multiple ids are present on a healthcare professional
+* MM-1437 Fixed an issue for input where multiple ids are present on a healthcare professional
 2020-09-21
-* Make Condition search mode include in the EpisodeOfcare bundle
+* MM-1451 Make Condition search mode include in the EpisodeOfcare bundle
 2020-09-02
 * Add support for Composition.event.detail containing the episode reference
 * Improved Composition.section.text generation for empty journal entries with ICPC code. Now uses ICPC as fallback text.
