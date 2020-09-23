@@ -22,8 +22,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="true()"/>
 
+
     <!-- todo, add CDA-variant to xpath -->
-    <xsl:variable name="medicatiegegevens-lijst-90" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
+    <xsl:variable name="medicatiegegevens-lijst-90" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']] | hl7:ClinicalDocument[hl7:code[@code = '52981000146104'][@codeSystem = '2.16.840.1.113883.6.96']]"/>
 
     <xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/>
     <xsl:variable name="extension" select="tokenize($filename, '\.')[last()]"/>
@@ -56,11 +57,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="Medicatiegegevens-90-ADA">
         <xsl:param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-90"/>
-        
+
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="$medicatiegegevens-lijst/ancestor::*[hl7:ControlActProcess]"/>
         </xsl:call-template>
-        
+
         <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <xsl:if test="$outputSchemaRef">
                 <xsl:attribute name="xsi:noNamespaceSchemaLocation">../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd</xsl:attribute>

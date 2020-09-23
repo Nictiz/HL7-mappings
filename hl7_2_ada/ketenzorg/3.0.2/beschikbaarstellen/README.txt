@@ -22,6 +22,9 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-08-15
+* HL7 V3 Instance Identifier - Terminates upon detection of an OID with leading zeroes in a node
+* Diagnostic Results and Lab Results, now properly converts HL7 V3 Observation Interpretation codes to HCIM codes. Skips code N(ormal)
 2020-06-26 -
 * Add support for combined bundle containing both encounter reports and encounters
 2020-06-24 - 

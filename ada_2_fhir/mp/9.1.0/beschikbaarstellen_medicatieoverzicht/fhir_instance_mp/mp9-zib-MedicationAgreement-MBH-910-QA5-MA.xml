@@ -4,12 +4,11 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
    <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-JANKIE">S. XXX_Jankie</a>. Id: MBH_910_QA5_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001111010000001111">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
-               </span>
+            <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_910_QA5_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
             </caption>
             <tbody>
                <tr>
@@ -18,13 +17,11 @@
                </tr>
                <tr>
                   <th>Medicatie</th>
-                  <td>
-                     <a href="Medication/7323-2-16-840-1-113883-2-4-4-10">ACENOCOUMAROL TABLET 1MG</a>
-                  </td>
+                  <td>ACENOCOUMAROL TABLET 1MG</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>T-50D{08:15:00}</td>
+                  <td>${DATE, T, D, -50}T08:15:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
@@ -69,7 +66,7 @@
       </valueIdentifier>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk"/>
+      <valueString value=" "/>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -92,7 +89,7 @@
       <reference value="Patient/XXX-JANKIE"/>
       <display value="S. XXX_Jankie"/>
    </subject>
-   <authoredOn value="T-50D{08:15:00}"/>
+   <authoredOn value="${DATE, T, D, -50}T08:15:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">

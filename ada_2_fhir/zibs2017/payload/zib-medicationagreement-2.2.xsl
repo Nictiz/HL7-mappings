@@ -30,6 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <xsl:param name="dateT" as="xs:date?"/>
 
     <xd:doc>
         <xd:desc>Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-MedicationAgreement/ version 2.2 </xd:desc>
@@ -43,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="MedicationAgreementEntry-2.2" match="medicatieafspraak | medication_agreement" as="element()" mode="doMedicationAgreementEntry-2.2">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <xsl:param name="dateT" as="xs:date?"/>
+        <xsl:param name="dateT" as="xs:date?" select="$dateT"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
         <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
@@ -66,8 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                    <xsl:with-param name="dateT" select="$dateT"/>
-                </xsl:call-template>
+                 </xsl:call-template>
             </resource>
             <xsl:if test="string-length($searchMode) gt 0">
                 <search>
@@ -88,7 +88,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <xsl:param name="dateT" as="xs:date?"/>
+        <xsl:param name="dateT" as="xs:date?" select="$dateT"/>
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <MedicationRequest xsl:exclude-result-prefixes="#all">

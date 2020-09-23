@@ -430,8 +430,16 @@
             <xsl:when test="$in castable as xs:dateTime">
                 <xsl:value-of select="format-dateTime(xs:dateTime($in), '[H01]:[m01]')"/>
             </xsl:when>
+            <!-- sometimes the time in ada does not have seconds -->
+            <xsl:when test="concat($in, ':00') castable as xs:dateTime">
+                <xsl:value-of select="format-dateTime(xs:dateTime(concat($in, ':00')), '[H01]:[m01]')"/>
+            </xsl:when>
             <xsl:when test="$in castable as xs:time">
                 <xsl:value-of select="format-time(xs:time($in), '[H01]:[m01]')"/>
+            </xsl:when>
+            <!-- sometimes the time in ada does not have seconds -->
+            <xsl:when test="concat($in, ':00') castable as xs:time">
+                <xsl:value-of select="format-time(xs:time(concat($in, ':00')), '[H01]:[m01]')"/>
             </xsl:when>
             <xsl:when test="matches($in, 'T.*')">
                 <!-- relative T-date -->

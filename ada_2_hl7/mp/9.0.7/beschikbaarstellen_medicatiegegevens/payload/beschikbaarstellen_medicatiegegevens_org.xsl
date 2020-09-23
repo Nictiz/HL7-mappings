@@ -22,9 +22,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes"/>
-    <!-- only give dateT a value if you want conversion of relative T dates -->
+    <!-- only give dateT a value if you want conversion of relative T dates to actual dates -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>
+    <!--    <xsl:param name="dateT" as="xs:date?"/>-->
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>

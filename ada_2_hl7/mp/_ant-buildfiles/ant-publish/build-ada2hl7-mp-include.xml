@@ -23,67 +23,70 @@
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
+    <property name="usecase.mgb" value="sturen_medicatiegebruik"/>
+    <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
 
-    <target name="setup" description="Setup subdirectories in ${build.dir}">
+    <target name="setup" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir}">
+
         <!-- sturen_medicatievoorschrift copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="schema.string" value="*${usecase.mv}*"/>
+            <param name="usecase" value="${usecase.mv}"/>
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
-        <!-- sturen_medicatievoorschrift POC Praktijktest -->
-        <mkdir dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mv}/ada_instance_POCPraktijktest">
-                <include name="*.xml"/>
-            </fileset>
-        </copy>
 
         <!-- beschikbaarstellen_medicatiegegevens MA -->
         <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
-            <param name="schema.string" value="*${usecase.mg}*"/>
-            <param name="fileset.dir" value="ada_instance_MA"/>
+            <param name="usecase" value="${usecase.mg}"/>
+             <param name="fileset.dir" value="ada_instance_MA"/>
             <param name="fileset.include" value="*MA*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens VV -->
-        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_VV"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_VV" includes="*VV*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg}/ada_instance_VV" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance">
-                <include name="*VV*.xml"/>
-            </fileset>
-        </copy>
-        <!-- beschikbaarstellen_medicatiegegevens POC Praktijktest -->
-        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance_POCPraktijktest">
-                <include name="*.xml"/>
-            </fileset>
-        </copy>
-
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="fileset.dir" value="ada_instance_VV"/>
+            <param name="fileset.include" value="*VV*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
-            <param name="schema.string" value="*${usecase.mo}*"/>
-            <param name="fileset.dir" value="ada_instance_mp"/>
+            <param name="usecase" value="${usecase.mo}"/>
+             <param name="fileset.dir" value="ada_instance_mp"/>
             <param name="fileset.include" value="*output*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
 
-        <!-- let's convert to hl7 too while we're at it -->
-        <antcall target="convert_ada_2_hl7"/>
+        <!-- xml voorbeelden -->
+        <!-- schemas -->
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_schemas" includes="*.xsd"/>
+        </delete>
+        <copy todir="${build.dir}/xml-voorbeelden/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="*${usecase.mv}.xsd"/>
+                <include name="*${usecase.mg}.xsd"/>
+                <include name="*${usecase.mo}.xsd"/>
+                <include name="*${usecase.mgb}.xsd"/>
+                <include name="*${usecase.av}.xsd"/>
+                <include name="ada_meta.xsd"/>
+            </fileset>
+        </copy>
+        <!-- instances -->
+        <echo/>
+        <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
+
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*example*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/xml-voorbeelden/ada_instance" failonerror="true">
+            <fileset dir="${refs.dir}/xml-voorbeelden/ada_instance">
+                <include name="*example*.xml"/>
+            </fileset>
+        </copy>
 
     </target>
 
@@ -105,22 +108,6 @@
             <param name="xsl.out" value="cda_instance"/>
         </antcall>
 
-        <!-- POC Praktijktest -->
-        <!-- convert medicatievoorschrift -->
-        <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="xsl.name" value="payload/${usecase.mv}_org.xsl"/>
-            <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
-            <param name="xsl.out" value="hl7_instance_POCPraktijktest"/>
-        </antcall>
-        <!-- medicatievoorschrift also to CDA-->
-        <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="xsl.name" value="../../MP90_Transform_Organizer2CDA.xsl"/>
-            <param name="xsl.in" value="hl7_instance_POCPraktijktest"/>
-            <param name="xsl.out" value="cda_instance_POCPraktijktest"/>
-        </antcall>
-
         <!-- convert medicatiegegevens -->
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
@@ -133,13 +120,6 @@
             <param name="xsl.name" value="payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance_VV"/>
             <param name="xsl.out" value="hl7_instance_VV"/>
-        </antcall>
-        <!-- POC Praktijktest -->
-        <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
-            <param name="xsl.name" value="payload/${usecase.mg}_org.xsl"/>
-            <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
-            <param name="xsl.out" value="hl7_instance_POCPraktijktest"/>
         </antcall>
 
         <!-- medicatieoverzicht -->
@@ -157,16 +137,123 @@
             <param name="xsl.out" value="cda_instance_mp"/>
         </antcall>
 
+        <!-- also do the examples -->
+        <antcall target="convert_ada_2_hl7_examples"/>
+
+    </target>
+
+    <target name="convert_ada_2_hl7_examples">
+        <!-- examples -->
+        <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${build.dir}/xml-voorbeelden/hl7_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
+        </delete>
+        <mkdir dir="${build.dir}/xml-voorbeelden/cda_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="*.xml"/>
+        </delete>
+        <!-- medicatievoorschrift -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mv*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mv}/payload/${usecase.mv}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mv}/payload/${usecase.mv}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- medicatiegegevens -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mg-*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mg}/payload/${usecase.mg}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mg}/payload/${usecase.mg}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- medicatieoverzicht -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mo*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mo}/payload/${usecase.mo}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mo}/payload/${usecase.mo}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- medicatiegebruik -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mgb*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mgb}/payload/${usecase.mgb}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mgb}/payload/${usecase.mgb}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- afhandelen medicatievoorschrift -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="av*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.av}/payload/${usecase.av}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.av}/payload/${usecase.av}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- everything also to CDA-->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
+            <echo/>
+            <echo>${echo.label} ${build.dir}/../MP90_Transform_Organizer2CDA.xsl input dir ${build.dir}/xml-voorbeelden/hl7_instance</echo>
+            <xslt force="true" style="${build.dir}/../MP90_Transform_Organizer2CDA.xsl" destdir="${build.dir}/xml-voorbeelden/cda_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+
     </target>
 
     <target name="convert_ada_2_hl7_sub">
 
-        <property name="xsl_mp" value="${sub.build.dir}/${xsl.name}"/>
+        <property name="xsl.mp" value="${sub.build.dir}/${xsl.name}"/>
 
         <property name="xsl.input" value="${sub.build.dir}/${xsl.in}"/>
         <property name="xsl.output" value="${sub.build.dir}/${xsl.out}"/>
 
         <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${xsl.output}"/>
         <delete>
             <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
@@ -175,9 +262,14 @@
             <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
 
             <echo/>
-            <echo>${echo.label} ${xsl_mp} input dir ${xsl.input}</echo>
-            <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <echo>${echo.label} ${xsl.mp} input dir ${xsl.input}</echo>
+            <xslt force="true" style="${xsl.mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesMP"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!-- whether to generate the textual instruction for use based on structured data, 
+                    typically true for test/example instances 
+                    typically false for production -->
+                <param name="generateInstructionText" expression="true"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>

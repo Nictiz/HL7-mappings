@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:util="urn:hl7:utilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <xsl:import href="../zibs2017/payload/all-zibs.xsl"/>
     <xsl:output method="xml" indent="yes"/>
@@ -1159,6 +1159,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <title value="{concat('Contactverslag ', $patient/*[local-name()='display']/@value)}"/>
                     </xsl:otherwise>
                 </xsl:choose>
+                
+                <!-- We would love to tell you more about the episode, but alas an id is all we have... -->
+                <xsl:for-each select="episode">
+                    <xsl:variable name="theValue" select="@value"/>
+                    <xsl:variable name="theRoot" select="local:getUri(@root)"/>
+                    <xsl:variable name="theReference" select="$theEpisodes[f:resource/f:EpisodeOfCare/f:identifier[f:system/@value = $theRoot][f:value/@value = $theValue]]" as="element(f:entry)*"/>
+                    <event>
+                        <detail>
+                            <xsl:choose>
+                                <xsl:when test="empty($theReference)">
+                                    <identifier>
+                                        <xsl:call-template name="id-to-Identifier">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </identifier>
+                                    <display value="Episode: {string-join((@value, @root), ' ')}"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <reference value="{$theReference/f:fullUrl/@value}"/>
+                                    <display value="Episode: {string-join((@value, $theReference/f:resource/f:EpisodeOfCare/(f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title']/f:valueString/@value, f:status/@value)), ' ')}"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </detail>
+                    </event>
+                </xsl:for-each>
     
                 <!-- Add the journal entries -->
                 <xsl:for-each select="$gp-JournalEntries[descendant-or-self::f:Observation[1]]">
@@ -1173,11 +1198,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
     
                         <xsl:copy-of select="$journalEntryObservation/f:code"/>
-    
+                        
+                        <!-- Tekst is vereist, maar tegelijkertijd kunnen we er niet op rekenen dat er iets is (praktijksituatie). Als er een ICPC-koppeling is en geen tekst, druk dan de ICPC-koppeling af. -->
                         <text>
                             <status value="generated"/>
                             <div xmlns="http://www.w3.org/1999/xhtml">
-                                <xsl:value-of select="$journalEntryObservation/f:valueString/@value"/>
+                                <xsl:choose>
+                                    <xsl:when test="$journalEntryObservation/f:valueString/@value[string-length(normalize-space()) gt 0][not(. = '&#160;')]">
+                                        <xsl:value-of select="$journalEntryObservation/f:valueString/@value"/>
+                                    </xsl:when>
+                                    <xsl:when test="$journalEntryObservation/f:component/f:valueCodeableConcept">
+                                        <xsl:call-template name="doDT_CodeableConcept">
+                                            <xsl:with-param name="in" select="$journalEntryObservation/f:component/f:valueCodeableConcept"/>
+                                            <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                </xsl:choose>
                             </div>
                         </text>
     
@@ -1259,5 +1295,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
+    </xsl:template>
+
+    <xsl:template match="f:search/f:mode" mode="updateSearchMode">
+        <xsl:param name="mode">include</xsl:param>
+        <xsl:element name="mode" namespace="http://hl7.org/fhir">
+            <xsl:attribute name="value" select="$mode"></xsl:attribute>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="f:entry/f:resource" mode="updateSearchMode">
+         <xsl:copy-of select="."/>
+    </xsl:template>
+    
+    <xsl:template match="node() | @*" mode="updateSearchMode">
+        <xsl:param name="mode">include</xsl:param>
+        <xsl:copy>
+            <xsl:apply-templates select="node() | @*" mode="#current">
+                <xsl:with-param name="mode" select="$mode"/>
+            </xsl:apply-templates>
+        </xsl:copy>
     </xsl:template>
 </xsl:stylesheet>

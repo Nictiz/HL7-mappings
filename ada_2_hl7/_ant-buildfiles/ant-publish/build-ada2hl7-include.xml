@@ -29,27 +29,30 @@
     
     
 
-    <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
+    <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
 
         <antcall target="setup_sub_schemas">
-            <param name="schema.string" value="${schema.string}"/>
+            <param name="schema.string" value="*${usecase}.xsd"/>
         </antcall>
 
         <antcall target="setup_sub_instances">
-             <param name="fileset.dir" value="${fileset.dir}"/>
+            <param name="fileset.dir" value="${fileset.dir}"/>
+            <param name="refs.ada.dir" value="${refs.ada.dir}"/>
+            <param name="usecase" value="${usecase}"/>
         </antcall>
 
     </target>
 
-    <target name="setup_sub_schemas" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project">
+    <target name="setup_sub_schemas" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project">
         <echo/>
-        <echo>Setup ${sub.build.dir} containing refreshed ada schemas (${schema.string})</echo>
+        <echo>Setup ${build.dir}/${usecase} containing refreshed ada schemas (${schema.string})</echo>
         
+        <mkdir dir="${build.dir}/${usecase}/ada_schemas"/>
         <delete>
-            <fileset dir="${sub.build.dir}/ada_schemas" includes="*.xsd"/>
+            <fileset dir="${build.dir}/${usecase}/ada_schemas" includes="*.xsd"/>
         </delete>
 
-        <copy todir="${sub.build.dir}/ada_schemas" failonerror="true">
+        <copy todir="${build.dir}/${usecase}/ada_schemas" failonerror="true">
             <fileset dir="${ada.project.source.dir}/schemas">
                 <include name="${schema.string}"/>
                 <include name="ada_meta.xsd"/>
@@ -58,16 +61,17 @@
 
     </target>
 
-    <target name="setup_sub_instances" description="Setup ${sub.build.dir}  containing refreshed ada production instances (${fileset.include})">
+    <target name="setup_sub_instances" description="Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.dir}/${fileset.include})">
 
         <echo/>
-        <echo>Setup ${sub.build.dir} containing refreshed ada production instances (${fileset.include})</echo>
+        <echo>Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.include})</echo>
 
+        <mkdir dir="${build.dir}/${usecase}/${fileset.dir}"/>
         <delete>
-            <fileset dir="${sub.build.dir}/${fileset.dir}" includes="${fileset.include}"/>
+            <fileset dir="${build.dir}/${usecase}/${fileset.dir}" includes="${fileset.include}"/>
         </delete>
-        <copy todir="${sub.build.dir}/${fileset.dir}" failonerror="true">
-            <fileset dir="${refs.dir}/ada_instance">
+        <copy todir="${build.dir}/${usecase}/${fileset.dir}" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase}/${refs.ada.dir}">
                 <include name="${fileset.include}"/>
             </fileset>
         </copy>

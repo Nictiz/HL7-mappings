@@ -4,12 +4,11 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
    </meta>
    <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>MedicationDispense. Subject: <a href="Patient/DIREN">Aygül A. Direnç</a>. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
-               <span style="display: block;">Uitvoerende: <a href="Organization/012345672-16-528-1-1007-3-3">Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'.</a>
-               </span>
+            <caption>MedicationDispense. Subject: Aygül A. Direnç. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+               <span style="display: block;">Uitvoerende: Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'.</span>
             </caption>
             <tbody>
                <tr>
@@ -22,15 +21,13 @@
                </tr>
                <tr>
                   <th>Medicatie</th>
-                  <td>
-                     <a href="Medication/13966383-2-16-840-1-113883-2-4-4-8">FLUIMUCIL INHVLST 100MG/ML AMPUL 4ML</a>
-                  </td>
+                  <td>FLUIMUCIL INHVLST 100MG/ML AMPUL 4ML</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
                   <td>
                      <ul>
-                        <li>Vanaf ${DATE, T, {15:48:00}, {15:48:00}{15:48:00}}</li>
+                        <li>Vanaf ${DATE, T, D, +0}T15:48:00+02:00</li>
                         <li>5 dag</li>
                      </ul>
                   </td>
@@ -62,7 +59,7 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="${DATE, T, {15:48:00}, {15:48:00}{15:48:00}}"/>
+         <start value="${DATE, T, D, +0}T15:48:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">

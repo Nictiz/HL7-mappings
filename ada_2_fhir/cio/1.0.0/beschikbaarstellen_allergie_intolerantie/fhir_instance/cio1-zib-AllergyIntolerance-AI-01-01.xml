@@ -4,10 +4,10 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
    <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: <a href="Patient/XXX-TEST-D">Véronique V. Véronique XXX-TEST-D</a>. Id: AI_01_01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
+            <caption>Allergie/intolerantie. Patiënt: <a href="Patient/XXX-TEST-D">Véronique V. Véronique XXX-TEST-D</a>. Id: AI_01_01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: inactief / <i>onbekend (ontbrekend gegeven)</i>
                <span style="display: block;">Ingevoerd door: <a href="PractitionerRole/33333334301-002">M. Boot || Allergoloog (gesloten register)</a>
                </span>
             </caption>
@@ -60,13 +60,13 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
       <value value="AI_01_01"/>
    </identifier>
-   <clinicalStatus value="active">
+   <clinicalStatus value="inactive">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/ActStatus"/>
-               <code value="active"/>
-               <display value="Actief"/>
+               <code value="obsolete"/>
+               <display value="Achterhaald"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -92,8 +92,8 @@
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
-               <code value="24484000"/>
-               <display value="ernstig"/>
+               <code value="6736007"/>
+               <display value="matig"/>
             </coding>
          </valueCodeableConcept>
       </extension>

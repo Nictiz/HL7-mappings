@@ -29,7 +29,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-
+    <xsl:param name="dateT" as="xs:date?"/>
+    
     <xd:doc>
         <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
     </xd:doc>
@@ -230,9 +231,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
                         <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
                     </xsl:when>
-                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
-                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
-                    </xsl:when>
                     <xsl:otherwise>
                         <xsl:copy-of select="."/>
                     </xsl:otherwise>
@@ -289,9 +287,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:variable name="out" as="element()">
             <xsl:choose>
-                <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
-                    <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
-                </xsl:when>
                 <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
                     <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
                 </xsl:when>
@@ -806,7 +801,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Formats ada normal or relativeDate(time) or HL7 dateTime to FHIR date(Time) or Touchstone T variable string based on input precision</xd:desc>
+        <xd:desc>Formats ada normal or relativeDate(time) or HL7 dateTime to FHIR date(Time) or Touchstone T variable string based on input precision and dateT</xd:desc>
         <xd:param name="dateTime">Input ada or HL7 date(Time)</xd:param>
         <xd:param name="precision">Determines the precision of the output. Precision of minutes outputs seconds as '00'</xd:param>
         <xd:param name="dateT">Optional parameter. The T-date for which a relativeDate must be calculated. If not given a Touchstone like parameterised string is outputted</xd:param>
@@ -814,7 +809,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="format2FHIRDate">
         <xsl:param name="dateTime" as="xs:string?"/>
         <xsl:param name="precision">second</xsl:param>
-        <xsl:param name="dateT" as="xs:date?"/>
+        <xsl:param name="dateT" as="xs:date?" select="$dateT"/>
 
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
@@ -836,7 +831,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
             <xsl:when test="matches($dateTime, 'T([+\-]\d+(\.\d+)?[YMD])?')">
                 <xsl:variable name="sign" >
-                    <xsl:variable name="temp" select="replace($dateTime, 'T(([+\-]).*)?', '$2')"/>
+                    <xsl:variable name="temp" select="replace($dateTime, 'T(([+\-])?.*)?', '$2')"/>
                     <xsl:choose>
                         <xsl:when test="string-length($temp) gt 0">
                             <xsl:value-of select="$temp"/>
@@ -846,7 +841,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="amount">
-                    <xsl:variable name="temp" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)[YMD].*)?', '$2')"/>
+                    <xsl:variable name="temp" select="replace($dateTime, 'T([+\-]?(\d+(\.\d+)?)?.*)?', '$2')"/>
                     <xsl:choose>
                         <xsl:when test="string-length($temp) gt 0">
                             <xsl:value-of select="$temp"/>
@@ -856,7 +851,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="yearMonthDay">
-                    <xsl:variable name="temp" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?([YMD]).*)?', '$3')"/>
+                    <xsl:variable name="temp" select="replace($dateTime, 'T([+\-]?(\d+(\.\d+)?)?([YMD]?).*)?', '$4')"/>
                     <xsl:choose>
                         <xsl:when test="string-length($temp) gt 0">
                             <xsl:value-of select="$temp"/>
@@ -865,8 +860,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:otherwise>D</xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)([YMD]).*)?', 'P$2$4')"/>
-                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)\})?)?', '$4')"/>
+                <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-]?(\d+(\.\d+)?)?([YMD]?).*)?', 'P$2$4')"/>
+                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]?(\d+(\.\d+)?)?[YMD]?(\{(.*)\})?)?', '$5')"/>
                 <xsl:variable name="time">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 5">
