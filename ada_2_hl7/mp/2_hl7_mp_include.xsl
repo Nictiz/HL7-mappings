@@ -656,7 +656,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9120_20161110101947"/>
                         </comp>
                     </xsl:for-each>
-                    <!-- just toedientijd, not weekdag, which is handled in the next call -->
+                    <!-- just toedientijd, not weekdag, which is handled in the next call and may or may not be combined with toedientijd -->
                     <xsl:for-each select="toedientijd[not(following-sibling::weekdag)][.//(@value | @code)]">
                         <comp xsi:type="hl7nl:PIVL_TS">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9081_20160620234234">
