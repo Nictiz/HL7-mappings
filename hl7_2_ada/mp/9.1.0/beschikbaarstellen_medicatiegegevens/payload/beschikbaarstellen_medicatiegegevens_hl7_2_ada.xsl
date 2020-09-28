@@ -37,10 +37,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <!-- todo, add CDA-variant to xpath -->
-        <xsl:variable name="medicatiegegevens-lijst-90" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
-        <xsl:call-template name="Medicatiegegevens-90-ADA">
-            <xsl:with-param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-90"/>
+        
+        <xsl:variable name="medicatiegegevens-lijst-91" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']] | //hl7:organizer[hl7:code[@code = '419891008'][@codeSystem = '2.16.840.1.113883.6.96']]| hl7:ClinicalDocument[hl7:code[@code = '52981000146104'][@codeSystem = '2.16.840.1.113883.6.96']]"/>
+        <xsl:call-template name="Medicatiegegevens-91-ADA">
+            <xsl:with-param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-91"/>
             <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
         </xsl:call-template>
     </xsl:template>
@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="medicatiegegevens-lijst">HL7 9.1.0 organizer with medication information.</xd:param>
         <xd:param name="schemaFragment">schemaFragment, in this case of medicamenteuze behandeling. Used for conceptIds.</xd:param>
     </xd:doc>
-    <xsl:template name="Medicatiegegevens-90-ADA">
+    <xsl:template name="Medicatiegegevens-91-ADA">
         <xsl:param name="medicatiegegevens-lijst" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
         <xsl:param name="schemaFragment" select="$schemaFragment"/>
         <xsl:call-template name="doGeneratedComment">
