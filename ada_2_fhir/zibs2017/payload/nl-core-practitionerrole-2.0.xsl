@@ -47,18 +47,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- However, that does not work in a dataset that puts zorgverlener as a separate concept group directly under transaction, and uses ada reference
                      such as the cio dataset -->
                 <!-- so in that case we take the first element that has a reference to this zorgverlener, which will make a unique xml node for each PractitionerRole -->
-                <xsl:variable name="id" select="./@id"/>
+                <xsl:variable name="id" select="@id"/>
                 <xsl:variable name="node-for-id" select="(//*[@value = $id])[1]"/>
                 <xsl:variable name="input-node-for-uuid" as="element()">
-                    <xsl:choose>
+                    <xsl:sequence select="."/>
+                    <!--<xsl:choose>
                         <xsl:when test="$node-for-id">
                             <xsl:sequence select="$node-for-id"/>
                         </xsl:when>
+                        <xsl:when test="$id">
+                            <!-\- okay we have an @id, but there is no reference to it -\->
+                            <!-\- this really does not make sense, it will be an orphan resource in the Bundle -\->
+                            
+                        </xsl:when>
                         <xsl:otherwise>
-                            <!-- parent node contains unique xml element node for PractitionerRole -->
-                            <xsl:sequence select="./.."/>
+                            <!-\- let's use the parent node, this is an old school dataset -\->
+                            <xsl:sequence select=".."/>
                         </xsl:otherwise>
-                    </xsl:choose>
+                    </xsl:choose>-->
                 </xsl:variable>
 
                 <unieke-practitionerRole xmlns="">
