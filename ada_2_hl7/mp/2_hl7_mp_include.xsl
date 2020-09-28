@@ -30,6 +30,70 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
 
     <xd:doc>
+        <xd:desc>Helper template to make weekdag HL7 comp elements</xd:desc>
+        <xd:param name="aantalPerWeek">The amount of weeks in between</xd:param>
+    </xd:doc>
+    <xsl:template name="_weekdagComp" match="toedieningsschema" mode="_weekdagComp">
+        <xsl:param name="aantalPerWeek"/>
+        <xsl:choose>
+            <!-- Weekdag(en) zonder toedientijd -->
+            <xsl:when test="not(./toedientijd[.//(@value | @code)])">
+                <xsl:for-each select="./weekdag[.//(@value | @code)]">
+                    <xsl:variable name="effectiveTimeOperator">
+                        <!-- only the first comp has operator 'A', the rest has operator 'I' -->
+                        <xsl:choose>
+                            <xsl:when test="not(preceding-sibling::weekdag)">
+                                <xsl:value-of select="'A'"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="'I'"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <comp>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
+                            <xsl:with-param name="operator" select="$effectiveTimeOperator"/>
+                            <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
+                            <xsl:with-param name="weekdagCode" select="@code"/>
+                        </xsl:call-template>
+                    </comp>
+                </xsl:for-each>
+            </xsl:when>
+            <!-- Minstens 1 toedientijd en minstens 1 weekdag: voeg alle combinaties toe -->
+            <xsl:otherwise>
+                <xsl:for-each select="./toedientijd[.//(@value | @code)]">
+                    <xsl:variable name="curToedientijd" select="."/>
+                    <!-- Voor de overzichtelijkheid van het resultaat zou het handiger zijn om eerst over weekdagen,
+                                   en daarbinnen over toedientijden te itereren, omdat de <comp>'s dan chronologisch staan.
+                                   Maar omdat het aangeroepen template de weekdag als context verwacht, is dat nu niet mogelijk
+                              -->
+                    <xsl:for-each select="../weekdag[.//(@value | @code)]">
+                        <xsl:variable name="curWeekdag" select="."/>
+                        <xsl:variable name="effectiveTimeOperator">
+                            <!-- only the first comp has operator 'A', the rest has operator 'I' -->
+                            <xsl:choose>
+                                <xsl:when test="not($curWeekdag/preceding-sibling::weekdag) and not($curToedientijd/preceding-sibling::toedientijd)">
+                                    <xsl:value-of select="'A'"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="'I'"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <comp>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
+                                <xsl:with-param name="operator" select="$effectiveTimeOperator"/>
+                                <xsl:with-param name="toedientijd" select="$curToedientijd"/>
+                                <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
+                                <xsl:with-param name="weekdagCode" select="@code"/>
+                            </xsl:call-template>
+                        </comp>
+                    </xsl:for-each>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>  </xsl:template>
+
+    <xd:doc>
         <xd:desc>Generates the contents of quantity</xd:desc>
         <xd:param name="hoeveelheid-ada"/>
     </xd:doc>
@@ -592,7 +656,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9120_20161110101947"/>
                         </comp>
                     </xsl:for-each>
-                    <xsl:for-each select="./toedientijd[.//(@value | @code)]">
+                    <!-- just toedientijd, not weekdag, which is handled in the next call and may or may not be combined with toedientijd -->
+                    <xsl:for-each select="toedientijd[not(following-sibling::weekdag)][.//(@value | @code)]">
                         <comp xsi:type="hl7nl:PIVL_TS">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9081_20160620234234">
                                 <xsl:with-param name="operator">
@@ -610,6 +675,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </comp>
                     </xsl:for-each>
+                    <!-- MP-99, add support for weekdag with or without toedientijd -->
+                    <xsl:call-template name="_weekdagComp"/>
+                                         
                     <!-- cyclisch schema -->
                     <comp>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9082_20160621002112"/>
@@ -747,64 +815,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9080_20160620164239"/>
                                 </comp>
                             </xsl:for-each>
-                            <xsl:choose>
-                                <!-- Weekdag(en) zonder toedientijd -->
-                                <xsl:when test="not(./toedientijd[.//(@value | @code)])">
-                                    <xsl:for-each select="./weekdag[.//(@value | @code)]">
-                                        <xsl:variable name="effectiveTimeOperator">
-                                            <!-- only the first comp has operator 'A', the rest has operator 'I' -->
-                                            <xsl:choose>
-                                                <xsl:when test="not(preceding-sibling::weekdag)">
-                                                    <xsl:value-of select="'A'"/>
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <xsl:value-of select="'I'"/>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
-                                        </xsl:variable>
-                                        <comp>
-                                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
-                                                <xsl:with-param name="operator" select="$effectiveTimeOperator"/>
-                                                <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
-                                                <xsl:with-param name="weekdagCode" select="@code"/>
-                                            </xsl:call-template>
-                                        </comp>
-                                    </xsl:for-each>
-                                </xsl:when>
-                                <!-- Minstens 1 toedientijd en minstens 1 weekdag: voeg alle combinaties toe -->
-                                <xsl:otherwise>
-                                    <xsl:for-each select="./toedientijd[.//(@value | @code)]">
-                                        <xsl:variable name="curToedientijd" select="."/>
-                                        <!-- Voor de overzichtelijkheid van het resultaat zou het handiger zijn om eerst over weekdagen,
-                                   en daarbinnen over toedientijden te itereren, omdat de <comp>'s dan chronologisch staan.
-                                   Maar omdat het aangeroepen template de weekdag als context verwacht, is dat nu niet mogelijk
-                              -->
-                                        <xsl:for-each select="../weekdag[.//(@value | @code)]">
-                                            <xsl:variable name="curWeekdag" select="."/>
-                                            <xsl:variable name="effectiveTimeOperator">
-                                                <!-- only the first comp has operator 'A', the rest has operator 'I' -->
-                                                <xsl:choose>
-                                                    <xsl:when test="not($curWeekdag/preceding-sibling::weekdag) and not($curToedientijd/preceding-sibling::toedientijd)">
-                                                        <xsl:value-of select="'A'"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                        <xsl:value-of select="'I'"/>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:variable>
-                                            <comp>
-                                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
-                                                    <xsl:with-param name="operator" select="$effectiveTimeOperator"/>
-                                                    <xsl:with-param name="toedientijd" select="$curToedientijd"/>
-                                                    <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
-                                                    <xsl:with-param name="weekdagCode" select="@code"/>
-                                                </xsl:call-template>
-                                            </comp>
-                                        </xsl:for-each>
-                                    </xsl:for-each>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </effectiveTime>
+                            <!-- weekdag(en) with or without toedientijd(en) in comp element(s) -->
+                            <xsl:call-template name="_weekdagComp">
+                                <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
+                            </xsl:call-template>
+                         </effectiveTime>
                     </xsl:when>
 
                     <!-- Combinatie dagdeel en weekdag wordt (nog) niet ondersteund. -->
@@ -2171,6 +2186,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="toedienDatumtijd">
                     <xsl:call-template name="format2HL7Date">
                         <xsl:with-param name="dateTime" select="$toedientijd[1]/@value"/>
+                        <!-- the function needs a dateT to calculate time in case of a relative ada datetime, 
+                            let's give it something random, the date is not relevant for toedientijd anyhow  -->
+                        <xsl:with-param name="inputDateT">1950-01-01</xsl:with-param>
                     </xsl:call-template>
                 </xsl:variable>
                 <xsl:variable name="toedienTijd">
@@ -2583,7 +2601,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Telecom gegevens for ada contactgegevens</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9172_20170522143706">
-        <xsl:call-template name="_CdaTelecom"/>     
+        <xsl:call-template name="_CdaTelecom"/>
     </xsl:template>
 
     <xd:doc>
@@ -3106,7 +3124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- gebruiksinstructie/omschrijving -->
             <xsl:choose>
                 <xsl:when test="$generateInstructionText">
-                     <text mediaType="text/plain">
+                    <text mediaType="text/plain">
                         <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
                     </text>
                 </xsl:when>
@@ -3301,7 +3319,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- gebruiksinstructie/omschrijving -->
             <xsl:choose>
                 <xsl:when test="$generateInstructionText">
-                     <text mediaType="text/plain">
+                    <text mediaType="text/plain">
                         <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
                     </text>
                 </xsl:when>
@@ -3812,5 +3830,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-  
+
 </xsl:stylesheet>

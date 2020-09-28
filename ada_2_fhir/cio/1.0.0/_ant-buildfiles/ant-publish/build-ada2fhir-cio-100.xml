@@ -30,46 +30,69 @@
     <property name="project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\cio"/>
     <property name="prodinst.dir" value="C:\SVN\art_decor\trunk\ada-data\production-ada-instances\cio\1.0.0\data"/>
 
-    <property name="usecase-bsai" value="beschikbaarstellen_allergie_intolerantie"/>
-    <property name="usecase-bsaiv" value="beschikbaarstellen_allergie_intolerantie_vertaling"/>
-
+    <property name="usecase.bsai" value="beschikbaarstellen_allergie_intolerantie"/>
+    <property name="usecase.bsaiv" value="beschikbaarstellen_allergie_intolerantie_vertaling"/>
+    <property name="xmlvoorbeelden.dir" value="xml-voorbeelden"/>
+    
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir -->
         <antcall target="setup_sub_schemas">
-            <param name="build.dir" value="${build.dir}/${usecase-bsai}"/>
-            <param name="schema.string" value="*${usecase-bsai}.*"/>
-        </antcall>
-        
-        <antcall target="setup_sub_schemas">
-            <param name="build.dir" value="${build.dir}/${usecase-bsaiv}"/>
-            <param name="schema.string" value="*${usecase-bsaiv}.*"/>
+            <param name="build.dir" value="${build.dir}/${usecase.bsai}"/>
+            <param name="schema.string" value="*${usecase.bsai}.*"/>
         </antcall>
 
+        <antcall target="setup_sub_schemas">
+            <param name="build.dir" value="${build.dir}/${usecase.bsaiv}"/>
+            <param name="schema.string" value="*${usecase.bsaiv}.*"/>
+        </antcall>
+
+        <!-- xml-voorbeelden -->
+        <antcall target="setup_sub_schemas">
+            <param name="build.dir" value="${build.dir}/xml-voorbeelden"/>
+            <param name="schema.string" value="*${usecase.bsaiv}.*"/>
+        </antcall>
+       
         <!-- copy cio instances beschikbaarstellen_allergie_intolerantie-->
-        <echo>CIO instances from ${prodinst.dir} to ${build.dir}/${usecase-bsai}/ada_instance</echo>
+        <echo>CIO instances from ${prodinst.dir} to ${build.dir}/${usecase.bsai}/ada_instance</echo>
+        <mkdir dir="${build.dir}/${usecase.bsai}/ada_instance"/>
         <delete>
-            <fileset dir="${build.dir}/${usecase-bsai}/ada_instance">
+            <fileset dir="${build.dir}/${usecase.bsai}/ada_instance">
                 <include name="*.xml"/>
             </fileset>
         </delete>
-        <copy todir="${build.dir}/${usecase-bsai}/ada_instance" failonerror="true">
+        <copy todir="${build.dir}/${usecase.bsai}/ada_instance" failonerror="true">
             <fileset dir="${prodinst.dir}">
                 <include name="bs*.xml"/>
             </fileset>
         </copy>
-        
-        <!-- copy cio instances beschikbaarstellen_allergie_intolerantie-->
-        <echo>CIO instances from ${prodinst.dir} to ${build.dir}/${usecase-bsaiv}/ada_instance</echo>
+
+        <!-- copy cio instances beschikbaarstellen_allergie_intolerantie_vertaling -->
+        <echo>CIO instances from ${prodinst.dir} to ${build.dir}/${usecase.bsaiv}/ada_instance</echo>
+        <mkdir dir="${build.dir}/${usecase.bsaiv}/ada_instance"/>
         <delete>
-            <fileset dir="${build.dir}/${usecase-bsaiv}/ada_instance">
+            <fileset dir="${build.dir}/${usecase.bsaiv}/ada_instance">
                 <include name="*.xml"/>
             </fileset>
         </delete>
-        <copy todir="${build.dir}/${usecase-bsaiv}/ada_instance" failonerror="true">
+        <copy todir="${build.dir}/${usecase.bsaiv}/ada_instance" failonerror="true">
             <fileset dir="${prodinst.dir}">
                 <include name="CIO-*.xml"/>
             </fileset>
         </copy>
+        
+        <!-- copy cio instances xml voorbeelden -->
+        <echo>CIO instances from ${prodinst.dir} to ${build.dir}/xml-voorbeelden/ada_instance</echo>
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_instance">
+                <include name="*.xml"/>
+            </fileset>
+        </delete>
+        <copy todir="${build.dir}/xml-voorbeelden/ada_instance" failonerror="true">
+            <fileset dir="${prodinst.dir}">
+                <include name="*example*.xml"/>
+            </fileset>
+        </copy>        
 
         <!-- let's convert to fhir too while we're at it -->
         <antcall target="convert_ada_2_fhir"/>
@@ -78,6 +101,7 @@
 
     <target name="setup_sub_schemas" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project">
 
+        <mkdir dir="${build.dir}/ada_schemas"/>
         <delete>
             <fileset dir="${build.dir}/ada_schemas" includes="*.*"/>
         </delete>
@@ -94,16 +118,42 @@
     <target name="convert_ada_2_fhir">
 
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase-bsai}"/>
+            <param name="build.dir" value="${usecase.bsai}"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="fhir_instance"/>
+        </antcall>
+
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="build.dir" value="${usecase.bsaiv}"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
         
-        <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase-bsaiv}"/>
-            <param name="xsl.in" value="ada_instance"/>
-            <param name="xsl.out" value="fhir_instance"/>
-        </antcall>
+        <!-- xml-voorbeelden -->
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${build.dir}/${xmlvoorbeelden.dir}" includes="*.*"/>
+        </delete>
+        
+        <sequential>
+            <fileset id="inputfiles" dir="${build.dir}/${xmlvoorbeelden.dir}/ada_instance" includes="*.xml"/>
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir_resources.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir_resources.xsl" destdir="${build.dir}/${xmlvoorbeelden.dir}/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfiles"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir.xsl" destdir="${build.dir}/${xmlvoorbeelden.dir}/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfiles"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>           
+           
+        </sequential>
     </target>
 
     <target name="convert_ada_2_fhir_sub">
@@ -129,7 +179,7 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-
+            
             <echo/>
             <echo>${echo.label} ${xsl.cio}</echo>
             <xslt force="true" style="${xsl.cio}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
