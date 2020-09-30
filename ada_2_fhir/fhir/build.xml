@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" name="generateNarratives" default="build">
+    
+    <property name="in.dir.absolute" location="${in.dir}"/>
+    
+    <property name="ivy.install.version" value="2.5.0-rc1" />
+    <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
+    <property name="ivy.dep.file" value="${basedir}/ivy.xml" />
+    <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
+    <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
+
+    <!-- Ivy stuff -->
+    
+    <target name="check-ivy">
+        <condition property="ivy.exists">
+            <or>
+                <available file="${ivy.jar.file}" type="file"/>
+                <available file="${ivy.local.jar.file}" type="file"/>
+            </or>
+        </condition>
+        <mkdir dir="${lib.dir}"/>
+    </target>
+    
+    <target name="download-ivy" depends="check-ivy" unless="ivy.exists">
+        <echo message="Installing Ivy"/>
+        <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+            dest="${ivy.local.jar.file}" usetimestamp="true"/>
+    </target>
+    
+    <target name="install-ivy" depends="download-ivy" unless="ivy.exists, ivy.loaded">
+        <path id="ivy.lib.path">
+            <fileset dir="${lib.dir}" includes="*.jar"/>
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+        <property name="ivy.loaded" value="true" />
+    </target>
+    
+    <!-- SAXON, ANT-CONTRIB -->
+    
+    <target name="retrieve" depends="check-ivy, install-ivy">
+        <ivy:retrieve pattern="${lib.dir}/[type]/[artifact]-[revision].[ext]"/>
+        <ivy:artifactproperty name="[module].[artifact]" value="${lib.dir}/[type]/[artifact]-[revision].[ext]" />
+        <ivy:artifactproperty name="[artifact].[type]" value="${lib.dir}/[type]/[artifact]-[revision].[ext]" />
+    </target>
+    
+    <target name="load-dependencies" depends="retrieve" unless="ant.contrib.loaded">
+        <taskdef resource="net/sf/antcontrib/antlib.xml">
+            <classpath>
+                <pathelement location="${ant-contrib.ant-contrib}" />
+            </classpath>
+        </taskdef>
+        <property name="ant.contrib.loaded" value="true" />
+    </target>
+    
+    <!-- Actual build targets -->
+    
+    <target name="get-input-files">
+        <sequential>
+            <if>
+                <not>
+                    <isset property="in.dir"/>
+                </not>
+                <then>
+                    <input message="Please enter the folder with XML files (may also be given using '-Din.dir=/path/to/xml/files')" addproperty="project"/>
+                </then>
+            </if>
+            
+            <fileset id="in.files" dir="${in.dir.absolute}">
+                <include name="**/*.xml"/>
+            </fileset>
+            <echo message="${in.dir.absolute}"/>
+        </sequential>
+    </target>
+        
+    <target name="create-temp-dir">
+        <tempfile property="temp.dir"/>
+    </target>
+    
+    <target name="run-narrative-generator" depends="get-input-files, create-temp-dir">
+        <xslt force="true" style="NarrativeGenerator.xsl" destdir="${temp.dir}" useImplicitFileset="false">
+            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+            <classpath location="${Saxon-HE.jar}"/>
+            <param name="override" expression="true"/>
+            <outputproperty name="method" value="xml"/>
+            <outputproperty name="omit-xml-declaration" value="yes"/>
+            <outputproperty name="indent" value="yes"/>
+            <fileset refid="in.files"/>
+            <mapper type="identity"/>
+        </xslt>
+    </target>
+    
+    <target name="cleanup">
+        <delete dir="${temp.dir}"/>
+    </target>
+    
+    <target name="format-xml">
+        <xslt style="formatXML.xsl" basedir="${temp.dir}" destdir="${in.dir.absolute}">
+            <mapper type="identity"/>
+        </xslt>
+    </target>
+    
+    <target name="build" depends="load-dependencies, run-narrative-generator, format-xml, cleanup"/>
+</project>

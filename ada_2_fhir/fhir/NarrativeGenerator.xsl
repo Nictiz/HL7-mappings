@@ -29,10 +29,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
     
     <!-- Uncomment if you want to test this transform directly -->
-    <!--<xsl:output omit-xml-declaration="yes" indent="yes" xml:space="preserve"/>
+    <xsl:output omit-xml-declaration="yes" indent="yes" xml:space="preserve"/>
     <xsl:template match="/">
         <xsl:apply-templates mode="addNarrative"/>
-    </xsl:template>-->
+    </xsl:template>
     
     <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
