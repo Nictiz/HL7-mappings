@@ -27,7 +27,7 @@
         <xsl:variable name="profile" select="$fhirmapping/dataset/record[ID=$concept/@iddisplay]/profile"/>
         <xsl:variable name="in" select="$fhirmapping/dataset/record[ID=$concept/@iddisplay]/in"/>
         <xsl:for-each select="$concept">
-        <xsl:if test="@type='item' and $in='True'">
+            <xsl:if test="@type='item' and $in='True'">
             <xsl:variable name="adaElement" as="element()">
                 <xsl:for-each select=".">
                     <xsl:call-template name="adaElement"/>
