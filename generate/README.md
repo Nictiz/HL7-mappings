@@ -206,6 +206,9 @@ Because of the verbosity of the ANT build, the logging level is set to 1 (warnin
 
 ## Changelog
 
+### 1.1.4
+- Fixed a bug where an attribute in a non nts-namespace (for example `@xsi:*`) caused the process to crash.
+
 ### 1.1.3
 - Fixed a bug where the `-Dtestscripttools.localdir` property did not work as expected. 
 

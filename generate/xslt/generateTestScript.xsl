@@ -390,7 +390,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:attribute name="{name()}">
+        <xsl:attribute name="{name()}" namespace="{namespace-uri()}">
             <xsl:value-of select="$value"/>
         </xsl:attribute>
     </xsl:template>
