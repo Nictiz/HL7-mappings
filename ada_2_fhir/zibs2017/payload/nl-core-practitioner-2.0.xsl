@@ -89,7 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- let's use the practitioner node without specialty and organization to determine uuid, 
-                        this way the practitionerrole uuid generation can use the whole zorgverlener element for it's uuid -->
+                        this way the practitionerrole uuid generation can use the whole zorgverlener element for it's uuid and not conflict with the one for practitioner -->
                     <xsl:variable name="healthProNoOrganization" as="element()?">
                         <xsl:apply-templates select="." mode="copy4PractitionerKey"/>
                     </xsl:variable>
