@@ -238,25 +238,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="concat(substring(concat($yyyymmddHHMMSS, '00000000000000'), 1, 14), $ssZZzz)"/>
     </xsl:function>
 
-    <xd:doc>
-        <xd:desc>Returns whether an @id attribute exists for a certain complexType in a schemaFragment</xd:desc>
-        <xd:param name="schemaFragment">XSD SchemaFragment with complexType to evaluate</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:existsADAComplexTypeId" as="xs:boolean?">
-        <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
-        <xsl:sequence select="exists($schemaFragment/xs:attribute[@name = 'id'])"/>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Returns the type value for a named XSD element</xd:desc>
-        <xd:param name="schemaFragment">XSD Schema to retrieve the typed element from</xd:param>
-        <xd:param name="elementName">Name of the element to retrieve the type for</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:getADAComplexTypeName" as="xs:string?">
-        <xsl:param name="schemaFragment" as="node()*"/>
-        <xsl:param name="elementName" as="xs:string?"/>
-        <xsl:value-of select="$schemaFragment/(xs:sequence | xs:schema)/xs:element[@name = $elementName]/@type"/>
-    </xsl:function>
+  
 
     <xd:doc>
         <xd:desc> appends an HL7 date with zeros so that an XML possibly vague date or dateTime can be created </xd:desc>
