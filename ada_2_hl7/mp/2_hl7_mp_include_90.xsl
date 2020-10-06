@@ -548,7 +548,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
 
             <xsl:for-each select=".">
-                <xsl:for-each select="./toedieningsschema[.//(@value | @code)]">
+                <xsl:for-each select="toedieningsschema[.//(@value | @code)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9076_20160619200644"/>
                 </xsl:for-each>
                 <xsl:for-each select="keerdosis[.//(@value | @code)]">

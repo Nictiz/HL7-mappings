@@ -100,6 +100,7 @@
             <fileset dir="${ada.project.source.dir}/schemas">
                 <include name="*${usecase.mg}.xsd"/>
                 <include name="*${usecase.mo}.xsd"/>
+                <include name="*${usecase.vv}.xsd"/>
                 <include name="ada_meta.xsd"/>
             </fileset>
         </copy>
@@ -115,6 +116,7 @@
             <fileset dir="${refs.dir}/xml-voorbeelden/ada_instance">
                 <include name="mg*example*.xml"/>
                 <include name="mo*example*.xml"/>
+                <include name="vv*example*.xml"/>
             </fileset>
         </copy>        
 
@@ -243,7 +245,32 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-        </sequential>       
+        </sequential>   
+        
+        <!-- beschikbaarstellen_verstrekkingenvertaling -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vv*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>   
           
     </target>
     
