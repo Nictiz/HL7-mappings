@@ -24,7 +24,7 @@
         <!-- beschikbaarstellen_verstrekkingenvertaling -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vv}"/>
-            <param name="schema.string" value="*${usecase.vv}*"/>
+            <param name="schema.string" value="*${usecase.vv}.xsd"/>
             <param name="fileset.dir" value="hl7_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.vv}"/>
@@ -72,7 +72,5 @@
         <!-- nothing yet --> 
         
     </target>
-    
-    
 
 </project>

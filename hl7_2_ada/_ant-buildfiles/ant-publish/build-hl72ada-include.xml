@@ -93,6 +93,7 @@
             <echo>${echo.label} ${xsl.hl72ada} input dir ${xsl.input}</echo>
             <xslt force="true" style="${xsl.hl72ada}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesMP"/>
+                <param name="outputSchemaRef" expression="${output.ada.schemaref}" if="output.ada.schemaref"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>

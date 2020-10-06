@@ -12,8 +12,7 @@
     <property name="project.version" value="1.0.0"/>
     <property name="build.dir" value="../.."/>
     <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}"/>
-    <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\${is.version}"/>
-
+ 
     <!-- place import exactly here, otherwise it can't resolve the properties above, or we can't resolve some properties below, such as ${echo.label.in} -->
     <import file="../../../_ant-buildfiles/ant-publish/build-hl72ada-include.xml"/>
 
@@ -21,17 +20,22 @@
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
 
     <property name="usecase.aiv" value="beschikbaarstellen_allergie_intolerantie_vertaling"/>
+    <property name="usecase.icv" value="beschikbaarstellen_icavertaling"/>
 
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir -->
 
         <!-- beschikbaarstellen_allergie_intolerantie_vertaling -->
         <antcall target="setup_sub_schemas">
-            <param name="schema.string" value="*${usecase.aiv}*"/>
+            <param name="schema.string" value="*${usecase.aiv}.xsd"/>
+            <param name="sub.build.dir" value="${build.dir}/${usecase.aiv}"/>
         </antcall>
         
-        <!-- let's convert too, now that we are her -->
-        <antcall target="convert_hl7_2_ada"/>
+        <!-- beschikbaarstellen_icavertaling -->
+        <antcall target="setup_sub_schemas">
+            <param name="schema.string" value="*${usecase.icv}.xsd"/>
+            <param name="sub.build.dir" value="${build.dir}/${usecase.icv}"/>
+        </antcall>
     </target>
 
     <target name="convert_hl7_2_ada">
@@ -40,6 +44,14 @@
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.aiv}"/>
             <param name="xsl.name" value="payload/${usecase.aiv}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- convert beschikbaarstellen_icavertaling -->
+        <antcall target="convert_hl7_2_ada_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.icv}"/>
+            <param name="xsl.name" value="payload/${usecase.icv}_hl7_2_ada.xsl"/>
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>

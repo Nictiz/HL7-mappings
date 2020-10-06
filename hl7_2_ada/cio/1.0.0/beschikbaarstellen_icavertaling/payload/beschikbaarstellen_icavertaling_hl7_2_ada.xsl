@@ -17,9 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xd:doc>
         <xd:desc>Conversion ICA 6.12 to CIO 1.0 icavertaling transaction</xd:desc>
-        <xd:param name="xsdAda">Optional. The ada xsd belonging to the transaction being converted. 
-            Needed to find the appropriate conceptId's for ADA xml.</xd:param>
-    </xd:doc>
+      </xd:doc>
 
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
@@ -56,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:if test="$ica612Root">
-            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../projects/cio/schemas/ada_beschikbaarstellen_icavertaling.xsd">
+            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_icavertaling.xsd">
                 <meta status="new" created-by="generated" last-update-by="generated">
                     <xsl:attribute name="creation-date" select="current-dateTime()"/>
                     <xsl:attribute name="last-update-date" select="current-dateTime()"/>

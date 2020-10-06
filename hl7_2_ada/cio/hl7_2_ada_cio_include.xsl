@@ -65,30 +65,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <!-- variable which contains all information needed to create ada problem (reference) for transaction beschikbaarstellen_icavertaling -->
     <!--  <xsl:variable name="problems" as="element(problems)*">
-        <xsl:variable name="schema" select="$xsdAda"/>
-        <xsl:variable name="schemaFragment" select="$xsdTransaction"/>
-
+       
         <problems>
             <xsl:for-each select="//hl7:Condition[hl7:code/@code = ('DX')][not(@negationInd = 'true')]">
                 <problem_information>
                     <!-\- 6.12 ica Condition this problem belongs to -\->
                     <condition_id extension="{hl7:id/@extension}" root="{hl7:id/@root}"/>
-
-                    <xsl:call-template name="HandleProblem">
-                        
-                        
+        <xsl:call-template name="HandleProblem">
                     </xsl:call-template>
-
-                </problem_information>
+     </problem_information>
             </xsl:for-each>
         </problems>
     </xsl:variable>
   -->
     <!-- variable which contains all information needed to create ada healthcare professional (reference)  -->
     <!--  <xsl:variable name="healthProfessional" as="element()*">
-        <xsl:variable name="schema" select="$xsdAda"/>
-        <xsl:variable name="schemaFragment" select="$xsdTransaction"/>
-
+   
         <health_professionals>
             <xsl:for-each select="//hl7:Condition/hl7:informant/hl7:assignedPerson">
                 <health_professional_information>

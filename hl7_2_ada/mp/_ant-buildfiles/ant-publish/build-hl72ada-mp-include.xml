@@ -31,7 +31,7 @@
         <!-- sturen_medicatievoorschrift -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="schema.string" value="*${usecase.mv}*"/>
+            <param name="schema.string" value="*${usecase.mv}.xsd"/>
             <param name="fileset.dir" value="cda_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
@@ -40,7 +40,7 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
-            <param name="schema.string" value="*${usecase.mg}*"/>
+            <param name="schema.string" value="*${usecase.mg}.xsd"/>
             <param name="fileset.dir" value="hl7_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
@@ -49,7 +49,7 @@
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
-            <param name="schema.string" value="*${usecase.mo}*"/>
+            <param name="schema.string" value="*${usecase.mo}.xsd"/>
             <param name="fileset.dir" value="hl7_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>

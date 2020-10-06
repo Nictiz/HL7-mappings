@@ -169,14 +169,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="PIVL_TS-HD"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-toedieningsschema"/>
     </xd:doc>
     <xsl:template name="mp9-dagdeel">
         <xsl:param name="PIVL_TS-HD"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-toedieningsschema"/>
-        <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'dagdeel']/@type"/>
         <!-- Nacht -->
         <xsl:for-each select="$PIVL_TS-HD[hl7nl:phase/hl7nl:low/@value = '1970010100']">
             <dagdeel code="2546009" displayName="'s nachts" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
@@ -198,14 +193,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="current-hl7-mar"/>
         <xd:param name="hl7-pivl"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-gebruiksinstructie"/>
     </xd:doc>
     <xsl:template name="mp9-doseerinstructie-from-mp612-cyclisch">
         <xsl:param name="current-hl7-mar"/>
         <xsl:param name="hl7-pivl"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-gebruiksinstructie"/>
         <xsl:comment>mp9-doseerinstructie-from-mp612-cyclisch</xsl:comment>
         <!-- herhaalperiode_cyclisch_schema -->
         <xsl:variable name="hl7-herhaal-periode" select="$hl7-pivl[hl7:phase[hl7:width]]/hl7:period"/>
@@ -224,39 +215,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- if only a cyclical schedule is communicated that is still outputted, but it is not communicated then how many times a day the medication should be taken -->
             <xsl:when test="$aantal_distinct_cyclisch = 1 and ($aantal-delen-cyclisch = count($hl7-pivl) - 1 or $aantal-delen-cyclisch = count($hl7-pivl))">
                 <xsl:for-each select="$hl7-herhaal-periode[1]">
-                    <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'herhaalperiode_cyclisch_schema']/@type"/>
-                    <herhaalperiode_cyclisch_schema value="{./@value}" unit="{./@unit}"/>
+                    <herhaalperiode_cyclisch_schema value="{@value}" unit="{@unit}"/>
                 </xsl:for-each>
                 <!-- doseerinstructie -->
                 <xsl:for-each select="$hl7-pivl[hl7:phase[hl7:width]]">
-                    <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
-                    <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
                     <doseerinstructie>
                         <!-- volgnummer niet opnemen, is altijd 1 voor deze conversie -->
                         <!-- doseerduur cyclisch schema -->
-                        <xsl:for-each select="./hl7:phase/hl7:width">
-                            <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'doseerduur']/@type"/>
-                            <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                        <xsl:for-each select="hl7:phase/hl7:width">
+                            <doseerduur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                         </xsl:for-each>
                         <!-- dosering, in 6.12 kan er maar één zijn per mar dus per doseerinstructie -->
                         <!-- in MP 9 mag dosering weer herhalen binnen een doseerinstructie, maar dit kan niet met 6.12 -->
-                        <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
-                        <xsl:variable name="xsd-dosering" select="$xsd-ada//xs:complexType[@name = $xsd-dosering-complexType]"/>
                         <dosering>
                             <!-- keerdosis -->
                             <xsl:call-template name="mp9-keerdosis">
                                 <xsl:with-param name="hl7-doseQuantity" select="$current-hl7-mar/doseQuantity"/>
-
-                                <xsl:with-param name="xsd-dosering" select="$xsd-dosering"/>
                             </xsl:call-template>
                             <!-- toedieningsschema -->
-                            <xsl:variable name="xsd-toedieningsschema-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsschema']/@type"/>
-                            <xsl:variable name="xsd-toedieningsschema" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningsschema-complexType]"/>
                             <toedieningsschema>
                                 <xsl:call-template name="mp9-vaste-frequentie-from-mp-612">
                                     <xsl:with-param name="current-hl7-pivl" select="$hl7-pivl[not(hl7:phase)]"/>
-
-                                    <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
                                 </xsl:call-template>
                             </toedieningsschema>
                             <!-- zo nodig -->
@@ -264,8 +243,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="mp9-zonodig">
                                     <xsl:with-param name="max-dose" select="./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity"/>
                                     <xsl:with-param name="zonodig-code" select="./ancestor::hl7:medicationAdministrationRequest/hl7:precondition/hl7:observationEventCriterion/hl7:code"/>
-
-                                    <xsl:with-param name="xsd-dosering" select="$xsd-dosering"/>
                                 </xsl:call-template>
                             </xsl:if>
                             <!-- toedieningssnelheid en toedieningsduur niet ondersteund in 6.12-->
@@ -305,40 +282,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="current-hl7-mar"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-gebruiksinstructie"/>
     </xd:doc>
     <xsl:template name="mp9-doseerinstructie-from-mp612-eenmalig">
         <xsl:param name="current-hl7-mar"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-gebruiksinstructie"/>
         <xsl:comment>mp9-doseerinstructie-from-mp612-eenmalig</xsl:comment>
         <xsl:for-each select="$current-hl7-mar">
-            <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
-            <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
             <doseerinstructie>
                 <!-- volgnummer niet opnemen, is altijd 1 voor deze conversie -->
                 <!-- dosering, in 6.12 kan er maar één zijn per mar dus per doseerinstructie -->
                 <!-- in MP 9 mag dosering weer herhalen binnen een doseerinstructie, maar dit kan niet met 6.12 -->
-                <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
-                <xsl:variable name="xsd-dosering" select="$xsd-ada//xs:complexType[@name = $xsd-dosering-complexType]"/>
                 <dosering>
                     <!-- keerdosis -->
                     <xsl:call-template name="mp9-keerdosis">
-                        <xsl:with-param name="hl7-doseQuantity" select="./hl7:doseQuantity"/>
-
-                        <xsl:with-param name="xsd-dosering" select="$xsd-dosering"/>
+                        <xsl:with-param name="hl7-doseQuantity" select="hl7:doseQuantity"/>
                     </xsl:call-template>
-                    <xsl:variable name="xsd-toedieningsschema-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsschema']/@type"/>
-                    <xsl:variable name="xsd-toedieningsschema" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningsschema-complexType]"/>
                     <toedieningsschema>
-                        <xsl:variable name="xsd-frequentie-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'frequentie']/@type"/>
-                        <xsl:variable name="xsd-frequentie" select="$xsd-ada//xs:complexType[@name = $xsd-frequentie-complexType]"/>
                         <frequentie>
-                            <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
-                            <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
                             <aantal>
-                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
                                 <vaste_waarde value="1"/>
                             </aantal>
                         </frequentie>
@@ -351,30 +311,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Doseerinstructie met toedientijd(en) voor MP 6.12</xd:desc>
         <xd:param name="current-hl7-mar">Het huidige HL7 element voor medicationAdministrationRequest</xd:param>
         <xd:param name="hl7-pivl">Het HL7 element met PIVL_TS</xd:param>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-gebruiksinstructie"/>
     </xd:doc>
     <xsl:template name="mp9-doseerinstructie-from-mp612-tijden">
         <xsl:param name="current-hl7-mar"/>
         <xsl:param name="hl7-pivl"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-gebruiksinstructie"/>
         <xsl:comment>mp9-doseerinstructie-from-mp612-tijden</xsl:comment>
         <xsl:for-each select="$current-hl7-mar">
-            <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
-            <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
             <doseerinstructie>
                 <!-- volgnummer niet opnemen, is altijd 1 voor deze conversie -->
                 <!-- dosering, in 6.12 kan er maar één zijn per mar dus per doseerinstructie -->
                 <!-- in MP 9 mag dosering weer herhalen binnen een doseerinstructie, maar dit kan niet met 6.12 -->
-                <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
-                <xsl:variable name="xsd-dosering" select="$xsd-ada//xs:complexType[@name = $xsd-dosering-complexType]"/>
                 <dosering>
                     <!-- keerdosis -->
                     <xsl:call-template name="mp9-keerdosis">
-                        <xsl:with-param name="hl7-doseQuantity" select="./hl7:doseQuantity"/>
-
-                        <xsl:with-param name="xsd-dosering" select="$xsd-dosering"/>
+                        <xsl:with-param name="hl7-doseQuantity" select="hl7:doseQuantity"/>
                     </xsl:call-template>
 
                     <!-- toedieningsschema -->
@@ -429,9 +379,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="./hl7:precondition/hl7:observationEventCriterion/hl7:code | ./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity">
                         <xsl:call-template name="mp9-zonodig">
                             <xsl:with-param name="max-dose" select="./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity"/>
-                            <xsl:with-param name="zonodig-code" select="./hl7:precondition/hl7:observationEventCriterion/hl7:code"/>
-
-                            <xsl:with-param name="xsd-dosering" select="$xsd-dosering"/>
+                            <xsl:with-param name="zonodig-code" select="hl7:precondition/hl7:observationEventCriterion/hl7:code"/>
                         </xsl:call-template>
                     </xsl:if>
                     <!-- toedieningssnelheid en toedieningsduur niet ondersteund in 6.12-->
@@ -521,15 +469,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
-        <!-- <xsl:for-each select="$hl7-mar">
-            <xsl:variable name="hl7-pivl" select=".//*[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')]"/>
-            <xsl:call-template name="mp9-doseerinstructie-from-mp612-freq">
-                <xsl:with-param name="current-hl7-mar" select="."/>
-                <xsl:with-param name="hl7-pivl" select="$hl7-pivl"/>
-                <xsl:with-param name="xsd-gebruiksinstructie" select="$xsd-gebruiksinstructie"/>
-                
-            </xsl:call-template>
-        </xsl:for-each>-->
     </xsl:template>
     <xd:doc>
         <xd:desc/>
@@ -541,26 +480,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="hl7-pivl"/>
         <xsl:comment>mp9-doseerinstructie-from-mp612-freq</xsl:comment>
         <xsl:for-each select="$current-hl7-mar">
-             <doseerinstructie>
+            <doseerinstructie>
                 <!-- volgnummer niet opnemen, is altijd 1 voor deze conversie -->
                 <!-- dosering, in 6.12 kan er maar één zijn per mar dus per doseerinstructie -->
                 <!-- in MP 9 mag dosering weer herhalen binnen een doseerinstructie, maar dit kan niet met 6.12 -->
-                 <dosering>
+                <dosering>
                     <!-- keerdosis -->
                     <xsl:call-template name="mp9-keerdosis">
-                        <xsl:with-param name="hl7-doseQuantity" select="./hl7:doseQuantity"/>
-    </xsl:call-template>
-                      <toedieningsschema>
+                        <xsl:with-param name="hl7-doseQuantity" select="hl7:doseQuantity"/>
+                    </xsl:call-template>
+                    <toedieningsschema>
                         <xsl:call-template name="mp9-vaste-frequentie-from-mp-612">
                             <xsl:with-param name="current-hl7-pivl" select="$hl7-pivl"/>
-        </xsl:call-template>
+                        </xsl:call-template>
                     </toedieningsschema>
                     <!-- eventueel een zo nodig criterium -->
                     <xsl:if test="./hl7:precondition/hl7:observationEventCriterion/hl7:code | ./hl7:maxDoseQuantity">
                         <xsl:call-template name="mp9-zonodig">
-                            <xsl:with-param name="max-dose" select="./hl7:maxDoseQuantity"/>
-                            <xsl:with-param name="zonodig-code" select="./hl7:precondition/hl7:observationEventCriterion/hl7:code"/>
-       </xsl:call-template>
+                            <xsl:with-param name="max-dose" select="hl7:maxDoseQuantity"/>
+                            <xsl:with-param name="zonodig-code" select="hl7:precondition/hl7:observationEventCriterion/hl7:code"/>
+                        </xsl:call-template>
                     </xsl:if>
                     <!-- toedieningssnelheid en toedieningsduur niet ondersteund in 6.12-->
                 </dosering>
@@ -572,13 +511,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="effectiveTimes-eenmalig"/>
         <xd:param name="hl7-current-comp"/>
         <xd:param name="mar-sorted"/>
-      </xd:doc>
+    </xd:doc>
     <xsl:template name="mp9-gebruiksinstructie-from-mp612-2">
         <xsl:param name="effectiveTimes-eenmalig"/>
         <xsl:param name="hl7-current-comp" select="." as="element()?"/>
         <xsl:param name="mar-sorted"/>
         <!-- gebruiksinstructie -->
-       <xsl:comment>mp9-gebruiksinstructie-from-mp612-2</xsl:comment>
+        <xsl:comment>mp9-gebruiksinstructie-from-mp612-2</xsl:comment>
         <gebruiksinstructie>
             <!-- omschrijving -->
             <xsl:variable name="omschrijving">
@@ -654,14 +593,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="count($effectiveTimes-eenmalig) = 1 and count($mar-sorted) = 1">
                     <xsl:call-template name="mp9-doseerinstructie-from-mp612-eenmalig">
                         <xsl:with-param name="current-hl7-mar" select="$mar-sorted"/>
-      </xsl:call-template>
+                    </xsl:call-template>
                 </xsl:when>
                 <!-- frequentie, in 1 mar in 1 PIVL_TS (zonder phase) -->
                 <xsl:when test="count($mar-sorted) = 1 and not($hl7-pivl[hl7:phase]) and (count($hl7-pivl[not(hl7:phase)]) = 1 or not($hl7-pivl))">
                     <xsl:call-template name="mp9-doseerinstructie-from-mp612-freq">
                         <xsl:with-param name="hl7-pivl" select="$hl7-pivl"/>
                         <xsl:with-param name="current-hl7-mar" select="$mar-sorted"/>
-      </xsl:call-template>
+                    </xsl:call-template>
                 </xsl:when>
                 <!-- variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel -->
                 <!-- fix for MP-176 : extra check on only one precondition in one of the MAR's -->
@@ -682,7 +621,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="mp9-doseerinstructie-from-mp612-freq">
                                     <xsl:with-param name="current-hl7-mar" select="."/>
                                     <xsl:with-param name="hl7-pivl" select="$hl7-pivl"/>
-                                  </xsl:call-template>
+                                </xsl:call-template>
                             </xsl:for-each>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -695,7 +634,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="mp9-doseerinstructie-from-mp612-freq">
                             <xsl:with-param name="current-hl7-mar" select="."/>
                             <xsl:with-param name="hl7-pivl" select="$hl7-pivl"/>
-                          </xsl:call-template>
+                        </xsl:call-template>
                     </xsl:for-each>
                 </xsl:when>
                 <!-- cyclisch schema (pil) in 1 mar -->
@@ -703,14 +642,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="mp9-doseerinstructie-from-mp612-cyclisch">
                         <xsl:with-param name="current-hl7-mar" select="$mar-sorted"/>
                         <xsl:with-param name="hl7-pivl" select="$hl7-pivl"/>
-      </xsl:call-template>
+                    </xsl:call-template>
                 </xsl:when>
                 <!-- toedientijden - 1 mar, meerdere comps of 1 comp of 1 effectiveTime met tijd, frequentie moet overal hetzelfde zijn en in dagen -->
                 <xsl:when test="count($mar-sorted) = 1 and $hl7-pivl[hl7:phase/hl7:center] and count(distinct-values($hl7-pivl/hl7:period/@value)) = 1 and not($hl7-pivl[hl7:period/@unit != 'd'])">
                     <xsl:call-template name="mp9-doseerinstructie-from-mp612-tijden">
                         <xsl:with-param name="current-hl7-mar" select="$mar-sorted"/>
                         <xsl:with-param name="hl7-pivl" select="$hl7-pivl"/>
-        </xsl:call-template>
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- de rest (nog) niet gestructureerd opleveren -->
@@ -718,11 +657,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- maar wel de maximale dosering, indien aanwezig in 1 MAR-->
                     <xsl:if test="count($mar-sorted) = 1 and $mar-sorted/hl7:maxDoseQuantity[.//@value]">
                         <doseerinstructie>
-                              <dosering>
+                            <dosering>
                                 <xsl:call-template name="mp9-zonodig">
                                     <!-- don't pass the zo_nodig code, only the max-dose here -->
                                     <xsl:with-param name="max-dose" select="$mar-sorted/hl7:maxDoseQuantity"/>
-               </xsl:call-template>
+                                </xsl:call-template>
                             </dosering>
                         </doseerinstructie>
                     </xsl:if>
@@ -734,10 +673,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>907</xd:desc>
         <xd:param name="in">input hl7 component</xd:param>
-      </xd:doc>
+    </xd:doc>
     <xsl:template name="mp9-gebruiksinstructie-from-mp9" match="hl7:*" mode="HandleInstructionsforuse">
         <xsl:param name="in" select="."/>
-         <xsl:for-each select="$in">
+        <xsl:for-each select="$in">
             <!-- still can refactor with new generic functions -->
             <xsl:variable name="elemName">gebruiksinstructie</xsl:variable>
             <xsl:element name="{$elemName}">
@@ -785,15 +724,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <!-- doseerduur in Cyclisch doseerschema. -->
                             <xsl:when test="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
-                                <xsl:for-each select="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
+                                <xsl:for-each select="hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
                                     <xsl:call-template name="mp9-duration">
-                                       <xsl:with-param name="elemName" select="$elemName"/>
+                                        <xsl:with-param name="elemName" select="$elemName"/>
                                     </xsl:call-template>
                                 </xsl:for-each>
                             </xsl:when>
                             <!-- overige gevallen -->
                             <xsl:otherwise>
-                                <xsl:for-each select="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')]/hl7:width">
+                                <xsl:for-each select="hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')]/hl7:width">
                                     <xsl:call-template name="mp9-duration">
                                         <xsl:with-param name="elemName" select="$elemName"/>
                                     </xsl:call-template>
@@ -869,7 +808,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Eenvoudig doseerschema met alleen vast tijdstip.-->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:phase[not(hl7nl:width)]]">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:phase[not(hl7nl:width)]]">
                                             <xsl:variable name="elemName">is_flexibel</xsl:variable>
                                             <xsl:element name="{$elemName}">
                                                 <xsl:choose>
@@ -890,7 +829,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Doseerschema met toedieningsduur. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)][hl7nl:phase[hl7nl:width]]">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)][hl7nl:phase[hl7nl:width]]">
                                             <xsl:comment>Doseerschema met toedieningsduur.</xsl:comment>
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
 
@@ -937,17 +876,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:if>
 
                                         <!-- Cyclisch doseerschema. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
                                         </xsl:for-each>
 
                                         <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:count]/hl7nl:count">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:count]/hl7nl:count">
                                             <frequentie>
-                                                 <aantal>
+                                                <aantal>
                                                     <xsl:choose>
                                                         <xsl:when test="@value">
-                                                              <vaste_waarde value="{./@value}"/>
+                                                            <vaste_waarde value="{@value}"/>
                                                         </xsl:when>
                                                         <xsl:when test="hl7nl:uncertainRange[.//(@value | @nullFlavor)]">
                                                             <xsl:for-each select="hl7nl:uncertainRange/hl7nl:low[@value | @nullFlavor]">
@@ -969,14 +908,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Doseerschema één keer per week op één weekdag. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']">
+                                        <xsl:for-each select="hl7:effectiveTime[@alignment = 'DW']">
                                             <xsl:for-each select="./hl7nl:period">
-                                                  <frequentie>
-                                                     <aantal>
-                                                         <!-- altijd 1, 1 keer per week of 1 keer per 2 weken et cetera -->
+                                                <frequentie>
+                                                    <aantal>
+                                                        <!-- altijd 1, 1 keer per week of 1 keer per 2 weken et cetera -->
                                                         <vaste_waarde value="1"/>
                                                     </aantal>
-                                                      <tijdseenheid value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                                                    <tijdseenheid value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                                 </frequentie>
                                             </xsl:for-each>
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123_only_phase_low">
@@ -985,10 +924,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Complexer doseerschema met weekdag(en). -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'DW']">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'DW']">
                                             <xsl:comment>Complexer doseerschema met weekdag(en).</xsl:comment>
                                             <!-- de frequentie van inname op de weekdag, bijvoorbeeld: 3x per dag iedere woensdag. 3x per dag is dan de frequentie hier -->
-                                            <xsl:for-each select="./hl7:comp[xs:string(@isFlexible) = 'true' and hl7nl:frequency]">
+                                            <xsl:for-each select="hl7:comp[xs:string(@isFlexible) = 'true' and hl7nl:frequency]">
                                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
                                             </xsl:for-each>
                                             <!-- Als niet alle weekdagen in deze dosering dezelfde toedientijden en period (frequentie van 1 maal per week of 1 maal per 2 weken) 
@@ -996,7 +935,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 niet aan het MP-9 datamodel, want daarvoor moet een separate - parallelle - dosering worden aangemaakt -->
                                             <!-- deze variablel days-with-times verzamelt de relevante gegevens uit hl7 in een overzichtelijk geheel -->
                                             <xsl:variable name="days-with-times" as="element(days)*">
-                                                <xsl:for-each select="./hl7:comp[@alignment = 'DW']">
+                                                <xsl:for-each select="hl7:comp[@alignment = 'DW']">
                                                     <xsl:variable name="hl7-weekdag" select="substring(./hl7nl:phase/hl7nl:low/@value, 1, 8)"/>
                                                     <xsl:variable name="hl7-tijd" select="substring(./hl7nl:phase/hl7nl:low/@value, 9, 6)"/>
                                                     <xsl:variable name="hl7-period" select="./hl7nl:period"/>
@@ -1011,10 +950,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <!-- deze variable groepeert de $days-with-times per dag -->
                                             <xsl:variable name="day-with-times" as="element(day)*">
                                                 <xsl:for-each-group select="$days-with-times" group-by="./@value">
-                                                    <day value="{./@value}">
+                                                    <day value="{@value}">
                                                         <xsl:for-each select="current-group()">
                                                             <xsl:sort select="./@time"/>
-                                                            <times period-value="{./@period-value}" period-unit="{./@period-unit}">
+                                                            <times period-value="{@period-value}" period-unit="{@period-unit}">
                                                                 <xsl:if test="./@time">
                                                                     <xsl:attribute name="value" select="./@time"/>
                                                                 </xsl:if>
@@ -1026,12 +965,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <!-- Deze variable groepeert de $days-with-times per frequentie. Er mag eigenlijk maar 1 frequentie zijn.... -->
                                             <xsl:variable name="frequency-with-daytimes" as="element(frequency)*">
                                                 <xsl:for-each-group select="$days-with-times" group-by="./concat(@period-value, @period-unit)">
-                                                    <frequency value="{./@period-value}" unit="{./@period-unit}">
+                                                    <frequency value="{@period-value}" unit="{@period-unit}">
                                                         <xsl:for-each-group select="current-group()" group-by="./@value">
-                                                            <day value="{./@value}">
+                                                            <day value="{@value}">
                                                                 <xsl:for-each select="current-group()">
                                                                     <xsl:sort select="./@time"/>
-                                                                    <times period-value="{./@period-value}" period-unit="{./@period-unit}">
+                                                                    <times period-value="{@period-value}" period-unit="{@period-unit}">
                                                                         <xsl:if test="./@time">
                                                                             <xsl:attribute name="value" select="./@time"/>
                                                                         </xsl:if>
@@ -1054,7 +993,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                             <toedientijd value="{.}"/>
                                                         </xsl:for-each>
                                                         <xsl:for-each select="current-group()">
-                                                            <weekdag value="{./@value}"/>
+                                                            <weekdag value="{@value}"/>
                                                         </xsl:for-each>
                                                     </times>
                                                 </xsl:for-each-group>
@@ -1066,15 +1005,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <!-- Frequentie wanneer anders dan 1 keer per week -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/frequentie">
                                                         <frequentie>
-                                                              <aantal>
-                                                                 <vaste_waarde value="1"/>
+                                                            <aantal>
+                                                                <vaste_waarde value="1"/>
                                                             </aantal>
-                                                            <tijdseenheid value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                                                            <tijdseenheid value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                                         </frequentie>
                                                     </xsl:for-each>
                                                     <!-- Eerst alle toedientijden -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/toedientijd">
-                                                         <toedientijd value="{nf:formatHL72VagueAdaDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}"/>
+                                                        <toedientijd value="{nf:formatHL72VagueAdaDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}"/>
                                                     </xsl:for-each>
                                                     <!-- Daarna alle weekdagen -->
                                                     <xsl:variable name="elemName">is_flexibel</xsl:variable>
@@ -1096,7 +1035,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                                                     <!-- Daarna alle weekdagen -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/weekdag">
-                                                         <weekdag>
+                                                        <weekdag>
                                                             <xsl:call-template name="mp9-weekdag-attribs">
                                                                 <xsl:with-param name="day-of-week" select="./@value"/>
                                                             </xsl:call-template>
@@ -1114,10 +1053,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Doseerschema met één dagdeel -->
-                                        <xsl:for-each select="./hl7:effectiveTime[@alignment = 'HD']">
+                                        <xsl:for-each select="hl7:effectiveTime[@alignment = 'HD']">
                                             <xsl:call-template name="mp9-dagdeel">
                                                 <xsl:with-param name="PIVL_TS-HD" select="."/>
-                    </xsl:call-template>
+                                            </xsl:call-template>
                                         </xsl:for-each>
 
                                         <!-- Complexer doseerschema met meer dan één dagdeel. -->
@@ -1126,7 +1065,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:for-each select="$doseSchema">
                                                 <xsl:call-template name="mp9-dagdeel">
                                                     <xsl:with-param name="PIVL_TS-HD" select="."/>
-                     </xsl:call-template>
+                                                </xsl:call-template>
                                             </xsl:for-each>
                                         </xsl:if>
 
@@ -1164,7 +1103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </zo_nodig>
                                 </xsl:if>
                                 <!-- toedieningssnelheid -->
-                                <xsl:for-each select="./hl7:rateQuantity">
+                                <xsl:for-each select="hl7:rateQuantity">
                                     <xsl:variable name="ucum-rate-eenheden" select="./*/@unit"/>
                                     <xsl:variable name="ucum-rate-eenheid">
                                         <xsl:if test="
@@ -1177,14 +1116,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:when test="string-length($ucum-rate-eenheid) gt 0">
                                             <toedieningssnelheid>
                                                 <waarde>
-                                                    <xsl:for-each select="./hl7:low">
-                                                        <min value="{./@value}"/>
+                                                    <xsl:for-each select="hl7:low">
+                                                        <min value="{@value}"/>
                                                     </xsl:for-each>
-                                                    <xsl:for-each select="./hl7:center">
-                                                        <vaste_waarde value="{./@value}"/>
+                                                    <xsl:for-each select="hl7:center">
+                                                        <vaste_waarde value="{@value}"/>
                                                     </xsl:for-each>
-                                                    <xsl:for-each select="./hl7:high">
-                                                        <max value="{./@value}"/>
+                                                    <xsl:for-each select="hl7:high">
+                                                        <max value="{@value}"/>
                                                     </xsl:for-each>
                                                 </waarde>
                                                 <xsl:variable name="ucum-eenheid" select="substring-before($ucum-rate-eenheid, '/')"/>
@@ -1221,12 +1160,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:choose>
                                 </xsl:for-each>
                                 <!-- Doseerschema met toedieningsduur. -->
-                                <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
-                                     <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                                <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
+                                    <toedieningsduur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                 </xsl:for-each>
                                 <!-- Doseerschema één keer per week op één weekdag met toedieningsduur -->
-                                <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']/hl7nl:phase/hl7nl:width">
-                                     <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                                <xsl:for-each select="hl7:effectiveTime[@alignment = 'DW']/hl7nl:phase/hl7nl:width">
+                                    <toedieningsduur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                 </xsl:for-each>
                             </xsl:element>
                         </xsl:for-each>
@@ -1239,18 +1178,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>910</xd:desc>
         <xd:param name="in">input hl7 component</xd:param>
-        <xd:param name="schema">ada schema</xd:param>
-        <xd:param name="schemaFragment">Fragment of schema of parent of current element being outputted</xd:param>
     </xd:doc>
     <xsl:template name="mp9-gebruiksinstructie-from-mp910" match="hl7:*" mode="HandleInstructionsforuse910">
         <xsl:param name="in" select="."/>
-        <xsl:param name="schema"/>
-        <xsl:param name="schemaFragment"/>
         <xsl:for-each select="$in">
             <!-- gebruiksinstructie -->
             <xsl:variable name="elemName">gebruiksinstructie</xsl:variable>
             <xsl:element name="{$elemName}">
-
 
                 <!-- omschrijving -->
                 <xsl:for-each select="hl7:text">
@@ -1296,38 +1230,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <!-- doseerduur in Cyclisch doseerschema. -->
                             <xsl:when test="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
-                                <xsl:for-each select="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
+                                <xsl:for-each select="hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
                                     <xsl:call-template name="mp9-duration">
                                         <xsl:with-param name="elemName" select="$elemName"/>
-
-
                                     </xsl:call-template>
                                 </xsl:for-each>
                             </xsl:when>
                             <!-- overige gevallen -->
                             <xsl:otherwise>
-                                <xsl:for-each select="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')]/hl7:width">
+                                <xsl:for-each select="hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')]/hl7:width">
                                     <xsl:call-template name="mp9-duration">
                                         <xsl:with-param name="elemName" select="$elemName"/>
-
-
                                     </xsl:call-template>
                                 </xsl:for-each>
                             </xsl:otherwise>
                         </xsl:choose>
 
                         <!-- dosering -->
-                        <xsl:for-each select="./hl7:substanceAdministration">
+                        <xsl:for-each select="hl7:substanceAdministration">
                             <xsl:variable name="elemName">dosering</xsl:variable>
                             <xsl:element name="{$elemName}">
-
-
                                 <!-- keerdosis -->
                                 <xsl:for-each select="hl7:doseQuantity">
                                     <xsl:variable name="elemName">keerdosis</xsl:variable>
                                     <xsl:element name="{$elemName}">
-
-
                                         <!-- aantal -->
                                         <xsl:variable name="elemName">aantal</xsl:variable>
                                         <xsl:element name="{$elemName}">
@@ -1415,7 +1341,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Eenvoudig doseerschema met één vast tijdstip. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:phase[not(hl7nl:width)]]">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:phase[not(hl7nl:width)]]">
                                             <!-- output the toedieningstijd -->
                                             <xsl:variable name="elemName">toedientijd</xsl:variable>
                                             <xsl:call-template name="handleTS">
@@ -1440,7 +1366,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Doseerschema met toedieningsduur. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)][hl7nl:phase[hl7nl:width]]">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)][hl7nl:phase[hl7nl:width]]">
                                             <xsl:comment>Doseerschema met toedieningsduur.</xsl:comment>
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
                                             <xsl:for-each select="hl7nl:phase/hl7nl:low">
@@ -1471,6 +1397,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <!--Doseerschema met meer dan één vast tijdstip.-->
                                         <xsl:variable name="doseSchema" select="hl7:effectiveTime[hl7:comp[not(@alignment)][hl7nl:period][hl7nl:phase[not(hl7nl:width)]]][not(hl7:comp/@alignment)][not(hl7:comp[not(hl7nl:period)])][not(hl7:comp[not(hl7nl:phase[not(hl7nl:width)])])]/hl7:comp"/>
                                         <xsl:if test="$doseSchema">
+                                            <xsl:for-each select="$doseSchema">
+                                                <!-- output the toedieningstijd -->
+                                                <xsl:variable name="elemName">toedientijd</xsl:variable>
+                                                <xsl:call-template name="handleTS">
+                                                    <xsl:with-param name="in" select="hl7nl:phase/hl7nl:low"/>
+                                                    <xsl:with-param name="elemName" select="$elemName"/>
+
+                                                    <xsl:with-param name="vagueDate" select="true()"/>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
                                             <!-- is_flexibel -->
                                             <xsl:variable name="elemName">is_flexibel</xsl:variable>
                                             <xsl:element name="{$elemName}">
@@ -1490,16 +1426,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </xsl:choose>
 
                                             </xsl:element>
-                                            <xsl:for-each select="$doseSchema">
-                                                <!-- output the toedieningstijd -->
-                                                <xsl:variable name="elemName">toedientijd</xsl:variable>
-                                                <xsl:call-template name="handleTS">
-                                                    <xsl:with-param name="in" select="hl7nl:phase/hl7nl:low"/>
-                                                    <xsl:with-param name="elemName" select="$elemName"/>
-
-                                                    <xsl:with-param name="vagueDate" select="true()"/>
-                                                </xsl:call-template>
-                                            </xsl:for-each>
                                         </xsl:if>
 
                                         <!-- Cyclisch doseerschema. -->
@@ -1521,29 +1447,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:count]/hl7nl:count">
-                                            <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragment//xs:element[@name = 'frequentie']/@type"/>
-                                            <xsl:variable name="xsd-frequentie" select="$schema//xs:complexType[@name = $xsd-frequentie-complexType]"/>
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:count]/hl7nl:count">
                                             <frequentie>
-                                                <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
-                                                <xsl:variable name="xsd-aantal" select="$schema//xs:complexType[@name = $xsd-aantal-complexType]"/>
                                                 <aantal>
                                                     <xsl:choose>
                                                         <xsl:when test="@value">
-                                                            <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
-                                                            <vaste_waarde value="{./@value}"/>
+                                                            <vaste_waarde value="{@value}"/>
                                                         </xsl:when>
                                                         <xsl:when test="hl7nl:uncertainRange[.//(@value | @nullFlavor)]">
                                                             <xsl:for-each select="hl7nl:uncertainRange/hl7nl:low[@value | @nullFlavor]">
-                                                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'min']/@type"/>
                                                                 <xsl:call-template name="handleINT">
                                                                     <xsl:with-param name="elemName">min</xsl:with-param>
                                                                     <xsl:with-param name="in" select="."/>
-
                                                                 </xsl:call-template>
                                                             </xsl:for-each>
                                                             <xsl:for-each select="hl7nl:uncertainRange/hl7nl:high[@value | @nullFlavor]">
-                                                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'max']/@type"/>
                                                                 <xsl:call-template name="handleINT">
                                                                     <xsl:with-param name="elemName">max</xsl:with-param>
                                                                     <xsl:with-param name="in" select="."/>
@@ -1569,34 +1487,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Doseerschema één keer per week op één weekdag. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']">
+                                        <xsl:for-each select="hl7:effectiveTime[@alignment = 'DW']">
                                             <xsl:for-each select="./hl7nl:period">
-                                                <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragment//xs:element[@name = 'frequentie']/@type"/>
-                                                <xsl:variable name="xsd-frequentie" select="$schema//xs:complexType[@name = $xsd-frequentie-complexType]"/>
                                                 <frequentie>
-                                                    <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
-                                                    <xsl:variable name="xsd-aantal" select="$schema//xs:complexType[@name = $xsd-aantal-complexType]"/>
                                                     <aantal>
-                                                        <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
                                                         <!-- altijd 1, 1 keer per week of 1 keer per 2 weken et cetera -->
                                                         <vaste_waarde value="1"/>
                                                     </aantal>
-                                                    <xsl:variable name="xsd-complexType" select="$xsd-frequentie//xs:element[@name = 'tijdseenheid']/@type"/>
-                                                    <tijdseenheid value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                                                    <tijdseenheid value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                                 </frequentie>
                                             </xsl:for-each>
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123_only_phase_low">
                                                 <xsl:with-param name="current_PIVL" select="."/>
-
-
                                             </xsl:call-template>
                                         </xsl:for-each>
 
                                         <!-- Complexer doseerschema met weekdag(en). -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'DW']">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'DW']">
                                             <xsl:comment>Complexer doseerschema met weekdag(en).</xsl:comment>
                                             <!-- de frequentie van inname op de weekdag, bijvoorbeeld: 3x per dag iedere woensdag. 3x per dag is dan de frequentie hier -->
-                                            <xsl:for-each select="./hl7:comp[xs:string(@isFlexible) = 'true' and hl7nl:frequency]">
+                                            <xsl:for-each select="hl7:comp[xs:string(@isFlexible) = 'true' and hl7nl:frequency]">
                                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
                                             </xsl:for-each>
                                             <!--<xsl:variable name="elemName">is_flexibel</xsl:variable>
@@ -1617,7 +1527,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 niet aan het MP-9 datamodel, want daarvoor moet een separate - parallelle - dosering worden aangemaakt -->
                                             <!-- deze variabele days-with-times verzamelt de relevante gegevens uit hl7 in een overzichtelijk geheel -->
                                             <xsl:variable name="days-with-times" as="element(days)*">
-                                                <xsl:for-each select="./hl7:comp[@alignment = 'DW']">
+                                                <xsl:for-each select="hl7:comp[@alignment = 'DW']">
                                                     <xsl:variable name="hl7-weekdag" select="substring(./hl7nl:phase/hl7nl:low/@value, 1, 8)"/>
                                                     <xsl:variable name="hl7-tijd" select="substring(./hl7nl:phase/hl7nl:low/@value, 9, 6)"/>
                                                     <xsl:variable name="hl7-period" select="./hl7nl:period"/>
@@ -1632,10 +1542,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <!-- deze variable groepeert de $days-with-times per dag -->
                                             <xsl:variable name="day-with-times" as="element(day)*">
                                                 <xsl:for-each-group select="$days-with-times" group-by="./@value">
-                                                    <day value="{./@value}">
+                                                    <day value="{@value}">
                                                         <xsl:for-each select="current-group()">
                                                             <xsl:sort select="./@time"/>
-                                                            <times period-value="{./@period-value}" period-unit="{./@period-unit}">
+                                                            <times period-value="{@period-value}" period-unit="{@period-unit}">
                                                                 <xsl:if test="./@time">
                                                                     <xsl:attribute name="value" select="./@time"/>
                                                                 </xsl:if>
@@ -1647,12 +1557,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <!-- Deze variable groepeert de $days-with-times per frequentie. Er mag eigenlijk maar 1 frequentie zijn.... -->
                                             <xsl:variable name="frequency-with-daytimes" as="element(frequency)*">
                                                 <xsl:for-each-group select="$days-with-times" group-by="./concat(@period-value, @period-unit)">
-                                                    <frequency value="{./@period-value}" unit="{./@period-unit}">
+                                                    <frequency value="{@period-value}" unit="{@period-unit}">
                                                         <xsl:for-each-group select="current-group()" group-by="./@value">
-                                                            <day value="{./@value}">
+                                                            <day value="{@value}">
                                                                 <xsl:for-each select="current-group()">
                                                                     <xsl:sort select="./@time"/>
-                                                                    <times period-value="{./@period-value}" period-unit="{./@period-unit}">
+                                                                    <times period-value="{@period-value}" period-unit="{@period-unit}">
                                                                         <xsl:if test="./@time">
                                                                             <xsl:attribute name="value" select="./@time"/>
                                                                         </xsl:if>
@@ -1675,7 +1585,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                             <toedientijd value="{.}"/>
                                                         </xsl:for-each>
                                                         <xsl:for-each select="current-group()">
-                                                            <weekdag value="{./@value}"/>
+                                                            <weekdag value="{@value}"/>
                                                         </xsl:for-each>
                                                     </times>
                                                 </xsl:for-each-group>
@@ -1686,22 +1596,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:when test="count($frequency-with-daytimes) = 1 and count($times-days-mp9-datamodel/times) = 1">
                                                     <!-- Frequentie wanneer anders dan 1 keer per week -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/frequentie">
-                                                        <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragment//xs:element[@name = 'frequentie']/@type"/>
-                                                        <xsl:variable name="xsd-frequentie" select="$schema//xs:complexType[@name = $xsd-frequentie-complexType]"/>
                                                         <frequentie>
-                                                            <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
-                                                            <xsl:variable name="xsd-aantal" select="$schema//xs:complexType[@name = $xsd-aantal-complexType]"/>
                                                             <aantal>
-                                                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
                                                                 <vaste_waarde value="1"/>
                                                             </aantal>
-                                                            <xsl:variable name="xsd-complexType" select="$xsd-frequentie//xs:element[@name = 'tijdseenheid']/@type"/>
-                                                            <tijdseenheid value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                                                            <tijdseenheid value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                                         </frequentie>
                                                     </xsl:for-each>
                                                     <!-- Eerst alle toedientijden -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/toedientijd">
-                                                        <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedientijd']/@type"/>
                                                         <toedientijd value="{nf:formatHL72VagueAdaDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}"/>
                                                     </xsl:for-each>
                                                     <!-- is_flexibel -->
@@ -1724,7 +1627,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                                                     <!-- Daarna alle weekdagen -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/weekdag">
-                                                        <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'weekdag']/@type"/>
                                                         <weekdag>
                                                             <xsl:call-template name="mp9-weekdag-attribs">
                                                                 <xsl:with-param name="day-of-week" select="./@value"/>
@@ -1743,7 +1645,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Doseerschema met één dagdeel -->
-                                        <xsl:for-each select="./hl7:effectiveTime[@alignment = 'HD']">
+                                        <xsl:for-each select="hl7:effectiveTime[@alignment = 'HD']">
                                             <!-- is_flexibel -->
                                             <xsl:variable name="elemName">is_flexibel</xsl:variable>
                                             <xsl:element name="{$elemName}">
@@ -1755,12 +1657,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
                                                     </xsl:otherwise>
                                                 </xsl:choose>
-
                                             </xsl:element>
                                             <xsl:call-template name="mp9-dagdeel">
                                                 <xsl:with-param name="PIVL_TS-HD" select="."/>
-
-                                                <xsl:with-param name="xsd-toedieningsschema" select="$schemaFragment"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
 
@@ -1783,8 +1682,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:for-each select="$doseSchema">
                                                 <xsl:call-template name="mp9-dagdeel">
                                                     <xsl:with-param name="PIVL_TS-HD" select="."/>
-
-                                                    <xsl:with-param name="xsd-toedieningsschema" select="$schemaFragment"/>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                         </xsl:if>
@@ -1824,8 +1721,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </zo_nodig>
                                 </xsl:if>
                                 <!-- toedieningssnelheid -->
-                                <xsl:for-each select="./hl7:rateQuantity">
-                                      <xsl:variable name="ucum-rate-eenheden" select="./*/@unit"/>
+                                <xsl:for-each select="hl7:rateQuantity">
+                                    <xsl:variable name="ucum-rate-eenheden" select="./*/@unit"/>
                                     <xsl:variable name="ucum-rate-eenheid">
                                         <xsl:if test="
                                                 every $i in $ucum-rate-eenheden
@@ -1837,14 +1734,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:when test="string-length($ucum-rate-eenheid) gt 0">
                                             <toedieningssnelheid>
                                                 <waarde>
-                                                    <xsl:for-each select="./hl7:low">
-                                                        <min value="{./@value}"/>
+                                                    <xsl:for-each select="hl7:low">
+                                                        <min value="{@value}"/>
                                                     </xsl:for-each>
-                                                    <xsl:for-each select="./hl7:center">
-                                                        <vaste_waarde value="{./@value}"/>
+                                                    <xsl:for-each select="hl7:center">
+                                                        <vaste_waarde value="{@value}"/>
                                                     </xsl:for-each>
-                                                    <xsl:for-each select="./hl7:high">
-                                                        <max value="{./@value}"/>
+                                                    <xsl:for-each select="hl7:high">
+                                                        <max value="{@value}"/>
                                                     </xsl:for-each>
                                                 </waarde>
                                                 <xsl:variable name="ucum-eenheid" select="substring-before($ucum-rate-eenheid, '/')"/>
@@ -1881,14 +1778,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:choose>
                                 </xsl:for-each>
                                 <!-- Doseerschema met toedieningsduur. -->
-                                <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
-                                    <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedieningsduur']/@type"/>
-                                    <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                                <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
+                                    <toedieningsduur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                 </xsl:for-each>
                                 <!-- Doseerschema één keer per week op één weekdag met toedieningsduur -->
-                                <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']/hl7nl:phase/hl7nl:width">
-                                    <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedieningsduur']/@type"/>
-                                    <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                                <xsl:for-each select="hl7:effectiveTime[@alignment = 'DW']/hl7nl:phase/hl7nl:width">
+                                    <toedieningsduur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                 </xsl:for-each>
                             </xsl:element>
                         </xsl:for-each>
@@ -1900,29 +1795,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="inputValue"/>
-        <xd:param name="xsd-comp"/>
-        <xd:param name="xsd-ada"/>
     </xd:doc>
     <xsl:template name="mp9-gebruiksperiode-eind">
         <xsl:param name="inputValue"/>
-        <xsl:param name="xsd-comp"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:variable name="xsd-complexType" select="$xsd-comp//xs:element[@name = 'gebruiksperiode_eind']/@type"/>
         <gebruiksperiode_eind value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime($inputValue), nf:determine_date_precision($inputValue))}"/>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
         <xd:param name="inputValue"/>
         <xd:param name="nullFlavor"/>
-        <xd:param name="xsd-comp"/>
-        <xd:param name="xsd-ada"/>
     </xd:doc>
     <xsl:template name="mp9-gebruiksperiode-start">
         <xsl:param name="inputValue"/>
         <xsl:param name="nullFlavor"/>
-        <xsl:param name="xsd-comp"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:variable name="xsd-complexType" select="$xsd-comp//xs:element[@name = 'gebruiksperiode_start']/@type"/>
         <xsl:choose>
             <xsl:when test="string-length($inputValue) gt 0">
                 <gebruiksperiode_start value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime($inputValue), nf:determine_date_precision($inputValue))}"/>
@@ -2024,13 +1909,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Ingrediënt waarde en eenheid</xd:desc>
         <xd:param name="hl7-num-or-denom">HL7 nominator or denominator</xd:param>
-        <xd:param name="xsd-ada">ada schema</xd:param>
-        <xd:param name="xsd-hoeveelheid">hoeveelheid ada schemaFragment</xd:param>
     </xd:doc>
     <xsl:template name="mp-ingredient-waarde-en-eenheid">
         <xsl:param name="hl7-num-or-denom"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-hoeveelheid"/>
 
         <!-- waarde -->
         <xsl:for-each select="$hl7-num-or-denom">
@@ -2041,7 +1922,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:element>
             <xsl:variable name="ada-elemName">eenheid</xsl:variable>
-             <xsl:element name="{$ada-elemName}">
+            <xsl:element name="{$ada-elemName}">
                 <xsl:call-template name="mp9-ingredient-eenheid">
                     <xsl:with-param name="hl7-num-or-denom" select="$hl7-num-or-denom"/>
                 </xsl:call-template>
@@ -2051,13 +1932,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="hl7-doseQuantity"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-dosering"/>
     </xd:doc>
     <xsl:template name="mp9-keerdosis">
         <xsl:param name="hl7-doseQuantity"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-dosering"/>
         <xsl:comment>mp9-keerdosis</xsl:comment>
         <!-- keerdosis -->
         <!-- only output if all units are the same -->
@@ -2068,14 +1945,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$hl7-doseQuantity">
                 <keerdosis>
                     <aantal>
-                        <xsl:for-each select="./hl7:low/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
+                        <xsl:for-each select="hl7:low/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
                             <min value="{@value}"/>
                         </xsl:for-each>
-                        <xsl:for-each select="./hl7:center/hl7:translation[@codeSystem = $oidGStandaardBST902THES2] | ./hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
+                        <xsl:for-each select="hl7:center/hl7:translation[@codeSystem = $oidGStandaardBST902THES2] | ./hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
                             <vaste_waarde value="{@value}"/>
                         </xsl:for-each>
-                        <xsl:for-each select="./hl7:high/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                            <max value="{./@value}"/>
+                        <xsl:for-each select="hl7:high/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
+                            <max value="{@value}"/>
                         </xsl:for-each>
                     </aantal>
                     <xsl:for-each select="(.//hl7:translation[@codeSystem = $oidGStandaardBST902THES2])[1]">
@@ -2133,7 +2010,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- voornamen -->
             <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][text()[not(. = '')]]]">
                 <xsl:variable name="voornamen_concatted">
-                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][text()[not(. = '')]]">
+                    <xsl:for-each select="hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][text()[not(. = '')]]">
                         <xsl:value-of select="concat(./text(), ' ')"/>
                     </xsl:for-each>
                 </xsl:variable>
@@ -2144,12 +2021,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- in HL7 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
                 <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier toevoegen van de officiële voornamen -->
                 <xsl:variable name="initialen_concatted">
-                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
+                    <xsl:for-each select="hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
                         <xsl:for-each select="tokenize(., ' ')">
                             <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
                         </xsl:for-each>
                     </xsl:for-each>
-                    <xsl:for-each select="./hl7:given[@qualifier = 'IN']">
+                    <xsl:for-each select="hl7:given[@qualifier = 'IN']">
                         <xsl:value-of select="./text()"/>
                     </xsl:for-each>
                 </xsl:variable>
@@ -2157,7 +2034,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'CL')]][text()[not(. = '')]]">
                 <xsl:variable name="roepnamen_concatted">
-                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'CL')][text()[not(. = '')]]">
+                    <xsl:for-each select="hl7:given[contains(@qualifier, 'CL')][text()[not(. = '')]]">
                         <xsl:value-of select="concat(./text(), ' ')"/>
                     </xsl:for-each>
                 </xsl:variable>
@@ -2309,9 +2186,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- alle mar's hebben een low en een width. einddatums uitrekenen -->
                         <xsl:variable name="einddatums" as="element()*">
                             <xsl:for-each select="$IVL_TS">
-                                <xsl:variable name="hl7-start-datum" select="./hl7:low/@value"/>
+                                <xsl:variable name="hl7-start-datum" select="hl7:low/@value"/>
                                 <!-- width is altijd in dagen in 6.12 -->
-                                <xsl:variable name="hl7-width-in-days" select="./hl7:width/@value"/>
+                                <xsl:variable name="hl7-width-in-days" select="hl7:width/@value"/>
                                 <!-- TODO: als van $hl7-start-datum geen dateTime kan worden gemaakt, valt dit hier om: -->
                                 <xsl:variable name="xml-start-datum" as="xs:dateTime" select="xs:dateTime(nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-start-datum), 'SECOND'))"/>
                                 <xsl:variable name="xml-eind-datum" select="xs:dateTime($xml-start-datum + xs:dayTimeDuration(concat('P', $hl7-width-in-days, 'D')))"/>
@@ -2335,15 +2212,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$transaction = 'beschikbaarstellen_medicatiegegevens'">
                     <!-- identificatie -->
                     <xsl:comment>The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. Same root, extension string preconcatenated.</xsl:comment>
-                    <xsl:for-each select="./hl7:id[@extension]">
-                        <identificatie root="{./@root}" value="{concat('TAConverted_', ./@extension)}"/>
+                    <xsl:for-each select="hl7:id[@extension]">
+                        <identificatie root="{@root}" value="{concat('TAConverted_', ./@extension)}"/>
                     </xsl:for-each>
                 </xsl:if>
                 <!-- er is geen afspraakdatum in een 6.12 verstrekkingenbericht -->
                 <!-- benaderen met verstrekkingsdatum -->
                 <xsl:comment>Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)</xsl:comment>
                 <!-- afspraakdatum -->
-                <xsl:for-each select="./hl7:effectiveTime[@value]">
+                <xsl:for-each select="hl7:effectiveTime[@value]">
                     <afspraakdatum>
                         <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, nf:determine_date_precision(./@value))"/>
                     </afspraakdatum>
@@ -2352,25 +2229,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- alleen gebruiksperiode output bij 1 MAR die een width heeft, en bij meerder MAR's berekenen we indien mogelijk de einddatum -->
                 <xsl:if test="$current-dispense-event[count(.//hl7:medicationAdministrationRequest) = 1]">
                     <xsl:for-each select="$IVL_TS/hl7:width[@value]">
-                        <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                        <gebruiksperiode value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                     </xsl:for-each>
                 </xsl:if>
                 <!-- geannuleerd indicator en stoptype wordt niet ondersteund in 6.12, geen output hiervoor-->
                 <!--<geannuleerd_indicator value="UNK"/>
              <stoptype value="1" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Onderbreking"/>-->
                 <!-- verstrekker -->
-                <xsl:for-each select="./hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
-                    <xsl:variable name="verstrekker-complexType" select="$xsd-toedieningsafspraak//xs:element[@name = 'verstrekker']/@type"/>
-                    <xsl:variable name="xsd-verstrekker" select="$xsd-ada//xs:complexType[@name = $verstrekker-complexType]"/>
+                <xsl:for-each select="hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
                     <verstrekker>
                         <!-- zorgaanbieder -->
-                        <xsl:variable name="zorgaanbieder-complexType" select="$xsd-verstrekker//xs:element[@name = 'zorgaanbieder']/@type"/>
-                        <xsl:variable name="xsd-zorgaanbieder" select="$xsd-ada//xs:complexType[@name = $zorgaanbieder-complexType]"/>
                         <zorgaanbieder>
                             <xsl:call-template name="mp9-zorgaanbieder">
                                 <xsl:with-param name="hl7-current-organization" select="."/>
-
-                                <xsl:with-param name="xsd-parent-of-zorgaanbieder" select="$xsd-zorgaanbieder"/>
                             </xsl:call-template>
                         </zorgaanbieder>
                     </verstrekker>
@@ -2408,14 +2279,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="current-dispense-event"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-mbh"/>
         <xd:param name="transaction">Which transaction is the context of this translation. Currently known: beschikbaarstellen_medicatiegegevens or beschikbaarstellen_verstrekkingenvertaling </xd:param>
     </xd:doc>
     <xsl:template name="mp9-toedieningsafspraak-from-mp612-907">
         <xsl:param name="current-dispense-event" select="." as="element()?"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-mbh"/>
         <xsl:param name="transaction" select="$transaction-name"/>
         <!-- let's sort the available hl7:medicationAdministrationRequest's in chronological order -->
         <!-- mar = medicationAdministrationRequest  -->
@@ -2488,9 +2355,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- alle mar's hebben een low en een width. einddatums uitrekenen -->
                         <xsl:variable name="einddatums" as="element()*">
                             <xsl:for-each select="$IVL_TS">
-                                <xsl:variable name="hl7-start-datum" select="./hl7:low/@value"/>
+                                <xsl:variable name="hl7-start-datum" select="hl7:low/@value"/>
                                 <!-- width is altijd in dagen in 6.12 -->
-                                <xsl:variable name="hl7-width-in-days" select="./hl7:width/@value"/>
+                                <xsl:variable name="hl7-width-in-days" select="hl7:width/@value"/>
                                 <!-- TODO: als van $hl7-start-datum geen dateTime kan worden gemaakt, valt dit hier om: -->
                                 <xsl:variable name="xml-start-datum" as="xs:dateTime" select="xs:dateTime(nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-start-datum), 'SECOND'))"/>
                                 <xsl:variable name="xml-eind-datum" select="xs:dateTime($xml-start-datum + xs:dayTimeDuration(concat('P', $hl7-width-in-days, 'D')))"/>
@@ -2514,15 +2381,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$transaction = 'beschikbaarstellen_medicatiegegevens'">
                     <!-- identificatie -->
                     <xsl:comment>The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. Same root, extension string preconcatenated.</xsl:comment>
-                    <xsl:for-each select="./hl7:id[@extension]">
-                        <identificatie root="{./@root}" value="{concat('TAConverted_', ./@extension)}"/>
+                    <xsl:for-each select="hl7:id[@extension]">
+                        <identificatie root="{@root}" value="{concat('TAConverted_', ./@extension)}"/>
                     </xsl:for-each>
                 </xsl:if>
                 <!-- er is geen afspraakdatum in een 6.12 verstrekkingenbericht -->
                 <!-- benaderen met verstrekkingsdatum -->
                 <xsl:comment>Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)</xsl:comment>
                 <!-- afspraakdatum -->
-                <xsl:for-each select="./hl7:effectiveTime[@value]">
+                <xsl:for-each select="hl7:effectiveTime[@value]">
                     <afspraakdatum>
                         <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, nf:determine_date_precision(./@value))"/>
                     </afspraakdatum>
@@ -2531,14 +2398,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- alleen gebruiksperiode output bij 1 MAR die een width heeft, en bij meerder MAR's berekenen we indien mogelijk de einddatum -->
                 <xsl:if test="$current-dispense-event[count(.//hl7:medicationAdministrationRequest) = 1]">
                     <xsl:for-each select="$IVL_TS/hl7:width[@value]">
-                        <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                        <gebruiksperiode value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                     </xsl:for-each>
                 </xsl:if>
                 <!-- geannuleerd indicator en stoptype wordt niet ondersteund in 6.12, geen output hiervoor-->
                 <!--<geannuleerd_indicator value="UNK"/>
              <stoptype value="1" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Onderbreking"/>-->
                 <!-- verstrekker -->
-                <xsl:for-each select="./hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
+                <xsl:for-each select="hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
                     <verstrekker>
                         <xsl:call-template name="mp9-zorgaanbieder">
                             <xsl:with-param name="hl7-current-organization" select="."/>
@@ -2577,81 +2444,58 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="hl7-ratequantity"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-dosering"/>
+        <xd:desc>MP 9 Toedieningssnelheid</xd:desc>
+        <xd:param name="hl7-ratequantity">hl7 element containing rate quantity</xd:param>
     </xd:doc>
     <xsl:template name="mp9-toedieningssnelheid">
         <xsl:param name="hl7-ratequantity"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-dosering"/>
 
         <xsl:for-each select="$hl7-ratequantity">
-            <xsl:variable name="xsd-toedieningssnelheid-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningssnelheid']/@type"/>
-            <xsl:variable name="xsd-toedieningssnelheid" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningssnelheid-complexType]"/>
             <toedieningssnelheid>
-                <xsl:variable name="xsd-waarde-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'waarde']/@type"/>
-                <xsl:variable name="xsd-waarde" select="$xsd-ada//xs:complexType[@name = $xsd-waarde-complexType]"/>
                 <waarde>
-                    <xsl:for-each select="./hl7:low">
-                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'min']/@type"/>
-                        <min value="{./@value}"/>
+                    <xsl:for-each select="hl7:low">
+                        <min value="{@value}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="./hl7:center">
-                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'vaste_waarde']/@type"/>
-                        <vaste_waarde value="{./@value}"/>
+                    <xsl:for-each select="hl7:center">
+                        <vaste_waarde value="{@value}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="./hl7:high">
-                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'max']/@type"/>
-                        <max value="{./@value}"/>
+                    <xsl:for-each select="hl7:high">
+                        <max value="{@value}"/>
                     </xsl:for-each>
                 </waarde>
                 <xsl:variable name="ucum-eenheid" select="substring-before((./*/@unit)[1], '/')"/>
-                <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'eenheid']/@type"/>
                 <eenheid>
                     <xsl:call-template name="UCUM2GstdBasiseenheid">
                         <xsl:with-param name="UCUM" select="$ucum-eenheid"/>
                     </xsl:call-template>
                 </eenheid>
                 <xsl:variable name="ucum-tijdseenheid" select="substring-after((./*/@unit)[1], '/')"/>
-                <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'tijdseenheid']/@type"/>
                 <tijdseenheid unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid)}"/>
             </toedieningssnelheid>
         </xsl:for-each>
 
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="current-hl7-pivl"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-toedieningsschema"/>
+        <xd:desc>mp9-vaste-frequentie-from-mp-612</xd:desc>
+        <xd:param name="current-hl7-pivl">hl7 input frequentie</xd:param>
     </xd:doc>
     <xsl:template name="mp9-vaste-frequentie-from-mp-612">
         <xsl:param name="current-hl7-pivl"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-toedieningsschema"/>
         <xsl:comment>mp9-vaste-frequentie-from-mp-612</xsl:comment>
         <xsl:if test="not($current-hl7-pivl)">
             <xsl:comment>geen frequentie in input</xsl:comment>
         </xsl:if>
         <xsl:for-each select="$current-hl7-pivl">
-            <xsl:for-each select="./hl7:period">
+            <xsl:for-each select="hl7:period">
                 <xsl:variable name="vaste_frequentie_one_decimal" select="nf:one_decimal(./@value)"/>
                 <xsl:variable name="vaste_frequentie_decimal" select="$vaste_frequentie_one_decimal - floor($vaste_frequentie_one_decimal)"/>
                 <!-- only output the structured frequentie if the one decimal rounded to 0 -->
                 <xsl:choose>
                     <xsl:when test="$vaste_frequentie_decimal = 0">
-                        <xsl:variable name="xsd-frequentie-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'frequentie']/@type"/>
-                        <xsl:variable name="xsd-frequentie" select="$xsd-ada//xs:complexType[@name = $xsd-frequentie-complexType]"/>
                         <frequentie>
-                            <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
-                            <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
                             <aantal>
-                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
                                 <vaste_waarde value="{round($vaste_frequentie_one_decimal)}"/>
                             </aantal>
-                            <xsl:variable name="xsd-complexType" select="$xsd-frequentie//xs:element[@name = 'tijdseenheid']/@type"/>
                             <tijdseenheid value="{nf:tijdseenheid-aantal(./@value)}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                         </frequentie>
                     </xsl:when>
@@ -2666,53 +2510,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="current-hl7-verstrekking"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-mbh"/>
         <xd:param name="transaction">Which transaction is the context of this translation. Currently known: beschikbaarstellen_medicatiegegevens or beschikbaarstellen_verstrekkingenvertaling </xd:param>
     </xd:doc>
     <xsl:template name="mp9-verstrekking-from-mp612">
         <xsl:param name="current-hl7-verstrekking" select="."/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-mbh"/>
         <xsl:param name="transaction" select="$transaction-name"/>
         <xsl:for-each select="$current-hl7-verstrekking">
-            <xsl:variable name="xsd-verstrekking-complexType" select="$xsd-mbh//xs:element[@name = 'verstrekking']/@type"/>
-            <xsl:variable name="xsd-verstrekking" select="$xsd-ada//xs:complexType[@name = $xsd-verstrekking-complexType]"/>
             <verstrekking>
                 <!-- identificatie -->
-                <xsl:for-each select="./hl7:id[@extension]">
-                    <xsl:variable name="xsd-complexType" select="$xsd-verstrekking//xs:element[@name = 'identificatie']/@type"/>
-                    <identificatie root="{./@root}" value="{./@extension}"/>
+                <xsl:for-each select="hl7:id[@extension]">
+                    <identificatie root="{@root}" value="{@extension}"/>
                 </xsl:for-each>
                 <!-- 6.12 heeft geen echte verstrekkingsdatum -->
                 <!-- we need a nullFlavor since this element is required -->
-                <xsl:variable name="xsd-complexType" select="$xsd-verstrekking//xs:element[@name = 'datum']/@type"/>
                 <datum nullFlavor="NI"/>
                 <!-- 6.12 heeft de aanschrijfdatum -->
-                <xsl:for-each select="./hl7:effectiveTime[@value]">
-                    <xsl:variable name="xsd-complexType" select="$xsd-verstrekking//xs:element[@name = 'aanschrijfdatum']/@type"/>
+                <xsl:for-each select="hl7:effectiveTime[@value]">
                     <aanschrijfdatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}"/>
                 </xsl:for-each>
                 <!-- verstrekker -->
-                <xsl:for-each select="./hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
-                    <xsl:variable name="verstrekker-complexType" select="$xsd-verstrekking//xs:element[@name = 'verstrekker']/@type"/>
-                    <xsl:variable name="xsd-verstrekker" select="$xsd-ada//xs:complexType[@name = $verstrekker-complexType]"/>
+                <xsl:for-each select="hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
                     <verstrekker>
                         <xsl:call-template name="mp9-zorgaanbieder">
                             <xsl:with-param name="hl7-current-organization" select="."/>
-
-                            <xsl:with-param name="xsd-parent-of-zorgaanbieder" select="$xsd-verstrekker"/>
                         </xsl:call-template>
                     </verstrekker>
                 </xsl:for-each>
                 <!-- verstrekte_hoeveelheid -->
-                <xsl:for-each select="./hl7:quantity/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                    <xsl:variable name="xsd-verstrekte_hoeveelheid-complexType" select="$xsd-verstrekking//xs:element[@name = 'verstrekte_hoeveelheid']/@type"/>
-                    <xsl:variable name="xsd-verstrekte_hoeveelheid" select="$xsd-ada//xs:complexType[@name = $xsd-verstrekte_hoeveelheid-complexType]"/>
+                <xsl:for-each select="hl7:quantity/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
                     <verstrekte_hoeveelheid>
-                        <xsl:variable name="xsd-complexType" select="$xsd-verstrekte_hoeveelheid//xs:element[@name = 'aantal']/@type"/>
-                        <aantal value="{./@value}"/>
-                        <xsl:variable name="xsd-complexType" select="$xsd-verstrekte_hoeveelheid//xs:element[@name = 'eenheid']/@type"/>
+                        <aantal value="{@value}"/>
                         <eenheid>
                             <xsl:call-template name="mp9-code-attribs">
                                 <xsl:with-param name="current-hl7-code" select="."/>
@@ -2721,8 +2548,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </verstrekte_hoeveelheid>
                 </xsl:for-each>
                 <!-- verstrekt_geneesmiddel -->
-                <xsl:variable name="xsd-verstrekt_geneesmiddel-complexType" select="$xsd-verstrekking//xs:element[@name = 'verstrekt_geneesmiddel']/@type"/>
-                <xsl:variable name="xsd-verstrekt_geneesmiddel" select="$xsd-ada//xs:complexType[@name = $xsd-verstrekt_geneesmiddel-complexType]"/>
                 <xsl:for-each select=".//hl7:product/hl7:dispensedMedication/hl7:MedicationKind">
                     <verstrekt_geneesmiddel>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.106_20130521000000-907">
@@ -2731,14 +2556,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </verstrekt_geneesmiddel>
                 </xsl:for-each>
                 <!-- verbruiksduur -->
-                <xsl:for-each select="./hl7:expectedUseTime/hl7:width">
-                    <xsl:variable name="xsd-complexType" select="$xsd-verstrekking//xs:element[@name = 'verbruiksduur']/@type"/>
-                    <verbruiksduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                <xsl:for-each select="hl7:expectedUseTime/hl7:width">
+                    <verbruiksduur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                 </xsl:for-each>
                 <!-- afleverlocatie -->
-                <xsl:for-each select="./hl7:destination/hl7:serviceDeliveryLocation">
+                <xsl:for-each select="hl7:destination/hl7:serviceDeliveryLocation">
                     <xsl:comment>afleverlocatie</xsl:comment>
-                    <xsl:variable name="xsd-complexType" select="$xsd-verstrekking//xs:element[@name = 'afleverlocatie']/@type"/>
                     <afleverlocatie value="{normalize-space(.)}"/>
                 </xsl:for-each>
                 <!-- distributievorm, aanvullende_informatie, toelichting, relatie_naar_verstrekkingsverzoek 
@@ -2749,16 +2572,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="hl7-phase-low"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-toedieningsschema"/>
     </xd:doc>
     <xsl:template name="mp9-weekdag">
         <xsl:param name="hl7-phase-low"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-toedieningsschema"/>
         <xsl:variable name="hl7-weekdag" select="substring($hl7-phase-low/@value, 1, 8)"/>
         <xsl:variable name="weekdag-xml-date" select="nf:formatHL72XMLDate($hl7-weekdag, 'DAY')"/>
-        <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'weekdag']/@type"/>
         <weekdag>
             <xsl:call-template name="mp9-weekdag-attribs">
                 <xsl:with-param name="day-of-week" select="nf:day-of-week($weekdag-xml-date)"/>
@@ -2826,25 +2644,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="max-dose"/>
         <xd:param name="zonodig-code"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-dosering"/>
     </xd:doc>
     <xsl:template name="mp9-zonodig">
         <xsl:param name="max-dose" as="element()?"/>
         <xsl:param name="zonodig-code" as="element()*"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-dosering"/>
         <xsl:if test="$zonodig-code | $max-dose">
-            <xsl:variable name="xsd-zo_nodig-complexType" select="$xsd-dosering//xs:element[@name = 'zo_nodig']/@type"/>
-            <xsl:variable name="xsd-zo_nodig" select="$xsd-ada//xs:complexType[@name = $xsd-zo_nodig-complexType]"/>
             <zo_nodig>
                 <!-- criterium -->
                 <!-- in 6.12 kan de zonodig-code meer dan 1 keer voorkomen, in MP-9 mag criterium maar één keer -->
                 <xsl:if test="count($zonodig-code) gt 0">
-                    <xsl:variable name="xsd-criterium-complexType" select="$xsd-zo_nodig//xs:element[@name = 'criterium']/@type"/>
-                    <xsl:variable name="xsd-criterium" select="$xsd-ada//xs:complexType[@name = $xsd-criterium-complexType]"/>
                     <criterium>
-                        <xsl:variable name="xsd-complexType" select="$xsd-criterium//xs:element[@name = 'code']/@type"/>
                         <code>
                             <xsl:choose>
                                 <xsl:when test="count($zonodig-code) eq 1">
@@ -2876,7 +2685,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:value-of select="concat('Code: ', ./@code, ', displayName: ', ./@displayName, '. ')"/>
                                                 </xsl:otherwise>
                                             </xsl:choose>
-                                            <xsl:for-each select="./hl7:originalText">
+                                            <xsl:for-each select="hl7:originalText">
                                                 <xsl:value-of select="concat(', originalText: ', ., '. ')"/>
                                             </xsl:for-each>
                                         </xsl:for-each>
@@ -2892,13 +2701,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- maximale_dosering  -->
                 <xsl:for-each select="$max-dose[.//@value]">
                     <xsl:comment>maximale dosering</xsl:comment>
-                    <xsl:variable name="xsd-maximale_dosering-complexType" select="$xsd-zo_nodig//xs:element[@name = 'maximale_dosering']/@type"/>
-                    <xsl:variable name="xsd-maximale_dosering" select="$xsd-ada//xs:complexType[@name = $xsd-maximale_dosering-complexType]"/>
                     <maximale_dosering>
                         <xsl:for-each select="(./hl7:numerator/hl7:translation[@codeSystem = $oidGStandaardBST902THES2])">
-                            <xsl:variable name="xsd-complexType" select="$xsd-maximale_dosering//xs:element[@name = 'aantal']/@type"/>
-                            <aantal value="{./@value}"/>
-                            <xsl:variable name="xsd-complexType" select="$xsd-maximale_dosering//xs:element[@name = 'eenheid']/@type"/>
+                            <aantal value="{@value}"/>
                             <eenheid>
                                 <xsl:call-template name="mp9-code-attribs">
                                     <xsl:with-param name="current-hl7-code" select="."/>
@@ -2906,8 +2711,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </eenheid>
                         </xsl:for-each>
                         <xsl:for-each select="(./hl7:denominator)">
-                            <xsl:variable name="xsd-complexType" select="$xsd-maximale_dosering//xs:element[@name = 'tijdseenheid']/@type"/>
-                            <tijdseenheid value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                            <tijdseenheid value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                         </xsl:for-each>
                     </maximale_dosering>
                 </xsl:for-each>
@@ -2917,24 +2721,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>9.0.6 MP zorgaanbieder</xd:desc>
         <xd:param name="hl7-current-organization"/>
-        <xd:param name="xsd-ada"/>
-        <xd:param name="xsd-parent-of-zorgaanbieder"/>
     </xd:doc>
     <xsl:template name="mp9-zorgaanbieder">
         <xsl:param name="hl7-current-organization"/>
-        <xsl:param name="xsd-ada"/>
-        <xsl:param name="xsd-parent-of-zorgaanbieder"/>
-        <xsl:variable name="zorgaanbieder2-complexType" select="$xsd-parent-of-zorgaanbieder//xs:element[@name = 'zorgaanbieder']/@type"/>
-        <xsl:variable name="xsd-zorgaanbieder2" select="$xsd-ada//xs:complexType[@name = $zorgaanbieder2-complexType]"/>
         <xsl:for-each select="$hl7-current-organization">
             <zorgaanbieder>
                 <xsl:for-each select="hl7:id">
-                    <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'zorgaanbieder_identificatie_nummer']/@type"/>
-                    <zorgaanbieder_identificatie_nummer value="{./@extension}" root="{./@root}"/>
+                    <zorgaanbieder_identificatie_nummer value="{@extension}" root="{@root}"/>
                 </xsl:for-each>
                 <!-- organisatienaam has 1..1 R in MP 9 ADA transactions, but is not always present in HL7 input messages.  -->
                 <!-- fill with nullFlavor if necessary -->
-                <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'organisatie_naam']/@type"/>
                 <organisatie_naam>
                     <xsl:choose>
                         <xsl:when test="hl7:name">
@@ -2948,7 +2744,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="handleADtoAddressInformation">
                     <xsl:with-param name="in" select="hl7:addr"/>
                     <xsl:with-param name="language" select="$language"/>
-            </xsl:call-template>
+                </xsl:call-template>
             </zorgaanbieder>
         </xsl:for-each>
     </xsl:template>
@@ -3049,21 +2845,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <product>
             <!-- Let op! Er is (nog?) geen ondersteuning voor optionele translations... -->
             <xsl:call-template name="handleCV">
-                <xsl:with-param name="in" select="./hl7:id"/>
+                <xsl:with-param name="in" select="hl7:id"/>
                 <xsl:with-param name="elemName">product_code</xsl:with-param>
             </xsl:call-template>
             <xsl:for-each select=".[hl7:code[@nullFlavor]] | .[not(hl7:code)]">
                 <product_specificatie>
                     <!-- product_naam -->
-                    <xsl:for-each select="./hl7:code/hl7:originalText">
+                    <xsl:for-each select="hl7:code/hl7:originalText">
                         <product_naam value="{./text()}"/>
                     </xsl:for-each>
                     <!-- omschrijving -->
-                    <xsl:for-each select="./hl7:desc">
+                    <xsl:for-each select="hl7:desc">
                         <omschrijving value="{./text()}"/>
                     </xsl:for-each>
                     <!-- farmaceutische vorm -->
-                    <xsl:for-each select="./hl7:formCode">
+                    <xsl:for-each select="hl7:formCode">
                         <farmaceutische_vorm>
                             <xsl:call-template name="mp9-code-attribs">
                                 <xsl:with-param name="current-hl7-code" select="."/>
@@ -3074,10 +2870,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="(./hl7:activeIngredient | ./hl7:otherIngredient)">
                         <ingredient>
                             <!-- sterkte -->
-                            <xsl:for-each select="./hl7:quantity">
+                            <xsl:for-each select="hl7:quantity">
                                 <sterkte>
                                     <!-- hoeveelheid_ingredient -->
-                                    <xsl:for-each select="./hl7:numerator[.//@value] | ./hl7:numerator[@nullFlavor]">
+                                    <xsl:for-each select="hl7:numerator[.//@value] | ./hl7:numerator[@nullFlavor]">
                                         <hoeveelheid_ingredient>
                                             <xsl:call-template name="mp-ingredient-waarde-en-eenheid">
                                                 <xsl:with-param name="hl7-num-or-denom" select="."/>
@@ -3085,7 +2881,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </hoeveelheid_ingredient>
                                     </xsl:for-each>
                                     <!-- hoeveelheid_product  -->
-                                    <xsl:for-each select="./hl7:denominator[.//@value]">
+                                    <xsl:for-each select="hl7:denominator[.//@value]">
                                         <hoeveelheid_product>
                                             <xsl:call-template name="mp-ingredient-waarde-en-eenheid">
                                                 <xsl:with-param name="hl7-num-or-denom" select="."/>
@@ -3126,15 +2922,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select=".[hl7:code[@nullFlavor]] | .[not(hl7:code)]">
                 <product_specificatie>
                     <!-- product_naam -->
-                    <xsl:for-each select="./hl7:code/hl7:originalText">
+                    <xsl:for-each select="hl7:code/hl7:originalText">
                         <product_naam value="{./text()}"/>
                     </xsl:for-each>
                     <!-- omschrijving -->
-                    <xsl:for-each select="./hl7:desc">
+                    <xsl:for-each select="hl7:desc">
                         <omschrijving value="{./text()}"/>
                     </xsl:for-each>
                     <!-- farmaceutische vorm -->
-                    <xsl:for-each select="./hl7:formCode">
+                    <xsl:for-each select="hl7:formCode">
                         <farmaceutische_vorm>
                             <xsl:call-template name="mp9-code-attribs">
                                 <xsl:with-param name="current-hl7-code" select="."/>
@@ -3145,10 +2941,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="(./hl7:activeIngredient | ./hl7:otherIngredient)">
                         <ingredient>
                             <!-- sterkte -->
-                            <xsl:for-each select="./hl7:quantity">
+                            <xsl:for-each select="hl7:quantity">
                                 <sterkte>
                                     <!-- hoeveelheid_ingredient -->
-                                    <xsl:for-each select="./hl7:numerator[.//@value] | ./hl7:numerator[@nullFlavor]">
+                                    <xsl:for-each select="hl7:numerator[.//@value] | ./hl7:numerator[@nullFlavor]">
                                         <hoeveelheid_ingredient>
                                             <xsl:call-template name="mp-ingredient-waarde-en-eenheid">
                                                 <xsl:with-param name="hl7-num-or-denom" select="."/>
@@ -3156,7 +2952,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </hoeveelheid_ingredient>
                                     </xsl:for-each>
                                     <!-- hoeveelheid_product  -->
-                                    <xsl:for-each select="./hl7:denominator[.//@value]">
+                                    <xsl:for-each select="hl7:denominator[.//@value]">
                                         <hoeveelheid_product>
                                             <xsl:call-template name="mp-ingredient-waarde-en-eenheid">
                                                 <xsl:with-param name="hl7-num-or-denom" select="."/>
@@ -3197,7 +2993,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="$transaction = 'beschikbaarstellen_medicatiegegevens'">
                 <xsl:for-each select="$current-dispense-event/hl7:id[@extension]">
                     <xsl:comment>MBH id generated from 6.12 dispense identifier</xsl:comment>
-                    <identificatie value="{concat('MedBehConverted_', ./@extension)}" root="{./@root}"/>
+                    <identificatie value="{concat('MedBehConverted_', ./@extension)}" root="{@root}"/>
                 </xsl:for-each>
             </xsl:if>
             <xsl:call-template name="mp9-toedieningsafspraak-from-mp612">
@@ -3227,7 +3023,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- mbh id is not known in 6.12. But we still need it to relate TA and MVE, we fill it with dispense id -->
             <xsl:for-each select="$current-dispense-event/hl7:id[@extension]">
                 <xsl:comment>MBH id copied from 6.12 dispense identifier</xsl:comment>
-                <identificatie value="{./@extension}" root="{./@root}"/>
+                <identificatie value="{@extension}" root="{@root}"/>
             </xsl:for-each>
             <xsl:call-template name="mp9-toedieningsafspraak-from-mp612-907">
                 <xsl:with-param name="current-dispense-event" select="$current-dispense-event"/>
@@ -3345,7 +3141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- we are converting to toedieningsschema, cyclisch schema should be ignored here: phase/width -->
         <!-- we will deal with 'vaste toedieningstijd' later, let's also include those here: phase/center -->
         <xsl:for-each select="$PIVL_TS[not(hl7:phase/hl7:width)][not(hl7:phase/hl7:center)]">
-            <xsl:for-each select="./hl7:period">
+            <xsl:for-each select="hl7:period">
                 <xsl:variable name="vaste_frequentie_one_decimal">
                     <xsl:choose>
                         <xsl:when test="./@value &lt; 1">
@@ -3448,7 +3244,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$author-hl7/hl7:assignedAuthor">
             <zorgverlener>
                 <xsl:for-each select="hl7:id">
-                    <zorgverlener_identificatie_nummer value="{./@extension}" root="{./@root}"/>
+                    <zorgverlener_identificatie_nummer value="{@extension}" root="{@root}"/>
                 </xsl:for-each>
                 <xsl:for-each select="hl7:assignedPerson/hl7:name">
                     <zorgverlener_naam>
@@ -3479,12 +3275,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> MP 9.0.8 CDA Author Participation </xd:desc>
+        <xd:desc> MP 9.1.0 CDA Author Participation </xd:desc>
         <xd:param name="in">input hl7 author</xd:param>
+        <xd:param name="nestedZorgaanbieder">Parameter to control whether the ada xsd contains a nested zorgaanbieder. Defaults to false.</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
         <xsl:param name="in" select="."/>
-
+        <xsl:param name="nestedZorgaanbieder" as="xs:boolean?" select="false()"/>
+        
         <xsl:for-each select="$in/hl7:assignedAuthor">
             <xsl:variable name="elemName">zorgverlener</xsl:variable>
             <zorgverlener>
@@ -3518,6 +3316,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="hl7:representedOrganization">
                     <xsl:call-template name="mp910-zorgaanbieder">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="nestedZorgaanbieder" select="$nestedZorgaanbieder"/>
                     </xsl:call-template>
                 </xsl:for-each>
             </zorgverlener>
@@ -3538,25 +3337,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$author-hl7/hl7:assignedAuthor">
             <zorgverlener>
                 <xsl:call-template name="handleII">
-                    <xsl:with-param name="in" select="./hl7:id"/>
+                    <xsl:with-param name="in" select="hl7:id"/>
                     <xsl:with-param name="elemName">zorgverlener_identificatienummer</xsl:with-param>
                 </xsl:call-template>
 
                 <xsl:if test="./hl7:assignedPerson/hl7:name">
                     <naamgegevens>
                         <xsl:call-template name="handleENtoNameInformation">
-                            <xsl:with-param name="in" select="./hl7:assignedPerson/hl7:name"/>
+                            <xsl:with-param name="in" select="hl7:assignedPerson/hl7:name"/>
                             <xsl:with-param name="language">nl-NL</xsl:with-param>
                             <xsl:with-param name="unstructurednameElement">ongestructureerde_naam</xsl:with-param>
-                          </xsl:call-template>
+                        </xsl:call-template>
                     </naamgegevens>
                 </xsl:if>
                 <!-- specialisme -->
                 <xsl:call-template name="handleCV">
-                    <xsl:with-param name="in" select="./hl7:code"/>
+                    <xsl:with-param name="in" select="hl7:code"/>
                     <xsl:with-param name="elemName">specialisme</xsl:with-param>
                 </xsl:call-template>
-                <xsl:for-each select="./hl7:representedOrganization">
+                <xsl:for-each select="hl7:representedOrganization">
                     <xsl:call-template name="mp907-zorgaanbieder">
                         <xsl:with-param name="hl7-current-organization" select="."/>
                     </xsl:call-template>
@@ -3612,7 +3411,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:variable name="ada-elemName">sterkte</xsl:variable>
                                 <xsl:element name="{$ada-elemName}">
                                     <!-- hoeveelheid_ingredient -->
-                                    <xsl:for-each select="./hl7:numerator[.//@value | @nullFlavor]">
+                                    <xsl:for-each select="hl7:numerator[.//@value | @nullFlavor]">
                                         <xsl:variable name="ada-elemName">hoeveelheid_ingredient</xsl:variable>
                                         <xsl:element name="{$ada-elemName}">
                                             <xsl:call-template name="mp-ingredient-waarde-en-eenheid">
@@ -3621,7 +3420,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:element>
                                     </xsl:for-each>
                                     <!-- hoeveelheid_product  -->
-                                    <xsl:for-each select="./hl7:denominator[.//@value]">
+                                    <xsl:for-each select="hl7:denominator[.//@value]">
                                         <hoeveelheid_product>
                                             <xsl:call-template name="mp-ingredient-waarde-en-eenheid">
                                                 <xsl:with-param name="hl7-num-or-denom" select="."/>
@@ -3705,18 +3504,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./hl7nl:frequency/hl7nl:numerator">
                     <aantal>
                         <xsl:for-each select=".//hl7nl:low[@value]">
-                            <min value="{./@value}"/>
+                            <min value="{@value}"/>
                         </xsl:for-each>
                         <xsl:if test=".[@value]">
-                            <vaste_waarde value="{./@value}"/>
+                            <vaste_waarde value="{@value}"/>
                         </xsl:if>
                         <xsl:for-each select=".//hl7nl:high[@value]">
-                            <max value="{./@value}"/>
+                            <max value="{@value}"/>
                         </xsl:for-each>
                     </aantal>
                 </xsl:for-each>
                 <xsl:for-each select="./hl7nl:frequency/hl7nl:denominator">
-                    <tijdseenheid value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                    <tijdseenheid value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                 </xsl:for-each>
             </xsl:element>
         </xsl:for-each>
@@ -3792,7 +3591,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="ma_hl7_90" select="."/>
         <xsl:for-each select="$ma_hl7_90">
             <medicatieafspraak>
-                <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'IVL_TS']"/>
+                <xsl:variable name="IVL_TS" select="hl7:effectiveTime[local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'IVL_TS']"/>
                 <xsl:for-each select="$IVL_TS/hl7:low[@value]">
                     <xsl:call-template name="mp9-gebruiksperiode-start">
                         <xsl:with-param name="inputValue" select="./@value"/>
@@ -3803,19 +3602,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="inputValue" select="./@value"/>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="./hl7:id">
-                    <identificatie value="{./@extension}" root="{./@root}"/>
+                <xsl:for-each select="hl7:id">
+                    <identificatie value="{@extension}" root="{@root}"/>
                 </xsl:for-each>
-                <xsl:for-each select="./hl7:author/hl7:time">
+                <xsl:for-each select="hl7:author/hl7:time">
                     <afspraakdatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}"/>
                 </xsl:for-each>
                 <xsl:for-each select="$IVL_TS/hl7:width">
-                    <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
+                    <gebruiksperiode value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                 </xsl:for-each>
-                <xsl:for-each select="./hl7:statusCode">
-                    <geannuleerd_indicator value="{./@code='nullified'}"/>
+                <xsl:for-each select="hl7:statusCode">
+                    <geannuleerd_indicator value="{@code='nullified'}"/>
                 </xsl:for-each>
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067']/hl7:value">
                     <stoptype>
                         <xsl:call-template name="mp9-code-attribs">
                             <xsl:with-param name="current-hl7-code" select="."/>
@@ -3824,34 +3623,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- relatie_naar_afspraak_of_gebruik -->
                 <!-- relatie_naar ma -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9086']/hl7:id">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9086']/hl7:id">
                     <!-- medicatieafspraak -->
                     <relatie_naar_afspraak_of_gebruik>
-                        <identificatie root="{./@root}" value="{./@extension}"/>
+                        <identificatie root="{@root}" value="{@extension}"/>
                     </relatie_naar_afspraak_of_gebruik>
                 </xsl:for-each>
                 <!-- relatie_naar ta -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']/hl7:id">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']/hl7:id">
                     <!-- toedieningsafspraak -->
                     <relatie_naar_afspraak_of_gebruik>
-                        <identificatie_23288 root="{./@root}" value="{./@extension}"/>
+                        <identificatie_23288 root="{@root}" value="{@extension}"/>
                     </relatie_naar_afspraak_of_gebruik>
                 </xsl:for-each>
                 <!-- relatie_naar gb -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9176']/hl7:id">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9176']/hl7:id">
                     <!-- medicatiegebruik -->
                     <relatie_naar_afspraak_of_gebruik>
-                        <identificatie_23289 root="{./@root}" value="{./@extension}"/>
+                        <identificatie_23289 root="{@root}" value="{@extension}"/>
                     </relatie_naar_afspraak_of_gebruik>
                 </xsl:for-each>
                 <!-- voorschrijver -->
                 <voorschrijver>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20160615212337">
-                        <xsl:with-param name="author-hl7" select="./hl7:author"/>
+                        <xsl:with-param name="author-hl7" select="hl7:author"/>
                     </xsl:call-template>
                 </voorschrijver>
                 <!-- reden afspraak -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9068']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9068']/hl7:value">
                     <reden_afspraak>
                         <xsl:call-template name="mp9-code-attribs">
                             <xsl:with-param name="current-hl7-code" select="."/>
@@ -3859,7 +3658,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </reden_afspraak>
                 </xsl:for-each>
                 <!-- reden van voorschrijven -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
                     <reden_van_voorschrijven>
                         <probleem>
                             <probleem_naam>
@@ -3883,19 +3682,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
                 <!-- lichaamslengte  -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122']/hl7:value">
                     <lichaamslengte>
-                        <lengte_waarde value="{./@value}" unit="{nf:convertUnit_UCUM2ADA(./@unit)}"/>
+                        <lengte_waarde value="{@value}" unit="{nf:convertUnit_UCUM2ADA(./@unit)}"/>
                     </lichaamslengte>
                 </xsl:for-each>
                 <!-- lichaamsgewicht  -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123']/hl7:value">
                     <lichaamsgewicht>
-                        <gewicht_waarde value="{./@value}" unit="{nf:convertUnit_UCUM2ADA(./@unit)}"/>
+                        <gewicht_waarde value="{@value}" unit="{nf:convertUnit_UCUM2ADA(./@unit)}"/>
                     </lichaamsgewicht>
                 </xsl:for-each>
                 <!-- aanvullende_informatie -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value">
                     <aanvullende_informatie>
                         <xsl:call-template name="mp9-code-attribs">
                             <xsl:with-param name="current-hl7-code" select="."/>
@@ -3903,7 +3702,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </aanvullende_informatie>
                 </xsl:for-each>
                 <!-- toelichting -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
                     <toelichting value="{./text()}"/>
                 </xsl:for-each>
             </medicatieafspraak>
@@ -3961,7 +3760,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="hl7:author/hl7:time[@value | @nullFlavor]">
                     <xsl:variable name="elemName">afspraak_datum_tijd</xsl:variable>
                     <xsl:call-template name="handleTS">
-
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -4012,7 +3810,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- relatie_naar gb -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9176']/hl7:id[@extension | @root | @nullFlavor]">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9176']/hl7:id[@extension | @root | @nullFlavor]">
                     <xsl:variable name="elemName">relatie_naar_afspraak_of_gebruik</xsl:variable>
                     <xsl:element name="{$elemName}">
 
@@ -4038,7 +3836,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- reden_wijzigen_of_staken -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:code[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:code[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:value">
                     <xsl:variable name="elemName">reden_wijzigen_of_staken</xsl:variable>
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="elemName" select="$elemName"/>
@@ -4047,7 +3845,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- reden van voorschrijven -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
                     <reden_van_voorschrijven>
                         <probleem>
                             <probleem_naam>
@@ -4072,12 +3870,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- gebruiksinstructie -->
                 <xsl:call-template name="mp9-gebruiksinstructie-from-mp910">
                     <xsl:with-param name="in" select="."/>
-
-
                 </xsl:call-template>
 
                 <!-- aanvullende_informatie -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value">
                     <aanvullende_informatie>
                         <xsl:call-template name="mp9-code-attribs">
                             <xsl:with-param name="current-hl7-code" select="."/>
@@ -4190,7 +3986,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- relatie_naar gb -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9176']/hl7:id[@extension | @root | @nullFlavor]">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9176']/hl7:id[@extension | @root | @nullFlavor]">
                     <xsl:variable name="elemName">relatie_naar_afspraak_of_gebruik</xsl:variable>
                     <xsl:element name="{$elemName}">
 
@@ -4203,7 +3999,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- reden_wijzigen_of_staken -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:code[(@code = '2' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2') or (@code = '112241000146101' and @codeSystem = $oidSNOMEDCT)]]/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:code[(@code = '2' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2') or (@code = '112241000146101' and @codeSystem = $oidSNOMEDCT)]]/hl7:value">
                     <xsl:variable name="elemName">reden_wijzigen_of_staken</xsl:variable>
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="elemName" select="$elemName"/>
@@ -4212,7 +4008,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- reden van voorschrijven -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
                     <reden_van_voorschrijven>
                         <probleem>
                             <probleem_naam>
@@ -4242,7 +4038,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
 
                 <!-- aanvullende_informatie -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value">
                     <aanvullende_informatie>
                         <xsl:call-template name="mp9-code-attribs">
                             <xsl:with-param name="current-hl7-code" select="."/>
@@ -4410,7 +4206,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- gerelateerde_verstrekking -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:code[@code = '373784005'][@codeSystem = $oidSNOMEDCT]]/hl7:id[@extension | @root | @nullFlavor]">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:code[@code = '373784005'][@codeSystem = $oidSNOMEDCT]]/hl7:id[@extension | @root | @nullFlavor]">
                     <xsl:variable name="elemName">gerelateerde_verstrekking</xsl:variable>
                     <xsl:element name="{$elemName}">
 
@@ -4508,11 +4304,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="hl7:assignedAuthor[not(hl7:assignedPerson)][not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization">
                             <xsl:variable name="elemName">auteur_is_zorgaanbieder</xsl:variable>
                             <xsl:element name="{$elemName}">
-
                                 <xsl:call-template name="mp910-zorgaanbieder">
                                     <xsl:with-param name="in" select="."/>
-
-
+                                    <xsl:with-param name="nestedZorgaanbieder" select="false()"/>
                                 </xsl:call-template>
                             </xsl:element>
 
@@ -4529,11 +4323,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select=".[hl7:assignedAuthor[hl7:assignedPerson]]">
                             <xsl:variable name="elemName">auteur_is_zorgverlener</xsl:variable>
                             <xsl:element name="{$elemName}">
-
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
                                     <xsl:with-param name="in" select="."/>
-
-
+                                    <xsl:with-param name="nestedZorgaanbieder" select="true()"/>
                                 </xsl:call-template>
                             </xsl:element>
                         </xsl:for-each>
@@ -4681,7 +4473,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- reden afspraak -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9083' or hl7:code[@code = '112231000146109'][@codeSystem = $oidSNOMEDCT]]/hl7:text">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9083' or hl7:code[@code = '112231000146109'][@codeSystem = $oidSNOMEDCT]]/hl7:text">
                     <xsl:variable name="elemName">reden_afspraak</xsl:variable>
                     <xsl:element name="{$elemName}">
                         <xsl:attribute name="value" select="./text()"/>
@@ -4714,7 +4506,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- toelichting -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
                     <xsl:variable name="elemName">toelichting</xsl:variable>
                     <xsl:element name="{$elemName}">
                         <xsl:attribute name="value" select="text()"/>
@@ -4725,12 +4517,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- kopie_indicator -->
                 <xsl:variable name="ada-elemName">kopie_indicator</xsl:variable>
                 <xsl:call-template name="handleBL">
-                    <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
                 </xsl:call-template>
 
                 <!-- relatie_naar_medicatieafspraak -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9086']/hl7:id">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9086']/hl7:id">
                     <xsl:variable name="elemName">relatie_naar_medicatieafspraak</xsl:variable>
                     <xsl:element name="{$elemName}">
                         <xsl:call-template name="handleII">
@@ -4757,7 +4549,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="elemName">medicatieafspraak</xsl:variable>
         <xsl:for-each select="$ma_hl7_90">
             <xsl:element name="{$elemName}">
-                <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[@xsi:type = 'IVL_TS']"/>
+                <xsl:variable name="IVL_TS" select="hl7:effectiveTime[@xsi:type = 'IVL_TS']"/>
                 <!-- gebruiksperiode_start -->
                 <xsl:variable name="ada-elemName">gebruiksperiode_start</xsl:variable>
                 <xsl:call-template name="handleTS">
@@ -4775,14 +4567,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- identificatie -->
                 <xsl:variable name="ada-elemName">identificatie</xsl:variable>
                 <xsl:call-template name="handleII">
-                    <xsl:with-param name="in" select="./hl7:id"/>
+                    <xsl:with-param name="in" select="hl7:id"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
 
                 </xsl:call-template>
                 <!-- afspraakdatum -->
                 <xsl:variable name="ada-elemName">afspraakdatum</xsl:variable>
                 <xsl:call-template name="handleTS">
-                    <xsl:with-param name="in" select="./hl7:author/hl7:time"/>
+                    <xsl:with-param name="in" select="hl7:author/hl7:time"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
 
                     <xsl:with-param name="vagueDate" select="true()"/>
@@ -4797,13 +4589,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:for-each>
                 <!-- geannuleerd_indicator -->
-                <xsl:for-each select="./hl7:statusCode">
+                <xsl:for-each select="hl7:statusCode">
                     <geannuleerd_indicator value="{@code='nullified'}"/>
                 </xsl:for-each>
                 <!-- stoptype -->
                 <xsl:variable name="ada-elemName">stoptype</xsl:variable>
                 <xsl:call-template name="handleCV">
-                    <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067']/hl7:value"/>
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067']/hl7:value"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
                 </xsl:call-template>
                 <xsl:variable name="ada-elemName">relatie_naar_afspraak_of_gebruik</xsl:variable>
@@ -4812,24 +4604,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- relatie naar ma -->
                         <xsl:variable name="ada-elemName">identificatie</xsl:variable>
                         <xsl:call-template name="handleII">
-                            <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = $template-id-rel-ma]/hl7:id"/>
+                            <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = $template-id-rel-ma]/hl7:id"/>
                             <xsl:with-param name="elemName" select="$ada-elemName"/>
                         </xsl:call-template>
                         <xsl:variable name="ada-elemName">identificatie_23288</xsl:variable>
                         <xsl:call-template name="handleII">
-                            <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = $template-id-rel-ta]/hl7:id"/>
+                            <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = $template-id-rel-ta]/hl7:id"/>
                             <xsl:with-param name="elemName" select="$ada-elemName"/>
                         </xsl:call-template>
                         <xsl:variable name="ada-elemName">identificatie_23289</xsl:variable>
                         <xsl:call-template name="handleII">
-                            <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = $template-id-rel-gb]/hl7:id"/>
+                            <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = $template-id-rel-gb]/hl7:id"/>
                             <xsl:with-param name="elemName" select="$ada-elemName"/>
                         </xsl:call-template>
                     </xsl:element>
                 </xsl:if>
                 <!-- relaties ketenzorg -->
-                <xsl:variable name="rel-encounter" select="./hl7:entryRelationship[@typeCode = 'REFR']/hl7:encounter"/>
-                <xsl:variable name="rel-concern" select="./hl7:entryRelationship[@typeCode = 'REFR']/hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]"/>
+                <xsl:variable name="rel-encounter" select="hl7:entryRelationship[@typeCode = 'REFR']/hl7:encounter"/>
+                <xsl:variable name="rel-concern" select="hl7:entryRelationship[@typeCode = 'REFR']/hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]"/>
                 <xsl:if test="$rel-encounter or $rel-concern">
                     <xsl:variable name="ada-elemName">relaties_ketenzorg</xsl:variable>
                     <xsl:element name="{$ada-elemName}">
@@ -4861,7 +4653,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
 
                 <!-- reden van voorschrijven -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
                     <xsl:variable name="ada-elemName">reden_van_voorschrijven</xsl:variable>
                     <xsl:element name="{$ada-elemName}">
                         <xsl:variable name="ada-elemName">probleem</xsl:variable>
@@ -4891,7 +4683,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
                 <!-- lichaamslengte  -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.7.10.30'][hl7:value]">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.7.10.30'][hl7:value]">
                     <xsl:variable name="ada-elemName">lichaamslengte</xsl:variable>
                     <xsl:element name="{$ada-elemName}">
                         <!-- lengte_waarde -->
@@ -4910,7 +4702,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:for-each>
                 <!-- lichaamsgewicht  -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.7.10.28'][hl7:value]">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.7.10.28'][hl7:value]">
                     <xsl:variable name="ada-elemName">lichaamsgewicht</xsl:variable>
                     <xsl:element name="{$ada-elemName}">
                         <xsl:variable name="ada-elemName">gewicht_waarde</xsl:variable>
@@ -4931,21 +4723,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- aanvullende_informatie -->
                 <xsl:variable name="ada-elemName">aanvullende_informatie</xsl:variable>
                 <xsl:call-template name="handleCV">
-                    <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value"/>
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
 
                 </xsl:call-template>
                 <!-- kopie_indicator -->
                 <xsl:variable name="ada-elemName">kopie_indicator</xsl:variable>
                 <xsl:call-template name="handleBL">
-                    <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
 
                 </xsl:call-template>
                 <!-- toelichting -->
                 <xsl:variable name="ada-elemName">toelichting</xsl:variable>
                 <xsl:call-template name="handleST">
-                    <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text"/>
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
 
                 </xsl:call-template>
@@ -5110,7 +4902,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- gerelateerde_verstrekking -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:code[@code = '373784005'][@codeSystem = $oidSNOMEDCT]]/hl7:id[@extension | @root | @nullFlavor]">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:code[@code = '373784005'][@codeSystem = $oidSNOMEDCT]]/hl7:id[@extension | @root | @nullFlavor]">
                     <xsl:variable name="elemName">gerelateerde_verstrekking</xsl:variable>
                     <xsl:element name="{$elemName}">
 
@@ -5427,10 +5219,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Verstrekkingsverzoek MP 9.0.7</xd:desc>
         <xd:param name="in">input hl7 verstrekkingsverzoek</xd:param>
-      </xd:doc>
+    </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9257_20181204143321" match="hl7:supply" mode="HandleVV910">
         <xsl:param name="in" as="element(hl7:supply)*" select="."/>
-   
+
         <xsl:for-each select="$in">
             <verstrekkingsverzoek>
 
@@ -5447,19 +5239,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- auteur -->
                 <xsl:for-each select="hl7:author[.//(@value | @code | @nullFlavor)]">
                     <auteur>
-
                         <xsl:variable name="author-hl7" select="."/>
-                     
                         <xsl:for-each select="$author-hl7/hl7:assignedAuthor">
-                              <zorgverlener>
-                                <xsl:for-each select="./hl7:id">
-                                    <zorgverlener_identificatie_nummer value="{./@extension}" root="{./@root}"/>
+                            <zorgverlener>
+                                <xsl:for-each select="hl7:id">
+                                    <zorgverlener_identificatie_nummer value="{@extension}" root="{@root}"/>
                                 </xsl:for-each>
                                 <xsl:for-each select="hl7:assignedPerson/hl7:name">
                                     <xsl:variable name="elemName">naamgegevens</xsl:variable>
                                     <xsl:element name="{$elemName}">
                                         <xsl:variable name="elemName">naamgegevens</xsl:variable>
-
                                         <!-- naamgegevens -->
                                         <xsl:call-template name="handleENtoNameInformation">
                                             <xsl:with-param name="in" select="."/>
@@ -5478,7 +5267,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:call-template>
                                     </specialisme>
                                 </xsl:for-each>
-                                <xsl:for-each select="./hl7:representedOrganization">
+
+                                <xsl:for-each select="hl7:representedOrganization">
                                     <xsl:call-template name="mp9-zorgaanbieder">
                                         <xsl:with-param name="hl7-current-organization" select="."/>
                                     </xsl:call-template>
@@ -5660,18 +5450,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:element name="{$elemName}">
                         <zorgaanbieder>
                             <xsl:call-template name="handleII">
-                                <xsl:with-param name="in" select="./hl7:id"/>
+                                <xsl:with-param name="in" select="hl7:id"/>
                                 <xsl:with-param name="elemName">zorgaanbieder_identificatie_nummer</xsl:with-param>
                             </xsl:call-template>
                             <!-- organisatienaam has 1..1 R in MP 9 ADA transactions, but is not always present in HL7 input messages.  -->
                             <!-- fill with nullFlavor if necessary -->
                             <xsl:call-template name="handleST">
-                                <xsl:with-param name="in" select="./hl7:name"/>
+                                <xsl:with-param name="in" select="hl7:name"/>
                                 <xsl:with-param name="elemName">organisatie_naam</xsl:with-param>
                                 <xsl:with-param name="nullIfMissing">NI</xsl:with-param>
                             </xsl:call-template>
                             <xsl:call-template name="handleADtoAddressInformation">
-                                <xsl:with-param name="in" select="./hl7:addr"/>
+                                <xsl:with-param name="in" select="hl7:addr"/>
                                 <xsl:with-param name="language">nl-NL</xsl:with-param>
                             </xsl:call-template>
                         </zorgaanbieder>
@@ -5680,7 +5470,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- reden afspraak -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9083' or hl7:code[@code = '112231000146109'][@codeSystem = $oidSNOMEDCT]]/hl7:text">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9083' or hl7:code[@code = '112231000146109'][@codeSystem = $oidSNOMEDCT]]/hl7:text">
                     <xsl:variable name="elemName">reden_afspraak</xsl:variable>
                     <xsl:element name="{$elemName}">
                         <xsl:attribute name="value" select="./text()"/>
@@ -5711,7 +5501,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- toelichting -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
                     <xsl:variable name="elemName">toelichting</xsl:variable>
                     <xsl:element name="{$elemName}">
                         <xsl:attribute name="value" select="text()"/>
@@ -5721,12 +5511,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- kopie_indicator -->
                 <xsl:variable name="ada-elemName">kopie_indicator</xsl:variable>
                 <xsl:call-template name="handleBL">
-                    <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
                 </xsl:call-template>
 
                 <!-- relatie_naar_medicatieafspraak -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9086']/hl7:id">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9086']/hl7:id">
                     <xsl:variable name="elemName">relatie_naar_medicatieafspraak</xsl:variable>
                     <xsl:element name="{$elemName}">
                         <xsl:call-template name="handleII">
@@ -6161,24 +5951,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$vv_hl7_90">
             <verstrekkingsverzoek>
                 <!-- identificatie -->
-                <xsl:for-each select="./hl7:id">
-                    <identificatie value="{./@extension}" root="{./@root}"/>
+                <xsl:for-each select="hl7:id">
+                    <identificatie value="{@extension}" root="{@root}"/>
                 </xsl:for-each>
                 <!-- datum -->
-                <xsl:for-each select="./hl7:author/hl7:time">
+                <xsl:for-each select="hl7:author/hl7:time">
                     <datum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}"/>
                 </xsl:for-each>
                 <!-- auteur -->
                 <auteur>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20160615212337">
-                        <xsl:with-param name="author-hl7" select="./hl7:author"/>
+                        <xsl:with-param name="author-hl7" select="hl7:author"/>
                     </xsl:call-template>
                 </auteur>
                 <!-- te_verstrekken_hoeveelheid -->
-                <xsl:for-each select="./hl7:quantity">
+                <xsl:for-each select="hl7:quantity">
                     <te_verstrekken_hoeveelheid>
-                        <xsl:for-each select="./hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                            <aantal value="{./@value}"/>
+                        <xsl:for-each select="hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
+                            <aantal value="{@value}"/>
                             <eenheid>
                                 <xsl:call-template name="mp9-code-attribs">
                                     <xsl:with-param name="current-hl7-code" select="."/>
@@ -6188,11 +5978,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </te_verstrekken_hoeveelheid>
                 </xsl:for-each>
                 <!-- aantal_herhalingen -->
-                <xsl:for-each select="./hl7:repeatNumber">
+                <xsl:for-each select="hl7:repeatNumber">
                     <aantal_herhalingen value="{number(./@value)-1}"/>
                 </xsl:for-each>
                 <!-- te_verstrekken_geneesmiddel  -->
-                <xsl:for-each select="./hl7:product/hl7:manufacturedProduct/hl7:manufacturedMaterial">
+                <xsl:for-each select="hl7:product/hl7:manufacturedProduct/hl7:manufacturedMaterial">
                     <te_verstrekken_geneesmiddel>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9070_20160618193427">
                             <xsl:with-param name="product-hl7" select="."/>
@@ -6200,19 +5990,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </te_verstrekken_geneesmiddel>
                 </xsl:for-each>
                 <!-- verbruiksperiode -->
-                <xsl:for-each select="./hl7:expectedUseTime/hl7:width">
+                <xsl:for-each select="hl7:expectedUseTime/hl7:width">
                     <verbruiksperiode>
                         <duur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(@unit)}"/>
                     </verbruiksperiode>
                 </xsl:for-each>
-                <xsl:for-each select="./hl7:performer/hl7:assignedEntity/hl7:representedOrganization">
+                <xsl:for-each select="hl7:performer/hl7:assignedEntity/hl7:representedOrganization">
                     <beoogd_verstrekker>
                         <xsl:call-template name="mp9-zorgaanbieder">
                             <xsl:with-param name="hl7-current-organization" select="."/>
                         </xsl:call-template>
                     </beoogd_verstrekker>
                 </xsl:for-each>
-                <xsl:for-each select="./hl7:participant[@typeCode = 'DST']/hl7:participantRole[@classCode = 'SDLOC']/hl7:addr">
+                <xsl:for-each select="hl7:participant[@typeCode = 'DST']/hl7:participantRole[@classCode = 'SDLOC']/hl7:addr">
                     <xsl:variable name="concatted_text">
                         <xsl:for-each select="./*">
                             <xsl:value-of select="concat(./text(), ' ')"/>
