@@ -717,8 +717,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </xsl:when>
 
-                    <!-- doseerschema met toedieningsduur én (frequentie of interval) en zonder toedientijd -->
-                    <xsl:when test="(frequentie/tijdseenheid[.//(@value | @code)] or interval[@value | @unit]) and not(toedientijd[.//(@value | @code)]) and ../toedieningsduur[.//(@value | @code)] and not(weekdag[.//(@value | @code)]) and not(dagdeel[.//(@value | @code)])">
+                    <!-- doseerschema met toedieningsduur en zonder toedientijd/weekdag/dagdeel -->
+                    <xsl:when test="../toedieningsduur[.//(@value | @code)] and not(toedientijd[.//(@value | @code)]) and not(weekdag[.//(@value | @code)]) and not(dagdeel[.//(@value | @code)])">
                         <effectiveTime>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9161_20161110085716"/>
                         </effectiveTime>
