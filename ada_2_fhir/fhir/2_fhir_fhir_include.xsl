@@ -254,31 +254,72 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="elementName">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
         <xd:param name="userSelected">Optionally provide a user selected boolean.</xd:param>
         <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation. <xd:p>Example. if you only want to translate ActStatus completed into a FHIR ObservationStatus final, this would suffice:</xd:p>
+            <xd:p><code>&lt;map inCode="completed" inCodeSystem="$codeSystem" code="final"/&gt;</code>
+                <div>to produce</div>
+                <code>&lt;$elemName value="final"/&gt;</code></xd:p>
+        </xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="elementName" as="xs:string?">coding</xsl:param>
         <xsl:param name="userSelected" as="xs:boolean?"/>
         <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
+        <xsl:param name="codeMap" as="element()*"/>
+        
+        <xsl:variable name="theCode">
+            <xsl:choose>
+                <xsl:when test="$in/@code">
+                    <xsl:value-of select="$in/@code"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$in/@nullFlavor"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="theCodeSystem">
+            <xsl:choose>
+                <xsl:when test="$in/@code">
+                    <xsl:value-of select="$in/@codeSystem"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$oidHL7NullFlavor"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="out" as="element()">
+            <xsl:choose>
+                <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
+                    <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
+                </xsl:when>
+                <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
+                    <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$in"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
         <xsl:choose>
-            <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor] and not($treatNullFlavorAsCoding)">
+            <xsl:when test="$out[@codeSystem = $oidHL7NullFlavor] and not($treatNullFlavorAsCoding)">
                 <extension url="{$urlExtHL7NullFlavor}">
-                    <valueCode value="{$in/@code}"/>
+                    <valueCode value="{$out/@code}"/>
                 </extension>
             </xsl:when>
-            <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or $treatNullFlavorAsCoding]">
+            <xsl:when test="$out[not(@codeSystem = $oidHL7NullFlavor) or $treatNullFlavorAsCoding]">
                 <xsl:element name="{$elementName}">
                     <xsl:call-template name="code-to-Coding">
-                        <xsl:with-param name="in" select="$in"/>
+                        <xsl:with-param name="in" select="$out"/>
                         <xsl:with-param name="userSelected" select="$userSelected"/>
                         <xsl:with-param name="treatNullFlavorAsCoding" select="$treatNullFlavorAsCoding"/>
                     </xsl:call-template>
                 </xsl:element>
-                <!--<xsl:if test="$in/@displayName">
-                    <text value="{$in/@displayName}"/>
+                <!--<xsl:if test="$out/@displayName">
+                    <text value="{$out/@displayName}"/>
                 </xsl:if>-->
                 <!-- ADA heeft geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
-                <xsl:for-each select="$in/translation">
+                <xsl:for-each select="$out/translation">
                     <xsl:element name="{$elementName}">
                         <xsl:call-template name="code-to-Coding">
                             <xsl:with-param name="in" select="."/>
@@ -645,6 +686,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="$oidMap[@oid = $oid]/@uri"/>
             </xsl:when>
             <xsl:when test="matches($oid, $OIDpattern)">
+                <xsl:value-of select="concat('urn:oid:', $oid)"/>
+            </xsl:when>
+            <xsl:when test="matches($oid, $OIDpatternlenient)">
+                <xsl:call-template name="util:logMessage" xmlns:util="urn:hl7:utilities">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">OID SHALL NOT have leading zeroes in its nodes: <xsl:value-of select="$oid"/>. This MUST be fixed in the source application before continuing.</xsl:with-param>
+                    <!-- Is this too strict? -->
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
                 <xsl:value-of select="concat('urn:oid:', $oid)"/>
             </xsl:when>
             <xsl:when test="matches($oid, $UUIDpattern)">
