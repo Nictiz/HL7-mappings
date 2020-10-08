@@ -15,11 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
-    <!-- Dit is een conversie van MP 6.12 naar ADA 9.0 verstrekkingenvertaling transactie -->
-    <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
-    <xsl:variable name="xsd-ada" select="document('../ada_schemas/beschikbaarstellen_verstrekkingenvertaling.xsd')"/>
-    <xsl:variable name="mbh-complexType" select="$xsd-ada/xs:schema/xs:complexType[@name = 'beschikbaarstellen_verstrekkingenvertaling_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
-    <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
+
     <xsl:variable name="transaction-name">beschikbaarstellen_verstrekkingenvertaling</xsl:variable>
     <xsl:variable name="transaction-oid">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:variable>
     <xsl:variable name="transaction-effectiveDate" as="xs:dateTime">2016-03-23T16:32:43</xsl:variable>
@@ -69,14 +65,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="$dispense-events">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.110_20130521000000_2_907">
                                 <xsl:with-param name="current-dispense-event" select="."/>
-                                <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
                                 <xsl:with-param name="transaction" select="$transaction-name"/>
                             </xsl:call-template>
                         </xsl:for-each>
                     </beschikbaarstellen_verstrekkingenvertaling>
                 </xsl:for-each>
             </data>
-        </adaxml>    
+        </adaxml>
     </xsl:template>
 </xsl:stylesheet>

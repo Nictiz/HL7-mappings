@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:nf="http://www.nictiz.nl/functions"
+        xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+        xmlns:sdtc="urn:hl7-org:sdtc"
+        xmlns:pharm="urn:ihe:pharm:medication"
+        xmlns:hl7="urn:hl7-org:v3"
+        xmlns:hl7nl="urn:hl7-nl:v3"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2020-10-06T17:15:26.099+02:00"
+         last-update-date="2020-10-06T17:15:26.099+02:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <beschikbaarstellen_medicatiegegevens app="mp-mp910"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="mg-mgr-mg-MA-Scenarioset3-3-1"
+                                            id="mg-mgr-mg-MA-Scenarioset3-3-1">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Vonker"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999910401" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1954-02-08"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_910_aanvullendeinstructie"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <gebruiksperiode_start value="2019-09-01T00:00:00"/>
+               <gebruiksperiode_eind value="2019-12-22T23:59:59"/>
+               <identificatie value="MBH_910_aanvullendeinstructie_MA_staken"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraak_datum_tijd value="2019-12-22T18:00:00"/>
+               <relatie_naar_afspraak_of_gebruik>
+                  <identificatie value="MBH_910_aanvullendeinstructie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_afspraak_of_gebruik>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam>
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens>
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234 AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="49484"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                     <product_code code="103039"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf &lt;T-4M{00:00:00}&gt; t/m &lt;T-10D{23:59:59}&gt;, 1 maal per dag 1 stuk, Bij het eten innemen, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="Oraal"/>
+                  <aanvullende_instructie code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"
+                                          originalText="Bij het eten innemen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

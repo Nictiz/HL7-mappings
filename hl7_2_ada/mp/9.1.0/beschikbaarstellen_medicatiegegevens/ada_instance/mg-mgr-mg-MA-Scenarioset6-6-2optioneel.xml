@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:nf="http://www.nictiz.nl/functions"
+        xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+        xmlns:sdtc="urn:hl7-org:sdtc"
+        xmlns:pharm="urn:ihe:pharm:medication"
+        xmlns:hl7="urn:hl7-org:v3"
+        xmlns:hl7nl="urn:hl7-nl:v3"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2020-10-06T17:15:26.2+02:00"
+         last-update-date="2020-10-06T17:15:26.2+02:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <beschikbaarstellen_medicatiegegevens app="mp-mp910"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="mg-mgr-mg-MA-Scenarioset6-6-2optioneel"
+                                            id="mg-mgr-mg-MA-Scenarioset6-6-2optioneel">
+         <patient>
+            <naamgegevens>
+               <initialen value="N."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Maasz"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999910747" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1954-08-10"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_910_interval" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <gebruiksperiode_start value="2020-01-01T00:00:00"/>
+               <identificatie value="MBH_910_interval_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraak_datum_tijd value="2020-01-01T08:04:00"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam>
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens>
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234 AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="34851"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="INSULINE ISOFAAN 100IE/ML"/>
+                     <product_code code="111325"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="INSULINE ISOFAAN 100IE/ML"/>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, exact iedere 12 uur 16 IE, subcutaan"/>
+                  <toedieningsweg code="21"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="subcutaan"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <vaste_waarde value="16"/>
+                           </aantal>
+                           <eenheid code="217"
+                                    displayName="internationale eenheid"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <interval value="1" unit="uur"/>
+                           <is_flexibel value="false"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

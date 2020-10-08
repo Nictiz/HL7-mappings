@@ -18,20 +18,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-    <!-- de schema (xsd) parameter bevat het ada xsd om de juiste conceptId's te vinden voor de ADA xml, ada xsd verschilt per ad transactie -->
-    <!-- indien niet gevuld, heeft de ada output geen conceptId's -->
-    <xsl:param name="schema"/>
-
+ 
     <xd:doc>
         <xd:desc>Mapping of HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.7.10.30 20171025 to zib nl.zorg.Lichaamslengte 3.1 concept in ADA. 
                  Created for MP voorschrift, currently only supports fields used in those scenario's</xd:desc>
         <xd:param name="in">HL7 Node to consider in the creation of the ada element</xd:param>
-        <xd:param name="schemaFragment">The schemaFragment of the parent element of the element to be outputted. Defaults to stylesheet parameter $schema.</xd:param>
-        <xd:param name="zibroot">Optional. The ada zibroot element to be outputted with this HCIM, will be copied in ada element</xd:param>
+         <xd:param name="zibroot">Optional. The ada zibroot element to be outputted with this HCIM, will be copied in ada element</xd:param>
     </xd:doc>
     <xsl:template name="zib-Lichaamslengte-3.1" match="hl7:observation" as="element()*" mode="doZibLichaamslengte-3.1">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="schemaFragment" as="node()?" select="$schema"/>
         <xsl:param name="zibroot" as="element()?"/>
 
         <xsl:for-each select="$in">
@@ -42,10 +37,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>body_height</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
-            <xsl:element name="{$elemName}">
-                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-
+             <xsl:element name="{$elemName}">
+         
                 <!-- zibroot -->
                 <xsl:copy-of select="$zibroot"/>
 
@@ -59,8 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="handlePQ">
                     <xsl:with-param name="in" select="hl7:value[@value | @unit | @nullFlavor]"/>
                     <xsl:with-param name="elemName" select="$elemName"/>
-                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
-                </xsl:call-template>
+                 </xsl:call-template>
 
                 <!-- height_date_time -->
                 <xsl:variable name="elemName">
@@ -72,8 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="handleTS">
                     <xsl:with-param name="in" select="hl7:effectiveTime[@value | @nullFlavor] | hl7:effectiveTime/hl7:low"/>
                     <xsl:with-param name="elemName" select="$elemName"/>
-                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
-                </xsl:call-template>
+                 </xsl:call-template>
 
             </xsl:element>
         </xsl:for-each>

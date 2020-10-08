@@ -21,11 +21,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes"/>
 
-    <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
-    <xsl:param name="xsd-ada" select="document('../ada_schemas/beschikbaarstellen_medicatieafspraken.xsd')"/>
-    <xsl:variable name="mbh-complexType" select="$xsd-ada//xs:schema/xs:complexType[@name = 'beschikbaarstellen_medicatieafspraken_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
-    <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
-
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -48,11 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="in"/>
-        <xd:param name="xsd-mbh"/>
     </xd:doc>
     <xsl:template name="BeschikbaarstellenMedicatieafspraken-ADA">
         <xsl:param name="in" as="element()"/>
-        <xsl:param name="xsd-mbh" select="$xsd-mbh"/>
 
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
         <beschikbaarstellen_medicatieafspraken app="ketenzorg3.0" shortName="beschikbaarstellen_medicatieafspraken" formName="beschikbaarstellen_medicatieafspraken" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.523" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="nl-NL" title="Generated Through Conversion" id="{uuid:get-uuid(.)}">
@@ -66,33 +59,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- medicamenteuze_behandeling -->
                 <xsl:choose>
                     <xsl:when test="string-length(current-grouping-key()) gt 0">
-                        <medicamenteuze_behandeling conceptId="{$xsd-mbh/xs:attribute[@name='conceptId']/@fixed}">
-                            <xsl:variable name="identificatie-complexType" select="$xsd-mbh//xs:element[@name = 'identificatie']/@type"/>
+                        <medicamenteuze_behandeling>
                             <xsl:for-each select="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']/hl7:id">
-                                <identificatie value="{./@extension}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$identificatie-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                <identificatie value="{@extension}" root="{@root}"/>
                             </xsl:for-each>
                             <!-- medicatieafspraak -->
                             <xsl:for-each select="current-group()[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235']">
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9235_20181204143321">
                                     <xsl:with-param name="ma_hl7_90" select="."/>
-                                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                    <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
                                 </xsl:call-template>
                             </xsl:for-each>
                         </medicamenteuze_behandeling>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:for-each select="current-group()[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235']">
-                            <medicamenteuze_behandeling conceptId="{$xsd-mbh/xs:attribute[@name='conceptId']/@fixed}">
-                                <xsl:variable name="identificatie-complexType" select="$xsd-mbh//xs:element[@name = 'identificatie']/@type"/>
+                            <medicamenteuze_behandeling>
                                 <xsl:for-each select="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']/hl7:id">
-                                    <identificatie value="{./@extension}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$identificatie-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                    <identificatie value="{@extension}" root="{@root}"/>
                                 </xsl:for-each>
                                 <!-- medicatieafspraak -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9235_20181204143321">
                                     <xsl:with-param name="ma_hl7_90" select="."/>
-                                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                    <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
                                 </xsl:call-template>
                             </medicamenteuze_behandeling>
                         </xsl:for-each>
