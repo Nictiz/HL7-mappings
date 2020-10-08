@@ -43,24 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid as fullUrl and as fhir id from second group onwards, cannot guarantee unique FHIR resource id / filenames otherwise -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <!-- the default is to input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner -->
-                <!-- However, that does not work in a dataset that puts zorgverlener as a separate concept group directly under transaction, and uses ada reference
-                     such as the cio dataset -->
-                <!-- so in that case we take the first element that has a reference to this zorgverlener, which will make a unique xml node for each PractitionerRole -->
-                <xsl:variable name="id" select="./@id"/>
-                <xsl:variable name="node-for-id" select="(//*[@value = $id])[1]"/>
-                <xsl:variable name="input-node-for-uuid" as="element()">
-                    <xsl:choose>
-                        <xsl:when test="$node-for-id">
-                            <xsl:sequence select="$node-for-id"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <!-- parent node contains unique xml element node for PractitionerRole -->
-                            <xsl:sequence select="./.."/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-
+           
                 <unieke-practitionerRole xmlns="">
                     <group-key>
                         <xsl:value-of select="current-grouping-key()"/>
@@ -71,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="current-group()[1]">
                         <xsl:call-template name="practitionerRole-entry">
                             <xsl:with-param name="uuid" select="$uuid"/>
-                            <xsl:with-param name="entryFullUrl" select="nf:get-fhir-uuid($input-node-for-uuid)"/>
+                            <xsl:with-param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
                         </xsl:call-template>
                     </xsl:for-each>
                 </unieke-practitionerRole>
