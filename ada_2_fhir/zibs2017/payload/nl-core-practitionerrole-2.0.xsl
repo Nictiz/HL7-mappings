@@ -281,6 +281,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:function>
 
+    <xd:doc>
+        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty.
+            There is a specific function for determining uniqueness of healthProfessional, because it also may hold information about the role, which should not be taken into account for determining uniqueness (that information is in FHIR resource practitionerRole)</xd:desc>
+        <xd:param name="healthProfessional"/>
+    </xd:doc>
+    <xsl:function name="nf:get-grouping-key-practitioner" as="xs:string?">
+        <xsl:param name="healthProfessional" as="element()?"/>
+        <xsl:if test="$healthProfessional">
+            <!-- MM-1437 allow for more than one healthProfessional identification / name / address / contact details -->
+            <!-- let's just select the professional and leave out the role, we don't want those to determine uniqueness -->
+            <xsl:variable name="healthPro4Key" as="element()?">
+                <xsl:apply-templates select="$healthProfessional" mode="copy4PractitionerRoleKey"/>
+            </xsl:variable>
+            <xsl:value-of select="nf:getGroupingKeyDefault($healthPro4Key)"/>
+        </xsl:if>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, 
@@ -300,5 +316,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:function>
 
+  
+    <xd:doc>
+        <xd:desc>Default copy Template</xd:desc>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="copy4PractitionerRoleKey">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="copy4PractitionerRoleKey"></xsl:apply-templates>
+        </xsl:copy>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Do not copy the role as it is not in FHIR PractitionerRole resource, so should not be part of duplicate detection</xd:desc>
+    </xd:doc>
+    <xsl:template match="zorgverlener_rol | health_professional_role" mode="copy4PractitionerRoleKey"/>
+    
+    
 
 </xsl:stylesheet>
