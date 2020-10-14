@@ -234,13 +234,13 @@
                                 <xsl:variable name="max-aantal" select="max($keerdosis/aantal/(min | vaste_waarde | max)/@value)"/>
                                 <xsl:value-of select="nwf:unit-string($max-aantal, $keerdosis/eenheid/@displayName)"/>
                             </xsl:variable>
-                            <xsl:variable name="dagdeel" select="./toedieningsschema/dagdeel[.//(@value | @code)]"/>
+                            <xsl:variable name="dagdeel" select="toedieningsschema/dagdeel[.//(@value | @code)]"/>
                             <xsl:variable name="dagdeel-string" as="xs:string*">
                                 <xsl:value-of select="string-join($dagdeel[position() lt last()]/@displayName, ', ')"/>
                                 <xsl:if test="count($dagdeel) gt 1">en </xsl:if>
                                 <xsl:value-of select="$dagdeel[last()]/@displayName"/>
                             </xsl:variable>
-                            <xsl:variable name="maxdose" select="./zo_nodig/maximale_dosering[.//(@value | @code)]"/>
+                            <xsl:variable name="maxdose" select="zo_nodig/maximale_dosering[.//(@value | @code)]"/>
                             <xsl:variable name="maxdose-string" as="xs:string*">
                                 <xsl:if test="$maxdose">
                                     <xsl:value-of select="', maximaal'"/>

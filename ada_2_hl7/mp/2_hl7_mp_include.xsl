@@ -678,7 +678,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!-- MP-99, add support for weekdag with or without toedientijd -->
                     <xsl:call-template name="_weekdagComp"/>
-
+                    
+                    <!-- MP-79, add support for dagdeel  -->
+                    <xsl:for-each select="dagdeel">
+                        <comp>
+                            <xsl:call-template name="makeDagdeel">
+                                <xsl:with-param name="theOperator" select="
+                                    if (position() gt 1) then
+                                    'I'
+                                    else
+                                    'A'"/>
+                            </xsl:call-template>
+                        </comp>
+                    </xsl:for-each>
+                    
                     <!-- cyclisch schema -->
                     <comp>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9082_20160621002112"/>
