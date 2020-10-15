@@ -88,7 +88,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="nf:getUriFromAdaId(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number))"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                    <!-- let's use the practitioner node without specialty and organization to determine uuid, 
+                        this way the practitionerrole uuid generation can use the whole zorgverlener element for it's uuid and not conflict with the one for practitioner -->
+                    <xsl:variable name="healthProNoOrganization" as="element()?">
+                        <xsl:apply-templates select="." mode="copy4PractitionerKey"/>
+                    </xsl:variable>
+                    <xsl:value-of select="nf:get-fhir-uuid($healthProNoOrganization)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
@@ -183,9 +188,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:copy>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Do not copy the organization</xd:desc>
+        <xd:desc>Do not copy the organization, specialty and role as they are not in FHIR Practitioner resource, so should not be part of duplicate detection</xd:desc>
     </xd:doc>
-    <xsl:template match="zorgaanbieder | healthcare_provider" mode="copy4PractitionerKey"/>
+    <xsl:template match="zorgaanbieder | healthcare_provider | specialisme | specialty | zorgverlener_rol | health_professional_role" mode="copy4PractitionerKey"/>
     
 
     <xd:doc>
@@ -197,11 +202,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="healthProfessional" as="element()?"/>
         <xsl:if test="$healthProfessional">
             <!-- MM-1437 allow for more than one healthProfessional identification / name / address / contact details -->
-            <!-- let's just select the professional and leave out the healthcareProvider, we don't want the healthcareProvider to determine uniqueniess -->
-            <xsl:variable name="healthProNoOrganization" as="element()?">
+            <!-- let's just select the professional and leave out the healthcareProvider, role and specialism, we don't want those to determine uniqueness -->
+            <xsl:variable name="healthPro4Key" as="element()?">
                 <xsl:apply-templates select="$healthProfessional" mode="copy4PractitionerKey"/>
             </xsl:variable>
-            <xsl:value-of select="nf:getGroupingKeyDefault($healthProNoOrganization)"/>
+            <xsl:value-of select="nf:getGroupingKeyDefault($healthPro4Key)"/>
         </xsl:if>
     </xsl:function>
 
