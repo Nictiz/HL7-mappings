@@ -1353,7 +1353,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </xsl:if>
                                             </xsl:if>
                                             <!-- interval, not in combination with toedientijd only with isFlexible false -->
-                                            <xsl:if test="not(xs:string(@isFlexible) = 'true') and not($hl7Toedientijd)  and hl7nl:frequency[.//(@value | @unit)]">
+                                            <xsl:if test="not(xs:string(@isFlexible) = 'true') and not($hl7Toedientijd) and hl7nl:frequency[.//(@value | @unit)]">
                                                 <xsl:call-template name="mp9-interval"/>
                                             </xsl:if>
                                             <!-- toedientijd -->
@@ -1367,7 +1367,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </xsl:for-each>
                                             <!-- is_flexibel -->
                                             <!-- not applicable when interval has been outputted (implicitly false) -->
-                                            <xsl:if test="not(not(xs:string(@isFlexible) = 'true') and not($hl7Toedientijd)  and hl7nl:frequency[.//(@value | @unit)])">
+                                            <xsl:if test="not(not(xs:string(@isFlexible) = 'true') and not($hl7Toedientijd) and hl7nl:frequency[.//(@value | @unit)])">
                                                 <xsl:variable name="elemName">is_flexibel</xsl:variable>
                                                 <xsl:element name="{$elemName}">
                                                     <xsl:choose>
@@ -1427,7 +1427,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                                         <!-- Doseerschema met toedieningsduur gecombineerd met meerdere toedientijden -->
                                         <xsl:variable name="doseSchema" as="element(hl7:comp)*" select="hl7:effectiveTime[hl7:comp[hl7nl:phase[hl7nl:width]]][not(hl7:comp/@alignment)][not(hl7:comp[hl7nl:period])]/hl7:comp"/>
-                                         <xsl:if test="$doseSchema">
+                                        <xsl:if test="$doseSchema">
                                             <xsl:comment>Doseerschema met toedieningsduur gecombineerd met meerdere toedientijden.</xsl:comment>
                                             <!-- frequentie, we evaluate the first hl7:comp in $doseSchema, should all be the same for frequency. @isFlexible is not important here, since it applies to toedientijd -->
                                             <xsl:variable name="doseFrequency" as="element()?" select="($doseSchema[hl7nl:frequency[.//(@value | @unit)]])[1]"/>
@@ -1441,8 +1441,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </xsl:if>
                                             <!-- interval is not applicable in combination with toedientijd -->
                                             <!-- output the toedieningstijd -->
-                                             <xsl:variable name="hl7Toedientijd" as="element(hl7nl:low)*" select="$doseSchema/hl7nl:phase/hl7nl:low[string-length(@value) gt 9]"/>
-                                             <xsl:for-each select="$hl7Toedientijd">
+                                            <xsl:variable name="hl7Toedientijd" as="element(hl7nl:low)*" select="$doseSchema/hl7nl:phase/hl7nl:low[string-length(@value) gt 9]"/>
+                                            <xsl:for-each select="$hl7Toedientijd">
                                                 <xsl:variable name="elemName">toedientijd</xsl:variable>
                                                 <xsl:call-template name="handleTS">
                                                     <xsl:with-param name="in" select="."/>
@@ -1470,21 +1470,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:if>
 
                                         <!-- Cyclisch doseerschema. -->
-                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
-                                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
-                                            <!-- is_flexibel, only one item in ada, take it from this administration frequency/interval within the cyclical schedule -->
-                                            <xsl:variable name="elemName">is_flexibel</xsl:variable>
-                                            <xsl:element name="{$elemName}">
-                                                <xsl:choose>
-                                                    <xsl:when test="exists(@isFlexible)">
-                                                        <xsl:attribute name="value" select="@isFlexible"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                        <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]">
+                                            <xsl:comment>Cyclisch doseerschema.</xsl:comment>
+                                            <!-- frequentie -->                                            
+                                            <xsl:for-each select="hl7:comp/hl7nl:frequency">
+                                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
+                                            </xsl:for-each>
+                                            <!-- toedientijd and is_flexibel, only one item in ada for is_flexibel and only applicable in combination with toedientijd -->
+                                            <!-- let's check for component(s) with a toedientijd -->
+                                            <xsl:variable name="hl7CompToedientijd" as="element()*" select="hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:phase[not(hl7nl:width)]]"/>
+                                            <xsl:if test="$hl7CompToedientijd">
+                                                <xsl:comment>cyclisch schema met toedientijd</xsl:comment>
+                                                <xsl:for-each select="$hl7CompToedientijd">
+                                                     <xsl:call-template name="handleTS">
+                                                        <xsl:with-param name="in" select="hl7nl:phase/hl7nl:low"/>
+                                                        <xsl:with-param name="elemName">toedientijd</xsl:with-param>
+                                                        <xsl:with-param name="vagueDate" select="true()"/>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                                <xsl:element name="is_flexibel">
+                                                    <xsl:choose>
+                                                        <!-- when there is at least one toedientijd which is not flexible, we set the is flexible to false in ada -->
+                                                        <xsl:when test="$hl7CompToedientijd[xs:string(@isFlexible) = 'false' or not(exists(@isFlexible))]">
+                                                            <xsl:attribute name="value" select="false()"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="$hl7CompToedientijd[xs:string(@isFlexible) = 'true']">
+                                                            <xsl:attribute name="value" select="true()"/>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
 
-                                            </xsl:element>
+                                                </xsl:element>
+                                            </xsl:if>
                                         </xsl:for-each>
 
                                         <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
