@@ -44,10 +44,10 @@
 
     <target name="convert_ada_2_hl7_sub">
 
-        <property name="xsl.mp" value="${sub.build.dir}/${xsl.name}"/>
+        <property name="xsl.cio" value="${build.dir}/${usecase}/payload/${xsl.name}"/>
 
-        <property name="xsl.input" value="${sub.build.dir}/${xsl.in}"/>
-        <property name="xsl.output" value="${sub.build.dir}/${xsl.out}"/>
+        <property name="xsl.input" value="${build.dir}/${usecase}/${xsl.in}"/>
+        <property name="xsl.output" value="${build.dir}/${usecase}/${xsl.out}"/>
 
         <echo>Deleting previous results, if any</echo>
         <mkdir dir="${xsl.output}"/>
@@ -56,17 +56,14 @@
         </delete>
 
         <sequential>
-            <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+            <fileset id="inputfiles" dir="${xsl.input}" includes="*.xml"/>
 
             <echo/>
-            <echo>${echo.label} ${xsl.mp} input dir ${xsl.input}</echo>
-            <xslt force="true" style="${xsl.mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesMP"/>
+            <echo>${echo.label} ${xsl.cio} input dir ${xsl.input}</echo>
+            <xslt force="true" style="${xsl.cio}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfiles"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>
-                <!-- whether to generate the textual instruction for use based on structured data, 
-                    typically true for test/example instances 
-                    typically false for production -->
-                <param name="generateInstructionText" expression="true"/>
+                <param name="schematronRef" expression="${schematron.ref}" if="schematron.ref"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>

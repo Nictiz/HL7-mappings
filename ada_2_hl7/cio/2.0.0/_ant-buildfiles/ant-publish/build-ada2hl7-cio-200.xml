@@ -9,7 +9,8 @@
 <project basedir="." default="convert_ada_2_hl7_cio200" name="build-ada2hl7-cio-200-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <property name="is.version" value="2.0.0"/>
     <property name="is.version.short" value="200"/>
-    <property name="date.T" value="2020-06-08"/>
+    <property name="date.T" value="2020-10-15"/>
+    <property name="schematron.ref" value="true"/>
   
     <!-- place import after properties, otherwise it can't resolve the properties used. -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-cio-include.xml"/>
@@ -40,6 +41,12 @@
           
           <!-- cio 2.0.0 specific stuff -->
           <!-- beschikbaarstellen_contraindicatie -->
+          <antcall target="convert_ada_2_hl7_sub">
+              <param name="usecase" value="${usecase.bci}"/>
+              <param name="xsl.in" value="ada_instance"/>
+              <param name="xsl.out" value="hl7_instance"/>
+              <param name="xsl.name" value="${usecase.bci}_org.xsl"/>
+          </antcall>
           
 
     </target>

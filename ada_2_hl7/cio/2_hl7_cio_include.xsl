@@ -69,42 +69,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <observation classCode="OBS" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.1"/>
-                <xsl:for-each select="identificatienummer[.//(@value | @code)]">
+                <xsl:for-each select="identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
                 <code code="140401000146105" displayName="Medical contraindication related to medication (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                <xsl:if test="begin_datum[.//(@value | @code)] or eind_datum[.//(@value | @code)]">
+                <xsl:if test="begin_datum[@value | @nullFlavor] or eind_datum[@value | @nullFlavor]">
                     <effectiveTime xsi:type="IVL_TS">
-                        <xsl:for-each select="begin_datum[.//(@value | @code)]">
+                        <xsl:for-each select="begin_datum[@value | @nullFlavor]">
                             <low>
                                 <xsl:call-template name="makeTSValueAttr"/>
                             </low>
                         </xsl:for-each>
-                        <xsl:for-each select="eind_datum[.//(@value | @code)]">
+                        <xsl:for-each select="eind_datum[@value | @nullFlavor]">
                             <high>
                                 <xsl:call-template name="makeTSValueAttr"/>
                             </high>
                         </xsl:for-each>
                     </effectiveTime>
                 </xsl:if>
-                <xsl:for-each select="medicatie_contra_indicatie_naam[.//(@value | @code)]">
+                <xsl:for-each select="medicatie_contra_indicatie_naam[@value | @code | @nullFlavor]">
                     <value xsi:type="CD">
                         <xsl:call-template name="makeCodeAttribs"/>
                     </value>
                 </xsl:for-each>
                 <!-- the auteur/zorgverlener is a reference -->
-                <xsl:variable name="adaAuteur" select="$resolvedAdaZorgverleners[@id = current()/auteur/zorgverlener/@value]"/>
-                <xsl:for-each select="$adaAuteur">
+                <xsl:for-each select="$resolvedAdaZorgverleners[@id = current()/auteur/zorgverlener/@value]">
                     <author>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.17_20180611000000"/>
                     </author>
                 </xsl:for-each>
-                <xsl:for-each select="toelichting[.//(@value | @code | @nullFlavor)]">
+                <xsl:for-each select="toelichting[@value | @nullFlavor]">
                     <entryRelationship typeCode="SUBJ" inversionInd="true">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                     </entryRelationship>
                 </xsl:for-each>
-                <xsl:for-each select="reden_van_afsluiten[.//(@value | @code | @nullFlavor)]">
+                <xsl:for-each select="reden_van_afsluiten[@value | @nullFlavor]">
                     <entryRelationship typeCode="RSON">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                     </entryRelationship>
