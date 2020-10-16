@@ -150,7 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
                                 <xsl:with-param name="operator" select="'A'"/>
                                 <xsl:with-param name="toedientijd" select="../toedientijd"/>
-                                <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
+                                <xsl:with-param name="aantalPerWeek" select="$perAantalWeken"/>
                                 <xsl:with-param name="weekdagCode" select="@code"/>
                             </xsl:call-template>
                         </effectiveTime>
