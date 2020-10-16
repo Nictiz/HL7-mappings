@@ -29,7 +29,7 @@
     
     
 
-    <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
+    <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from adarefs2ada">
 
         <antcall target="setup_sub_schemas">
             <param name="schema.string" value="*${usecase}.xsd"/>
@@ -61,7 +61,7 @@
 
     </target>
 
-    <target name="setup_sub_instances" description="Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.dir}/${fileset.include})">
+    <target name="setup_sub_instances" description="Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.dir}/${fileset.include}) from adarefs2ada">
 
         <echo/>
         <echo>Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.include})</echo>
@@ -76,6 +76,29 @@
             </fileset>
         </copy>
 
+    </target>
+    
+    <target name="setup_sub_instances_prdinst" description="Setup ${target.dir} containing refreshed ada production instances" depends="dir.check" if="dir.exists">
+        
+        <echo>Setup ${target.dir} containing refreshed ada production instances from ${fileset.dir} include string: ${fileset.include}</echo>
+        <mkdir dir="${target.dir}"/>
+        
+        <delete>
+            <fileset dir="${target.dir}" includes="*.xml"/>
+        </delete>
+        <copy todir="${target.dir}" failonerror="true">
+            <fileset dir="${fileset.dir}">
+                <include name="${fileset.include}"/>
+            </fileset>
+        </copy>
+        
+    </target>
+    
+    <target name="dir.check">
+        <condition property="dir.exists">
+            <available file="${prodinst.dir}" type="dir"/>
+        </condition>
+        <echo>dir.exists: ${dir.exists}</echo>
     </target>
 
 </project>

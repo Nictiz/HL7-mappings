@@ -49,24 +49,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$deZorgaanbieder">
             <representedOrganization>
                 <!--MP CDA Organization id name-->
-                <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
+                <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value]">
                     <!-- MP CDA Zorgaanbieder identificaties -->
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
-                <xsl:for-each select="organisatie_naam[.//(@value | @nullFlavor)]">
-                    <xsl:element name="name">
-                        <xsl:choose>
-                            <xsl:when test="./@value">
-                                <xsl:value-of select="./@value"/>
-                            </xsl:when>
-                            <xsl:when test="./@nullFlavor">
-                                <xsl:attribute name="nullFlavor">
-                                    <xsl:value-of select="./@nullFlavor"/>
-                                </xsl:attribute>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:element>
-                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="organisatie_locatie[@value]">
+                        <name>
+                            <xsl:value-of select="organisatie_locatie/@value"/>
+                        </name>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="organisatie_naam[.//(@value | @nullFlavor)]">
+                            <name>
+                                <xsl:choose>
+                                    <xsl:when test="@value">
+                                        <xsl:value-of select="@value"/>
+                                    </xsl:when>
+                                    <xsl:when test="@nullFlavor">
+                                        <xsl:attribute name="nullFlavor">
+                                            <xsl:value-of select="@nullFlavor"/>
+                                        </xsl:attribute>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </name>
+                        </xsl:for-each>
+                    </xsl:otherwise>
+                </xsl:choose>
+
                 <xsl:for-each select="contactgegevens/telefoonnummers[.//(@value | @nullFlavor)]">
                     <telecom>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000"/>
@@ -87,11 +97,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="makeCodeAttribs"/>
                     </standardIndustryClassCode>
                 </xsl:for-each>
-                <xsl:for-each select="./afdeling_specialisme">
+                <xsl:if test="afdeling_specialisme[@code] | organisatie_naam[@value][following-sibling::organisatie_locatie[@value]]">
                     <asOrganizationPartOf>
-                        <xsl:call-template name="makeCode"/>
+                        <xsl:for-each select="afdeling_specialisme[@code]">
+                            <xsl:call-template name="makeCode"/>
+                        </xsl:for-each>
+                        <xsl:if test="organisatie_naam[@value][following-sibling::organisatie_locatie[@value]]">
+                            <wholeOrganization>
+                                <name>
+                                    <xsl:value-of select="organisatie_naam/@value"/>
+                                </name>
+                            </wholeOrganization>
+                        </xsl:if>
                     </asOrganizationPartOf>
-                </xsl:for-each>
+                </xsl:if>
             </representedOrganization>
         </xsl:for-each>
     </xsl:template>
@@ -601,6 +620,89 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Mapping of zorgverlener concept in zib/ADA to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.3.10.3.17.</xd:desc>
+        <xd:param name="in">ADA Node to consider in the creation of the hl7 element. Defaults to context.</xd:param>
+        <xd:param name="authorTime">Optional parameter for authorTime. This is a required element in HL7 (author/time), when nothing is given a nullFlavor NI will be outputted.</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.17_20180611000000" match="zorgverlener" mode="HandleAuteurZib2017">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="authorTime" as="element()?"/>
+        <!-- time is needed for authorTime, but we sometimes get a date 'T' in ada instance without time, we add time 00:00:00 here -->
+        <xsl:choose>
+            <xsl:when test="$authorTime instance of element()">
+                <xsl:for-each select="$authorTime">
+                    <xsl:variable name="improvedTTime" as="xs:string?">
+                        <xsl:choose>
+                            <xsl:when test="matches(@value, '^T([+\-]\d+(\.\d+)?[YMD])?$')">
+                                <xsl:value-of select="replace(@value, '(^T([+\-]\d+(\.\d+)?[YMD])?)', '$1{00:00:00}')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@value"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <time>
+                        <xsl:call-template name="makeTSValueAttr">
+                            <xsl:with-param name="inputValue" select="$improvedTTime"/>
+                            <xsl:with-param name="inputNullFlavor" select="@nullFlavor"/>
+                        </xsl:call-template>
+                    </time>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <time nullFlavor="NI"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        <xsl:for-each select="$in">
+            <assignedAuthor>
+                <xsl:for-each select="(zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)[@value]">
+                    <xsl:call-template name="makeIIid"/>
+                </xsl:for-each>
+                <xsl:if test="not((zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)[@value])">
+                    <!-- een id wegschrijven met nullFlavor -->
+                    <id nullFlavor="NI"/>
+                </xsl:if>
+                <xsl:for-each select="specialisme[@code]">
+                    <code>
+                        <xsl:call-template name="makeCodeAttribs"/>
+                    </code>
+                </xsl:for-each>
+                <xsl:for-each select="adresgegevens[.//(@value | @nullFlavor)]">
+                    <addr>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
+                    </addr>
+                </xsl:for-each>
+                <xsl:for-each select="contactgegevens/telefoonnummers[.//(@value | @nullFlavor)]">
+                    <telecom>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000"/>
+                    </telecom>
+                </xsl:for-each>
+                <xsl:for-each select="contactgegevens/email_adressen[.//(@value | @nullFlavor)]">
+                    <telecom>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.104_20180611000000"/>
+                    </telecom>
+                </xsl:for-each>
+                <xsl:for-each select="(zorgverlener_naam/naamgegevens | .//naamgegevens[not(child::naamgegevens)])[.//(@value | @code | @nullFlavor)]">
+                    <assignedPerson>
+                        <name>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
+                                <xsl:with-param name="naamgegevens" select="."/>
+                            </xsl:call-template>
+                        </name>
+                    </assignedPerson>
+                </xsl:for-each>
+                <xsl:for-each select="(zorgaanbieder/zorgaanbieder | zorgaanbieder[not(zorgaanbieder)])[.//(@value | @code | @nullFlavor)]">
+                    <!-- formally according to template we should first call template template_2.16.840.1.113883.2.4.3.11.60.3.10.0.6_20180611000000, 
+                        however the xsd complex type POCD_MT000040.Author only allows representedOrganization
+                        even if it would allow other things there is no way of knowing if zorgaanbieder entiteit is applicable, 
+                        thus we always choose uitvoerende zorgaanbieder here (until we have a use case for zorgaanbieder entiteit and a use case with a different xsd) -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000"/>
+                </xsl:for-each>
+                <!-- zorgverlenerrol is implicit here, this is the author of this 'thing', no idea how to map zorgverlenersrol, addressed with IA's -->
+            </assignedAuthor>
+        </xsl:for-each>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>problem observation active diagnose based on ada element probleem, defaults to problem type diagnosis</xd:desc>
