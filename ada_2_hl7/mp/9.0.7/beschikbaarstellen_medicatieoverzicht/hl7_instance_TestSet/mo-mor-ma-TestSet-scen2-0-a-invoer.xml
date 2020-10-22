@@ -215,11 +215,11 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="6939"
+                  <code code="49484"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="Acetylsalicylzuur tabletmsr 100mg"
                         codeSystemName="Metoclopramide zetpil 20mg">
-                     <translation code="63630"
+                     <translation code="103039"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
                                   displayName="Acetylsalicylzuur tabletmsr 100mg"
                                   codeSystemName="METOCLOPRAMIDE 20MG ZETPIL"/>
@@ -726,6 +726,18 @@
                       displayName="Ander voorschrijfbeleid"/>
             </observation>
          </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+               <code code="10"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     codeSystemName="Medicatieproces observaties"
+                     displayName="Reden van voorschrijven."/>
+               <value xsi:type="CE" nullFlavor="OTH">
+                  <originalText>"hier nog een reden"</originalText>
+               </value>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
@@ -834,6 +846,18 @@
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                       code="2"
                       displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+               <code code="10"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     codeSystemName="Medicatieproces observaties"
+                     displayName="Reden van voorschrijven."/>
+               <value xsi:type="CE" nullFlavor="OTH">
+                  <originalText>"hier nog een reden"</originalText>
+               </value>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -952,7 +976,9 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
                      codeSystemName="Medicatieproces observaties"
                      displayName="Reden van voorschrijven."/>
-               <value xsi:type="CE" code="Migraine"/>
+               <value xsi:type="CE" nullFlavor="OTH">
+                  <originalText>"hier nog een reden"</originalText>
+               </value>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">

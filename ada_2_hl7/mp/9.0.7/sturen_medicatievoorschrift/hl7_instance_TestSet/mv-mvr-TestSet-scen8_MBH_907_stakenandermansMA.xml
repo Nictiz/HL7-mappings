@@ -39,10 +39,10 @@
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 3 jun 2020, tot en met 8 jun 2020, 1 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 22 mei 2020, tot en met 27 mei 2020, 1 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20200603000000"/>
-            <high value="20200608235959"/>
+            <low value="20200522000000"/>
+            <high value="20200527235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -52,13 +52,13 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="26638"
+                  <code code="3891"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="LISINOPRIL 10MG TABLET"
+                        displayName="APACOF 250/250/50MG TABLET"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="71587"
+                     <translation code="61433"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="LISINOPRIL 10MG TABLET"
+                                  displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -67,7 +67,7 @@
          <author>
             <time value="20200608090500"/>
             <assignedAuthor>
-               <id extension="000001116" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001112" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -75,19 +75,19 @@
                      codeSystemVersion="2017-12-14T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Pieter</given>
-                     <prefix qualifier="VV">de </prefix>
-                     <family qualifier="BR">Plat </family>
+                     <given qualifier="BR">Bertine</given>
+                     <prefix qualifier="VV">van </prefix>
+                     <family qualifier="BR">Doorn</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001116" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Staden</name>
+                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
-                     <streetName>Kerkstraat</streetName>
-                     <houseNumber>4</houseNumber>
-                     <postalCode>1234 AB</postalCode>
-                     <city>Onze Stad</city>
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>1</houseNumber>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -103,6 +103,18 @@
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                       code="2"
                       displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+               <code code="2"
+                     displayName="Reden medicatieafspraak"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+               <value xsi:type="CE"
+                      code="9"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
+                      displayName="Indicatie vervallen"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
