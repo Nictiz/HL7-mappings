@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Cio/XML/schematron_closed_warnings/cio-bci.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "Beschikbaarstellen Contra-indicatie (Output filterquery actief)" and id: "bci-kwalificatie".-->
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="urn:hl7-org:v3"
+           xmlns:cda="urn:hl7-org:v3"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:nf="http://www.nictiz.nl/functions"
+           xmlns:util="urn:hl7:utilities"
+           xmlns:hl7="urn:hl7-org:v3"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           classCode="CLUSTER"
+           moodCode="EVN"
+           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Cio/XML/schemas/organizer.xsd">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.7"/>
+   <code code="TODO"
+         displayName="..."
+         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4"
+         codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999911211" root="2.16.840.1.113883.2.4.6.3"/>
+         <addr use="PST">
+            <streetName>Knolweg</streetName>
+            <houseNumber>1003</houseNumber>
+            <postalCode>9999 ZA</postalCode>
+            <county>Stitswerd</county>
+            <city>Enschede</city>
+         </addr>
+         <telecom use="WP MC" value="tel:0612344444"/>
+         <telecom use="HP" value="mailto:Bergen@ci.nl"/>
+         <patient>
+            <name>
+               <given qualifier="IN">M.</given>
+               <family qualifier="BR">XXX_Brekelmans</family>
+            </name>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <birthTime value="19640729"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <act classCode="ACT" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.2"/>
+         <code code="CONC" codeSystem="2.16.840.1.113883.5.6"/>
+         <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.1"/>
+               <code code="140401000146105"
+                     displayName="Medical contraindication related to medication (finding)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <effectiveTime xsi:type="IVL_TS">
+                  <low value="20150801"/>
+               </effectiveTime>
+               <value xsi:type="CD" code="0210" displayName="Sportbeoefening"/>
+               <entryRelationship typeCode="SUBJ" inversionInd="true">
+                  <act classCode="ACT" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                     <code code="48767-8"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"
+                           displayName="Annotation comment"/>
+                     <text>Handboogschieten</text>
+                  </act>
+               </entryRelationship>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.1"/>
+               <code code="140401000146105"
+                     displayName="Medical contraindication related to medication (finding)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <effectiveTime xsi:type="IVL_TS">
+                  <low value="20161231"/>
+                  <high value="20190921"/>
+               </effectiveTime>
+               <value xsi:type="CD" code="113" displayName="Morbide obesitas"/>
+               <entryRelationship typeCode="RSON">
+                  <act classCode="ACT" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                     <code code="48767-8"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"
+                           displayName="Annotation comment"/>
+                     <text>Heeft gewicht verloren</text>
+                  </act>
+               </entryRelationship>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.1"/>
+               <code code="140401000146105"
+                     displayName="Medical contraindication related to medication (finding)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <effectiveTime xsi:type="IVL_TS">
+                  <low value="20190410"/>
+               </effectiveTime>
+               <value xsi:type="CD" code="1355" displayName="Bariatrische chirurgie"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.1"/>
+               <code code="140401000146105"
+                     displayName="Medical contraindication related to medication (finding)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <effectiveTime xsi:type="IVL_TS">
+                  <low value="20200608"/>
+                  <high value="20210408"/>
+               </effectiveTime>
+               <value xsi:type="CD" code="1320" displayName="Zwangerschap"/>
+            </observation>
+         </entryRelationship>
+      </act>
+   </component>
+</organizer>
