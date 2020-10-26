@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?nictiz status="example"?>
 <?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Cio/XML/schematron_closed_warnings/cio-bci.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
-<!--Generated from ada instance with title: "Beschikbaarstellen Contra-indicatie (Output filterquery actief)" and id: "bci-kwalificatie".-->
+<!--Generated from ada instance with title: "Beschikbaarstellen Contra-indicatie (Output filterquery actief - test alle gegevens)" and id: "bci-kwalificatie".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -57,7 +57,11 @@
                <effectiveTime xsi:type="IVL_TS">
                   <low value="20150801"/>
                </effectiveTime>
-               <value xsi:type="CD" code="0210" displayName="Sportbeoefening"/>
+               <value xsi:type="CD"
+                      code="0210"
+                      codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                      displayName="Sportbeoefening"
+                      codeSystemName="G-Standaard Tabel 40"/>
                <entryRelationship typeCode="SUBJ" inversionInd="true">
                   <act classCode="ACT" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
@@ -81,7 +85,11 @@
                   <low value="20161231"/>
                   <high value="20190921"/>
                </effectiveTime>
-               <value xsi:type="CD" code="113" displayName="Morbide obesitas"/>
+               <value xsi:type="CD"
+                      code="113"
+                      codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                      displayName="Morbide obesitas"
+                      codeSystemName="G-Standaard Tabel 40"/>
                <entryRelationship typeCode="RSON">
                   <act classCode="ACT" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
@@ -104,7 +112,11 @@
                <effectiveTime xsi:type="IVL_TS">
                   <low value="20190410"/>
                </effectiveTime>
-               <value xsi:type="CD" code="1355" displayName="Bariatrische chirurgie"/>
+               <value xsi:type="CD"
+                      code="1355"
+                      codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                      displayName="Bariatrische chirurgie"
+                      codeSystemName="G-Standaard Tabel 40"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="SUBJ">
@@ -118,7 +130,25 @@
                   <low value="20200608"/>
                   <high value="20210408"/>
                </effectiveTime>
-               <value xsi:type="CD" code="1320" displayName="Zwangerschap"/>
+               <value xsi:type="CD"
+                      code="1320"
+                      codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                      displayName="Zwangerschap"
+                      codeSystemName="G-Standaard Tabel 40"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.1"/>
+               <code code="140401000146105"
+                     displayName="Medical contraindication related to medication (finding)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CD"
+                      code="42"
+                      codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                      displayName="Epilepsie"
+                      codeSystemName="G-Standaard Tabel 40"/>
             </observation>
          </entryRelationship>
       </act>

@@ -1,7 +1,7 @@
-<adaxml>
-    <meta status="new" created-by="silvacostamelo" last-update-by="silvacostamelo" creation-date="2020-09-22T17:37:33.001+02:00" last-update-date="2020-10-22T10:35:49.061+02:00"/>
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_contraindicatie.xsd">
+    <meta status="new" created-by="silvacostamelo" last-update-by="silvacostamelo" creation-date="2020-09-22T17:37:33.001+02:00" last-update-date="2020-10-23T11:30:44.433+02:00"/>
     <data>
-        <beschikbaarstellen_contraindicatie app="cio" shortName="beschikbaarstellen_contraindicatie" formName="beschikbaarstellen_contraindicaties" transactionRef="2.16.840.1.113883.2.4.3.11.60.26.4.18" transactionEffectiveDate="2020-06-22T10:18:30" versionDate="" prefix="cio-" language="nl-NL" title="Beschikbaarstellen Contra-indicatie (Output filterquery actief)" desc="" id="bci-kwalificatie">
+        <beschikbaarstellen_contraindicatie app="cio" shortName="beschikbaarstellen_contraindicatie" formName="beschikbaarstellen_contraindicaties" transactionRef="2.16.840.1.113883.2.4.3.11.60.26.4.18" transactionEffectiveDate="2020-06-22T10:18:30" versionDate="" prefix="cio-" language="nl-NL" title="Beschikbaarstellen Contra-indicatie (Output filterquery actief - test alle gegevens)" desc="" id="bci-kwalificatie">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.302">
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.304">
                     <initialen value="M" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.398"/>
@@ -34,27 +34,42 @@
                 <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.311" value="3" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
             </patient>
             <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.2">
-                <medicatie_contra_indicatie_naam code="0210" displayName="Sportbeoefening" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283"/>
                 <begin_datum value="2015-08-01" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.284"/>
+                <melder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.289">
+                    <zorgverlener value="CIzorgverlener1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.292"/>
+                </melder>
+                <medicatie_contra_indicatie_naam code="0210" displayName="Sportbeoefening" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Tabel 40"/>
                 <toelichting value="Handboogschieten" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.286"/>
             </medicatie_contra_indicatie>
             <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.2">
-                <medicatie_contra_indicatie_naam code="113" displayName="Morbide obesitas" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283"/>
                 <begin_datum value="2016-12-31" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.284"/>
                 <eind_datum value="2019-09-21" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.287"/>
                 <reden_van_afsluiten value="Heeft gewicht verloren" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.301"/>
+                <melder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.289">
+                    <zorgverlener value="CIzorgverlener1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.292"/>
+                </melder>
+                <medicatie_contra_indicatie_naam code="113" displayName="Morbide obesitas" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Tabel 40"/>
             </medicatie_contra_indicatie>
             <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.2">
-                <medicatie_contra_indicatie_naam code="1355" displayName="Bariatrische chirurgie" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283"/>
                 <begin_datum value="2019-04-10" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.284"/>
+                <melder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.289">
+                    <zorgverlener value="CIzorgverlener1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.292"/>
+                </melder>
+                <medicatie_contra_indicatie_naam code="1355" displayName="Bariatrische chirurgie" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Tabel 40"/>
             </medicatie_contra_indicatie>
             <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.2">
-                <medicatie_contra_indicatie_naam code="1320" displayName="Zwangerschap" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283"/>
                 <begin_datum value="2020-06-08" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.284"/>
                 <eind_datum value="2021-04-08" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.287"/>
+                <melder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.289">
+                    <zorgverlener value="CIzorgverlener1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.292"/>
+                </melder>
+                <medicatie_contra_indicatie_naam code="1320" displayName="Zwangerschap" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Tabel 40"/>
+            </medicatie_contra_indicatie>
+            <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.2">
+                <medicatie_contra_indicatie_naam code="42" displayName="Epilepsie" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Tabel 40"/>
             </medicatie_contra_indicatie>
             <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.294">
-                <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.281">
+                <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.281" id="CIzorgverlener1">
                     <zorgverlener_identificatienummer value="12344444" root="2.16.528.1.1007.5.1" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.330"/>
                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.332">
                         <initialen value="R" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.381"/>
@@ -84,9 +99,10 @@
                             <email_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.396" value="2" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Zakelijk e-mailadres"/>
                         </email_adressen>
                     </contactgegevens>
+                    <zorgaanbieder value="CIzorgaanbieder1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.339"/>
                     <zorgverleners_rol conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.340" value="6" code="ATND" codeSystem="2.16.840.1.113883.5.90" displayName="Behandelaar"/>
                 </zorgverlener>
-                <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.290">
+                <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.290" id="CIzorgaanbieder1">
                     <zorgaanbieder_identificatienummer value="123456744" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.370"/>
                     <organisatie_naam value="Huisartsenpraktijk Brunk" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.371"/>
                     <afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.373" value="1" code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))" codeSystemVersion="2017-12-14T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
