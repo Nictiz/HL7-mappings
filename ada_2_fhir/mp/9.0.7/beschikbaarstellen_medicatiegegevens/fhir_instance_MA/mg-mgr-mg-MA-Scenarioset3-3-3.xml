@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:381adaa0-fdb5-11ea-3088-020000000000"/>
+      <fullUrl value="urn:uuid:bddb9890-186e-11eb-6921-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -33,7 +33,12 @@
                         <tr>
                            <th>Reden</th>
                            <td>
-                              <span title="Te sterk effect (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Te sterk effect</span>
+                              <ul>
+                                 <li>
+                                    <span title="Te sterk effect (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Te sterk effect</span>
+                                 </li>
+                                 <li>Reumatoide artritis overig</li>
+                              </ul>
                            </td>
                         </tr>
                         <tr>
@@ -85,7 +90,7 @@
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:381ada84-fdb5-11ea-3088-020000000000"/>
+               <reference value="urn:uuid:bddb9874-186e-11eb-6921-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
@@ -93,7 +98,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:381adaaa-fdb5-11ea-3088-020000000000"/>
+                        <reference value="urn:uuid:bddb989c-186e-11eb-6921-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -108,6 +113,10 @@
                   <display value="Te sterk effect"/>
                </coding>
             </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:bddb92f0-186e-11eb-6921-020000000000"/>
+               <display value="Reumatoide artritis overig"/>
+            </reasonReference>
             <dosageInstruction>
                <text value="Vanaf T-1D{00:00:00}, tot en met T+14D{23:59:59}, 1 maal per week 4 stuks, Oraal"/>
                <timing>
@@ -138,7 +147,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:381ad9dd-fdb5-11ea-3088-020000000000"/>
+      <fullUrl value="urn:uuid:bddb9325-186e-11eb-6921-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -171,6 +180,10 @@
                         <tr>
                            <th>Gemaakt</th>
                            <td>${DATE, T, D, -1}T08:10:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>Reumatoide artritis overig</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
@@ -239,7 +252,7 @@
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:381ada84-fdb5-11ea-3088-020000000000"/>
+               <reference value="urn:uuid:bddb9874-186e-11eb-6921-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
@@ -247,7 +260,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:381adaaa-fdb5-11ea-3088-020000000000"/>
+                        <reference value="urn:uuid:bddb989c-186e-11eb-6921-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -255,6 +268,10 @@
                   <display value="Bertine van Doorn"/>
                </agent>
             </requester>
+            <reasonReference>
+               <reference value="urn:uuid:bddb92f0-186e-11eb-6921-020000000000"/>
+               <display value="Reumatoide artritis overig"/>
+            </reasonReference>
             <dosageInstruction>
                <text value="Vanaf T-13D{00:00:00}, tot en met T-2D{23:59:59}, 1 maal per week 5 stuks, Oraal"/>
                <timing>
@@ -285,7 +302,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:381ada84-fdb5-11ea-3088-020000000000"/>
+      <fullUrl value="urn:uuid:bddb9874-186e-11eb-6921-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -416,7 +433,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:381adaaa-fdb5-11ea-3088-020000000000"/>
+      <fullUrl value="urn:uuid:bddb989c-186e-11eb-6921-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -507,6 +524,49 @@
       </resource>
       <search>
          <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bddb92f0-186e-11eb-6921-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Aandoening. Subject: C. XXX_Vonker. Status: <i>onbekend (ontbrekend gegeven)</i>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>Reumatoide artritis</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <clinicalStatus>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </clinicalStatus>
+            <code>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Reumatoide artritis"/>
+            </code>
+            <subject>
+               <reference value="urn:uuid:bddb9874-186e-11eb-6921-020000000000"/>
+               <display value="C. XXX_Vonker"/>
+            </subject>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="match"/>
       </search>
    </entry>
 </Bundle>

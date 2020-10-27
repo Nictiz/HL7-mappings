@@ -34,6 +34,7 @@
         <antcall target="setup_sub_instances">
             <param name="fileset.dir" value="${fileset.dir}"/>
             <param name="fileset.include" value="${fileset.include}"/>
+            <param name="fileset.exclude" value="${fileset.exclude}"/>
             <param name="refs.dir" value="${refs.dir}"/>
         </antcall>
 
@@ -74,6 +75,7 @@
         <copy todir="${sub.build.dir}/${fileset.dir}" failonerror="true">
             <fileset dir="${refs.dir}/ada_instance">
                 <include name="${fileset.include}"/>
+                <exclude name="${fileset.exclude}" if="fileset.exclude"/>
             </fileset>
         </copy>
 
