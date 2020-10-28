@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>
                 <xd:b>History:</xd:b>
                 <xd:ul>
-                    <xd:li>2019-11-29 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
+                    <xd:li>2020-10-28 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
                 </xd:ul>
             </xd:p>
         </xd:desc>
@@ -40,7 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
     
 
-    <xsl:variable name="usecase">cio1</xsl:variable>
+    <xsl:variable name="usecase">bci</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $relatedPersons/f:entry"/>
     </xsl:variable>
@@ -49,12 +49,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen allergie intolerantie gegevens".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:apply-templates select="adaxml/data/beschikbaarstellen_allergie_intolerantie"/>
+        <xsl:apply-templates select="adaxml/data/beschikbaarstellen_contraindicatie"/>
     </xsl:template>
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
      </xd:doc>
-    <xsl:template name="AllIntConversion_10" match="beschikbaarstellen_allergie_intolerantie">
+    <xsl:template name="AllIntConversion_200" match="beschikbaarstellen_contraindicatie">
    
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:copy-of select="$bouwstenen-all-int-gegevens"/>
@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
     </xd:doc>
     <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="replace(tokenize(f:meta/f:profile/@value, './')[last()], '-AllergyIntoleranceToFHIRConversion-', '-')"/>
+        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, './')[last()]"/>
         <xsl:result-document href="./{$usecase}-{$zib-name}-{f:id/@value}.xml">
             <xsl:apply-templates select="." mode="ResultOutput"/>
         </xsl:result-document>
