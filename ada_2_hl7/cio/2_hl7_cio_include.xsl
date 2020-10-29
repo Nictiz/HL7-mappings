@@ -105,7 +105,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <xsl:for-each select="reden_van_afsluiten[@value | @nullFlavor]">
                     <entryRelationship typeCode="RSON">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.26.10.5_20200821182303"/>
                     </entryRelationship>
                 </xsl:for-each>
             </observation>
