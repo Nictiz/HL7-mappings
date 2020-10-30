@@ -19,6 +19,7 @@
 -->
 
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
+    
     <!-- Set testscripttools.dir if it is not supplied by including build file. -->
     <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
     
@@ -284,6 +285,7 @@
                     <param name="referenceBase" expression="${reference.dir.loadresourcesrelative.normalized}"/>
                     <param name="referenceDir" expression="${project.dir}/_reference/"/>
                     <param name="project" expression="${project}"/>
+                    <param name="loadResourcesExclude" expression="${loadresources.exclude}"/>
                 </parameters>
             </saxon-transform>
         </sequential>
@@ -298,6 +300,9 @@
     
     <target name="build" depends="load, check-input, cleanBuildDir">
         <property name="project.dir" location="${src.dir}/${project}"/>
+        
+        <property file="${project.dir}/build.properties"/>
+        
         <property name="commoncomponents.dir" location="${src.dir}/common-asserts"/>
         <property name="reference.dir" location="${project.dir}/_reference"/>
         <property name="components.dir" location="${project.dir}/_components"/>

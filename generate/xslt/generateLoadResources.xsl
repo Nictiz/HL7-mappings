@@ -27,6 +27,9 @@
     </xsl:param>
     
     <xsl:param name="project"/>
+    <xsl:param name="loadResourcesExclude"/>
+    <!-- Assumes loadResourcesExclude can be comma-separated -->
+    <xsl:param name="loadResourcesExcludeParsed" select="tokenize(translate($loadResourcesExclude,'\','/'),',')"/>
 
     <xd:doc>
         <xd:desc/>
@@ -34,24 +37,24 @@
     <xsl:template match="/">
         <xsl:variable name="xml1" select="collection(iri-to-uri(concat(resolve-uri($referenceDirNormalized), '?select=', '*.xml;recurse=yes')))/f:*"/>
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/testscript.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-        <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd" xmlns="http://hl7.org/fhir">
-            <id value="AllergyIntolerance-fhir3-0-1-load-resources-createupdate-xml"/>
-            <url value="http://nictiz.nl/fhir/fhir3-0-1/TestScript/{$project}-load-resources-createupdate-xml"/>
-            <name value="Nictiz {$project} Load Test Resources - Create Update - XML"/>
+        <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
+            <id value="{$project}-resources-purgecreateupdate-xml"/>
+            <url value="http://nictiz.nl/fhir/TestScript/{$project}-load-resources-purgecreateupdate-xml"/>
+            <name value="Nictiz {$project} Load Test Resources - Purge Create Update - XML"/>
             <status value="active"/>
-            <date value="{current-dateTime()}"/>
+            <date value="{format-date(current-date(), '[D01]-[M01]-[Y0001]')}"/>
             <publisher value="Nictiz"/>
             <contact>
                 <name value="MedMij"/>
                 <telecom>
                     <system value="email"/>
-                    <value value="kwalificatie@medmij.nl"/>
+                    <value value="kwalificatie@nictiz.nl"/>
                     <use value="work"/>
                 </telecom>
             </contact>
-            <description value="Load {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
+            <description value="Load Nictiz {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
             <copyright value="© Nictiz 2020"/>
-            <xsl:for-each select="$xml1">
+            <xsl:for-each select="$xml1[for $i in $loadResourcesExcludeParsed return (if (not(contains(document-uri(ancestor::node()),$i))) then true() else false())]">
                 <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
                 <xsl:variable name="resId" select="concat(local-name(), '-', replace(replace(f:id/@value, 'Bearer ', ''), '\s', ''))"/>
                 <xsl:variable name="dn" select="document-uri(ancestor::node())"/>
@@ -61,7 +64,7 @@
                     </resource>
                 </fixture>
             </xsl:for-each>
-            <xsl:for-each select="$xml1">
+            <xsl:for-each select="$xml1[for $i in $loadResourcesExcludeParsed return (if (not(contains(document-uri(ancestor::node()),$i))) then true() else false())]">
                 <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
                 <xsl:variable name="resId" select="concat(local-name(), '-', replace(replace(f:id/@value, 'Bearer ', ''), '\s', ''))"/>
                 <variable>
@@ -98,9 +101,10 @@
                     </action>
                     <action>
                         <assert>
-                            <description value="Confirm that the returned HTTP status is 200(OK)."/>
-                            <operator value="equals"/>
-                            <responseCode value="200"/>
+                            <description
+                                value="Confirm that the returned HTTP status is 200(OK) or 204(No Content)"/>
+                            <operator value="in"/>
+                            <responseCode value="200,204"/>
                         </assert>
                     </action>
                 </xsl:for-each>
@@ -109,11 +113,10 @@
             <test id="Step1-LoadTestResourceCreate">
                 <name value="Step1-LoadTestResourceCreate"/>
                 <description value="Load {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
-                <xsl:for-each select="$xml1[not(contains(f:id/@value, 'Bearer'))]">
+                <xsl:for-each select="$xml1[for $i in $loadResourcesExcludeParsed return (if (not(contains(document-uri(ancestor::node()),$i))) then true() else false())][not(contains(f:id/@value, 'Bearer'))]">
                     <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
                     <xsl:variable name="resId" select="concat(local-name(), '-', replace(replace(f:id/@value, 'Bearer ', ''), '\s', ''))"/>
                     <xsl:variable name="dn" select="document-uri(ancestor::node())"/>
-                    <!--                    <xsl:comment> Create <xsl:value-of select="$resId"/></xsl:comment>-->
                     <action>
                         <operation>
                             <type>
@@ -127,7 +130,9 @@
                             <requestHeader>
                                 <field value="Authorization"/>
                                 <!-- This Bearer token is a dedicated token for LoadResources purposes -->
-                                <value value="Bearer e317fc02-e8ff-40fe-9b22-f3c43fbf5613"/>
+                                <!--<value value="Bearer e317fc02-e8ff-40fe-9b22-f3c43fbf5613"/>-->
+                                <!-- Use patient token until dedicated Bearer token is active -->
+                                <value value="{f:id/@value}"/>
                             </requestHeader>
                             <sourceId value="{$resId}-fx"/>
                         </operation>
