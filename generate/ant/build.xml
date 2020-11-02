@@ -34,7 +34,7 @@
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
         
     <!-- Set the verbosity level of the output. A higher value means more verbose output -->
-    <property name="outputLevel" value="2" />
+    <property name="outputLevel" value="1" />
     <script language="javascript"> <!-- Gives a script warning. It is advised to switch to Groovy, haven't figured that one out. -->
         var verboseMode = project.getProperty( "outputLevel" )
         project.getBuildListeners().firstElement().setMessageOutputLevel(verboseMode);
@@ -266,20 +266,12 @@
     
     <macrodef name="generate-loadresources" description="Generate a LoadResources TestScript to load all fixtures to the WildFHIR server.">
         <sequential>
-            <!-- Calculate the relative path to the reference dir from the LoadResources output file-->
-            <!--<local name="loadresources.file"/>-->
-            <!--<local name="loadresources.file.dir"/>
-            <local name="reference.dir.relative"/>
-            <local name="reference.dir.relative.normalized"/>-->
             <property name="loadresources.file" value="${build.dir}/${project}/_LoadResources/${project}-load-resources-purgecreateupdate-xml.xml"/>
             <dirname property="loadresources.file.dir" file="${loadresources.file}"/>
             <property name="reference.dir.loadresourcesrelative" location="${build.dir}/${project}/_reference" relative="true" basedir="${loadresources.file.dir}"/>
             <!-- Convert backslashes to forward slashes if needed -->
             <propertyregex property="reference.dir.loadresourcesrelative.normalized" input="${reference.dir.loadresourcesrelative}" regexp="[\\]" replace="/" global="true" defaultValue="${reference.dir.loadresourcesrelative}"/>
-            
-            <!--<!-\- Dummy input since @in is required. Should be more elegant -\->
-            <tempfile property="dummy.file" suffix=".xml" createfile="true" deleteonexit="true"/>-->
-            
+                        
             <saxon-transform style="${xslt.dir}/generateLoadResources.xsl" out="${build.dir}/${project}/_LoadResources/${project}-load-resources-purgecreateupdate-xml.xml">
                 <parameters>
                     <param name="referenceBase" expression="${reference.dir.loadresourcesrelative.normalized}"/>
