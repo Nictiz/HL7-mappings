@@ -35,14 +35,24 @@
         <xd:desc/>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:variable name="xml1" select="collection(iri-to-uri(concat(resolve-uri($referenceDirNormalized), '?select=', '*.xml;recurse=yes')))/f:*"/>
+        <xsl:variable name="xml1" as="item()*">
+            <xsl:variable name="collection" select="collection(iri-to-uri(concat(resolve-uri($referenceDirNormalized), '?select=', '*.xml;recurse=yes')))/f:*"/>
+            <xsl:choose>
+                <xsl:when test="normalize-space($loadResourcesExclude)">
+                    <xsl:sequence select="$collection[for $i in $loadResourcesExcludeParsed return (if (not(contains(document-uri(ancestor::node()),normalize-space($i)))) then true() else false())]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="$collection"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/testscript.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
             <id value="{$project}-resources-purgecreateupdate-xml"/>
             <url value="http://nictiz.nl/fhir/TestScript/{$project}-load-resources-purgecreateupdate-xml"/>
             <name value="Nictiz {$project} Load Test Resources - Purge Create Update - XML"/>
             <status value="active"/>
-            <date value="{format-date(current-date(), '[D01]-[M01]-[Y0001]')}"/>
+            <date value="{format-date(current-date(), '[Y0001]-[M01]-[D01]')}"/>
             <publisher value="Nictiz"/>
             <contact>
                 <name value="MedMij"/>
@@ -54,7 +64,7 @@
             </contact>
             <description value="Load Nictiz {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
             <copyright value="© Nictiz 2020"/>
-            <xsl:for-each select="$xml1[for $i in $loadResourcesExcludeParsed return (if (not(contains(document-uri(ancestor::node()),normalize-space($i)))) then true() else false())]">
+            <xsl:for-each select="$xml1">
                 <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
                 <xsl:variable name="resId" select="concat(local-name(), '-', replace(replace(f:id/@value, 'Bearer ', ''), '\s', ''))"/>
                 <xsl:variable name="dn" select="document-uri(ancestor::node())"/>
@@ -64,7 +74,7 @@
                     </resource>
                 </fixture>
             </xsl:for-each>
-            <xsl:for-each select="$xml1[for $i in $loadResourcesExcludeParsed return (if (not(contains(document-uri(ancestor::node()),normalize-space($i)))) then true() else false())]">
+            <xsl:for-each select="$xml1">
                 <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
                 <xsl:variable name="resId" select="concat(local-name(), '-', replace(replace(f:id/@value, 'Bearer ', ''), '\s', ''))"/>
                 <variable>
@@ -113,7 +123,7 @@
             <test id="Step1-LoadTestResourceCreate">
                 <name value="Step1-LoadTestResourceCreate"/>
                 <description value="Load {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
-                <xsl:for-each select="$xml1[for $i in $loadResourcesExcludeParsed return (if (not(contains(document-uri(ancestor::node()),normalize-space($i)))) then true() else false())][not(contains(f:id/@value, 'Bearer'))]">
+                <xsl:for-each select="$xml1[not(contains(f:id/@value, 'Bearer'))]">
                     <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
                     <xsl:variable name="resId" select="concat(local-name(), '-', replace(replace(f:id/@value, 'Bearer ', ''), '\s', ''))"/>
                     <xsl:variable name="dn" select="document-uri(ancestor::node())"/>
