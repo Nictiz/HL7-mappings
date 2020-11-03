@@ -432,6 +432,8 @@
         </xsl:copy>
     </xsl:template>
     
+    <xsl:template match="text()[not(normalize-space(.))]" mode="#all"/>
+    
     <!-- === Here be functions ==================================================================================== -->
     
     <!-- Construct an XML file path from the elements.
