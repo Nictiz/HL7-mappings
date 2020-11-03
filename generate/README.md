@@ -153,6 +153,15 @@ There may be differences for xis and phr scenarios in how a TestScript is transf
 nts:scenario="server|client"
 ```
 
+### TouchStone stopTestOnFail extension
+The TouchStone assert-stopTestOnFail extension is added to each assert with a default value of 'false' (e.g. the test continues running after a failed assertion). If you would like to override this value, add attribute `@nts:stopTestOnFail="true"` to `<assert>`.
+
+```xml
+<assert nts:stopTestOnFail="true">
+    ...
+</assert>
+```
+
 ## Running the transformation
 
 The transformation is called by the ANT build in `ant/build.xml`. For more information on the location of the inputs and outputs, see [the readme in the TestScripts repository](https://github.com/Nictiz/Nictiz-STU3-testscripts/blob/master/Generate/README.md).
@@ -217,6 +226,7 @@ Because of the verbosity of the ANT build, the logging level is set to 1 (warnin
 
 ### 1.2.0
 - A LoadResources script is now generated for a project
+- TouchStone stopTestOnFail extension is added to each assert
 
 ### 1.1.4
 - Fixed a bug where an attribute in a non nts-namespace (for example `@xsi:*`) caused the process to crash.
