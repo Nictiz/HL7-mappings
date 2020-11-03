@@ -231,7 +231,7 @@
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:choose>
-                <xsl:when test="nts:stopTestOnFail[@value='true']">
+                <xsl:when test="@nts:stopTestOnFail='true'">
                     <extension url="http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-assert-stopTestOnFail">
                         <valueBoolean value="true"/>
                     </extension>

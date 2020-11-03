@@ -28,6 +28,9 @@
             <sch:assert test="f:description[@value]">element 'description' with a value is required</sch:assert>
             <sch:assert test="count(*[local-name() != 'name' and local-name() != 'description']) > 0">tests may not be empty</sch:assert>
         </sch:rule>
+        <sch:rule context="f:assert">
+            <sch:assert test="not(@nts:stopTestOnFail) or @nts:stopTestOnFail = 'true' or @nts:stopTestOnFail = 'false'">Set stopTestOnFail to either 'true' or 'false' using the nts:stopTestOnFail attribute</sch:assert>
+        </sch:rule>
     </sch:pattern>
     
     <sch:pattern>
