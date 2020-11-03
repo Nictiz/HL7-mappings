@@ -17,12 +17,17 @@
     
     <xsl:param name="referenceDirNormalized">
         <xsl:choose>
-            <xsl:when test="not(starts-with($referenceDir, 'file:')) and (starts-with($referenceDir,'/') or matches($referenceDir,'^[A-Za-z]:[/\\]'))">
+            <xsl:when test="starts-with($referenceDir, 'file:')">
+                <xsl:value-of select="$referenceDir"/>
+            </xsl:when>
+            <xsl:when test="starts-with($referenceDir,'/')">
+                <!-- Unix style -->
+                <xsl:value-of select="concat('file:', translate($referenceDir,'\','/'))"/>
+            </xsl:when>
+            <xsl:when test="matches($referenceDir,'^[A-Za-z]:[/\\]')">
+                <!-- Windows style -->
                 <xsl:value-of select="concat('file:/',translate($referenceDir,'\','/'))"/>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$referenceDir"/>
-            </xsl:otherwise>
         </xsl:choose>
     </xsl:param>
     
