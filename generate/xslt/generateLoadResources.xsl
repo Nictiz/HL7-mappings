@@ -57,7 +57,6 @@
         </xsl:variable>
         
         <!-- Write out the TestScript resource -->
-        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/testscript.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
             <id value="{$project}-resources-purgecreateupdate-xml"/>
             <url value="http://nictiz.nl/fhir/TestScript/{$project}-load-resources-purgecreateupdate-xml"/>
@@ -163,8 +162,8 @@
                                 <field value="Authorization"/>
                                 <!-- This Bearer token is a dedicated token for LoadResources purposes -->
                                 <!--<value value="Bearer e317fc02-e8ff-40fe-9b22-f3c43fbf5613"/>-->
-                                <!-- Use patient token until dedicated Bearer token is active -->
-                                <value value="{f:id/@value}"/>
+                                <!-- Use first patient token until dedicated Bearer token is active -->
+                                <value value="{$tokens[1]/f:id/@value}"/>
                             </requestHeader>
                             <sourceId value="{$fixtureId}"/>
                         </operation>
@@ -187,7 +186,7 @@
         <xsl:variable name="normalizedId" select="replace($bearerLessId, '\s', '')"/>
         <xsl:variable name="fixtureId" select="concat(local-name(), '-', $normalizedId)"/>
         
-        <xsl:if test="not(matches($fixtureId, '[A-Za-z0-9\-\.]{1,64}'))">
+        <xsl:if test="not(matches($fixtureId, '^[A-Za-z0-9\-\.]{1,64}$'))">
             <xsl:message terminate="yes" select="concat('Not a valid id: ', $fixtureId)"/>
         </xsl:if>
         <xsl:value-of select="$fixtureId"/>

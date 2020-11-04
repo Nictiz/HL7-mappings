@@ -432,6 +432,7 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- Fix to pretty print output - strip-space does not seem to function when being called from ANT -->
     <xsl:template match="text()[not(normalize-space(.))]" mode="#all"/>
     
     <!-- === Here be functions ==================================================================================== -->
