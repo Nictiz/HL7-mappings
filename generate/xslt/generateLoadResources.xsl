@@ -42,10 +42,10 @@
         <!-- Make sure the referenceBase ends with a slash. -->
         <xsl:variable name="referenceBaseSanitized" select="if (ends-with($referenceBase, '/')) then $referenceBase else concat($referenceBase, '/')"/>
         
-        <!-- Collect all fixtures as file URLs -->
+        <!-- Collect all non-bearer fixtures as file URLs -->
         <xsl:variable name="fixtures" as="item()*">
             <xsl:variable name="excludedPaths" select="tokenize(translate($loadResourcesExclude,'\','/'),',')"/>
-            <xsl:variable name="fixturesUnfiltered" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*.xml;recurse=yes')))/f:*"/>
+            <xsl:variable name="fixturesUnfiltered" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*.xml;recurse=yes')))/f:*[not(contains(f:id/@value, 'Bearer'))]"/>
             <xsl:choose>
                 <xsl:when test="normalize-space($loadResourcesExclude)">
                     <xsl:sequence select="$fixturesUnfiltered[for $excludedPath in $excludedPaths return (not(contains(document-uri(ancestor::node()),normalize-space($excludedPath))))]"/>
@@ -55,6 +55,9 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        
+        <!-- And collect all bearer fixtures as file URLs -->
+        <xsl:variable name="tokens" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*token.xml;recurse=yes')))/f:*"/>
         
         <!-- Write out the TestScript resource -->
         <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
@@ -109,7 +112,6 @@
             </variable>
             
             <!-- Purge Patients in setup -->
-            <xsl:variable name="tokens" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*token.xml;recurse=yes')))/f:*"/>
             <setup>
                 <xsl:for-each select="$tokens">
                     <action>
@@ -143,7 +145,7 @@
             <test id="Step1-LoadTestResourceCreate">
                 <name value="Step1-LoadTestResourceCreate"/>
                 <description value="Load {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
-                <xsl:for-each select="$fixtures[not(contains(f:id/@value, 'Bearer'))]">
+                <xsl:for-each select="$fixtures">
                     <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
                     <xsl:variable name="fixtureId">
                         <xsl:call-template name="generateFixtureId"/>
@@ -182,8 +184,7 @@
     
     <!-- Generate a fixture id for the provided resource, based on the type and the resource.id -->
     <xsl:template name="generateFixtureId" as="xs:string">
-        <xsl:variable name="bearerLessId" select="replace(f:id/@value, 'Bearer ', '')"/>
-        <xsl:variable name="normalizedId" select="replace($bearerLessId, '\s', '')"/>
+        <xsl:variable name="normalizedId" select="replace(f:id/@value, '\s', '')"/>
         <xsl:variable name="fixtureId" select="concat(local-name(), '-', $normalizedId)"/>
         
         <xsl:if test="not(matches($fixtureId, '^[A-Za-z0-9\-\.]{1,64}$'))">
