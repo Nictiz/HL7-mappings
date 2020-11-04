@@ -69,6 +69,9 @@
         <xsl:copy>
             <xsl:apply-templates select="node()|@*" mode="#current"/>
         </xsl:copy>
+        <meta>
+            <profile value="http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript"/>
+        </meta>
         <url value="{$url}"/>
     </xsl:template>
 
@@ -220,6 +223,26 @@
                 <accept value="{lower-case($expectedResponseFormat)}"/>
             </xsl:if>
             <xsl:apply-templates select="f:*[not(local-name()=$pre-accept)]" mode="#current"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!--Add TouchStone assert-stopTestOnFail extension by default.-->
+    <xsl:template match="f:TestScript/f:test/f:action/f:assert" mode="filter">
+        <xsl:copy>
+            <xsl:apply-templates select="@*" mode="#current"/>
+            <xsl:choose>
+                <xsl:when test="@nts:stopTestOnFail='true'">
+                    <extension url="http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-assert-stopTestOnFail">
+                        <valueBoolean value="true"/>
+                    </extension>
+                </xsl:when>
+                <xsl:otherwise>
+                    <extension url="http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-assert-stopTestOnFail">
+                        <valueBoolean value="false"/>
+                    </extension>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:apply-templates select="node()" mode="#current"/>
         </xsl:copy>
     </xsl:template>
     
@@ -408,6 +431,9 @@
             <xsl:apply-templates select="@*|node()" mode="filter"/>
         </xsl:copy>
     </xsl:template>
+    
+    <!-- Fix to pretty print output - strip-space does not seem to function when being called from ANT -->
+    <xsl:template match="text()[not(normalize-space(.))]" mode="#all"/>
     
     <!-- === Here be functions ==================================================================================== -->
     

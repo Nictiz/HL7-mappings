@@ -112,6 +112,8 @@ Fixtures and rules can be defined using:
 
 `href` is considered to be relative to a predefined fixtures folder. It defaults to the "_reference" folder directly beneath the project-folder. See the section on building to set an alternate location. All fixtures and rules in the "_reference"-folder are copied to the output folder.
 
+A LoadResources script is generated for all fixtures in the "_reference"-folder. See the section on building on how to exclude files and/or folders from being added the LoadResources script. 
+
 Profiles may be defined using:
 
 ```xml
@@ -133,6 +135,8 @@ The `href` attribute should point to the `Patient` instance containing the token
 * for "server", a variable will be created which the test script executor can set, defaulting to the value from the fixture.
 * for "client", the fixture will be included and a variable called "patient-token-id" will be created that reads the value from the fixture
 
+The token filename should end with `token.xml` and the token id should start with `Bearer`.
+
 The second element is to indicate that the "date T" variable should be defined for the testscript:
 
 ```xml
@@ -147,6 +151,15 @@ There may be differences for xis and phr scenarios in how a TestScript is transf
 
 ```xml
 nts:scenario="server|client"
+```
+
+### TouchStone stopTestOnFail extension
+The TouchStone assert-stopTestOnFail extension is added to each assert with a default value of 'false' (e.g. the test continues running after a failed assertion). If you would like to override this value, add attribute `@nts:stopTestOnFail="true"` to `<assert>`.
+
+```xml
+<assert nts:stopTestOnFail="true">
+    ...
+</assert>
 ```
 
 ## Running the transformation
@@ -194,6 +207,11 @@ The build script recognizes several parameters:
 - `-Dcommoncomponents.dir=/path/to/common/components`: An alternative location for common NTS components. Should be an absolute or relative path, compared to `build.xml`.
 - `-Dcomponents.dir=/path/to/project/components`: An alternative location for project specific NTS components. Should be an absolute or relative path, compared to `build.xml`.
 
+To exclude fixtures from being added to the LoadResources script, add a `build.properties` file to the project root, with the `loadresources.exclude` key set to a relative path to a folder containing the fixtures to be excluded or to specific filenames. Multiple entries can be comma separated.
+```
+loadresources.exclude = _reference/resources/resources-specific
+```
+
 ## Schematron
 
 A schematron is available that can be used to check both the input TestScript files and the component files. It is reasonably complete and covers everything on the root level of the input files.
@@ -205,6 +223,10 @@ It can be found at `schematron/NictizTestScript.sch` relative to this README.
 Because of the verbosity of the ANT build, the logging level is set to 1 (warning) and Saxon is set to not try to recover. When more verbose output is wanted, the logging level can be changed by setting the `-DoutputLevel=` parameter on the ANT build.
 
 ## Changelog
+
+### 1.2.0
+- A LoadResources script is now generated for a project
+- TouchStone stopTestOnFail extension is added to each assert
 
 ### 1.1.4
 - Fixed a bug where an attribute in a non nts-namespace (for example `@xsi:*`) caused the process to crash.

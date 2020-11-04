@@ -19,6 +19,7 @@
 -->
 
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
+    
     <!-- Set testscripttools.dir if it is not supplied by including build file. -->
     <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
     
@@ -104,7 +105,7 @@
     
     <macrodef name="saxon-transform" description="Custom task to run an XSLT transformation using Saxon (HE)">
         <attribute name="style" description="The path to the stylesheet to use for the transformation"/>
-        <attribute name="in" description="The path to the input file"/>
+        <attribute name="in" description="The path to the input file" default="@{style}"/>
         <attribute name="out" description="The path to the output file"/>
         <element name="parameters" optional="yes" description="Optionally, a group of 'param' elements as understood by the XSLT task"/>
 
@@ -262,7 +263,26 @@
             </for>
         </sequential>
     </macrodef>
-
+    
+    <macrodef name="generate-loadresources" description="Generate a LoadResources TestScript to load all fixtures to the WildFHIR server.">
+        <sequential>
+            <property name="loadresources.file" value="${build.dir}/${project}/_LoadResources/${project}-load-resources-purgecreateupdate-xml.xml"/>
+            <dirname property="loadresources.file.dir" file="${loadresources.file}"/>
+            <property name="reference.dir.loadresourcesrelative" location="${build.dir}/${project}/_reference" relative="true" basedir="${loadresources.file.dir}"/>
+            <!-- Convert backslashes to forward slashes if needed -->
+            <propertyregex property="reference.dir.loadresourcesrelative.normalized" input="${reference.dir.loadresourcesrelative}" regexp="[\\]" replace="/" global="true" defaultValue="${reference.dir.loadresourcesrelative}"/>
+                        
+            <saxon-transform style="${xslt.dir}/generateLoadResources.xsl" out="${build.dir}/${project}/_LoadResources/${project}-load-resources-purgecreateupdate-xml.xml">
+                <parameters>
+                    <param name="referenceBase" expression="${reference.dir.loadresourcesrelative.normalized}"/>
+                    <param name="referenceDir" expression="${project.dir}/_reference/"/>
+                    <param name="project" expression="${project}"/>
+                    <param name="loadResourcesExclude" expression="${loadresources.exclude}"/>
+                </parameters>
+            </saxon-transform>
+        </sequential>
+    </macrodef>
+    
     <target name="cleanBuildDir">
         <sequential>
             <echo message="Deleting previous build dir"/>
@@ -272,6 +292,9 @@
     
     <target name="build" depends="load, check-input, cleanBuildDir">
         <property name="project.dir" location="${src.dir}/${project}"/>
+        
+        <property file="${project.dir}/build.properties"/>
+        
         <property name="commoncomponents.dir" location="${src.dir}/common-asserts"/>
         <property name="reference.dir" location="${project.dir}/_reference"/>
         <property name="components.dir" location="${project.dir}/_components"/>
@@ -331,6 +354,7 @@
                     <!-- Copy over all fixtures and rules -->
                     <echo message="Copying fixtures"/>
                     <copy-references references.file="${references.file}"/>
+                    <generate-loadresources/>
                 </sequential>
             </then>
             <else>
