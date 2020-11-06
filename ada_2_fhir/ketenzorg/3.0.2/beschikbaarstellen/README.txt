@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-11-06
+* MM-1559 Fixed empty Encounter.class and added implementation of code-specification to preserve the original NHG Table 14 code as specified in the profile
 2020-09-22
 * MM-1437 Fixed an issue for input where multiple ids are present on a healthcare professional
 2020-09-21
