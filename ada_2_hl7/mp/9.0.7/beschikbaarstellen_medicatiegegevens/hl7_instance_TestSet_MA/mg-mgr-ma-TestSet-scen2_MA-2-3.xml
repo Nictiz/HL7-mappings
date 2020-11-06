@@ -15,14 +15,14 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999910401" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999990032" root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">C.</given>
-               <family qualifier="BR">XXX_Vonker</family>
+               <given qualifier="IN">D.</given>
+               <family qualifier="BR">XXX-CSC-Smoketest-B</family>
             </name>
-            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
-            <birthTime value="19540208"/>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <birthTime value="19500204"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -30,16 +30,16 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
-         <id extension="tsMBH_907_redenvanvoorschrijven_MA-VNK"
+         <id extension="tsMBH_907_redenvanvoorschrijven_MA-CSB"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jun 2020, tot en met 6 jul 2020, 4 maal per week 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 19 okt 2020, tot en met 23 nov 2020, 4 maal per week 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20200601000000"/>
-            <high value="20200706235959"/>
+            <low value="20201019000000"/>
+            <high value="20201123235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -62,7 +62,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20200601080500"/>
+            <time value="20201019080500"/>
             <assignedAuthor>
                <id extension="000001117" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -96,7 +96,9 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
                      codeSystemName="Medicatieproces observaties"
                      displayName="Reden van voorschrijven."/>
-               <value xsi:type="CE" code="Migraine"/>
+               <value xsi:type="CE" nullFlavor="OTH">
+                  <originalText>"hier nog een reden"</originalText>
+               </value>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -125,7 +127,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="tsMBH_907_redenvanvoorschrijven-VNK"/>
+                   extension="tsMBH_907_redenvanvoorschrijven-CSB"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

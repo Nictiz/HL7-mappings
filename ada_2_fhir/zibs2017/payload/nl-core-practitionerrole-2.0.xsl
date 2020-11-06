@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     $att, '')">-->
         <xsl:for-each-group select="$healthProfessional[.//(@value | @code | @nullFlavor)]" group-by="
             concat(nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
-            nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@value,
+            nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/normalize-space(@value),
             (specalisme | specialty)/@code)">
             <!-- use grouping key default in second group, we need all of hcim health_professional to determine uniqueness -->
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">

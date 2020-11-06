@@ -16,6 +16,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../peri20_include.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
     
+    <!-- only give dateT a value if you want conversion of relative T dates -->
+    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-01-01')"/>
+    
     <xsl:template name="Kernset23_withInputDoc">
         <xsl:param name="inputFile"/>
         <xsl:call-template name="Kernset23">
