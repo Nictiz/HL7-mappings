@@ -467,6 +467,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         90 - onbekend (NullFlavor: UNK)
                         99 - overig (NullFlavor: OTH)
                     -->
+                    <xsl:call-template name="ext-code-specification-1.0">
+                        <xsl:with-param name="in" select="contact_type"/>
+                    </xsl:call-template>
                     <!-- TODO: Although this is required in the FHIR profile, this information is not available in ADA. It could be mapped from ADA encounter.contact_type, but this mapping is not available. -->
                     <xsl:choose>
                         <xsl:when test="contact_type[@code = '01'][@codeSystem = $oidNHGTabel14Contactwijze]">
