@@ -35,6 +35,8 @@
             <param name="schema.string" value="*${usecase.mg}*"/>
             <param name="fileset.dir" value="ada_instance_MA"/>
             <param name="fileset.include" value="*MA*.xml"/>
+            <!-- exclude the initating scenario's -->
+            <param name="fileset.exclude" value="*8i*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens VV -->
@@ -45,6 +47,8 @@
         <copy todir="${build.dir}/${usecase.mg}/ada_instance_VV" failonerror="true">
             <fileset dir="${refs.dir}/${usecase.mg}/ada_instance">
                 <include name="*VV*.xml"/>
+                <!-- exclude the initating scenario's -->
+                <exclude name="*8i*.xml"/>
             </fileset>
         </copy>
         <!-- beschikbaarstellen_medicatiegegevens medmij stuff -->
@@ -253,7 +257,7 @@
             
             <echo/>
             <echo>${echo.label} ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
-            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false" >
                 <fileset refid="inputfilesMP"/>
                 <param name="generateInstructionText" expression="true"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>

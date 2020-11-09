@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:39cbb722-fdb5-11ea-1120-020000000000"/>
+      <fullUrl value="urn:uuid:c1db61a2-186e-11eb-1969-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -37,7 +37,8 @@
                         <tr>
                            <th>Toedieningsverzoek</th>
                            <td>
-                              <div>Geldigheidsperiode: ${DATE, T, D, +10}T00:00:00+02:00 - ${DATE, T, M, +6}T00:00:00+02:00</div>
+                              <div>Geldigheidsperiode: ${DATE, T, D, +10}T00:00:00+02:00 - ${DATE, T, M, +6}T23:59:59+02:00</div>
+                              <div>Max Repeats: 3</div>
                               <div>Uitvoerende: Apotheek De Gulle Gaper</div>
                            </td>
                         </tr>
@@ -78,7 +79,7 @@
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:39cbb704-fdb5-11ea-1120-020000000000"/>
+               <reference value="urn:uuid:c1db6184-186e-11eb-1969-020000000000"/>
                <display value="N. XXX-Incident-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:00:00+02:00"/>
@@ -86,7 +87,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:39cbb726-fdb5-11ea-1120-020000000000"/>
+                        <reference value="urn:uuid:c1db61a8-186e-11eb-1969-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -97,8 +98,9 @@
             <dispenseRequest>
                <validityPeriod>
                   <start value="${DATE, T, D, +10}T00:00:00+02:00"/>
-                  <end value="${DATE, T, M, +6}T00:00:00+02:00"/>
+                  <end value="${DATE, T, M, +6}T23:59:59+02:00"/>
                </validityPeriod>
+               <numberOfRepeatsAllowed value="3"/>
                <performer>
                   <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
                   <display value="Apotheek De Gulle Gaper"/>
@@ -111,7 +113,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39cbb704-fdb5-11ea-1120-020000000000"/>
+      <fullUrl value="urn:uuid:c1db6184-186e-11eb-1969-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -274,7 +276,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39cbb726-fdb5-11ea-1120-020000000000"/>
+      <fullUrl value="urn:uuid:c1db61a8-186e-11eb-1969-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

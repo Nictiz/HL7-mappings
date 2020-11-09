@@ -451,6 +451,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="finished"/>
                 <class>
                     <!--https://bits.nictiz.nl/browse/ZIB-938-->
+                    <!--
+                        WCIA Referentiemodel 1990:
+                        01 - visite
+                        02 - nacht/dienst visite
+                        03 - consult
+                        04 - nacht/dienst consult
+                        05 - telefonisch contact
+                        06 - nacht/dienst consult
+                        07 - vervallen
+                        08 - postverwerking
+                        09 - overleg
+                        10 - herhaalrecept
+                        11 - notitie/memo
+                        90 - onbekend (NullFlavor: UNK)
+                        99 - overig (NullFlavor: OTH)
+                    -->
+                    <xsl:call-template name="ext-code-specification-1.0">
+                        <xsl:with-param name="in" select="contact_type"/>
+                    </xsl:call-template>
                     <!-- TODO: Although this is required in the FHIR profile, this information is not available in ADA. It could be mapped from ADA encounter.contact_type, but this mapping is not available. -->
                     <xsl:choose>
                         <xsl:when test="contact_type[@code = '01'][@codeSystem = $oidNHGTabel14Contactwijze]">
@@ -501,6 +520,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:with-param>
                             </xsl:call-template>
                         </xsl:when>
+                        <xsl:when test="contact_type[@code = '07'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                            <!--<name language="en-US">vervallen ...</name>-->
+                            <xsl:call-template name="code-to-Coding">
+                                <xsl:with-param name="in" as="element()">
+                                    <contact_type code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="Other" originalText="{(@displayName, @code)[1]}"/>
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:when>
                         <xsl:when test="contact_type[@code = '08'][@codeSystem = $oidNHGTabel14Contactwijze]">
                             <!--<name language="en-US">postverwerking</name>-->
                             <xsl:call-template name="code-to-Coding">
@@ -514,6 +541,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="code-to-Coding">
                                 <xsl:with-param name="in" as="element()">
                                     <contact_type code="NA" codeSystem="{$oidHL7NullFlavor}" displayName="Not applicable"/>
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:when test="contact_type[@code = '10'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                            <!--<name language="en-US">herhaalrecept</name>-->
+                            <xsl:call-template name="code-to-Coding">
+                                <xsl:with-param name="in" as="element()">
+                                    <contact_type code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="Other" originalText="{(@displayName, 'herhaalrecept')[1]}"/>
                                 </xsl:with-param>
                             </xsl:call-template>
                         </xsl:when>
@@ -543,6 +578,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="contact_type" as="element()"/>
                             </xsl:call-template>
                         </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="code-to-Coding">
+                                <xsl:with-param name="in" as="element()">
+                                    <contact_type code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="Other" originalText="{(@displayName, @code)[1]}"/>
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:otherwise>
                     </xsl:choose>
                 </class>
                 <xsl:if test="contact_type">
@@ -846,7 +888,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:for-each>
-                <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
+                <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we could opt to only support Encounter here. -->
                 <xsl:for-each select="../encounter">
                     <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
                     <context>

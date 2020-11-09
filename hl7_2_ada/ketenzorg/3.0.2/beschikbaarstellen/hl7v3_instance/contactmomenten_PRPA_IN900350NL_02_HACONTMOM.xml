@@ -685,6 +685,39 @@
 							</entryRelationship>
 						</encounter>
 					</component>
+					<!--Contact met onbekende (verouderde) Tabel 14 code  -->
+					<component typeCode="COMP" contextControlCode="OP">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+							<id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmomentherhaalrecept"/>
+							<code code="10" codeSystem="2.16.840.1.113883.2.4.4.30.14" codeSystemVersion="v3" displayName="Herhaalrecept"/>
+							<effectiveTime>
+								<low value="20200623135645"/>
+								<high value="20200623142645"/>
+							</effectiveTime>
+							<performer typeCode="PRF">
+								<assignedEntity>
+									<id root="2.16.528.1.1007.3.1" extension="900016431"/>
+									<code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+									<assignedPerson>
+										<name>
+											<family qualifier="BR">Huisarts 1</family>
+										</name>
+									</assignedPerson>
+									<representedOrganization>
+										<id root="2.16.528.1.1007.3.3" extension="00002727"/>
+										<name>Gezondheidscentrum Aesculaap</name>
+									</representedOrganization>
+								</assignedEntity>
+							</performer>
+							<entryRelationship typeCode="REFR">
+								<act classCode="ACT" moodCode="EVN">
+									<id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+									<code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+								</act>
+							</entryRelationship>
+						</encounter>
+					</component>
 				</organizer>
 			</subject>
 			<queryAck>
