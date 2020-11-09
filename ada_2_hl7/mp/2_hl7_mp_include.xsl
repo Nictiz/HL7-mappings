@@ -636,10 +636,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema</xd:desc>
+        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema for 9.0.7</xd:desc>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9076_20160619200644" match="toedieningsschema" mode="HandleCDAAdministrationSchedule">
-        <xsl:if test="(../../../herhaalperiode_cyclisch_schema[.//(@value | @code)]) and (../toedieningsduur[.//(@value | @code)])">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9076_20160619200644" match="toedieningsschema" mode="HandleCDAAdministrationSchedule907">
+       <xsl:if test="(../../../herhaalperiode_cyclisch_schema[.//(@value | @code)]) and (../toedieningsduur[.//(@value | @code)])">
             <xsl:call-template name="util:logMessage">
                 <xsl:with-param name="level" select="$logERROR"/>
                 <xsl:with-param name="msg">Herhaalperiode cyclisch schema in combinatie met toedienduur wordt niet ondersteund.</xsl:with-param>
@@ -880,9 +880,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema from MP 9.1.0</xd:desc>
+        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema from MP 9.1.x</xd:desc>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9310_2019128172830" match="toedieningsschema" mode="HandleCDAAdministrationSchedule">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9310_2019128172830" match="toedieningsschema" mode="HandleCDAAdministrationSchedule910">
         <!-- MP CDA Toedienschema -->
         <xsl:if test="(../../../herhaalperiode_cyclisch_schema[.//(@value | @code)]) and (../toedieningsduur[.//(@value | @code)])">
             <error>Herhaalperiode cyclisch schema in combinatie met toedienduur wordt niet ondersteund.</error>
@@ -1157,6 +1157,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                 </xsl:choose>
             </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema from MP 9.2.x</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151" match="toedieningsschema" mode="HandleCDAAdministrationSchedule92">
+        <xsl:choose>
+            <!-- Eenvoudig doseerschema met alleen één frequentie. -->
+            <xsl:when test="frequentie[not(following-sibling::*[.//(@value|@code)])]/tijdseenheid[.//(@value | @code)] and not(interval[.//(@value | @code)]) and not(toedientijd[.//(@value | @code)]) and not(../toedieningsduur[.//(@value | @code)]) and not(./weekdag[.//(@value | @code)]) and not(./dagdeel[.//(@value | @code)])">
+                <xsl:for-each select="./frequentie[.//(@value | @code)]">
+                    <effectiveTime>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9080_20160620164239"/>
+                    </effectiveTime>
+                </xsl:for-each>
+            </xsl:when>
         </xsl:choose>
     </xsl:template>
 

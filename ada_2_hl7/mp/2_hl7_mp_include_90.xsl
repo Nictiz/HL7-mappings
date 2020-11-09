@@ -2033,7 +2033,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </entryRelationship>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:for-each select="./dosering[.//(@value | @code)]">
+                        <xsl:for-each select="dosering[.//(@value | @code)]">
                             <entryRelationship typeCode="COMP">
                                 <xsl:for-each select="../volgnummer[.//(@value | @code)]">
                                     <sequenceNumber>
