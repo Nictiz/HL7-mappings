@@ -44,11 +44,11 @@
         
         <!-- Collect all non-bearer fixtures as file URLs -->
         <xsl:variable name="fixtures" as="item()*">
-            <xsl:variable name="excludedPaths" select="tokenize(translate($loadResourcesExclude,'\','/'),',')"/>
+            <xsl:variable name="excludedPaths" select="tokenize(replace(replace(translate($loadResourcesExclude,'\','/'), '[.]','[.]'),'[*]','.+?'),',')"/>
             <xsl:variable name="fixturesUnfiltered" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*.xml;recurse=yes')))/f:*[not(contains(f:id/@value, 'Bearer'))]"/>
             <xsl:choose>
                 <xsl:when test="normalize-space($loadResourcesExclude)">
-                    <xsl:sequence select="$fixturesUnfiltered[for $excludedPath in $excludedPaths return (not(contains(document-uri(ancestor::node()),normalize-space($excludedPath))))]"/>
+                    <xsl:sequence select="$fixturesUnfiltered[not(some $excludedPath in $excludedPaths satisfies (matches(document-uri(ancestor::node()),normalize-space($excludedPath))))]"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:sequence select="$fixturesUnfiltered"/>
@@ -185,7 +185,7 @@
     <!-- Generate a fixture id for the provided resource, based on the type and the resource.id -->
     <xsl:template name="generateFixtureId" as="xs:string">
         <xsl:variable name="normalizedId" select="replace(f:id/@value, '\s', '')"/>
-        <xsl:variable name="fixtureId" select="concat(local-name(), '-', $normalizedId)"/>
+        <xsl:variable name="fixtureId" select="substring(concat(local-name(), '-', $normalizedId),1,64)"/>
         
         <xsl:if test="not(matches($fixtureId, '^[A-Za-z0-9\-\.]{1,64}$'))">
             <xsl:message terminate="yes" select="concat('Not a valid id: ', $fixtureId)"/>

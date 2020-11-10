@@ -224,6 +224,11 @@ Because of the verbosity of the ANT build, the logging level is set to 1 (warnin
 
 ## Changelog
 
+### 1.2.1
+- Fixed a bug where a comma separated list in `loadresources.exclude` caused the process to crash.
+- Generated fixture-ids longer than 64 characters are stripped.
+- Added support for asterisk wildcards in `loadresources.exclude`.
+
 ### 1.2.0
 - A LoadResources script is now generated for a project
 - TouchStone stopTestOnFail extension is added to each assert
