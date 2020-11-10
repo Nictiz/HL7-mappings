@@ -59,127 +59,135 @@
         <!-- And collect all bearer fixtures as file URLs -->
         <xsl:variable name="tokens" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*token.xml;recurse=yes')))/f:*"/>
         
-        <!-- Write out the TestScript resource -->
-        <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
-            <id value="{$project}-resources-purgecreateupdate-xml"/>
-            <url value="http://nictiz.nl/fhir/TestScript/{$project}-load-resources-purgecreateupdate-xml"/>
-            <name value="Nictiz {$project} Load Test Resources - Purge Create Update - XML"/>
-            <status value="active"/>
-            <date value="{format-date(current-date(), '[Y0001]-[M01]-[D01]')}"/>
-            <publisher value="Nictiz"/>
-            <contact>
-                <name value="MedMij"/>
-                <telecom>
-                    <system value="email"/>
-                    <value value="kwalificatie@nictiz.nl"/>
-                    <use value="work"/>
-                </telecom>
-            </contact>
-            <description value="Load Nictiz {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
-            <copyright value="© Nictiz 2020"/>
-            
-            <!-- Write out all fixture references -->
-            <xsl:for-each select="$fixtures">
-                <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
-                <xsl:variable name="fixtureId">
-                    <xsl:call-template name="generateFixtureId"/>
-                </xsl:variable>
-                <fixture id="{$fixtureId}">
-                    <resource>
-                        <reference value="{replace(document-uri(ancestor::node()), $referenceDirAsUrl, $referenceBaseSanitized)}"/>
-                    </resource>
-                </fixture>
-            </xsl:for-each>
-            
-            <!-- Write out variables that read the id's from all fixtures -->
-            <xsl:for-each select="$fixtures">
-                <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
-                <xsl:variable name="fixtureId">
-                    <xsl:call-template name="generateFixtureId"/>
-                </xsl:variable>
-                <variable>
-                    <name value="{$fixtureId}-id"/>
-                    <expression value="{local-name(.)}.id"/>
-                    <sourceId value="{$fixtureId}"/>
-                </variable>
-            </xsl:for-each>
-            
-            <!-- variable T -->
-            <variable>
-                <name value="T"/>
-                <defaultValue value="${{CURRENTDATE}}"/>
-                <description value="Date that data and queries are expected to be relative to."/>
-            </variable>
-            
-            <!-- Purge Patients in setup -->
-            <setup>
-                <xsl:for-each select="$tokens">
-                    <action>
-                        <operation>
-                            <type>
-                                <system value="http://touchstone.com/fhir/extended-operation-codes"/>
-                                <code value="purge"/>
-                            </type>
-                            <resource value="Patient"/>
-                            <accept value="xml"/>
-                            <contentType value="xml"/>
-                            <params value="/$purge"/>
-                            <requestHeader>
-                                <field value="Authorization"/>
-                                <value value="{f:id/@value}"/>
-                            </requestHeader>
-                        </operation>
-                    </action>
-                    <action>
-                        <assert>
-                            <description
-                                value="Confirm that the returned HTTP status is 200(OK) or 204(No Content)"/>
-                            <operator value="in"/>
-                            <responseCode value="200,204"/>
-                        </assert>
-                    </action>
-                </xsl:for-each>
-            </setup>
-            
-            <!-- PUT all fixtures in test -->
-            <test id="Step1-LoadTestResourceCreate">
-                <name value="Step1-LoadTestResourceCreate"/>
-                <description value="Load {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
-                <xsl:for-each select="$fixtures">
-                    <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
-                    <xsl:variable name="fixtureId">
-                        <xsl:call-template name="generateFixtureId"/>
-                    </xsl:variable>
-                    <action>
-                        <operation>
-                            <type>
-                                <system value="http://hl7.org/fhir/testscript-operation-codes"/>
-                                <code value="updateCreate"/>
-                            </type>
-                            <resource value="{local-name(.)}"/>
-                            <accept value="xml"/>
-                            <contentType value="xml"/>
-                            <params value="/${{{$fixtureId}-id}}"/>
-                            <requestHeader>
-                                <field value="Authorization"/>
-                                <!-- This Bearer token is a dedicated token for LoadResources purposes -->
-                                <!--<value value="Bearer e317fc02-e8ff-40fe-9b22-f3c43fbf5613"/>-->
-                                <!-- Use first patient token until dedicated Bearer token is active -->
-                                <value value="{$tokens[1]/f:id/@value}"/>
-                            </requestHeader>
+        <xsl:choose>
+            <xsl:when test="$fixtures">
+                <!-- Write out the TestScript resource -->
+                <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
+                    <id value="{$project}-resources-purgecreateupdate-xml"/>
+                    <url value="http://nictiz.nl/fhir/TestScript/{$project}-load-resources-purgecreateupdate-xml"/>
+                    <name value="Nictiz {$project} Load Test Resources - Purge Create Update - XML"/>
+                    <status value="active"/>
+                    <date value="{format-date(current-date(), '[Y0001]-[M01]-[D01]')}"/>
+                    <publisher value="Nictiz"/>
+                    <contact>
+                        <name value="MedMij"/>
+                        <telecom>
+                            <system value="email"/>
+                            <value value="kwalificatie@nictiz.nl"/>
+                            <use value="work"/>
+                        </telecom>
+                    </contact>
+                    <description value="Load Nictiz {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
+                    <copyright value="© Nictiz 2020"/>
+                    
+                    <!-- Write out all fixture references -->
+                    <xsl:for-each select="$fixtures">
+                        <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
+                        <xsl:variable name="fixtureId">
+                            <xsl:call-template name="generateFixtureId"/>
+                        </xsl:variable>
+                        <fixture id="{$fixtureId}">
+                            <resource>
+                                <reference value="{replace(document-uri(ancestor::node()), $referenceDirAsUrl, $referenceBaseSanitized)}"/>
+                            </resource>
+                        </fixture>
+                    </xsl:for-each>
+                    
+                    <!-- Write out variables that read the id's from all fixtures -->
+                    <xsl:for-each select="$fixtures">
+                        <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
+                        <xsl:variable name="fixtureId">
+                            <xsl:call-template name="generateFixtureId"/>
+                        </xsl:variable>
+                        <variable>
+                            <name value="{$fixtureId}-id"/>
+                            <expression value="{local-name(.)}.id"/>
                             <sourceId value="{$fixtureId}"/>
-                        </operation>
-                    </action>
-                    <action>
-                        <assert>
-                            <description value="Confirm that the returned HTTP status is 200(OK) or 201(Created)."/>
-                            <operator value="in"/>
-                            <responseCode value="200,201"/>
-                        </assert>
-                    </action>
-                </xsl:for-each>
-            </test>
-        </TestScript>
+                        </variable>
+                    </xsl:for-each>
+                    
+                    <!-- variable T -->
+                    <variable>
+                        <name value="T"/>
+                        <defaultValue value="${{CURRENTDATE}}"/>
+                        <description value="Date that data and queries are expected to be relative to."/>
+                    </variable>
+                    
+                    <!-- Purge Patients in setup -->
+                    <setup>
+                        <xsl:for-each select="$tokens">
+                            <action>
+                                <operation>
+                                    <type>
+                                        <system value="http://touchstone.com/fhir/extended-operation-codes"/>
+                                        <code value="purge"/>
+                                    </type>
+                                    <resource value="Patient"/>
+                                    <accept value="xml"/>
+                                    <contentType value="xml"/>
+                                    <params value="/$purge"/>
+                                    <requestHeader>
+                                        <field value="Authorization"/>
+                                        <value value="{f:id/@value}"/>
+                                    </requestHeader>
+                                </operation>
+                            </action>
+                            <action>
+                                <assert>
+                                    <description
+                                        value="Confirm that the returned HTTP status is 200(OK) or 204(No Content)"/>
+                                    <operator value="in"/>
+                                    <responseCode value="200,204"/>
+                                </assert>
+                            </action>
+                        </xsl:for-each>
+                    </setup>
+                    
+                    <!-- PUT all fixtures in test -->
+                    <test id="Step1-LoadTestResourceCreate">
+                        <name value="Step1-LoadTestResourceCreate"/>
+                        <description value="Load {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
+                        <xsl:for-each select="$fixtures">
+                            <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
+                            <xsl:variable name="fixtureId">
+                                <xsl:call-template name="generateFixtureId"/>
+                            </xsl:variable>
+                            <action>
+                                <operation>
+                                    <type>
+                                        <system value="http://hl7.org/fhir/testscript-operation-codes"/>
+                                        <code value="updateCreate"/>
+                                    </type>
+                                    <resource value="{local-name(.)}"/>
+                                    <accept value="xml"/>
+                                    <contentType value="xml"/>
+                                    <params value="/${{{$fixtureId}-id}}"/>
+                                    <requestHeader>
+                                        <field value="Authorization"/>
+                                        <!-- This Bearer token is a dedicated token for LoadResources purposes -->
+                                        <!--<value value="Bearer e317fc02-e8ff-40fe-9b22-f3c43fbf5613"/>-->
+                                        <!-- Use first patient token until dedicated Bearer token is active -->
+                                        <value value="{$tokens[1]/f:id/@value}"/>
+                                    </requestHeader>
+                                    <sourceId value="{$fixtureId}"/>
+                                </operation>
+                            </action>
+                            <action>
+                                <assert>
+                                    <description value="Confirm that the returned HTTP status is 200(OK) or 201(Created)."/>
+                                    <operator value="in"/>
+                                    <responseCode value="200,201"/>
+                                </assert>
+                            </action>
+                        </xsl:for-each>
+                    </test>
+                </TestScript>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:message>No LoadResources to generate</xsl:message>
+                <!-- Output empty file, which is deleted by ANT -->
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <!-- Generate a fixture id for the provided resource, based on the type and the resource.id -->

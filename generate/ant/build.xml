@@ -271,8 +271,8 @@
             <property name="reference.dir.loadresourcesrelative" location="${build.dir}/${project}/_reference" relative="true" basedir="${loadresources.file.dir}"/>
             <!-- Convert backslashes to forward slashes if needed -->
             <propertyregex property="reference.dir.loadresourcesrelative.normalized" input="${reference.dir.loadresourcesrelative}" regexp="[\\]" replace="/" global="true" defaultValue="${reference.dir.loadresourcesrelative}"/>
-                        
-            <saxon-transform style="${xslt.dir}/generateLoadResources.xsl" out="${build.dir}/${project}/_LoadResources/${project}-load-resources-purgecreateupdate-xml.xml">
+            
+            <saxon-transform style="${xslt.dir}/generateLoadResources.xsl" out="${loadresources.file}">
                 <parameters>
                     <param name="referenceBase" expression="${reference.dir.loadresourcesrelative.normalized}"/>
                     <param name="referenceDir" expression="${project.dir}/_reference/"/>
@@ -280,6 +280,14 @@
                     <param name="loadResourcesExclude" expression="${loadresources.exclude}"/>
                 </parameters>
             </saxon-transform>
+            
+            <!-- Check if output is empty. If yes, delete -->
+            <if>
+                <length file="${loadresources.file}" when="equal" length="0" />
+                <then>
+                    <delete dir="${loadresources.file.dir}"/>
+                </then>
+            </if>
         </sequential>
     </macrodef>
     

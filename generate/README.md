@@ -228,6 +228,7 @@ Because of the verbosity of the ANT build, the logging level is set to 1 (warnin
 - Fixed a bug where a comma separated list in `loadresources.exclude` caused the process to crash.
 - Generated fixture-ids longer than 64 characters are stripped.
 - Added support for asterisk wildcards in `loadresources.exclude`.
+- Do not genereate LoadResources script if there are no fixtures to generate it from.
 
 ### 1.2.0
 - A LoadResources script is now generated for a project
