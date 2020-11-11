@@ -44,11 +44,16 @@
         
         <!-- Collect all non-bearer fixtures as file URLs -->
         <xsl:variable name="fixtures" as="item()*">
-            <xsl:variable name="excludedPaths" select="tokenize(translate($loadResourcesExclude,'\','/'),',')"/>
+            <xsl:variable name="exclusionPatterns" select="
+                let $pathNormalized  := translate($loadResourcesExclude,'\','/'),
+                    $regexEscaped    := replace($pathNormalized, '(\.|\[|\]|\\|\||\-|\^|\$|\?|\+|\{|\}|\(|\))','\\$1'), (: all regex characters except * :)
+                    $wildCardAsRegex := replace($regexEscaped,'\*','.*?')
+                return for $pattern in tokenize($wildCardAsRegex,',') 
+                return normalize-space($pattern)"/>
             <xsl:variable name="fixturesUnfiltered" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*.xml;recurse=yes')))/f:*[not(contains(f:id/@value, 'Bearer'))]"/>
             <xsl:choose>
                 <xsl:when test="normalize-space($loadResourcesExclude)">
-                    <xsl:sequence select="$fixturesUnfiltered[for $excludedPath in $excludedPaths return (not(contains(document-uri(ancestor::node()),normalize-space($excludedPath))))]"/>
+                    <xsl:sequence select="$fixturesUnfiltered[not(some $exclusionPattern in $exclusionPatterns satisfies (matches(document-uri(ancestor::node()),$exclusionPattern)))]"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:sequence select="$fixturesUnfiltered"/>
@@ -59,6 +64,8 @@
         <!-- And collect all bearer fixtures as file URLs -->
         <xsl:variable name="tokens" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*token.xml;recurse=yes')))/f:*"/>
         
+        <xsl:choose>
+            <xsl:when test="$fixtures">
         <!-- Write out the TestScript resource -->
         <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
             <id value="{$project}-resources-purgecreateupdate-xml"/>
@@ -180,16 +187,31 @@
                 </xsl:for-each>
             </test>
         </TestScript>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:message>No LoadResources to generate</xsl:message>
+                <!-- Output empty file, which is deleted by ANT -->
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
-    <!-- Generate a fixture id for the provided resource, based on the type and the resource.id -->
+    <!-- Construct a fixture id for the provided resource, based on the type and the resource.id.
+         If this constructed id is too long, a generated one that's harder to recognize will be used. -->
     <xsl:template name="generateFixtureId" as="xs:string">
-        <xsl:variable name="normalizedId" select="replace(f:id/@value, '\s', '')"/>
-        <xsl:variable name="fixtureId" select="concat(local-name(), '-', $normalizedId)"/>
         
-        <xsl:if test="not(matches($fixtureId, '^[A-Za-z0-9\-\.]{1,64}$'))">
-            <xsl:message terminate="yes" select="concat('Not a valid id: ', $fixtureId)"/>
+        <!-- Check if the resource id is a valid FHIR id -->
+        <xsl:if test="not(matches(f:id/@value, '^[A-Za-z0-9\-\.]{1,64}$'))">
+            <xsl:message terminate="yes" select="concat('Invalid FHIR id: ', f:id/@value)"/>
         </xsl:if>
-        <xsl:value-of select="$fixtureId"/>
+
+        <xsl:variable name="fixtureId" select="concat(local-name(), '-', f:id/@value)"/>
+        <xsl:choose>
+            <xsl:when test="matches($fixtureId, '^[A-Za-z0-9\-\.]{1,64}$')">
+                <xsl:value-of select="$fixtureId"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="substring(concat(local-name(), '-', generate-id(.), '-', f:id/@value),1,64)"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
