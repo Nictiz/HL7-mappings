@@ -195,17 +195,22 @@
         </xsl:choose>
     </xsl:template>
     
-    <!-- Generate a fixture id for the provided resource, based on the type and the resource.id -->
+    <!-- Construct a fixture id for the provided resource, based on the type and the resource.id.
+         If this constructed id is too long, a generated one that's harder to recognize will be used. -->
     <xsl:template name="generateFixtureId" as="xs:string">
-        <xsl:variable name="normalizedId" select="replace(f:id/@value, '\s', '')"/>
-        <xsl:variable name="fixtureId" select="concat(local-name(), '-', $normalizedId)"/>
         
+        <!-- Check if the resource id is a valid FHIR id -->
+        <xsl:if test="not(matches(f:id/@value, '^[A-Za-z0-9\-\.]{1,64}$'))">
+            <xsl:message terminate="yes" select="concat('Invalid FHIR id: ', f:id/@value)"/>
+        </xsl:if>
+
+        <xsl:variable name="fixtureId" select="concat(local-name(), '-', f:id/@value)"/>
         <xsl:choose>
             <xsl:when test="matches($fixtureId, '^[A-Za-z0-9\-\.]{1,64}$')">
                 <xsl:value-of select="$fixtureId"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="substring(concat(local-name(), '-', generate-id(.), '-', $normalizedId),1,64)"/>
+                <xsl:value-of select="substring(concat(local-name(), '-', generate-id(.), '-', f:id/@value),1,64)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
