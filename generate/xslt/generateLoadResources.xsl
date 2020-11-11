@@ -44,11 +44,16 @@
         
         <!-- Collect all non-bearer fixtures as file URLs -->
         <xsl:variable name="fixtures" as="item()*">
-            <xsl:variable name="excludedPaths" select="tokenize(replace(replace(translate($loadResourcesExclude,'\','/'), '[.]','[.]'),'[*]','.+?'),',')"/>
+            <xsl:variable name="exclusionPatterns" select="
+                let $pathNormalized  := translate($loadResourcesExclude,'\','/'),
+                    $regexEscaped    := replace($pathNormalized, '(\.|\[|\]|\\|\||\-|\^|\$|\?|\+|\{|\}|\(|\))','\\$1'), (: all regex characters except * :)
+                    $wildCardAsRegex := replace($regexEscaped,'\*','.*?')
+                return for $pattern in tokenize($wildCardAsRegex,',') 
+                return normalize-space($pattern)"/>
             <xsl:variable name="fixturesUnfiltered" select="collection(iri-to-uri(concat(resolve-uri($referenceDirAsUrl), '?select=', '*.xml;recurse=yes')))/f:*[not(contains(f:id/@value, 'Bearer'))]"/>
             <xsl:choose>
                 <xsl:when test="normalize-space($loadResourcesExclude)">
-                    <xsl:sequence select="$fixturesUnfiltered[not(some $excludedPath in $excludedPaths satisfies (matches(document-uri(ancestor::node()),normalize-space($excludedPath))))]"/>
+                    <xsl:sequence select="$fixturesUnfiltered[not(some $exclusionPattern in $exclusionPatterns satisfies (matches(document-uri(ancestor::node()),$exclusionPattern)))]"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:sequence select="$fixturesUnfiltered"/>
