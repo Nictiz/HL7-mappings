@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/PerinataleZorg/DECOR/peri20-runtime-develop/peri20-ksgz-alg-23.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-model href="file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/2.3.3/kernset_geboortezorg/test_xslt_instance/scenario1-23.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model phase="#ALL" href="file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/2.3/kernset_geboortezorg/test_xslt_instance/scenario1-23-20200101.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN004014NL xmlns="urn:hl7-org:v3"
                  xmlns:hl7="urn:hl7-org:v3"
                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -95,8 +94,8 @@
                   <id root="2.16.840.1.113883.2.4.3.11.999.60.4"
                       extension="0cbda760-1fdd-11e9-b56e-0800200c9a66"/>
                   <effectiveTime>
-                     <low value="20180301000000"/>
-                     <high value="20181112000000"/>
+                     <low value="20190301"/>
+                     <high value="20191112"/>
                   </effectiveTime>
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
@@ -106,7 +105,7 @@
                            <postalCode>4563 AB</postalCode>
                         </addr>
                         <patientPerson classCode="PSN" determinerCode="INSTANCE">
-                           <birthTime value="19800502"/>
+                           <birthTime value="19810101"/>
                            <deceasedInd value="false"/>
                            <ethnicGroupCode code="5"
                                             codeSystem="2.16.840.1.113883.2.4.4.13.28"
@@ -299,7 +298,7 @@
                               <code code="EDDDef"
                                     codeSystem="2.16.840.1.113883.2.4.4.13"
                                     displayName="A terme datum (definitive)"/>
-                              <value xsi:type="TS" value="20151201"/>
+                              <value xsi:type="TS" value="20161130"/>
                            </observation>
                         </component>
                         <component typeCode="COMP" contextConductionInd="true">
@@ -348,16 +347,12 @@
                                        <personalRelationship classCode="PRS">
                                           <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
                                           <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
-                                             <birthTime value="20151208000000"/>
+                                             <birthTime value="20161207"/>
                                           </relationshipHolder>
                                        </personalRelationship>
                                     </subject>
                                     <outboundRelationship typeCode="COMP">
-                                       <observation xmlns:sdtc="urn:hl7-org:sdtc"
-                                                    xmlns:nf="http://www.nictiz.nl/functions"
-                                                    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-                                                    classCode="OBS"
-                                                    moodCode="EVN">
+                                       <observation classCode="OBS" moodCode="EVN">
                                           <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
                                           <code code="364336006"
                                                 codeSystem="2.16.840.1.113883.6.96"
@@ -427,7 +422,7 @@
                         <code code="EDDDef"
                               codeSystem="2.16.840.1.113883.2.4.4.13"
                               displayName="A terme datum (definitive)"/>
-                        <value xsi:type="TS" value="20181009"/>
+                        <value xsi:type="TS" value="20191009"/>
                      </observation>
                   </pertinentInformation3>
                   <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
@@ -457,7 +452,7 @@
                         <code code="18114009"
                               codeSystem="2.16.840.1.113883.6.96"
                               displayName="Prenatale controle"/>
-                        <effectiveTime value="20180302000000"/>
+                        <effectiveTime value="20190302"/>
                         <outboundRelationship typeCode="COMP">
                            <observation classCode="OBS" moodCode="EVN">
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900236"/>
@@ -529,7 +524,7 @@
                         <code code="439401001"
                               codeSystem="2.16.840.1.113883.6.96"
                               displayName="Diagnosis"/>
-                        <effectiveTime value="20180302000000"/>
+                        <effectiveTime value="20190302"/>
                         <component typeCode="COMP" contextConductionInd="true">
                            <observation classCode="OBS" moodCode="EVN">
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900236"/>
@@ -579,11 +574,7 @@
                            </act>
                         </component>
                         <component typeCode="COMP" contextConductionInd="true">
-                           <observation xmlns:sdtc="urn:hl7-org:sdtc"
-                                        xmlns:nf="http://www.nictiz.nl/functions"
-                                        xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-                                        classCode="OBS"
-                                        moodCode="EVN">
+                           <observation classCode="OBS" moodCode="EVN">
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900358"/>
                               <code code="NBorn16"
                                     codeSystem="2.16.840.1.113883.2.4.4.13"
@@ -643,7 +634,7 @@
                               <code code="249120008"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     displayName="Tijdstip begin actieve ontsluiting"/>
-                              <effectiveTime value="20181007143000"/>
+                              <effectiveTime value="20191007143000"/>
                            </observation>
                         </component>
                         <component typeCode="COMP" contextConductionInd="true">
@@ -713,7 +704,7 @@
                                           displayName="Kind"/>
                                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
                                        <id extension="999910383" root="2.16.840.1.113883.2.4.6.3"/>
-                                       <birthTime value="20181008000000"/>
+                                       <birthTime value="20191008"/>
                                        <deceasedInd value="false"/>
                                     </relationshipHolder>
                                  </personalRelationship>
@@ -767,7 +758,7 @@
                                     <code code="289251005"
                                           codeSystem="2.16.840.1.113883.6.96"
                                           displayName="Tijdstip breken vliezen"/>
-                                    <value xsi:type="TS" value="20181008091500"/>
+                                    <value xsi:type="TS" value="20191008091500"/>
                                  </observation>
                               </outboundRelationship>
                               <outboundRelationship typeCode="COMP">
@@ -788,7 +779,7 @@
                                     <code code="PRN530401"
                                           codeSystem="2.16.840.1.113883.2.4.3.22.1.1"
                                           displayName="Tijdstip actief meepersen"/>
-                                    <value xsi:type="TS" value="20181008121300"/>
+                                    <value xsi:type="TS" value="20191008121300"/>
                                  </observation>
                               </outboundRelationship>
                               <outboundRelationship typeCode="COMP">
@@ -828,11 +819,7 @@
                                  </procedure>
                               </outboundRelationship>
                               <outboundRelationship typeCode="COMP">
-                                 <observation xmlns:sdtc="urn:hl7-org:sdtc"
-                                              xmlns:nf="http://www.nictiz.nl/functions"
-                                              xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-                                              classCode="OBS"
-                                              moodCode="EVN">
+                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
                                     <code code="364336006"
                                           codeSystem="2.16.840.1.113883.6.96"
@@ -891,7 +878,7 @@
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900724"/>
                                     <id nullFlavor="NI"/>
                                     <code code="230126006" codeSystem="2.16.840.1.113883.6.96"/>
-                                    <effectiveTime value="20181012"/>
+                                    <effectiveTime value="20191012"/>
                                     <product typeCode="PRD">
                                        <product classCode="ACCESS">
                                           <playingMaterial classCode="MAT" determinerCode="KIND">
