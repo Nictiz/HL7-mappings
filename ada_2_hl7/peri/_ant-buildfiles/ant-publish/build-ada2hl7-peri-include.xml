@@ -169,7 +169,7 @@
             <xslt force="true" style="${xsl.convert}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesMP"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>
-<!--                <param name="input_xml_wrapper" expression="input_wrapper.xml"/>-->
+                <param name="input_xml_wrapper" expression="input_wrapper.xml"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
