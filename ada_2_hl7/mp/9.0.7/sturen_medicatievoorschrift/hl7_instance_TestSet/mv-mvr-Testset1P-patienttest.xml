@@ -17,14 +17,16 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999990056" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999990081" root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">F.</given>
-               <family qualifier="BR">XXX-GBZ-Smoketest-B</family>
+               <given qualifier="BR">Hannelore </given>
+               <given qualifier="CL">Hannie </given>
+               <family qualifier="BR">XXX-GBZ-Smoketest-D</family>
             </name>
             <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
-            <birthTime value="19500206"/>
+            <birthTime value="19500802"/>
+            <sdtc:multipleBirthInd xmlns:sdtc="urn:hl7-org:sdtc" value="true"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -32,39 +34,39 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
-         <id extension="tsMBH_907_variabelehoeveelheid_MA-GSB"
+         <id extension="tsMBH_907_start_eind_MA-GSD"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 26 okt 2020, tot en met 9 nov 2020, 4 maal per dag 1 à 2 stuks, oraal</text>
+         <text mediaType="text/plain">Vanaf 26 okt 2020, tot en met 2 nov 2020, 1 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20201026000000"/>
-            <high value="20201109235959"/>
+            <high value="20201102235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="oraal"
-                    codeSystemName="G-Standaard Toedieningswegen"/>
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="47872"
+                  <code code="49484"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="IBUPROFEN BRUISGRANULAAT 400MG"
+                        displayName="Acetylsalicylzuur tabletmsr 100mg"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="101508"
+                     <translation code="103039"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="IBUPROFEN BRUISGRANULAAT 400MG"
+                                  displayName="Acetylsalicylzuur tabletmsr 100mg"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201026081000"/>
+            <time value="20201026112000"/>
             <assignedAuthor>
                <id extension="000001116" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -75,7 +77,7 @@
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Pieter</given>
-                     <prefix qualifier="VV">De </prefix>
+                     <prefix qualifier="VV">de </prefix>
                      <family qualifier="BR">Plat</family>
                   </name>
                </assignedPerson>
@@ -83,7 +85,7 @@
                   <id extension="00001116" root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Staden</name>
                   <addr use="WP">
-                     <streetName>Kerkstraat</streetName>
+                     <streetName>kerkstraat</streetName>
                      <houseNumber>4</houseNumber>
                      <postalCode>1234 AB</postalCode>
                      <city>Onze Stad</city>
@@ -97,25 +99,18 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
                   <hl7nl:frequency>
-                     <hl7nl:numerator xsi:type="hl7nl:INT" value="4"/>
+                     <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
                   </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
-                  <low value="1" unit="1">
+                  <center value="1" unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </low>
-                  <high value="2" unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </high>
+                  </center>
                </doseQuantity>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
@@ -124,7 +119,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="tsMBH_907_variabelehoeveelheid-GSB"/>
+                   extension="tsMBH_907_start_eind-GSD"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -135,14 +130,14 @@
    <component typeCode="COMP">
       <supply classCode="SPLY" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
-         <id extension="tsMBH_907_variabelehoeveelheid_VV-GSB"
+         <id extension="tsMBH_907_start_eind_VV-GSD"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code codeSystemName="SNOMED CT"
                displayName="Verstrekkingsverzoek"
                code="52711000146108"
                codeSystem="2.16.840.1.113883.6.96"/>
-         <quantity value="112" unit="1">
-            <translation value="112"
+         <quantity value="7" unit="1">
+            <translation value="7"
                          code="245"
                          displayName="stuk"
                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -152,13 +147,13 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="47872"
+                  <code code="49484"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="IBUPROFEN BRUISGRANULAAT 400MG"
+                        displayName="Acetylsalicylzuur tabletmsr 100mg"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="101508"
+                     <translation code="103039"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="IBUPROFEN BRUISGRANULAAT 400MG"
+                                  displayName="Acetylsalicylzuur tabletmsr 100mg"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -174,7 +169,7 @@
             </assignedEntity>
          </performer>
          <author>
-            <time value="20201026081000"/>
+            <time value="20201026112000"/>
             <assignedAuthor>
                <id extension="000001116" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -204,7 +199,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-               <id extension="tsMBH_907_variabelehoeveelheid_MA-GSB"
+               <id extension="tsMBH_907_start_eind_MA-GSD"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="16076005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -217,7 +212,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="tsMBH_907_variabelehoeveelheid-GSB"/>
+                   extension="tsMBH_907_start_eind-GSD"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

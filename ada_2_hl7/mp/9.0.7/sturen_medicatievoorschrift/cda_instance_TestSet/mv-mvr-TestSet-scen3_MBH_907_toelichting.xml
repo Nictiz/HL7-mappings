@@ -16,7 +16,7 @@
          codeSystemName="SNOMED CT"
          displayName="Medication section (record artifact)"/>
    <title>Voorschrift D. XXX-CSC-Smoketest-B op 26 oct 2020</title>
-   <effectiveTime value="20201026080200"/>
+   <effectiveTime value="20201026090600"/>
    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
    <languageCode code="nl-NL"/>
    <recordTarget>
@@ -115,7 +115,7 @@
                         </manufacturedProduct>
                      </consumable>
                      <author>
-                        <time value="20201026080200"/>
+                        <time value="20201026090600"/>
                         <assignedAuthor>
                            <id extension="000001117" root="2.16.528.1.1007.3.1"/>
                            <code code="0100"
@@ -149,20 +149,10 @@
                                  displayName="Reden medicatieafspraak"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                            <value xsi:type="CE"
-                                  code="16"
+                                  code="5"
                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
-                                  displayName="Overgevoeligheid"/>
+                                  displayName="Geen of onvoldoende effect"/>
                         </observation>
-                     </entryRelationship>
-                     <entryRelationship typeCode="SUBJ" inversionInd="true">
-                        <act classCode="ACT" moodCode="EVN">
-                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
-                           <code code="48767-8"
-                                 codeSystem="2.16.840.1.113883.6.1"
-                                 codeSystemName="LOINC"
-                                 displayName="Toelichting"/>
-                           <text>In overleg met specialist</text>
-                        </act>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <sequenceNumber value="1"/>
@@ -246,10 +236,13 @@
                         </manufacturedProduct>
                      </consumable>
                      <author>
-                        <time value="20201026080200"/>
+                        <time value="20201026090600"/>
                         <assignedAuthor>
                            <id extension="000001117" root="2.16.528.1.1007.3.1"/>
-                           <code nullFlavor="UNK"/>
+                           <code code="0100"
+                                 codeSystem="2.16.840.1.113883.2.4.6.7"
+                                 displayName="Huisartsen, niet nader gespecificeerd"
+                                 codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"/>
                            <assignedPerson>
                               <name>
                                  <given qualifier="BR">Bert</given>
@@ -281,6 +274,16 @@
                                   code="2"
                                   displayName="Definitief"/>
                         </observation>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
+                           <code code="48767-8"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 codeSystemName="LOINC"
+                                 displayName="Toelichting"/>
+                           <text>In overleg met specialist</text>
+                        </act>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <sequenceNumber value="1"/>
