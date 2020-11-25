@@ -8,7 +8,6 @@ The 'simple dataset xml format' is based on ADA format, more information about A
 https://www.art-decor.org/mediawiki/index.php/ADA_Walkthrough 
 
 The xsd of the ada format is included in the folder "ada_schemas".
-A complete empty xml instance in the ada format is included in the folder "ada_new".
 
 The folder "kernset_geboortezorg/wrapper contains the stylesheet that does the conversion including the wrappers: kernset_geboortezorg_wrapper.xsl. Please note that this will need to be customised for the appropriate implementation.
 

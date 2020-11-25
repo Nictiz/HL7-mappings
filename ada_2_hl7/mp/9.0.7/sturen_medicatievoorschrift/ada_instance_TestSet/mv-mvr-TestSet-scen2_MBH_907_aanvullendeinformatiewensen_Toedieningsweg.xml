@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2020-09-03T09:32:25.96+02:00"
-         last-update-date="2020-10-23T15:30:43.911+02:00"/>
+         last-update-date="2020-10-30T11:18:42.679+01:00"/>
     <data>
         <sturen_medicatievoorschrift app="mp-mp907"
                                    shortName="sturen_medicatievoorschrift"
@@ -123,7 +123,7 @@
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
                   <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
-                                value="Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 1 maal per dag 0.5 stuk, oraal"/>
+                                value="Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="9"
@@ -133,7 +133,7 @@
                      <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248" comment="">
                         <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249" comment="">
                            <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250" comment="">
-                              <vaste_waarde value="0.5" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
+                              <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -155,10 +155,10 @@
                   </doseerinstructie>
                </gebruiksinstructie>
                <aanvullende_informatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23283"
-                                       value="2"
-                                       code="2"
+                                       value="6"
+                                       code="6"
                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
-                                       displayName="Bewust lage dosering"/>
+                                       displayName="Wijziging in GDS per direct"/>
             </medicatieafspraak>
             <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
                <identificatie value="tsMBH_907_aanvullendeinformatiewensen_VV-CSB"
@@ -243,10 +243,10 @@
                   </zorgaanbieder>
                </beoogd_verstrekker>
                <aanvullende_wensen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22759"
-                                   value="3"
-                                   code="3"
+                                   value="1"
+                                   code="1"
                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"
-                                   displayName="Bezorgen"/>
+                                   displayName="Spoed"/>
                <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
                   <identificatie value="tsMBH_907_aanvullendeinformatiewensen_MA-CSB"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
@@ -254,9 +254,9 @@
                </relatie_naar_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
-         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_Toedieningsweg-->
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-tsMBH_907_Toedieningsweg-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_Toedieningsweg-CSB"
+            <identificatie value="tsMBH_907_Toedieningsweg-CSB"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
@@ -266,7 +266,7 @@
                <gebruiksperiode_eind value="T+7D{23:59:59}"
                                      datatype="datetime"
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"/>
-               <identificatie value="MBH_907_Toedieningsweg_MA-CSB"
+               <identificatie value="tsMBH_907_Toedieningsweg_MA-CSB"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <afspraakdatum value="T{08:15:00}"
@@ -274,16 +274,15 @@
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
                <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030" comment="">
                   <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835" comment="">
-                     <zorgverlener_identificatienummer value="000001112"
+                     <zorgverlener_identificatienummer value="000001117"
                                                        root="2.16.528.1.1007.3.1"
                                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"/>
                      <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837" comment="">
                         <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838" comment="">
-                           <voornamen value="Bertine"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19839"/>
+                           <voornamen value="Bert" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19839"/>
                            <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843" comment="">
                               <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19844"/>
-                              <achternaam value="Doorn" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845"/>
+                              <achternaam value="Dam" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845"/>
                            </geslachtsnaam>
                         </naamgegevens>
                      </naamgegevens>
@@ -293,18 +292,18 @@
                                   displayName="Huisartsen, niet nader gespecificeerd"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"/>
                      <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871" comment="">
-                        <zorgaanbieder_identificatienummer value="00001111"
+                        <zorgaanbieder_identificatienummer value="00001117"
                                                            root="2.16.528.1.1007.3.3"
                                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19873"/>
-                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
+                        <organisatie_naam value="Huisartsenpraktijk Van Dam"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19874"/>
                         <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19885" comment="">
-                           <straat value="Dorpsstraat"
+                           <straat value="Hazepad"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19886"/>
-                           <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19887"/>
-                           <postcode value="1234AA"
+                           <huisnummer value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19887"/>
+                           <postcode value="1234BB"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19891"/>
-                           <woonplaats value="Ons Dorp"
+                           <woonplaats value="Mijn Dorp"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19892"/>
                            <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19896"
                                         value="5"
@@ -330,7 +329,7 @@
                   </product>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
-                  <omschrijving value="Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+2D{23:59:59}&gt;, 2 maal per dag 1 druppel, In het rechter oog, oculair"
+                  <omschrijving value="Vanaf &lt;T-15D{00:00:00}&gt; t/m &lt;T+12D{23:59:59}&gt;, 2 maal per dag 1 druppel, In het rechter oog, oculair"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"/>
                   <toedieningsweg code="7"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -374,6 +373,12 @@
                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
                                        displayName="Bewust afwijkende toedieningsweg"/>
             </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_Toedieningsweg-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
+            <identificatie value="MBH_907_Toedieningsweg-CSB"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
                <identificatie value="MBH_907_Toedieningsweg_VV-CSB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"

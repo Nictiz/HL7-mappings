@@ -58,7 +58,7 @@
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
                               value="tsMBH_907_toelichting_MA_wijzigingmetVV-CSB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <afspraakdatum value="T{08:02:00}"
+               <afspraakdatum value="T{09:06:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
                               datatype="datetime"/>
                <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
@@ -110,10 +110,10 @@
                   </zorgverlener>
                </voorschrijver>
                <reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094"
-                                         value="5"
-                                         code="16"
+                                         value="6"
+                                         code="5"
                                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
-                                         displayName="Overgevoeligheid"/>
+                                         displayName="Geen of onvoldoende effect"/>
                <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
                   <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
@@ -130,7 +130,7 @@
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
                   <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
-                                value="Vanaf &lt;T-1D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
+                                value="Vanaf &lt;T-1D{00:00:00}&gt;, 1 maal daags 2 stuk, oraal"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="9"
@@ -161,8 +161,6 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-               <toelichting value="In overleg met specialist"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22273"/>
             </medicatieafspraak>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
                <gebruiksperiode_start value="T+0D{00:00:00}"
@@ -174,7 +172,7 @@
                <identificatie value="tsMBH_907_toelichting_MA_techstaken-CSB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
-               <afspraakdatum value="T{08:02:00}"
+               <afspraakdatum value="T{09:06:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
                               datatype="datetime"/>
                <stoptype conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19954"
@@ -201,9 +199,11 @@
                            </geslachtsnaam>
                         </naamgegevens>
                      </naamgegevens>
-                     <specialisme code="UNK"
-                                  codeSystem="2.16.840.1.113883.5.1008"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"/>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
                      <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871" comment="">
                         <zorgaanbieder_identificatienummer value="00001117"
                                                            root="2.16.528.1.1007.3.3"
@@ -242,7 +242,7 @@
                   </product>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
-                  <omschrijving value="Vanaf &lt;T-3D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"
+                  <omschrijving value="Vanaf &lt;T-3D{00:00:00}&gt; t/m &lt;T-2D{23:59:59}&gt; , 1 maal daags 1 stuk, oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -274,6 +274,8 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
+               <toelichting value="In overleg met specialist"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22273"/>
             </medicatieafspraak>
             <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
                <identificatie value="tsMBH_907_toelichting_VV_extra-CSB"

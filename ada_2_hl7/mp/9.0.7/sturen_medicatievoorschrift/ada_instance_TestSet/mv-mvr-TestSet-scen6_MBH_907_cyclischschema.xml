@@ -56,6 +56,9 @@
                <gebruiksperiode_start value="T+0D{00:00:00}"
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"
                                       datatype="datetime"/>
+               <gebruiksperiode_eind value="T+23D{23:59:59}"
+                                     datatype="datetime"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
                               value="tsMBH_907_cyclischschema_MA-GSB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -109,30 +112,31 @@
                <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
                   <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
-                                   code="87742"
+                                   code="7323"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
-                                   displayName="ETHINYLESTRADIOL/LEVONORGESTREL DRAGEE 30/ 50UG"
+                                   displayName="ACENOCOUMAROL TABLET 1MG"
                                    codeSystemName="G-Standaard PRK"/>
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
-                                   code="74608"
+                                   code="20303"
                                    codeSystem="2.16.840.1.113883.2.4.4.1"
                                    codeSystemName="G-Standaard GPK"
-                                   displayName="ETHINYLESTRADIOL/LEVONORGESTREL DRAGEE 30/ 50UG"/>
+                                   displayName="ACENOCOUMAROL TABLET 1MG"/>
                   </product>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
                   <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
-                                value="Vanaf &lt;T+0D&gt;, cyclus van 28 dagen: gedurende 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
+                                value="Vanaf &lt;T+0D&gt; t/m &lt;T+23D&gt;, cyclus van 3 dagen: gedurende 2 dagen 1 x per dag 1 tablet, dan 1 dag 2x per dag 1 tablet, oraal"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="9"
                                   displayName="oraal"
                                   codeSystemName="G-Standaard Toedieningswegen"/>
-                  <herhaalperiode_cyclisch_schema value="28"
+                  <herhaalperiode_cyclisch_schema value="3"
                                                   unit="d"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23244"/>
                   <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245" comment="">
-                     <doseerduur value="21"
+                     <volgnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23246"/>
+                     <doseerduur value="2"
                                  unit="dag"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23247"/>
                      <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248" comment="">
@@ -145,6 +149,34 @@
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256" comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257" comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258" comment="">
+                                 <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245" comment="">
+                     <volgnummer value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23246"/>
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23247"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248" comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249" comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250" comment="">
+                              <vaste_waarde value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254"/>
                         </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256" comment="">
                            <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257" comment="">
@@ -213,7 +245,7 @@
                   </zorgverlener>
                </auteur>
                <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
-                  <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599" value="190"/>
+                  <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599" value="32"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
@@ -223,15 +255,15 @@
                <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
                   <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
-                                   code="87742"
+                                   code="7323"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
                                    codeSystemName="G-Standaard PRK"
-                                   displayName="ETHINYLESTRADIOL/LEVONORGESTREL DRAGEE 30/ 50UG"/>
+                                   displayName="ACENOCOUMAROL TABLET 1MG"/>
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
-                                   code="74608"
+                                   code="20303"
                                    codeSystem="2.16.840.1.113883.2.4.4.1"
                                    codeSystemName="G-Standaard GPK"
-                                   displayName="ETHINYLESTRADIOL/LEVONORGESTREL DRAGEE 30/ 50UG"/>
+                                   displayName="ACENOCOUMAROL TABLET 1MG"/>
                   </product>
                </te_verstrekken_geneesmiddel>
                <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
