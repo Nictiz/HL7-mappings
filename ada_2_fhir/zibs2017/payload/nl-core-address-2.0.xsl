@@ -47,8 +47,17 @@
                         </xsl:when>
                         <!-- Officieel adres -->
                         <xsl:when test="@code = 'HP'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{local:getUri(@codeSystem)}"/>
+                                        <code value="HP"/>
+                                        <display value="Officieel adres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
                             <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
-                                <valueCode value="true"/>
+                                <valueBoolean value="true"/>
                             </extension>
                             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                                 <valueCode value="HP"/>
@@ -58,6 +67,15 @@
                         </xsl:when>
                         <!-- Woon-/verblijfadres -->
                         <xsl:when test="@code = 'PHYS'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{local:getUri(@codeSystem)}"/>
+                                        <code value="PHYS"/>
+                                        <display value="Woon-/verblijfadres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
                             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                                 <valueCode value="PHYS"/>
                             </extension>
@@ -66,14 +84,41 @@
                         </xsl:when>
                         <!-- Tijdelijk adres -->
                         <xsl:when test="@code = 'TMP'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{local:getUri(@codeSystem)}"/>
+                                        <code value="TMP"/>
+                                        <display value="Tijdelijk adres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
                             <use value="temp"/>
                         </xsl:when>
                         <!-- Werkadres -->
                         <xsl:when test="@code = 'WP'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{local:getUri(@codeSystem)}"/>
+                                        <code value="WP"/>
+                                        <display value="Werkadres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
                             <use value="work"/>
                         </xsl:when>
                         <!-- Vakantie adres -->
                         <xsl:when test="@code = 'HV'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{local:getUri(@codeSystem)}"/>
+                                        <code value="HV"/>
+                                        <display value="Vakantie adres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
                             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                                 <valueCode value="HV"/>
                             </extension>

@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-12-09
+* MM-1558 Fixed address extensions. Implemented newer extension http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType and changed http://fhir.nl/fhir/StructureDefinition/nl-core-address-official from valueCode to valueBoolean
 2020-11-06
 * MM-1559 Fixed empty Encounter.class and added implementation of code-specification to preserve the original NHG Table 14 code as specified in the profile
 2020-09-22
