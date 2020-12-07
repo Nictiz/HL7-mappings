@@ -3780,9 +3780,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$GstdBasiseenheid_code = '252'">ug</xsl:when>
                     <xsl:when test="$GstdBasiseenheid_code = '254'">ul</xsl:when>
                     <xsl:when test="$GstdBasiseenheid_code = '303'">[drp]</xsl:when>
+                    <!-- 345 is een miljoen IE's, '1' is waarschijnlijk niet helemaal juist -->
                     <xsl:when test="$GstdBasiseenheid_code = '345'">1</xsl:when>
                     <xsl:when test="$GstdBasiseenheid_code = '490'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '500'">1</xsl:when>
+                    <!-- Charrière -->
+                    <xsl:when test="$GstdBasiseenheid_code = '500'">[Ch]</xsl:when>
                     <xsl:otherwise><!-- no output --></xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
