@@ -23,12 +23,26 @@
         <antcall target="setup"/>
 
         <!-- other 907 instances -->
+        <antcall target="setup_raadplegen"/>
         <antcall target="setup_TestSet"/>
 
         <!-- let's convert to hl7 too while we're at it -->
         <antcall target="convert_ada_2_hl7_mp907"/>
 
     </target>
+
+    <target name="setup_raadplegen">
+
+        <!-- raadplegen_medicatiegegevens -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.rp}"/>
+            <param name="fileset.dir" value="ada_instance_response"/>
+            <param name="refs.ada.dir" value="ada_instance_response"/>
+            <param name="fileset.include" value="*.xml"/>
+        </antcall>
+
+    </target>
+
 
     <target name="setup_TestSet">
 
@@ -85,6 +99,7 @@
         <antcall target="convert_ada_2_hl7"/>
 
         <!-- MP 907 specific stuff -->
+        <antcall target="convert_ada_2_hl7_mp907_raadplegen"/>
         <antcall target="convert_ada_2_hl7_mp907_TestSet"/>
 
     </target>
@@ -111,6 +126,16 @@
             <param name="xsl.name" value="payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
             <param name="xsl.out" value="hl7_instance_POCPraktijktest"/>
+        </antcall>
+    </target>
+
+    <target name="convert_ada_2_hl7_mp907_raadplegen">
+        <!-- raadplegen_medicatiegegevens -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.rp}"/>
+            <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_response"/>
+            <param name="xsl.out" value="hl7_instance_response"/>
         </antcall>
     </target>
 
