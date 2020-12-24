@@ -70,6 +70,30 @@
         <antcall target="convert_ada_2_fhir_907"/>
 
     </target>
+    
+    <target name="setup_TestSet">
+        <!-- beschikbaarstellen_medicatiegegevens TestSet -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="fileset.dir" value="ada_instance_TestSet_MA"/>
+            <param name="refs.ada.dir" value="ada_instance_TestSet"/>
+            <param name="fileset.include" value="*MA*.xml"/>
+        </antcall>
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="fileset.dir" value="ada_instance_TestSet_VV"/>
+            <param name="refs.ada.dir" value="ada_instance_TestSet"/>
+            <param name="fileset.include" value="*VV*.xml"/>
+        </antcall>
+        <!-- beschikbaarstellen_medicatieoverzicht TestSet -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mo}"/>
+            <param name="fileset.dir" value="ada_instance_TestSet"/>
+            <param name="refs.ada.dir" value="ada_instance_TestSet"/>
+            <param name="fileset.include" value="*.xml"/>
+        </antcall>
+        
+    </target>
 
     <target name="convert_ada_2_fhir_907">
         <!-- The generic MP stuff -->
@@ -84,6 +108,9 @@
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
         
+        <!-- MP 907 specific stuff for test purposes -->
+        <antcall target="convert_ada_2_fhir_907_TestSet"/>
+        
         <!-- the MP specific stuff for version 9.0.7 -->
         <echo>the MP specific stuff for version 9.0.7</echo>
         <echo/>
@@ -93,6 +120,8 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
+        
+        
 
         <!-- AWE, 10 sept 2020: this is not used in Touchstone, no idea why we are generating this, let's stop -->
         <!--<echo>convert_ada_2_fhir_907. MedMij stuff beschikbaarstellen_medicatiegegevens in separate bouwstenen, 
@@ -141,6 +170,28 @@
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_MA" includes="mp9-*.xml"/>
          </copy>
 
+    </target>
+
+    <target name="convert_ada_2_fhir_907_TestSet">
+        <!-- TestSet -->
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.in" value="ada_instance_TestSet_MA"/>
+            <param name="xsl.out" value="fhir_instance_TestSet_MA"/>
+        </antcall>
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.in" value="ada_instance_TestSet_VV"/>
+            <param name="xsl.out" value="fhir_instance_TestSet_VV"/>
+        </antcall>
+        <!-- medicatieoverzicht -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mo}"/>
+            <param name="xsl.in" value="ada_instance_TestSet"/>
+            <param name="xsl.out" value="fhir_instance_TestSet"/>
+        </antcall>
+       
     </target>
 
 </project>
