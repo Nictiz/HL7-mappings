@@ -1,0 +1,234 @@
+<!--ada full xml for subscenario nr: 1-1--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2020-09-07T13:11:36.553+02:00"
+         last-update-date="2020-10-23T15:48:24.489+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TestSuite Medicatiegegevens VV Scenarioset 1"
+                                            desc="Initieel verstrekkingsverzoek en extra verstrekkingsverzoek behorende bij één MA"
+                                            id="mg-mgr-vv-TestSet-scen1_VV-1-1">
+         <scenario-nr value="1.1" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <screenshot value="Maak screenshot(s) waaruit blijkt dat er meerdere VVs gemaakt en opgeleverd kunnen worden/behoren bij één MA."
+                     conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.3"/>
+         <!--Patient found in instance with id: mg-Testset1 and title: id: TESTSUITE Medicatiegegevens Testset 1-->
+         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798" comment="">
+            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799" comment="">
+               <initialen value="C. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"
+                            value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804" comment="">
+                  <achternaam value="XXX-CSC-Smoketest-A"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999990020"
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"/>
+            <geboortedatum value="1950-02-03"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830"
+                           datatype="datetime"/>
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831"
+                      value="2"
+                      code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-tsMBH_907_chronisch-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
+            <identificatie value="tsMBH_907_chronisch-CSA"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="tsMBH_907_chronisch_VV-CSA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
+               <datum value="T-30D{11:32:00}"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
+                      datatype="datetime"/>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
+                     <zorgverlener_identificatie_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"
+                                                        value="000001116"
+                                                        root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
+                           <voornamen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"
+                                      value="Pieter"/>
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
+                              <voorvoegsels value="de " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
+                              <achternaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132" value="Plat"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
+                                  code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
+                        <zorgaanbieder_identificatie_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"
+                                                            value="00001116"
+                                                            root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"
+                                          value="Huisartsenpraktijk Staden"/>
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
+                           <straat value="Kerkstraat"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
+                           <huisnummer value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
+                           <postcode value="1234AB"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22178"/>
+                           <woonplaats value="Onze Stad"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22179"/>
+                           <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22183"
+                                        value="5"
+                                        code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
+                  <aantal value="20" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
+                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
+                     <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
+                                   code="965"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="HYDROCHLOORTHIAZIDE TABLET 25MG"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
+                                   code="2682"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="HYDROCHLOORTHIAZIDE TABLET 25MG"/>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
+                     <zorgaanbieder_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"
+                                                        value="01236579"
+                                                        root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"
+                                       value="Apotheek De Sleutel"/>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
+                  <identificatie value="tsMBH_907_chronisch_MA-CSA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="tsMBH_907_chronisch_VV_extraVVbestaandeMA-CSA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
+               <datum value="T-10D{11:35:00}"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
+                      datatype="datetime"/>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
+                     <zorgverlener_identificatie_nummer root="2.16.528.1.1007.3.1"
+                                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"
+                                                        value="000001116"/>
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
+                           <voornamen value="Pieter"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
+                              <voorvoegsels value="de" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
+                              <achternaam value="Plat" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
+                                  code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
+                        <zorgaanbieder_identificatie_nummer root="2.16.528.1.1007.3.3"
+                                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"
+                                                            value="00001116"/>
+                        <organisatie_naam value="Huisartsenpraktijk Staden"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
+                           <straat value="Kerkstraat"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
+                           <huisnummer value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
+                           <postcode value="1234AB"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22178"/>
+                           <woonplaats value="Onze Stad"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22179"/>
+                           <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22183"
+                                        value="5"
+                                        code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
+                  <aantal value="60" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
+                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
+                     <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   code="965"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="HYDROCHLOORTHIAZIDE TABLET 25MG"/>
+                     <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   code="2682"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="HYDROCHLOORTHIAZIDE TABLET 25MG"/>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
+                     <zorgaanbieder_identificatienummer value="01236579"
+                                                        root="2.16.528.1.1007.3.3"
+                                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
+                     <organisatie_naam value="Apotheek De Sleutel"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
+                  <identificatie value="tsMBH_907_chronisch_MA-CSA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
