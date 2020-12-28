@@ -139,13 +139,26 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- use the max (most recent) author time we find -->
-                        <xsl:value-of select="xs:string(xs:integer(max(hl7:component/*/hl7:author/hl7:time/@value)))"/>
+                        <xsl:variable name="maxTime" select="xs:string(xs:integer(max(hl7:component/*/hl7:author/hl7:time[@value castable as xs:integer]/@value)))"/>
+                        <xsl:choose>
+                            <xsl:when test="string-length($maxTime) gt 0">
+                                <xsl:value-of select="$maxTime"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- the first one, this may be a current-date string for (ART-DECOR) testing -->
+                                <xsl:value-of select="(hl7:component/*/hl7:author/hl7:time/@value)[1]"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
             <!-- append if needed -->
             <xsl:variable name="hl7DocdateApptime">
                 <xsl:choose>
+                    <xsl:when test="not($hl7Docdate castable as xs:integer)">
+                        <!-- not a HL7-date, simply output the input -->
+                        <xsl:value-of select="$hl7Docdate"/>
+                    </xsl:when>
                     <xsl:when test="string-length($hl7Docdate) = 0">
                         <xsl:value-of select="$hl7Docdate"/>
                     </xsl:when>
@@ -160,6 +173,10 @@
 
             <xsl:variable name="docdatum">
                 <xsl:choose>
+                    <xsl:when test="not($hl7DocdateApptime castable as xs:integer)">
+                        <!-- not a HL7-date, simply output the input -->
+                        <xsl:value-of select="$hl7DocdateApptime"/>
+                    </xsl:when>
                     <xsl:when test="string-length($hl7DocdateApptime) gt 0">
                         <xsl:variable name="docdate" select="nf:formatHL72XMLDate($hl7DocdateApptime, 'second')"/>
                         <xsl:value-of select="nf:formatDate($docdate)"/>
@@ -174,7 +191,8 @@
                     <xsl:value-of select="concat(' ', ./hl7:recordTarget/hl7:patientRole/hl7:patient/hl7:name[1]/hl7:family[1])"/>
                 </xsl:variable>
                 <xsl:variable name="transactienaam" select="./hl7:code/@displayName"/>
-                <xsl:value-of select="concat($transactienaam, ' ', normalize-space($naamPatient), ' op ', $docdatum)"/>
+                <xsl:variable name="docDate" select="replace(replace($docdatum, '\[Y0001\]\[M01\]\[D01\]', '[D01] [Mn,*-3] [Y0001]'), '(.*\}).*', '$1')"/>
+                <xsl:value-of select="concat($transactienaam, ' ', normalize-space($naamPatient), ' op ', $docDate)"/>
             </title>
             <!-- time is mandatory in CDA, so we take the time appended variable here -->
             <effectiveTime value="{$hl7DocdateApptime}"/>
@@ -192,12 +210,28 @@
                     <!-- use the author of verstrekkingsverzoek (if present) for transaction voorschrift -->
                     <xsl:when test=".[hl7:code[@code = '95' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]/hl7:component/hl7:supply">
                         <xsl:variable name="vvAuthor" select="hl7:component/hl7:supply[hl7:code[@code = '52711000146108'][@codeSystem = '2.16.840.1.113883.6.96']]/hl7:author"/>
-                        <xsl:copy-of select="($vvAuthor[hl7:time[@value = $vvAuthor/hl7:time/xs:integer(max(@value))]])[1]" copy-namespaces="no"/>
+                        <xsl:variable name="vvAuthorMaxTime" select="($vvAuthor[hl7:time[@value castable as xs:integer][@value = $vvAuthor/hl7:time[@value castable as xs:integer]/xs:integer(max(@value))]])[1]" as="element()?"/>
+                        <xsl:choose>
+                            <xsl:when test="$vvAuthorMaxTime">
+                                <xsl:copy-of select="$vvAuthorMaxTime" copy-namespaces="no"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:copy-of select="$vvAuthor[1]" copy-namespaces="no"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <!-- otherwise use the author of most recent medicatieafspraak for transaction voorschrift -->
                     <xsl:when test=".[hl7:code[@code = '95' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
                         <xsl:variable name="maAuthor" select="hl7:component/hl7:substanceAdministration[hl7:code[@code = '16076005'][@codeSystem = '2.16.840.1.113883.6.96']]/hl7:author"/>
-                        <xsl:copy-of select="($maAuthor[hl7:time[@value = $maAuthor/hl7:time/xs:integer(max(@value))]])[1]" copy-namespaces="no"/>
+                        <xsl:variable name="maAuthorMaxTime" select="($maAuthor[hl7:time[@value castable as xs:integer][@value = $maAuthor/hl7:time[@value castable as xs:integer]/xs:integer(max(@value))]])[1]" as="element()?"/>
+                        <xsl:choose>
+                            <xsl:when test="$maAuthorMaxTime">
+                                <xsl:copy-of select="$maAuthorMaxTime" copy-namespaces="no"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:copy-of select="$maAuthor[1]" copy-namespaces="no"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- don't know which author to use, CDA still requires one, let's use the first author we encounter -->
