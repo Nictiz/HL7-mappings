@@ -12,8 +12,9 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
+<xsl:stylesheet exclude-result-prefixes="xs xsl xd" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../payload/REPC_EX004014NL_Kernset_2_3_3.xsl"/>
+    <xsl:output method="xml" indent="yes"/>
     <!-- the param can be called from outside this stylesheet, if no value is provided it defaults to whatever is set in 'select'
         If the input doc contains data and a wrapper in meta, data is taken from input -->
     <xsl:param name="input_xml_payload" select="adaxml/data"/>
@@ -24,7 +25,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
     <xsl:param name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
     <xsl:param name="testSchematron" as="xs:boolean" select="true()"/>
-    <xsl:include href="../payload/REPC_EX004014NL_Kernset_2_3_3.xsl"/>
+    
+    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-01-01')"/>    
 
     <xsl:template name="MakeWrapper">
         <xsl:call-template name="Wrappers">
@@ -48,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="./@value"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:for-each>
             <xsl:if test="$testSchematron">
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="concat('file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/2.3.3/sturen_kernset_geboortezorg/test-xslt_instance/', $payload_xml/adaxml/data/*/@id, '.sch')"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="concat('file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/2.3/kernset_geboortezorg/test_xslt_instance/', $payload_xml/adaxml/data/*/@id, '-20200101.sch')"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:if>
 
             <!--<ABCD>-->

@@ -17,14 +17,14 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999910401" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999990032" root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">C.</given>
-               <family qualifier="BR">XXX_Vonker</family>
+               <given qualifier="IN">D.</given>
+               <family qualifier="BR">XXX-CSC-Smoketest-B</family>
             </name>
-            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
-            <birthTime value="19540208"/>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <birthTime value="19500204"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -32,16 +32,16 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
-         <id extension="tsMBH_907_aanvullendeinformatiewensen_MA_onderbreken-VNK"
+         <id extension="tsMBH_907_aanvullendeinformatiewensen_MA_onderbreken-CSB"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 8 jun 2020, tot en met 8 jun 2020, 1 maal per dag 0.5 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 13 nov 2020, tot en met 13 nov 2020, 1 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20200608000000"/>
-            <high value="20200608150000"/>
+            <low value="20201113000000"/>
+            <high value="20201113150000"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -64,10 +64,13 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20200608181200"/>
+            <time value="20201113181200"/>
             <assignedAuthor>
                <id extension="000001117" root="2.16.528.1.1007.3.1"/>
-               <code nullFlavor="UNK"/>
+               <code code="0100"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Huisartsen, niet nader gespecificeerd"
+                     codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Bert</given>
@@ -107,8 +110,8 @@
                      displayName="Reden medicatieafspraak"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="CE"
-                      code="184003006"
-                      codeSystem="2.16.840.1.113883.6.96"
+                      code="12"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
                       displayName="Wens patiënt"/>
             </observation>
          </entryRelationship>
@@ -119,9 +122,9 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
                      displayName="Aanvullende informatie Medicatieafspraak"/>
                <value xsi:type="CE"
-                      code="2"
+                      code="6"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
-                      displayName="Bewust lage dosering"/>
+                      displayName="Wijziging in GDS per direct"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -135,8 +138,8 @@
                   </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
-                  <center value="0.5" unit="1">
-                     <translation value="0.5"
+                  <center value="1" unit="1">
+                     <translation value="1"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -149,7 +152,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-               <id extension="tsMBH_907_aanvullendeinformatiewensen_MA-VNK"
+               <id extension="tsMBH_907_aanvullendeinformatiewensen_MA-CSB"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="16076005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -162,7 +165,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="tsMBH_907_aanvullendeinformatiewensen-VNK"/>
+                   extension="tsMBH_907_aanvullendeinformatiewensen-CSB"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

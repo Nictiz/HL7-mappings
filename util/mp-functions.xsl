@@ -443,7 +443,7 @@
             </xsl:when>
             <xsl:when test="matches($in, 'T.*')">
                 <!-- relative T-date -->
-                <xsl:variable name="timePart" select="replace($in, 'T[+\-]?\d*(\.\d+)?[YMD]?(\{(.*)})?', '$3')"/>
+                <xsl:variable name="timePart" select="replace($in, 'T[+\-]?\d*(\.\d+)?[YMD]?(\{(.*)\})?', '$3')"/>
                 <xsl:choose>
                     <xsl:when test="(string-length($timePart) gt 0)">
                         <xsl:value-of select="$timePart"/>

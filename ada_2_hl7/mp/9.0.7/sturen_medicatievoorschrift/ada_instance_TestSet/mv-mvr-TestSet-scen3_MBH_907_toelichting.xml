@@ -1,12 +1,12 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
-    <meta status="new"
+   <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2020-07-03T09:36:27.721+02:00"
-         last-update-date="2020-08-03T15:54:34.178+02:00"/>
-    <data>
-        <sturen_medicatievoorschrift app="mp-mp907"
+         last-update-date="2020-10-23T15:33:03.632+02:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp907"
                                    shortName="sturen_medicatievoorschrift"
                                    formName="sturen_voorschrift"
                                    transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95"
@@ -18,37 +18,42 @@
                                    desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;Wijziging medicatieafspraak, met reden wijziging (stop-ma + nieuwe ma) met VV&lt;/span&gt;&lt;br style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff; color: #ff0000;&#34;&gt;LET OP: wijziging medicatieafspraak van scenario 2.2&lt;/span&gt;&lt;/div&gt;"
                                    id="mv-mvr-TestSet-scen3_MBH_907_toelichting">
          <scenario-nr value="3.2" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5"
+                     value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5.1.20201207000000"
+                     displayName="Beide"/>
          <screenshot value="Maak screenshot(s) waarin de samenhang en actualiteit van de bouwstenen/de medicamenteuze behandeling inzichtelijk wordt"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.3"/>
-         <!--Patient found in instance with id: mg-Scenarioset2 and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 2-->
+         <!--Patient found in instance with id: mg-Testset2 and title: id: TESTSUITE Medicatiegegevens Testset 2-->
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798" comment="">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799" comment="">
-               <initialen value="C. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
+               <initialen value="D. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
                <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"
                             value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                             displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804" comment="">
-                  <achternaam value="XXX_Vonker"
+                  <achternaam value="XXX-CSC-Smoketest-B"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999910401"
+            <identificatienummer value="999990032"
                                  root="2.16.840.1.113883.2.4.6.3"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"/>
-            <geboortedatum value="1954-02-08"
+            <geboortedatum value="1950-02-04"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830"
                            datatype="datetime"/>
             <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831"
-                      value="2"
-                      code="M"
+                      value="3"
+                      code="F"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Man"/>
+                      displayName="Vrouw"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-tsMBH_907_toelichting-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="tsMBH_907_toelichting-VNK"
+            <identificatie value="tsMBH_907_toelichting-CSB"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
@@ -56,13 +61,13 @@
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"
                                       datatype="datetime"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
-                              value="tsMBH_907_toelichting_MA_wijzigingmetVV-VNK"
+                              value="tsMBH_907_toelichting_MA_wijzigingmetVV-CSB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <afspraakdatum value="T{08:02:00}"
+               <afspraakdatum value="T{09:06:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
                               datatype="datetime"/>
                <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
-                  <identificatie value="tsMBH_907_toelichting_MA-VNK"
+                  <identificatie value="tsMBH_907_toelichting_MA-CSB"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
                </relatie_naar_afspraak_of_gebruik>
@@ -110,10 +115,10 @@
                   </zorgverlener>
                </voorschrijver>
                <reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094"
-                                         value="5"
-                                         code="16"
+                                         value="6"
+                                         code="5"
                                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
-                                         displayName="Overgevoeligheid"/>
+                                         displayName="Geen of onvoldoende effect"/>
                <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
                   <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
@@ -130,7 +135,7 @@
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
                   <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
-                                value="Vanaf &lt;T-1D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
+                                value="Vanaf &lt;T-1D{00:00:00}&gt;, 1 maal daags 2 stuk, oraal"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="9"
@@ -161,8 +166,6 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-               <toelichting value="In overleg met specialist"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22273"/>
             </medicatieafspraak>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
                <gebruiksperiode_start value="T+0D{00:00:00}"
@@ -171,10 +174,10 @@
                <gebruiksperiode_eind value="T+0D{09:00:00}"
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"
                                      datatype="datetime"/>
-               <identificatie value="tsMBH_907_toelichting_MA_techstaken-VNK"
+               <identificatie value="tsMBH_907_toelichting_MA_techstaken-CSB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
-               <afspraakdatum value="T{08:02:00}"
+               <afspraakdatum value="T{09:06:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
                               datatype="datetime"/>
                <stoptype conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19954"
@@ -183,7 +186,7 @@
                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                          displayName="Definitief"/>
                <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
-                  <identificatie value="MBH_907_toelichting_MA-VNK"
+                  <identificatie value="MBH_907_toelichting_MA-CSB"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
                </relatie_naar_afspraak_of_gebruik>
@@ -201,9 +204,11 @@
                            </geslachtsnaam>
                         </naamgegevens>
                      </naamgegevens>
-                     <specialisme code="UNK"
-                                  codeSystem="2.16.840.1.113883.5.1008"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"/>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
                      <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871" comment="">
                         <zorgaanbieder_identificatienummer value="00001117"
                                                            root="2.16.528.1.1007.3.3"
@@ -242,7 +247,7 @@
                   </product>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
-                  <omschrijving value="Vanaf &lt;T-3D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"
+                  <omschrijving value="Vanaf &lt;T-3D{00:00:00}&gt; t/m &lt;T-2D{23:59:59}&gt; , 1 maal daags 1 stuk, oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -274,9 +279,11 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
+               <toelichting value="In overleg met specialist"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22273"/>
             </medicatieafspraak>
             <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
-               <identificatie value="tsMBH_907_toelichting_VV_extra-VNK"
+               <identificatie value="tsMBH_907_toelichting_VV_extra-CSB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T{08:02:00}"
@@ -358,12 +365,12 @@
                   </zorgaanbieder>
                </beoogd_verstrekker>
                <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
-                  <identificatie value="tsMBH_907_toelichting_MA_wijzigingmetVV-VNK"
+                  <identificatie value="tsMBH_907_toelichting_MA_wijzigingmetVV-CSB"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
                </relatie_naar_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
       </sturen_medicatievoorschrift>
-    </data>
+   </data>
 </adaxml>

@@ -42,7 +42,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:364ff778-fcce-11ea-2008-020000000000"/>
+               <reference value="urn:uuid:46693012-39ff-11eb-4527-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -90,7 +90,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:364ff778-fcce-11ea-2008-020000000000"/>
+               <reference value="urn:uuid:46693012-39ff-11eb-4527-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -142,7 +142,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:364ff778-fcce-11ea-2008-020000000000"/>
+               <reference value="urn:uuid:46693012-39ff-11eb-4527-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <period>
@@ -193,7 +193,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:364ff778-fcce-11ea-2008-020000000000"/>
+               <reference value="urn:uuid:46693012-39ff-11eb-4527-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -203,7 +203,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:364ff778-fcce-11ea-2008-020000000000"/>
+      <fullUrl value="urn:uuid:46693012-39ff-11eb-4527-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -213,7 +213,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), E. XXX_Zegers, Vrouw, 2 augustus 1964</div>
-                  <div>Knolweg 1001, 9999XX STITSWERD, Nederland (Privé (hoofd) Bezoek)</div>
+                  <div>Knolweg 1001, 9999XX STITSWERD, Nederland (officieel Privé (hoofd) Bezoek)</div>
                </div>
             </text>
             <identifier>
@@ -242,8 +242,17 @@
             <gender value="female"/>
             <birthDate value="1964-08-02"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="HP"/>
+                        <display value="Officieel adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
-                  <valueCode value="true"/>
+                  <valueBoolean value="true"/>
                </extension>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                   <valueCode value="HP"/>

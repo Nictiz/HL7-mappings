@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet exclude-result-prefixes="xd nf xsl" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsl:stylesheet exclude-result-prefixes="xd nf xsl" xmlns:uuid="http://www.uuid.org" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xsl:import href="../../util/uuid.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <!-- param to influence whether to output schematron references, typically only needed for test instances -->
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    <!-- param to influence whether to output schema references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
-
+    
+    <xd:doc>
+        <xd:desc>Start template when called from outside</xd:desc>
+    </xd:doc>
+    <xsl:template match="/">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
+        </xsl:copy>
+    </xsl:template>
 
     <xd:doc>
-        <xd:desc> Transforms HL7 organizer example message into CDA version of the same thing. For publication 9.0.6 </xd:desc>
+        <xd:desc> Transforms HL7 organizer example message into CDA version of the same thing. From publication 9.0.6 </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer">
+    <xsl:template match="hl7:organizer" mode="organizer2CDA">
         <ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication">
             <xsl:if test="$schematronRef">
                 <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/CDANL_extended.xsd</xsl:attribute>
@@ -122,13 +134,8 @@
                     </xsl:choose>
                 </xsl:attribute>
             </templateId>
-            <id extension="someUniqueID">
-                <!-- Use the template id to make a unique root for document id -->
-                <xsl:attribute name="root">
-                    <xsl:value-of select="concat(./hl7:templateId[1]/@root, '.1.2.3.999')"/>
-                </xsl:attribute>
-            </id>
-            <!-- This is from 9.0.6 onwards, and not compatible with 9.0.5 -->
+            <!-- Use the template id to make a unique root for document id -->
+            <id extension="{uuid:get-uuid(.)}" root="{concat(hl7:templateId[1]/@root, '.1.2.3.999')}"/>            
             <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medication section (record artifact)"/>
             <!-- parameterize the title based on input, this is not perfect -->
             <xsl:variable name="hl7Docdate" as="xs:string?">
@@ -139,13 +146,26 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- use the max (most recent) author time we find -->
-                        <xsl:value-of select="xs:string(xs:integer(max(hl7:component/*/hl7:author/hl7:time/@value)))"/>
+                        <xsl:variable name="maxTime" select="xs:string(xs:integer(max(hl7:component/*/hl7:author/hl7:time[@value castable as xs:integer]/@value)))"/>
+                        <xsl:choose>
+                            <xsl:when test="string-length($maxTime) gt 0">
+                                <xsl:value-of select="$maxTime"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- the first one, this may be a current-date string for (ART-DECOR) testing -->
+                                <xsl:value-of select="(hl7:component/*/hl7:author/hl7:time/@value)[1]"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
             <!-- append if needed -->
             <xsl:variable name="hl7DocdateApptime">
                 <xsl:choose>
+                    <xsl:when test="not($hl7Docdate castable as xs:integer)">
+                        <!-- not a HL7-date, simply output the input -->
+                        <xsl:value-of select="$hl7Docdate"/>
+                    </xsl:when>
                     <xsl:when test="string-length($hl7Docdate) = 0">
                         <xsl:value-of select="$hl7Docdate"/>
                     </xsl:when>
@@ -160,6 +180,10 @@
 
             <xsl:variable name="docdatum">
                 <xsl:choose>
+                    <xsl:when test="not($hl7DocdateApptime castable as xs:integer)">
+                        <!-- not a HL7-date, simply output the input -->
+                        <xsl:value-of select="$hl7DocdateApptime"/>
+                    </xsl:when>
                     <xsl:when test="string-length($hl7DocdateApptime) gt 0">
                         <xsl:variable name="docdate" select="nf:formatHL72XMLDate($hl7DocdateApptime, 'second')"/>
                         <xsl:value-of select="nf:formatDate($docdate)"/>
@@ -174,7 +198,8 @@
                     <xsl:value-of select="concat(' ', ./hl7:recordTarget/hl7:patientRole/hl7:patient/hl7:name[1]/hl7:family[1])"/>
                 </xsl:variable>
                 <xsl:variable name="transactienaam" select="./hl7:code/@displayName"/>
-                <xsl:value-of select="concat($transactienaam, ' ', normalize-space($naamPatient), ' op ', $docdatum)"/>
+                <xsl:variable name="docDate" select="replace(replace($docdatum, '\[Y0001\]\[M01\]\[D01\]', '[D01] [Mn,*-3] [Y0001]'), '(.*\}).*', '$1')"/>
+                <xsl:value-of select="concat($transactienaam, ' ', normalize-space($naamPatient), ' op ', $docDate)"/>
             </title>
             <!-- time is mandatory in CDA, so we take the time appended variable here -->
             <effectiveTime value="{$hl7DocdateApptime}"/>
@@ -192,12 +217,28 @@
                     <!-- use the author of verstrekkingsverzoek (if present) for transaction voorschrift -->
                     <xsl:when test=".[hl7:code[@code = '95' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]/hl7:component/hl7:supply">
                         <xsl:variable name="vvAuthor" select="hl7:component/hl7:supply[hl7:code[@code = '52711000146108'][@codeSystem = '2.16.840.1.113883.6.96']]/hl7:author"/>
-                        <xsl:copy-of select="($vvAuthor[hl7:time[@value = $vvAuthor/hl7:time/xs:integer(max(@value))]])[1]" copy-namespaces="no"/>
+                        <xsl:variable name="vvAuthorMaxTime" select="($vvAuthor[hl7:time[@value castable as xs:integer][@value = $vvAuthor/hl7:time[@value castable as xs:integer]/xs:integer(max(@value))]])[1]" as="element()?"/>
+                        <xsl:choose>
+                            <xsl:when test="$vvAuthorMaxTime">
+                                <xsl:copy-of select="$vvAuthorMaxTime" copy-namespaces="no"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:copy-of select="$vvAuthor[1]" copy-namespaces="no"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <!-- otherwise use the author of most recent medicatieafspraak for transaction voorschrift -->
                     <xsl:when test=".[hl7:code[@code = '95' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
                         <xsl:variable name="maAuthor" select="hl7:component/hl7:substanceAdministration[hl7:code[@code = '16076005'][@codeSystem = '2.16.840.1.113883.6.96']]/hl7:author"/>
-                        <xsl:copy-of select="($maAuthor[hl7:time[@value = $maAuthor/hl7:time/xs:integer(max(@value))]])[1]" copy-namespaces="no"/>
+                        <xsl:variable name="maAuthorMaxTime" select="($maAuthor[hl7:time[@value castable as xs:integer][@value = $maAuthor/hl7:time[@value castable as xs:integer]/xs:integer(max(@value))]])[1]" as="element()?"/>
+                        <xsl:choose>
+                            <xsl:when test="$maAuthorMaxTime">
+                                <xsl:copy-of select="$maAuthorMaxTime" copy-namespaces="no"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:copy-of select="$maAuthor[1]" copy-namespaces="no"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- don't know which author to use, CDA still requires one, let's use the first author we encounter -->
@@ -227,7 +268,7 @@
             </custodian>
             <xsl:for-each select="hl7:participant">
                 <xsl:copy copy-namespaces="no">
-                    <xsl:apply-templates select="@* | node()"/>
+                    <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
                 </xsl:copy>
             </xsl:for-each>
             <component>
@@ -235,7 +276,7 @@
                     <component>
                         <section>
                             <text>Medicatiegegevens.</text>
-                            <xsl:apply-templates select="comment() | hl7:component"/>
+                            <xsl:apply-templates select="comment() | hl7:component" mode="organizer2CDA"/>
                         </section>
                     </component>
                 </structuredBody>
@@ -247,15 +288,15 @@
     <xd:doc>
         <xd:desc> Niet kopiëren </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer/hl7:templateId | hl7:organizer/hl7:code | hl7:organizer/hl7:statusCode | hl7:organizer/hl7:recordTarget | hl7:organizer/hl7:author"/>
+    <xsl:template match="hl7:organizer/hl7:templateId | hl7:organizer/hl7:code | hl7:organizer/hl7:statusCode | hl7:organizer/hl7:recordTarget | hl7:organizer/hl7:author" mode="organizer2CDA"/>
 
 
     <xd:doc>
         <xd:desc> participantRole element hernomen naar associatedEntity in CDA participant </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer/hl7:participant/hl7:participantRole">
+    <xsl:template match="hl7:organizer/hl7:participant/hl7:participantRole" mode="organizer2CDA">
         <xsl:element name="associatedEntity">
-            <xsl:apply-templates select="@* | node()"/>
+            <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
         </xsl:element>
     </xsl:template>
 
@@ -263,22 +304,22 @@
     <xd:doc>
         <xd:desc> template id conversies (voor participant) </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:templateId/@root[. = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9179']">
+    <xsl:template match="hl7:templateId/@root[. = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9179']" mode="organizer2CDA">
         <xsl:attribute name="root" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9173'"/>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="hl7:templateId/@root[. = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9180']">
+    <xsl:template match="hl7:templateId/@root[. = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9180']" mode="organizer2CDA">
         <xsl:attribute name="root" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9174'"/>
     </xsl:template>
 
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="hl7:organizer/hl7:component">
+    <xsl:template match="hl7:organizer/hl7:component" mode="organizer2CDA">
         <entry xmlns="urn:hl7-org:v3">
-            <xsl:apply-templates select="* | node()"/>
+            <xsl:apply-templates select="* | node()" mode="organizer2CDA"/>
         </entry>
     </xsl:template>
 
@@ -338,9 +379,9 @@
     <xd:doc>
         <xd:desc>Default copy template</xd:desc>
     </xd:doc>
-    <xsl:template match="@* | node()">
+    <xsl:template match="@* | node()" mode="organizer2CDA">
         <xsl:copy copy-namespaces="no">
-            <xsl:apply-templates select="@* | node()"/>
+            <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
         </xsl:copy>
     </xsl:template>
 

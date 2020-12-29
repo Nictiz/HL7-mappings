@@ -30,7 +30,8 @@
                <tr>
                   <th>Toedieningsverzoek</th>
                   <td>
-                     <div>Geldigheidsperiode: ${DATE, T, D, +10}T00:00:00+02:00 - ${DATE, T, M, +6}T00:00:00+02:00</div>
+                     <div>Geldigheidsperiode: ${DATE, T, D, +10}T00:00:00+02:00 - ${DATE, T, M, +6}T23:59:59+02:00</div>
+                     <div>Max Repeats: 3</div>
                      <div>Uitvoerende: Apotheek De Gulle Gaper</div>
                   </td>
                </tr>
@@ -90,8 +91,9 @@
    <dispenseRequest>
       <validityPeriod>
          <start value="${DATE, T, D, +10}T00:00:00+02:00"/>
-         <end value="${DATE, T, M, +6}T00:00:00+02:00"/>
+         <end value="${DATE, T, M, +6}T23:59:59+02:00"/>
       </validityPeriod>
+      <numberOfRepeatsAllowed value="3"/>
       <performer>
          <reference value="Organization/012365782-16-528-1-1007-3-3"/>
          <display value="Apotheek De Gulle Gaper"/>

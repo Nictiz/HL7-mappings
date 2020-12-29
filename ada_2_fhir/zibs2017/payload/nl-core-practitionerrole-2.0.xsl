@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     $att, '')">-->
         <xsl:for-each-group select="$healthProfessional[.//(@value | @code | @nullFlavor)]" group-by="
             concat(nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
-            nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@value,
+            nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/normalize-space(@value),
             (specalisme | specialty)/@code)">
             <!-- use grouping key default in second group, we need all of hcim health_professional to determine uniqueness -->
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
@@ -246,7 +246,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="personName" select=".//naamgegevens[not(naamgegevens)][1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[not(name_information)][1]//*[not(name() = 'name_usage')]/@value"/>
             <xsl:variable name="theHealthCareProvider" select="naf:resolve-ada-reference(.//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]))"/>
             <xsl:variable name="organizationName" select="$theHealthCareProvider//(organisatie_naam | organization_name)[1]/@value"/>
-            <xsl:variable name="specialty" select=".//(specialisme | specialty)/@displayName"/>
+            <xsl:variable name="specialty" select=".//(specialisme | specialty)[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
             <xsl:variable name="role" select=".//(zorgverleners_rol | health_professional_role)[1]/(@displayName, @code)[1]"/>
 
             <xsl:choose>

@@ -35,6 +35,8 @@
             <param name="schema.string" value="*${usecase.mg}*"/>
             <param name="fileset.dir" value="ada_instance_MA"/>
             <param name="fileset.include" value="*MA*.xml"/>
+            <!-- exclude the initating scenario's -->
+            <param name="fileset.exclude" value="*8i*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens VV -->
@@ -45,6 +47,8 @@
         <copy todir="${build.dir}/${usecase.mg}/ada_instance_VV" failonerror="true">
             <fileset dir="${refs.dir}/${usecase.mg}/ada_instance">
                 <include name="*VV*.xml"/>
+                <!-- exclude the initating scenario's -->
+                <exclude name="*8i*.xml"/>
             </fileset>
         </copy>
         <!-- beschikbaarstellen_medicatiegegevens medmij stuff -->
@@ -59,7 +63,7 @@
                 <exclude name="*MO*.xml"/>
                 <exclude name="XXX_Jangi*.xml"/>
             </fileset>
-        </copy>
+        </copy>           
 
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
@@ -78,7 +82,7 @@
         <copy todir="${build.dir}/${usecase.mo}/ada_instance_mp">
             <fileset dir="${build.dir}/${usecase.mo}/ada_instance">
                 <include name="*output.xml"/>
-            </fileset>
+            </fileset>            
         </copy>
 
         <!-- beschikbaarstellen_verstrekkingenvertaling -->
@@ -89,7 +93,7 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.vv}"/>
         </antcall>
-
+        
         <!-- xml voorbeelden -->
         <!-- schemas -->
         <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
@@ -107,7 +111,7 @@
         <!-- instances -->
         <echo/>
         <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
-
+        
         <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*example*.xml"/>
@@ -118,7 +122,7 @@
                 <include name="mo*example*.xml"/>
                 <include name="vv*example*.xml"/>
             </fileset>
-        </copy>
+        </copy>        
 
     </target>
 
@@ -135,37 +139,37 @@
             <param name="xsl.in" value="ada_instance_VV"/>
             <param name="xsl.out" value="fhir_instance_VV"/>
         </antcall>
-
+      
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="convert_ada_2_fhir_sub_mp">
             <param name="usecase" value="${usecase.mo}"/>
             <param name="xsl.in" value="ada_instance_mp"/>
             <param name="xsl.out" value="fhir_instance_mp"/>
         </antcall>
-
+        
         <!-- also do the examples -->
-        <antcall target="convert_ada_2_fhir_examples"/>
-
+        <antcall target="convert_ada_2_fhir_examples"/>        
+        
     </target>
-
+    
     <target name="convert_ada_2_fhir_sub_mp">
-
+        
         <property name="xsl.ada2fhir" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir.xsl"/>
         <property name="xsl.ada2fhir.resources" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir_resources.xsl"/>
-
+        
         <property name="xsl.input" value="${build.dir}/${usecase}/${xsl.in}"/>
         <property name="xsl.output" value="${build.dir}/${usecase}/${xsl.out}"/>
-
+        
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${xsl.output}"/>
         <echo>Deleting previous results, if any</echo>
         <delete>
             <fileset dir="${xsl.output}" includes="*.*"/>
         </delete>
-
+        
         <sequential>
             <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
-
+            
             <echo/>
             <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir.resources}</echo>
             <xslt force="true" style="${xsl.ada2fhir.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
@@ -174,7 +178,7 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-
+            
             <echo/>
             <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir}</echo>
             <xslt force="true" style="${xsl.ada2fhir}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
@@ -185,8 +189,8 @@
             </xslt>
         </sequential>
     </target>
-
-
+    
+    
     <target name="convert_ada_2_fhir_examples">
         <!-- examples -->
         <echo>Deleting previous results, if any</echo>
@@ -194,11 +198,11 @@
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/fhir_instance" includes="*.xml"/>
         </delete>
-
-        <!-- medicatiegegevens -->
+        
+       <!-- medicatiegegevens -->
         <sequential>
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mg-*.xml"/>
-
+            
             <echo/>
             <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl</echo>
             <xslt force="true" style="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
@@ -208,7 +212,7 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-
+            
             <echo/>
             <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl</echo>
             <xslt force="true" style="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
@@ -218,14 +222,14 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-
+            
         </sequential>
-
-
+        
+          
         <!-- medicatieoverzicht -->
         <sequential>
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mo*.xml"/>
-
+            
             <echo/>
             <echo>${echo.label} ${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir_resources.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
             <xslt force="true" style="${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
@@ -235,7 +239,7 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-
+            
             <echo/>
             <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir.xsl</echo>
             <xslt force="true" style="${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
@@ -245,9 +249,34 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-        </sequential>
-
+        </sequential>   
+        
+        <!-- beschikbaarstellen_verstrekkingenvertaling -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vv*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false" >
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>   
+          
     </target>
-
+    
 
 </project>

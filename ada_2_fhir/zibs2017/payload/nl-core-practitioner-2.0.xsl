@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     $att, '')">-->
             <xsl:for-each-group select="$healthProfessional[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
                 concat(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
-                nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@value)">
+                nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/normalize-space(@value))">
                 <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -252,7 +252,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1] | .//zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])/@value"/>
             <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
             <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
-            <xsl:variable name="specialty" select=".//specialisme/@displayName | .//specialty/@displayName"/>
+            <xsl:variable name="specialty" select=".//(specialisme | specialty)[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
             <xsl:variable name="role" select=".//zorgverleners_rol/(@displayName, @code)[1] | .//health_professional_role/(@displayName, @code)[1]"/>
 
             <xsl:choose>

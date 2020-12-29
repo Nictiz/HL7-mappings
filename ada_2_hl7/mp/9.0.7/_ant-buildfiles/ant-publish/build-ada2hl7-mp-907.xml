@@ -9,7 +9,10 @@
 <project basedir="." default="convert_ada_2_hl7_mp907" name="build-ada2hl7-mp-907-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <property name="is.version" value="9.0.7"/>
     <property name="is.version.short" value="907"/>
-    <property name="date.T" value="2020-06-08"/>
+    <property name="date.T" value="2020-11-13"/>
+    <!--<tstamp>
+        <format property="date.T" pattern="yyyy-MM-dd"/>
+    </tstamp>-->
 
     <!-- place import after properties, otherwise it can't resolve the properties used. -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-mp-include.xml"/>
@@ -20,13 +23,26 @@
         <antcall target="setup"/>
 
         <!-- other 907 instances -->
+        <antcall target="setup_raadplegen"/>
         <antcall target="setup_TestSet"/>
-        <antcall target="setup_POCPraktijktest"/>
 
         <!-- let's convert to hl7 too while we're at it -->
         <antcall target="convert_ada_2_hl7_mp907"/>
 
     </target>
+
+    <target name="setup_raadplegen">
+
+        <!-- raadplegen_medicatiegegevens -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.rp}"/>
+            <param name="fileset.dir" value="ada_instance_response"/>
+            <param name="refs.ada.dir" value="ada_instance_response"/>
+            <param name="fileset.include" value="*.xml"/>
+        </antcall>
+
+    </target>
+
 
     <target name="setup_TestSet">
 
@@ -83,9 +99,9 @@
         <antcall target="convert_ada_2_hl7"/>
 
         <!-- MP 907 specific stuff -->
-        <antcall target="convert_ada_2_hl7_mp907_POCPraktijktest"/>
+        <antcall target="convert_ada_2_hl7_mp907_raadplegen"/>
         <antcall target="convert_ada_2_hl7_mp907_TestSet"/>
-       
+
     </target>
 
     <target name="convert_ada_2_hl7_mp907_POCPraktijktest">
@@ -104,15 +120,25 @@
             <param name="xsl.in" value="hl7_instance_POCPraktijktest"/>
             <param name="xsl.out" value="cda_instance_POCPraktijktest"/>
         </antcall>
-         <!-- beschikbaarstellen_medicatiegegevens -->
+        <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="xsl.name" value="payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
             <param name="xsl.out" value="hl7_instance_POCPraktijktest"/>
-        </antcall>   
+        </antcall>
     </target>
-    
+
+    <target name="convert_ada_2_hl7_mp907_raadplegen">
+        <!-- raadplegen_medicatiegegevens -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.rp}"/>
+            <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_response"/>
+            <param name="xsl.out" value="hl7_instance_response"/>
+        </antcall>
+    </target>
+
     <target name="convert_ada_2_hl7_mp907_TestSet">
         <!-- TestSet -->
         <!-- convert medicatievoorschrift -->
@@ -135,13 +161,13 @@
             <param name="xsl.name" value="payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance_TestSet_MA"/>
             <param name="xsl.out" value="hl7_instance_TestSet_MA"/>
-        </antcall>   
+        </antcall>
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="xsl.name" value="payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance_TestSet_VV"/>
             <param name="xsl.out" value="hl7_instance_TestSet_VV"/>
-        </antcall>   
+        </antcall>
         <!-- medicatieoverzicht -->
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
@@ -155,6 +181,6 @@
             <param name="xsl.name" value="../../MP90_Transform_Organizer2CDA.xsl"/>
             <param name="xsl.in" value="hl7_instance_TestSet"/>
             <param name="xsl.out" value="cda_instance_TestSet"/>
-        </antcall>        
+        </antcall>
     </target>
 </project>

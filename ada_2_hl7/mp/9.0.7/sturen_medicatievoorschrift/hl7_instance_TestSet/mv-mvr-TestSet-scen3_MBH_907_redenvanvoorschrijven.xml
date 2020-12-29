@@ -17,14 +17,14 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999910401" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999990032" root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">C.</given>
-               <family qualifier="BR">XXX_Vonker</family>
+               <given qualifier="IN">D.</given>
+               <family qualifier="BR">XXX-CSC-Smoketest-B</family>
             </name>
-            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
-            <birthTime value="19540208"/>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <birthTime value="19500204"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -32,16 +32,16 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
-         <id extension="tsMBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-VNK"
+         <id extension="tsMBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-CSB"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 14 jun 2020, tot en met 22 jun 2020, 4 maal per week 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 19 nov 2020, tot en met 27 nov 2020, 1 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20200614000000"/>
-            <high value="20200622235959"/>
+            <low value="20201119000000"/>
+            <high value="20201127235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -51,20 +51,20 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="108286"
+                  <code code="31607"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="BUMETANIDE TABLET 2,5MG"
+                        displayName="MINOCYCLINE TABLET 100MG"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="143847"
+                     <translation code="81728"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="BUMETANIDE TABLET 2,5MG"
+                                  displayName="MINOCYCLINE TABLET 100MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20200608081000"/>
+            <time value="20201113081000"/>
             <assignedAuthor>
                <id extension="000001117" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -98,9 +98,21 @@
                      displayName="Reden medicatieafspraak"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="CE"
-                      code="112751000146109"
-                      codeSystem="2.16.840.1.113883.6.96"
-                      displayName="Ander voorschrijfbeleid"/>
+                      code="16"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
+                      displayName="Overgevoeligheid"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+               <code code="10"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     codeSystemName="Medicatieproces observaties"
+                     displayName="Reden van voorschrijven."/>
+               <value xsi:type="CE" nullFlavor="OTH">
+                  <originalText>Rosacea</originalText>
+               </value>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -109,8 +121,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
                   <hl7nl:frequency>
-                     <hl7nl:numerator xsi:type="hl7nl:INT" value="4"/>
-                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="wk"/>
+                     <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
                   </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
@@ -125,11 +137,23 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+               <id extension="tsMBH_907_redenvanvoorschrijven_MA-CSB"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="16076005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="tsMBH_907_redenvanvoorschrijven-VNK"/>
+                   extension="tsMBH_907_redenvanvoorschrijven-CSB"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -141,16 +165,16 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
-         <id extension="tsMBH_907_redenvanvoorschrijven_MA_techstaken-VNK"
+         <id extension="tsMBH_907_redenvanvoorschrijven_MA_techstaken-CSB"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 8 jun 2020, tot en met 14 jun 2020, 4 maal per week 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 13 nov 2020, tot en met 19 nov 2020, 2 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20200608000000"/>
-            <high value="20200614235959"/>
+            <low value="20201113000000"/>
+            <high value="20201119235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -160,20 +184,20 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="108286"
+                  <code code="31607"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="BUMETANIDE TABLET 2,5MG"
+                        displayName="MINOCYCLINE TABLET 100MG"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="143847"
+                     <translation code="81728"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="BUMETANIDE TABLET 2,5MG"
+                                  displayName="MINOCYCLINE TABLET 100MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20200608081000"/>
+            <time value="20201113081000"/>
             <assignedAuthor>
                <id extension="000001117" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -213,14 +237,26 @@
                       displayName="Definitief"/>
             </observation>
          </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+               <code code="10"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     codeSystemName="Medicatieproces observaties"
+                     displayName="Reden van voorschrijven."/>
+               <value xsi:type="CE" nullFlavor="OTH">
+                  <originalText>Rosacea</originalText>
+               </value>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
                   <hl7nl:frequency>
-                     <hl7nl:numerator xsi:type="hl7nl:INT" value="4"/>
-                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="wk"/>
+                     <hl7nl:numerator xsi:type="hl7nl:INT" value="2"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
                   </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
@@ -238,7 +274,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-               <id extension="tsMBH_907_redenvanvoorschrijven_MA-VNK"
+               <id extension="tsMBH_907_redenvanvoorschrijven_MA-CSB"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="16076005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -251,7 +287,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="tsMBH_907_redenvanvoorschrijven-VNK"/>
+                   extension="tsMBH_907_redenvanvoorschrijven-CSB"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

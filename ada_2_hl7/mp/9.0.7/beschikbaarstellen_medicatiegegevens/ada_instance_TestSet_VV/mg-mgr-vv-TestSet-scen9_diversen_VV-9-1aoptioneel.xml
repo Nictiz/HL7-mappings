@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2020-09-03T15:40:46.847+02:00"
-         last-update-date="2020-09-03T15:40:46.847+02:00"/>
+         last-update-date="2020-10-23T15:49:59.861+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp907"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -18,41 +18,46 @@
                                             id="mg-mgr-vv-TestSet-scen9_diversen_VV-9-1aoptioneel">
          <scenario-nr value="9.1a optioneel"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6"
+                     value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"/>
          <screenshot value="Maak screenshot(s) waarin zichtbaar is dat een logistieke verbruiksperiode ingevoerd kan worden (ingangsdatum en duur/einddatum)"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.3"/>
-         <!--Patient found in instance with id: mg-Patient-999990159 and title: id: MP KWALIFICATIE Medicatiegegevens Patient (XXX-Incident-A)-->
-         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
-            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
-               <initialen value="N. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
+         <!--Patient found in instance with id: mg-Testset1 and title: id: TESTSUITE Medicatiegegevens Testset 1-->
+         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798" comment="">
+            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799" comment="">
+               <initialen value="C. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
                <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"
                             value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                             displayName="Eigen geslachtsnaam"/>
-               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804">
-                  <achternaam value="XXX-Incident-A"
+               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804" comment="">
+                  <achternaam value="XXX-CSC-Smoketest-A"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999990159"
+            <identificatienummer value="999990020"
                                  root="2.16.840.1.113883.2.4.6.3"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"/>
-            <geboortedatum value="1950-01-01"
+            <geboortedatum value="1950-02-03"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830"
                            datatype="datetime"/>
             <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831"
-                      value="3"
-                      code="F"
+                      value="2"
+                      code="M"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Vrouw"/>
+                      displayName="Man"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-tsMBH_907_logistiekeverbruiksperiode_start_eind-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="tsMBH_907_logistiekeverbruiksperiode_start_eind-NCD"
+            <identificatie value="tsMBH_907_logistiekeverbruiksperiode_start_eind-CSA"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
-               <identificatie value="tsMBH_907_logistiekeverbruiksperiode_start_eind_VV-NCD"
+               <identificatie value="tsMBH_907_logistiekeverbruiksperiode_start_eind_VV-CSA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T+0D{11:00:00}"
@@ -120,7 +125,7 @@
                   <ingangsdatum value="T+10D{00:00:00}"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20063"
                                 datatype="datetime"/>
-                  <einddatum value="T+6M{00:00:00}"
+                  <einddatum value="T+6M{23:59:59}"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20064"
                              datatype="datetime"/>
                </verbruiksperiode>
@@ -134,7 +139,7 @@
                   </zorgaanbieder>
                </beoogd_verstrekker>
                <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
-                  <identificatie value="tsMBH_907_logistiekeverbruiksperiode_start_eind_MA-NCD"
+                  <identificatie value="tsMBH_907_logistiekeverbruiksperiode_start_eind_MA-CSA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
                </relatie_naar_medicatieafspraak>

@@ -676,7 +676,7 @@
          <xs:element name="ingredient_code"
                      type="ingredient_code_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22318"
                      minOccurs="0"
-                     maxOccurs="unbounded"/>
+                     maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -3457,7 +3457,7 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: IngredientCode - 0..* C</xs:documentation>
+      <xs:documentation>Type for concept item: IngredientCode - 0..1 C</xs:documentation>
    </xs:annotation>
    <xs:complexType name="ingredient_code_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22318">
       <xs:sequence>
@@ -4041,16 +4041,10 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22739"/>
-      <xs:attribute name="value" type="VariableVagueDateTime"/>
+      <xs:attribute name="value" type="VariableDateTime"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Toedientijd: string</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="toedientijd_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22739">
-      <xs:restriction base="xs:string"/>
-   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Weekdag - 0..* R</xs:documentation>
    </xs:annotation>
