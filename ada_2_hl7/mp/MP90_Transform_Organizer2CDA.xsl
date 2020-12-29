@@ -6,11 +6,10 @@
     <!-- param to influence whether to output schematron references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
 
-
     <xd:doc>
         <xd:desc> Transforms HL7 organizer example message into CDA version of the same thing. For publication 9.0.6 </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer">
+    <xsl:template match="hl7:organizer" mode="organizer2CDA">
         <ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication">
             <xsl:if test="$schematronRef">
                 <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/CDANL_extended.xsd</xsl:attribute>
@@ -261,7 +260,7 @@
             </custodian>
             <xsl:for-each select="hl7:participant">
                 <xsl:copy copy-namespaces="no">
-                    <xsl:apply-templates select="@* | node()"/>
+                    <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
                 </xsl:copy>
             </xsl:for-each>
             <component>
@@ -269,7 +268,7 @@
                     <component>
                         <section>
                             <text>Medicatiegegevens.</text>
-                            <xsl:apply-templates select="comment() | hl7:component"/>
+                            <xsl:apply-templates select="comment() | hl7:component" mode="organizer2CDA"/>
                         </section>
                     </component>
                 </structuredBody>
@@ -281,15 +280,15 @@
     <xd:doc>
         <xd:desc> Niet kopiëren </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer/hl7:templateId | hl7:organizer/hl7:code | hl7:organizer/hl7:statusCode | hl7:organizer/hl7:recordTarget | hl7:organizer/hl7:author"/>
+    <xsl:template match="hl7:organizer/hl7:templateId | hl7:organizer/hl7:code | hl7:organizer/hl7:statusCode | hl7:organizer/hl7:recordTarget | hl7:organizer/hl7:author" mode="organizer2CDA"/>
 
 
     <xd:doc>
         <xd:desc> participantRole element hernomen naar associatedEntity in CDA participant </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer/hl7:participant/hl7:participantRole">
+    <xsl:template match="hl7:organizer/hl7:participant/hl7:participantRole" mode="organizer2CDA">
         <xsl:element name="associatedEntity">
-            <xsl:apply-templates select="@* | node()"/>
+            <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
         </xsl:element>
     </xsl:template>
 
@@ -297,22 +296,22 @@
     <xd:doc>
         <xd:desc> template id conversies (voor participant) </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:templateId/@root[. = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9179']">
+    <xsl:template match="hl7:templateId/@root[. = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9179']" mode="organizer2CDA">
         <xsl:attribute name="root" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9173'"/>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="hl7:templateId/@root[. = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9180']">
+    <xsl:template match="hl7:templateId/@root[. = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9180']" mode="organizer2CDA">
         <xsl:attribute name="root" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9174'"/>
     </xsl:template>
 
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="hl7:organizer/hl7:component">
+    <xsl:template match="hl7:organizer/hl7:component" mode="organizer2CDA">
         <entry xmlns="urn:hl7-org:v3">
-            <xsl:apply-templates select="* | node()"/>
+            <xsl:apply-templates select="* | node()" mode="organizer2CDA"/>
         </entry>
     </xsl:template>
 
@@ -372,9 +371,9 @@
     <xd:doc>
         <xd:desc>Default copy template</xd:desc>
     </xd:doc>
-    <xsl:template match="@* | node()">
+    <xsl:template match="@* | node()" mode="organizer2CDA">
         <xsl:copy copy-namespaces="no">
-            <xsl:apply-templates select="@* | node()"/>
+            <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
         </xsl:copy>
     </xsl:template>
 
