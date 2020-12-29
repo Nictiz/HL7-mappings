@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet exclude-result-prefixes="xd nf xsl" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsl:stylesheet exclude-result-prefixes="xd nf xsl" xmlns:uuid="http://www.uuid.org" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xsl:import href="../../util/uuid.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <!-- param to influence whether to output schematron references, typically only needed for test instances -->
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    <!-- param to influence whether to output schema references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
+    
+    <xd:doc>
+        <xd:desc>Start template when called from outside</xd:desc>
+    </xd:doc>
+    <xsl:template match="/">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
+        </xsl:copy>
+    </xsl:template>
 
     <xd:doc>
-        <xd:desc> Transforms HL7 organizer example message into CDA version of the same thing. For publication 9.0.6 </xd:desc>
+        <xd:desc> Transforms HL7 organizer example message into CDA version of the same thing. From publication 9.0.6 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:organizer" mode="organizer2CDA">
         <ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication">
@@ -121,13 +134,8 @@
                     </xsl:choose>
                 </xsl:attribute>
             </templateId>
-            <id extension="someUniqueID">
-                <!-- Use the template id to make a unique root for document id -->
-                <xsl:attribute name="root">
-                    <xsl:value-of select="concat(./hl7:templateId[1]/@root, '.1.2.3.999')"/>
-                </xsl:attribute>
-            </id>
-            <!-- This is from 9.0.6 onwards, and not compatible with 9.0.5 -->
+            <!-- Use the template id to make a unique root for document id -->
+            <id extension="{uuid:get-uuid(.)}" root="{concat(hl7:templateId[1]/@root, '.1.2.3.999')}"/>            
             <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medication section (record artifact)"/>
             <!-- parameterize the title based on input, this is not perfect -->
             <xsl:variable name="hl7Docdate" as="xs:string?">
