@@ -1538,8 +1538,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:variable name="elemName">is_flexibel</xsl:variable>
                                             <xsl:element name="{$elemName}">
                                                 <xsl:choose>
-                                                    <xsl:when test="exists(@isFlexible)">
-                                                        <xsl:attribute name="value" select="@isFlexible"/>
+                                                    <xsl:when test="exists(../@isFlexible)">
+                                                        <xsl:attribute name="value" select="../@isFlexible"/>
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
@@ -3542,7 +3542,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Template 9155 only phase low</xd:desc>
-        <xd:param name="current_PIVL"/>
+        <xd:param name="current_PIVL">The HL7 PIVL element which should be processed.</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123_only_phase_low">
         <xsl:param name="current_PIVL" select="."/>
@@ -3561,8 +3561,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="elemName">is_flexibel</xsl:variable>
             <xsl:element name="{$elemName}">
                 <xsl:choose>
-                    <xsl:when test="exists(@isFlexible)">
-                        <xsl:attribute name="value" select="@isFlexible"/>
+                    <xsl:when test="exists(../../@isFlexible)">
+                        <xsl:attribute name="value" select="../../@isFlexible"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:attribute name="nullFlavor">UNK</xsl:attribute>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?nictiz status="example"?>
 <?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
-<!--Generated from ada instance with title: "" and id: "6voorbeeld_toedieningsduur-interval".-->
+<!--Generated from ada instance with title: "" and id: "4voorbeeld_toedieningsduur-interval".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -98,6 +98,15 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="false">
+                  <hl7nl:phase>
+                     <hl7nl:width xsi:type="hl7nl:PQ" value="15" unit="min"/>
+                  </hl7nl:phase>
+                  <hl7nl:frequency>
+                     <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="4" unit="h"/>
+                  </hl7nl:frequency>
+               </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">
                      <translation value="1"

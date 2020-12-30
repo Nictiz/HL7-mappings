@@ -20,10 +20,81 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
 
     <xd:doc>
-        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema.</xd:desc>
+        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x</xd:desc>
         <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151" match="toedieningsschema" mode="HandleCDAAdministrationSchedule">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151" match="toedieningsschema" mode="HandleCDAAdministrationSchedule9x">
+        <xsl:param name="in" as="element()*" select="."/>
+        <xsl:for-each select="$in">
+            <xsl:choose>
+                <!-- Eenvoudig doseerschema met alleen één frequentie met een tijdseenheid. -->
+                <xsl:when test="frequentie[not(following-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])]/tijdseenheid[@value | @unit] and not(../toedieningsduur[@value | @unit])">
+                    <xsl:for-each select="frequentie[tijdseenheid[@value | @unit]]">
+                        <effectiveTime>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9080_20160620164239"/>
+                        </effectiveTime>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- Eenvoudig doseerschema met alleen één interval. -->
+                <xsl:when test="interval[not(following-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][not(preceding-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][@value | @unit] and not(../toedieningsduur[@value | @unit])">
+                    <xsl:for-each select="interval[@value | @unit]">
+                        <effectiveTime>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9079_20160620162955"/>
+                        </effectiveTime>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- Eenvoudig doseerschema met één vast tijdstip. -->
+                <xsl:when test="toedientijd[not(following-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][not(preceding-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][@value] and not(../toedieningsduur[@value | @unit])">
+                    <xsl:for-each select="toedientijd[@value]">
+                        <effectiveTime>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9081_20160620234234">
+                                <xsl:with-param name="isFlexible" select="../is_flexibel/@value"/>
+                                <xsl:with-param name="operator">A</xsl:with-param>
+                            </xsl:call-template>
+                        </effectiveTime>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- Doseerschema met toedieningsduur en (frequentie of interval of maximaal 1 toedientijd). Toedientijd en frequentie mogen ook samen, bijvoorbeeld: om 14:00 eens in de twee dagen. -->
+                <xsl:when test="../toedieningsduur[@value | @unit] and (frequentie/tijdseenheid[@value | @unit] or interval[@value|@unit] or toedientijd/@value) and count(toedientijd[@value]) le 1 and not((weekdag | dagdeel)[@value | @code |@ unit]) ">
+                    <xsl:for-each select=".">
+                        <effectiveTime>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9161_20161110085716">
+                                <xsl:with-param name="inToedientijd" select="toedientijd[@value]"/>
+                            </xsl:call-template>
+                        </effectiveTime>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
+                <xsl:when test="frequentie[not(tijdseenheid[@value | @unit])] and not(toedientijd/@value)">
+                    <xsl:for-each select="frequentie[not(tijdseenheid[@value | @unit])]">
+                        <effectiveTime>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9121_20191202152153"/>                                
+                        </effectiveTime>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- Doseerschema één keer per week op één weekdag. Eventueel met max 1 toedientijd. -->
+<!--                <xsl:when test="weekdag[not(following-sibling::*[name() != ('is_flexibel', 'frequentie')])][not(preceding-sibling::*[name() != ('is_flexibel', 'frequentie')])][@value|@code] and (frequentie[aantal/vaste_waarde/@value='1'][tijdseenheid[@value='1'][@unit=$ada-unit-week]] or not(frequentie[.//(@value|@unit)]) )">-->
+                <xsl:when test="weekdag[@value|@code] and count(toedientijd[@value]) le 1 and (not(frequentie[.//(@value|@unit)]) or frequentie[aantal/vaste_waarde/@value='1'][tijdseenheid[@value='1'][@unit=$ada-unit-week]] ) and not(dagdeel | interval)">
+                        <xsl:for-each select="weekdag[@value|@code]">
+                        <effectiveTime>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
+                                <xsl:with-param name="toedientijd" select="../toedientijd[@value]"/>
+                            </xsl:call-template>                                
+                        </effectiveTime>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- Nacht -->
+                
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x</xd:desc>
+        <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151d" match="toedieningsschema" mode="HandleCDAAdministrationSchedule92">
         <xsl:param name="in" as="element()*" select="."/>
 
         <xsl:for-each select="$in">
@@ -299,9 +370,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151"/>
                 </xsl:for-each>
                 <!-- just in case there is a toedieningsduur and no toedieningsschema, this really should not happen, but who are we to filter out the toedieningsduur in that case,
-                so let't at least output the given toedieningsduur-->
+                so let's at least output the given toedieningsduur-->
                 <!-- doseerschema met toedieningsduur zonder toedieningsschema -->
-                <xsl:if test="toedieningsduur[.//(@value | @code)] and not(toedieningsschema[.//(@value | @code)])">
+                <xsl:if test="toedieningsduur[@value | @code] and not(toedieningsschema[.//(@value | @code)])">
                     <effectiveTime>
                         <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
                         <xsl:attribute name="operator">A</xsl:attribute>
@@ -345,10 +416,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc> MP CDA (proposition) medication agreement ( (voorstel) Medicatieafspraak) reusable part from 9.1.0</xd:desc>
-        <xd:param name="ma">The input ada medication agreement</xd:param>
+        <xd:param name="ma">The input ada medication agreement, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9320_20201015130416">
-        <xsl:param name="ma"/>
+        <xsl:param name="ma" select="."/>
+
         <xsl:for-each select="$ma">
             <xsl:for-each select="stoptype[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
@@ -485,7 +557,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <xd:doc>
-        <xd:desc>Mapping of medicatieafspraak concept in ADA ('eigen of ongedefinieerde MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9275</xd:desc>
+        <xd:desc>Mapping of medicatieafspraak concept in ADA ('eigen of ongedefinieerde MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9323</xd:desc>
         <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9324_20201015132016" match="medicatieafspraak | medication_agreement">
@@ -501,7 +573,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Mapping of zib nl.zorg.Medicatieafspraak concept in ADA ('andermans MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9277</xd:desc>
+        <xd:desc>Mapping of zib nl.zorg.Medicatieafspraak concept in ADA ('andermans MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9323</xd:desc>
         <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9325_20201515132423">

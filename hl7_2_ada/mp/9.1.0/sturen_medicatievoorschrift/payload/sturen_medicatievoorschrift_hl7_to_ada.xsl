@@ -12,11 +12,11 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="nf uuid sdtc pharm hl7 hl7nl xd xs" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
 
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <!-- Dit is een conversie van MP 9.1.0 naar ADA 9.0 voorschrift bericht -->
     <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9323','2.16.840.1.113883.2.4.3.11.60.20.77.10.9275',  '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>
     <xsl:variable name="templateId-verstrekkingsverzoek" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9301', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9257'"/>
@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="last-update-date" select="current-dateTime()"/>
             </meta>
             <data>
-                <sturen_medicatievoorschrift app="mp-mp910" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="testbericht ADA conversie" id="{uuid:get-uuid(.)}">
+                <sturen_medicatievoorschrift app="mp-mp910" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="generated from hl72ada conversion" id="{uuid:get-uuid(.)}">
                     <xsl:for-each select="$patient">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180601000000">
                             <xsl:with-param name="in" select="."/>
