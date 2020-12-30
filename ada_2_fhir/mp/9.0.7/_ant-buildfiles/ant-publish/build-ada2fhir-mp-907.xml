@@ -164,8 +164,10 @@
             <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="mo-mor*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="mp9-nl-core-patient-*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp">
+                <include name="mo-mor*.xml"/>
+                <include name="mp9-nl-core-patient-*.xml"/>
+            </fileset> 
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_VV" includes="mp9-*.xml"/>
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_MA" includes="mp9-*.xml"/>
          </copy>
@@ -191,6 +193,23 @@
             <param name="xsl.in" value="ada_instance_TestSet"/>
             <param name="xsl.out" value="fhir_instance_TestSet"/>
         </antcall>
+       
+        <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
+        <echo>copy the appropriate fhir instances for Touchstone to a separate folder</echo>
+        <mkdir dir="${build.dir}/4TouchstoneMPServeTestSet"/>
+        <!-- clean previous results, if any -->
+        <delete>
+            <fileset dir="${build.dir}/4TouchstoneMPServeTestSet" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/4TouchstoneMPServeTestSet">
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_TestSet_MA" includes="mp9-*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_TestSet_VV" includes="mp9-*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_TestSet">
+                <include name="mo-mor*.xml"/>
+                <include name="mp9-nl-core-patient-*.xml"/>
+            </fileset> 
+        </copy>
+        
        
     </target>
 
