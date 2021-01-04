@@ -16,6 +16,10 @@
                   <td>tsMBH_907_redenvanvoorschrijven-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                </tr>
                <tr>
+                  <th>Gebaseerd op</th>
+                  <td>relatie naar medicatieafspraak: tsMBH_907_redenvanvoorschrijven_MA-LTB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: tsMBH_907_redenvanvoorschrijven_MA-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
                   <th>Medicatie</th>
                   <td>MINOCYCLINE TABLET 100MG</td>
                </tr>
@@ -65,6 +69,15 @@
          <value value="tsMBH_907_redenvanvoorschrijven-LTB"/>
       </valueIdentifier>
    </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <value value="tsMBH_907_redenvanvoorschrijven_MA-LTB"/>
+         </identifier>
+         <display value="relatie naar medicatieafspraak: tsMBH_907_redenvanvoorschrijven_MA-LTB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      </valueReference>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
       <value value="tsMBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-LTB"/>
@@ -91,7 +104,7 @@
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
-               <reference value="PractitionerRole/952a2c38-45f5-11eb-1576-020000000000"/>
+               <reference value="PractitionerRole/5d4f6bc1-4ea6-11eb-1062-020000000000"/>
                <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam"/>
             </valueReference>
          </extension>
@@ -107,7 +120,7 @@
       </coding>
    </reasonCode>
    <reasonReference>
-      <reference value="Condition/952a2cd8-45f5-11eb-1576-020000000000"/>
+      <reference value="Condition/5d4f7119-4ea6-11eb-1062-020000000000"/>
       <display value="overig Rosacea"/>
    </reasonReference>
    <dosageInstruction>

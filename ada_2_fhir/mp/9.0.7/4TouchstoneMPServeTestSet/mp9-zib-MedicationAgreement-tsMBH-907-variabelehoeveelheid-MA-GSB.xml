@@ -1,0 +1,122 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="tsMBH-907-variabelehoeveelheid-MA-GSB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: F. XXX-GBZ-Smoketest-B. Id: tsMBH_907_variabelehoeveelheid_MA-GSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Pieter De Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>tsMBH_907_variabelehoeveelheid-GSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>IBUPROFEN BRUISGRANULAAT 400MG</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, +0}T08:10:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>${DATE, T, D, +0}T00:00:00+02:00 - ${DATE, T, D, +14}T23:59:59+02:00</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 4 maal per dag 1 à 2 stuks, oraal</div>
+                     <div>Timing: <div>4 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                     </div>
+                     <div>Dosering: 1 stuk - 2 stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +14}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="tsMBH_907_variabelehoeveelheid-GSB"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="tsMBH_907_variabelehoeveelheid_MA-GSB"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/47872-2-16-840-1-113883-2-4-4-10"/>
+      <display value="IBUPROFEN BRUISGRANULAAT 400MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/F-XXX-GBZ-SMOKETEST-B"/>
+      <display value="F. XXX-GBZ-Smoketest-B"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, +0}T08:10:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/000001116010000001116"/>
+               <display value="Pieter De Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/0000011162-16-528-1-1007-3-1"/>
+         <display value="Pieter De Plat"/>
+      </agent>
+   </requester>
+   <dosageInstruction>
+      <text value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 4 maal per dag 1 à 2 stuks, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="4"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseRange>
+         <low>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </low>
+         <high>
+            <value value="2"/>
+            <unit value="stuk"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </high>
+      </doseRange>
+   </dosageInstruction>
+</MedicationRequest>

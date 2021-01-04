@@ -1,0 +1,148 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="tsMBH-907-redenvanvoorschrijven-MA-techstaken-CSB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: D. XXX-CSC-Smoketest-B. Id: tsMBH_907_redenvanvoorschrijven_MA_techstaken-CSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th colspan="2">Medicatie is gestopt: <span title="Definitief (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Definitief</span>
+                  </th>
+               </tr>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>tsMBH_907_redenvanvoorschrijven-CSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>relatie naar medicatieafspraak: tsMBH_907_redenvanvoorschrijven_MA-CSB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: tsMBH_907_redenvanvoorschrijven_MA-CSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>MINOCYCLINE TABLET 100MG</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -5}T08:10:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>overig Rosacea</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>${DATE, T, D, -7}T00:00:00+02:00 - ${DATE, T, D, -6}T23:59:59+02:00</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 1 stuks, oraal</div>
+                     <div>Timing: <div>2 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 1 stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="${DATE, T, D, -7}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -6}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="tsMBH_907_redenvanvoorschrijven-CSB"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <value value="tsMBH_907_redenvanvoorschrijven_MA-CSB"/>
+         </identifier>
+         <display value="relatie naar medicatieafspraak: tsMBH_907_redenvanvoorschrijven_MA-CSB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      </valueReference>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+            <code value="2"/>
+            <display value="Definitief"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="tsMBH_907_redenvanvoorschrijven_MA_techstaken-CSB"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/31607-2-16-840-1-113883-2-4-4-10"/>
+      <display value="MINOCYCLINE TABLET 100MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/D-XXX-CSC-SMOKETEST-B"/>
+      <display value="D. XXX-CSC-Smoketest-B"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -5}T08:10:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/000001117010000001117"/>
+               <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/0000011172-16-528-1-1007-3-1"/>
+         <display value="Bert van Dam"/>
+      </agent>
+   </requester>
+   <reasonReference>
+      <reference value="Condition/595fa24a-4ea6-11eb-1637-020000000000"/>
+      <display value="overig Rosacea"/>
+   </reasonReference>
+   <dosageInstruction>
+      <text value="Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 1 stuks, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="2"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>
