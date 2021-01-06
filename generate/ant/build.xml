@@ -4,28 +4,38 @@
     The normal use of this build script is to import it from another ANT build script.
     
     To run it, the following parameters are expected:
-    - `input.dir`             : The folder where the input files reside. See below for an explanation on the folder 
-                                structure. 
-    - `common-components.dir` : The directory where the common components reside.
-    
-    For the input dir, the following folder structure is expected: 
+    - input.dir             : The folder where the input files reside. See below for an explanation on folder
+                              structures.
+    - output.dir            : The folder where the output should be placed. See below for an explanation on folder
+                              structures.
+    - common-components.dir : The directory where the common components reside.
+
+    Additionally, the following optional parameters may be used:
+    - outputLevel: the verbosity level of the script output  
+
+    Projects should be organized using the following folder structure: 
         ProjectDir/
-            InputFolder1/ : folder containing NTS files
+            build.properties: properties  
+            InputFolder1/   : folder containing NTS files (may contain nested folders with more NTS files)
+            InputFolder2/   : folder containing NTS files (may contain nested folders with more NTS files)
             _components/    : the components specific for that project
             _reference/     : the fixtures for that project
+    The input folder structure will be recreated in the output directory, together with the _reference folder.
+
+    === TODO
         
-    - build.xml            : the file that imports this build script
-    - build/               : the dir where the output will be placed
     - lib/                 :
        - ant-dependencies/ : where the dependencies for ANT will be placed (you probably want to add this to .gitignore)
+
 -->
 
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
-
+    <!-- Make the directories passed as parameters absolute -->
     <property name="input.dir.abs"            location="${input.dir}"/>
+    <property name="output.dir.abs"           location="${output.dir}"/>
     <property name="commoncomponents.dir.abs" location="${commoncomponents.dir}"/>
     
-    <!-- Set testscripttools.dir if it is not supplied by including build file. -->
+    <!-- Set testscripttools.dir if it is not supplied by the including build file. -->
     <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
@@ -33,7 +43,6 @@
     <property name="ivy.dep.file" value="${testscripttools.dir}/ant/ivy.xml" />
     
     <property name="xslt.dir" value="${testscripttools.dir}/xslt" />
-    <property name="build.dir" value="${basedir}/build" />
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
         
@@ -228,7 +237,7 @@
             </for>
             
             <!-- Copy over the _reference dir with fixtures and rules -->
-            <copy todir="${build.dir}/${project}/_reference">
+            <copy todir="${output.dir.abs}/_reference">
                 <fileset dir="${reference.dir}"/>
             </copy>
             
@@ -262,9 +271,10 @@
     
     <macrodef name="generate-loadresources" description="Generate a LoadResources TestScript to load all fixtures to the WildFHIR server.">
         <sequential>
-            <property name="loadresources.file" value="${build.dir}/${project}/_LoadResources/${project}-load-resources-purgecreateupdate-xml.xml"/>
+            <!-- TODO: loadscript is now generated withtout the name of the project in it. Is this detrimental? -->
+            <property name="loadresources.file" value="${output.dir.abs}/_LoadResources/load-resources-purgecreateupdate-xml.xml"/>
             <dirname property="loadresources.file.dir" file="${loadresources.file}"/>
-            <property name="reference.dir.loadresourcesrelative" location="${build.dir}/${project}/_reference" relative="true" basedir="${loadresources.file.dir}"/>
+            <property name="reference.dir.loadresourcesrelative" location="${output.dir.abs}/_reference" relative="true" basedir="${loadresources.file.dir}"/>
             <!-- Convert backslashes to forward slashes if needed -->
             <propertyregex property="reference.dir.loadresourcesrelative.normalized" input="${reference.dir.loadresourcesrelative}" regexp="[\\]" replace="/" global="true" defaultValue="${reference.dir.loadresourcesrelative}"/>
             
@@ -289,8 +299,8 @@
     
     <target name="cleanBuildDir">
         <sequential>
-            <echo message="Deleting previous build dir"/>
-            <delete dir="${build.dir}/${project}"/>
+            <echo message="Deleting previous output dir"/>
+            <delete dir="${output.dir.abs}"/>
         </sequential>
     </target>
     
@@ -345,7 +355,7 @@
                             <!-- Apply the transformation -->
                             <transform-NTS-file 
                                 nts.file="@{nts.file}"
-                                output.dir="${build.dir}/${project}/${nts.file.reldir}" 
+                                output.dir="${output.dir.abs}/${nts.file.reldir}" 
                                 references.file="${references.file}"/>
                         </sequential>
                     </for>
