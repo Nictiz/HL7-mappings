@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Common ANT build script for Nictiz NTS projects.
     
-    The normal use of this build script is to import it from another ANT build script. 
+    The normal use of this build script is to import it from another ANT build script.
+    
+    To run it, the following parameters are expected:
+    - `input.dir`             : The folder where the input files reside. See below for an explanation on the folder 
+                                structure. 
+    - `common-components.dir` : The directory where the common components reside.
+    
+    For the input dir, the following folder structure is expected: 
+        ProjectDir/
+            InputFolder1/ : folder containing NTS files
+            _components/    : the components specific for that project
+            _reference/     : the fixtures for that project
+        
     - build.xml            : the file that imports this build script
-    - src/                 : the dir containing the source files 
-       - common-asserts/   : the common components across all projects
-       - Project1/         : a project dir
-         - InputFolder1/   : one or more dirs containg NTS files
-         - _components/    : the components specific for that project
-         - _reference/     : the fixtures for that project
     - build/               : the dir where the output will be placed
     - lib/                 :
        - ant-dependencies/ : where the dependencies for ANT will be placed (you probably want to add this to .gitignore)
@@ -16,8 +22,8 @@
 
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
 
-    <!-- Projects should set the input.dir parameter -->
-    <property name="input.dir.abs" location="${input.dir}"/>
+    <property name="input.dir.abs"            location="${input.dir}"/>
+    <property name="commoncomponents.dir.abs" location="${commoncomponents.dir}"/>
     
     <!-- Set testscripttools.dir if it is not supplied by including build file. -->
     <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
@@ -28,7 +34,6 @@
     
     <property name="xslt.dir" value="${testscripttools.dir}/xslt" />
     <property name="build.dir" value="${basedir}/build" />
-    <property name="src.dir" value="${basedir}/src" />
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
         
@@ -85,19 +90,12 @@
     <!-- BUILD XML -->
     
     <target name="check-input">
-        <dirset id="src.contents" dir="${src.dir}">
-            <include name="*"/>
-            <exclude name="common-asserts"/>
-        </dirset>
-        <property name="prop.src.contents" refid="src.contents"/>
-        <input message="Please input project name (${prop.src.contents})." addproperty="project"/><!-- Per definition only asks for input if project property is not set -->
-        
         <if>
             <not>
-                <available file="${src.dir}/${project}" type="dir"/>
+                <available file="${input.dir.abs}" type="dir"/>
             </not>
             <then>
-                <fail message="Project directory '${src.dir}/${project}' does not exist."/>
+                <fail message="Project directory '${input.dir.abs}' does not exist."/>
             </then>
         </if>
     </target>
@@ -154,8 +152,8 @@
                             <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                                 <parameters>
                                     <param name="referenceBase" expression="${reference.dir.relative.normalized}"/>
-                                    <param name="commonComponentFolder" expression="${commoncomponents.dir.absolute}"/>
-                                    <param name="projectComponentFolder" expression="${components.dir.absolute}"/>
+                                    <param name="commonComponentFolder" expression="${commoncomponents.dir.abs}"/>
+                                    <param name="projectComponentFolder" expression="${components.dir.abs}"/>
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                                 </parameters>
                             </saxon-transform>
@@ -170,8 +168,8 @@
                     <saxon-transform style="${xslt.dir}/generateTestScript.xsl" in="@{nts.file}" out="@{output.dir}/${nts.file.newname}">
                         <parameters>
                             <param name="referenceBase" expression="${reference.dir.relative.normalized}"/>
-                            <param name="commonComponentFolder" expression="${commoncomponents.dir.absolute}"/>
-                            <param name="projectComponentFolder" expression="${components.dir.absolute}"/>
+                            <param name="commonComponentFolder" expression="${commoncomponents.dir.abs}"/>
+                            <param name="projectComponentFolder" expression="${components.dir.abs}"/>
                         </parameters>
                     </saxon-transform>
                     <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>
@@ -247,9 +245,9 @@
                         </and>
                         <then>
                             <if>
-                                <available file="${commoncomponents.dir.absolute}/_reference/@{rule}"/>
+                                <available file="${commoncomponents.dir.abs}/_reference/@{rule}"/>
                                 <then>
-                                    <copy file="${commoncomponents.dir.absolute}/_reference/@{rule}" tofile="${reference.dir}/@{rule}"/>
+                                    <copy file="${commoncomponents.dir.abs}/_reference/@{rule}" tofile="${reference.dir}/@{rule}"/>
                                 </then>
                                 <else>
                                     <fail message="Rule '@{rule}' is referenced but doesn't exist in the local or global scope"/>
@@ -299,19 +297,14 @@
     <target name="build" depends="load, check-input, cleanBuildDir">
         <property file="${input.dir.abs}/build.properties"/>
         
-        <property name="commoncomponents.dir" location="${src.dir}/common-asserts"/>
         <property name="reference.dir" location="${input.dir.abs}/_reference"/>
-        <property name="components.dir" location="${input.dir.abs}/_components"/>
-        
-        <!-- Convert relative paths given on the command line to absolute paths -->
-        <property name="components.dir.absolute" location="${components.dir}"/>
-        <property name="commoncomponents.dir.absolute" location="${commoncomponents.dir}"/>
+        <property name="components.dir.abs" location="${input.dir.abs}/_components"/>
         
         <!-- Set default loadresources.exclude to nothing -->
         <property name="loadresources.exclude" value=""/>
         
         <!-- Collect the XML files to transform -->
-        <fileset id="nts.files" dir="${src.dir}/${project}">
+        <fileset id="nts.files" dir="${input.dir.abs}">
             <include name="*/**/*.xml"/>
             <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
         </fileset>
@@ -346,7 +339,7 @@
                                 <path>
                                     <dirset dir="${nts.file.dir}"/>
                                 </path>
-                                <map from="${src.dir}/${project}" to=""/>
+                                <map from="${input.dir.abs}" to=""/>
                             </pathconvert>
                             
                             <!-- Apply the transformation -->
@@ -364,7 +357,7 @@
                 </sequential>
             </then>
             <else>
-                <fail message="No input files found in ${src.dir}/${project}."/>
+                <fail message="No input files found in ${input.dir.abs}."/>
             </else>
         </if>
         
