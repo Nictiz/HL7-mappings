@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Common ANT build script for Nictiz NTS projects.
     
-    The normal use of this build script is to import it from another ANT build script, where a particular folder
-    structure is expected:
+    The normal use of this build script is to import it from another ANT build script. 
     - build.xml            : the file that imports this build script
     - src/                 : the dir containing the source files 
        - common-asserts/   : the common components across all projects
@@ -13,12 +12,12 @@
     - build/               : the dir where the output will be placed
     - lib/                 :
        - ant-dependencies/ : where the dependencies for ANT will be placed (you probably want to add this to .gitignore)
-
-    The script will ask you for one of the project dirs inside the "src/" dir. Alternatively, this can be passed in the
-    ANT call with the -Dproject= option.
 -->
 
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
+
+    <!-- Projects should set the input.dir parameter -->
+    <property name="input.dir.abs" location="${input.dir}"/>
     
     <!-- Set testscripttools.dir if it is not supplied by including build file. -->
     <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
@@ -122,7 +121,6 @@
 
     <macrodef name="transform-NTS-file" description="Custom task to perform the transformation of an NTS file">
         <attribute name="nts.file" description="The (full) path to the input file."/>
-        <attribute name="project.dir" description="The base dir of the project."/>
         <attribute name="output.dir" description="The target dir (not just the base) of the transformed file. The name of the actual file will be determined by this task."/>
         <attribute name="references.file" description="The (temporary) text file to collect the list of fixtures to. See the collect-fixtures macrodef for more information."/>
 
@@ -221,7 +219,7 @@
                         <and>
                             <isset property="@{fixture}"/>
                             <not>
-                                <available file="${project.dir}/_reference/@{fixture}"/>
+                                <available file="${input.dir.abs}/_reference/@{fixture}"/>
                             </not>
                         </and>
                         <then>
@@ -275,7 +273,7 @@
             <saxon-transform style="${xslt.dir}/generateLoadResources.xsl" out="${loadresources.file}">
                 <parameters>
                     <param name="referenceBase" expression="${reference.dir.loadresourcesrelative.normalized}"/>
-                    <param name="referenceDir" expression="${project.dir}/_reference/"/>
+                    <param name="referenceDir" expression="${input.dir.abs}/_reference/"/>
                     <param name="project" expression="${project}"/>
                     <param name="loadResourcesExclude" expression="${loadresources.exclude}"/>
                 </parameters>
@@ -299,13 +297,11 @@
     </target>
     
     <target name="build" depends="load, check-input, cleanBuildDir">
-        <property name="project.dir" location="${src.dir}/${project}"/>
-        
-        <property file="${project.dir}/build.properties"/>
+        <property file="${input.dir.abs}/build.properties"/>
         
         <property name="commoncomponents.dir" location="${src.dir}/common-asserts"/>
-        <property name="reference.dir" location="${project.dir}/_reference"/>
-        <property name="components.dir" location="${project.dir}/_components"/>
+        <property name="reference.dir" location="${input.dir.abs}/_reference"/>
+        <property name="components.dir" location="${input.dir.abs}/_components"/>
         
         <!-- Convert relative paths given on the command line to absolute paths -->
         <property name="components.dir.absolute" location="${components.dir}"/>
@@ -356,7 +352,6 @@
                             <!-- Apply the transformation -->
                             <transform-NTS-file 
                                 nts.file="@{nts.file}"
-                                project.dir="${src.dir}/${project}" 
                                 output.dir="${build.dir}/${project}/${nts.file.reldir}" 
                                 references.file="${references.file}"/>
                         </sequential>
