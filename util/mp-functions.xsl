@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <!--    <xsl:import href="constants.xsl"/>
+<!--    <xsl:import href="constants.xsl"/>
     <xsl:import href="datetime.xsl"/>-->
     <xsl:strip-space elements="*"/>
 
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
+
+    <!-- mp constants -->
+    <xsl:variable name="weekdayMap" as="element()+">
+        <map xmlns="" dayOfWeek="1" weekday="monday" hl7PIVLPhaseLow="19700601" code="307145004" codeSystem="{$oidSNOMEDCT}" displayName="maandag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="2" weekday="tuesday" hl7PIVLPhaseLow="19700602" code="307147007" codeSystem="{$oidSNOMEDCT}" displayName="dinsdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="3" weekday="wednesday" hl7PIVLPhaseLow="19700603" code="307148002" codeSystem="{$oidSNOMEDCT}" displayName="woensdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="4" weekday="thursday" hl7PIVLPhaseLow="19700604" code="307149005" codeSystem="{$oidSNOMEDCT}" displayName="donderdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="5" weekday="friday" hl7PIVLPhaseLow="19700605" code="307150005" codeSystem="{$oidSNOMEDCT}" displayName="vrijdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="6" weekday="saturday" hl7PIVLPhaseLow="19700606" code="307151009" codeSystem="{$oidSNOMEDCT}" displayName="zaterdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="0" weekday="sunday" hl7PIVLPhaseLow="19700607" code="307146003" codeSystem="{$oidSNOMEDCT}" displayName="zondag" codeSystemName="SNOMED CT"/>
+    </xsl:variable>
 
     <xd:doc>
         <xd:desc>Calculates the start date of a dosage instruction</xd:desc>
@@ -135,11 +146,9 @@
                                     <xsl:when test="not($frequentie/tijdseenheid/@value)">keer.</xsl:when>
                                     <xsl:otherwise>
                                         <xsl:variable name="frequentie-value">
-                                            <xsl:choose>
-                                                <xsl:when test="xs:integer($frequentie/tijdseenheid/@value) gt 1">
-                                                    <xsl:value-of select="concat($frequentie/tijdseenheid/@value, ' ')"/>
-                                                </xsl:when>
-                                            </xsl:choose>
+                                            <xsl:if test="$frequentie/tijdseenheid/@value castable as xs:float and xs:float($frequentie/tijdseenheid/@value) ne 1">
+                                                <xsl:value-of select="concat($frequentie/tijdseenheid/@value, ' ')"/>
+                                            </xsl:if>
                                         </xsl:variable>
                                         <xsl:value-of select="concat('maal per ', $frequentie-value, nwf:unit-string($frequentie/tijdseenheid/@value, $frequentie/tijdseenheid/@unit))"/>
                                     </xsl:otherwise>
@@ -377,10 +386,15 @@
         <xd:param name="unit-in">Input unit string</xd:param>
     </xd:doc>
     <xsl:function name="nwf:unit-string" as="xs:string?">
-        <xsl:param name="value" as="xs:double?"/>
+        <xsl:param name="value"/>
         <xsl:param name="unit-in" as="xs:string?"/>
 
         <xsl:variable name="unit" select="normalize-space(lower-case($unit-in))"/>
+        <xsl:variable name="floatValue" as="xs:float?">
+            <xsl:if test="$value castable as xs:float">
+                <xsl:value-of select="xs:float($value)"/>
+            </xsl:if>
+        </xsl:variable>
 
         <xsl:choose>
             <!-- same string for singular and plural -->
@@ -388,7 +402,7 @@
             <xsl:when test="$unit = ('internationale eenheid', '[iU]')">internationale eenheid</xsl:when>
             <xsl:when test="$unit = ('uur', 'h')">uur</xsl:when>
             <!-- return singular form -->
-            <xsl:when test="$value gt 0 and $value lt 2">
+            <xsl:when test="$floatValue gt 0 and $floatValue lt 2">
                 <xsl:choose>
                     <xsl:when test="$unit = ('dag', 'd')">dag</xsl:when>
                     <xsl:when test="$unit = ('week', 'wk')">week</xsl:when>
@@ -508,7 +522,7 @@
         <xsl:param name="relativeDate" as="xs:string?"/>
         <xsl:param name="output0time" as="xs:boolean?"/>
         <xsl:param name="outputEndtime" as="xs:boolean?"/>
-        
+
         <xsl:choose>
             <!-- double check for expected relative date(time) like "T-50D{12:34:56}" in the input -->
             <xsl:when test="matches($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?')">
@@ -527,7 +541,7 @@
                 <xsl:variable name="xsDurationString" select="replace($relativeDate, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
                 <xsl:variable name="timePart" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)})?', '$4')"/>
                 <xsl:variable name="time" select="$timePart"/>
-                
+
                 <!-- output a relative date for display -->
                 <xsl:choose>
                     <xsl:when test="string-length($amount) = 0 or xs:integer($amount) = 0">
