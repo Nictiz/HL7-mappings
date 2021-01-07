@@ -1572,19 +1572,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:for-each select="hl7:comp[xs:string(@isFlexible) = 'true' and hl7nl:frequency]">
                                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
                                             </xsl:for-each>
-                                            <!--<xsl:variable name="elemName">is_flexibel</xsl:variable>
-                                            <xsl:element name="{$elemName}">
-                                                <xsl:choose>
-                                                    <xsl:when test="exists(@isFlexible)">
-                                                        <xsl:attribute name="value" select="@isFlexible"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                        <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                                
-                                            </xsl:element>-->
-
+                                            
                                             <!-- Als niet alle weekdagen in deze dosering dezelfde toedientijden en period (frequentie van 1 maal per week of 1 maal per 2 weken) 
                                                 hebben (wat in HL7 kán), dan voldoet deze doseerinstructie 
                                                 niet aan het MP-9 datamodel, want daarvoor moet een separate - parallelle - dosering worden aangemaakt -->
@@ -1666,9 +1654,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                             <tijdseenheid value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                                         </frequentie>
                                                     </xsl:for-each>
-                                                    <!-- Eerst alle toedientijden -->
+                                                    <!-- Eerst alle toedientijden die in weekdag PIVL_TS opgepikt zijn -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/toedientijd">
                                                         <toedientijd value="{nf:formatHL72VagueAdaDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}"/>
+                                                    </xsl:for-each>
+                                                    <!-- De toedientijden die in een losse PIVL_TS staan (dus niet ín de weekdag PIVL_TS) -->
+                                                    <xsl:for-each select="hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type,.))='PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type,.))='urn:hl7-nl:v3')] [not(@alignment)] [hl7nl:phase [not(hl7nl:width)]][hl7nl:period[@value='1'][@unit='d']]">
+                                                        <toedientijd value="{nf:formatHL72VagueAdaDate(nf:appendDate2DateOrTime(hl7nl:phase/hl7nl:low/@value), nf:determine_date_precision(hl7nl:phase/hl7nl:low/@value))}"/>
                                                     </xsl:for-each>
                                                     <!-- is_flexibel -->
                                                     <xsl:variable name="elemName">is_flexibel</xsl:variable>
