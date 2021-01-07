@@ -13,11 +13,73 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../2_hl7_mp_include_90.xsl"/>
+    <!--    <xsl:import href="../9.1.0/2_hl7_mp_include_91.xsl"/>-->
+    <xsl:import href="../2_hl7_mp_include.xsl"/>
+    <!-- for now we import the 9.1 xslt, should really amend this to only the 2_hl7_mp_include.xsl -->
 
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+
+    <xd:doc>
+        <xd:desc>HL7NL PIVL_TS Dagdeel. The HL7 templates are 9156 - 9159, but we make one xslt template here, because handling is mostly the same.</xd:desc>
+        <xd:param name="in">The ada input dagdeel element. Defaults to context.</xd:param>
+        <xd:param name="operator">Operator for the PIVL_TS. Optional, defaults to 'A' (intersect)</xd:param>
+        <xd:param name="frequentieTijdseenheid">The ada frequentie/tijdseenheid element.</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9156-9159" match="dagdeel" mode="HandleDagdeel9156-9159">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="operator" as="xs:string?"/>
+        <xsl:param name="frequentieTijdseenheid" as="element()?"/>
+
+        <xsl:for-each select="$in">
+            <xsl:attribute name="xsi:type" select="'hl7nl:PIVL_TS'"/>
+            <xsl:call-template name="chooseOperatorAttrib">
+                <xsl:with-param name="operator" select="$operator"/>
+            </xsl:call-template>
+            <xsl:attribute name="isFlexible" select="'true'"/>
+            <xsl:attribute name="alignment" select="'HD'"/>
+            <hl7nl:phase>
+                <xsl:choose>
+                    <!-- Nacht -->
+                    <xsl:when test=".[@code = '2546009']">
+                        <hl7nl:low value="1970010100"/>
+                        <hl7nl:high value="1970010106"/>
+                    </xsl:when>
+                    <!-- Ochtend -->
+                    <xsl:when test=".[@code = '73775008']">
+                        <hl7nl:low value="1970010106"/>
+                        <hl7nl:high value="1970010112"/>
+                    </xsl:when>
+                    <!-- Middag -->
+                    <xsl:when test=".[@code = '255213009']">
+                        <hl7nl:low value="1970010112"/>
+                        <hl7nl:high value="1970010118"/>
+                    </xsl:when>
+                    <!-- Avond -->
+                    <xsl:when test=".[@code = '3157002']">
+                        <hl7nl:low value="1970010118"/>
+                        <hl7nl:high value="1970010200"/>
+                    </xsl:when>
+                </xsl:choose>
+            </hl7nl:phase>
+            <hl7nl:period>
+                <xsl:choose>
+                    <xsl:when test="$frequentieTijdseenheid/@value castable as xs:float">
+                        <xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
+                        <xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM($frequentieTijdseenheid/@unit)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- assume once a day -->
+                        <xsl:attribute name="value" select="'1'"/>
+                        <xsl:attribute name="unit" select="'d'"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </hl7nl:period>
+        </xsl:for-each>
+    </xsl:template>
+
+
 
     <xd:doc>
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x</xd:desc>
@@ -27,6 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()*" select="."/>
         <xsl:for-each select="$in">
             <xsl:choose>
+
                 <!-- Eenvoudig doseerschema met alleen één frequentie met een tijdseenheid. -->
                 <xsl:when test="frequentie[not(following-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])]/tijdseenheid[@value | @unit] and not(../toedieningsduur[@value | @unit])">
                     <xsl:for-each select="frequentie[tijdseenheid[@value | @unit]]">
@@ -35,6 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </effectiveTime>
                     </xsl:for-each>
                 </xsl:when>
+
                 <!-- Eenvoudig doseerschema met alleen één interval. -->
                 <xsl:when test="interval[not(following-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][not(preceding-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][@value | @unit] and not(../toedieningsduur[@value | @unit])">
                     <xsl:for-each select="interval[@value | @unit]">
@@ -43,6 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </effectiveTime>
                     </xsl:for-each>
                 </xsl:when>
+
                 <!-- Eenvoudig doseerschema met één vast tijdstip. -->
                 <xsl:when test="toedientijd[not(following-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][not(preceding-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][@value] and not(../toedieningsduur[@value | @unit])">
                     <xsl:for-each select="toedientijd[@value]">
@@ -54,47 +119,203 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </effectiveTime>
                     </xsl:for-each>
                 </xsl:when>
-                <!-- Doseerschema met toedieningsduur en (frequentie of interval of maximaal 1 toedientijd). Toedientijd en frequentie mogen ook samen, bijvoorbeeld: om 14:00 eens in de twee dagen. -->
-                <xsl:when test="../toedieningsduur[@value | @unit] and (frequentie/tijdseenheid[@value | @unit] or interval[@value|@unit] or toedientijd/@value) and count(toedientijd[@value]) le 1 and not((weekdag | dagdeel)[@value | @code |@ unit]) ">
-                    <xsl:for-each select=".">
-                        <effectiveTime>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9161_20161110085716">
-                                <xsl:with-param name="inToedientijd" select="toedientijd[@value]"/>
-                            </xsl:call-template>
-                        </effectiveTime>
-                    </xsl:for-each>
+
+                <!-- Doseerschema met alleen toedieningsduur. 
+                    Dit ligt niet voor de hand, het is waarschijnlijker dat toedieningsduur gecombineerd wordt met toedientijd en/of frequentie of interval. 
+                    In dat geval moet gekozen worden voor een complexer doseerschema met verschillende comp PIVL_TS elementen. -->
+                <!-- Dit moet worden afgehandeld in het aanroepende template wanneer toedieningsschema afwezig is, omdat de ingang van dit template het toedieningsschema is. 
+                   Wat we hier wel verwerken: wanneer alléén is_flexibel is gevuld -->
+                <xsl:when test="../toedieningsduur[@value | @unit] and not(.[*[name() ne 'is_flexibel'][.//(@value | @code | @unit)]])">
+                    <effectiveTime>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9348_20210105000000">
+                            <xsl:with-param name="in" select="../toedieningsduur"/>
+                            <xsl:with-param name="operator">A</xsl:with-param>
+                        </xsl:call-template>
+                    </effectiveTime>
                 </xsl:when>
+
                 <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
-                <xsl:when test="frequentie[not(tijdseenheid[@value | @unit])] and not(toedientijd/@value)">
+                <xsl:when test="frequentie[not(following-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][not(tijdseenheid[@value | @unit])] and not(toedientijd/@value) and not(../toedieningsduur[@value | @unit])">
                     <xsl:for-each select="frequentie[not(tijdseenheid[@value | @unit])]">
                         <effectiveTime>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9121_20191202152153"/>                                
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9121_20191202152153"/>
                         </effectiveTime>
                     </xsl:for-each>
                 </xsl:when>
-                <!-- Doseerschema één keer per week op één weekdag. Eventueel met max 1 toedientijd. -->
-<!--                <xsl:when test="weekdag[not(following-sibling::*[name() != ('is_flexibel', 'frequentie')])][not(preceding-sibling::*[name() != ('is_flexibel', 'frequentie')])][@value|@code] and (frequentie[aantal/vaste_waarde/@value='1'][tijdseenheid[@value='1'][@unit=$ada-unit-week]] or not(frequentie[.//(@value|@unit)]) )">-->
-                <xsl:when test="weekdag[@value|@code] and count(toedientijd[@value]) le 1 and (not(frequentie[.//(@value|@unit)]) or frequentie[aantal/vaste_waarde/@value='1'][tijdseenheid[@value='1'][@unit=$ada-unit-week]] ) and not(dagdeel | interval)">
-                        <xsl:for-each select="weekdag[@value|@code]">
+
+                <!-- Doseerschema één keer per week op één weekdag. We will filter away an eventual frequency of once a week -->
+                <xsl:when test="count(weekdag[not(../(interval | toedientijd | dagdeel)[.//(@value | @code)])][@value | @code]) = 1 and (not(frequentie[.//(@value | @code | @unit)]) or frequentie[aantal/vaste_waarde[@value = '1']][tijdseenheid[@value = '1'][@unit = $ada-unit-week]]) and not(../toedieningsduur[@value | @unit])">
+                    <xsl:for-each select="weekdag[@value | @code]">
                         <effectiveTime>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
-                                <xsl:with-param name="toedientijd" select="../toedientijd[@value]"/>
-                            </xsl:call-template>                                
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9350_20210105175614"/>
                         </effectiveTime>
                     </xsl:for-each>
                 </xsl:when>
-                <!-- Nacht -->
-                
+
+                <!-- Eén dagdeel, Nacht, Ochtend, Middag of Avond -->
+                <xsl:when test="count(dagdeel[@code]) = 1 and not((frequentie | weekdag | toedientijd | interval)[.//(@value | @code | @unit)]) and not(../toedieningsduur[@value | @unit])">
+                    <!-- Let's calculate the repeat time for this daypart -->
+                    <xsl:variable name="theTijdsEenheid" as="element(tijdseenheid)?">
+                        <xsl:choose>
+                            <xsl:when test="not(frequentie/tijdseenheid[@unit])"/>
+                            <xsl:when test="frequentie/tijdseenheid[@unit = $ada-unit-day] or frequentie/tijdseenheid[@value castable as xs:integer][@unit = $ada-unit-hour]">
+                                <xsl:variable name="theValue">
+                                    <xsl:choose>
+                                        <!-- okay, someone may have said once per 24 hours or twice per 48 hours or something of that sort, we don't like, but we'll deal with it -->
+                                        <xsl:when test="frequentie/aantal/vaste_waarde/@value castable as xs:float and frequentie/tijdseenheid/@value castable as xs:float and frequentie/tijdseenheid[@unit = $ada-unit-hour]">
+                                            <xsl:variable name="calcValue" select="(xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)) div 24"/>
+                                            <!-- afronden naar vier cijfers achter de komma -->
+                                            <xsl:value-of select="round($calcValue * 10000) div 10000"/>
+                                        </xsl:when>
+                                        <!-- okay we're super duper friendly here, should one say twice in four days, this will work 
+                                            even though one should have said once in two days -->
+                                        <xsl:when test="frequentie/aantal/vaste_waarde/@value castable as xs:float and frequentie/tijdseenheid/@value castable as xs:float">
+                                            <xsl:variable name="calcValue" select="xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)"/>
+                                            <!-- afronden naar vier cijfers achter de komma -->
+                                            <xsl:value-of select="round($calcValue * 10000) div 10000"/>
+                                        </xsl:when>
+                                        <!-- okay, someone may have said once per 24 hours or twice per 48 hours, we don't like, but we'll deal with it -->
+                                        <xsl:when test="frequentie/tijdseenheid[@value castable as xs:integer][@unit = $ada-unit-hour] and (frequentie/tijdseenheid/xs:integer(@value) div 24) castable as xs:integer and (frequentie/aantal/vaste_waarde/@value castable as xs:float)">
+                                            <xsl:variable name="calcValue" select="(xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)) div 24"/>
+                                            <!-- afronden naar vier cijfers achter de komma -->
+                                            <xsl:value-of select="round($calcValue * 10000) div 10000"/>
+                                        </xsl:when>
+                                        <xsl:when test="not(frequentie/aantal/vaste_waarde/@value castable as xs:float) and frequentie/tijdseenheid/@value castable as xs:float">
+                                            <xsl:value-of select="round(frequentie/tijdseenheid/@value * 10000) div 10000"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <!-- should not happen -->
+                                            <xsl:call-template name="util:logMessage">
+                                                <xsl:with-param name="level" select="$logERROR"/>
+                                                <xsl:with-param name="terminate" select="false()"/>
+                                                <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/aantal/vaste_waarde/@value = <xsl:value-of select="frequentie/aantal/vaste_waarde/@value"/>, frequentie/tijdseenheid/@value = <xsl:value-of select="frequentie/tijdseenheid/@value"/>, frequentie/tijdseenheid/@unit = <xsl:value-of select="frequentie/tijdseenheid/@unit"/>, cannot determine the value to fill in period/@value. Defaulting to 1 day.</xsl:with-param>
+                                            </xsl:call-template>
+                                            <xsl:value-of select="1"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:variable>
+                                <xsl:choose>
+                                    <!-- for daypart (dagdeel) the period must be (a multiple of) whole days -->
+                                    <xsl:when test="$theValue castable as xs:integer">
+                                        <tijdseenheid xmlns="" value="{$theValue}" unit="dag"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <!-- should not happen -->
+                                        <xsl:call-template name="util:logMessage">
+                                            <xsl:with-param name="level" select="$logERROR"/>
+                                            <xsl:with-param name="terminate" select="false()"/>
+                                            <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/aantal/vaste_waarde/@value = <xsl:value-of select="frequentie/aantal/vaste_waarde/@value"/>, frequentie/tijdseenheid/@value = <xsl:value-of select="frequentie/tijdseenheid/@value"/>, frequentie/tijdseenheid/@unit = <xsl:value-of select="frequentie/tijdseenheid/@unit"/>, the value to fill in period/@value is not an integer, found: <xsl:value-of select="$theValue"/> day. This is not possible in combination with day part (dagdeel).</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- should not happen -->
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logERROR"/>
+                                    <xsl:with-param name="terminate" select="false()"/>
+                                    <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/tijdseenheid/@unit  = <xsl:value-of select="frequentie/tijdseenheid/@unit"/> which does not represent (a multiple of) day. This is not possible, ignoring this frequency.</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <effectiveTime>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9156-9159">
+                            <xsl:with-param name="in" select="dagdeel"/>
+                            <xsl:with-param name="operator">A</xsl:with-param>
+                            <xsl:with-param name="frequentieTijdseenheid" select="$theTijdsEenheid"/>
+                        </xsl:call-template>
+                    </effectiveTime>
+                </xsl:when>
+
+                <!-- Alleen een cyclisch schema (bijvoorbeeld voor een pauzeperiode in een groter cyclisch schema met verschillende doseerinstructies) -->
+                <!-- Dit moet worden afgehandeld in het aanroepende template wanneer toedienschema afwezig is, omdat de ingang van dit template het toedieningsschema is. 
+                   Enige uitzondering is wanneer is_flexibel is gevuld -->
+                <xsl:when test="(../../../herhaalperiode_cyclisch_schema[@value | @unit] and ../../doseerduur[@value | @unit]) and not(.[*[name() ne 'is_flexibel'][.//(@value | @code | @unit)]]) and not(../toedieningsduur[@value | @unit])">
+                    <effectiveTime>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9082_20160621002112">
+                            <xsl:with-param name="in" select="../../doseerduur"/>
+                        </xsl:call-template>
+                    </effectiveTime>
+                </xsl:when>
+
+                <!-- Complexer doseerschema. -->
+                <xsl:otherwise>
+                    <effectiveTime xsi:type="SXPR_TS" operator="A">
+                        <!-- week day -->
+                        <xsl:for-each select="weekdag[@code]">
+                            <comp>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9350_20210105175614">
+                                    <xsl:with-param name="operator" select="
+                                            if (position() eq 1) then
+                                                'A'
+                                            else
+                                                'I'"/>
+                                </xsl:call-template>
+                            </comp>
+                        </xsl:for-each>
+                        <!-- part of day -->
+                        <xsl:for-each select="dagdeel[@code]">
+                            <comp>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9156-9159">
+                                    <xsl:with-param name="operator" select="
+                                            if (position() eq 1) then
+                                                'A'
+                                            else
+                                                'I'"/>
+                                </xsl:call-template>
+                            </comp>
+                        </xsl:for-each>
+                        <!-- toedientijd -->
+                        <xsl:for-each select="toedientijd[@value]">
+                            <comp>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9081_20160620234234">
+                                    <xsl:with-param name="isFlexible" select="../is_flexibel/@value"/>
+                                    <xsl:with-param name="operator" select="
+                                            if (position() eq 1) then
+                                                'A'
+                                            else
+                                                'I'"/>
+                                </xsl:call-template>
+                            </comp>
+                        </xsl:for-each>
+                        <!-- frequentie, tijdseenheid to distinguish from 'aantal keer'  -->
+                        <xsl:for-each select="frequentie[.//(@value | @code)][tijdseenheid[@value | @unit]]">
+                            <xsl:choose>
+                                <!--   in combinatie met Weekdag. Frequentie niet opnemen als deze 1 maal per week is bij een weekdag (neem iedere maandag). -->
+                                <xsl:when test="../weekdag[@value | @code] and tijdseenheid[@value = '1'][@unit = $ada-unit-week] and aantal/vaste_waarde[@value = '1']">
+                                    <!-- do not output frequentie, it is once a week, which is implicit in weekday -->
+                                </xsl:when>
+                                <!-- Dagdeel. Frequentie niet opnemen als deze 1 maal per dag is (neem 1 maal daags 's ochtends). -->
+                                <xsl:when test="../dagdeel[@value | @code] and not(../weekdag[@value | @code]) and tijdseenheid[@value = '1'][@unit = $ada-unit-day] and aantal/vaste_waarde[@value = '1']">
+                                    <!-- do not output frequentie, it is once a day, which is implicit in part of day -->
+                                </xsl:when>
+                                <!-- Toedientijd(en). Frequentie niet opnemen als deze 1 maal per dag is, bijvoorbeeld "neem om 10:00 uur" of "neem om 10:00 en om 13:00 uur". -->
+                                <xsl:when test="../toedientijd[@value] and not(../weekdag[@value | @code]) and tijdseenheid[@value = '1'][@unit = $ada-unit-day] and aantal/vaste_waarde[@value = '1']">
+                                    <!-- do not output frequentie, it is once a day, which is implicit in time of day -->
+                                </xsl:when>
+                                <!-- any other case we simply output frequentie  -->
+                                <xsl:otherwise>
+                                    <comp>
+                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9080_20160620164239"/>
+                                    </comp>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+
+                    </effectiveTime>
+
+                </xsl:otherwise>
+
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x</xd:desc>
         <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151d" match="toedieningsschema" mode="HandleCDAAdministrationSchedule92">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_TEMP-BACKUP" match="toedieningsschema" mode="HandleCDAAdministrationScheduleTEMP-BACKUP">
         <xsl:param name="in" as="element()*" select="."/>
 
         <xsl:for-each select="$in">
@@ -196,8 +417,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="../toedieningsduur[.//(@value | @code)] and count(toedientijd[@value]) lt 2">
                     <!-- 0 of 1 toedientijd -->
                     <effectiveTime>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9161_20161110085716">
-                            <xsl:with-param name="inToedientijd" select="toedientijd"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9348_20210105000000">
+                            <xsl:with-param name="operator">A</xsl:with-param>
                         </xsl:call-template>
                     </effectiveTime>
                 </xsl:when>
@@ -372,18 +593,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- just in case there is a toedieningsduur and no toedieningsschema, this really should not happen, but who are we to filter out the toedieningsduur in that case,
                 so let's at least output the given toedieningsduur-->
                 <!-- doseerschema met toedieningsduur zonder toedieningsschema -->
-                <xsl:if test="toedieningsduur[@value | @code] and not(toedieningsschema[.//(@value | @code)])">
+                <xsl:if test="toedieningsduur[@value | @code] and not(toedieningsschema[.//(@value | @code | @unit)])">
                     <effectiveTime>
-                        <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
-                        <xsl:attribute name="operator">A</xsl:attribute>
-                        <xsl:attribute name="isFlexible">true</xsl:attribute>
-                        <xsl:for-each select="toedieningsduur">
-                            <hl7nl:phase>
-                                <hl7nl:width xsi:type="hl7nl:PQ">
-                                    <xsl:call-template name="makeTimePQValueAttribs"/>
-                                </hl7nl:width>
-                            </hl7nl:phase>
-                        </xsl:for-each>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9348_20210105000000">
+                            <xsl:with-param name="in" select="toedieningsduur"/>
+                            <xsl:with-param name="operator">A</xsl:with-param>
+                        </xsl:call-template>
+                    </effectiveTime>
+                </xsl:if>
+                <!-- Een cyclisch schema zonder toedieningsschema (bijvoorbeeld voor een pauzeperiode in een groter cyclisch schema met verschillende doseerinstructies) -->
+                <!-- Dit moet hier worden afgehandeld in het aanroepende template wanneer toedieningsschema afwezig is -->
+                <xsl:if test="(../../../herhaalperiode_cyclisch_schema[@value | @unit] and ../../doseerduur[@value | @unit]) and not(toedieningsschema[.//(@value | @code | @unit)])">
+                    <effectiveTime>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9082_20160621002112">
+                            <xsl:with-param name="in" select="../../doseerduur"/>
+                        </xsl:call-template>
                     </effectiveTime>
                 </xsl:if>
                 <xsl:for-each select="keerdosis[.//(@value | @code)]">
@@ -398,7 +622,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </maxDoseQuantity>
                 </xsl:for-each>
             </xsl:for-each>
-            <!-- Altijd verplicht op deze manier aanwezig in de HL7 -->
+            <!-- Altijd verplicht op deze manier aanwezig in de HL7 substanceAdministration -->
             <consumable xsi:nil="true"/>
 
             <xsl:for-each select="zo_nodig/criterium[.//(@value | @code)]">
@@ -555,39 +779,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
-    <xd:doc>
-        <xd:desc>Mapping of medicatieafspraak concept in ADA ('eigen of ongedefinieerde MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9323</xd:desc>
-        <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9324_20201015132016" match="medicatieafspraak | medication_agreement">
-        <xsl:param name="in" select="."/>
-        <xsl:for-each select="$in">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9324"/>
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
-            </substanceAdministration>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Mapping of zib nl.zorg.Medicatieafspraak concept in ADA ('andermans MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9323</xd:desc>
-        <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9325_20201515132423">
-        <xsl:param name="in" select="."/>
-        <xsl:for-each select="$in">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9277"/>
-                <!-- inhoud medicatieafspraak -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
-            </substanceAdministration>
-        </xsl:for-each>
-    </xsl:template>
     <xd:doc>
         <xd:desc> Medicatieafspraak inhoud - vanaf MP 9.1</xd:desc>
         <xd:param name="in">Input ada element</xd:param>
@@ -644,5 +835,104 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Mapping of medicatieafspraak concept in ADA ('eigen of ongedefinieerde MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9323</xd:desc>
+        <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9324_20201015132016" match="medicatieafspraak | medication_agreement">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9324"/>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </substanceAdministration>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Mapping of zib nl.zorg.Medicatieafspraak concept in ADA ('andermans MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9323</xd:desc>
+        <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9325_20201515132423">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9277"/>
+                <!-- inhoud medicatieafspraak -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </substanceAdministration>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>HL7NL PIVL_TS Toedieningsduur. Creates contents of a PIVL_TS element. Assumed context is toedieningsduur</xd:desc>
+        <xd:param name="in">Input node (should be one ada element toedieningsduur). Defaults to context element.</xd:param>
+        <xd:param name="operator">HL7 operator, optional. Defaults to I.</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9348_20210105000000" match="toedieningsduur" mode="HandleCDAToedieningsduur9348">
+        <xsl:param name="in" as="element(toedieningsduur)?" select="."/>
+        <xsl:param name="operator" as="xs:string?">I</xsl:param>
+
+        <xsl:for-each select="$in">
+            <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
+            <xsl:attribute name="operator" select="$operator"/>
+            <xsl:choose>
+                <xsl:when test="../toedieningsschema/is_flexibel[@value]">
+                    <xsl:attribute name="isFlexible" select="../toedieningsschema/is_flexibel/@value"/>
+                </xsl:when>
+                <xsl:when test="../toedieningsschema/is_flexibel[@nullFlavor]"/>
+                <xsl:otherwise>
+                    <xsl:attribute name="isFlexible">true</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+            <hl7nl:phase>
+                <hl7nl:width xsi:type="hl7nl:PQ">
+                    <xsl:call-template name="makeTimePQValueAttribs"/>
+                </hl7nl:width>
+            </hl7nl:phase>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>HL7NL PIVL_TS Weekdag. Expected context is ada weekdag element</xd:desc>
+        <xd:param name="in">The ada weekdag element, defaults to context.</xd:param>
+        <xd:param name="operator">The operator (for example A or I) for the PIVL</xd:param>
+        <xd:param name="weekdagCode">The ada code for week day, which is in SNOMED. Defaults to $in element @code attribute</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9350_20210105175614" match="weekdag" mode="PIVLTSWeekdag9350">
+        <xsl:param name="in" as="element(weekdag)?" select="."/>
+        <xsl:param name="operator" as="xs:string?"/>
+        <xsl:param name="weekdagCode" select="$in/@code"/>
+
+        <xsl:for-each select="$in">
+
+            <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
+            <xsl:call-template name="chooseOperatorAttrib">
+                <xsl:with-param name="operator" select="$operator"/>
+            </xsl:call-template>
+            <xsl:choose>
+                <xsl:when test="../is_flexibel[@value]">
+                    <xsl:attribute name="isFlexible" select="../is_flexibel/@value"/>
+                </xsl:when>
+                <xsl:when test="../is_flexibel[@nullFlavor]"/>
+                <xsl:otherwise>
+                    <xsl:attribute name="isFlexible">true</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:attribute name="alignment">DW</xsl:attribute>
+            <hl7nl:phase>
+                <hl7nl:low>
+                    <xsl:attribute name="value" select="$weekdayMap[@code = $weekdagCode]/@hl7PIVLPhaseLow"/>
+                </hl7nl:low>
+            </hl7nl:phase>
+            <hl7nl:period value="1" unit="wk"/>
+
+        </xsl:for-each>
+
+    </xsl:template>
 
 </xsl:stylesheet>

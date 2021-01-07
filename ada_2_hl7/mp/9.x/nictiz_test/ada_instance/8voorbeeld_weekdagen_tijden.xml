@@ -1,7 +1,7 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
    <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2019-02-12T09:57:50.688+01:00" last-update-date="2019-02-12T09:57:50.688+01:00"/>
    <data>
-      <sturen_medicatievoorschrift app="mp-mp910" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="" id="4voorbeeld_toedieningsduur-freq">
+      <sturen_medicatievoorschrift app="mp-mp910" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="8voorbeeld_weekdagen_tijden" id="8voorbeeld_weekdagen_tijden">
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
                <voornamen value="Antonius" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
@@ -66,14 +66,13 @@
                            <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
                         </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
-                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257">
-                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
-                                 <vaste_waarde value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
-                              </aantal>
-                              <tijdseenheid value="1" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
-                           </frequentie>
+                           <toedientijd value="1970-01-01T09:00:00" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23264"/>
+                           <toedientijd value="T{17:00}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23264"/>
+                           <is_flexibel value="false"/>
+                           <weekdag code="307145004" displayName="maandag" codeSystem="2.16.840.1.113883.6.9" codeSystemName="SNOMED CT"/>
+                           <weekdag code="307148002" displayName="woensdag" codeSystem="2.16.840.1.113883.6.9" codeSystemName="SNOMED CT"/>
+                           <weekdag code="307150005" displayName="vrijdag" codeSystem="2.16.840.1.113883.6.9" codeSystemName="SNOMED CT"/>
                         </toedieningsschema>
-                        <toedieningsduur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282" value="3" unit="uur"/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>

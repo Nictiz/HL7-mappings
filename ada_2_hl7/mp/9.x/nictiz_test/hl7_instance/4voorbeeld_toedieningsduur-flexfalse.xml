@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?nictiz status="example"?>
 <?xml-model phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
-<!--Generated from ada instance with title: "" and id: "4voorbeeld_toedieningsduur-freq".-->
+<!--Generated from ada instance with title: "" and id: "4voorbeeld_toedieningsduur-flexfalse".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -41,7 +41,7 @@
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 dagen, 2 maal per dag 1 stuk gedurende 3 uur, oraal</text>
+         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 dagen, 1 stuk gedurende 3 uur, let op! Tijden exact aanhouden., oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20200920000000"/>
             <width value="14" unit="d"/>
@@ -98,7 +98,11 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
-               <!--XSL template template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151, there was a toedieningsschema, but did not match anything to output. Please investigate this.-->
+               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="false"><!--9348-->
+                  <hl7nl:phase>
+                     <hl7nl:width xsi:type="hl7nl:PQ" value="3" unit="h"/>
+                  </hl7nl:phase>
+               </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">
                      <translation value="1"

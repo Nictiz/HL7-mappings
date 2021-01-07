@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
-    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
     <!-- param to influence whether to output schematron references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
 
@@ -41,7 +41,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="$schematronRef">
             <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
             <!--                        <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>-->
-            <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+<!--            <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>-->
+            <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             <xsl:if test="not(contains($in/@id, 'voorbeeld'))">
                 <xsl:processing-instruction name="xml-model">href="../../../../../../../../../../../SVN/art_decor/trunk/ada-data/ada_2_test-xslt/mp/9.1.0/sturen_medicatievoorschrift/test_xslt_instance/<xsl:value-of select="$in/@id"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:if>

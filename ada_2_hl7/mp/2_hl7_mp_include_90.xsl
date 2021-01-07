@@ -15,11 +15,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="2_hl7_mp_include.xsl"/>
 
+    <xd:doc scope="stylesheet">
+        <xd:desc>
+            <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
+            <xd:p><xd:b>Author:</xd:b> nictiz</xd:p>
+            <xd:p>Mapping xslt for creating HL7 for Medicatieproces 9.0.x. To be imported or included from another xslt. Only templates for 9.0.x which are not shared by other versions.</xd:p>
+        </xd:desc>
+    </xd:doc>
+
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
-    
-    <xd:doc>
+
+     <xd:doc>
         <xd:desc> MP CDA Author Participation </xd:desc>
         <xd:param name="authorTime"/>
     </xd:doc>
@@ -55,7 +63,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </value>
         </observation>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc> Reden voor medicatieafspraak </xd:desc>
@@ -742,20 +749,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             </substanceAdministration>
         </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Reden van voorschrijven</xd:desc>
-        <xd:param name="originalText"/>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9160_20161109134526">
-        <xsl:param name="originalText" as="element()"/>
-
-        <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
-            <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven."/>
-            <xsl:call-template name="makeCEValue"/>
-        </observation>
     </xsl:template>
 
     <xd:doc>
@@ -2142,7 +2135,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </substanceAdministration>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc> andermans Medicatiegebruik - vanaf MP 9.0.7 </xd:desc>
         <xd:param name="gb"/>
@@ -2489,7 +2481,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- gebruiksinstructie/omschrijving -->
             <xsl:choose>
                 <xsl:when test="$generateInstructionText">
-                     <text mediaType="text/plain">
+                    <text mediaType="text/plain">
                         <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
                     </text>
                 </xsl:when>
