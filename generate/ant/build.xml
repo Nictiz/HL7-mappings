@@ -8,12 +8,14 @@
     # Parameters
     
     To run it, the following parameters are expected:
-    - input.dir  : The folder where the input files reside. See below for an explanation on folder structures.
-                   NOTE: This parameter MUST be passed on the command line option or defined in a derived build script.
-                         It is not possible to set it using build.properties.
-    - output.dir : The folder where the output should be placed. See below for an explanation on folder structures.
-    - common.dir : The common directory; this should contain the folder with common asserts and will be the place where
-                   dependency's are stored. See below for an explanation.
+    - input.dir          : The folder where the input files reside. See below for an explanation on folder structures.
+                           NOTE: This parameter MUST be set before build.properties is read, so it should be set it in
+                                 a derived build script, passed on the command line or the property files should be 
+                                 explicitly loaded using ANT's -propertyfile flag.
+    - output.dir          : The folder where the output should be placed. See below for an explanation on folder structures.
+    - commoncomonents.dir : The directory containing the common components.
+    - lib.dir             : The directory where all build dependency's will be placed. It's a good idea to add this to
+                            .gitignore.
 
     Additionally, the following optional parameters may be used:
     - outputLevel: the verbosity level of the script output  
@@ -29,13 +31,6 @@
             _reference/     : the fixtures for that project
     The input folder structure will be recreated in the output directory, together with the _reference folder.
 
-    # The common dir
-    
-    The common dir serves a dual purpose.
-    1. There should be a dir named "common-asserts" that holds the components that are to be used accross projects.
-    2. There will be a dir called "lib" that will hold all the dependencies for the build process. It is a good idea
-       to add this dir to .gitignore.
-       
     # build.properties
     
     It is possible to define the properties for a project in a build.properties file. This should be placed at the root
@@ -46,9 +41,9 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
     <!-- Make the directories passed as parameters absolute (except for output.dir.abs, because we first need to
          guarantee that this folder exists. This is done in check-input. -->
-    <property name="input.dir.abs"  location="${input.dir}"/>
-    <property name="common.dir.abs" location="${common.dir}"/>
-
+    <property name="input.dir.abs"            location="${input.dir}"/>
+    <property name="commoncomponents.dir.abs" location="${commoncomponents.dir}"/>
+    
     <!-- Try to read all project property's defined in build.properties -->
     <property file="${input.dir.abs}/build.properties"/>
     
@@ -60,9 +55,8 @@
     <property name="ivy.dep.file" value="${testscripttools.dir}/ant/ivy.xml" />
     
     <property name="xslt.dir" value="${testscripttools.dir}/xslt" />
-    <property name="lib.dir" value="${common.dir.abs}/lib/ant-dependencies"/>
-    <property name="commoncomponents.dir.abs" value="${common.dir.abs}/common-asserts"/>
-    <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
+    <property name="dependency.dir" value="${lib.dir}/ant-dependencies"/>
+    <property name="ivy.local.jar.file" value="${dependency.dir}/ivy.jar" />
         
     <!-- Set the verbosity level of the output. A higher value means more verbose output -->
     <property name="outputLevel" value="1" />
@@ -80,7 +74,7 @@
                 <available file="${ivy.local.jar.file}" type="file"/>
             </or>
         </condition>
-        <mkdir dir="${lib.dir}"/>
+        <mkdir dir="${dependency.dir}"/>
     </target>
     
     <target name="download-ivy" depends="check-ivy" unless="ivy.exists">
@@ -91,7 +85,7 @@
     
     <target name="install-ivy" depends="download-ivy" unless="ivy.exists, ivy.loaded">
         <path id="ivy.lib.path">
-            <fileset dir="${lib.dir}" includes="*.jar"/>
+            <fileset dir="${dependency.dir}" includes="*.jar"/>
         </path>
         <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
         <property name="ivy.loaded" value="true" />
@@ -100,9 +94,9 @@
     <!-- SAXON, ANT-CONTRIB -->
     
     <target name="retrieve" depends="check-ivy, install-ivy">
-        <ivy:retrieve pattern="${lib.dir}/[type]/[artifact]-[revision].[ext]"/>
-        <ivy:artifactproperty name="[module].[artifact]" value="${lib.dir}/[type]/[artifact]-[revision].[ext]" />
-        <ivy:artifactproperty name="[artifact].[type]" value="${lib.dir}/[type]/[artifact]-[revision].[ext]" />
+        <ivy:retrieve pattern="${dependency.dir}/[type]/[artifact]-[revision].[ext]"/>
+        <ivy:artifactproperty name="[module].[artifact]" value="${dependency.dir}/[type]/[artifact]-[revision].[ext]" />
+        <ivy:artifactproperty name="[artifact].[type]" value="${dependency.dir}/[type]/[artifact]-[revision].[ext]" />
     </target>
     
     <target name="load" depends="retrieve" unless="ant.contrib.loaded">
@@ -146,8 +140,7 @@
             <if>
                 <not>
                     <and>
-                        <isset property="common.dir"/>
-                        <available file="${common.dir.abs}" type="dir"/>
+                        <isset property="commoncomponents.dir"/>
                         <available file="${commoncomponents.dir.abs}" type="dir"/>
                     </and>
                 </not>
@@ -155,6 +148,18 @@
                     <fail message="Please set 'common.dir' to the directory that holds the folder with common components."/>
                 </then>
             </if>
+            
+            <if>
+                <not>
+                    <and>
+                        <isset property="lib.dir"/>
+                    </and>
+                </not>
+                <then>
+                    <fail message="Please set 'lib.dir' to a place where build dependency's may be stored."/>
+                </then>
+            </if>
+            
         </sequential>
     </target>
     
