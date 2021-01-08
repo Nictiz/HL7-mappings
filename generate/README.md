@@ -205,7 +205,7 @@ The following optional parameters may be used:
 - `outputLevel=<number>`: Increase or decrease verbosity of the build script (default = 1).
 - `reference.dir=/path/to/project/fixtures`: The (base) location for the fixtures for this project. Should be an absolute or relative location, compared to `build.xml`.
 - `components.dir=/path/to/project/components`: An alternative location for project specific NTS components. Should be an absolute or relative path, compared to `build.xml`.
-- `loadresources.exclude`: a relative path to a folder containing the fixtures to be excluded or to specific filenames. Multiple entries can be comma separated.
+- `loadresources.exclude`: a relative path to a folder containing the fixtures to be excluded or to specific filenames. Multiple entries can be comma separated. `*` is accepted as a wildcard.
 ```
 loadresources.exclude = _reference/resources/resources-specific
 ```
