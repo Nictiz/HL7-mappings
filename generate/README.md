@@ -185,29 +185,27 @@ There is an [Apache ANT](http://ant.apache.org/) based build file available (`an
 ### Folder structure
 
 For the project build file, a particular folder structure is expected:
-- build.xml              : A file that imports the build script from this repository
-- src/                   : The dir containing the NTS files, components and fixtures, orderded in project folders.  
-    - common-asserts/    : The common components across all projects.
-    - Project1/          : A project dir
-        - InputFolder1/  : One or more dirs containg NTS files. _Warning_: all folder names starting with an underscore are ignored, while all other folders are included!
-        - \_components/  : The components specific for that project
-        - \_reference/   : The fixtures and rules for that project. This folder is copied verbatim to the output folder. 
-- build/                 : The dir where the output will be placed (you probably want to add this to `.gitignore`)
-- lib/                   : The dir where build tools should be placed (you probably want to add this to `.gitignore`)
-    - ant-dependencies/  : The dir where the dependencies for ANT will be placed
-
-By default, the script will ask you for one of the project dirs inside the `src/` dir and place the output in a folder with the project name in the `build/` dir. See below for the parameters to override this behavior. 
+```
+- Project1/          : A project dir
+  - build.properties : A file where parameters to the build script may be set (see below).
+  - InputFolder1/    : One or more dirs containg NTS files. WARNING: all folder names starting with an underscore are ignored, while all other folders are included!
+  - \_components/    : The components specific for that project
+  - \_reference/     : The fixtures and rules for that project. This folder is copied verbatim to the output folder. 
+```
 
 ### Build script parameters
 
-The build script recognizes several parameters:
-- `-Dproject=<ProjectFolderName>`: Use this project folder instead of asking for it.
-- `-Dbuild.dir=path/to/output/base`: Location to use instead of `build/`. Should be an absolute or relative path, compared to `build.xml`. The output will be placed in a folder with the same name as the project folder within this directory. _Warning_: existing content in this project output folder will be removed. Use with caution!
-- `-Dreference.dir=/path/to/project/fixtures`: The (base) location for the fixtures for this project. Should be an absolute or relative location, compared to `build.xml`.
-- `-Dcommoncomponents.dir=/path/to/common/components`: An alternative location for common NTS components. Should be an absolute or relative path, compared to `build.xml`.
-- `-Dcomponents.dir=/path/to/project/components`: An alternative location for project specific NTS components. Should be an absolute or relative path, compared to `build.xml`.
+The following build script parameters are required:
+- `input.dir=/path/to/projectdir`: Use this folder as the input. Should be an absolute or relative location, compared to `build.xml`.
+- `output.dir=path/to/output/projectdir`: Location for the output of the build script. _Warning_: existing content in this project output folder will be removed.
+- `commoncomponents.dir=/path/to/common/components`: The location for common NTS components. Should be an absolute or relative path, compared to `build.xml`.
+- `lib.dir=/path/to/lib/dir`: The location to place dependency's needed for building the project. This dir should be added to `.gitignore`.
 
-To exclude fixtures from being added to the LoadResources script, add a `build.properties` file to the project root, with the `loadresources.exclude` key set to a relative path to a folder containing the fixtures to be excluded or to specific filenames. Multiple entries can be comma separated.
+The following optional parameters may be used:
+- `outputLevel=<number>`: Increase or decrease verbosity of the build script (default = 1).
+- `reference.dir=/path/to/project/fixtures`: The (base) location for the fixtures for this project. Should be an absolute or relative location, compared to `build.xml`.
+- `components.dir=/path/to/project/components`: An alternative location for project specific NTS components. Should be an absolute or relative path, compared to `build.xml`.
+- `loadresources.exclude`: a relative path to a folder containing the fixtures to be excluded or to specific filenames. Multiple entries can be comma separated.
 ```
 loadresources.exclude = _reference/resources/resources-specific
 ```
@@ -223,6 +221,9 @@ It can be found at `schematron/NictizTestScript.sch` relative to this README.
 Because of the verbosity of the ANT build, the logging level is set to 1 (warning) and Saxon is set to not try to recover. When more verbose output is wanted, the logging level can be changed by setting the `-DoutputLevel=` parameter on the ANT build.
 
 ## Changelog
+
+### 1.3.0
+- Remove the assumptions on folder structure and instead use explicit parameters to define input dir, output dir, common components dir and lib dir (HIT-12).
 
 ### 1.2.1
 - Fixed a bug where a comma separated list in `loadresources.exclude` caused the process to crash.
