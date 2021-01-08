@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Common ANT build script for Nictiz NTS projects.
     
+    # Use of this build script
+    
     The normal use of this build script is to import it from another ANT build script.
     
+    # Parameters
+    
     To run it, the following parameters are expected:
-    - input.dir             : The folder where the input files reside. See below for an explanation on folder
-                              structures.
-    - output.dir            : The folder where the output should be placed. See below for an explanation on folder
-                              structures.
-    - common-components.dir : The directory where the common components reside.
+    - input.dir  : The folder where the input files reside. See below for an explanation on folder structures.
+                   NOTE: This parameter MUST be passed on the command line option or defined in a derived build script.
+                         It is not possible to set it using build.properties.
+    - output.dir : The folder where the output should be placed. See below for an explanation on folder structures.
+    - common.dir : The common directory; this should contain the folder with common asserts and will be the place where
+                   dependency's are stored. See below for an explanation.
 
     Additionally, the following optional parameters may be used:
     - outputLevel: the verbosity level of the script output  
 
+    # Project dirs
+    
     Projects should be organized using the following folder structure: 
         ProjectDir/
             build.properties: properties  
@@ -22,18 +29,28 @@
             _reference/     : the fixtures for that project
     The input folder structure will be recreated in the output directory, together with the _reference folder.
 
-    === TODO
-        
-    - lib/                 :
-       - ant-dependencies/ : where the dependencies for ANT will be placed (you probably want to add this to .gitignore)
+    # The common dir
+    
+    The common dir serves a dual purpose.
+    1. There should be a dir named "common-asserts" that holds the components that are to be used accross projects.
+    2. There will be a dir called "lib" that will hold all the dependencies for the build process. It is a good idea
+       to add this dir to .gitignore.
+       
+    # build.properties
+    
+    It is possible to define the properties for a project in a build.properties file. This should be placed at the root
+    of the project dir.
 
 -->
 
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
-    <!-- Make the directories passed as parameters absolute -->
-    <property name="input.dir.abs"            location="${input.dir}"/>
-    <property name="output.dir.abs"           location="${output.dir}"/>
-    <property name="commoncomponents.dir.abs" location="${commoncomponents.dir}"/>
+    <!-- Make the directories passed as parameters absolute (except for output.dir.abs, because we first need to
+         guarantee that this folder exists. This is done in check-input. -->
+    <property name="input.dir.abs"  location="${input.dir}"/>
+    <property name="common.dir.abs" location="${common.dir}"/>
+
+    <!-- Try to read all project property's defined in build.properties -->
+    <property file="${input.dir.abs}/build.properties"/>
     
     <!-- Set testscripttools.dir if it is not supplied by the including build file. -->
     <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
@@ -43,7 +60,8 @@
     <property name="ivy.dep.file" value="${testscripttools.dir}/ant/ivy.xml" />
     
     <property name="xslt.dir" value="${testscripttools.dir}/xslt" />
-    <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
+    <property name="lib.dir" value="${common.dir.abs}/lib/ant-dependencies"/>
+    <property name="commoncomponents.dir.abs" value="${common.dir.abs}/common-asserts"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
         
     <!-- Set the verbosity level of the output. A higher value means more verbose output -->
@@ -99,14 +117,45 @@
     <!-- BUILD XML -->
     
     <target name="check-input">
-        <if>
-            <not>
-                <available file="${input.dir.abs}" type="dir"/>
-            </not>
-            <then>
-                <fail message="Project directory '${input.dir.abs}' does not exist."/>
-            </then>
-        </if>
+        <sequential>
+            <if>
+                <not>
+                    <and>
+                        <isset property="input.dir"/>
+                        <available file="${input.dir.abs}" type="dir"/>
+                    </and>
+                </not>
+                <then>
+                    <fail message="Please set 'input.dir' to a directory containing the project files."/>
+                </then>
+            </if>
+            
+            <if>
+                <not>
+                    <isset property="output.dir"/>
+                </not>
+                <then>
+                    <fail message="Please set 'output.dir' to the directory where the output should be placed."/>
+                </then>
+            </if>
+            <!-- In order to construct output.dir.abs, the directory needs to exist, so we create it here and
+                 then set output.dir.abs -->
+            <mkdir dir="${output.dir}"/>
+            <property name="output.dir.abs" location="${output.dir}"/>
+            
+            <if>
+                <not>
+                    <and>
+                        <isset property="common.dir"/>
+                        <available file="${common.dir.abs}" type="dir"/>
+                        <available file="${commoncomponents.dir.abs}" type="dir"/>
+                    </and>
+                </not>
+                <then>
+                    <fail message="Please set 'common.dir' to the directory that holds the folder with common components."/>
+                </then>
+            </if>
+        </sequential>
     </target>
     
     <macrodef name="saxon-transform" description="Custom task to run an XSLT transformation using Saxon (HE)">
@@ -305,8 +354,6 @@
     </target>
     
     <target name="build" depends="load, check-input, cleanBuildDir">
-        <property file="${input.dir.abs}/build.properties"/>
-        
         <property name="reference.dir" location="${input.dir.abs}/_reference"/>
         <property name="components.dir.abs" location="${input.dir.abs}/_components"/>
         
