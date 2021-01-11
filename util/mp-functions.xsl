@@ -19,6 +19,13 @@
         <map xmlns="" dayOfWeek="0" weekday="sunday" hl7PIVLPhaseLow="19700607" code="307146003" codeSystem="{$oidSNOMEDCT}" displayName="zondag" codeSystemName="SNOMED CT"/>
     </xsl:variable>
 
+    <xsl:variable name="daypartMap" as="element()+">
+        <map xmlns="" dayPart="night" hl7PIVLPhaseLow="1970010100" hl7PIVLPhaseHigh="1970010106" code="2546009" codeSystem="{$oidSNOMEDCT}" displayName="'s nachts" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="morning" hl7PIVLPhaseLow="1970010106" hl7PIVLPhaseHigh="1970010112" code="73775008" codeSystem="{$oidSNOMEDCT}" displayName="'s ochtends" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="afternoon" hl7PIVLPhaseLow="1970010112" hl7PIVLPhaseHigh="1970010118" code="255213009" codeSystem="{$oidSNOMEDCT}" displayName="'s middags" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="evening" hl7PIVLPhaseLow="1970010118" hl7PIVLPhaseHigh="1970010200" code="3157002" codeSystem="{$oidSNOMEDCT}" displayName="'s avonds" codeSystemName="SNOMED CT"/>
+    </xsl:variable>
+
     <xd:doc>
         <xd:desc>Calculates the start date of a dosage instruction</xd:desc>
         <xd:param name="startdatum-dosering-1"/>

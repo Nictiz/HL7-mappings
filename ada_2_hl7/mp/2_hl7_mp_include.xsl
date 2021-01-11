@@ -1200,8 +1200,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>HL7NL PIVL_TS Interval</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9079_20160620162955" match="interval" mode="HandleInterval9079_20160620162955">
-        <xsl:attribute name="xsi:type" select="'hl7nl:PIVL_TS'"/>
-        <xsl:attribute name="operator" select="'A'"/>
+        <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
+        <xsl:attribute name="operator">A</xsl:attribute>
 
         <xsl:choose>
             <xsl:when test="../is_flexibel[@value]">
@@ -1228,8 +1228,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>HL7NL PIVL_TS Frequency</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9080_20160620164239" match="frequentie" mode="HandleFrequencyTempl9080">
-        <!-- HL7NL PIVL_TS Frequency -->
-        <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
+         <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
         <xsl:attribute name="operator">A</xsl:attribute>
 
         <xsl:choose>
@@ -3007,7 +3006,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="lower-case($ADAunit) eq 'stuk'">1</xsl:when>
             <xsl:when test="lower-case($ADAunit) eq 'dosis'">1</xsl:when>
             <xsl:when test="lower-case($ADAunit) eq 'tablet'">1</xsl:when>
-            <xsl:when test="lower-case($ADAunit) eq 'druppel'">[drp]</xsl:when>
+            <xsl:when test="lower-case($ADAunit) = $ada-unit-druppel">[drp]</xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$ADAunit"/>
             </xsl:otherwise>

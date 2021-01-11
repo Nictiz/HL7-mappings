@@ -22,15 +22,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
 
     <xd:doc>
-        <xd:desc>HL7NL PIVL_TS Dagdeel. The HL7 templates are 9156 - 9159, but we make one xslt template here, because handling is mostly the same.</xd:desc>
+        <xd:desc>HL7NL PIVL_TS Dagdeel. The HL7 templates are 9351 - 9354, but we make one xslt template here, because handling is mostly the same.</xd:desc>
         <xd:param name="in">The ada input dagdeel element. Defaults to context.</xd:param>
         <xd:param name="operator">Operator for the PIVL_TS. Optional, defaults to 'A' (intersect)</xd:param>
-        <xd:param name="frequentieTijdseenheid">The ada frequentie/tijdseenheid element.</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9156-9159" match="dagdeel" mode="HandleDagdeel9156-9159">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9351-9354" match="dagdeel" mode="HandleDagdeel9351-9354">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="operator" as="xs:string?"/>
-        <xsl:param name="frequentieTijdseenheid" as="element()?"/>
 
         <xsl:for-each select="$in">
             <xsl:attribute name="xsi:type" select="'hl7nl:PIVL_TS'"/>
@@ -40,52 +38,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:attribute name="isFlexible" select="'true'"/>
             <xsl:attribute name="alignment" select="'HD'"/>
             <hl7nl:phase>
-                <xsl:choose>
-                    <!-- Nacht -->
-                    <xsl:when test=".[@code = '2546009']">
-                        <hl7nl:low value="1970010100"/>
-                        <hl7nl:high value="1970010106"/>
-                    </xsl:when>
-                    <!-- Ochtend -->
-                    <xsl:when test=".[@code = '73775008']">
-                        <hl7nl:low value="1970010106"/>
-                        <hl7nl:high value="1970010112"/>
-                    </xsl:when>
-                    <!-- Middag -->
-                    <xsl:when test=".[@code = '255213009']">
-                        <hl7nl:low value="1970010112"/>
-                        <hl7nl:high value="1970010118"/>
-                    </xsl:when>
-                    <!-- Avond -->
-                    <xsl:when test=".[@code = '3157002']">
-                        <hl7nl:low value="1970010118"/>
-                        <hl7nl:high value="1970010200"/>
-                    </xsl:when>
-                </xsl:choose>
+                <hl7nl:low>
+                    <xsl:attribute name="value" select="$daypartMap[@code = current()/@code]/@hl7PIVLPhaseLow"/>
+                </hl7nl:low>
+                <hl7nl:high>
+                    <xsl:attribute name="value" select="$daypartMap[@code = current()/@code]/@hl7PIVLPhaseHigh"/>
+                </hl7nl:high>
             </hl7nl:phase>
             <hl7nl:period>
-                <xsl:choose>
-                    <xsl:when test="$frequentieTijdseenheid/@value castable as xs:float">
-                        <xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
-                        <xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM($frequentieTijdseenheid/@unit)"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- assume once a day -->
-                        <xsl:attribute name="value" select="'1'"/>
-                        <xsl:attribute name="unit" select="'d'"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <!--  once a day -->
+                <xsl:attribute name="value">1</xsl:attribute>
+                <xsl:attribute name="unit" select="'d'"/>
             </hl7nl:period>
         </xsl:for-each>
     </xsl:template>
-
-
 
     <xd:doc>
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x</xd:desc>
         <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151" match="toedieningsschema" mode="HandleCDAAdministrationSchedule9x">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9349_202010105160422" match="toedieningsschema" mode="HandleCDAAdministrationSchedule9x">
         <xsl:param name="in" as="element()*" select="."/>
         <xsl:for-each select="$in">
             <xsl:choose>
@@ -152,78 +124,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                 </xsl:when>
 
-                <!-- Eén dagdeel, Nacht, Ochtend, Middag of Avond -->
-                <xsl:when test="count(dagdeel[@code]) = 1 and not((frequentie | weekdag | toedientijd | interval)[.//(@value | @code | @unit)]) and not(../toedieningsduur[@value | @unit])">
-                    <!-- Let's calculate the repeat time for this daypart -->
-                    <xsl:variable name="theTijdsEenheid" as="element(tijdseenheid)?">
-                        <xsl:choose>
-                            <xsl:when test="not(frequentie/tijdseenheid[@unit])"/>
-                            <xsl:when test="frequentie/tijdseenheid[@unit = $ada-unit-day] or frequentie/tijdseenheid[@value castable as xs:integer][@unit = $ada-unit-hour]">
-                                <xsl:variable name="theValue">
-                                    <xsl:choose>
-                                        <!-- okay, someone may have said once per 24 hours or twice per 48 hours or something of that sort, we don't like, but we'll deal with it -->
-                                        <xsl:when test="frequentie/aantal/vaste_waarde/@value castable as xs:float and frequentie/tijdseenheid/@value castable as xs:float and frequentie/tijdseenheid[@unit = $ada-unit-hour]">
-                                            <xsl:variable name="calcValue" select="(xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)) div 24"/>
-                                            <!-- afronden naar vier cijfers achter de komma -->
-                                            <xsl:value-of select="round($calcValue * 10000) div 10000"/>
-                                        </xsl:when>
-                                        <!-- okay we're super duper friendly here, should one say twice in four days, this will work 
-                                            even though one should have said once in two days -->
-                                        <xsl:when test="frequentie/aantal/vaste_waarde/@value castable as xs:float and frequentie/tijdseenheid/@value castable as xs:float">
-                                            <xsl:variable name="calcValue" select="xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)"/>
-                                            <!-- afronden naar vier cijfers achter de komma -->
-                                            <xsl:value-of select="round($calcValue * 10000) div 10000"/>
-                                        </xsl:when>
-                                        <!-- okay, someone may have said once per 24 hours or twice per 48 hours, we don't like, but we'll deal with it -->
-                                        <xsl:when test="frequentie/tijdseenheid[@value castable as xs:integer][@unit = $ada-unit-hour] and (frequentie/tijdseenheid/xs:integer(@value) div 24) castable as xs:integer and (frequentie/aantal/vaste_waarde/@value castable as xs:float)">
-                                            <xsl:variable name="calcValue" select="(xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)) div 24"/>
-                                            <!-- afronden naar vier cijfers achter de komma -->
-                                            <xsl:value-of select="round($calcValue * 10000) div 10000"/>
-                                        </xsl:when>
-                                        <xsl:when test="not(frequentie/aantal/vaste_waarde/@value castable as xs:float) and frequentie/tijdseenheid/@value castable as xs:float">
-                                            <xsl:value-of select="round(frequentie/tijdseenheid/@value * 10000) div 10000"/>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <!-- should not happen -->
-                                            <xsl:call-template name="util:logMessage">
-                                                <xsl:with-param name="level" select="$logERROR"/>
-                                                <xsl:with-param name="terminate" select="false()"/>
-                                                <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/aantal/vaste_waarde/@value = <xsl:value-of select="frequentie/aantal/vaste_waarde/@value"/>, frequentie/tijdseenheid/@value = <xsl:value-of select="frequentie/tijdseenheid/@value"/>, frequentie/tijdseenheid/@unit = <xsl:value-of select="frequentie/tijdseenheid/@unit"/>, cannot determine the value to fill in period/@value. Defaulting to 1 day.</xsl:with-param>
-                                            </xsl:call-template>
-                                            <xsl:value-of select="1"/>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:variable>
-                                <xsl:choose>
-                                    <!-- for daypart (dagdeel) the period must be (a multiple of) whole days -->
-                                    <xsl:when test="$theValue castable as xs:integer">
-                                        <tijdseenheid xmlns="" value="{$theValue}" unit="dag"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <!-- should not happen -->
-                                        <xsl:call-template name="util:logMessage">
-                                            <xsl:with-param name="level" select="$logERROR"/>
-                                            <xsl:with-param name="terminate" select="false()"/>
-                                            <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/aantal/vaste_waarde/@value = <xsl:value-of select="frequentie/aantal/vaste_waarde/@value"/>, frequentie/tijdseenheid/@value = <xsl:value-of select="frequentie/tijdseenheid/@value"/>, frequentie/tijdseenheid/@unit = <xsl:value-of select="frequentie/tijdseenheid/@unit"/>, the value to fill in period/@value is not an integer, found: <xsl:value-of select="$theValue"/> day. This is not possible in combination with day part (dagdeel).</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <!-- should not happen -->
-                                <xsl:call-template name="util:logMessage">
-                                    <xsl:with-param name="level" select="$logERROR"/>
-                                    <xsl:with-param name="terminate" select="false()"/>
-                                    <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/tijdseenheid/@unit  = <xsl:value-of select="frequentie/tijdseenheid/@unit"/> which does not represent (a multiple of) day. This is not possible, ignoring this frequency.</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
+                <!-- Eén dagdeel, Nacht, Ochtend, Middag of Avond. We will filter away an eventual frequency of once a day  -->
+                <xsl:when test="count(dagdeel[@code]) = 1 and not((weekdag | toedientijd | interval)[.//(@value | @code | @unit)]) and (not(frequentie[.//(@value | @code | @unit)]) or frequentie[aantal/vaste_waarde[@value = '1']][tijdseenheid[@value = '1'][@unit = $ada-unit-day]]) and not(../toedieningsduur[@value | @unit])">
                     <effectiveTime>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9156-9159">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9351-9354">
                             <xsl:with-param name="in" select="dagdeel"/>
                             <xsl:with-param name="operator">A</xsl:with-param>
-                            <xsl:with-param name="frequentieTijdseenheid" select="$theTijdsEenheid"/>
                         </xsl:call-template>
                     </effectiveTime>
                 </xsl:when>
@@ -257,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- part of day -->
                         <xsl:for-each select="dagdeel[@code]">
                             <comp>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9156-9159">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9351-9354">
                                     <xsl:with-param name="operator" select="
                                             if (position() eq 1) then
                                                 'A'
@@ -280,7 +186,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </comp>
                         </xsl:for-each>
                         <!-- frequentie, tijdseenheid to distinguish from 'aantal keer'  -->
-                        <xsl:for-each select="frequentie[.//(@value | @code)][tijdseenheid[@value | @unit]]">
+                        <xsl:for-each select="frequentie[.//(@value | @unit)][tijdseenheid[@value | @unit]]">
+                            <!-- check for unexpected combinations -->
+                            <xsl:choose>
+                                <xsl:when test="../interval[@value | @unit]">
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="msg">Ada input has combination of interval and frequentie. This is unexpected. Please investigate. Still outputting to the best of our abilities.</xsl:with-param>
+                                        <xsl:with-param name="level" select="$logERROR"/>
+                                        <xsl:with-param name="terminate" select="false()"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                            </xsl:choose>
                             <xsl:choose>
                                 <!--   in combinatie met Weekdag. Frequentie niet opnemen als deze 1 maal per week is bij een weekdag (neem iedere maandag). -->
                                 <xsl:when test="../weekdag[@value | @code] and tijdseenheid[@value = '1'][@unit = $ada-unit-week] and aantal/vaste_waarde[@value = '1']">
@@ -302,7 +218,55 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:for-each>
+                        <!-- interval -->
+                        <xsl:for-each select="interval[@value | @unit]">
+                            <!-- check for unexpected combinations -->
+                            <xsl:choose>
+                                <xsl:when test="../frequentie[.//(@value | @unit)]">
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="msg">Ada input has combination of interval and frequentie. This is unexpected. Please investigate. Still outputting to the best of our abilities.</xsl:with-param>
+                                        <xsl:with-param name="level" select="$logERROR"/>
+                                        <xsl:with-param name="terminate" select="false()"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="../toedientijd[@value]">
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="msg">Ada input has combination of interval and toedientijd. This is unexpected. Please investigate. Still outputting to the best of our abilities.</xsl:with-param>
+                                        <xsl:with-param name="level" select="$logERROR"/>
+                                        <xsl:with-param name="terminate" select="false()"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="../weekdag[@value | @code]">
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="msg">Ada input has combination of interval and weekdag. This is unexpected. Please investigate. Still outputting to the best of our abilities.</xsl:with-param>
+                                        <xsl:with-param name="level" select="$logERROR"/>
+                                        <xsl:with-param name="terminate" select="false()"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="../dagdeel[@value | @code]">
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="msg">Ada input has combination of interval and dagdeel. This is unexpected. Please investigate. Still outputting to the best of our abilities.</xsl:with-param>
+                                        <xsl:with-param name="level" select="$logERROR"/>
+                                        <xsl:with-param name="terminate" select="false()"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                            </xsl:choose>
+                            <!-- output the HL7 PIVL_TS for interval -->
+                            <comp>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9079_20160620162955"/>
+                            </comp>
+                        </xsl:for-each>
+                        <!-- cyclisch schema -->
 
+                        <!-- toedieningsduur -->
+                        <xsl:for-each select="../toedieningsduur[@value | @unit]">
+                            <comp>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9348_20210105000000">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="operator">I</xsl:with-param>
+                                </xsl:call-template>
+                            </comp>
+                        </xsl:for-each>
                     </effectiveTime>
 
                 </xsl:otherwise>
@@ -588,7 +552,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:for-each select=".">
                 <xsl:for-each select="toedieningsschema[.//(@value | @code)]">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9349_202010105160422"/>
                 </xsl:for-each>
                 <!-- just in case there is a toedieningsduur and no toedieningsschema, this really should not happen, but who are we to filter out the toedieningsduur in that case,
                 so let's at least output the given toedieningsduur-->
@@ -885,6 +849,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="isFlexible" select="../toedieningsschema/is_flexibel/@value"/>
                 </xsl:when>
                 <xsl:when test="../toedieningsschema/is_flexibel[@nullFlavor]"/>
+                <xsl:when test="../toedieningsschema/interval[@value | @unit]">
+                    <xsl:attribute name="isFlexible">false</xsl:attribute>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:attribute name="isFlexible">true</xsl:attribute>
                 </xsl:otherwise>
@@ -919,6 +886,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="isFlexible" select="../is_flexibel/@value"/>
                 </xsl:when>
                 <xsl:when test="../is_flexibel[@nullFlavor]"/>
+                <!-- default true -->
                 <xsl:otherwise>
                     <xsl:attribute name="isFlexible">true</xsl:attribute>
                 </xsl:otherwise>
@@ -934,5 +902,78 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
 
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Temp function for super duper friendly frequency calculations, probably should not do this, but simply output the frequency when the input is shaky. Saving it before deleting</xd:desc>
+    </xd:doc>
+    <xsl:function name="nf:frequency-calculate">
+        <!-- Let's calculate the repeat time for this daypart -->
+        <!--    <xsl:variable name="theTijdsEenheid" as="element(tijdseenheid)?">
+            <xsl:choose>
+                <xsl:when test="not(frequentie/tijdseenheid[@unit])"/>
+                <xsl:when test="frequentie/tijdseenheid[@unit = $ada-unit-day] or frequentie/tijdseenheid[@value castable as xs:integer][@unit = $ada-unit-hour]">
+                    <xsl:variable name="theValue">
+                        <xsl:choose>
+                            <!-\- okay, someone may have said once per 24 hours or twice per 48 hours or something of that sort, we don't like, but we'll deal with it -\->
+                            <xsl:when test="frequentie/aantal/vaste_waarde/@value castable as xs:float and frequentie/tijdseenheid/@value castable as xs:float and frequentie/tijdseenheid[@unit = $ada-unit-hour]">
+                                <xsl:variable name="calcValue" select="(xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)) div 24"/>
+                                <!-\- afronden naar vier cijfers achter de komma -\->
+                                <xsl:value-of select="round($calcValue * 10000) div 10000"/>
+                            </xsl:when>
+                            <!-\- okay we're super duper friendly here, should one say twice in four days, this will work 
+                                            even though one should have said once in two days -\->
+                            <xsl:when test="frequentie/aantal/vaste_waarde/@value castable as xs:float and frequentie/tijdseenheid/@value castable as xs:float">
+                                <xsl:variable name="calcValue" select="xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)"/>
+                                <!-\- afronden naar vier cijfers achter de komma -\->
+                                <xsl:value-of select="round($calcValue * 10000) div 10000"/>
+                            </xsl:when>
+                            <!-\- okay, someone may have said once per 24 hours or twice per 48 hours, we don't like, but we'll deal with it -\->
+                            <xsl:when test="frequentie/tijdseenheid[@value castable as xs:integer][@unit = $ada-unit-hour] and (frequentie/tijdseenheid/xs:integer(@value) div 24) castable as xs:integer and (frequentie/aantal/vaste_waarde/@value castable as xs:float)">
+                                <xsl:variable name="calcValue" select="(xs:float(frequentie/tijdseenheid/@value) div xs:float(frequentie/aantal/vaste_waarde/@value)) div 24"/>
+                                <!-\- afronden naar vier cijfers achter de komma -\->
+                                <xsl:value-of select="round($calcValue * 10000) div 10000"/>
+                            </xsl:when>
+                            <xsl:when test="not(frequentie/aantal/vaste_waarde/@value castable as xs:float) and frequentie/tijdseenheid/@value castable as xs:float">
+                                <xsl:value-of select="round(frequentie/tijdseenheid/@value * 10000) div 10000"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-\- should not happen -\->
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logERROR"/>
+                                    <xsl:with-param name="terminate" select="false()"/>
+                                    <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/aantal/vaste_waarde/@value = <xsl:value-of select="frequentie/aantal/vaste_waarde/@value"/>, frequentie/tijdseenheid/@value = <xsl:value-of select="frequentie/tijdseenheid/@value"/>, frequentie/tijdseenheid/@unit = <xsl:value-of select="frequentie/tijdseenheid/@unit"/>, cannot determine the value to fill in period/@value. Defaulting to 1 day.</xsl:with-param>
+                                </xsl:call-template>
+                                <xsl:value-of select="1"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:choose>
+                        <!-\- for daypart (dagdeel) the period must be (a multiple of) whole days -\->
+                        <xsl:when test="$theValue castable as xs:integer">
+                            <tijdseenheid xmlns="" value="{$theValue}" unit="dag"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-\- should not happen -\->
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logERROR"/>
+                                <xsl:with-param name="terminate" select="false()"/>
+                                <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/aantal/vaste_waarde/@value = <xsl:value-of select="frequentie/aantal/vaste_waarde/@value"/>, frequentie/tijdseenheid/@value = <xsl:value-of select="frequentie/tijdseenheid/@value"/>, frequentie/tijdseenheid/@unit = <xsl:value-of select="frequentie/tijdseenheid/@unit"/>, the value to fill in period/@value is not an integer, found: <xsl:value-of select="$theValue"/> day. This is not possible in combination with day part (dagdeel).</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-\- should not happen -\->
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="terminate" select="false()"/>
+                        <xsl:with-param name="msg">Daypart (dagdeel). Encountered frequentie/tijdseenheid/@unit  = <xsl:value-of select="frequentie/tijdseenheid/@unit"/> which does not represent (a multiple of) day. This is not possible, ignoring this frequency.</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+    -->
+        <xsl:value-of select="''"/>
+    </xsl:function>
 
 </xsl:stylesheet>
