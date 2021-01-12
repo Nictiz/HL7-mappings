@@ -54,18 +54,6 @@
             </fileset>
         </copy>
 
-        <!-- sturen_medicatievoorschrift POC Praktijktest -->
-        <!-- not yet applicable for ada 2 fhir, there is no fhir definition for medicatievoorschrift -->
-        <!--<mkdir dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mv}/ada_instance_POCPraktijktest">
-                <include name="*.xml"/>
-            </fileset>
-        </copy>-->
-
         <!-- let's convert too, now that we are here -->
         <antcall target="convert_ada_2_fhir_907"/>
 
