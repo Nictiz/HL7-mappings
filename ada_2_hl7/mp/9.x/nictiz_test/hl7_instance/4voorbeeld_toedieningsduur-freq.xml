@@ -98,7 +98,19 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
-               <!--XSL template template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_20201007102151, there was a toedieningsschema, but did not match anything to output. Please investigate this.-->
+               <effectiveTime xsi:type="SXPR_TS" operator="A">
+                  <comp xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                     <hl7nl:frequency>
+                        <hl7nl:numerator xsi:type="hl7nl:INT" value="2"/>
+                        <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                     </hl7nl:frequency>
+                  </comp>
+                  <comp xsi:type="hl7nl:PIVL_TS" operator="I" isFlexible="true">
+                     <hl7nl:phase>
+                        <hl7nl:width xsi:type="hl7nl:PQ" value="3" unit="h"/>
+                     </hl7nl:phase>
+                  </comp>
+               </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">
                      <translation value="1"
