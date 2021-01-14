@@ -35,6 +35,7 @@
             <echo>${echo.label} ${xsl_ps}</echo>
             <xslt force="true" style="${xsl_ps}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesPS"/>
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${xsl.saxon}"/>

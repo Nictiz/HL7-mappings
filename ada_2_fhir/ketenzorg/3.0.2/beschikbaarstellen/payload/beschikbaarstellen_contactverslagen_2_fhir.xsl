@@ -29,6 +29,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
+    <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
+         See: https://www.hl7.org/fhir/stu3/search.html#conformance -->
+    <xsl:param name="bundleSelfLink" as="xs:string?"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
@@ -91,6 +94,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
                     <type value="searchset"/>
                     <total value="{count($bouwstenen/f:resource/f:Composition)}"/>
+                    <xsl:choose>
+                        <xsl:when test="$bundleSelfLink[not(. = '')]">
+                            <link>
+                                <relation value="self"/>
+                                <url value="{$bundleSelfLink}"/>
+                            </link>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="false()"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:copy-of select="$entries"/>
                 </Bundle>
             </xsl:otherwise>

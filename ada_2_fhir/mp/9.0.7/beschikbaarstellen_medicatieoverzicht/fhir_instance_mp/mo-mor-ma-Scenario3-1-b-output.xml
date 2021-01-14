@@ -8,7 +8,7 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:c413053f-186e-11eb-1774-020000000000"/>
+      <fullUrl value="urn:uuid:aa0e4d81-542e-11eb-1007-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -33,14 +33,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:c4130d54-186e-11eb-1774-020000000000"/>
+               <reference value="urn:uuid:aa0e3ff9-542e-11eb-1007-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="urn:uuid:c4130547-186e-11eb-1774-020000000000"/>
+                     <reference value="urn:uuid:aa0e4d85-542e-11eb-1007-020000000000"/>
                      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
@@ -48,7 +48,7 @@
             </source>
             <entry>
                <item>
-                  <reference value="urn:uuid:c4130d6f-186e-11eb-1774-020000000000"/>
+                  <reference value="urn:uuid:aa0e4d57-542e-11eb-1007-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_start_duur2_MA-MSZ', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
@@ -59,7 +59,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c4130d6f-186e-11eb-1774-020000000000"/>
+      <fullUrl value="urn:uuid:aa0e4d57-542e-11eb-1007-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -146,7 +146,7 @@
                <display value="PANTOPRAZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c4130d54-186e-11eb-1774-020000000000"/>
+               <reference value="urn:uuid:aa0e3ff9-542e-11eb-1007-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, -60}T11:30:00+02:00"/>
@@ -154,7 +154,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c4130d7b-186e-11eb-1774-020000000000"/>
+                        <reference value="urn:uuid:aa0e4d5d-542e-11eb-1007-020000000000"/>
                         <display value="Peter van Pulver || Huisarts, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -192,7 +192,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c4130d54-186e-11eb-1774-020000000000"/>
+      <fullUrl value="urn:uuid:aa0e3ff9-542e-11eb-1007-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -292,7 +292,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -304,6 +304,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -323,7 +332,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c4130547-186e-11eb-1774-020000000000"/>
+      <fullUrl value="urn:uuid:aa0e4d85-542e-11eb-1007-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -346,7 +355,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -362,6 +371,15 @@
                <value value="099-12345678"/>
             </telecom>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -381,7 +399,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c4130d7b-186e-11eb-1774-020000000000"/>
+      <fullUrl value="urn:uuid:aa0e4d5d-542e-11eb-1007-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

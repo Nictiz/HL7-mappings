@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:bdd281fd-186e-11eb-1472-020000000000"/>
+      <fullUrl value="urn:uuid:a5ac9404-542e-11eb-2121-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -112,7 +112,7 @@
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:bdd281e2-186e-11eb-1472-020000000000"/>
+               <reference value="urn:uuid:a5ac9240-542e-11eb-2121-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -10}T18:00:00+02:00"/>
@@ -120,7 +120,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:bdd28211-186e-11eb-1472-020000000000"/>
+                        <reference value="urn:uuid:a5ac940d-542e-11eb-2121-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -173,7 +173,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bdd281e2-186e-11eb-1472-020000000000"/>
+      <fullUrl value="urn:uuid:a5ac9240-542e-11eb-2121-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -273,7 +273,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -285,6 +285,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -304,7 +313,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bdd28211-186e-11eb-1472-020000000000"/>
+      <fullUrl value="urn:uuid:a5ac940d-542e-11eb-2121-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

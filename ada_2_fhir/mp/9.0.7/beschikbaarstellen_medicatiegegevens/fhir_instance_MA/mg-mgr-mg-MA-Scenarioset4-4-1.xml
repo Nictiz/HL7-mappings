@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:bde61a04-186e-11eb-5362-020000000000"/>
+      <fullUrl value="urn:uuid:a5bca999-542e-11eb-2683-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -85,15 +85,15 @@
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:bde619e8-186e-11eb-5362-020000000000"/>
+               <reference value="urn:uuid:a5bca523-542e-11eb-2683-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <supportingInformation>
-               <reference value="urn:uuid:bde606e0-186e-11eb-5362-020000000000"/>
+               <reference value="urn:uuid:a5bca9c2-542e-11eb-2683-020000000000"/>
                <display value="Lengte: 155 cm. Datum/tijd gemeten: T-1Y{07:05:00}"/>
             </supportingInformation>
             <supportingInformation>
-               <reference value="urn:uuid:bde606e7-186e-11eb-5362-020000000000"/>
+               <reference value="urn:uuid:a5bca9c5-542e-11eb-2683-020000000000"/>
                <display value="Gewicht: 54 kg. Datum/tijd gemeten: T-1Y{07:05:00}"/>
             </supportingInformation>
             <authoredOn value="${DATE, T, Y, -1}T07:05:00+02:00"/>
@@ -101,7 +101,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:bde61a0e-186e-11eb-5362-020000000000"/>
+                        <reference value="urn:uuid:a5bca99e-542e-11eb-2683-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -139,7 +139,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bde619e8-186e-11eb-5362-020000000000"/>
+      <fullUrl value="urn:uuid:a5bca523-542e-11eb-2683-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -239,7 +239,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -251,6 +251,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -270,7 +279,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bde61a0e-186e-11eb-5362-020000000000"/>
+      <fullUrl value="urn:uuid:a5bca99e-542e-11eb-2683-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -364,7 +373,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bde606e0-186e-11eb-5362-020000000000"/>
+      <fullUrl value="urn:uuid:a5bca9c2-542e-11eb-2683-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -411,7 +420,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:bde619e8-186e-11eb-5362-020000000000"/>
+               <reference value="urn:uuid:a5bca523-542e-11eb-2683-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <effectiveDateTime value="${DATE, T, Y, -1}T07:05:00+02:00"/>
@@ -434,7 +443,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bde606e7-186e-11eb-5362-020000000000"/>
+      <fullUrl value="urn:uuid:a5bca9c5-542e-11eb-2683-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -481,7 +490,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:bde619e8-186e-11eb-5362-020000000000"/>
+               <reference value="urn:uuid:a5bca523-542e-11eb-2683-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <effectiveDateTime value="${DATE, T, Y, -1}T07:05:00+02:00"/>

@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:c1ea5752-186e-11eb-1942-020000000000"/>
+      <fullUrl value="urn:uuid:a85d1126-542e-11eb-1281-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -79,7 +79,7 @@
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c1ea5734-186e-11eb-1942-020000000000"/>
+               <reference value="urn:uuid:a85d1849-542e-11eb-1281-020000000000"/>
                <display value="N. XXX-Incident-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, -50}T11:05:00+02:00"/>
@@ -87,7 +87,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c1ea5758-186e-11eb-1942-020000000000"/>
+                        <reference value="urn:uuid:a85d1129-542e-11eb-1281-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Ziekenhuis Stitswerd"/>
                      </valueReference>
                   </extension>
@@ -115,7 +115,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c1ea5734-186e-11eb-1942-020000000000"/>
+      <fullUrl value="urn:uuid:a85d1849-542e-11eb-1281-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -215,7 +215,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -227,6 +227,15 @@
             </identifier>
             <name value="Ziekenhuis Stitswerd"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -278,7 +287,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c1ea5758-186e-11eb-1942-020000000000"/>
+      <fullUrl value="urn:uuid:a85d1129-542e-11eb-1281-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
