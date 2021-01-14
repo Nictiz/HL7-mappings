@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Task xmlns="http://hl7.org/fhir">
-   <id value="6a3b6811-a34b-11ea-1546-020000000000"/>
+   <id value="aaec7614-567b-11eb-8350-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireProvisioningTask"/>
    </meta>
-   <status value="completed"/>
+   <status value="requested"/>
    <intent value="order"/>
    <code>
       <coding>
@@ -13,8 +14,8 @@
       </coding>
    </code>
    <description value="De vragenlijst 'Patient Health Questionnaire (PHQ-9)' is beschikbaar om in te vullen"/>
-   <authoredOn value="${DATE, T, D, -2}T10:00:00+02:00"/>
-   <lastModified value="${DATE, T, D, -2}T11:40:00+02:00"/>
+   <authoredOn value="${DATE, T, D, -16}T16:00:00+02:00"/>
+   <lastModified value="${DATE, T, D, -16}T16:00:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -28,16 +29,16 @@
       </agent>
    </requester>
    <owner>
-      <reference value="Patient/VERKEULEN"/>
-      <display value="Jan Verkeulen"/>
+      <reference value="Patient/JEANDEBIE"/>
+      <display value="Jean de Bie"/>
    </owner>
    <input>
       <type>
          <text value="Questionnaire"/>
       </type>
       <valueReference>
-         <reference value="http://examplerepository.nl/phq-9--20200327"/>
-         <display value="Patient Health Questionnaire (PHQ-9)"/>
+         <reference value="http://examplerepository.nl/vragenlijst4-doesnotexist"/>
+         <display value=""/>
       </valueReference>
    </input>
    <input>
@@ -45,17 +46,8 @@
          <text value="Subject"/>
       </type>
       <valueReference>
-         <reference value="Patient/VERKEULEN"/>
-         <display value="Jan Verkeulen"/>
+         <reference value="Patient/JEANDEBIE"/>
+         <display value="Jean de Bie"/>
       </valueReference>
    </input>
-   <output>
-      <type>
-         <text value="QuestionnaireResponse"/>
-      </type>
-      <valueReference>
-         <reference value="QuestionnaireResponse/6a3b67c7-a34b-11ea-1546-020000000000"/>
-         <display value="Antwoord op vragenlijst: 'Patient Health Questionnaire (PHQ-9)'."/>
-      </valueReference>
-   </output>
 </Task>

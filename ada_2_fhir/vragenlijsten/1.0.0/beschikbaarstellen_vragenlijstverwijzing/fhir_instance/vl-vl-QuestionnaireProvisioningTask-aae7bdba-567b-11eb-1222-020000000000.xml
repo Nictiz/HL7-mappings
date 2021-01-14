@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Task xmlns="http://hl7.org/fhir">
-   <id value="aae5b895-a342-11ea-3652-020000000000"/>
+   <id value="aae7bdba-567b-11eb-1222-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireProvisioningTask"/>
    </meta>
-   <status value="completed"/>
+   <status value="requested"/>
    <intent value="order"/>
    <code>
       <coding>
@@ -12,9 +13,9 @@
          <display value="Questionnaire form definition Document"/>
       </coding>
    </code>
-   <description value="De vragenlijst 'Intake nieuwe patiënt' is beschikbaar om in te vullen"/>
-   <authoredOn value="${DATE, T, D, -4}T13:00:00+02:00"/>
-   <lastModified value="${DATE, T, D, -4}T19:30:00+02:00"/>
+   <description value="De vragenlijst 'Patient Health Questionnaire (PHQ-9)' is beschikbaar om in te vullen"/>
+   <authoredOn value="${DATE, T, D, -8}T13:00:00+02:00"/>
+   <lastModified value="${DATE, T, D, -8}T13:00:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -28,16 +29,16 @@
       </agent>
    </requester>
    <owner>
-      <reference value="Patient/VERKEULEN"/>
-      <display value="Jan Verkeulen"/>
+      <reference value="Patient/MARIEDEBIEVERKEULEN"/>
+      <display value="Marie de Bie Verkeulen"/>
    </owner>
    <input>
       <type>
          <text value="Questionnaire"/>
       </type>
       <valueReference>
-         <reference value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
-         <display value="Intake nieuwe patiënt"/>
+         <reference value="http://examplerepository.nl/phq-9--20200327"/>
+         <display value="Patient Health Questionnaire (PHQ-9)"/>
       </valueReference>
    </input>
    <input>
@@ -45,17 +46,8 @@
          <text value="Subject"/>
       </type>
       <valueReference>
-         <reference value="Patient/VERKEULEN"/>
-         <display value="Jan Verkeulen"/>
+         <reference value="Patient/MARIEDEBIEVERKEULEN"/>
+         <display value="Marie de Bie Verkeulen"/>
       </valueReference>
    </input>
-   <output>
-      <type>
-         <text value="QuestionnaireResponse"/>
-      </type>
-      <valueReference>
-         <reference value="QuestionnaireResponse/aae5c087-a342-11ea-3652-020000000000"/>
-         <display value="Antwoord op vragenlijst: 'Intake nieuwe patiënt'."/>
-      </valueReference>
-   </output>
 </Task>

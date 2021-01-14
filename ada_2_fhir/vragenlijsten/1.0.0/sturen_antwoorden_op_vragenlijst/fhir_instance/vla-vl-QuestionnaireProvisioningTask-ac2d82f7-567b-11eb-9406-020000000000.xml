@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Task xmlns="http://hl7.org/fhir">
-   <id value="e64b4928-a33f-11ea-1524-020000000000"/>
+   <id value="ac2d82f7-567b-11eb-9406-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireProvisioningTask"/>
    </meta>
@@ -12,9 +13,9 @@
          <display value="Questionnaire form definition Document"/>
       </coding>
    </code>
-   <description value="De vragenlijst 'Intake nieuwe patiënt' is beschikbaar om in te vullen"/>
-   <authoredOn value="${DATE, T, D, -4}T13:00:00+02:00"/>
-   <lastModified value="${DATE, T, D, -4}T19:30:00+02:00"/>
+   <description value="De vragenlijst 'Patient Health Questionnaire (PHQ-9)' is beschikbaar om in te vullen"/>
+   <authoredOn value="${DATE, T, D, -2}T10:00:00+02:00"/>
+   <lastModified value="${DATE, T, D, -2}T11:40:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -29,15 +30,15 @@
    </requester>
    <owner>
       <reference value="Patient/VERKEULEN"/>
-      <display value="Jan J. Jan Verkeulen"/>
+      <display value="Jan Verkeulen"/>
    </owner>
    <input>
       <type>
          <text value="Questionnaire"/>
       </type>
       <valueReference>
-         <reference value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
-         <display value="Intake nieuwe patiënt"/>
+         <reference value="http://examplerepository.nl/phq-9--20200327"/>
+         <display value="Patient Health Questionnaire (PHQ-9)"/>
       </valueReference>
    </input>
    <input>
@@ -46,7 +47,7 @@
       </type>
       <valueReference>
          <reference value="Patient/VERKEULEN"/>
-         <display value="Jan J. Jan Verkeulen"/>
+         <display value="Jan Verkeulen"/>
       </valueReference>
    </input>
    <output>
@@ -54,8 +55,8 @@
          <text value="QuestionnaireResponse"/>
       </type>
       <valueReference>
-         <reference value="QuestionnaireResponse/e64b511a-a33f-11ea-1524-020000000000"/>
-         <display value="Antwoord op vragenlijst: 'Intake nieuwe patiënt'."/>
+         <reference value="QuestionnaireResponse/ac2d82ad-567b-11eb-9406-020000000000"/>
+         <display value="Antwoord op vragenlijst: 'Patient Health Questionnaire (PHQ-9)'."/>
       </valueReference>
    </output>
 </Task>

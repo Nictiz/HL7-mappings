@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Task xmlns="http://hl7.org/fhir">
-   <id value="8be68a55-a342-11ea-6318-020000000000"/>
+   <id value="aadbc007-567b-11eb-1444-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireProvisioningTask"/>
    </meta>
-   <status value="completed"/>
+   <status value="requested"/>
    <intent value="order"/>
    <code>
       <coding>
@@ -12,9 +13,9 @@
          <display value="Questionnaire form definition Document"/>
       </coding>
    </code>
-   <description value="De vragenlijst 'Intake nieuwe patiënt' is beschikbaar om in te vullen"/>
-   <authoredOn value="${DATE, T, D, -4}T13:00:00+02:00"/>
-   <lastModified value="${DATE, T, D, -4}T19:30:00+02:00"/>
+   <description value="De vragenlijst 'Patient Health Questionnaire (PHQ-9)' is beschikbaar om in te vullen"/>
+   <authoredOn value="${DATE, T, D, -2}T10:00:00+02:00"/>
+   <lastModified value="${DATE, T, D, -2}T10:00:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -36,8 +37,8 @@
          <text value="Questionnaire"/>
       </type>
       <valueReference>
-         <reference value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
-         <display value="Intake nieuwe patiënt"/>
+         <reference value="http://examplerepository.nl/phq-9--20200327"/>
+         <display value="Patient Health Questionnaire (PHQ-9)"/>
       </valueReference>
    </input>
    <input>
@@ -49,13 +50,4 @@
          <display value="Jan Verkeulen"/>
       </valueReference>
    </input>
-   <output>
-      <type>
-         <text value="QuestionnaireResponse"/>
-      </type>
-      <valueReference>
-         <reference value="QuestionnaireResponse/8be69247-a342-11ea-6318-020000000000"/>
-         <display value="Antwoord op vragenlijst: 'Intake nieuwe patiënt'."/>
-      </valueReference>
-   </output>
 </Task>
