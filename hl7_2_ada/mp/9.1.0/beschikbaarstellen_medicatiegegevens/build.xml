@@ -58,7 +58,6 @@
             <xslt force="true" style="${xsl_medicatiegegevens}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesMedicatiegegevens"/>
-                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
