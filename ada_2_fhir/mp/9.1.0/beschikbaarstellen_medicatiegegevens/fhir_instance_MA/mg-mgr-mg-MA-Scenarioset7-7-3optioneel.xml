@@ -1,10 +1,15 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="39d69cfe-5992-11eb-1304-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:4e775c38-f34c-11ea-2215-020000000000"/>
+      <fullUrl value="urn:uuid:39d69ded-5992-11eb-1304-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -60,7 +65,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value=" "/>
+               <valueString value="Vanaf T+0D{00:00:00}, tot en met T+30D{23:59:59}, 1 maal per dag, cutaan"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -80,7 +85,7 @@
                <display value="Eigen artikel: ureumzalf"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e775c1c-f34c-11ea-2215-020000000000"/>
+               <reference value="urn:uuid:39d69d05-5992-11eb-1304-020000000000"/>
                <display value="R. XXX-TEST-E"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T12:08:00+02:00"/>
@@ -88,7 +93,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e775c42-f34c-11ea-2215-020000000000"/>
+                        <reference value="urn:uuid:39d69df3-5992-11eb-1304-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -119,7 +124,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e775c1c-f34c-11ea-2215-020000000000"/>
+      <fullUrl value="urn:uuid:39d69d05-5992-11eb-1304-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -219,7 +224,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -231,6 +236,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -250,7 +264,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e775c42-f34c-11ea-2215-020000000000"/>
+      <fullUrl value="urn:uuid:39d69df3-5992-11eb-1304-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
