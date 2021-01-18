@@ -70,17 +70,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
     </xd:doc>
     <xsl:template name="Medicatiegegevens_90">
-        <xsl:param name="mbh"/>
-        <xsl:variable name="nodeForUuid" as="element()?">
-            <nodeForUuid>
-                <xsl:copy-of select="$bouwstenen-907"/>
-                <xsl:copy-of select="$commonEntries"/>
-            </nodeForUuid>
-        </xsl:variable>
+        <xsl:param name="mbh"/>   
         
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-            <id value="{uuid:get-uuid($nodeForUuid)}"/>
+            <id value="{nf:get-uuid(*[1])}"/>
             <type value="searchset"/>
             <total value="{count($bouwstenen-907)}"/>
             <xsl:choose>
