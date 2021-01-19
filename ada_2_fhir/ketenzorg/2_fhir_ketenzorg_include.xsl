@@ -295,7 +295,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://snomed.info/sct"/>
                             <code value="64572001"/>
-                            <display value="Condition"/>
+                            <display value="aandoening"/>
                         </coding>
                     </type>
                     <xsl:for-each select="problem">

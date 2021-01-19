@@ -1,0 +1,184 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:wss="http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.0.xsd">
+	<SOAP-ENV:Body>
+		<MCCI_IN200101 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<id extension="3287905421" root="2.16.840.1.113883.2.4.6.6"/>
+			<creationTime value="20201126121447"/>
+			<versionCode code="NICTIZEd2005-Okt"/>
+			<interactionId extension="MCCI_IN200101" root="2.16.840.1.113883.1.6"/>
+			<profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+			<transmissionQuantity value="1"/>
+			<acknowledgement typeCode="AA">
+				<targetTransmission>
+					<id extension="A0793373-B3C8-4BD4-8B33-23A2177E9163" root="2.16.528.1.1007.3.3.10010234.1"/>
+				</targetTransmission>
+			</acknowledgement>
+			<receiver>
+				<device>
+					<id extension="10010234" root="2.16.840.1.113883.2.4.6.6"/>
+				</device>
+			</receiver>
+			<sender>
+				<device>
+					<id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+				</device>
+			</sender>
+			<REPC_IN990131NL xmlns="urn:hl7-org:v3" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+				<id root="2.16.840.1.113883.2.4.3.39.6101.67045.10008036.1" extension="324427"/>
+				<creationTime value="20201126121446.7989+0100"/>
+				<versionCode code="NICTIZEd2005-Okt"/>
+				<interactionId root="2.16.840.1.113883.1.6" extension="REPC_IN990131NL"/>
+				<profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+				<processingCode code="P"/>
+				<processingModeCode code="T"/>
+				<acceptAckCode code="NE"/>
+				<acknowledgement typeCode="AA">
+					<targetMessage>
+						<id root="2.16.840.1.113883.2.4.6.6" extension="3287905257"/>
+					</targetMessage>
+				</acknowledgement>
+				<receiver>
+					<device>
+						<id root="2.16.840.1.113883.2.4.6.6" extension="1"/>
+					</device>
+				</receiver>
+				<sender>
+					<device>
+						<id root="2.16.840.1.113883.2.4.6.6" extension="10008036"/>
+						<softwareName>Mira</softwareName>
+						<agencyFor>
+							<representedOrganization>
+								<id root="2.16.528.1.1007.3.3" extension="00067045"/>
+								<name>Drs J.W. den Biggelaar</name>
+								<telecom value="x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.10008036"/>
+							</representedOrganization>
+						</agencyFor>
+					</device>
+				</sender>
+				<ControlActProcess moodCode="EVN">
+					<effectiveTime value="20201126121446.8833+0100"/>
+					<authorOrPerformer typeCode="AUT">
+						<participant>
+							<AssignedDevice>
+								<id root="2.16.528.1.1007.3.2" extension="000217899"/>
+								<id root="2.16.840.1.113883.2.4.6.6" extension="10008036"/>
+								<assignedPrincipalChoiceList>
+									<assignedDevice>
+										<softwareName>Mira 6.17.582</softwareName>
+									</assignedDevice>
+								</assignedPrincipalChoiceList>
+								<Organization>
+									<id root="2.16.528.1.1007.3.3" extension="00067045"/>
+									<code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+									<name>Drs J.W. den Biggelaar</name>
+									<telecom value="x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.10008036"/>
+								</Organization>
+							</AssignedDevice>
+						</participant>
+					</authorOrPerformer>
+					<subject>
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.20"/>
+							<code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies and/or adverse reactions"/>
+							<statusCode code="completed"/>
+							<recordTarget typeCode="RCT" contextControlCode="OP">
+								<patientRole>
+									<id root="2.16.840.1.113883.2.4.6.3" extension="123456782"/>
+									<addr use="HP">
+										<streetName>Teststraat</streetName>
+										<houseNumber>3</houseNumber>
+										<postalCode>1234 AB</postalCode>
+										<city>Veghel</city>
+									</addr>
+									<telecom value="tel:0123-123456"/>
+									<patient>
+										<name>
+											<prefix qualifier="VV">van </prefix>
+											<family qualifier="BR">Anoniempje</family>
+										</name>
+										<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
+										<birthTime value="20000101"/>
+									</patient>
+								</patientRole>
+							</recordTarget>
+							<participant typeCode="CST">
+								<participantRole classCode="ASSIGNED">
+									<id root="2.16.528.1.1007.3.1" extension="000019949"/>
+									<id root="2.16.840.1.113883.2.4.6.1" extension="01026724"/>
+									<addr use="WP">
+										<streetName>Vondelstraat</streetName>
+										<houseNumber>3</houseNumber>
+										<postalCode>5462 CS</postalCode>
+										<city>Veghel</city>
+										<country>Nederland</country>
+									</addr>
+									<telecom value="tel:0413-364537"/>
+									<playingEntity classCode="PSN" determinerCode="INSTANCE">
+										<code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+										<name>Tijmstra</name>
+									</playingEntity>
+									<scopingEntity classCode="ORG" determinerCode="INSTANCE">
+										<id root="2.16.528.1.1007.3.3" extension="00067045"/>
+										<desc>Drs J.W. den Biggelaar</desc>
+									</scopingEntity>
+								</participantRole>
+							</participant>
+							<component typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.215"/>
+									<id root="2.16.840.1.113883.2.4.3.39.6101.67045.10008036.24" extension="5933"/>
+									<code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+									<statusCode code="active"/>
+									<entryRelationship typeCode="SUBJ">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.216"/>
+											<id root="2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17" extension="0000593306010885055"/>
+											<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20110816"/>
+											</effectiveTime>
+											<value xsi:type="CD" code="419511003" codeSystem="2.16.840.1.113883.6.96" displayName="Propensity to adverse reactions to drug"/>
+											<participant typeCode="CSM">
+												<participantRole classCode="MANU">
+													<playingEntity classCode="MMAT" determinerCode="INSTANCE">
+														<code code="1088505" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="VENTOLIN  100 AER CFKVR 100MCG/DO SPBS 200DO+INHAL"/>
+													</playingEntity>
+												</participantRole>
+											</participant>
+										</observation>
+									</entryRelationship>
+									<entryRelationship typeCode="SUBJ">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.216"/>
+											<id root="2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17" extension="0000593307014888565"/>
+											<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20110816"/>
+											</effectiveTime>
+											<value xsi:type="CD" code="419511003" codeSystem="2.16.840.1.113883.6.96" displayName="Propensity to adverse reactions to drug"/>
+											<participant typeCode="CSM">
+												<participantRole classCode="MANU">
+													<playingEntity classCode="MMAT" determinerCode="INSTANCE">
+														<code code="1488856" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="ATROVENT AEROSOL 20MCG/DO SPBS 200DO + INHALATOR"/>
+													</playingEntity>
+												</participantRole>
+											</participant>
+										</observation>
+									</entryRelationship>
+								</act>
+							</component>
+						</organizer>
+					</subject>
+					<queryAck>
+						<queryId root="2.16.528.1.1007.3.3.10010234.2" extension="73AA56B5-6A0B-4283-9E4A-7A683F8C9BA8"/>
+						<queryResponseCode code="OK"/>
+						<resultTotalQuantity value="1"/>
+						<resultCurrentQuantity value="1"/>
+						<resultRemainingQuantity value="0"/>
+					</queryAck>
+				</ControlActProcess>
+			</REPC_IN990131NL>
+		</MCCI_IN200101>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
