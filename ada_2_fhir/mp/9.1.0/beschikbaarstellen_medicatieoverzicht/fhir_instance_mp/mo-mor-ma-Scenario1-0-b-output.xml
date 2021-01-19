@@ -4,10 +4,15 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
+   <id value="32ef8e61-5a48-11eb-1769-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:626cfe65-096a-11eb-5099-020000000000"/>
+      <fullUrl value="urn:uuid:32ef8832-5a48-11eb-1769-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -32,7 +37,7 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:626cfe4c-096a-11eb-5099-020000000000"/>
+               <reference value="urn:uuid:32ef8e67-5a48-11eb-1769-020000000000"/>
                <display value="F. van de XXX_Stijl"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
@@ -52,7 +57,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:626cfe4c-096a-11eb-5099-020000000000"/>
+      <fullUrl value="urn:uuid:32ef8e67-5a48-11eb-1769-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -61,12 +66,16 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999910644 (BSN), F. van de XXX_Stijl, Vrouw, 10 augustus 1954</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), F. van de XXX_Stijl, Vrouw, 10 augustus 1954</div>
                </div>
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999910644"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -118,7 +127,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -134,6 +143,15 @@
                <value value="099-12345678"/>
             </telecom>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">

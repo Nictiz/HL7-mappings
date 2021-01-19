@@ -104,9 +104,10 @@
             <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir.resources}</echo>
             <xslt force="true" style="${xsl.ada2fhir.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputFiles"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
-            </xslt>
+              </xslt>
 
             <echo/>
             <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir}</echo>
@@ -114,6 +115,7 @@
                 <fileset refid="inputFiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
             </xslt>
         </sequential>
     </target>

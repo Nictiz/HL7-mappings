@@ -1,10 +1,15 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="3408837f-5a48-11eb-1986-020000000000"/>
    <type value="searchset"/>
    <total value="3"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:63c954ff-096a-11eb-3744-020000000000"/>
+      <fullUrl value="urn:uuid:340892ad-5a48-11eb-1986-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -94,7 +99,7 @@
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:63c954e6-096a-11eb-3744-020000000000"/>
+               <reference value="urn:uuid:34088384-5a48-11eb-1986-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <authoredOn value="2020-06-08T09:15:00+02:00"/>
@@ -102,7 +107,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:63c95511-096a-11eb-3744-020000000000"/>
+                        <reference value="urn:uuid:340892b5-5a48-11eb-1986-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -140,7 +145,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c9505b-096a-11eb-3744-020000000000"/>
+      <fullUrl value="urn:uuid:340892db-5a48-11eb-1986-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -233,7 +238,7 @@
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:63c954e6-096a-11eb-3744-020000000000"/>
+               <reference value="urn:uuid:34088384-5a48-11eb-1986-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <authoredOn value="2016-06-23T16:54:23+02:00"/>
@@ -241,7 +246,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:63c95061-096a-11eb-3744-020000000000"/>
+                        <reference value="urn:uuid:340892de-5a48-11eb-1986-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -255,7 +260,7 @@
             <dispenseRequest>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
                   <valueReference>
-                     <reference value="urn:uuid:63c950a8-096a-11eb-3744-020000000000"/>
+                     <reference value="urn:uuid:340892fb-5a48-11eb-1986-020000000000"/>
                      <display value="Let op! Werk aan de weg. Omleiding staat aangegeven.Prikstraat12Amsterdam"/>
                   </valueReference>
                </extension>
@@ -277,7 +282,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c950ba-096a-11eb-3744-020000000000"/>
+      <fullUrl value="urn:uuid:34088def-5a48-11eb-1986-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -371,7 +376,7 @@
                <display value="PRIMPERAN ZETPIL 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:63c954e6-096a-11eb-3744-020000000000"/>
+               <reference value="urn:uuid:34088384-5a48-11eb-1986-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <performer>
@@ -428,7 +433,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c954e6-096a-11eb-3744-020000000000"/>
+      <fullUrl value="urn:uuid:34088384-5a48-11eb-1986-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -528,7 +533,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -540,6 +545,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -623,7 +637,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c95511-096a-11eb-3744-020000000000"/>
+      <fullUrl value="urn:uuid:340892b5-5a48-11eb-1986-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -675,7 +689,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c95061-096a-11eb-3744-020000000000"/>
+      <fullUrl value="urn:uuid:340892de-5a48-11eb-1986-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -821,7 +835,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c950a8-096a-11eb-3744-020000000000"/>
+      <fullUrl value="urn:uuid:340892fb-5a48-11eb-1986-020000000000"/>
       <resource>
          <Location>
             <meta>

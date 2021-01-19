@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_fhir_cio_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -28,24 +28,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
-    <xd:doc>
-        <xd:desc>pass an appropriate macAddress to ensure uniqueness of the UUID. 02-00-00-00-00-00 may not be used in a production situation</xd:desc>
-    </xd:doc>
-    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-    <xd:doc>
-        <xd:desc>parameter to determine whether to refer by resource/id should be false when there is no FHIR server available to retrieve the resources </xd:desc>
-    </xd:doc>
-    <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
+         See: https://www.hl7.org/fhir/stu3/search.html#conformance -->
+    <xsl:param name="bundleSelfLink" as="xs:string?"/>
     <xd:doc>
         <xd:desc>dateT may be given for relative dates, only applicable for test instances</xd:desc>
     </xd:doc>
     <xsl:param name="dateT" as="xs:date?" select="current-date()"/>
     <!--<xsl:param name="dateT" as="xs:date?"/>-->
     <xd:doc>
+        <xd:desc>pass an appropriate macAddress to ensure uniqueness of the UUID. 02-00-00-00-00-00 may not be used in a production situation</xd:desc>
+    </xd:doc>
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    <xd:doc>
         <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
     </xd:doc>
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
-
+    <xd:doc>
+        <xd:desc>parameter to determine whether to refer by resource/id should be false when there is no FHIR server available to retrieve the resources </xd:desc>
+    </xd:doc>
+    <xsl:param name="referById" as="xs:boolean" select="false()"/>
+  
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry"/>
     </xsl:variable>
@@ -62,8 +65,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="AllIntConversion_10" match="beschikbaarstellen_allergie_intolerantie">
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+            <id value="{nf:get-uuid(*[1])}"/>
             <type value="searchset"/>
             <total value="{count($bouwstenen-all-int-gegevens)}"/>
+            <xsl:choose>
+                <xsl:when test="$bundleSelfLink[not(. = '')]">
+                    <link>
+                        <relation value="self"/>
+                        <url value="{$bundleSelfLink}"/>
+                    </link>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
+                        <xsl:with-param name="terminate" select="false()"/>
+                    </xsl:call-template>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:apply-templates select="$bouwstenen-all-int-gegevens" mode="ResultOutput"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, relatedpersons -->
             <xsl:apply-templates select="$commonEntries" mode="ResultOutput"/>

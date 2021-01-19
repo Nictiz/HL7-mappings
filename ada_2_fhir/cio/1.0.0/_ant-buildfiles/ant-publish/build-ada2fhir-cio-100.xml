@@ -141,6 +141,7 @@
             <echo>${echo.label} ${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir_resources.xsl</echo>
             <xslt force="true" style="${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir_resources.xsl" destdir="${build.dir}/${xmlvoorbeelden.dir}/fhir_instance" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfiles"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
@@ -149,6 +150,7 @@
             <echo>${echo.label} ${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir.xsl</echo>
             <xslt force="true" style="${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir.xsl" destdir="${build.dir}/${xmlvoorbeelden.dir}/fhir_instance" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfiles"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>           
@@ -176,6 +178,7 @@
             <echo>${echo.label} ${xsl.cio.resources}</echo>
             <xslt force="true" style="${xsl.cio.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfiles"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
@@ -184,6 +187,7 @@
             <echo>${echo.label} ${xsl.cio}</echo>
             <xslt force="true" style="${xsl.cio}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfiles"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>

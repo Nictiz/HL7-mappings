@@ -55,6 +55,7 @@
             <echo/>
             <echo>${echo.label} ${xsl_cio_resources1}</echo>
             <xslt force="true" style="${xsl_cio_resources1}" destdir="${xsl.output1}" extension=".xml" useImplicitFileset="false">
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesCio"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -63,6 +64,7 @@
             <echo/>
             <echo>${echo.label} ${xsl_cio1}</echo>
             <xslt force="true" style="${xsl_cio1}" destdir="${xsl.output1}" extension=".xml" useImplicitFileset="false">
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesCio"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -92,6 +94,7 @@
             <echo/>
             <echo>${echo.label} ${xsl_cio_resources2}</echo>
             <xslt force="true" style="${xsl_cio_resources2}" destdir="${xsl.output2}" extension=".xml" useImplicitFileset="false">
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesCio"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -100,6 +103,7 @@
             <echo/>
             <echo>${echo.label} ${xsl_cio2}</echo>
             <xslt force="true" style="${xsl_cio2}" destdir="${xsl.output2}" extension=".xml" useImplicitFileset="false">
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesCio"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>

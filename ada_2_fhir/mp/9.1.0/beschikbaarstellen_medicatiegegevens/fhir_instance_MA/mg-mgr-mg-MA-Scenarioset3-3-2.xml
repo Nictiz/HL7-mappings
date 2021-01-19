@@ -1,10 +1,15 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="2f405418-5a48-11eb-1332-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:5dd58f18-096a-11eb-1533-020000000000"/>
+      <fullUrl value="urn:uuid:2f405471-5a48-11eb-1332-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -99,7 +104,7 @@
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5dd58efc-096a-11eb-1533-020000000000"/>
+               <reference value="urn:uuid:2f40541f-5a48-11eb-1332-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -2}T08:02:00+02:00"/>
@@ -107,7 +112,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:5dd58f27-096a-11eb-1533-020000000000"/>
+                        <reference value="urn:uuid:2f405478-5a48-11eb-1332-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -151,7 +156,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5dd59240-096a-11eb-1533-020000000000"/>
+      <fullUrl value="urn:uuid:2f40549d-5a48-11eb-1332-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -254,7 +259,7 @@
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5dd58efc-096a-11eb-1533-020000000000"/>
+               <reference value="urn:uuid:2f40541f-5a48-11eb-1332-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -2}T08:02:00+02:00"/>
@@ -262,7 +267,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:5dd58f27-096a-11eb-1533-020000000000"/>
+                        <reference value="urn:uuid:2f405478-5a48-11eb-1332-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -299,7 +304,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5dd58efc-096a-11eb-1533-020000000000"/>
+      <fullUrl value="urn:uuid:2f40541f-5a48-11eb-1332-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -399,7 +404,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -411,6 +416,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -430,7 +444,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5dd58f27-096a-11eb-1533-020000000000"/>
+      <fullUrl value="urn:uuid:2f405478-5a48-11eb-1332-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

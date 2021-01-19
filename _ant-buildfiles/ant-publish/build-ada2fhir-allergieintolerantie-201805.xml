@@ -54,6 +54,7 @@
             <echo/>
             <echo>${echo.label} ${xsl_allergieintolerantie_resources}</echo>
             <xslt force="true" style="${xsl_allergieintolerantie_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesAllergieintolerantie"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -62,6 +63,7 @@
             <echo/>
             <echo>${echo.label} ${xsl_allergieintolerantie}</echo>
             <xslt force="true" style="${xsl_allergieintolerantie}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesAllergieintolerantie"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
