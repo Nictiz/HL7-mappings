@@ -864,6 +864,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                             
                             <!-- Date and if relevant the time the event to which the information relates took place . -->
+                            <!-- MM-1733 -->
                             <!--<xsl:for-each select="hl7:effectiveTime/hl7:low">
                                 <xsl:call-template name="handleTS">
                                     <xsl:with-param name="in" select="."/>
@@ -895,7 +896,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                     
                     <!-- The date and time at which the allergy or undesired reaction was determined.  -->
-                    <xsl:for-each select="ancestor::hl7:act[1]/hl7:effectiveTime/hl7:low">
+                    <!-- MM-1733 -->
+                    <xsl:for-each select="(ancestor::hl7:act[1]/hl7:effectiveTime/hl7:low, hl7:effectiveTime/hl7:low)[1]">
                         <xsl:call-template name="handleTS">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="elemName">start_date_time</xsl:with-param>
