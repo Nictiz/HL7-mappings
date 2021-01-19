@@ -92,6 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
                 <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+                    <id value="{nf:get-uuid(*[1])}"/>
                     <type value="searchset"/>
                     <total value="{count($bouwstenen/f:resource/f:Composition)}"/>
                     <xsl:choose>

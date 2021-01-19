@@ -1,10 +1,15 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="39da9df4-5992-11eb-1877-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:4e7a9e9a-f34c-11ea-1051-020000000000"/>
+      <fullUrl value="urn:uuid:39daa4ca-5992-11eb-1877-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -67,7 +72,7 @@
                <valueBoolean value="true"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value=" "/>
+               <valueString value="Vanaf T-14D{00:00:00}, tot en met T+6D{23:59:59}, 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -87,7 +92,7 @@
                <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e7a9e7c-f34c-11ea-1051-020000000000"/>
+               <reference value="urn:uuid:39da9dfb-5992-11eb-1877-020000000000"/>
                <display value="H. van XXX_Zutphen"/>
             </subject>
             <authoredOn value="${DATE, T, D, -14}T09:00:00+02:00"/>
@@ -95,7 +100,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e7a9ea4-f34c-11ea-1051-020000000000"/>
+                        <reference value="urn:uuid:39daa4d0-5992-11eb-1877-020000000000"/>
                         <display value="Marcha van Partners || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Itis"/>
                      </valueReference>
                   </extension>
@@ -132,7 +137,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e7a9e7c-f34c-11ea-1051-020000000000"/>
+      <fullUrl value="urn:uuid:39da9dfb-5992-11eb-1877-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -235,7 +240,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Langelaan 1, 1234ZZ Onze Stad (Werk)</td>
+                           <td>Langelaan 1, 1234ZZ Onze Stad (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -247,6 +252,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Itis"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Langelaan 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -266,7 +280,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e7a9ea4-f34c-11ea-1051-020000000000"/>
+      <fullUrl value="urn:uuid:39daa4d0-5992-11eb-1877-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

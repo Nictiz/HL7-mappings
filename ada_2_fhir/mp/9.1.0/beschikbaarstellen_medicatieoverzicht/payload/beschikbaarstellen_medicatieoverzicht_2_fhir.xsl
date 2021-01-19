@@ -73,6 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
             </meta>
+            <id value="{nf:get-uuid(*[1])}"/>
             <type value="searchset"/>
             <!-- one extra: the List entry for medicatieoverzicht  -->
             <!-- FIXME Expectation: one List object only. If there are more: we should worry -->

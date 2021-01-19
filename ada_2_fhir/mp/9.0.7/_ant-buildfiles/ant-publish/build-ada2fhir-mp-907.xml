@@ -73,6 +73,33 @@
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
         
+        <!-- beschikbaarstellen_verstrekkingenvertaling examples -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vv*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false" >
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>   
+        
         <!-- the MP specific stuff for version 9.0.7 -->
         <echo>the MP specific stuff for version 9.0.7</echo>
         <echo/>
@@ -82,32 +109,6 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-
-        <!-- AWE, 10 sept 2020: this is not used in Touchstone, no idea why we are generating this, let's stop -->
-        <!--<echo>convert_ada_2_fhir_907. MedMij stuff beschikbaarstellen_medicatiegegevens in separate bouwstenen, 
-            only the bundles, so don't use the convert_ada_2_fhir_sub</echo>
-        <property name="xsl.ada2fhir.bws" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
-
-        <property name="xsl.input.bws" value="${build.dir}/${usecase.mg}/ada_instance_bouwstenen"/>
-        <property name="xsl.output.bws" value="${build.dir}/${usecase.mg}/fhir_instance_bouwstenen"/>
-
-        <echo>Deleting previous results, if any</echo>
-        <mkdir dir="${xsl.output.bws}"/>
-        <delete>
-            <fileset dir="${xsl.output.bws}" includes="*.xml"/>
-        </delete>
-
-        <sequential>
-            <fileset id="inputFiles" dir="${xsl.input.bws}" includes="*.xml"/>
-
-            <echo/>
-            <echo>${echo.label} with input files: ${xsl.input.bws}, converted with: ${xsl.ada2fhir.bws}</echo>
-            <xslt force="true" style="${xsl.ada2fhir.bws}" destdir="${xsl.output.bws}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputFiles"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>-->
         
         <echo>convert_ada_2_fhir_907. MedMij stuff beschikbaarstellen_medicatiegegevens for POC Praktijktest</echo>
         <antcall target="convert_ada_2_fhir_sub">
