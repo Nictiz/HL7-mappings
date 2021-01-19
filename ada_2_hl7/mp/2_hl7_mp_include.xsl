@@ -893,20 +893,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>HL7NL PIVL_TS Cyclisch schema</xd:desc>
         <xd:param name="in">ada element doseerduur, defaults to context</xd:param>
+        <xd:param name="isFlexible">whether or not the schema is flexible, defaults to true</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9082_20160621002112" match="doseerduur" mode="HandleCyclischSchema9082">
         <xsl:param name="in" as="element(doseerduur)?" select="."/>
-        <xsl:attribute name="xsi:type" select="'hl7nl:PIVL_TS'"/>
-        <xsl:attribute name="operator" select="'A'"/>
-        <xsl:attribute name="isFlexible" select="'true'"/>
-        <xsl:for-each select=".">
+        <xsl:param name="isFlexible">true</xsl:param>
+        
+        <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
+        <xsl:attribute name="operator">A</xsl:attribute>
+        <xsl:attribute name="isFlexible" select="$isFlexible"/>
+        <xsl:for-each select="$in">
             <hl7nl:phase>
                 <hl7nl:width xsi:type="hl7nl:PQ">
                     <xsl:call-template name="makeTimePQValueAttribs"/>
                 </hl7nl:width>
             </hl7nl:phase>
         </xsl:for-each>
-        <xsl:for-each select="../herhaalperiode_cyclisch_schema">
+        <xsl:for-each select="../../herhaalperiode_cyclisch_schema">
             <hl7nl:period>
                 <xsl:attribute name="value" select="@value"/>
                 <xsl:attribute name="unit" select="@unit"/>
