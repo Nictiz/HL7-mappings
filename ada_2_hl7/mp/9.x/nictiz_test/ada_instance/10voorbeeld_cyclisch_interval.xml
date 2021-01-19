@@ -1,7 +1,7 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
    <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2019-02-12T09:57:50.688+01:00" last-update-date="2019-02-12T09:57:50.688+01:00"/>
    <data>
-      <sturen_medicatievoorschrift app="mp-mp910" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="Cyclisch pilschema" id="voorbeeld_cyclisch_pil">
+      <sturen_medicatievoorschrift app="mp-mp910" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="Cyclisch met interval" id="10voorbeeld_cyclisch_interval">
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
                <voornamen value="Antonius" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
@@ -15,10 +15,10 @@
             <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="M" codeSystem="2.16.840.1.113883.5.1"/>
          </patient>
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH-cyclisch-pil" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+            <identificatie value="MBH-10voorbeeld_cyclisch_toedientijden" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
                <gebruiksperiode_start value="2019-09-25T00:00:00" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"/>
-               <identificatie value="MBH-cyclisch-pil-MA-1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
+               <identificatie value="MBH-10voorbeeld_cyclisch_toedientijden-MA-1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
                <afspraak_datum_tijd value="2019-09-25T11:15:00" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
                <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
                   <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
@@ -55,10 +55,10 @@
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
                   <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241" value="gegenereerd"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" code="9" displayName="oraal"/>
-                  <herhaalperiode_cyclisch_schema value="28" unit="d" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23244"/>
+                  <herhaalperiode_cyclisch_schema value="15" unit="d" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23244"/>
                   <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245">
                      <volgnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23246"/>
-                     <doseerduur value="21" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23247"/>
+                     <doseerduur value="5" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23247"/>
                      <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248">
                         <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249">
                            <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250">
@@ -67,12 +67,7 @@
                            <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
                         </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
-                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257">
-                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
-                                 <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
-                              </aantal>
-                              <tijdseenheid value="1" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
-                           </frequentie>
+                           <interval value="4" unit="uur" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23263"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
