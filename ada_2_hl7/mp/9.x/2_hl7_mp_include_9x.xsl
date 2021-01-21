@@ -162,7 +162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
 
             <!-- Complexer doseerschema met een combinatie van bovenstaande eenvoudige schema's. -->
-            <xsl:if test="count(.[*[name() ne 'is_flexibel'][.//(@value | @code | @unit)]] | ../toedieningsduur[@value | @unit] | ../../../herhaalperiode_cyclisch_schema[@value | @unit]) gt 1">
+            <xsl:if test="count(./*[name() ne 'is_flexibel'][.//(@value | @code | @unit)] | ../toedieningsduur[@value | @unit] | ../../../herhaalperiode_cyclisch_schema[@value | @unit]) gt 1">
                 <effectiveTime xsi:type="SXPR_TS" operator="A">
                     <!-- week day -->
                     <xsl:for-each select="weekdag[@code]">

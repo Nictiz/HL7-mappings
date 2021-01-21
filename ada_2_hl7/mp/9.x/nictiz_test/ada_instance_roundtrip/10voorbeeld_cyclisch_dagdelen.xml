@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-01-21T10:39:53.198+01:00"
-         last-update-date="2021-01-21T10:39:53.198+01:00"/>
+         creation-date="2021-01-21T12:06:02.295+01:00"
+         last-update-date="2021-01-21T12:06:02.295+01:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp910"
                                    shortName="sturen_medicatievoorschrift"
@@ -16,7 +16,7 @@
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="generated from hl72ada conversion"
-                                   id="9d17f0ef-5bcc-11eb-1505-020000000000">
+                                   id="a61d8c7f-5bd8-11eb-1762-020000000000">
          <patient>
             <naamgegevens>
                <voornamen value="Antonius"/>
@@ -32,12 +32,12 @@
             <geslacht code="M" codeSystem="2.16.840.1.113883.5.1"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH-1132" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH-81" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <gebruiksperiode_start value="2020-03-24"/>
-               <identificatie value="MBH-1132-MA-1132-1"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <afspraak_datum_tijd value="2018-07-16T11:15:00"/>
+               <gebruiksperiode_start value="2020-09-20T00:00:00"/>
+               <identificatie value="MBH-81-MA-1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraak_datum_tijd value="2020-09-20T12:45:00"/>
+               <gebruiksperiode value="30" unit="dag"/>
                <voorschrijver>
                   <zorgverlener>
                      <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
@@ -83,17 +83,19 @@
                   </product>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 24 mar 2020, 1 maal per 24 uur 5 stuks 's ochtends, oraal"/>
+                  <omschrijving value="Vanaf 20 sep 2020, gedurende 30 dagen, cyclus van 3 dagen: steeds gedurende 2 dagen 1 stuk 's middags en 's nachts, oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
+                  <herhaalperiode_cyclisch_schema value="3" unit="d"/>
                   <doseerinstructie>
                      <volgnummer value="1"/>
+                     <doseerduur value="2" unit="dag"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="5"/>
+                              <vaste_waarde value="1"/>
                            </aantal>
                            <eenheid code="245"
                                     displayName="stuk"
@@ -101,15 +103,13 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <vaste_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="24" unit="uur"/>
-                           </frequentie>
-                           <is_flexibel nullFlavor="UNK"/>
-                           <dagdeel code="73775008"
-                                    displayName="'s ochtends"
+                           <is_flexibel value="true"/>
+                           <dagdeel code="255213009"
+                                    displayName="'s middags"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"/>
+                           <dagdeel code="2546009"
+                                    displayName="'s nachts"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     codeSystemName="SNOMED CT"/>
                         </toedieningsschema>
