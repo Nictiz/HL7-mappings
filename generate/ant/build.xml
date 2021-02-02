@@ -325,7 +325,6 @@
     
     <macrodef name="generate-loadresources" description="Generate a LoadResources TestScript to load all fixtures to the WildFHIR server.">
         <sequential>
-            <!-- TODO: loadscript is now generated withtout the name of the project in it. Is this detrimental? -->
             <property name="loadresources.file" value="${output.dir.abs}/_LoadResources/load-resources-purgecreateupdate-xml.xml"/>
             <dirname property="loadresources.file.dir" file="${loadresources.file}"/>
             <property name="reference.dir.loadresourcesrelative" location="${output.dir.abs}/_reference" relative="true" basedir="${loadresources.file.dir}"/>
@@ -336,7 +335,6 @@
                 <parameters>
                     <param name="referenceBase" expression="${reference.dir.loadresourcesrelative.normalized}"/>
                     <param name="referenceDir" expression="${input.dir.abs}/_reference/"/>
-                    <param name="project" expression="${project}"/>
                     <param name="loadResourcesExclude" expression="${loadresources.exclude}"/>
                 </parameters>
             </saxon-transform>

@@ -11,9 +11,6 @@
     <!-- The absolute path to the folder of fixtures -->
     <xsl:param name="referenceDir"/>
         
-    <!-- The identifier for this project -->
-    <xsl:param name="project"/>
-    
     <!-- Comma-separated list of paths to exclude -->
     <xsl:param name="loadResourcesExclude"/>
 
@@ -68,9 +65,9 @@
             <xsl:when test="$fixtures">
         <!-- Write out the TestScript resource -->
         <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
-            <id value="{$project}-resources-purgecreateupdate-xml"/>
-            <url value="http://nictiz.nl/fhir/TestScript/{$project}-load-resources-purgecreateupdate-xml"/>
-            <name value="Nictiz {$project} Load Test Resources - Purge Create Update - XML"/>
+            <id value="resources-purgecreateupdate-xml"/>
+            <url value="http://nictiz.nl/fhir/TestScript/load-resources-purgecreateupdate-xml"/>
+            <name value="Load Test Resources - Purge Create Update - XML"/>
             <status value="active"/>
             <date value="{format-date(current-date(), '[Y0001]-[M01]-[D01]')}"/>
             <publisher value="Nictiz"/>
@@ -82,7 +79,7 @@
                     <use value="work"/>
                 </telecom>
             </contact>
-            <description value="Load Nictiz {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
+            <description value="Load test resources using the update (PUT) operation of the target FHIR server for use in testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
             <copyright value="© Nictiz 2020"/>
             
             <!-- Write out all fixture references -->
@@ -151,7 +148,7 @@
             <!-- PUT all fixtures in test -->
             <test id="Step1-LoadTestResourceCreate">
                 <name value="Step1-LoadTestResourceCreate"/>
-                <description value="Load {$project} test resources using the update (PUT) operation of the target FHIR server for use in {$project} qualification testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
+                <description value="Load test resources using the update (PUT) operation of the target FHIR server for use in testing. All resource ids are pre-defined. The target XIS FHIR server is expected to support resource create via the update (PUT) operation for client assigned ids. "/>
                 <xsl:for-each select="$fixtures">
                     <xsl:sort select="lower-case(concat(local-name(), '-', f:id/@value))"/>
                     <xsl:variable name="fixtureId">
