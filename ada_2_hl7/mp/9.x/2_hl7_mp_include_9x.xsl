@@ -31,12 +31,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="operator" as="xs:string?"/>
 
         <xsl:for-each select="$in">
-            <xsl:attribute name="xsi:type" select="'hl7nl:PIVL_TS'"/>
+            <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
             <xsl:call-template name="chooseOperatorAttrib">
                 <xsl:with-param name="operator" select="$operator"/>
             </xsl:call-template>
-            <xsl:attribute name="isFlexible" select="'true'"/>
-            <xsl:attribute name="alignment" select="'HD'"/>
+            <xsl:attribute name="isFlexible">true</xsl:attribute>
+            <xsl:attribute name="alignment">HD</xsl:attribute>
+            
+            <!-- check for unknown input @code -->
+            <xsl:if test="not($daypartMap[@code = current()/@code])">
+                <xsl:comment>Encountered a day part code we do not recognise: '<xsl:value-of select="@code"/>'. Please check.</xsl:comment>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="msg">Encountered a day part code we do not recognise: '<xsl:value-of select="@code"/>'. Please check.</xsl:with-param>
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="terminate" select="false()"/>
+                </xsl:call-template>
+            </xsl:if>           
+            
             <hl7nl:phase>
                 <hl7nl:low>
                     <xsl:attribute name="value" select="$daypartMap[@code = current()/@code]/@hl7PIVLPhaseLow"/>

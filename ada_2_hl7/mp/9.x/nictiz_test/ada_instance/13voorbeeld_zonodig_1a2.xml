@@ -14,8 +14,8 @@
                                    versionDate=""
                                    prefix="mp-"
                                    language="nl-NL"
-                                   title=""
-                                   id="11voorbeeld_toedieningsduur-interval">
+                                   title="zo nodig 1 à 2 maal daags"
+                                   id="13voorbeeld_zonodig_1a2">
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
                <voornamen value="Antonius"
@@ -40,18 +40,18 @@
                       codeSystem="2.16.840.1.113883.5.1"/>
          </patient>
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH-85"
+            <identificatie value="MBH-7105"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
-               <gebruiksperiode_start value="2020-09-20T00:00:00"
+               <gebruiksperiode_start value="2016-10-24T00:00:00"
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"/>
-               <identificatie value="MBH-85-MA-1"
+               <identificatie value="MBH-7105-MA-1"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
-               <afspraak_datum_tijd value="2020-09-20T12:45:00"
+               <afspraak_datum_tijd value="2016-10-23T17:45:00"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
-               <gebruiksperiode value="14"
+               <gebruiksperiode value="4"
                                 unit="dag"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19936"/>
                <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
@@ -115,7 +115,7 @@
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
                   <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
-                                value="wordt gegenereerd"/>
+                                value="2begenerated"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -135,9 +135,24 @@
                                     displayName="stuk"/>
                         </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
-                           <interval conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23263" value="4" unit="uur"/>
+                           <frequentie>
+                              <aantal>
+                                 <min value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23259"/>
+                                 <max value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23261"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
+                           </frequentie>
                         </toedieningsschema>
-                        <toedieningsduur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282" value="15" unit="minuut"/>
+                        <zo_nodig>
+                           <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23268">
+                              <code code="1137"
+                                    displayName="zo nodig"
+                                    codeSystem="2.16.840.1.113883.2.4.4.5"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23269"/>
+                           </criterium>
+                        </zo_nodig>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>

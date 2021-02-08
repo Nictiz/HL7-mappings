@@ -14,8 +14,8 @@
                                    versionDate=""
                                    prefix="mp-"
                                    language="nl-NL"
-                                   title=""
-                                   id="11voorbeeld_toedieningsduur-interval">
+                                   title="op dinsdag 1 maal per 2 weken"
+                                   id="8voorbeeld_weekdagen-2wk">
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
                <voornamen value="Antonius"
@@ -40,19 +40,19 @@
                       codeSystem="2.16.840.1.113883.5.1"/>
          </patient>
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH-85"
+            <identificatie value="MBH-83"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
                <gebruiksperiode_start value="2020-09-20T00:00:00"
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"/>
-               <identificatie value="MBH-85-MA-1"
+               <identificatie value="MBH-83-MA-1"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
                <afspraak_datum_tijd value="2020-09-20T12:45:00"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
                <gebruiksperiode value="14"
-                                unit="dag"
+                                unit="week"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19936"/>
                <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
                   <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
@@ -135,9 +135,19 @@
                                     displayName="stuk"/>
                         </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
-                           <interval conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23263" value="4" unit="uur"/>
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
+                                 <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
+                              </aantal>
+                              <tijdseenheid value="2"
+                                            unit="week"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
+                           </frequentie>
+                           <weekdag code="307147007"
+                                    displayName="dinsdag"
+                                    codeSystem="2.16.840.1.113883.6.9"
+                                    codeSystemName="SNOMED CT"/>
                         </toedieningsschema>
-                        <toedieningsduur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282" value="15" unit="minuut"/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>

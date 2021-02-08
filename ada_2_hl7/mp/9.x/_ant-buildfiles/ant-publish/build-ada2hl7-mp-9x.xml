@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apache ANT build file that sets up (target = setup) or by default converts transaction with references to full ada xml (target = resolve-refs)
+    Apache ANT is based on Java and may be found here: https://ant.apache.org/
+    run on command line or from a batch file: 
+        ant [-f build.xml] [target]
+        
+    If you just run ant, it expects a build.xml in the working dir and runs the default target.
+-->
+<project basedir="." default="convert_ada_2_hl7" name="build-ada2hl7-mp-910-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property name="is.version" value="9.x"/>
+    <property name="is.version.short" value="9x"/>
+    <property name="date.T" value="2021-01-01"/>
+    
+    <!-- place import after properties, otherwise it can't resolve the properties used. -->
+    <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-mp-include.xml"/>        
+    
+    <property name="usecase.nt" value="nictiz_test"/>
+    
+    
+    <target name="setup_mp9x" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
+        
+        <!-- sturen_medicatievoorschrift copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.nt}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*voorbeeld*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        
+        <!-- nictiz_test -->
+        <!-- sturen_medicatievoorschrift copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        
+        <!-- let's convert to hl7 too while we're at it -->
+        <!-- generic stuff for all mp versions -->
+        <antcall target="convert_ada_2_hl7"/>       
+        
+    </target>
+    
+
+</project>

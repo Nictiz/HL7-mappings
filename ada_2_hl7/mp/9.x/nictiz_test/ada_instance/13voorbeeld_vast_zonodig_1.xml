@@ -1,7 +1,7 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
    <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2019-02-12T09:57:50.688+01:00" last-update-date="2019-02-12T09:57:50.688+01:00"/>
    <data>
-      <sturen_medicatievoorschrift app="mp-mp910" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="Dagdeel" id="7voorbeeld_dagdeel_freq24h">
+      <sturen_medicatievoorschrift app="mp-mp910" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="4 maal daags 1, zo nodig 2 maal daags 1 extra" id="13voorbeeld_vast_zonodig_1">
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
                <voornamen value="Antonius" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
@@ -15,11 +15,12 @@
             <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="M" codeSystem="2.16.840.1.113883.5.1"/>
          </patient>
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH-1132" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+            <identificatie value="MBH-710" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
-               <gebruiksperiode_start value="T" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"/>
-               <identificatie value="MBH-1132-MA-1132-1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
-               <afspraak_datum_tijd value="2018-07-16T11:15:00" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
+               <gebruiksperiode_start value="2016-10-24T00:00:00" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"/>
+               <identificatie value="MBH-710-MA-710-1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
+               <afspraak_datum_tijd value="2016-10-23T17:45:00" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
+               <gebruiksperiode value="4" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19936"/>
                <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
                   <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
                      <zorgverlener_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836" value="000001111" root="2.16.528.1.1007.3.1"/>
@@ -53,25 +54,46 @@
                   </product>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
-                  <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241" value="wordt gegenereerd"/>
+                  <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241" value="vanaf 24 okt 2016, tot nader order, 4 maal per dag 1 tablet en zo nodig 2 maal per dag 1 tablet extra"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" code="9" displayName="oraal"/>
                   <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245">
+                     <volgnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23246"/>
                      <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248">
                         <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249">
                            <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250">
-                              <vaste_waarde value="5" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
+                              <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
                            </aantal>
                            <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
                         </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
-                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257">
-                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
-                                 <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>                                 
+                           <frequentie>
+                              <aantal>
+                                 <vaste_waarde value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
                               </aantal>
-                              <tijdseenheid value="24" unit="uur" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
+                              <tijdseenheid value="1" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
                            </frequentie>
-                           <dagdeel code="73775008" displayName="'s ochtends" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23266"/>
                         </toedieningsschema>
+                     </dosering>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250">
+                              <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
+                           </aantal>
+                           <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
+                           <frequentie>
+                              <aantal>
+                                 <vaste_waarde value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23268">
+                              <code code="1137" displayName="zo nodig" codeSystem="2.16.840.1.113883.2.4.4.5" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23269"/>
+                           </criterium>
+                        </zo_nodig>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>

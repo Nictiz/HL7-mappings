@@ -1263,7 +1263,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:attribute name="isFlexible" select="$isFlexible = 'true'"/>
         <hl7nl:phase>
             <hl7nl:low>
-                <xsl:call-template name="makeTSValueAttr"/>
+                <xsl:call-template name="makeTSValueAttr">
+                    <xsl:with-param name="inputDateT" select="xs:date('1970-01-01')"/>
+                </xsl:call-template>
             </hl7nl:low>
         </hl7nl:phase>
         <hl7nl:period unit="d" value="1"/>

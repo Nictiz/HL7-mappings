@@ -1159,6 +1159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="inputNullFlavor"/>
     </xd:doc>
     <xsl:template name="makeTSValueAttr" match="element()" mode="MakeTSValueAttr">
+        <xsl:param name="inputDateT" as="xs:date?" select="$dateT"/>
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
         <xsl:param name="inputNullFlavor" as="xs:string?" select="@nullFlavor"/>
         <xsl:choose>
@@ -1166,6 +1167,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="value">
                     <xsl:call-template name="format2HL7Date">
                         <xsl:with-param name="dateTime" select="$inputValue"/>
+                        <xsl:with-param name="inputDateT" select="$inputDateT"/>
                     </xsl:call-template>
                 </xsl:attribute>
             </xsl:when>
