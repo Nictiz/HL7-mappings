@@ -122,20 +122,20 @@
         <xsl:param name="inputDateT" as="xs:date?"/>
         
         <xsl:choose>
-            <xsl:when test="starts-with($in, 'T') and $inputDateT castable as xs:date">
-                <xsl:variable name="sign" select="replace($in, 'T([+-])?.*', '$1')"/>
+            <xsl:when test="starts-with($in, 'T') or starts-with($in, 'DOB') and $inputDateT castable as xs:date">
+                <xsl:variable name="sign" select="replace($in, '^(T|DOB)([+-])?.*', '$2')"/>
                 <xsl:variable name="amountYearMonth" as="xs:string?">
-                    <xsl:if test="matches($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}')">
-                        <xsl:value-of select="replace($in, 'T[+-]((\d+(\.\d+)?Y)?(\d+(\.\d+)?M)?).*', '$1')"/>
+                    <xsl:if test="matches($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}')">
+                        <xsl:value-of select="replace($in, '^(T|DOB)[+-]((\d+(\.\d+)?Y)?(\d+(\.\d+)?M)?).*', '$2')"/>
                     </xsl:if>
                 </xsl:variable>
                 <xsl:variable name="amountDay" as="xs:string?">
-                    <xsl:if test="matches($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D).*')">
-                        <xsl:value-of select="replace($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D)?.*', '$3')"/>
+                    <xsl:if test="matches($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D).*')">
+                        <xsl:value-of select="replace($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D)?.*', '$4')"/>
                     </xsl:if>
                 </xsl:variable>
                 
-                <xsl:variable name="timePart" select="if (matches($in, 'T[^\{]*\{([^\}]+)\}')) then replace($in, 'T[^\{]*\{([^\}]+)\}', '$1') else ()"/>
+                <xsl:variable name="timePart" select="if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2') else ()"/>
                 <xsl:variable name="time" as="xs:string?">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 2">
