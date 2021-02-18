@@ -658,7 +658,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         <xsl:choose>
             <!-- Cyclisch schema -->
-            <xsl:when test="../../../herhaalperiode_cyclisch_schema[@value | @unit] and doseerduur[@value | @unit]">
+            <xsl:when test="../../../herhaalperiode_cyclisch_schema[@value | @unit] and ../../doseerduur[@value | @unit]">
                 <effectiveTime operator="A" xsi:type="SXPR_TS">
                     <xsl:for-each select="frequentie[.//(@value | @code)]">
                         <!-- De frequentie van inname binnen het cyclisch schema. -->
@@ -898,7 +898,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9082_20160621002112" match="doseerduur" mode="HandleCyclischSchema9082">
         <xsl:param name="in" as="element(doseerduur)?" select="."/>
         <xsl:param name="isFlexible">true</xsl:param>
-        
+
         <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
         <xsl:attribute name="operator">A</xsl:attribute>
         <xsl:attribute name="isFlexible" select="$isFlexible"/>
@@ -908,12 +908,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeTimePQValueAttribs"/>
                 </hl7nl:width>
             </hl7nl:phase>
-        </xsl:for-each>
-        <xsl:for-each select="../../herhaalperiode_cyclisch_schema">
-            <hl7nl:period>
-                <xsl:attribute name="value" select="@value"/>
-                <xsl:attribute name="unit" select="@unit"/>
-            </hl7nl:period>
+            <xsl:for-each select="../../herhaalperiode_cyclisch_schema">
+                <hl7nl:period>
+                    <xsl:attribute name="value" select="@value"/>
+                    <xsl:attribute name="unit" select="@unit"/>
+                </hl7nl:period>
+            </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
 
@@ -1231,7 +1231,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>HL7NL PIVL_TS Frequency</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9080_20160620164239" match="frequentie" mode="HandleFrequencyTempl9080">
-         <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
+        <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
         <xsl:attribute name="operator">A</xsl:attribute>
 
         <xsl:choose>
