@@ -183,15 +183,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="hl7:targetSiteCode" mode="#current"/>
             <xsl:apply-templates select="hl7:subject" mode="#current"/>
             
-            <xsl:apply-templates select="specimen" mode="#current"/>
-            <xsl:apply-templates select="performer" mode="#current"/>
-            <xsl:apply-templates select="author" mode="#current"/>
-            <xsl:apply-templates select="informant" mode="#current"/>
-            <xsl:apply-templates select="participant" mode="#current"/>
-            <xsl:apply-templates select="entryRelationship" mode="#current"/>
-            <xsl:apply-templates select="reference" mode="#current"/>
-            <xsl:apply-templates select="precondition" mode="#current"/>
-            <xsl:apply-templates select="referenceRange" mode="#current"/>
+            <xsl:apply-templates select="hl7:specimen" mode="#current"/>
+            <xsl:apply-templates select="hl7:performer" mode="#current"/>
+            <xsl:apply-templates select="hl7:author" mode="#current"/>
+            <xsl:apply-templates select="hl7:informant" mode="#current"/>
+            <xsl:apply-templates select="hl7:participant" mode="#current"/>
+            <xsl:apply-templates select="hl7:entryRelationship" mode="#current"/>
+            <xsl:apply-templates select="hl7:reference" mode="#current"/>
+            <xsl:apply-templates select="hl7:precondition" mode="#current"/>
+            <xsl:apply-templates select="hl7:referenceRange" mode="#current"/>
         </xsl:copy>
     </xsl:template>
     
