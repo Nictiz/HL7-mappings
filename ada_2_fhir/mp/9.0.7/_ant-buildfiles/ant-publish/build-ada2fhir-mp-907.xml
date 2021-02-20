@@ -43,18 +43,6 @@
         <!-- let's cleanup our temp stuff -->
         <delete dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
         
-               
-        <!-- beschikbaarstellen_medicatiegegevens POC Praktijktest -->
-        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance_POCPraktijktest">
-                <include name="*.xml"/>
-            </fileset>
-        </copy>
-
         <!-- let's convert too, now that we are here -->
         <antcall target="convert_ada_2_fhir_907"/>
 
@@ -109,14 +97,7 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-        
-        <echo>convert_ada_2_fhir_907. MedMij stuff beschikbaarstellen_medicatiegegevens for POC Praktijktest</echo>
-        <antcall target="convert_ada_2_fhir_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
-            <param name="xsl.out" value="fhir_instance_POCPraktijktest"/>
-        </antcall>
-        
+       
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder</echo>
         <mkdir dir="${build.dir}/4TouchstoneMPServe"/>
@@ -126,9 +107,9 @@
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
             <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="mo-mor*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="mp9-nl-core-patient-*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_VV" includes="mp9-*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_MA" includes="mp9-*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="nl-core-patient-*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_VV" excludes="mg-mgr-*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_MA" excludes="mg-mgr-*.xml"/>
          </copy>
 
     </target>

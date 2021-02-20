@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
     <xsl:import href="../../../2_fhir_mp90_include.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -36,17 +37,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
-    <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->    
-    <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>    
+    <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->
+    <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
     <!-- only give dateT a value if you want conversion of relative T dates to actual dates, otherwise a Touchstone relative T-date string will be generated -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
-<!--    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>-->
-        <xsl:param name="dateT" as="xs:date?"/>
+    <!--    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>-->
+    <xsl:param name="dateT" as="xs:date?"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
-    
-    <xsl:variable name="usecase">mp9</xsl:variable>
 
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
@@ -66,7 +65,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="medicatieoverzicht_90_resources">
         <xsl:param name="adaTransaction" as="element()*"/>
-        <!--        <xsl:param name="mbh"/>-->
 
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:for-each select="$bouwstenen-907, $commonEntries">
@@ -83,10 +81,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:variable>
 
-        <xsl:apply-templates select="($medicatieoverzicht-list, $entries)/f:resource/*" mode="doResourceInResultdoc"/>
+       
+         <!-- output the resource in a file -->
+        <xsl:apply-templates select="($medicatieoverzicht-list | $entries)/f:resource/*" mode="doResourceInResultdoc"/>
+
         <!-- also create a Bundle that can be returned as answer to a medication overview query -->
         <xsl:call-template name="create-mo-bundle">
-            <xsl:with-param name="entries" select="($medicatieoverzicht-list, $entries)"/>
+            <xsl:with-param name="entries" select="($medicatieoverzicht-list | $entries)"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -96,16 +97,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="create-mo-bundle">
         <xsl:param name="entries" select="."/>
-        <xsl:result-document href="./{$usecase}-Bundle-{$entries/f:resource/f:List/f:id/@value}.xml">
+
+        <!-- https://bits.nictiz.nl/browse/MM-1752 , 
+            Examples en fixtures op basis van deze conventie:
+            Bestandsnaam: [profielnaam]-[unieke string]
+            Resource.id: [profielnaam]-[unieke string] -->
+        <xsl:variable name="BundleId" select="concat('Bundle-MedicationOverview-', nf:get-uuid(*[1]))"/>
+
+        <xsl:result-document href="./{$BundleId}.xml">
             <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             <Bundle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd" xmlns="http://hl7.org/fhir">
+                <id value="{$BundleId}"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
                 </meta>
-                <id value="{nf:get-uuid(*[1])}"/>
                 <type value="searchset"/>
-                <!-- one extra: the List entry for medicatieoverzicht  -->
-                <!-- FIXME Expectation: one List object only. If there are more: we should worry -->
+                <!-- Expectation: one List object only. If there are more: we should worry -->
                 <total value="1"/>
                 <xsl:copy-of select="$entries"/>
             </Bundle>
@@ -129,16 +136,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:copy>
             <xsl:apply-templates select="node() | @*" mode="#current"/>
         </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Creates xml document for a FHIR resource</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>
-        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
-            <xsl:copy-of select="."/>
-        </xsl:result-document>
     </xsl:template>
 
 </xsl:stylesheet>

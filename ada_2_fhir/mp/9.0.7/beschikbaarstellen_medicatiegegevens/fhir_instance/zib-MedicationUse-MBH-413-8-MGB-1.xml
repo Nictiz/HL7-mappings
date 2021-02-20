@@ -1,0 +1,164 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationUse-MBH-413-8-MGB-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationStatement. Subject: R. XXX_Strengersz. Id: MBH_413_8_MGB_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Auteur: R. XXX_Strengersz</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_413_8 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Voorschrijver</th>
+                  <td>Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>IMIQUIMOD CREME 50MG/G</td>
+               </tr>
+               <tr>
+                  <th>Datum/tijd</th>
+                  <td>Vanaf 00:00:00, 3 september 2018, 10 week</td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>23:59:00, 3 september 2018</td>
+               </tr>
+               <tr>
+                  <th>Ondersteunende informatie</th>
+                  <td>relatie naar medicatieafspraak (Id: MBH_413_8_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen</div>
+                     <div>Instructie: <ul>
+                           <li>
+                              <span title="voor de nacht (1128 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">voor de nacht</span>
+                           </li>
+                           <li>
+                              <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
+                           </li>
+                        </ul>
+                     </div>
+                     <div>Timing: <div>, op maandag, woensdag, vrijdag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie gebruikt</th>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-practitionerrole-0d214b9f-7389-11eb-5754-020000000000"/>
+         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/XXX-STRENGERSZ"/>
+         <display value="R. XXX_Strengersz"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_413_8"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_413_8_MGB_1"/>
+   </identifier>
+   <status>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-55050-2-16-840-1-113883-2-4-4-10"/>
+      <display value="IMIQUIMOD CREME 50MG/G"/>
+   </medicationReference>
+   <effectivePeriod>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+         <valueDuration>
+            <value value="10"/>
+            <unit value="week"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="wk"/>
+         </valueDuration>
+      </extension>
+      <start value="2018-09-03T00:00:00+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="2018-09-03T23:59:00+02:00"/>
+   <subject>
+      <reference value="Patient/XXX-STRENGERSZ"/>
+      <display value="R. XXX_Strengersz"/>
+   </subject>
+   <derivedFrom>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_413_8_MA_1"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+   <taken value="y"/>
+   <dosage>
+      <sequence value="1"/>
+      <text value="Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen"/>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1128"/>
+            <display value="voor de nacht"/>
+         </coding>
+      </additionalInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1018"/>
+            <display value="aanbrengen"/>
+         </coding>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <dayOfWeek value="mon"/>
+            <dayOfWeek value="wed"/>
+            <dayOfWeek value="fri"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="53"/>
+            <display value="cutaan"/>
+         </coding>
+      </route>
+   </dosage>
+</MedicationStatement>

@@ -1,0 +1,102 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-DispenseRequest-MBH-907-magistraalalleingredienten-VV-TST"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toedieningsverzoek. Subject: R. XXX-TEST-E. Id: MBH_907_magistraalalleingredienten_VV-TST (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_907_magistraalalleingredienten-TST (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>Relatie naar medicatieafspraak, id = MBH_907_magistraalalleingredienten_MA-TST || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_magistraalalleingredienten_MA-TST (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>Ureum 10% in eucerine cum aqua 100gr</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, +0}T12:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Toedieningsverzoek</th>
+                  <td>
+                     <div>Hoeveelheid: </div>
+                     <div>Uitvoerende: Apotheek De Gulle Gaper</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <value value="MBH_907_magistraalalleingredienten_MA-TST"/>
+         </identifier>
+         <display value="Relatie naar medicatieafspraak, id = MBH_907_magistraalalleingredienten_MA-TST || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_907_magistraalalleingredienten-TST"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+      <value value="MBH_907_magistraalalleingredienten_VV-TST"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="52711000146108"/>
+         <display value="Request to dispense medication to patient (situation)"/>
+      </coding>
+      <text value="Verstrekkingsverzoek"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-UREUM10INEUCERINECUMAQUA100GR"/>
+      <display value="Ureum 10% in eucerine cum aqua 100gr"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/XXX-TEST-E"/>
+      <display value="R. XXX-TEST-E"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, +0}T12:00:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-000001111010000001111"/>
+               <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-0000011112-16-528-1-1007-3-1"/>
+         <display value="Peter van Pulver"/>
+      </agent>
+   </requester>
+   <dispenseRequest>
+      <quantity>
+         <value value="100"/>
+         <unit value="milliliter"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="233"/>
+      </quantity>
+      <performer>
+         <reference value="Organization/nl-core-organization-012365782-16-528-1-1007-3-3"/>
+         <display value="Apotheek De Gulle Gaper"/>
+      </performer>
+   </dispenseRequest>
+</MedicationRequest>

@@ -145,15 +145,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data]"/>
             
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation</xsl:variable>
+                
                 <Observation>
                     <xsl:if test="$referById">
-                        <id value="{$logicalId}"/>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
                     <meta>
                         <xsl:if test="test_code[@codeSystem = $oidNHGTabel45DiagnBepal]">
                             <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-LaboratoryResult"/>
                         </xsl:if>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <!--NL-CM:0.0.6   Identificatienummer-->
                     <xsl:for-each select="hcimroot/identification_number">
