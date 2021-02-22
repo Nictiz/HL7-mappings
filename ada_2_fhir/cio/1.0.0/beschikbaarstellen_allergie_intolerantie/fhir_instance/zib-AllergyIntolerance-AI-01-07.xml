@@ -1,0 +1,153 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-AI-01-07"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_07 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="omgevingsgerelateerde allergie (426232007 - SNOMED CT)">omgevingsgerelateerde allergie</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Ingevoerd door: A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Pollen (256259004 - SNOMED CT)">Pollen</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -500}</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>${DATE, T, D, -99}</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="Matig (6736007 - SNOMED CT)">Matig</span>
+                           </div>
+                           <div>
+                              <span title="Overgevoeligheidsreactie van de bovenste luchtwegen (490008 - SNOMED CT)">Overgevoeligheidsreactie van de bovenste luchtwegen</span>
+                           </div>
+                           <div>Veelvuldig niezen</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="AI_01_07"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </verificationStatus>
+   <category value="environment">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="426232007"/>
+               <display value="omgevingsgerelateerde allergie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="6736007"/>
+               <display value="matig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="256259004"/>
+         <display value="Pollen"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -500}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-1111111210100"/>
+            <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+         </valueReference>
+      </extension>
+      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+   </recorder>
+   <asserter>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-1111111210100"/>
+            <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+         </valueReference>
+      </extension>
+      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+   </asserter>
+   <lastOccurrence value="${DATE, T, D, -99}"/>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="256277009"/>
+            <display value="Graspollen"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="490008"/>
+            <display value="Overgevoeligheidsreactie van de bovenste luchtwegen"/>
+         </coding>
+      </manifestation>
+      <description value="Veelvuldig niezen"/>
+      <severity value="moderate">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6736007"/>
+                  <display value="Matig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
+</AllergyIntolerance>

@@ -14,16 +14,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_fhir_cio_include.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
             <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR STU3 profiles.</xd:p>
-            <xd:p>
-                <xd:b>History:</xd:b>
-                <xd:ul>
-                    <xd:li>2019-02-25 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
-                </xd:ul>
-            </xd:p>
         </xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
@@ -35,9 +30,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
 
-    <xsl:variable name="usecase">cio1</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $relatedPersons/f:entry"/>
+        <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
@@ -48,9 +42,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
-     </xd:doc>
+    </xd:doc>
     <xsl:template name="AllIntConversion_10" match="beschikbaarstellen_allergie_intolerantie_vertaling">
-   
+
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:copy-of select="$bouwstenen-all-int-vertaling"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, relatedpersons -->
@@ -65,18 +59,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
         <xsl:variable name="zib-name" select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-AllergyIntoleranceToFHIRConversion-', '-')"/>
-        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
+        <xsl:result-document href="./{./f:id/@value}.xml">
             <xsl:apply-templates select="." mode="ResultOutput"/>
         </xsl:result-document>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:AllergyIntolerance/f:meta/f:profile" mode="ResultOutput">
-        <xsl:copy>
-            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion</xsl:attribute>
-        </xsl:copy>
     </xsl:template>
 
 </xsl:stylesheet>

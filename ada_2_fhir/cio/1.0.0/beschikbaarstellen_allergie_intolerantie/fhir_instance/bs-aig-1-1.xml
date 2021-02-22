@@ -1,10 +1,15 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="4d32c45f-74ff-11eb-1239-020000000000"/>
    <type value="searchset"/>
    <total value="7"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:a074c6ce-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32d397-74ff-11eb-1239-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -35,18 +40,18 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2020-07-04</td>
+                           <td>2021-01-03</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>${DATE, T, D, -50}T17:45:00+02:00</td>
+                           <td>17:45:00, 3 januari 2021</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
                            <td>
                               <ul>
                                  <li>
-                                    <div>${DATE, T, D, -50}T17:45:00+02:00 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
+                                    <div>17:45:00, 3 januari 2021 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
                                     </div>
                                     <div>
                                        <span title="Toxische epidermale necrolyse (23067006 - SNOMED CT)">Toxische epidermale necrolyse</span>
@@ -110,14 +115,14 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2020-07-04"/>
+            <onsetDateTime value="2021-01-03"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
@@ -126,13 +131,13 @@
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
                <display value="M. Boot || Allergoloog (gesloten register)"/>
             </asserter>
-            <lastOccurrence value="${DATE, T, D, -50}T17:45:00+02:00"/>
+            <lastOccurrence value="2021-01-03T17:45:00+01:00"/>
             <note>
                <text value="Geldt alleen voor dit merk."/>
             </note>
@@ -152,7 +157,7 @@
                   </coding>
                </manifestation>
                <description value="Blaren op grote delen van de huid"/>
-               <onset value="${DATE, T, D, -50}T17:45:00+02:00"/>
+               <onset value="2021-01-03T17:45:00+01:00"/>
                <severity value="severe">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                      <valueCodeableConcept>
@@ -172,7 +177,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074be72-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32d3b0-74ff-11eb-1239-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -198,18 +203,18 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2020-05-15</td>
+                           <td>2020-11-14</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>${DATE, T, D, -100}</td>
+                           <td>2020-11-14</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
                            <td>
                               <ul>
                                  <li>
-                                    <div>${DATE, T, D, -100}T11:00:00+02:00 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
+                                    <div>11:00:00, 14 november 2020 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
                                     </div>
                                     <div>
                                        <span title="Toxische epidermale necrolyse (23067006 - SNOMED CT)">Toxische epidermale necrolyse</span>
@@ -273,14 +278,14 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2020-05-15"/>
+            <onsetDateTime value="2020-11-14"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
@@ -289,13 +294,13 @@
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
                <display value="M. Boot || Allergoloog (gesloten register)"/>
             </asserter>
-            <lastOccurrence value="${DATE, T, D, -100}"/>
+            <lastOccurrence value="2020-11-14"/>
             <reaction>
                <manifestation>
                   <coding>
@@ -305,7 +310,7 @@
                   </coding>
                </manifestation>
                <description value="Blaren op grote delen van de huid"/>
-               <onset value="${DATE, T, D, -100}T11:00:00+02:00"/>
+               <onset value="2020-11-14T11:00:00+01:00"/>
                <severity value="severe">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                      <valueCodeableConcept>
@@ -332,7 +337,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074beac-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32d3c8-74ff-11eb-1239-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -358,11 +363,11 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2020-03-26</td>
+                           <td>2020-09-25</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>${DATE, T, D, -150}</td>
+                           <td>2020-09-25</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
@@ -434,14 +439,14 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2020-03-26"/>
+            <onsetDateTime value="2020-09-25"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
@@ -450,13 +455,13 @@
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
                <display value="M. Boot || Allergoloog (gesloten register)"/>
             </asserter>
-            <lastOccurrence value="${DATE, T, D, -150}"/>
+            <lastOccurrence value="2020-09-25"/>
             <reaction>
                <manifestation>
                   <coding>
@@ -485,7 +490,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074bee2-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32ceca-74ff-11eb-1239-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -507,15 +512,15 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>2020-04-25 - M. Boot || Allergoloog (gesloten register)</td>
+                           <td>2020-10-25 - M. Boot || Allergoloog (gesloten register)</td>
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2020-02-05</td>
+                           <td>2020-08-06</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>${DATE, T, D, -200}T16:30:00+02:00</td>
+                           <td>16:30:00, 6 augustus 2020</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
@@ -586,15 +591,15 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2020-02-05"/>
-            <assertedDate value="2020-04-25"/>
+            <onsetDateTime value="2020-08-06"/>
+            <assertedDate value="2020-10-25"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
@@ -603,13 +608,13 @@
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
                <display value="M. Boot || Allergoloog (gesloten register)"/>
             </asserter>
-            <lastOccurrence value="${DATE, T, D, -200}T16:30:00+02:00"/>
+            <lastOccurrence value="2020-08-06T16:30:00+02:00"/>
             <reaction>
                <manifestation>
                   <coding>
@@ -637,7 +642,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074bf19-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32cee0-74ff-11eb-1239-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -668,18 +673,18 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2011-01-23</td>
+                           <td>2011-07-25</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>${DATE, T, D, -265}T14:30:00+02:00</td>
+                           <td>14:30:00, 2 juni 2020</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
                            <td>
                               <ul>
                                  <li>
-                                    <div>${DATE, T, D, -265}T14:30:00+02:00 <span title="Matig (6736007 - SNOMED CT)">Matig</span>
+                                    <div>14:30:00, 2 juni 2020 <span title="Matig (6736007 - SNOMED CT)">Matig</span>
                                     </div>
                                     <div>
                                        <span title="Jeuk (418363000 - SNOMED CT)">Jeuk</span>
@@ -742,24 +747,24 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2011-01-23"/>
+            <onsetDateTime value="2011-07-25"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074bf2b-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf1e-74ff-11eb-1239-020000000000"/>
                      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
                   </valueReference>
                </extension>
                <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:a074c08b-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32cf7b-74ff-11eb-1239-020000000000"/>
                <display value="Abraham B.M.H. Bram Pasveer"/>
             </asserter>
-            <lastOccurrence value="${DATE, T, D, -265}T14:30:00+02:00"/>
+            <lastOccurrence value="2020-06-02T14:30:00+02:00"/>
             <note>
                <text value="Dhr. werkt in de zorg en dient latexvrije handschoenen te dragen."/>
             </note>
@@ -771,7 +776,7 @@
                      <display value="Jeuk"/>
                   </coding>
                </manifestation>
-               <onset value="${DATE, T, D, -265}T14:30:00+02:00"/>
+               <onset value="2020-06-02T14:30:00+02:00"/>
                <severity value="moderate">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                      <valueCodeableConcept>
@@ -791,7 +796,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074bf51-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32cef7-74ff-11eb-1239-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -817,7 +822,7 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2006-12-15</td>
+                           <td>2007-06-16</td>
                         </tr>
                      </tbody>
                   </table>
@@ -862,21 +867,21 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2006-12-15"/>
+            <onsetDateTime value="2007-06-16"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074bf63-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf34-74ff-11eb-1239-020000000000"/>
                      <display value="Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd"/>
                   </valueReference>
                </extension>
                <display value="Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </asserter>
          </AllergyIntolerance>
@@ -886,7 +891,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074bf79-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32cf07-74ff-11eb-1239-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -912,11 +917,11 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2019-04-11</td>
+                           <td>2019-10-11</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>${DATE, T, D, -99}</td>
+                           <td>2020-11-15</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
@@ -988,14 +993,14 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2019-04-11"/>
+            <onsetDateTime value="2019-10-11"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074bf2b-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf1e-74ff-11eb-1239-020000000000"/>
                      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
                   </valueReference>
                </extension>
@@ -1004,13 +1009,13 @@
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:a074bf2b-e54c-11ea-1681-020000000000"/>
+                     <reference value="urn:uuid:4d32cf1e-74ff-11eb-1239-020000000000"/>
                      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
                   </valueReference>
                </extension>
                <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
             </asserter>
-            <lastOccurrence value="${DATE, T, D, -99}"/>
+            <lastOccurrence value="2020-11-15"/>
             <reaction>
                <substance>
                   <coding>
@@ -1046,7 +1051,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -1137,6 +1142,15 @@
             <gender value="female"/>
             <birthDate value="1970-04-04"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="PHYS"/>
+                        <display value="Woon-/verblijfadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                   <valueCode value="PHYS"/>
                </extension>
@@ -1214,7 +1228,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 222222232 (UZI-NR-PERS), Ottobert O. van Bekhoven</div>
-                  <div>Valkendael 45, 6245HK Maastricht (Werk)</div>
+                  <div>Valkendael 45, 6245HK Maastricht (WP)</div>
                </div>
             </text>
             <identifier>
@@ -1245,6 +1259,15 @@
                </given>
             </name>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Valkendael 45">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -1274,7 +1297,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 333333343 (UZI-NR-PERS), M. Boot</div>
-                  <div>Kamerlingh Onnesstraat 2 huis, 2999AZ Leiderdorp (Werk)</div>
+                  <div>Kamerlingh Onnesstraat 2 huis, 2999AZ Leiderdorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -1297,6 +1320,15 @@
                </given>
             </name>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Kamerlingh Onnesstraat 2 huis">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -1348,7 +1380,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpstraat 14, 9244ZZ Beetsterzwaag (Werk)</td>
+                           <td>Dorpstraat 14, 9244ZZ Beetsterzwaag (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -1407,6 +1439,15 @@
                </use>
             </telecom>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpstraat 14">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -1426,7 +1467,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074bf2b-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32cf1e-74ff-11eb-1239-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1527,7 +1568,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074bf63-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32cf34-74ff-11eb-1239-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1623,7 +1664,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074c6d8-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32cf4e-74ff-11eb-1239-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1719,7 +1760,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a074c08b-e54c-11ea-1681-020000000000"/>
+      <fullUrl value="urn:uuid:4d32cf7b-74ff-11eb-1239-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
@@ -1746,7 +1787,7 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:a074b7cd-e54c-11ea-1681-020000000000"/>
+               <reference value="urn:uuid:4d32c45f-74ff-11eb-1239-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
             <relationship>
@@ -1811,6 +1852,15 @@
                </use>
             </telecom>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="PHYS"/>
+                        <display value="Woon-/verblijfadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                   <valueCode value="PHYS"/>
                </extension>
