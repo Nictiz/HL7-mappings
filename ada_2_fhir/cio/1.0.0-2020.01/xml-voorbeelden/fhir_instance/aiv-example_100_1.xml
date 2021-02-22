@@ -1,0 +1,460 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="afff59e3-752f-11eb-2531-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
+   <entry>
+      <fullUrl value="urn:uuid:afff6a1c-752f-11eb-2531-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Allergie/intolerantie. Patiënt: Joris Hansman. Id: aiv-example_100_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
+                        <span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="AMOXI/CLAV SANDOZ TABLET 500/125MG (1127039 - G-Standaard HPK)">AMOXI/CLAV SANDOZ TABLET 500/125MG</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Informant</th>
+                           <td>2021-01-23 - Joris Hansman</td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>2021-01-03</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+               <value value="aiv-example_100_1"/>
+            </identifier>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="Actief"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </verificationStatus>
+            <category value="medication">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419511003"/>
+                        <display value="neiging tot ongewenste reactie op geneesmiddel"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1127039"/>
+                  <display value="AMOXI/CLAV SANDOZ TABLET 500/125MG"/>
+               </coding>
+            </code>
+            <patient>
+               <reference value="urn:uuid:afff59e7-752f-11eb-2531-020000000000"/>
+               <display value="Joris Hansman"/>
+            </patient>
+            <onsetDateTime value="2021-01-03"/>
+            <assertedDate value="2021-01-23"/>
+            <recorder>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                  <valueReference>
+                     <reference value="urn:uuid:afff6a2d-752f-11eb-2531-020000000000"/>
+                     <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+                  </valueReference>
+               </extension>
+               <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+            </recorder>
+            <asserter>
+               <reference value="urn:uuid:afff59e7-752f-11eb-2531-020000000000"/>
+               <display value="Joris Hansman"/>
+            </asserter>
+         </AllergyIntolerance>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:afff59e7-752f-11eb-2531-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Joris Hansman, Man, 12 mei 1984</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Hansman">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Hansman"/>
+                  </extension>
+               </family>
+               <given value="Joris">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male"/>
+            <birthDate value="1984-05-12"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.111111112"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 111111112 (UZI-NR-PERS), I.N. ter Nist</div>
+                  <div>Valkendael 45 1 hoog, 6245HK Maastricht (WP)</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="111111112"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="ter Nist">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="ter"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Nist"/>
+                  </extension>
+               </family>
+               <given value="I.N.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Valkendael 45 1 hoog">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Valkendael"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="45"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="1 hoog"/>
+                  </extension>
+               </line>
+               <city value="Maastricht"/>
+               <postalCode value="6245HK"/>
+            </address>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.3999999"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 03999999 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Test Medisch Centrum</td>
+                        </tr>
+                        <tr>
+                           <th>Type</th>
+                           <td>
+                              <span title="Zelfstandig behandelcentrum (Z4 - organization-type)">Zelfstandig behandelcentrum</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Valkendael 45, 6245HK Maastricht (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="03999999"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="Z4"/>
+                  <display value="Zelfstandig behandelcentrum"/>
+               </coding>
+            </type>
+            <name value="Test Medisch Centrum"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Valkendael 45">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Valkendael"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="45"/>
+                  </extension>
+               </line>
+               <city value="Maastricht"/>
+               <postalCode value="6245HK"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:afff6a2d-752f-11eb-2531-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>I.N. ter Nist</div>
+                              <div>Test Medisch Centrum</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Medisch specialisten, inwendige geneeskunde (0313 - AGB-medisch specialisme)">Medisch specialisten, inwendige geneeskunde</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.111111112"/>
+               <display value="I.N. ter Nist"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.3999999"/>
+               <display value="Test Medisch Centrum"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0313"/>
+                  <display value="Medisch specialisten, inwendige geneeskunde"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:afff6a4b-752f-11eb-2531-020000000000"/>
+      <resource>
+         <RelatedPerson>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Peter P.J. van den Herik (Peter)</div>
+                  <div>
+                     <a href="tel:06-12345670">06-12345670</a> (Tel Mobiel), <a href="mailto:pjvandenherik123@hotmail.com">pjvandenherik123@hotmail.com</a> (E-mail Privé)</div>
+                  <div>Knolweg 1001 b, 9999XX Stitswerd (Bezoek)</div>
+                  <div>
+                     <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span> van Joris Hansman</div>
+               </div>
+            </text>
+            <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+                     <code value="1"/>
+                     <display value="Eerste relatie/contactpersoon"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <patient>
+               <reference value="urn:uuid:afff59e7-752f-11eb-2531-020000000000"/>
+               <display value="Joris Hansman"/>
+            </patient>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="van den Herik">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van den"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Herik"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="XXX_Stalewska"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="P.J.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobiel telefoonnummer"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-12345670"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="pjvandenherik123@hotmail.com"/>
+               <use value="home"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="PHYS"/>
+                        <display value="Woon-/verblijfadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                  <valueCode value="PHYS"/>
+               </extension>
+               <use value="home"/>
+               <type value="physical"/>
+               <line value="Knolweg 1001 b">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Knolweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1001"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="b"/>
+                  </extension>
+               </line>
+               <city value="Stitswerd"/>
+               <postalCode value="9999XX"/>
+            </address>
+         </RelatedPerson>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

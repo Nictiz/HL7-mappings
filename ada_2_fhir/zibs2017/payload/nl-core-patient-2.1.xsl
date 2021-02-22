@@ -17,7 +17,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="_zib2017.xsl"/>
     <xsl:import href="nl-core-address-2.0.xsl"/>
+    <!-\- beware: choose the appropriate contactpoint xsl -\->
+    <!-\- 2019.01 -\->
     <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
+    <!-\- 2020.01 -\->    
+    <xsl:import href="nl-core-contactpoint-2.0.xsl"/>
     <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>

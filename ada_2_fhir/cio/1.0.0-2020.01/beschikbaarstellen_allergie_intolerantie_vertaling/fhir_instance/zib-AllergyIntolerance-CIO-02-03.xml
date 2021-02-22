@@ -1,0 +1,97 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-CIO-02-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: opgelost / <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Ingevoerd door: S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum</span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Geconstateerd tijdens operatie en leidt tot jeuk.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Amoxicilline oraal (16322 - G-Standaard Bestand 725)">Amoxicilline oraal</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>${DATE, T, D, -90} - S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="CIO_02_03"/>
+   </identifier>
+   <clinicalStatus value="resolved">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="completed"/>
+               <display value="Niet meer aanwezig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </verificationStatus>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op geneesmiddel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.725"/>
+         <code value="16322"/>
+         <display value="Amoxicilline oraal"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-Smits"/>
+      <display value="M.P.H. Mike XXX_Smits"/>
+   </patient>
+   <assertedDate value="${DATE, T, D, -90}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-3333333340303"/>
+            <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
+         </valueReference>
+      </extension>
+      <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
+   </recorder>
+   <asserter>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-3333333340303"/>
+            <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
+         </valueReference>
+      </extension>
+      <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
+   </asserter>
+   <note>
+      <text value="Geconstateerd tijdens operatie en leidt tot jeuk."/>
+   </note>
+</AllergyIntolerance>
