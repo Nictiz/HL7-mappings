@@ -14,16 +14,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="_zib2017.xsl"/>
     <xsl:import href="nl-core-address-2.0.xsl"/>
-    <!-- beware: choose the appropriate contactpoint xsl -->
-    <!-- 2019.01 -->
-<!--    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>-->
-    <!-- 2020.01 -->    
+    <!-\- beware: choose the appropriate contactpoint xsl -\->
+    <!-\- 2019.01 -\->
+<!-\-    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>-\->
+    <!-\- 2020.01 -\->    
     <xsl:import href="nl-core-contactpoint-2.0.xsl"/>
     <xsl:import href="nl-core-humanname-2.0.xsl"/>
-    <xsl:import href="ext-code-specification-1.0.xsl"/>
+    <xsl:import href="ext-code-specification-1.0.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>

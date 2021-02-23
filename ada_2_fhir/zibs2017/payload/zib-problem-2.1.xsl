@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- uncomment imports only for development purposes -->
-    <xsl:import href="_zib2017.xsl"/>
+    <!--<xsl:import href="_zib2017.xsl"/>
     <xsl:import href="nl-core-patient-2.1.xsl"/>
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
@@ -22,9 +22,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-relatedperson-2.0.xsl"/>
     <xsl:import href="zib-body-height-2.1.xsl"/>
     <xsl:import href="zib-body-weight-2.1.xsl"/>
-
-    <xsl:import href="ext-code-specification-1.0.xsl"/>
-
+    <xsl:import href="ext-code-specification-1.0.xsl"/>-->
+    
+    <!-- Please note: this problem has been created for MedMij 2019-publication. In 2020-publication there is a backwards incompatible change for zib problem profile.
+         So you need to make a new XSLT for that profile version (major version 3). The change is described in MM-319. -->
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
