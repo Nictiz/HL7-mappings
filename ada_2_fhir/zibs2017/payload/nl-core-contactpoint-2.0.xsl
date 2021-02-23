@@ -1,6 +1,6 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-
-    <xsl:import href="all-zibs.xsl"/>
+    <!-- uncomment for development purposes -->
+    <!--    <xsl:import href="all-zibs.xsl"/>-->
 
     <!-- This XSLT is for MedMij 2020.01, contactpoint has  backwards incompatible change in that release -->
     <!-- Unfortunately, in the past we have chosen to add the profile version in the template name, which we can't touch right now, because it would impact other code too much -->
@@ -60,13 +60,13 @@
                             <xsl:otherwise>
                                 <xsl:attribute name="value" select="$telecomTypeValue"/>
                             </xsl:otherwise>
-                        </xsl:choose>                        
+                        </xsl:choose>
                     </system>
                     <xsl:for-each select="(telefoonnummer | telephone_number)/@value">
                         <value value="{normalize-space(.)}"/>
                     </xsl:for-each>
                     <xsl:if test="$numberTypeValue">
-                        <use value="{$numberTypeValue}"/>                            
+                        <use value="{$numberTypeValue}"/>
                     </xsl:if>
                 </telecom>
             </xsl:for-each>

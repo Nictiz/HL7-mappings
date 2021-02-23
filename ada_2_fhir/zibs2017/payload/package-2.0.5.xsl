@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="nl-core-organization-2.0.xsl"/>
     <xsl:import href="nl-core-humanname-2.0.xsl"/>
-    <xsl:import href="nl-core-address-2.0.xsl"/>
+    <xsl:import href="nl-core-address-3.0.xsl"/>
     <xsl:import href="nl-core-contactpoint-2.0.xsl"/>
     <xsl:import href="zib-alert-2.1.xsl"/>
     <xsl:import href="zib-allergyintolerance-2.1.xsl"/>
