@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="17790e7f-75c1-11eb-4139-020000000000"/>
+   <id value="dd89459b-75c4-11eb-1978-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:17791e04-75c1-11eb-4139-020000000000"/>
+      <fullUrl value="urn:uuid:dd89557a-75c4-11eb-1978-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -80,7 +80,7 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:17790e83-75c1-11eb-4139-020000000000"/>
+               <reference value="urn:uuid:dd89459f-75c4-11eb-1978-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <onsetDateTime value="2021-01-04"/>
@@ -88,14 +88,14 @@
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:17791e15-75c1-11eb-4139-020000000000"/>
+                     <reference value="urn:uuid:dd89558b-75c4-11eb-1978-020000000000"/>
                      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
                <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:17790e83-75c1-11eb-4139-020000000000"/>
+               <reference value="urn:uuid:dd89459f-75c4-11eb-1978-020000000000"/>
                <display value="Joris Hansman"/>
             </asserter>
          </AllergyIntolerance>
@@ -105,7 +105,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:17790e83-75c1-11eb-4139-020000000000"/>
+      <fullUrl value="urn:uuid:dd89459f-75c4-11eb-1978-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -140,7 +140,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1984-05-12"/>
          </Patient>
       </resource>
@@ -287,7 +297,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:17791e15-75c1-11eb-4139-020000000000"/>
+      <fullUrl value="urn:uuid:dd89558b-75c4-11eb-1978-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -339,7 +349,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:17791e33-75c1-11eb-4139-020000000000"/>
+      <fullUrl value="urn:uuid:dd8955a9-75c4-11eb-1978-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
@@ -366,7 +376,7 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:17790e83-75c1-11eb-4139-020000000000"/>
+               <reference value="urn:uuid:dd89459f-75c4-11eb-1978-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <name>

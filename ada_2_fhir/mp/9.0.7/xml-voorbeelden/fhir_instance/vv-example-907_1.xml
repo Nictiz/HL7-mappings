@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="15d40ba1-74fe-11eb-6273-020000000000"/>
+   <id value="bd12b791-75c6-11eb-1345-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:15d41b28-74fe-11eb-6273-020000000000"/>
+      <fullUrl value="urn:uuid:bd12c772-75c6-11eb-1345-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -70,7 +70,7 @@
                <display value="PARACETAMOL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:15d40ba5-74fe-11eb-6273-020000000000"/>
+               <reference value="urn:uuid:bd12b795-75c6-11eb-1345-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <performer>
@@ -110,7 +110,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:15d41b46-74fe-11eb-6273-020000000000"/>
+      <fullUrl value="urn:uuid:bd12c790-75c6-11eb-1345-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -176,7 +176,7 @@
                <display value="PARACETAMOL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:15d40ba5-74fe-11eb-6273-020000000000"/>
+               <reference value="urn:uuid:bd12b795-75c6-11eb-1345-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <performer>
@@ -203,7 +203,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:15d40ba5-74fe-11eb-6273-020000000000"/>
+      <fullUrl value="urn:uuid:bd12b795-75c6-11eb-1345-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -238,7 +238,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1984-05-12"/>
          </Patient>
       </resource>

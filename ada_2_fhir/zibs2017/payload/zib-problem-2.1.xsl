@@ -13,11 +13,22 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="_zib2017.xsl"/>-->
+    <!-- uncomment imports only for development purposes -->
+    <xsl:import href="_zib2017.xsl"/>
+    <xsl:import href="nl-core-patient-2.1.xsl"/>
+    <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
+    <xsl:import href="nl-core-practitioner-2.0.xsl"/>
+    <xsl:import href="nl-core-organization-2.0.xsl"/>
+    <xsl:import href="nl-core-relatedperson-2.0.xsl"/>
+    <xsl:import href="zib-body-height-2.1.xsl"/>
+    <xsl:import href="zib-body-weight-2.1.xsl"/>
+
+    <xsl:import href="ext-code-specification-1.0.xsl"/>
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    
+
     <xsl:variable name="problems" as="element()*">
         <!-- probleem in problem -->
         <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
@@ -28,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
                 <reference-display xmlns="">
-                    <xsl:value-of select="(probleem_naam | problem_name)/(@displayName|@originalText)"/>
+                    <xsl:value-of select="(probleem_naam | problem_name)/(@displayName | @originalText)"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
                     <xsl:with-param name="uuid" select="$uuid"/>
@@ -36,8 +47,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </unieke-problem>
         </xsl:for-each-group>
-    </xsl:variable>    
-    
+    </xsl:variable>
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -57,12 +68,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </identifier>
             </xsl:when>
         </xsl:choose>
-        
+
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an Condition resource</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
@@ -84,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
                     </xsl:when>
                     <!-- specific handling for MP prescribe reasons for more stable id -->
-                    <xsl:when test="./ancestor::reden_van_voorschrijven[probleem/probleem_naam[@code][not(@codeSystem=$oidHL7NullFlavor)]]">
+                    <xsl:when test="./ancestor::reden_van_voorschrijven[probleem/probleem_naam[@code][not(@codeSystem = $oidHL7NullFlavor)]]">
                         <xsl:variable name="patientRef" select="$patients[group-key = nf:getGroupingKeyPatient($adaPatient)]/f:entry/f:resource/f:Patient/f:id/@value" as="xs:string?"/>
                         <xsl:value-of select="concat('redenvoorschrijven', $patientRef, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
                     </xsl:when>
@@ -95,7 +106,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
-        
+
         <entry>
             <fullUrl value="{$entryFullUrl}"/>
             <resource>
@@ -113,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </entry>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.Problem concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Problem">zib-Problem</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
@@ -126,13 +137,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-        
+
         <xsl:variable name="patientRef" as="element()*">
             <xsl:for-each select="$adaPatient">
                 <xsl:call-template name="patientReference"/>
             </xsl:for-each>
         </xsl:variable>
-        
+
         <xsl:for-each select="$in">
             <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data]"/>
             <xsl:variable name="resource">
@@ -144,8 +155,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
-                    
-                    <!-- Clinical Status-->
+
+                    <!-- Clinical Status, mapping https://simplifier.net/NictizSTU3-Zib2017/ProbleemStatusCodelijst-to-Condition-Clinical-Status-Codes-->
                     <!-- probleem status -->
                     <clinicalStatus>
                         <xsl:choose>
@@ -161,7 +172,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </extension>
                             </xsl:otherwise>
                         </xsl:choose>
+                        <!-- MM-1036 add code.specification extension -->
+                        <xsl:call-template name="ext-code-specification-1.0">
+                            <xsl:with-param name="in" select="problem_status | probleem_status"/>
+                        </xsl:call-template>
                     </clinicalStatus>
+                    
                     <!-- Verification Status-->
                     <xsl:for-each select="(verification_status | verificatie_status)/@code">
                         <verificationStatus>
@@ -174,9 +190,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:when test=". = 'UNK'">unknown</xsl:when>
                                 </xsl:choose>
                             </xsl:attribute>
+                            <!-- MM-1036 add code.specification extension -->
+                            <xsl:call-template name="ext-code-specification-1.0"/>                            
                         </verificationStatus>
                     </xsl:for-each>
-                    
+
                     <!-- Problem Type (.category) -->
                     <xsl:for-each select="(problem_type | probleem_type)[.//(@value | @code)]">
                         <category>
@@ -185,14 +203,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </category>
                     </xsl:for-each>
-                    
+
                     <!-- Problem Name (.code) -->
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="problem_name | probleem_naam"/>
                         </xsl:call-template>
                     </code>
-                    
+
                     <!-- BodySite SHALL be present when laterality or anatomical location is present in the adaxml -->
                     <xsl:variable name="problemAnatomic" select="(problem_anatomical_location | probleem_anatomische_locatie)[@value | @code]"/>
                     <xsl:variable name="problemLateral" select="(problem_laterality | probleem_lateraliteit)[@value | @code]"/>
@@ -216,7 +234,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                         </bodySite>
                     </xsl:if>
-                    
+
                     <!-- The problem has as subject the patient -->
                     <subject>
                         <xsl:copy-of select="$patientRef[self::f:extension]"/>
@@ -224,7 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="$patientRef[self::f:identifier]"/>
                         <xsl:copy-of select="$patientRef[self::f:display]"/>
                     </subject>
-                    
+
                     <!-- OnsetPeriod -->
                     <xsl:if test="(problem_start_date | probleem_begin_datum | problem_end_date | probleem_eind_datum)[@value]">
                         <onsetPeriod>
@@ -238,7 +256,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </start>
                             </xsl:if>
-                            
+
                             <!-- EndDateTime -->
                             <xsl:if test="(problem_end_date | probleem_eind_datum)[@value]">
                                 <end>
@@ -251,7 +269,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </onsetPeriod>
                     </xsl:if>
-                    
+
                     <!-- FUTURE IMPLEMENTATION, AN ISSUE HAS BEEN ENTERED TO CHANGE MAPPING OF START AND END DATE, BUT THIS IS STILL TO BE APPROVED-->
                     <!-- <!-\- OnsetDatetime -\->
                     <xsl:if test="(problem_start_date | probleem_start_datum)[@value | @code]">
@@ -276,7 +294,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:attribute>
                         </abatementDateTime>
                     </xsl:if>-->
-                    
+
                     <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
                     <!-- assertedDate -->
                     <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
@@ -289,7 +307,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:attribute>
                         </assertedDate>
                     </xsl:for-each>
-                    
+
                     <!-- Condition.asserter is Person who asserts this condition. For a complaint, this is the informant. 
                         For a diagnosis this is normally the author. If we have an informant, let it prevail. If we have an author, use that as fallback -->
                     <!-- >     NL-CM:0.0.2        Informatiebron via nl.zorg.part.basiselementen -->
@@ -304,7 +322,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
-                    
+
                     <xsl:variable name="informantRef" as="element()*">
                         <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">
                             <xsl:call-template name="practitionerRoleReference">
@@ -319,7 +337,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="relatedPersonReference"/>
                         </xsl:for-each>
                     </xsl:variable>
-                    
+
                     <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
                     <!-- asserter -->
                     <xsl:variable name="zibrootAuteur" select="zibroot/auteur/((patient_als_auteur | patient_as_author)/patient | zorgverlener_als_auteur/zorgverlener | health_professional_as_author/health_professional | betrokkene_als_auteur/contactpersoon | related_person_as_author/contact_person)"/>
@@ -333,7 +351,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
-                    
+
                     <xsl:variable name="authorRef" as="element()*">
                         <xsl:for-each select="$adaAuteur[self::zorgverlener | self::health_professional]">
                             <xsl:call-template name="practitionerRoleReference">
@@ -348,7 +366,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="relatedPersonReference"/>
                         </xsl:for-each>
                     </xsl:variable>
-                    
+
                     <xsl:choose>
                         <xsl:when test="$informantRef">
                             <asserter>
@@ -367,17 +385,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </asserter>
                         </xsl:when>
                     </xsl:choose>
-                    
+
                     <!-- Comment (.note) -->
                     <xsl:if test="(comment | toelichting)[@value]">
                         <note>
                             <text value="{(comment | toelichting)/@value}"/>
                         </note>
                     </xsl:if>
-                    
+
                 </Condition>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
