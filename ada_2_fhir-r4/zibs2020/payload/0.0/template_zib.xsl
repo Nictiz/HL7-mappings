@@ -13,20 +13,24 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet 
-    exclude-result-prefixes="#all" 
+<xsl:stylesheet exclude-result-prefixes="#all"
+    xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
-    xmlns:uuid="http://www.uuid.org" 
-    xmlns:local="urn:fhir:stu3:functions" 
-    xmlns:nf="http://www.nictiz.nl/functions" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:uuid="http://www.uuid.org"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
+    
+    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
+    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
 
-    <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
-
-    <!-- Here all overrules be placed -->
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
+    
+    <xd:doc scope="stylesheet">
+        <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile zib-HealthcareProvider</xd:desc>
+    </xd:doc>
 
 </xsl:stylesheet>
