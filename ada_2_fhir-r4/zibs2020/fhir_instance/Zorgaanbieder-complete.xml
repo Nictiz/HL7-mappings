@@ -1,0 +1,48 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <type value="collection"/>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.6020806"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="06020806"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0320"/>
+                  <display value="Medisch specialisten, cardiologie"/>
+               </coding>
+            </type>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="V4"/>
+                  <display value="Ziekenhuis"/>
+               </coding>
+            </type>
+            <name value="Erasmus Universitair Medisch Centrum"/>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b5b06631-782d-11eb-8209-020000000000"/>
+      <resource>
+         <Location>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Location"/>
+            </meta>
+            <name value="Testlocatie"/>
+            <alias value="1234"/>
+            <managingOrganization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.6020806"/>
+               <display value="Erasmus Universitair Medisch Centrum"/>
+            </managingOrganization>
+         </Location>
+      </resource>
+   </entry>
+</Bundle>
