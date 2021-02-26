@@ -1,0 +1,603 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:annotation>
+      <xs:documentation>Schema for transaction: 2.16.840.1.113883.2.4.3.11.60.121.4.2.7.12</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="empty_string">
+      <xs:annotation>
+         <xs:documentation>Type for empty value-strings on non-mandatory concepts</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="0"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:element name="taalvaardigheid_registratie"
+               type="taalvaardigheid_registratie_type"/>
+   <xs:complexType name="taalvaardigheid_registratie_type">
+      <xs:sequence>
+         <xs:element name="taalvaardigheid-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="taalvaardigheid"
+                     type="taalvaardigheid_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_1"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string"/>
+      <xs:attribute name="app" type="xs:string"/>
+      <xs:attribute name="shortName" type="xs:string"/>
+      <xs:attribute name="formName" type="xs:string"/>
+      <xs:attribute name="transactionRef" type="xs:string"/>
+      <xs:attribute name="transactionEffectiveDate" type="xs:dateTime"/>
+      <xs:attribute name="versionDate" type="xs:string"/>
+      <xs:attribute name="language" type="xs:string"/>
+      <xs:attribute name="prefix" type="xs:string"/>
+      <xs:attribute name="adaVersion" type="xs:decimal"/>
+      <xs:attribute name="title" type="xs:string"/>
+      <xs:attribute name="desc" type="xs:string"/>
+      <xs:attribute name="rights" type="xs:string"/>
+      <xs:attribute name="owner" type="xs:string"/>
+   </xs:complexType>
+   <xs:complexType name="taalvaardigheid_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_1">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Taalvaardigheid</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="onderwerp-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="​2.16.840.1.113883.2.4.3.11.999.121.1.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="onderwerp"
+                     type="onderwerp_type_​2_16_840_1_113883_2_4_3_11_999_121_1_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="communicatie_taal-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.3"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="communicatie_taal"
+                     type="communicatie_taal_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_3"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="taalvaardigheid_begrijpen-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.6"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="taalvaardigheid_begrijpen"
+                     type="taalvaardigheid_begrijpen_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_6"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="taalvaardigheid_spreken-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.7"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="taalvaardigheid_spreken"
+                     type="taalvaardigheid_spreken_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_7"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="taalvaardigheid_lezen-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.8"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="taalvaardigheid_lezen"
+                     type="taalvaardigheid_lezen_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_8"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="communicatie_bijzonderheden-start"
+                     minOccurs="0"
+                     maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.9"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="communicatie_bijzonderheden"
+                     type="communicatie_bijzonderheden_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_9"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="toelichting-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.5"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="toelichting"
+                     type="toelichting_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_5"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.1"/>
+      <xs:attribute name="comment" type="xs:string"/>
+   </xs:complexType>
+   <xs:complexType name="onderwerp_type_​2_16_840_1_113883_2_4_3_11_999_121_1_1">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Onderwerp</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="patient-id-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="​2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="patient-id"
+                     type="patient-id_type_​2_16_840_1_113883_2_4_3_11_999_121_1_2"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="​2.16.840.1.113883.2.4.3.11.999.121.1.1"/>
+      <xs:attribute name="comment" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Patient identificatie - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="patient-id_type_​2_16_840_1_113883_2_4_3_11_999_121_1_2">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="​2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="patient-id_1_datatype_​2_16_840_1_113883_2_4_3_11_999_121_1_2 "/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="identifier"/>
+      <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Patient identificatie: identifier</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="patient-id_1_datatype_​2_16_840_1_113883_2_4_3_11_999_121_1_2">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: CommunicatieTaal - 1..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="communicatie_taal_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_3">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.3"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: TaalvaardigheidBegrijpen - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="taalvaardigheid_begrijpen_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_6">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.6"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>Excellent</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>Good</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>Fair</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>Poor</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: TaalvaardigheidSpreken - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="taalvaardigheid_spreken_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_7">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.7"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>Excellent</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>Good</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>Fair</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>Poor</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: TaalvaardigheidLezen - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="taalvaardigheid_lezen_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_8">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.8"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>Excellent</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>Good</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>Fair</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>Poor</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: CommunicatieBijzonderheden - 0..* </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="communicatie_bijzonderheden_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_9">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.9"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>Sign language</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>Braille language</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Toelichting - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="toelichting_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_12_5">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.12.5"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:complexType name="adaextension_type">
+      <xs:sequence>
+         <xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute processContents="skip"/>
+   </xs:complexType>
+   <xs:simpleType name="NullFlavorNoInformation">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value=""/>
+         <xs:enumeration value="NI"/>
+         <xs:enumeration value="UNK"/>
+         <xs:enumeration value="OTH"/>
+         <xs:enumeration value="MSK"/>
+         <xs:enumeration value="UNC"/>
+         <xs:enumeration value="NA"/>
+         <xs:enumeration value="NAV"/>
+         <xs:enumeration value="ASKU"/>
+         <xs:enumeration value="NASK"/>
+         <xs:enumeration value="INV"/>
+         <xs:enumeration value="DER"/>
+         <xs:enumeration value="NINF"/>
+         <xs:enumeration value="PINF"/>
+         <xs:enumeration value="QS"/>
+         <xs:enumeration value="TRC"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="ComplexDatatypes">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="string"/>
+         <xs:enumeration value="code"/>
+         <xs:enumeration value="identifier"/>
+         <xs:enumeration value="date"/>
+         <xs:enumeration value="datetime"/>
+         <xs:enumeration value="time"/>
+         <xs:enumeration value="quantity"/>
+         <xs:enumeration value="duration"/>
+         <xs:enumeration value="boolean"/>
+         <xs:enumeration value="count"/>
+         <xs:enumeration value="ordinal"/>
+         <xs:enumeration value="text"/>
+         <xs:enumeration value="decimal"/>
+         <xs:enumeration value="blob"/>
+         <xs:enumeration value="complex"/>
+         <xs:enumeration value="reference"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="VariableDate">
+      <xs:union memberTypes="xs:date RelativeDate"/>
+   </xs:simpleType>
+   <xs:simpleType name="VariableDateTime">
+      <xs:union memberTypes="xs:dateTime xs:date RelativeDateTime RelativeDate"/>
+   </xs:simpleType>
+   <xs:simpleType name="VariableVagueDate">
+      <xs:union memberTypes="xs:date RelativeDate DateYearOptionalMonthNoDays"/>
+   </xs:simpleType>
+   <xs:simpleType name="VariableVagueDateTime">
+      <xs:union memberTypes="xs:dateTime xs:date RelativeDateTime DateYearOptionalMonthNoDays DateTimeOptionalMinutesSeconds"/>
+   </xs:simpleType>
+   <xs:simpleType name="VagueDate">
+      <xs:union memberTypes="xs:date DateYearOptionalMonthNoDays"/>
+   </xs:simpleType>
+   <xs:simpleType name="VagueDateTime">
+      <xs:union memberTypes="xs:dateTime xs:date DateYearOptionalMonthNoDays DateTimeOptionalMinutesSeconds"/>
+   </xs:simpleType>
+   <xs:simpleType name="RelativeDate">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="RelativeDateTime">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DateYear">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\d{4}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DateYearMonth">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\d{4}-(0[1-9]|1[012])"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DateYearOptionalMonthNoDays">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\d{4}(-(0[1-9]|1[012]))?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DateTimeOptionalMinutesSeconds">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\d{4}-(0[1-9]|1[012])-(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3])(:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?)?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="VariableVagueTime">
+      <xs:union memberTypes="xs:time RelativeTime TimeHourOptionalMinutesSeconds"/>
+   </xs:simpleType>
+   <xs:simpleType name="VariableTime">
+      <xs:union memberTypes="xs:time RelativeTime"/>
+   </xs:simpleType>
+   <xs:simpleType name="VagueTime">
+      <xs:union memberTypes="xs:time TimeHourOptionalMinutesSeconds"/>
+   </xs:simpleType>
+   <xs:simpleType name="RelativeTime">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="T(([+\-]\d+(\.\d+)?[HMS])?(\{:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="TimeHourOptionalMinutesSeconds">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="([01]\d|2[0-3])(:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?)?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="TimeHour">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[01]\d|2[0-3]"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="TimeHourMinute">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="([01]\d|2[0-3]):(0\d|[1-5]\d)"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="BooleanOrEmpty">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value=""/>
+         <xs:enumeration value="true"/>
+         <xs:enumeration value="true"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
