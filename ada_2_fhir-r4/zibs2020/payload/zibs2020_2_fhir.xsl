@@ -65,9 +65,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Build a FHIR Bundle of type collection.</xd:desc>
     </xd:doc>
     <xsl:template match="adaxml/data" name="Zib2020Conversion">
+        <!-- First we create all resources in a variable. These resources all have a uuid as resource.id, all (internal) references are to this uuid -->
+        <xsl:variable name="resources">
+            <xsl:apply-templates select="*"/>
+        </xsl:variable>
+        <!-- Then we can decide wat to do with these resources. Store them in a Bundle, and (optional) transform all resource.id and references to relative paths. The goal is to create some sort of toolkit that can be applied at this stage, for example templates like:
+        - createSearchsetBundle
+        - convertUuid2Relative
+        - removeResourceId
+        - addNarrative
+        - etc.
+        The most basic action would be just <xsl:copy-of select="$resources"/> if one resource is expected, but because we are dealing with a HealcareProvider with an Organization and a Location resource, I am making a collection Bundle.
+        -->
+        <!--<xsl:copy-of select="$resources"/>-->
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
             <type value="collection"/>
-            <xsl:apply-templates select="*"/>
+            <xsl:for-each select="$resources">
+                <entry>
+                    <fullUrl value="TODO"/>
+                    <xsl:copy-of select="."/>
+                </entry>
+            </xsl:for-each>
         </Bundle>
     </xsl:template>
 

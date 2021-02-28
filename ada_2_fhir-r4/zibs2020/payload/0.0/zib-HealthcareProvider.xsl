@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Unwrap zorgaanbieder_registratie element</xd:desc>
     </xd:doc>
     <xsl:template match="zorgaanbieder_registratie">
-        <xsl:apply-templates select="zorgaanbieder" mode="zib-HealthcareProviderEntry">
+        <xsl:apply-templates select="zorgaanbieder" mode="zib-HealthcareProvider-Resources">
             <xsl:with-param name="searchMode" select="''"/>
         </xsl:apply-templates>
     </xsl:template>
@@ -67,8 +67,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:otherwise>Organisatie informatie: <xsl:value-of select="string-join(.//(@value | @code | @root | @codeSystem), ' - ')"/></xsl:otherwise>
                         </xsl:choose>
                     </reference-display>
-                    <xsl:call-template name="zib-HealthcareProviderEntry">
-                        <xsl:with-param name="uuid" select="$uuid"/>
+                    <xsl:call-template name="zib-HealthcareProvider-Resources">
+                        <!--<xsl:with-param name="uuid" select="$uuid"/>-->
                         <xsl:with-param name="includeLocation" select="false()"/>
                     </xsl:call-template>
                 </unieke-zorgaanbieder>
@@ -78,154 +78,87 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an Organization resource and, if applicable, a FHIR entry element with a Location resource.</xd:desc>
-        <xd:param name="uuid"> If false and zorgaanbieder_identificatienummer[@value] generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time. </xd:param>
-        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Organization.id</xd:param>
-        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
+        <!--<xd:param name="uuid"> If false and zorgaanbieder_identificatienummer[@value] generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time. </xd:param>-->
         <xd:param name="includeLocation">Optional. Include the Location resource as a second entry. Default: true()</xd:param>
     </xd:doc>
-    <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="zib-HealthcareProviderEntry" name="zib-HealthcareProviderEntry">
-        <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="entryFullUrl">
-            <xsl:choose>
-                <xsl:when test="not($uuid) and zorgaanbieder_identificatienummer">
-                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatienummer))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:param>
-        <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:choose>
-                    <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:when>
-                    <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(zorgaanbieder_identificatienummer[1]/(@value | @root), ''))))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
-        </xsl:param>
-        <xsl:param name="searchMode">include</xsl:param>
+    <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="zib-HealthcareProvider-Resources" name="zib-HealthcareProvider-Resources">
+        <!--<xsl:param name="uuid" select="false()" as="xs:boolean"/>-->
         <xsl:param name="includeLocation" select="true()"/>
-        <entry>
-            <fullUrl value="{$entryFullUrl}"/>
-            <resource>
-                <xsl:call-template name="zib-HealthcareProvider-Organization">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
-                </xsl:call-template>
-            </resource>
-            <xsl:if test="string-length($searchMode) gt 0">
-                <search>
-                    <mode value="{$searchMode}"/>
-                </search>
-            </xsl:if>
-        </entry>
+        <!-- If we pass the same node to both Organization and Location, they will return the same UUID. Therefore we pass separate input nodes for uuid-generation -->
+        <xsl:call-template name="zib-HealthcareProvider-Organization">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="uuidNode" as="element()">
+                <zorgaanbieder>
+                    <xsl:copy-of select="*[not(self::organisatie_locatie)]"></xsl:copy-of>
+                </zorgaanbieder>
+            </xsl:with-param>
+        </xsl:call-template>
         <xsl:if test="organisatie_locatie/*[@value] and $includeLocation">
-            <xsl:variable name="secondaryEntryFullUrl">
-                <xsl:value-of select="nf:get-fhir-uuid(.)"/>
-            </xsl:variable>
-            <xsl:variable name="secondaryFhirResourceId">
-                <xsl:if test="$referById">
-                    <xsl:choose>
-                        <xsl:when test="$uuid">
-                            <xsl:value-of select="nf:removeSpecialCharacters(replace($secondaryEntryFullUrl, 'urn:[^i]*id:', ''))"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="nf:removeSpecialCharacters(replace($secondaryEntryFullUrl, 'urn:[^i]*id:', ''))"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:if>
-            </xsl:variable>
-            <entry>
-                <fullUrl value="{$secondaryEntryFullUrl}"/>
-                <resource>
-                    <xsl:call-template name="zib-HealthcareProvider-Location">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="logicalId" select="$secondaryFhirResourceId"/>
-                    </xsl:call-template>
-                </resource>
-                <xsl:if test="string-length($searchMode) gt 0">
-                    <search>
-                        <mode value="{$searchMode}"/>
-                    </search>
-                </xsl:if>
-            </entry>
+            <xsl:call-template name="zib-HealthcareProvider-Location">
+                <xsl:with-param name="in" select="."/>
+                <xsl:with-param name="uuidNode" as="element()">
+                    <zorgaanbieder>
+                        <xsl:copy-of select="*[self::zorgaanbieder_identificatienummer or self::organisatie_locatie or self::contactgegevens or self::adresgegevens]"/>
+                    </zorgaanbieder>
+                </xsl:with-param>
+            </xsl:call-template>
         </xsl:if>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces a Location resource based on zib-HealthcareProvider</xd:desc>
-        <xd:param name="logicalId">Location.id value</xd:param>
+        <xd:desc>Produces a Organization resource based on zib-HealthcareProvider</xd:desc>
         <xd:param name="in">Node to consider in the creation of an Organization resource</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="zib-HealthcareProvider-Organization" name="zib-HealthcareProvider-Organization">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="uuidNode" as="element()?" select="."/>
         <xsl:for-each select="$in">
-            <!--<xsl:variable name="resource">-->
-                <Organization>
-                    <xsl:if test="$referById">
-                        <id value="{$logicalId}"/>
-                    </xsl:if>
-                    <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization"/>
-                    </meta>
-                    <xsl:for-each select="zorgaanbieder_identificatienummer[@value]">
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
-                    </xsl:for-each>
-                    <!-- type -->
-                    <xsl:for-each select="organisatie_type | afdeling_specialisme">
-                        <type>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </type>
-                    </xsl:for-each>
-                    <!-- name -->
-                    <xsl:if test="organisatie_naam/@value">
-                        <name value="{organisatie_naam/@value}"/>
-                    </xsl:if>
-                    <!-- contactgegevens -->
-                    <!--<xsl:call-template name="zib-ContactInformation">
-                        <xsl:with-param name="in" select="contactgegevens"/>
-                    </xsl:call-template>-->
-                    <!-- address -->
-                    <!--<xsl:call-template name="zib-AddressInformation">
-                        <xsl:with-param name="in" select="adresgegevens"/>
-                    </xsl:call-template>-->
-                </Organization>
-            <!--</xsl:variable>
-
-            <!-\- Add resource.text -\->
-            <xsl:apply-templates select="$resource" mode="addNarrative"/>-->
+            <Organization>
+                <id value="{nf:get-uuid($uuidNode)}"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization"/>
+                </meta>
+                <xsl:for-each select="zorgaanbieder_identificatienummer[@value]">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </identifier>
+                </xsl:for-each>
+                <!-- type -->
+                <xsl:for-each select="organisatie_type | afdeling_specialisme">
+                    <type>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </type>
+                </xsl:for-each>
+                <!-- name -->
+                <xsl:if test="organisatie_naam/@value">
+                    <name value="{organisatie_naam/@value}"/>
+                </xsl:if>
+                <!-- contactgegevens -->
+                <!--<xsl:call-template name="zib-ContactInformation">
+                    <xsl:with-param name="in" select="contactgegevens"/>
+                </xsl:call-template>-->
+                <!-- address -->
+                <!--<xsl:call-template name="zib-AddressInformation">
+                    <xsl:with-param name="in" select="adresgegevens"/>
+                </xsl:call-template>-->
+            </Organization>
         </xsl:for-each>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Produces a Location resource based on zib-HealthcareProvider</xd:desc>
-        <xd:param name="logicalId">Location.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a Location resource</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="zib-HealthcareProvider-Location" name="zib-HealthcareProvider-Location">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="uuidNode" as="element()?" select="."/>
         <xsl:for-each select="$in">
-            <!--<xsl:variable name="resource">-->
             <Location>
-                <xsl:if test="$referById">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
+                <id value="{nf:get-uuid($uuidNode)}"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Location"/>
                 </meta>
@@ -250,10 +183,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="zib-HealthcareProvider-Organization-Reference"/>
                 </managingOrganization>
             </Location>
-            <!--</xsl:variable>
-
-            <!-\- Add resource.text -\->
-            <xsl:apply-templates select="$resource" mode="addNarrative"/>-->
         </xsl:for-each>
     </xsl:template>
     
@@ -266,7 +195,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId(($theGroupElement/f:entry)[1])}"/>
+                <reference value="{$theGroupElement/*[position()=last()]/concat(local-name(), '/', f:id[1]/@value)}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>
