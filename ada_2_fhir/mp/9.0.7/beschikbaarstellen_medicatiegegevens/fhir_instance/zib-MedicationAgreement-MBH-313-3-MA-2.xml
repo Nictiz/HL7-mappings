@@ -1,0 +1,133 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-MBH-313-3-MA-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: J. XXX_Cnossen. Id: MBH_313_3_MA_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th colspan="2">Medicatie is gestopt: <span title="Tijdelijk (1 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Tijdelijk</span>
+                  </th>
+               </tr>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_313_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>CARBASALAATCALCIUM 100MG PO</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>13:54:00, 30 augustus 2018</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>26 mei 2018 00:00:00 - 29 augustus 2018 23:59:00</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf 26 mei 2018 tot en met 29 aug 2018, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken</div>
+                     <div>Timing: <div>eenmalig per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                     </div>
+                     <div>Dosering: 1 stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="2018-05-26T00:00:00+02:00"/>
+         <end value="2018-08-29T23:59:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_313_3"/>
+      </valueIdentifier>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+            <code value="1"/>
+            <display value="Tijdelijk"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_313_3_MA_2"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-13072-2-16-840-1-113883-2-4-4-10"/>
+      <display value="CARBASALAATCALCIUM 100MG PO"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/XXX-CNOSSEN"/>
+      <display value="J. XXX_Cnossen"/>
+   </subject>
+   <authoredOn value="2018-08-30T13:54:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-010000001111"/>
+               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+<<<<<<< HEAD:ada_2_fhir/mp/9.0.7/beschikbaarstellen_medicatiegegevens/fhir_instance/mp9-zib-MedicationAgreement-MBH-313-3-MA-2.xml
+         <reference value="Practitioner/509c2554-5a48-11eb-1845-020000000000"/>
+=======
+         <reference value="Practitioner/nl-core-practitioner-be422718-75c6-11eb-1935-020000000000"/>
+>>>>>>> origin/MM-1407:ada_2_fhir/mp/9.0.7/beschikbaarstellen_medicatiegegevens/fhir_instance/zib-MedicationAgreement-MBH-313-3-MA-2.xml
+         <display value="John de Vries"/>
+      </agent>
+   </requester>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Vanaf 26 mei 2018 tot en met 29 aug 2018, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

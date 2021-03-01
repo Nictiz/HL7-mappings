@@ -1,0 +1,102 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-CIO-02-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_02 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: inactief / <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Betreft nu Ciprofloxacine. Leidt tot paarse vlekjes op de huid en jeuk.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Amoxicilline (23167 - G-Standaard Bestand 750)">Amoxicilline</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>${DATE, T, D, -60} - I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -100}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="CIO_02_02"/>
+   </identifier>
+   <clinicalStatus value="inactive">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="obsolete"/>
+               <display value="Achterhaald"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </verificationStatus>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op geneesmiddel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+         <code value="23167"/>
+         <display value="Amoxicilline"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-Smits"/>
+      <display value="M.P.H. Mike XXX_Smits"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -100}"/>
+   <assertedDate value="${DATE, T, D, -60}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-1111111120313"/>
+            <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+         </valueReference>
+      </extension>
+      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+   </recorder>
+   <asserter>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-1111111120313"/>
+            <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+         </valueReference>
+      </extension>
+      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+   </asserter>
+   <note>
+      <text value="Betreft nu Ciprofloxacine. Leidt tot paarse vlekjes op de huid en jeuk."/>
+   </note>
+</AllergyIntolerance>

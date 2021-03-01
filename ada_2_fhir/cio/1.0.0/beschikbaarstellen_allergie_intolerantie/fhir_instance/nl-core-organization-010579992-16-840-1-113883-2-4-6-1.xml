@@ -1,0 +1,109 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-010579992-16-840-1-113883-2-4-6-1"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 01057999 (AGB-Z)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Huisartsenpraktijk 'de Test'</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Huisartspraktijk (zelfstandig of groepspraktijk) (Z3 - organization-type)">Huisartspraktijk (zelfstandig of groepspraktijk)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0800-987653">0800-987653</a> (Tel Werk)br<a href="mailto:info@hpdetest.nl">info@hpdetest.nl</a> (E-mail Werk)br</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Dorpstraat 14, 9244ZZ Beetsterzwaag (WP)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="01057999"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="Z3"/>
+         <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+      </coding>
+   </type>
+   <name value="Huisartsenpraktijk 'de Test'"/>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                  <code value="LL"/>
+                  <display value="Vast telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="0800-987653"/>
+      <use value="work">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@hpdetest.nl"/>
+      <use value="work">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk e-mailadres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Dorpstraat 14">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Dorpstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="14"/>
+         </extension>
+      </line>
+      <city value="Beetsterzwaag"/>
+      <postalCode value="9244ZZ"/>
+   </address>
+</Organization>

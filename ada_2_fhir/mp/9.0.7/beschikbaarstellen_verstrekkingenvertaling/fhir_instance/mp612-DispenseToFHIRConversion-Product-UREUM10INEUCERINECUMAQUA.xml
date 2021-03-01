@@ -1,0 +1,84 @@
+<Medication xmlns="http://hl7.org/fhir">
+   <id value="mp612-DispenseToFHIRConversion-Product-UREUM10INEUCERINECUMAQUA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>Ureum 10% in eucerine cum aqua</td>
+                  <th>Ingredients</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <span title="UREUM (15219127 - G-Standaard ZI_nummer)">UREUM</span>
+                        </li>
+                        <li>
+                           <span title="EUCERINE MET WATER FAGRON (14740877 - G-Standaard ZI_nummer)">EUCERINE MET WATER FAGRON</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
+      <valueString value="Titel: Ureum 10% in eucerine cum aqua&#xA;Regel: Ureum 10 gr &#xA;&#xA;Regel: Eucerine met water creme FNA ad 100g."/>
+   </extension>
+   <code>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="OTH"/>
+      </extension>
+      <text value="Ureum 10% in eucerine cum aqua"/>
+   </code>
+   <ingredient>
+      <itemCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+            <code value="15219127"/>
+            <display value="UREUM"/>
+         </coding>
+      </itemCodeableConcept>
+      <amount>
+         <numerator>
+            <value value="10"/>
+            <unit value="gram"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="215"/>
+         </numerator>
+         <denominator>
+            <value value="100"/>
+            <unit value="gram"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="215"/>
+         </denominator>
+      </amount>
+   </ingredient>
+   <ingredient>
+      <itemCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+            <code value="14740877"/>
+            <display value="EUCERINE MET WATER FAGRON"/>
+         </coding>
+      </itemCodeableConcept>
+      <amount>
+         <numerator>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+               <valueCode value="QS"/>
+            </extension>
+         </numerator>
+         <denominator>
+            <value value="100"/>
+            <unit value="gram"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="215"/>
+         </denominator>
+      </amount>
+   </ingredient>
+</Medication>

@@ -122,7 +122,7 @@
         <xsl:param name="inputDateT" as="xs:date?"/>
         
         <xsl:choose>
-            <xsl:when test="starts-with($in, 'T') or starts-with($in, 'DOB') and $inputDateT castable as xs:date">
+            <xsl:when test="(starts-with($in, 'T') or starts-with($in, 'DOB')) and $inputDateT castable as xs:date">
                 <xsl:variable name="sign" select="replace($in, '^(T|DOB)([+-])?.*', '$2')"/>
                 <xsl:variable name="amountYearMonth" as="xs:string?">
                     <xsl:if test="matches($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}')">

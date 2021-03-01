@@ -1,0 +1,66 @@
+<List xmlns="http://hl7.org/fhir">
+   <id value="d46e145"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
+      <extension url="VerificationPatient">
+         <valueBoolean value="true"/>
+      </extension>
+      <extension url="VerificationPatientDate">
+         <valueDateTime value="2020-07-21T14:15:17+02:00"/>
+      </extension>
+      <extension url="VerificationHealthProfessional">
+         <valueBoolean value="true"/>
+      </extension>
+      <extension url="VerificationHealthProfessionalDate">
+         <valueDateTime value="2020-07-21T14:15:17+02:00"/>
+      </extension>
+   </extension>
+   <status value="current"/>
+   <mode value="snapshot"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11181000146103"/>
+         <display value="Actual medication overview (record artifact)"/>
+      </coding>
+      <text value="Medicatieoverzicht"/>
+   </code>
+   <subject>
+      <reference value="Patient/JORISHANSMAN"/>
+      <display value="Joris Hansman"/>
+   </subject>
+   <date value="2016-06-23T14:15:18+02:00"/>
+   <source>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
+         <valueReference>
+<<<<<<< HEAD:ada_2_fhir/mp/9.0.7/xml-voorbeelden/fhir_instance/mp9-MedicationOverview-d44e145.xml
+            <reference value="Organization/4db37675-5a48-11eb-2108-020000000000"/>
+=======
+            <reference value="Organization/nl-core-organization-b9e2e3c3-75c6-11eb-1671-020000000000"/>
+>>>>>>> origin/MM-1407:ada_2_fhir/mp/9.0.7/xml-voorbeelden/fhir_instance/d46e145.xml
+            <display value="Ziekenhuis zus en zo"/>
+         </valueReference>
+      </extension>
+      <display value="Ziekenhuis zus en zo"/>
+   </source>
+   <entry>
+      <item>
+         <reference value="MedicationRequest/zib-MedicationAgreement-MB-01hMA-01"/>
+         <display value="Medicatieafspraak identifier: value='#MB_01h#MA_01', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+      </item>
+   </entry>
+   <entry>
+      <item>
+         <reference value="MedicationDispense/zib-AdministrationAgreement-1546339-f6753t65r"/>
+         <display value="Toedieningsafspraak identifier: value='1546339-f6753t65r', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1'"/>
+      </item>
+   </entry>
+   <entry>
+      <item>
+         <reference value="MedicationStatement/zib-MedicationUse-MB-01i1GE-01"/>
+         <display value="Medicatiegebruik identifier: value='#MB_01i1#GE_01', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1'"/>
+      </item>
+   </entry>
+</List>

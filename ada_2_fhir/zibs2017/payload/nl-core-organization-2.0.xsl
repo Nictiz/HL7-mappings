@@ -13,14 +13,14 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="_zib2017.xsl"/>-->
+    <!--    <xsl:import href="_zib2017.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    
+
     <xsl:variable name="organizations" as="element()*">
         <xsl:variable name="healthProvider" select="//zorgaanbieder[not(zorgaanbieder)] | //healthcare_provider[not(healthcare_provider)]"/>
-        
+
         <!-- Zorgaanbieders -->
         <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
         <!-- This causes two entries with an identical grouping-key, causing problems when attempting to retrieve references... -->
@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             string-join(for $att in nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/(@root, @value)
             return
             $att, '')">-->
-            <xsl:for-each-group select="$healthProvider[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+        <xsl:for-each-group select="$healthProvider[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
                 concat(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@root,
                 nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/normalize-space(@value))">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
@@ -42,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value[not(. = '')]"/>
                         <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value[not(. = '')]"/>
                         <xsl:variable name="organizationIdentifier" select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer | healthcare_provider_identification_number)[@value[not(. = '')]]"/>
-                        
+
                         <xsl:choose>
                             <xsl:when test="$organizationName or $organizationLocation">
                                 <xsl:value-of select="current-group()[1]/normalize-space(string-join($organizationName[1] | $organizationLocation[1], ' - '))"/>
@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </reference-display>
                     <xsl:call-template name="organizationEntry">
                         <xsl:with-param name="uuid" select="$uuid"/>
-                     </xsl:call-template>
+                    </xsl:call-template>
                     <!--<xsl:apply-templates select="current-group()[1]" mode="doOrganizationEntry-2.0">
                         <xsl:with-param name="uuid" select="$uuid"/>
                     </xsl:apply-templates>-->
@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
-    
+
     <xd:doc>
         <xd:desc>Creates organization reference</xd:desc>
     </xd:doc>
@@ -81,12 +81,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </identifier>
             </xsl:when>
         </xsl:choose>
-        
+
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an Organization resource</xd:desc>
         <xd:param name="uuid">
@@ -116,7 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$uuid">
                         <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                     </xsl:when>
-                        <xsl:when test="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]">
+                    <xsl:when test="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]">
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[1]/(@value | @root), ''))))"/>
                     </xsl:when>
                     <!-- AWE, in some rare cases this does not give a unique resource id -->
@@ -126,7 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- so fall back on entryFullUrl instead -->
                     <xsl:otherwise>
                         <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>                    
+                    </xsl:otherwise>
                 </xsl:choose>
             </xsl:if>
         </xsl:param>
@@ -146,7 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </entry>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="logicalId">Organization.id value</xd:param>
@@ -157,12 +157,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">
+                    <xsl:choose>
+                        <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization</xsl:when>
+                        <xsl:otherwise>http://fhir.nl/fhir/StructureDefinition/nl-core-organization</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <Organization>
                     <xsl:if test="$referById">
-                        <id value="{$logicalId}"/>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
                     <meta>
-                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <xsl:for-each select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]">
                         <identifier>
@@ -196,7 +202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </Organization>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
