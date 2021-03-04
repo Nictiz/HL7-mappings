@@ -136,7 +136,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                             </xsl:when>
 
-
                             <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
                             <xsl:when test="frequentie[not(following-sibling::*[name() ne 'is_flexibel'][.//(@value | @code)])][not(tijdseenheid[@value | @unit])] and not(toedientijd/@value)">
                                 <xsl:for-each select="frequentie[not(tijdseenheid[@value | @unit])]">
@@ -289,7 +288,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9082_20160621002112"/>
                         </comp>
                     </xsl:for-each>
-
                     <!-- toedieningsduur -->
                     <xsl:for-each select="../toedieningsduur[@value | @unit]">
                         <comp>
@@ -300,14 +298,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </comp>
                     </xsl:for-each>
                 </effectiveTime>
-
             </xsl:if>
 
         </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x</xd:desc>
+        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x but is a temporary backup. Should be deleted after 9349 has been approved.</xd:desc>
         <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9318_TEMP-BACKUP" match="toedieningsschema" mode="HandleCDAAdministrationScheduleTEMP-BACKUP">
@@ -559,8 +556,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-
-
 
     <xd:doc>
         <xd:desc>Template for dosage from MP 9.1.0</xd:desc>
