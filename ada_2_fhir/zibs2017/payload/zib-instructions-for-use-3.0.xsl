@@ -1,8 +1,7 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="../../../util/mp-functions.xsl"/>-->
-    <!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
-
-
+    <!--    <xsl:import href="../../../util/mp-functions.xsl"/>
+    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+-->
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
@@ -89,7 +88,7 @@
                                     </xsl:element>
                                 </xsl:for-each>
                             </xsl:when>
-                            <!-- when there the dosering does not have contents, but there is content in doseerinstructie -->
+                            <!-- when the dosering does not have contents, but there is content in doseerinstructie -->
                             <xsl:when test=".[.//(@value | @code)]">
                                 <xsl:element name="{$fhir-dosage-name}">
                                     <xsl:apply-templates select="." mode="doDosageContents-3.0">
@@ -101,7 +100,7 @@
                     </xsl:for-each>
                 </xsl:when>
                 <!-- when the doseerinstructie does not have contents, but there is content in gebruiksinstructie other than omschrijving -->
-                <xsl:when test="./*[not(self::omschrijving)][.//(@value | @code)]">
+                <xsl:when test="*[not(self::omschrijving)][.//(@value | @code)]">
                     <xsl:element name="{$fhir-dosage-name}">
                         <xsl:apply-templates select="." mode="doDosageContents-3.0">
                             <xsl:with-param name="outputText" select="$outputText"/>
@@ -237,9 +236,9 @@
 
     <xd:doc>
         <xd:desc>Template for 'dosering'. 
-                Without the FHIR element dosage / dosageInstruction, 
-                the name of that FHIR-element differs between MedicationStatement and MedicationRequest
-            </xd:desc>
+            Starts within the FHIR element dosage / dosageInstruction, 
+            the name of that FHIR-element differs between MedicationStatement and MedicationRequest
+        </xd:desc>
         <xd:param name="outputText">Optional, defaults to true. Whether or not to output the text. 
             From 9.1.0  onwards the text is in an extension on the resource level.</xd:param>
     </xd:doc>
@@ -247,7 +246,7 @@
         <xsl:param name="outputText" as="xs:boolean?" select="true()"/>
 
         <xsl:for-each select="../volgnummer[@value]">
-            <sequence value="{./@value}"/>
+            <sequence value="{@value}"/>
         </xsl:for-each>
 
         <!-- gebruiksinstructie/omschrijving  -->
@@ -404,14 +403,18 @@
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template for 'gebruiksinstructie' in case there is no doseerinstructie/dosering. 
-            Without the FHIR element dosage / dosageInstruction, 
+        <xd:desc>Template for 'doseerinstructie' in case there is no doseerinstructie/dosering. 
+            Starts within the FHIR element dosage / dosageInstruction, 
             the name of that FHIR-element differs between MedicationStatement and MedicationRequest
         </xd:desc>
-        <xd:param name="outputText">Optional, defaults to true. Whether or not to output the text. From 9.1.0  onwards the text is in an extension on the resource level.</xd:param>
+        <xd:param name="outputText">Optional, defaults to true. Whether or not to output the text. From 9.1.0 onwards the text is in an extension on the resource level.</xd:param>
     </xd:doc>
     <xsl:template name="zib-InstructionsForUse-3.0-di" match="doseerinstructie" mode="doDosageContents-3.0">
         <xsl:param name="outputText" as="xs:boolean?" select="true()"/>
+
+        <xsl:for-each select="volgnummer[@value]">
+            <sequence value="{@value}"/>
+        </xsl:for-each>
 
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:if test="$outputText">
@@ -420,17 +423,21 @@
                 <xsl:with-param name="in" select=".."/>
             </xsl:call-template>
         </xsl:if>
+        <!-- gebruiksinstructie/aanvullende_instructie and toedieningsweg are only relevant if there is at least one of outputText/keerdosis/toedieningsschema -->
+        <xsl:variable name="gebruiksinstructieItemsRelevant" select="$outputText or dosering/keerdosis[.//(@value | @unit)] or dosering/toedieningsschema[.//(@value | @code | @nullFlavor)]"/>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
-        <xsl:for-each select="../aanvullende_instructie[@code]">
-            <additionalInstruction>
-                <xsl:call-template name="code-to-CodeableConcept">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
-                </xsl:call-template>
-            </additionalInstruction>
-        </xsl:for-each>
+        <xsl:if test="$gebruiksinstructieItemsRelevant">
+            <xsl:for-each select="../aanvullende_instructie[@code]">
+                <additionalInstruction>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
+                    </xsl:call-template>
+                </additionalInstruction>
+            </xsl:for-each>
+        </xsl:if>
         <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
-        <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./dosering/toedieningsschema[.//(@value | @code | @nullFlavor)])">
+        <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(dosering/toedieningsschema[.//(@value | @code | @nullFlavor)])">
             <!-- pauze periode -->
             <xsl:for-each select="doseerduur[.//(@value | @code)]">
                 <timing>
@@ -445,14 +452,15 @@
             </xsl:for-each>
         </xsl:if>
         <!-- gebruiksinstructie/toedieningsweg -->
-        <xsl:apply-templates select="../toedieningsweg" mode="_handleToedieningsweg-3.0"/>
-
+        <xsl:if test="$gebruiksinstructieItemsRelevant">
+            <xsl:apply-templates select="../toedieningsweg" mode="_handleToedieningsweg-3.0"/>
+        </xsl:if>
 
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template for 'gebruiksinstructie' in case there is no doseerinstructie/dosering. 
-            Without the FHIR element dosage / dosageInstruction, 
+        <xd:desc>Template for 'gebruiksinstructie' in case there is no doseerinstructie. 
+            Starts within the FHIR element dosage / dosageInstruction, 
             the name of that FHIR-element differs between MedicationStatement and MedicationRequest
         </xd:desc>
         <xd:param name="outputText">Optional, defaults to true. Whether or not to output the text. 
