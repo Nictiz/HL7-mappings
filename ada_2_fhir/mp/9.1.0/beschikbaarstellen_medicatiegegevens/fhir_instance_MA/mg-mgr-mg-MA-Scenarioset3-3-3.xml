@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="2f44a86a-5a48-11eb-2144-020000000000"/>
+   <id value="3590a3ba-7daa-11eb-1908-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:2f44b6b5-5a48-11eb-2144-020000000000"/>
+      <fullUrl value="urn:uuid:3590b21c-7daa-11eb-1908-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -92,7 +92,7 @@
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:2f44a871-5a48-11eb-2144-020000000000"/>
+               <reference value="urn:uuid:3590b200-7daa-11eb-1908-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
@@ -100,7 +100,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:2f44b6bb-5a48-11eb-2144-020000000000"/>
+                        <reference value="urn:uuid:3590b228-7daa-11eb-1908-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -144,7 +144,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f44b6e0-5a48-11eb-2144-020000000000"/>
+      <fullUrl value="urn:uuid:3590a475-7daa-11eb-1908-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -247,7 +247,7 @@
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:2f44a871-5a48-11eb-2144-020000000000"/>
+               <reference value="urn:uuid:3590b200-7daa-11eb-1908-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
@@ -255,7 +255,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:2f44b6bb-5a48-11eb-2144-020000000000"/>
+                        <reference value="urn:uuid:3590b228-7daa-11eb-1908-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -292,7 +292,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f44a871-5a48-11eb-2144-020000000000"/>
+      <fullUrl value="urn:uuid:3590b200-7daa-11eb-1908-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -327,7 +327,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-02-08"/>
          </Patient>
       </resource>
@@ -432,7 +442,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f44b6bb-5a48-11eb-2144-020000000000"/>
+      <fullUrl value="urn:uuid:3590b228-7daa-11eb-1908-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

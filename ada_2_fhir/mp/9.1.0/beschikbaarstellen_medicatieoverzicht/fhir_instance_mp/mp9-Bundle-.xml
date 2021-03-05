@@ -4,11 +4,11 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
-   <id value="324bd4d3-5a48-11eb-9665-020000000000"/>
+   <id value="3b571733-7daa-11eb-1207-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:324bd4d9-5a48-11eb-9665-020000000000"/>
+      <fullUrl value="urn:uuid:3b571590-7daa-11eb-1207-020000000000"/>
       <resource>
          <Patient>
             <id value="XXX-STIJL"/>
@@ -43,7 +43,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -55,7 +65,7 @@
       <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
       <resource>
          <Organization>
-            <id value="000011112-16-528-1-1007-3-3"/>
+            <id value="nl-core-organization-000011112-16-528-1-1007-3-3"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>

@@ -4,7 +4,7 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
-   <id value="32fdf1db-5a48-11eb-1812-020000000000"/>
+   <id value="3c4811fb-7daa-11eb-1316-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -12,7 +12,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:32fe0622-5a48-11eb-1812-020000000000"/>
+      <fullUrl value="urn:uuid:3c482ba9-7daa-11eb-1316-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -37,14 +37,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:32fdf1e1-5a48-11eb-1812-020000000000"/>
+               <reference value="urn:uuid:3c482610-7daa-11eb-1316-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="urn:uuid:32fe0626-5a48-11eb-1812-020000000000"/>
+                     <reference value="urn:uuid:3c482bb1-7daa-11eb-1316-020000000000"/>
                      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
@@ -52,7 +52,7 @@
             </source>
             <entry>
                <item>
-                  <reference value="urn:uuid:32fe05f8-5a48-11eb-1812-020000000000"/>
+                  <reference value="urn:uuid:3c48262d-7daa-11eb-1316-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_910_start_duur2_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
@@ -63,7 +63,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:32fe05f8-5a48-11eb-1812-020000000000"/>
+      <fullUrl value="urn:uuid:3c48262d-7daa-11eb-1316-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -152,7 +152,7 @@
                <display value="PANTOPRAZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:32fdf1e1-5a48-11eb-1812-020000000000"/>
+               <reference value="urn:uuid:3c482610-7daa-11eb-1316-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, -60}T11:30:00+02:00"/>
@@ -160,7 +160,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:32fe05fe-5a48-11eb-1812-020000000000"/>
+                        <reference value="urn:uuid:3c482639-7daa-11eb-1316-020000000000"/>
                         <display value="Peter van Pulver || Huisarts, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -197,7 +197,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:32fdf1e1-5a48-11eb-1812-020000000000"/>
+      <fullUrl value="urn:uuid:3c482610-7daa-11eb-1316-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -232,7 +232,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -337,7 +347,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:32fe0626-5a48-11eb-1812-020000000000"/>
+      <fullUrl value="urn:uuid:3c482bb1-7daa-11eb-1316-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -404,7 +414,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:32fe05fe-5a48-11eb-1812-020000000000"/>
+      <fullUrl value="urn:uuid:3c482639-7daa-11eb-1316-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

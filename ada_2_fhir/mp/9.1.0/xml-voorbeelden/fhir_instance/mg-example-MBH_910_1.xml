@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="3408837f-5a48-11eb-1986-020000000000"/>
+   <id value="3e0a5adf-7daa-11eb-4873-020000000000"/>
    <type value="searchset"/>
    <total value="3"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:340892ad-5a48-11eb-1986-020000000000"/>
+      <fullUrl value="urn:uuid:3e0a6a1f-7daa-11eb-4873-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -99,7 +99,7 @@
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:34088384-5a48-11eb-1986-020000000000"/>
+               <reference value="urn:uuid:3e0a6a06-7daa-11eb-4873-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <authoredOn value="2020-06-08T09:15:00+02:00"/>
@@ -107,7 +107,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:340892b5-5a48-11eb-1986-020000000000"/>
+                        <reference value="urn:uuid:3e0a6a31-7daa-11eb-4873-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -145,7 +145,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:340892db-5a48-11eb-1986-020000000000"/>
+      <fullUrl value="urn:uuid:3e0a657b-7daa-11eb-4873-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -238,7 +238,7 @@
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:34088384-5a48-11eb-1986-020000000000"/>
+               <reference value="urn:uuid:3e0a6a06-7daa-11eb-4873-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <authoredOn value="2016-06-23T16:54:23+02:00"/>
@@ -246,7 +246,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:340892de-5a48-11eb-1986-020000000000"/>
+                        <reference value="urn:uuid:3e0a6581-7daa-11eb-4873-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -260,7 +260,7 @@
             <dispenseRequest>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
                   <valueReference>
-                     <reference value="urn:uuid:340892fb-5a48-11eb-1986-020000000000"/>
+                     <reference value="urn:uuid:3e0a65c8-7daa-11eb-4873-020000000000"/>
                      <display value="Let op! Werk aan de weg. Omleiding staat aangegeven.Prikstraat12Amsterdam"/>
                   </valueReference>
                </extension>
@@ -282,7 +282,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:34088def-5a48-11eb-1986-020000000000"/>
+      <fullUrl value="urn:uuid:3e0a65da-7daa-11eb-4873-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -376,7 +376,7 @@
                <display value="PRIMPERAN ZETPIL 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:34088384-5a48-11eb-1986-020000000000"/>
+               <reference value="urn:uuid:3e0a6a06-7daa-11eb-4873-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <performer>
@@ -433,7 +433,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:34088384-5a48-11eb-1986-020000000000"/>
+      <fullUrl value="urn:uuid:3e0a6a06-7daa-11eb-4873-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -468,7 +468,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1984-05-12"/>
          </Patient>
       </resource>
@@ -637,7 +647,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:340892b5-5a48-11eb-1986-020000000000"/>
+      <fullUrl value="urn:uuid:3e0a6a31-7daa-11eb-4873-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -689,7 +699,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:340892de-5a48-11eb-1986-020000000000"/>
+      <fullUrl value="urn:uuid:3e0a6581-7daa-11eb-4873-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -835,7 +845,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:340892fb-5a48-11eb-1986-020000000000"/>
+      <fullUrl value="urn:uuid:3e0a65c8-7daa-11eb-4873-020000000000"/>
       <resource>
          <Location>
             <meta>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="340f7fa9-5a48-11eb-1197-020000000000"/>
+   <id value="3e166019-7daa-11eb-1214-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:340f6781-5a48-11eb-1197-020000000000"/>
+      <fullUrl value="urn:uuid:3e164803-7daa-11eb-1214-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -70,7 +70,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:340f67a7-5a48-11eb-1197-020000000000"/>
+                  <reference value="urn:uuid:3e16408e-7daa-11eb-1214-020000000000"/>
                   <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
                </valueReference>
             </extension>
@@ -117,7 +117,7 @@
             </effectivePeriod>
             <dateAsserted value="T{12:15:00}"/>
             <subject>
-               <reference value="urn:uuid:340f7fae-5a48-11eb-1197-020000000000"/>
+               <reference value="urn:uuid:3e1647ea-7daa-11eb-1214-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <derivedFrom>
@@ -187,7 +187,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:340f7fae-5a48-11eb-1197-020000000000"/>
+      <fullUrl value="urn:uuid:3e1647ea-7daa-11eb-1214-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -222,7 +222,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1984-05-12"/>
          </Patient>
       </resource>
@@ -257,7 +267,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:340f67b1-5a48-11eb-1197-020000000000"/>
+      <fullUrl value="urn:uuid:3e1640a5-7daa-11eb-1214-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -289,7 +299,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:340f67a7-5a48-11eb-1197-020000000000"/>
+      <fullUrl value="urn:uuid:3e16408e-7daa-11eb-1214-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -323,7 +333,7 @@
                <display value="Dr Jansen"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:340f67b1-5a48-11eb-1197-020000000000"/>
+               <reference value="urn:uuid:3e1640a5-7daa-11eb-1214-020000000000"/>
                <display value="Ziekenhuis zus en zo"/>
             </organization>
             <specialty>

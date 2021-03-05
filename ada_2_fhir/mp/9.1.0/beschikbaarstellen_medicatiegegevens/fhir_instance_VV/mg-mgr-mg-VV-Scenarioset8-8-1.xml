@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="3162ee2c-5a48-11eb-1565-020000000000"/>
+   <id value="39f6b69c-7daa-11eb-2387-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:3162ea3b-5a48-11eb-1565-020000000000"/>
+      <fullUrl value="urn:uuid:39f6b2c4-7daa-11eb-2387-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -83,7 +83,7 @@
                <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:3162ee33-5a48-11eb-1565-020000000000"/>
+               <reference value="urn:uuid:39f6b2a4-7daa-11eb-2387-020000000000"/>
                <display value="H. van XXX_Zutphen"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T09:00:00+02:00"/>
@@ -91,7 +91,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:3162ea3e-5a48-11eb-1565-020000000000"/>
+                        <reference value="urn:uuid:39f6b2ca-7daa-11eb-2387-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -118,7 +118,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3162ea5e-5a48-11eb-1565-020000000000"/>
+      <fullUrl value="urn:uuid:39f6b1ed-7daa-11eb-2387-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -192,7 +192,7 @@
                <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:3162ee33-5a48-11eb-1565-020000000000"/>
+               <reference value="urn:uuid:39f6b2a4-7daa-11eb-2387-020000000000"/>
                <display value="H. van XXX_Zutphen"/>
             </subject>
             <authoredOn value="${DATE, T, D, -14}T09:00:00+02:00"/>
@@ -200,7 +200,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:3162ea61-5a48-11eb-1565-020000000000"/>
+                        <reference value="urn:uuid:39f6b1f3-7daa-11eb-2387-020000000000"/>
                         <display value="Marcha van Partners || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Itis"/>
                      </valueReference>
                   </extension>
@@ -227,7 +227,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3162ee33-5a48-11eb-1565-020000000000"/>
+      <fullUrl value="urn:uuid:39f6b2a4-7daa-11eb-2387-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -265,7 +265,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-06-08"/>
          </Patient>
       </resource>
@@ -498,7 +508,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3162ea3e-5a48-11eb-1565-020000000000"/>
+      <fullUrl value="urn:uuid:39f6b2ca-7daa-11eb-2387-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -550,7 +560,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3162ea61-5a48-11eb-1565-020000000000"/>
+      <fullUrl value="urn:uuid:39f6b1f3-7daa-11eb-2387-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
