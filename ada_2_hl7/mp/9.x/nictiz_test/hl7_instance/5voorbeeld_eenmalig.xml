@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "dagdelen met cyclisch" and id: "10voorbeeld_cyclisch_dagdelen".-->
+<!--Generated from ada instance with title: "Gebruik 1 tot 4 keer" and id: "5voorbeeld_eenmalig".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -33,16 +33,16 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9324"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9323"/>
-         <id extension="MBH-81-MA-1"
+         <id extension="MBH-vb1tot4keer-MA-1"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 30 dagen, cyclus van 3 dagen: steeds gedurende 2 dagen 1 stuk 's middags en 's nachts, oraal</text>
+         <text mediaType="text/plain">Vanaf 24 okt 2016, 1 keer. 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20200920000000"/>
-            <width value="30" unit="d"/>
+            <low value="20161024000000"/>
+            <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -52,20 +52,20 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="67903"
+                  <code code="7455"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="PARACETAMOL TABLET 500MG"
+                        displayName="DIAZEPAM TABLET 10MG"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="2194"
+                     <translation code="20672"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="PARACETAMOL TABLET 500MG"
+                                  displayName="DIAZEPAM TABLET 10MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20200920124500"/>
+            <time value="20191023174500"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -96,33 +96,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
-               <effectiveTime xsi:type="SXPR_TS" operator="A">
-                  <comp xsi:type="hl7nl:PIVL_TS"
-                        operator="A"
-                        isFlexible="true"
-                        alignment="HD">
-                     <hl7nl:phase>
-                        <hl7nl:low value="1970010112"/>
-                        <hl7nl:high value="1970010118"/>
-                     </hl7nl:phase>
-                     <hl7nl:period value="1" unit="d"/>
-                  </comp>
-                  <comp xsi:type="hl7nl:PIVL_TS"
-                        operator="I"
-                        isFlexible="true"
-                        alignment="HD">
-                     <hl7nl:phase>
-                        <hl7nl:low value="1970010100"/>
-                        <hl7nl:high value="1970010106"/>
-                     </hl7nl:phase>
-                     <hl7nl:period value="1" unit="d"/>
-                  </comp>
-                  <comp xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
-                     <hl7nl:phase>
-                        <hl7nl:width xsi:type="hl7nl:PQ" value="2" unit="d"/>
-                     </hl7nl:phase>
-                     <hl7nl:period value="3" unit="d"/>
-                  </comp>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                  <hl7nl:period nullFlavor="NI"/>
+                  <hl7nl:count value="1"/>
                </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">
@@ -139,7 +115,8 @@
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH-81"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH-vb1tot4keer"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
