@@ -18,6 +18,8 @@
     
     <xsl:param name="expectedResponseFormat"/>
     
+    <xsl:param name="target" select="'foo'"/>
+
     <!-- The main template, which will call the remaining templates.
          param expectedResponseFormat is the format for responses (either 'xml' (default) or 'json') that this 
                                       TestScript expects when it tests a server (i.e. it has no meaning when 
@@ -41,7 +43,7 @@
                 <xsl:with-param name="scenario" select="$scenario" tunnel="yes"/>
             </xsl:apply-templates>
         </xsl:variable>
-        
+    
         <!-- Filter the expanded TestScript. This will add the required elements and put everything in the right
              position --> 
         <xsl:apply-templates mode="filter" select="$expanded">
@@ -255,18 +257,23 @@
     
     <!-- Expand a nts:profile element to a FHIR profile element -->
     <xsl:template match="nts:profile" mode="expand">
-        <profile id="{@id}">
-            <reference value="{@value}"/>
-        </profile>
+        <xsl:if test=".[$target = tokenize(@nts:only-in, ' ') or not(@nts:only-in)]">
+            
+            <profile id="{@id}">
+                <reference value="{@value}"/>
+            </profile>
+        </xsl:if>
     </xsl:template>
     
     <!-- Expand a nts:fixture element to a FHIR fixture element -->
     <xsl:template match="nts:fixture[@id and @href]" mode="expand">
-        <fixture id="{@id}">
-            <resource>
-                <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
-            </resource>
-        </fixture>
+        <xsl:if test=".[$target = tokenize(@nts:only-in, ' ') or not(@nts:only-in)]">
+            <fixture id="{@id}">
+                <resource>
+                    <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
+                </resource>
+            </fixture>
+        </xsl:if>
     </xsl:template>
     
     <!-- Expand an nts:patientTokenFixture element to create a variable called 'patient-token-id'. How this is handled
@@ -278,44 +285,50 @@
     <xsl:template match="nts:patientTokenFixture" mode="expand">
         <xsl:param name="scenario" tunnel="yes"/>
         
-        <xsl:choose>
-            <!-- Expand the nts:patientTokenFixture element for 'phr' type scripts -->
-            <xsl:when test="$scenario='client'">
-                <fixture id="patient-token-fixture">
-                    <resource>
-                        <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
-                    </resource>
-                </fixture>
-                <variable>
-                    <name value="patient-token-id"/>
-                    <expression value="Patient.id"/>
-                    <sourceId value="patient-token-fixture"/>
-                </variable>
-            </xsl:when>
-            <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
-            <xsl:when test="$scenario='server'">
-                <xsl:variable name="patientTokenFixture">
-                    <xsl:copy-of select="document(string-join(($referenceBase, @href), '/'),.)"/>
-                </xsl:variable>
-                <variable>
-                    <name value="patient-token-id"/>
-                    <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
-                    <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
-                        <xsl:comment>patientTokenFixture <xsl:value-of select="string-join(($referenceBase, @href), '/')"/> not available</xsl:comment>
-                    </xsl:if>
-                    <description value="OAuth Token for current patient"/>
-                </variable>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:if test=".[$target = tokenize(@nts:only-in, ' ') or not(@nts:only-in)]">
+            
+            <xsl:choose>
+                <!-- Expand the nts:patientTokenFixture element for 'phr' type scripts -->
+                <xsl:when test="$scenario='client'">
+                    <fixture id="patient-token-fixture">
+                        <resource>
+                            <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
+                        </resource>
+                    </fixture>
+                    <variable>
+                        <name value="patient-token-id"/>
+                        <expression value="Patient.id"/>
+                        <sourceId value="patient-token-fixture"/>
+                    </variable>
+                </xsl:when>
+                <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
+                <xsl:when test="$scenario='server'">
+                    <xsl:variable name="patientTokenFixture">
+                        <xsl:copy-of select="document(string-join(($referenceBase, @href), '/'),.)"/>
+                    </xsl:variable>
+                    <variable>
+                        <name value="patient-token-id"/>
+                        <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
+                        <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
+                            <xsl:comment>patientTokenFixture <xsl:value-of select="string-join(($referenceBase, @href), '/')"/> not available</xsl:comment>
+                        </xsl:if>
+                        <description value="OAuth Token for current patient"/>
+                    </variable>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:if>
     </xsl:template>
     
     <!-- Expand the nts:includeDateT element -->
     <xsl:template match="nts:includeDateT[@value='yes']" mode="expand">
-        <variable>
-            <name value="T"/>
-            <defaultValue value="${{CURRENTDATE}}"/>
-            <description value="Date that data and queries are expected to be relative to."/>
-        </variable>
+        <xsl:if test=".[$target = tokenize(@nts:only-in, ' ') or not(@nts:only-in)]">
+            
+            <variable>
+                <name value="T"/>
+                <defaultValue value="${{CURRENTDATE}}"/>
+                <description value="Date that data and queries are expected to be relative to."/>
+            </variable>
+        </xsl:if>
     </xsl:template>
 
     <!-- Expand a nts:include element that uses absolute references with href.
@@ -324,17 +337,19 @@
     <xsl:template match="nts:include[@href]" mode="expand">
         <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
         
-        <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
-            <xsl:copy-of select="$inclusionParameters"/>
-            <xsl:copy-of select="nts:with-parameter"/>
-        </xsl:variable>
-        
-        <xsl:variable name="document" as="node()*">
-            <xsl:copy-of select="document(@href, .)"/>
-        </xsl:variable>
-        <xsl:apply-templates select="$document/nts:component/(element()|comment())" mode="expand">
-            <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
-        </xsl:apply-templates>
+        <xsl:if test=".[$target = tokenize(@nts:only-in, ' ') or not(@nts:only-in)]">
+            <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
+                <xsl:copy-of select="$inclusionParameters"/>
+                <xsl:copy-of select="nts:with-parameter"/>
+            </xsl:variable>
+            
+            <xsl:variable name="document" as="node()*">
+                <xsl:copy-of select="document(@href, .)"/>
+            </xsl:variable>
+            <xsl:apply-templates select="$document/nts:component/(element()|comment())" mode="expand">
+                <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
+            </xsl:apply-templates>
+        </xsl:if>
     </xsl:template>
 
     <!-- Expand a nts:include element that uses relative references with value and scope.
@@ -343,37 +358,43 @@
     <xsl:template match="nts:include[@value]" mode="expand">
         <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
         
-        <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
-            <xsl:copy-of select="$inclusionParameters"/>
-            <xsl:copy-of select="nts:with-parameter"/>
-        </xsl:variable>
-        
-        <xsl:variable name="filePath">
-            <xsl:choose>
-                <xsl:when test="@scope = 'common'">
-                    <xsl:value-of select="nts:constructXMLFilePath($commonComponentFolder, @value)"/>
-                </xsl:when>
-                <xsl:when test="@scope = 'project' or not(@scope)">
-                    <xsl:value-of select="nts:constructXMLFilePath($projectComponentFolder, @value)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:message terminate="yes" select="concat('Unknown inclusion scope ''', @scope, '''')"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:apply-templates select="document(string-join(($filePath), '/'), .)/nts:component/(element()|comment(),.)" mode="expand">
-            <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
-        </xsl:apply-templates>
+        <xsl:if test=".[$target = tokenize(@nts:only-in, ' ') or not(@nts:only-in)]">
+            
+            <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
+                <xsl:copy-of select="$inclusionParameters"/>
+                <xsl:copy-of select="nts:with-parameter"/>
+            </xsl:variable>
+            
+            <xsl:variable name="filePath">
+                <xsl:choose>
+                    <xsl:when test="@scope = 'common'">
+                        <xsl:value-of select="nts:constructXMLFilePath($commonComponentFolder, @value)"/>
+                    </xsl:when>
+                    <xsl:when test="@scope = 'project' or not(@scope)">
+                        <xsl:value-of select="nts:constructXMLFilePath($projectComponentFolder, @value)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:message terminate="yes" select="concat('Unknown inclusion scope ''', @scope, '''')"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:apply-templates select="document(string-join(($filePath), '/'), .)/nts:component/(element()|comment(),.)" mode="expand">
+                <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
+            </xsl:apply-templates>
+        </xsl:if>
     </xsl:template>
     
     <!-- Expand a nts:rule element -->
     <xsl:template match="nts:rule[@id and @href]" mode="expand">
-        <rule id="{@id}">
-            <resource>
-                <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
-            </resource>
-            <xsl:copy-of select="./*"/>
-        </rule>
+        <xsl:if test=".[$target = tokenize(@nts:only-in, ' ') or not(@nts:only-in)]">
+            
+            <rule id="{@id}">
+                <resource>
+                    <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
+                </resource>
+                <xsl:copy-of select="./*"/>
+            </rule>
+        </xsl:if>
     </xsl:template>
     
     <xsl:variable name="parameterChars" select="'[a-zA-Z_0-9-]'"/>
@@ -417,12 +438,20 @@
             <xsl:value-of select="$value"/>
         </xsl:attribute>
     </xsl:template>
+
+    <xsl:template match="(f:* | nts:*)" mode="expand">
+        <xsl:if test=".[$target = tokenize(@nts:only-in, ' ') or not(@nts:only-in)]">
+            <xsl:copy>
+                <xsl:apply-templates mode="expand" select="node()|@*"/>
+            </xsl:copy>
+        </xsl:if>
+    </xsl:template>
     
     <!-- Default template in the expand mode -->
     <xsl:template match="node()" mode="expand">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*" mode="expand"/>
-        </xsl:copy>
+        </xsl:copy>            
     </xsl:template>
 
     <!-- Default template in the filter mode -->
