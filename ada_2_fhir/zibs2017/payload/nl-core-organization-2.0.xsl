@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--    <xsl:import href="_zib2017.xsl"/>-->
+<!--    <xsl:import href="_zib2017.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -54,9 +54,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="organizationEntry">
                         <xsl:with-param name="uuid" select="$uuid"/>
                     </xsl:call-template>
-                    <!--<xsl:apply-templates select="current-group()[1]" mode="doOrganizationEntry-2.0">
-                        <xsl:with-param name="uuid" select="$uuid"/>
-                    </xsl:apply-templates>-->
                 </unieke-zorgaanbieder>
             </xsl:for-each-group>
         </xsl:for-each-group>
@@ -112,12 +109,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:param>
         <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
+                <xsl:variable name="zaIdentification" as="element()*" select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]"/>
                 <xsl:choose>
                     <xsl:when test="$uuid">
                         <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                     </xsl:when>
-                    <xsl:when test="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]">
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[1]/(@value | @root), ''))))"/>
+                    <xsl:when test="$zaIdentification">
+                        <!--                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join($zaIdentification[1]/(@root | @value), ''))))"/>-->
+                        <!-- string-join follows order of @value / @root in XML, but we want a predictable order -->
+                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(concat($zaIdentification[1]/@root, '-', $zaIdentification[1]/@value))))"/>
                     </xsl:when>
                     <!-- AWE, in some rare cases this does not give a unique resource id -->
                     <!--<xsl:otherwise>

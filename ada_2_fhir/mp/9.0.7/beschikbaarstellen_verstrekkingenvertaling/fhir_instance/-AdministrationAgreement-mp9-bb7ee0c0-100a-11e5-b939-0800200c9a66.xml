@@ -1,0 +1,131 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="-AdministrationAgreement-mp9-bb7ee0c0-100a-11e5-b939-0800200c9a66"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationDispense. Subject: Aygül A. Direnç. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+               <span style="display: block;">Uitvoerende: Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'.</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>bb7ee0c0-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1)</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, +0}</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>FLUIMUCIL INHVLST 100MG/ML AMPUL 4ML</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>
+                     <ul>
+                        <li>Vanaf ${DATE, T, D, +0}T15:48:00+02:00</li>
+                        <li>5 dag</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Vanaf T om 15:48 uur, gedurende 5 dagen, 2 maal per dag 4 milliliter "Eerst oplossen in water, mond spoelen, daarna uitspugen"</div>
+                     <div>Instructie: <ul>
+                           <li>
+                              <span title="Eerst oplossen in water (27 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">Eerst oplossen in water</span>
+                           </li>
+                           <li>
+                              <span title="Mond spoelen, daarna uitspugen (69 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">Mond spoelen, daarna uitspugen</span>
+                           </li>
+                        </ul>
+                     </div>
+                     <div>Timing: <div>2 maal per dag</div>
+                     </div>
+                     <div>Dosering: 4 Milliliter</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="${DATE, T, D, +0}"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T15:48:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="5"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="bb7ee0c0-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/seToFHIRConversion-Product-mp9-2-16-840-1-113883-2-4-4-8-13966383"/>
+      <display value="FLUIMUCIL INHVLST 100MG/ML AMPUL 4ML"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/DIREN"/>
+      <display value="Aygül A. Direnç"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nseToFHIRConversion-Organization-mp9-2-16-528-1-1007-3-3-01234567"/>
+         <display value="Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'."/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Vanaf T om 15:48 uur, gedurende 5 dagen, 2 maal per dag 4 milliliter &#34;Eerst oplossen in water, mond spoelen, daarna uitspugen&#34;"/>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="27"/>
+            <display value="Eerst oplossen in water"/>
+         </coding>
+      </additionalInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="69"/>
+            <display value="Mond spoelen, daarna uitspugen"/>
+         </coding>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="2"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <doseQuantity>
+         <value value="4"/>
+         <unit value="Milliliter"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="233"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationDispense>

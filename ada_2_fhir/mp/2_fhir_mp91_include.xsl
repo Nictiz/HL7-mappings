@@ -54,7 +54,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                             </xsl:when>
                             <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
-                                <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>
+                                <!-- <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@codeSystem, @code), '-'))"/>-->
+                                <!-- string-join follows order of @code / @codeSystem in XML, but we want a predictable order -->
+                                <xsl:value-of select="nf:removeSpecialCharacters(concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code))"/>
                             </xsl:when>
                             <xsl:when test="./product_specificatie/product_naam/@value">
                                 <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
@@ -1217,11 +1219,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="zib-Product" match="product" mode="doMedication">
         <xsl:param name="in" select="."/>
-        <xsl:param name="profile-uri" as="xs:string"> <xsl:choose>
-            <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:when>
-            <xsl:otherwise>http://nictiz.nl/fhir/StructureDefinition/zib-Product</xsl:otherwise>
-        </xsl:choose>
-            </xsl:param>
+        <xsl:param name="profile-uri" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:when>
+                <xsl:otherwise>http://nictiz.nl/fhir/StructureDefinition/zib-Product</xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
         <xsl:param name="medication-id" as="xs:string?"/>
         <xsl:for-each select="$in">
             <xsl:variable name="resource">

@@ -1,0 +1,84 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="zib-Dispense-mp9-MBH-123-1-MVE-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieverstrekking. Subject: Pauline P. XXX_Bourgonje. Id: MBH_123_1_MVE_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
+               <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_123_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>Verstrekkingsverzoek met identificatie MBH_123_1_VV_1 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1. (Id: MBH_123_1_VV_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1))</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>Cetomacrogolcreme met 10% vaseline FAGRON</td>
+               </tr>
+               <tr>
+                  <th>Hoeveelheid</th>
+                  <td>100 gram</td>
+               </tr>
+               <tr>
+                  <th>Datum overhandigd</th>
+                  <td>2018-08-27</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_123_1"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+      <value value="MBH_123_1_MVE_1"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="Dispensing medication (procedure)"/>
+      </coding>
+      <text value="Medicatieverstrekking"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-7-1205943"/>
+      <display value="Cetomacrogolcreme met 10% vaseline FAGRON"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/XXX-BOURGONJE"/>
+      <display value="Pauline P. XXX_Bourgonje"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-mp9-2-16-528-1-1007-3-3-01236578"/>
+         <display value="Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+         <value value="MBH_123_1_VV_1"/>
+      </identifier>
+      <display value="Verstrekkingsverzoek met identificatie MBH_123_1_VV_1 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+   </authorizingPrescription>
+   <quantity>
+      <value value="100"/>
+      <unit value="gram"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+      <code value="215"/>
+   </quantity>
+   <whenHandedOver value="2018-08-27"/>
+</MedicationDispense>

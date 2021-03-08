@@ -34,7 +34,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
        <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
     </xsl:variable>
-
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
+    
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
     </xd:doc>
