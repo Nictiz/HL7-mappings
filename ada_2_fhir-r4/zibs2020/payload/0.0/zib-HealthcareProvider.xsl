@@ -16,26 +16,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all"
     xmlns="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-
+    
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
     <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
-
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-
+    
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile zib-HealthcareProvider</xd:desc>
     </xd:doc>
-
+    
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
     <xd:doc>
         <xd:desc>Unwrap zorgaanbieder_registratie element</xd:desc>
     </xd:doc>
     <xsl:template match="zorgaanbieder_registratie">
-        <xsl:apply-templates select="zorgaanbieder" mode="zib-HealthcareProvider-Resources">
-            <xsl:with-param name="searchMode" select="''"/>
-        </xsl:apply-templates>
+        <xsl:apply-templates select="zorgaanbieder" mode="zib-HealthcareProvider-Resources"/>
     </xsl:template>
     
     <xd:doc>
@@ -104,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
-
+    
     <xd:doc>
         <xd:desc>Produces a Organization resource based on zib-HealthcareProvider</xd:desc>
         <xd:param name="in">Node to consider in the creation of an Organization resource</xd:param>
@@ -205,10 +203,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </identifier>
             </xsl:when>
         </xsl:choose>
-
+        
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
-
+    
 </xsl:stylesheet>
