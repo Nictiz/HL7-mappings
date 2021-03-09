@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all"
     xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
+    xmlns="http://hl7.org/fhir"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:nf="http://www.nictiz.nl/functions" 
     xmlns:uuid="http://www.uuid.org"
@@ -33,47 +34,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada Contactpersoon to FHIR resource conforming to profile zib-ContactPerson</xd:desc>
     </xd:doc>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-       
-  
-    <!--    
     
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Unwrap contactpersoon_registratie element</xd:desc>
     </xd:doc>
-    <xsl:template name="zib-ContactPerson-Reference" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)]" mode="zib-ContactPerson-Reference">
-        <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
-        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$relatedPersons[group-key = $theGroupKey]" as="element()?"/>
-        <xsl:choose>
-            <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
-            </xsl:when>
-            <xsl:when test="$theIdentifier">
-                <identifier>
-                    <xsl:call-template name="id-to-Identifier">
-                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
-                    </xsl:call-template>
-                </identifier>
-            </xsl:when>
-        </xsl:choose>
-        
-        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
-            <display value="{$theGroupElement/reference-display}"/>
-        </xsl:if>
+    <xsl:template match="contactpersoon_registratie">
+        <xsl:apply-templates select="contactpersoon" mode="zib-ContactPerson"/>
     </xsl:template>
-
-     -->
     
     <xd:doc>
         <xd:desc>Mapping of zib-Contactpersoon concept in ADA to FHIR resource.</xd:desc>
         <xd:param name="logicalId">RelatedPerson.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a RelatedPerson resource</xd:param>
-        <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
         <xsl:template match="contactpersoon" name="zib-ContactPerson" mode="zib-ContactPerson">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="adaPatient" as="element()"/>
         
           
         <xsl:for-each select="$in">
@@ -85,6 +61,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson"/>
                     </meta>
                     
+                    <!--
+                    <patient>
+                        <reference value="{$patientReference}"/>
+                        <display value="{$patientName}"/>
+                    </patient>
+                    -->
                     
                     <!-- role -->
                     <xsl:for-each select="rol[@code]">
