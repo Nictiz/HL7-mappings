@@ -184,7 +184,7 @@
         <attribute name="nts.file" description="The (full) path to the input file."/>
         <attribute name="output.dir" description="The target dir (not just the base) of the transformed file. The name of the actual file will be determined by this task."/>
         <attribute name="references.file" description="The (temporary) text file to collect the list of fixtures to. See the collect-fixtures macrodef for more information."/>
-        <attribute name="target" default="#default"/>
+        <attribute name="target" default="#default" description="The name of the target to build; choose '#default' to build the default target."/>
 
         <sequential>
             <!-- Get the raw file name without suffix -->
@@ -372,9 +372,6 @@
             <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
         </fileset>
         
-        <!-- Create a temporary file to collect all the used target names -->
-        <tempfile property="targets.file" suffix=".txt" createfile="true" deleteonexit="true"/>
-        
         <!-- Create a temporary file to collect all the used fixtures -->
         <tempfile property="references.file" suffix=".txt" createfile="true" deleteonexit="true"/>
         
@@ -390,9 +387,10 @@
             <equals arg1="${nts.files.available}" arg2="true"/>
             <then>
                 <sequential>
-                    <echo message="Checking targets to build"/>
-                    
                     <echo message="Transforming NTS files"/>
+                    
+                    <!-- Iteratate over all targets that are defined as build parameter (extra-targets) plus the 
+                         default target ('#default') -->
                     <for list="#default;${extra-targets}" delimiter=";" param="target.dir">
                         <sequential>
                             <if>
@@ -421,6 +419,7 @@
                                         <map from="${input.dir.abs}" to=""/>
                                     </pathconvert>
                                     <if>
+                                        <!-- The default target -->
                                         <equals arg1="@{target.dir}" arg2="#default"/>
                                         <then>
                                             <transform-NTS-file 
@@ -429,9 +428,11 @@
                                                 references.file="${references.file}"/>
                                         </then>
                                         <elseif>
+                                            <!-- An extra defined target -->
                                             <contains string="/@{target.dir}" substring="${nts.file.reldir}"/>
                                             <then>
                                                 <sequential>
+                                                    <!-- Extract the target name from the relative path name -->
                                                     <pathconvert property="target">
                                                         <map from="${nts.file.reldir}-" to=""/>
                                                         <path location="/@{target.dir}"/>
@@ -445,7 +446,6 @@
                                             </then>
                                         </elseif>
                                     </if>
-                                    
                                 </sequential>
                             </for>
                         </sequential>

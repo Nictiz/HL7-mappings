@@ -18,6 +18,9 @@
     
     <xsl:param name="expectedResponseFormat"/>
     
+    <!-- An NTS input file can nominate elements to only be included in specific named targets using the nts:only-in
+         attribute. The "target" parameter determines which target to build. '#default' is considered to be the default
+         target that always applies if nothing else is specified. -->
     <xsl:param name="target" select="'#default'"/>
 
     <!-- The main template, which will call the remaining templates.
@@ -176,12 +179,7 @@
         <!-- Write back the element we matched on -->
         <xsl:element name="{local-name()}">
             <xsl:apply-templates select="@*" mode="filter"/>
-<!--            <xsl:for-each select="@*">
-                <xsl:attribute name="{name()}" namespace="{namespace-uri()}">
-                    <xsl:value-of select="."/>
-                </xsl:attribute>
-            </xsl:for-each>
--->            <xsl:apply-templates select="./(*|comment())" mode="filter"/>
+            <xsl:apply-templates select="./(*|comment())" mode="filter"/>
         </xsl:element>
     </xsl:template>
     
@@ -421,6 +419,8 @@
         </xsl:attribute>
     </xsl:template>
 
+    <!-- Pre-filter in the expand mode to only include elements that are in the target designated using the 'target'
+         stylesheet parameter -->
     <xsl:template match="(f:*|nts:*)" mode="expand" priority="2">
         <xsl:if test=".[$target = tokenize(@nts:in-targets, ' ') or not(@nts:in-targets)]">
             <xsl:next-match/>
@@ -431,7 +431,7 @@
     <xsl:template match="node()" mode="expand">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*" mode="expand"/>
-        </xsl:copy>            
+        </xsl:copy>
     </xsl:template>
 
     <!-- Default template in the filter mode -->
