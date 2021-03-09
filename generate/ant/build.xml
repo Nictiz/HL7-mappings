@@ -180,25 +180,6 @@
         </sequential>
     </macrodef>
 
-    <macrodef name="collect-targets" description="TODO.">
-        <attribute name="testscript.path" description="The NTS input file to analyze."/>
-        <attribute name="references.file" description="The file to store the list of references fixtures and rules to, formatted as an Ant property file with the property's 'targets', each containing a list of target names separated by a semicolon. If there are already targets listed in this file, the new ones are appended."/>
-        
-        <sequential>
-            <!-- Load the already known targets from the file -->
-            <local name="targets"/>
-            <property file="@{references.file}"/>
-            
-            <!-- Analyze the NTS input file using an external stylesheet, feeding it the known fixtures and rules as 
-                 parameters -->
-            <saxon-transform style="${xslt.dir}/collectTargets.xsl" in="@{testscript.path}" out="@{references.file}">
-                <parameters>
-                    <param name="additionalTargets" expression="${targets}" if="targets"/>
-                </parameters>
-            </saxon-transform>
-        </sequential>
-    </macrodef>
-    
     <macrodef name="transform-NTS-file" description="Custom task to perform the transformation of an NTS file">
         <attribute name="nts.file" description="The (full) path to the input file."/>
         <attribute name="output.dir" description="The target dir (not just the base) of the transformed file. The name of the actual file will be determined by this task."/>
@@ -410,49 +391,61 @@
             <then>
                 <sequential>
                     <echo message="Checking targets to build"/>
-                    <for param="nts.file">
-                        <path>
-                            <fileset refid="nts.files"/>
-                        </path>
-                        
-                        <sequential>
-                            <collect-targets testscript.path="@{nts.file}" references.file="${targets.file}"/>
-                            <property file="${targets.file}"/>
-                            <echo message="${targets}"/>
-                        </sequential>
-                    </for>
                     
                     <echo message="Transforming NTS files"/>
-                    <for param="nts.file">
-                        <path>
-                            <fileset refid="nts.files"/>
-                        </path>
-                        
+                    <for list="#default;${extra-targets}" delimiter=";" param="target.dir">
                         <sequential>
-                            <!-- Get the relative directory of the input file within the base directory -->
-                            <local name="nts.file.reldir"/>
-                            <local name="nts.file.dir"/>
-                            <dirname property="nts.file.dir" file="@{nts.file}"/>
-                            <pathconvert property="nts.file.reldir">
+                            <if>
+                                <equals arg1="@{target.dir}" arg2="#default"/>
+                                <then>
+                                    <echo>- default target</echo>
+                                </then>
+                                <else>
+                                    <echo message="- @{target.dir}"/>
+                                </else>
+                            </if>
+                            <for param="nts.file">
                                 <path>
-                                    <dirset dir="${nts.file.dir}"/>
+                                    <fileset refid="nts.files"/>
                                 </path>
-                                <map from="${input.dir.abs}" to=""/>
-                            </pathconvert>
-                            
-                            <!-- Apply the transformation -->
-                            <transform-NTS-file 
-                                nts.file="@{nts.file}"
-                                output.dir="${output.dir.abs}/${nts.file.reldir}" 
-                                references.file="${references.file}"/>
-                            <for list="${targets}" delimiter=";" param="target">
+                                
                                 <sequential>
-                                    <echo message="Transforming @{target}"/>
-                                    <transform-NTS-file
-                                        nts.file="@{nts.file}"
-                                        output.dir="${output.dir.abs}-@{target}/${nts.file.reldir}" 
-                                        references.file="${references.file}"
-                                        target="@{target}"/>
+                                    <!-- Get the relative directory of the input file within the base directory -->
+                                    <local name="nts.file.reldir"/>
+                                    <local name="nts.file.dir"/>
+                                    <dirname property="nts.file.dir" file="@{nts.file}"/>
+                                    <pathconvert property="nts.file.reldir">
+                                        <path>
+                                            <dirset dir="${nts.file.dir}"/>
+                                        </path>
+                                        <map from="${input.dir.abs}" to=""/>
+                                    </pathconvert>
+                                    <if>
+                                        <equals arg1="@{target.dir}" arg2="#default"/>
+                                        <then>
+                                            <transform-NTS-file 
+                                                nts.file="@{nts.file}"
+                                                output.dir="${output.dir.abs}/${nts.file.reldir}" 
+                                                references.file="${references.file}"/>
+                                        </then>
+                                        <elseif>
+                                            <contains string="/@{target.dir}" substring="${nts.file.reldir}"/>
+                                            <then>
+                                                <sequential>
+                                                    <pathconvert property="target">
+                                                        <map from="${nts.file.reldir}-" to=""/>
+                                                        <path location="/@{target.dir}"/>
+                                                    </pathconvert>
+                                                    <transform-NTS-file 
+                                                        nts.file="@{nts.file}"
+                                                        output.dir="${output.dir.abs}/@{target.dir}" 
+                                                        references.file="${references.file}"
+                                                        target="${target}"/>
+                                                </sequential>
+                                            </then>
+                                        </elseif>
+                                    </if>
+                                    
                                 </sequential>
                             </for>
                         </sequential>
