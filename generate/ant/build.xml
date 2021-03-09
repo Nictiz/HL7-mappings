@@ -57,6 +57,8 @@
     <property name="xslt.dir" value="${testscripttools.dir}/xslt" />
     <property name="dependency.dir" value="${lib.dir}/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${dependency.dir}/ivy.jar" />
+    
+    <property name="extra-targets" value=""/> <!-- By default, we don't build extra targets -->
         
     <!-- Set the verbosity level of the output. A higher value means more verbose output -->
     <property name="outputLevel" value="1" />
@@ -391,7 +393,7 @@
                     
                     <!-- Iteratate over all targets that are defined as build parameter (extra-targets) plus the 
                          default target ('#default') -->
-                    <for list="#default;${extra-targets}" delimiter=";" param="target.dir">
+                    <for list="#default,${extra-targets}" delimiter="," param="target.dir">
                         <sequential>
                             <if>
                                 <equals arg1="@{target.dir}" arg2="#default"/>
