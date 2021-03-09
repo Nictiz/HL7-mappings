@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/> 
+     <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>--> 
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -57,19 +57,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>                 
                 <!-- voornamen -->
                 <xsl:for-each select="voornamen[@code]">
-                    <relationship>
+                    <voornamen>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </relationship>
+                    </voornamen>
                 </xsl:for-each>                
                 <!-- initialen -->
                 <xsl:for-each select="initialen[@code]">
-                    <relationship>
+                    <initialen>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </relationship>
+                    </initialen>
                 </xsl:for-each>                    
             </HumanName>
         </xsl:for-each>
