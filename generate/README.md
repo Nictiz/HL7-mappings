@@ -153,6 +153,29 @@ There may be differences for xis and phr scenarios in how a TestScript is transf
 nts:scenario="server|client"
 ```
 
+### Building different variations
+
+It is possible to build different variations or _targets_ from the same source files that include different elements (see the section on build script parameters further in this document on guidance to define and build these targets). The `nts:in-targets` attribute can be used on elements to specify the targets where the element should end up in. If this attribute is absent, the element will be included in all targets. Mulitple targets may be separated by a space. The special target '#default' can be used for the default build.
+
+For example, take the following snippet:
+
+```xml
+<assert>
+   ...
+</assert>   
+<assert nts:in-targets="with-setup test">
+   ...
+</assert>
+<assert nts:in-targets="#default">
+   ...
+</assert>
+```
+
+This specifies that:
+* The first `assert` will be included in all targets.
+* The second `assert` will be included in the targets 'with-setup' and 'test', but will not show up in the default build.
+* The third `assert` will be included only in the default build (and thus not in 'with-setup' or 'test'). This construction can thus be used to _exclude_ elements from specific targets. 
+
 ### TouchStone stopTestOnFail extension
 The TouchStone assert-stopTestOnFail extension is added to each assert with a default value of 'false' (e.g. the test continues running after a failed assertion). If you would like to override this value, add attribute `@nts:stopTestOnFail="true"` to `<assert>`.
 
@@ -206,9 +229,14 @@ The following optional parameters may be used:
 - `reference.dir=/path/to/project/fixtures`: The (base) location for the fixtures for this project. Should be an absolute or relative location, compared to `build.xml`.
 - `components.dir=/path/to/project/components`: An alternative location for project specific NTS components. Should be an absolute or relative path, compared to `build.xml`.
 - `loadresources.exclude`: a relative path to a folder containing the fixtures to be excluded or to specific filenames. Multiple entries can be comma separated. `*` is accepted as a wildcard.
-```
-loadresources.exclude = _reference/resources/resources-specific
-```
+  ```
+  loadresources.exclude = _reference/resources/resources-specific
+  ```
+- `extra-targets`: additional variations of input folders (_targets_) that should be generated. An extra target is specified as the name of the folder that should be generated, which should be an existing folder with the target name appended using a dash. For example, if the project folder contains the folder `Cert`, an extra target named "with-setup" is defined using:
+  ```
+  extra-targets=Cert-with-setup
+  ```
+  The TestScript resources can use the `nts:attribute` to define which element should be included in a target (see above). Multiple extra targets may be separated using comma's.
 
 ## Schematron
 
