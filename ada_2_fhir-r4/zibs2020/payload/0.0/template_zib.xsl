@@ -14,6 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all"
+    xmlns="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
@@ -30,7 +31,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile zib-HealthcareProvider</xd:desc>
+        <xd:desc>Converts ada [...] to FHIR [...] conforming to profile [...]</xd:desc>
     </xd:doc>
+    
+    <xd:doc>
+        <xd:desc>Unwrap [...]_registratie element</xd:desc>
+    </xd:doc>
+    <xsl:template match="[...]_registratie">
+        <xsl:apply-templates select="[...]" mode="[...]"/><!-- Vul hier de juiste elementnamen en mode in -->
+    </xsl:template>
 
 </xsl:stylesheet>
