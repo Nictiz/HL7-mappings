@@ -26,19 +26,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
     <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
-
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ada code to FHIR extension conforming to profile ext-CodeSpecification</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap [...]_registratie element</xd:desc>
+        <xd:desc>Template for shared extension http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification</xd:desc>
+        <xd:param name="in">Optional. Ada element containing the comment code element</xd:param>
     </xd:doc>
-    <xsl:template match="[...]_registratie">
-        <xsl:apply-templates select="[...]" mode="[...]"/><!-- Vul hier de juiste elementnamen en mode in -->
+    <xsl:template match="*" name="ext-CodeSpecification" mode="ext-CodeSpecification" as="element()?">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:for-each select="$in">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                <valueCodeableConcept>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
+                    </xsl:call-template>
+                </valueCodeableConcept>
+            </extension>
+        </xsl:for-each>
     </xsl:template>
-
+    
 </xsl:stylesheet>
