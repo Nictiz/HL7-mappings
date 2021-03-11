@@ -37,15 +37,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Produces FHIR HumanName datatypes with name elements.</xd:desc>
         <xd:param name="in">Ada 'naamgegevens' element containing the zib data</xd:param>
     </xd:doc>
-    <xsl:template match="naamgegevens" mode="zib-NameInformation" name="zib-NameInformation"
-        as="element(f:name)*">
+    <xsl:template match="naamgegevens" mode="zib-NameInformation" name="zib-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
-        <name>
-            <xsl:if test="voornamen[./@value]">
-            <!--    <xsl:call-template name="">
-                    <xsl:with-param name="in" select="voornamen"/>
-                </xsl:call-template>-->
-            </xsl:if>
-        </name>
+        <xsl:for-each select="$in[.//@value]">
+          <!--  <xsl:for-each select="naamgebruik[naamgebruik/@value]">
+                <xsl:variable name="telecomType" select="telecom_type/@code"/>
+                <xsl:variable name="telecomSystem" as="xs:string?">
+                    <xsl:choose>
+                        <xsl:when test="$telecomType = 'NL1'">phone</xsl:when>
+                        <xsl:when test="$telecomType = 'NL2'">fax</xsl:when>
+                        <xsl:when test="$telecomType = 'NL3'">phone</xsl:when>
+                        <xsl:when test="$telecomType = 'NL4'">pager</xsl:when>
+                    </xsl:choose>
+                </xsl:variable>-->
+            <name>
+                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order"> 
+                    <valueCode value="NL4" />
+                </extension>
+                <family value="Jongeneel-de Haas">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name"> 
+                        <valueString value="Jongeneel" />
+                    </extension>
+                    <extension  url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix"> 
+                        <valueString value="de" />
+                    </extension>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                        <valueString value="Haas" />
+                    </extension>
+                </family>
+                <given value="Irma"> 
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                        <valueCode value="CL" />
+                    </extension>
+                </given>
+                <given value="I.">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                        <valueCode value="IN" />
+                    </extension>
+                </given>
+            </name>
+        </xsl:for-each>
+       <!-- </xsl:for-each>-->
     </xsl:template>
 </xsl:stylesheet>
