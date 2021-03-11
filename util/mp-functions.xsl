@@ -546,7 +546,7 @@
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($relativeDate, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
-                <xsl:variable name="timePart" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)})?', '$4')"/>
+                <xsl:variable name="timePart" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)\})?', '$4')"/>
                 <xsl:variable name="time" select="$timePart"/>
 
                 <!-- output a relative date for display -->
