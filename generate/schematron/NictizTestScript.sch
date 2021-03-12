@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2"
     xmlns:sqf="http://www.schematron-quickfix.com/validator/process">
-
+    
     <sch:ns uri="http://nictiz.nl/xsl/testscript" prefix="nts"/>
     <sch:ns uri="http://hl7.org/fhir" prefix="f"/>
     
@@ -19,7 +19,7 @@
             <sch:report test="f:contact" subject="f:contact">Element 'contact' not allowed; it will be created during transformation</sch:report>
             <sch:report test="f:origin" subject="f:origin">Element 'origin' not allowed; it will be created during transformation</sch:report>
             <sch:report test="f:destination" subject="f:destination">Element 'destination' not allowed; it will be created during transformation</sch:report>
-           
+            
             <sch:report test="nts:component" subject="f:component">nts:component cannot be embedded directly in in a TestScript</sch:report>
         </sch:rule>
         <sch:rule context="f:test">
@@ -77,6 +77,12 @@
         </sch:rule>
         <sch:rule context="nts:*">
             <sch:assert test="false()">Unknown element in the Nictiz TestScript namespace</sch:assert>
+        </sch:rule>
+    </sch:pattern>
+    
+    <sch:pattern>
+        <sch:rule context="@nts:*">
+            <sch:assert test="local-name()=('scenario', 'in-targets')">Unknown attribute in the Nictiz Testscript namespace</sch:assert>
         </sch:rule>
     </sch:pattern>
 </sch:schema>
