@@ -414,7 +414,7 @@
                                     <local name="nts.file.reldir"/>
                                     <local name="nts.file.dir"/>
                                     <dirname property="nts.file.dir" file="@{nts.file}"/>
-                                    <pathconvert property="nts.file.reldir">
+                                    <pathconvert property="nts.file.reldir" targetos="unix">
                                         <path>
                                             <dirset dir="${nts.file.dir}"/>
                                         </path>
@@ -435,9 +435,10 @@
                                             <then>
                                                 <sequential>
                                                     <!-- Extract the target name from the relative path name -->
-                                                    <pathconvert property="target">
-                                                        <map from="${nts.file.reldir}-" to=""/>
+                                                    <pathconvert property="target" targetos="unix">
                                                         <path location="/@{target.dir}"/>
+                                                        <map from="${nts.file.reldir}-" to=""/>
+                                                        <map from="c:${nts.file.reldir}-" to=""/>
                                                     </pathconvert>
                                                     <transform-NTS-file 
                                                         nts.file="@{nts.file}"
