@@ -9,7 +9,6 @@ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions"
@@ -40,43 +39,89 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="naamgegevens" mode="zib-NameInformation" name="zib-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">
-          <!--  <xsl:for-each select="naamgebruik[naamgebruik/@value]">
-                <xsl:variable name="telecomType" select="telecom_type/@code"/>
-                <xsl:variable name="telecomSystem" as="xs:string?">
-                    <xsl:choose>
-                        <xsl:when test="$telecomType = 'NL1'">phone</xsl:when>
-                        <xsl:when test="$telecomType = 'NL2'">fax</xsl:when>
-                        <xsl:when test="$telecomType = 'NL3'">phone</xsl:when>
-                        <xsl:when test="$telecomType = 'NL4'">pager</xsl:when>
-                    </xsl:choose>
-                </xsl:variable>-->
             <name>
-                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order"> 
-                    <valueCode value="NL4" />
-                </extension>
-                <family value="Jongeneel-de Haas">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name"> 
-                        <valueString value="Jongeneel" />
+                <xsl:if test="naamgebruik">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <valueCode value="{naamgebruik/@code}"/>
                     </extension>
-                    <extension  url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix"> 
-                        <valueString value="de" />
-                    </extension>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-                        <valueString value="Haas" />
-                    </extension>
-                </family>
-                <given value="Irma"> 
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                        <valueCode value="CL" />
-                    </extension>
-                </given>
-                <given value="I.">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                        <valueCode value="IN" />
-                    </extension>
-                </given>
+                </xsl:if>
+                <xsl:if test="geslachtsnaam | geslachtsnaam_partner">
+                    <xsl:variable name="lastName" select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ./geslachtsnaam/achternaam/@value, ./last_name/prefix/@value, ./last_name/last_name/@value), ' '))[not(. = '')]"/>
+                    <xsl:variable name="lastNamePartner" select="normalize-space(string-join((./voorvoegsels_partner/@value, ./achternaam_partner/@value, ./partner_prefix/@value, ./partner_last_name/@value), ' '))[not(. = '')]"/>
+                    <xsl:variable name="nameUsage" select="naamgebruik/@code | name_usage/@code"/>
+                    <family>                    
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <!-- Eigen geslachtsnaam -->
+                                <xsl:when test="$nameUsage = 'NL1'">
+                                    <xsl:value-of select="$lastName"/>
+                                </xsl:when>
+                                <!--     Geslachtsnaam partner -->
+                                <xsl:when test="$nameUsage = 'NL2'">
+                                    <xsl:value-of select="$lastNamePartner"/>
+                                </xsl:when>
+                                <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
+                                <xsl:when test="$nameUsage = 'NL3'">
+                                    <xsl:value-of select="string-join(($lastNamePartner, $lastName), '-')"/>
+                                </xsl:when>
+                                <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
+                                <xsl:when test="$nameUsage = 'NL4'">
+                                    <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
+                                </xsl:when>
+                                <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
+                                <xsl:otherwise>
+                                    <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>                
+                        <xsl:for-each select="geslachtsnaam/voorvoegsels/@value | ./last_name/prefix/@value">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                <valueString value="{normalize-space(.)}"/>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select=".//geslachtsnaam/achternaam/@value | ./last_name/last_name/@value">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                <valueString value="{normalize-space(.)}"/>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select=".//voorvoegsels_partner/@value | .//partner_prefix/@value">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                                <valueString value="{.}"/>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select=".//achternaam_partner/@value | .//partner_last_name/@value">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                                <valueString value="{normalize-space(.)}"/>
+                            </extension>
+                        </xsl:for-each>
+                    </family>
+                </xsl:if>
+                <xsl:if test="voornamen">
+                    <given value="{voornamen/@value}">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="BR"/>
+                        </extension>
+                    </given>
+                </xsl:if> 
+                <xsl:if test="initialen">
+                    <given value="{initialen/@value}">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="IN" />
+                        </extension>
+                    </given>
+                </xsl:if>
+                <xsl:if test="roepnaam">
+                    <given value="{roepnaam/@value}">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="CL" />
+                        </extension>
+                    </given>
+                </xsl:if>
+                <xsl:if test="titels/@value">
+                    <!-- 'titels' can be mapped both to prefix and suffix, but we cannot determine the type of 'titel' more specifically -->
+                    <prefix value="{normalize-space(titels/@value)}"/>
+                </xsl:if>
             </name>
         </xsl:for-each>
-       <!-- </xsl:for-each>-->
     </xsl:template>
 </xsl:stylesheet>
