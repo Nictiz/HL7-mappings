@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
+    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -46,9 +46,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:if>
                 <xsl:if test="geslachtsnaam | geslachtsnaam_partner">
-                    <xsl:variable name="lastName" select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ./geslachtsnaam/achternaam/@value, ./last_name/prefix/@value, ./last_name/last_name/@value), ' '))[not(. = '')]"/>
-                    <xsl:variable name="lastNamePartner" select="normalize-space(string-join((./voorvoegsels_partner/@value, ./achternaam_partner/@value, ./partner_prefix/@value, ./partner_last_name/@value), ' '))[not(. = '')]"/>
-                    <xsl:variable name="nameUsage" select="naamgebruik/@code | name_usage/@code"/>
+                    <xsl:variable name="lastName" select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ./geslachtsnaam/achternaam/@value), ' '))[not(. = '')]"/>
+                    <xsl:variable name="lastNamePartner" select="normalize-space(string-join((./voorvoegsels_partner/@value, ./achternaam_partner/@value), ' '))[not(. = '')]"/>
+                    <xsl:variable name="nameUsage" select="naamgebruik/@code"/>
                     <family>                    
                         <xsl:attribute name="value">
                             <xsl:choose>
@@ -74,22 +74,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>                
-                        <xsl:for-each select="geslachtsnaam/voorvoegsels/@value | ./last_name/prefix/@value">
+                        <xsl:for-each select="geslachtsnaam/voorvoegsels/@value">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
                                 <valueString value="{normalize-space(.)}"/>
                             </extension>
                         </xsl:for-each>
-                        <xsl:for-each select=".//geslachtsnaam/achternaam/@value | ./last_name/last_name/@value">
+                        <xsl:for-each select=".//geslachtsnaam/achternaam/@value">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                                 <valueString value="{normalize-space(.)}"/>
                             </extension>
                         </xsl:for-each>
-                        <xsl:for-each select=".//voorvoegsels_partner/@value | .//partner_prefix/@value">
+                        <xsl:for-each select=".//voorvoegsels_partner/@value">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
                                 <valueString value="{.}"/>
                             </extension>
                         </xsl:for-each>
-                        <xsl:for-each select=".//achternaam_partner/@value | .//partner_last_name/@value">
+                        <xsl:for-each select=".//achternaam_partner/@value">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
                                 <valueString value="{normalize-space(.)}"/>
                             </extension>
