@@ -25,8 +25,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
 
+    <xsl:param name="fhirVersion" select="'R4'"/>
     <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
-
+    
     <!-- Here all overrules be placed -->
 
 </xsl:stylesheet>
