@@ -43,6 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xd:li>zib Patient</xd:li>
                 <xd:li>zib Nationality</xd:li>
                 <xd:li>zib MaritalStatus</xd:li>
+                <xd:li>zib LanguageProficiency</xd:li>
                 <xd:li>zib ContactPerson</xd:li>
                 <xd:li>zib NameInformation</xd:li>
                 <xd:li>zib ContactInformation</xd:li>
@@ -54,13 +55,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         The following components need to be passed as ada instances; although the zibs themselves are not related
         to a patient, the translation to FHIR is specific to the Patient resource:
         <xd:param name="nationality">Optional ada instance of zib Nationality</xd:param>
-        <xd:param name="maritalStatus">Optional ada instace of zib MaritalStatus</xd:param>
+        <xd:param name="maritalStatus">Optional ada instance of zib MaritalStatus</xd:param>
+        <xd:param name="languageProficiencys">Optional ada instances of zib LanguageProficiency</xd:param>
         <xd:param name="contactPersons">Optional ada instances of zib ContactPerson that need to be mapped to Patient.contact in FHIR (this is not always the case).</xd:param>
     </xd:doc>
     <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient" as="element(f:Patient)">
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="nationality" as="element(nationaliteit_rc)?"/>
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?"/>
+        <xsl:param name="languageProficiencys" as="element(taalvaardigheid)*"/>
         <xsl:param name="contactPersons" as="element(contact_persoon)*"/>
 
         <Patient>
@@ -177,7 +180,79 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </multipleBirthBoolean>
             </xsl:for-each>
             
+            <xsl:for-each select="$languageProficiencys">
+                <communication>
+                    <xsl:call-template name="_patientProficiency">
+                        <xsl:with-param name="in" select="taalvaardigheid_begrijpen"/>
+                        <xsl:with-param name="typeCode" select="'RSP'"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="_patientProficiency">
+                        <xsl:with-param name="in" select="taalvaardigheid_spreken"/>
+                        <xsl:with-param name="typeCode" select="'ESP'"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="_patientProficiency">
+                        <xsl:with-param name="in" select="taalvaardigheid_lezen"/>
+                        <xsl:with-param name="typeCode" select="'RWR'"/>
+                    </xsl:call-template>
+                    <xsl:for-each select="communicatie_bijzonderheden">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-LanguageProficiency-CommunicationDetails">
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="elementName" select="'valueCodeableConcept'"/>
+                            </xsl:call-template>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:for-each select="toelichting">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+                            <valueString value="{./@value}"/>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="communicatie_taal"/>
+                    </xsl:call-template>
+                </communication>
+            </xsl:for-each>
         </Patient>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>
+            Helper template to render the 'patient proficiency' extension for the types RSP, ESP en RWR, which repesent
+            the zib concepts LanguageControlListening, LanguageControlWriting and LanguageControlWriting.
+        </xd:desc>
+        <xd:param name="in">
+            The root element of the ada concept for the three zib concepts mentioned. May be empty, in which case the
+            extension will not be rendered.
+        </xd:param>
+        <xd:param name="typeCode">The code used for the 'type' part of the complex extension.</xd:param>
+    </xd:doc>
+    <xsl:template name="_patientProficiency">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="typeCode" as="xs:string"/>
+        <xsl:if test="$in">
+            <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
+                <extension url="level">
+                    <valueCoding>
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" select="$in"/>
+                        </xsl:call-template>
+                    </valueCoding>
+                </extension>
+                <extension url="type">
+                    <valueCoding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
+                        <code value="{$typeCode}"/>
+                        <display>
+                            <xsl:choose>
+                                <xsl:when test="$typeCode='RSP'">Received spoken</xsl:when>
+                                <xsl:when test="$typeCode='ESP'">Expressed spoken</xsl:when>
+                                <xsl:when test="$typeCode='RWR'">Received written</xsl:when>
+                            </xsl:choose>
+                        </display>
+                    </valueCoding>
+                </extension>
+            </extension>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

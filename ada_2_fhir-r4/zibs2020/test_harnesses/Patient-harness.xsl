@@ -31,6 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     * zib Patient
     * zib Nationality
     * zib MaritalStatus
+    * zib LanguageProfiency
     -->
     <xsl:template match="//bundle">
         <xsl:variable name="bundle">
@@ -42,6 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="nl-core-Patient">
                 <xsl:with-param name="nationality" select="$bundle//nationaliteit_rc"/>
                 <xsl:with-param name="maritalStatus" select="$bundle//burgerlijke_staat_rc"/>
+                <xsl:with-param name="languageProficiencys" select="$bundle//taalvaardigheid"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>

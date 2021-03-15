@@ -76,6 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidHL7AddressUse">2.16.840.1.113883.5.1119</xsl:variable>
     <xsl:variable name="oidHL7AdministrativeGender">2.16.840.1.113883.5.1</xsl:variable>
     <xsl:variable name="oidHL7InteractionID">2.16.840.1.113883.1.6</xsl:variable>
+    <xsl:variable name="oidHL7LanguageAbilityProficiency">2.16.840.1.113883.5.61</xsl:variable>
     <xsl:variable name="oidHL7NullFlavor">2.16.840.1.113883.5.1008</xsl:variable>
     <xsl:variable name="oidHL7ObservationInterpretation">2.16.840.1.113883.5.83</xsl:variable>
     <xsl:variable name="oidHL7ParticipationType">2.16.840.1.113883.5.90</xsl:variable>
@@ -191,6 +192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <map oid="{$oidHL7ActStatus}" uri="http://terminology.hl7.org/CodeSystem/v3-ActStatus" displayName="HL7 ActStatus"/>
                 <map oid="{$oidHL7AcknowledgementDetailCode}" uri="http://terminology.hl7.org/CodeSystem/v3-AcknowledgementDetailCode" displayName="HL7 AcknowledgementDetailCode"/>
                 <map oid="{$oidHL7AdministrativeGender}" uri="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender" displayName="HL7 AdministrativeGender"/>
+                <map oid="{$oidHL7LanguageAbilityProficiency}" uri="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency" displayName="HL7 LanguageAbilityProficiency"/>
                 <map oid="{$oidHL7ObservationInterpretation}" uri="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="HL7 ObservationInterpretation"/>
                 <map oid="{$oidHL7ParticipationType}" uri="http://terminology.hl7.org/CodeSystem/v3-ParticipationType" displayName="HL7 ParticipationType"/>
                 <map oid="{$oidHL7NullFlavor}" uri="http://terminology.hl7.org/CodeSystem/v3-NullFlavor" displayName="HL7 NullFlavor"/>
