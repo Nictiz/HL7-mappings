@@ -250,6 +250,9 @@ Because of the verbosity of the ANT build, the logging level is set to 1 (warnin
 
 ## Changelog
 
+### 1.4.0
+- Add the option to build different variants of a folder that include/exclude parts in the output (HIT-15). 
+
 ### 1.3.0
 - Remove the assumptions on folder structure and instead use explicit parameters to define input dir, output dir, common components dir and lib dir (HIT-12).
 
