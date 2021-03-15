@@ -153,9 +153,9 @@ There may be differences for xis and phr scenarios in how a TestScript is transf
 nts:scenario="server|client"
 ```
 
-### Building different variations
+### Building different variants
 
-It is possible to build different variations or _targets_ from the same source files that include different elements (see the section on build script parameters further in this document on guidance to define and build these targets). The `nts:in-targets` attribute can be used on elements to specify the targets where the element should end up in. If this attribute is absent, the element will be included in all targets. Mulitple targets may be separated by a space. The special target '#default' can be used for the default build.
+It is possible to build different variants or _targets_ from the same source files that include different elements (these have to be defined using the `extra-targets` parameter during building, see the section on build script parameters further down this document on guidance). The `nts:in-targets` attribute can be used on elements to specify the targets where the element should end up in. If this attribute is absent, the element will be included in all targets. Mulitple targets may be separated by a space. The special target '#default' can be used for the default build.
 
 For example, take the following snippet:
 
@@ -236,7 +236,7 @@ The following optional parameters may be used:
   ```
   extra-targets=Cert-with-setup
   ```
-  The TestScript resources can use the `nts:attribute` to define which element should be included in a target (see above). Multiple extra targets may be separated using comma's.
+  The TestScript resources can use the `nts:in-targets` to define which element should be included in a target (see above). Multiple extra targets may be separated using comma's.
 
 ## Schematron
 
