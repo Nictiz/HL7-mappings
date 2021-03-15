@@ -983,7 +983,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="level" select="$logWARN"/>
                         <xsl:with-param name="terminate" select="false()"/>
                     </xsl:call-template>
-                    <xsl:value-of select="$lengthJoinedString - 64"/>
+                    <xsl:value-of select="$lengthJoinedString - 63"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="1"/>

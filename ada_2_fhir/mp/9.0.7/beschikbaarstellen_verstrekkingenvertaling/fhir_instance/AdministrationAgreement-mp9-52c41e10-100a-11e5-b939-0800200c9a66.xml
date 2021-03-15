@@ -1,0 +1,98 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="AdministrationAgreement-mp9-52c41e10-100a-11e5-b939-0800200c9a66"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+               <span style="display: block;">Uitvoerende: Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'.</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>52c41e10-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1)</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>2007-05-20</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>IBUPROFEN PCH TABLET 200MG CLICKER</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>60 dag</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Gedurende 60 dagen, 1 maal per dag een kwart tablet</div>
+                     <div>Timing: <div>eenmalig per dag</div>
+                     </div>
+                     <div>Dosering: 0.25 Stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2007-05-20"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="60"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="52c41e10-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/eToFHIRConversion-Product-mp9-2-16-840-1-113883-2-4-4-8-14765233"/>
+      <display value="IBUPROFEN PCH TABLET 200MG CLICKER"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/CREIENS"/>
+      <display value="Carel C. Creiens"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/seToFHIRConversion-Organization-mp9-2-16-528-1-1007-3-3-01234567"/>
+         <display value="Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'."/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Gedurende 60 dagen, 1 maal per dag een kwart tablet"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <doseQuantity>
+         <value value="0.25"/>
+         <unit value="Stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationDispense>

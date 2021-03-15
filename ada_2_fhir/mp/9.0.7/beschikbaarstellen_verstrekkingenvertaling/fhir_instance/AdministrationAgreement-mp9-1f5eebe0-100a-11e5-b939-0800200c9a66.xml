@@ -1,0 +1,98 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="AdministrationAgreement-mp9-1f5eebe0-100a-11e5-b939-0800200c9a66"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+               <span style="display: block;">Uitvoerende: Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'.</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>1f5eebe0-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1)</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>2006-06-29</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>VERAPAMIL HCL CF TABLET 40MG</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>7 dag</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Gedurende 7 dagen, 4 maal per dag 1 tablet</div>
+                     <div>Timing: <div>4 maal per dag</div>
+                     </div>
+                     <div>Dosering: 1 Stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2006-06-29"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="7"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="1f5eebe0-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/eToFHIRConversion-Product-mp9-2-16-840-1-113883-2-4-4-8-14303841"/>
+      <display value="VERAPAMIL HCL CF TABLET 40MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/CREIENS"/>
+      <display value="Carel C. Creiens"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/seToFHIRConversion-Organization-mp9-2-16-528-1-1007-3-3-01234567"/>
+         <display value="Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'."/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Gedurende 7 dagen, 4 maal per dag 1 tablet"/>
+      <timing>
+         <repeat>
+            <frequency value="4"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="Stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationDispense>

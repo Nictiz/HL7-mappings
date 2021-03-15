@@ -68,12 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:copy-of select="$commonEntries"/>
         </xsl:variable>
 
-        <!-- https://bits.nictiz.nl/browse/MM-1752 , 
-            Examples en fixtures op basis van deze conventie:
-            Bestandsnaam: [profielnaam]-[unieke string]
-            Resource.id: [profielnaam]-[unieke string] -->
-        <!-- update the f:id -->       
-        <!-- and output the resource in a file -->
+         <!-- and output the resource in a file -->
         <xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
     </xsl:template>
 
