@@ -180,6 +180,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </multipleBirthBoolean>
             </xsl:for-each>
             
+            <xsl:for-each select="$contactPersons">
+                <xsl:call-template name="nl-core-ContactPerson-embedded"/>
+            </xsl:for-each>
+            
             <xsl:for-each select="$languageProficiencys">
                 <communication>
                     <xsl:call-template name="_patientProficiency">
