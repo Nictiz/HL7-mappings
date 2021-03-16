@@ -36,26 +36,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Produces FHIR Address datatypes with address elements.</xd:desc>
         <xd:param name="in">Ada 'adresgegevens' element containing the zib data</xd:param>
     </xd:doc>
-    <xsl:template match="adresgegevens" mode="zib-AddressInformation" name="zib-AddressInformation"
-        as="element(f:address)*">
+    <xsl:template match="adresgegevens" mode="zib-AddressInformation" name="zib-AddressInformation" as="element(f:address)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">
             <xsl:variable name="lineItems" as="element()*">
                 <xsl:for-each select="straat/@value">
-                    <extension
-                        url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
                 <xsl:for-each select="huisnummer/@value">
-                    <extension
-                        url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
                 <xsl:for-each select="huisnummerletter/@value | huisnummertoevoeging/@value">
-                    <extension
-                        url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
@@ -65,13 +61,80 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 <xsl:for-each select="aanduiding_bij_nummer/@value">
-                    <extension
-                        url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
             </xsl:variable>
             <address>
+                <!--adres_soort-->
+                <xsl:for-each select="adres_soort[@codeSystem = '2.16.840.1.113883.5.1119'][@code]">
+                    <xsl:choose>
+                        <!-- Postadres -->
+                        <xsl:when test="@code = 'PST'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{normalize-space(adres_soort/@code)}"/>
+                                        <code value="PST"/>
+                                        <display value="Postadres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>                      
+                        </xsl:when>
+                        <!-- Officieel adres -->
+                        <xsl:when test="@code = 'HP'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{normalize-space(adres_soort/@codeSystem)}"/>
+                                        <code value="HP"/>
+                                        <display value="Officieel adres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
+                            <use value="home"/>
+                        </xsl:when>
+                        <!-- Tijdelijk adres -->
+                        <xsl:when test="@code = 'TMP'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{normalize-space(adres_soort/@codeSystem)}"/>
+                                        <code value="TMP"/>
+                                        <display value="Tijdelijk adres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
+                            <use value="temp"/>
+                        </xsl:when>
+                        <!-- Werkadres -->
+                        <xsl:when test="@code = 'WP'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{normalize-space(adres_soort/@codeSystem)}"/>
+                                        <code value="WP"/>
+                                        <display value="Werkadres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
+                            <use value="work"/>
+                        </xsl:when>
+                        <!-- Vakantie adres -->
+                        <xsl:when test="@code = 'HV'">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
+                                <valueCodeableConcept>
+                                    <coding>
+                                        <system value="{normalize-space(adres_soort/@codeSystem)}"/>
+                                        <code value="HV"/>
+                                        <display value="Vakantie adres"/>
+                                    </coding>
+                                </valueCodeableConcept>
+                            </extension>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:for-each>
                 <xsl:if test="$lineItems">
                     <line>
                         <xsl:copy-of select="$lineItems"/>
@@ -88,8 +151,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <!--Dit kan volgens mij beter via een template (TODO)-->
                 <xsl:if test="land/@code">
-                    <country>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                    <country value="{normalize-space(land/@displayName)}">
+                        <extension
+                            url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                             <valueCodeableConcept>
                                 <coding>
                                     <system value="{normalize-space(land/@conceptId)}"/>
