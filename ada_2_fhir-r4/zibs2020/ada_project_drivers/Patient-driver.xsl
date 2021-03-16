@@ -26,13 +26,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../payload/0.0/all_zibs.xsl"/>
     
-    <!-- 
-    Process a bundle containing ADA instances for zibs that are mapped onto/into the nl-core-Patient profile:
-    * zib Patient
-    * zib Nationality
-    * zib MaritalStatus
-    * zib LanguageProfiency
-    -->
+    <xd:doc>
+        <xd:desc>
+            Process a bundle containing ADA instances for zibs that are mapped onto/into the nl-core-Patient profile:
+            <xd:ul>
+                <xd:li>zib Patient</xd:li>
+                <xd:li>zib Nationality</xd:li>
+                <xd:li>zib MaritalStatus</xd:li>
+                <xd:li>zib LanguageProfiency</xd:li>
+            </xd:ul>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="//bundle">
         <xsl:variable name="bundle">
             <xsl:for-each select="source[@href]">
