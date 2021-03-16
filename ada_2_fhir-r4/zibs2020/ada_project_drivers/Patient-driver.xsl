@@ -34,6 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xd:li>zib Nationality</xd:li>
                 <xd:li>zib MaritalStatus</xd:li>
                 <xd:li>zib LanguageProfiency</xd:li>
+                <xd:li>zib ContactPerson</xd:li>
             </xd:ul>
         </xd:desc>
     </xd:doc>
@@ -48,6 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="nationality" select="$bundle//nationaliteit_rc"/>
                 <xsl:with-param name="maritalStatus" select="$bundle//burgerlijke_staat_rc"/>
                 <xsl:with-param name="languageProficiencys" select="$bundle//taalvaardigheid"/>
+                <xsl:with-param name="contactPersons" select="$bundle//contactpersoon"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
