@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -36,13 +36,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Produces FHIR HumanName datatypes with name elements.</xd:desc>
         <xd:param name="in">Ada 'naamgegevens' element containing the zib data</xd:param>
     </xd:doc>
-    <xsl:template match="naamgegevens" mode="nl-core-HumanName" name="nl-core-HumanName" as="element(f:name)*">
+    <xsl:template match="naamgegevens" mode="zib-NameInformation" name="zib-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">
             <name>
                 <xsl:if test="naamgebruik">
                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-                        <valueCode value="{naamgebruik/@code}"/>
+                        <valueCode>
+                            <xsl:call-template name="code-to-code">
+                                <xsl:with-param name="in" select="naamgebruik"/>
+                            </xsl:call-template>
+                        </valueCode>
                     </extension>
                 </xsl:if>
                 <xsl:if test="geslachtsnaam | geslachtsnaam_partner">
@@ -74,24 +78,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>                
-                        <xsl:for-each select="geslachtsnaam/voorvoegsels/@value">
+                        <xsl:for-each select="geslachtsnaam/voorvoegsels">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                                <valueString value="{normalize-space(.)}"/>
+                                <valueString>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueString>
                             </extension>
                         </xsl:for-each>
-                        <xsl:for-each select=".//geslachtsnaam/achternaam/@value">
+                        <xsl:for-each select=".//geslachtsnaam/achternaam">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                                <valueString value="{normalize-space(.)}"/>
+                                <valueString>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueString>
                             </extension>
                         </xsl:for-each>
-                        <xsl:for-each select=".//voorvoegsels_partner/@value">
+                        <xsl:for-each select=".//voorvoegsels_partner">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
-                                <valueString value="{.}"/>
+                                <valueString>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueString>
                             </extension>
                         </xsl:for-each>
-                        <xsl:for-each select=".//achternaam_partner/@value">
+                        <xsl:for-each select=".//achternaam_partner">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-                                <valueString value="{normalize-space(.)}"/>
+                                <valueString>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueString>
                             </extension>
                         </xsl:for-each>
                     </family>
