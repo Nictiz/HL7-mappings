@@ -411,6 +411,8 @@
             <!-- return singular form -->
             <xsl:when test="$floatValue gt 0 and $floatValue lt 2">
                 <xsl:choose>
+                    <xsl:when test="$unit = ('seconde', 'sec', 's')">seconde</xsl:when>
+                    <xsl:when test="$unit = ('minuut', 'min')">minuut</xsl:when>
                     <xsl:when test="$unit = ('dag', 'd')">dag</xsl:when>
                     <xsl:when test="$unit = ('week', 'wk')">week</xsl:when>
                     <xsl:when test="$unit = ('jaar', 'a')">jaar</xsl:when>
@@ -425,6 +427,8 @@
             <!-- return plural form -->
             <xsl:otherwise>
                 <xsl:choose>
+                    <xsl:when test="$unit = ('seconde', 'sec', 's')">seconden</xsl:when>
+                    <xsl:when test="$unit = ('minuut', 'min')">minuten</xsl:when>
                     <xsl:when test="$unit = ('dag', 'd')">dagen</xsl:when>
                     <xsl:when test="$unit = ('week', 'wk')">weken</xsl:when>
                     <xsl:when test="$unit = ('jaar', 'a')">jaar</xsl:when>
