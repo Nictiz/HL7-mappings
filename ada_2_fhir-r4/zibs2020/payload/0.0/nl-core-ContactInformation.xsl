@@ -23,31 +23,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
-    
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:import href="ext-Comment.xsl"/>
-    <xsl:import href="ext-CodeSpecification.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile zib-ContactInformation-TelephoneNumbers and zib-ContactInformation-E-mailAddresses</xd:desc>
+        <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile nl-core-ContactInformation-TelephoneNumbers and nl-core-ContactInformation-E-mailAddresses</xd:desc>
     </xd:doc>
-    
-    <xd:doc>
-        <xd:desc>Unwrap contactgegevens_registratie element</xd:desc>
-    </xd:doc>
-    <xsl:template match="contactgegevens_registratie">
-        <xsl:apply-templates select="contactgegevens" mode="zib-ContactInformation"/>
-    </xsl:template>
     
     <xd:doc>
         <xd:desc>Produces FHIR ContactPoint datatypes with telecom elements.</xd:desc>
-        <xd:param name="in">Ada 'contactgegevens' element containing the zib data</xd:param>
+        <xd:param name="in">Ada 'contactgegevens' element containing the nl-core data</xd:param>
     </xd:doc>
-    <xsl:template match="contactgegevens" mode="zib-ContactInformation" name="zib-ContactInformation" as="element(f:telecom)*">
+    <xsl:template match="contactgegevens" mode="nl-core-ContactInformation" name="nl-core-ContactInformation" as="element(f:telecom)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">
             <xsl:for-each select="telefoonnummers[telefoonnummer/@value]">
