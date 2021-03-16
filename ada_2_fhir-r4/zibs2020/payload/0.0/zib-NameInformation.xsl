@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Produces FHIR HumanName datatypes with name elements.</xd:desc>
         <xd:param name="in">Ada 'naamgegevens' element containing the zib data</xd:param>
     </xd:doc>
-    <xsl:template match="naamgegevens" mode="zib-NameInformation" name="zib-NameInformation" as="element(f:name)*">
+    <xsl:template match="naamgegevens" mode="nl-core-HumanName" name="nl-core-HumanName" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">
             <name>
