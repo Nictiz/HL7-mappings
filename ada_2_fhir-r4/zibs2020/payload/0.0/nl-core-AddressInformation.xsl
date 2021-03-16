@@ -16,27 +16,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
+    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada adresgegevens to FHIR resource conforming to profile
-            zib-AddressInformation</xd:desc>
+        <xd:desc>Converts ada adresgegevens to FHIR resource conforming to profile nl-core-AddressInformation</xd:desc>
     </xd:doc>
 
     <xd:doc>
         <xd:desc>Unwrap adresgegevens_registratie element</xd:desc>
     </xd:doc>
     <xsl:template match="adresgegevens_registratie">
-        <xsl:apply-templates select="adresgegevens" mode="zib-AddressInformation"/>
+        <xsl:apply-templates select="adresgegevens" mode="nl-core-AddressInformation"/>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Produces FHIR Address datatypes with address elements.</xd:desc>
         <xd:param name="in">Ada 'adresgegevens' element containing the zib data</xd:param>
     </xd:doc>
-    <xsl:template match="adresgegevens" mode="zib-AddressInformation" name="zib-AddressInformation" as="element(f:address)*">
+    <xsl:template match="adresgegevens" mode="nl-core-AddressInformation" name="nl-core-AddressInformation" as="element(f:address)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">
             <xsl:variable name="lineItems" as="element()*">
@@ -152,8 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!--Dit kan volgens mij beter via een template (TODO)-->
                 <xsl:if test="land/@code">
                     <country value="{normalize-space(land/@displayName)}">
-                        <extension
-                            url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                             <valueCodeableConcept>
                                 <coding>
                                     <system value="{normalize-space(land/@conceptId)}"/>
