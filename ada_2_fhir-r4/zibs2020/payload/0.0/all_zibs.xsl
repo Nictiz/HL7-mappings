@@ -16,6 +16,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
+    <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
+    
+    <xsl:import href="ext-CodeSpecification.xsl"/>
+    <xsl:import href="ext-Comment.xsl"/>
     
 </xsl:stylesheet>
