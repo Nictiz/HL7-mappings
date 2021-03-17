@@ -24,9 +24,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-<!--    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
-
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
@@ -113,13 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
                         </xsl:with-param>
                     </xsl:call-template>
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
-                    </extension>
+                    <xsl:call-template name="ext-CodeSpecification"/>
                 </gender>
             </xsl:for-each>
             
@@ -207,9 +198,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>
                     <xsl:for-each select="toelichting">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-                            <valueString value="{./@value}"/>
-                        </extension>
+                        <xsl:call-template name="ext-Comment"/>
                     </xsl:for-each>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="communicatie_taal"/>
