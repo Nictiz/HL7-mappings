@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
+   <!-- <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
