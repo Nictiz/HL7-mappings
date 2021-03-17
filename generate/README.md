@@ -155,7 +155,7 @@ nts:scenario="server|client"
 
 ### Building different variants
 
-It is possible to build different variants or _targets_ from the same source files that include different elements (these have to be defined using the `extra-targets` parameter during building, see the section on build script parameters further down this document on guidance). The `nts:in-targets` attribute can be used on elements to specify the targets where the element should end up in. If this attribute is absent, the element will be included in all targets. Mulitple targets may be separated by a space. The special target '#default' can be used for the default build.
+It is possible to build different variants or _targets_ from the same source files that include different elements (these have to be defined using the `targets.additional` parameter during building, see the section on build script parameters further down this document on guidance). The `nts:in-targets` attribute can be used on elements to specify the targets where the element should end up in. If this attribute is absent, the element will be included in all targets. Mulitple targets may be separated by a space. The special target '#default' can be used for the default build.
 
 For example, take the following snippet:
 
@@ -232,9 +232,9 @@ The following optional parameters may be used:
   ```
   loadresources.exclude = _reference/resources/resources-specific
   ```
-- `extra-targets`: additional variations of input folders (_targets_) that should be generated. An extra target is specified as the name of the folder that should be generated, which should be an existing folder with the target name appended using a dash. For example, if the project folder contains the folder `Cert`, an extra target named "with-setup" is defined using:
+- `targets.additional`: additional variations of input folders (_targets_) that should be generated. An extra target is specified as the name of the folder that should be generated, which should be an existing folder with the target name appended using a dash. For example, if the project folder contains the folder `Cert`, an extra target named "with-setup" is defined using:
   ```
-  extra-targets=Cert-with-setup
+  targets.additional=Cert-with-setup
   ```
   The TestScript resources can use the `nts:in-targets` to define which element should be included in a target (see above). Multiple extra targets may be separated using comma's.
 
