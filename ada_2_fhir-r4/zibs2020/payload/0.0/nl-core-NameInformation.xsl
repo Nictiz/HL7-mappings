@@ -21,8 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada naamgegevens to FHIR resource conforming to profile
-            zib-NameInformation</xd:desc>
+        <xd:desc>Converts ada naamgegevens to FHIR resource conforming to profile nl-core-NameInformation</xd:desc>
     </xd:doc>
 
     <xd:doc>
