@@ -120,9 +120,9 @@
     <xsl:function name="nf:calculate-t-date" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
         <xsl:param name="inputDateT" as="xs:date?"/>
-        
+
         <xsl:choose>
-            <xsl:when test="starts-with($in, 'T') or starts-with($in, 'DOB') and $inputDateT castable as xs:date">
+            <xsl:when test="(starts-with($in, 'T') or starts-with($in, 'DOB')) and $inputDateT castable as xs:date">
                 <xsl:variable name="sign" select="replace($in, '^(T|DOB)([+-])?.*', '$2')"/>
                 <xsl:variable name="amountYearMonth" as="xs:string?">
                     <xsl:if test="matches($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}')">
@@ -134,8 +134,12 @@
                         <xsl:value-of select="replace($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D)?.*', '$4')"/>
                     </xsl:if>
                 </xsl:variable>
-                
-                <xsl:variable name="timePart" select="if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2') else ()"/>
+
+                <xsl:variable name="timePart" select="
+                        if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then
+                            replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2')
+                        else
+                            ()"/>
                 <xsl:variable name="time" as="xs:string?">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 2">

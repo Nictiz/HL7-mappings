@@ -412,7 +412,10 @@
     </xd:doc>
     <xsl:template name="zib-InstructionsForUse-3.0-di" match="doseerinstructie" mode="doDosageContents-3.0">
         <xsl:param name="outputText" as="xs:boolean?" select="true()"/>
-
+        <xsl:for-each select="volgnummer[@value]">
+            <sequence value="{@value}"/>
+        </xsl:for-each>
+        
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:if test="$outputText">
             <!-- gebruiksinstructie/omschrijving  -->
