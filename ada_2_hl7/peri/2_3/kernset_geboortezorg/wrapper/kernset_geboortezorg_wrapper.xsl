@@ -189,6 +189,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="./@value"/>
                 </name>
             </xsl:for-each>
+            <xsl:for-each select="./softwareName">
+                <softwareName>
+                    <xsl:value-of select="./@value"/>
+                </softwareName>
+            </xsl:for-each>
         </device>
     </xsl:template>
     <xsl:template name="makeId">
