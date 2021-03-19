@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+    <!-- <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -37,34 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="adresgegevens" mode="nl-core-AddressInformation" name="nl-core-AddressInformation" as="element(f:address)*">
         <xsl:param name="in" select="." as="element()*"/>
-        <xsl:for-each select="$in[.//@value]">
-            <xsl:variable name="lineItems" as="element()*">
-                <xsl:for-each select="straat/@value">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                        <valueString value="{normalize-space(.)}"/>
-                    </extension>
-                </xsl:for-each>
-                <xsl:for-each select="huisnummer/@value">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                        <valueString value="{normalize-space(.)}"/>
-                    </extension>
-                </xsl:for-each>
-                <xsl:if test="huisnummerletter/@value | huisnummertoevoeging/@value">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
-                        <valueString value="{concat(huisnummerletter/@value, huisnummertoevoeging/@value)}"/>
-                    </extension>
-                </xsl:if>
-                <xsl:for-each select="additionele_informatie/@value">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
-                        <valueString value="{normalize-space(.)}"/>
-                    </extension>
-                </xsl:for-each>
-                <xsl:for-each select="aanduiding_bij_nummer/@value">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
-                        <valueString value="{normalize-space(.)}"/>
-                    </extension>
-                </xsl:for-each>
-            </xsl:variable>
+        <xsl:for-each select="$in[.//@value]">          
             <address>
                 <!--adres_soort-->
                 <xsl:for-each select="adres_soort[@codeSystem = '2.16.840.1.113883.5.1119'][@code]">
@@ -124,6 +97,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                     </xsl:choose>
                 </xsl:for-each>
+                <xsl:variable name="lineItems" as="element()*">
+                    <xsl:for-each select="straat/@value">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                            <valueString value="{normalize-space(.)}"/>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:for-each select="huisnummer/@value">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                            <valueString value="{normalize-space(.)}"/>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:if test="huisnummerletter/@value | huisnummertoevoeging/@value">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                            <valueString value="{concat(huisnummerletter/@value, huisnummertoevoeging/@value)}"/>
+                        </extension>
+                    </xsl:if>
+                    <xsl:for-each select="additionele_informatie/@value">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+                            <valueString value="{normalize-space(.)}"/>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:for-each select="aanduiding_bij_nummer/@value">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+                            <valueString value="{normalize-space(.)}"/>
+                        </extension>
+                    </xsl:for-each>
+                </xsl:variable>
                 <xsl:if test="$lineItems">
                     <line>
                         <xsl:copy-of select="$lineItems"/>
