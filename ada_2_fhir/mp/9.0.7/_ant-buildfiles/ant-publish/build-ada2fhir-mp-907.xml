@@ -19,7 +19,7 @@
         <antcall target="setup"/>
 
         <!-- the MP specific stuff for version 9.0.7 -->
-          
+
         <!-- preprocess for Touchstone (update use period to use end date for querying purposes -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
         <delete>
@@ -27,7 +27,7 @@
         </delete>
         <sequential>
             <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance_MA" includes="mg-mgr-mg-MA-Scenarioset0*.xml"/>
-            
+
             <echo/>
             <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl</echo>
             <xslt force="true" style="${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl" destdir="${build.dir}/${usecase.mg}/ada_instance_4_TS" extension=".xml" useImplicitFileset="false">
@@ -42,11 +42,7 @@
         </sequential>
         <!-- let's cleanup our temp stuff -->
         <delete dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
-        
-        <!-- let's convert too, now that we are here -->
-        <antcall target="convert_ada_2_fhir_907"/>
-        
-        <!-- the MP specific stuff for version 9.0.7 -->
+
         <!-- beschikbaarstellen_medicatiegegevens medmij stuff -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance"/>
         <delete>
@@ -60,18 +56,18 @@
                 <exclude name="XXX_Jangi*.xml"/>
             </fileset>
         </copy>
-        
+
         <!-- TestSet data -->
         <antcall target="setup_TestSet"/>
-   
+
         <!-- let's convert too, now that we are here -->
         <antcall target="convert_ada_2_fhir_907"/>
 
     </target>
 
- 
+
     <target name="setup_TestSet">
-        
+
         <!-- beschikbaarstellen_medicatiegegevens -->
         <!-- beschikbaarstellen_medicatiegegevens MA -->
         <antcall target="setup_sub_instances">
@@ -82,7 +78,7 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
             <param name="ada.refs.dir" value="ada_instance_TestSet"/>
         </antcall>
-        
+
         <!-- beschikbaarstellen_medicatiegegevens VV -->
         <antcall target="setup_sub_instances">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
@@ -91,14 +87,14 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
             <param name="ada.refs.dir" value="ada_instance_TestSet"/>
         </antcall>
-        
+
         <!-- preprocess for Touchstone (update use period to use end date for querying purposes -->
         <antcall target="preprocess4Touchstone">
             <param name="base.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="ada.dir" value="ada_instance_TestSet_MA"/>
             <param name="fileset.include" value="mg-mgr-ma-TestSet-scen0*.xml"/>
         </antcall>
-        
+
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub_instances">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
@@ -107,7 +103,7 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
             <param name="ada.refs.dir" value="ada_instance_TestSet"/>
         </antcall>
-        
+
         <!-- copy output ada instances to ada_instance_mp_TestSet -->
         <mkdir dir="${build.dir}/${usecase.mo}/ada_instance_mp_TestSet"/>
         <!-- delete previous results, if any -->
@@ -134,8 +130,6 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-        
-        <!-- beschikbaarstellen_verstrekkingenvertaling examples -->
 
         <!-- MP 907 specific stuff for test purposes -->
         <antcall target="convert_ada_2_fhir_907_TestSet"/>
@@ -166,32 +160,31 @@
             <fileset dir="${xsl.output.bws}" includes="*.xml"/>
         </delete>
 
-        <sequential>
-            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vv*.xml"/>
-            
+          <sequential>
+            <fileset id="inputFiles" dir="${xsl.input.bws}" includes="*.xml"/>
+
             <echo/>
-            <echo>${echo.label} ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
-            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false" >
-                <fileset refid="inputfilesMP"/>
-                <param name="generateInstructionText" expression="true"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
-                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+            <echo>${echo.label} with input files: ${xsl.input.bws}, converted with: ${xsl.ada2fhir.bws}</echo>
+            <xslt force="true" style="${xsl.ada2fhir.bws}" destdir="${xsl.output.bws}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputFiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
-            </xslt>
-            
-            <echo/>
-            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl</echo>
-            <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesMP"/>
-                <param name="generateInstructionText" expression="true"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
-                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>   
-        
+            </xslt> </sequential>-->
+
+
+        <!-- the MP specific stuff for version 9.0.7 -->
+
+<!--        <echo/>
+        <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl</echo>
+        <xslt force="true" style="${build.dir}/${usecase.vv}/payload/${usecase.vv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfilesMP"/>
+            <param name="generateInstructionText" expression="true"/>
+            <param name="dateT" expression="${date.T}" if="date.T"/>
+            <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>-->
+
         <!-- the MP specific stuff for version 9.0.7 -->
         <echo>the MP specific stuff for version 9.0.7</echo>
         <echo/>
@@ -201,10 +194,8 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-       
-        </sequential>-->
 
- 
+
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder</echo>
         <mkdir dir="${build.dir}/4TouchstoneMPServe"/>
@@ -217,7 +208,6 @@
             <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="*XXX-*.xml"/>
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_VV" excludes="mg-mgr-*.xml"/>
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_MA" excludes="mg-mgr-*.xml"/>
-         </copy>
             <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp">
                 <include name="mo-mor*.xml"/>
                 <include name="mp9-nl-core-patient-*.xml"/>
