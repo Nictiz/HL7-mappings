@@ -60,29 +60,9 @@
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="schema.string" value="*${usecase.mo}*"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
+            <param name="fileset.dir" value="ada_instance_mp"/>
+            <param name="fileset.include" value="*output.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
-        </antcall>
-        <!-- copy output ada instances to ada_instance_mp -->
-        <mkdir dir="${build.dir}/${usecase.mo}/ada_instance_mp"/>
-        <!-- delete previous results, if any -->
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mo}/ada_instance_mp" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mo}/ada_instance_mp">
-            <fileset dir="${build.dir}/${usecase.mo}/ada_instance">
-                <include name="*output.xml"/>
-            </fileset>            
-        </copy>
-
-        <!-- beschikbaarstellen_verstrekkingenvertaling -->
-        <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.vv}"/>
-            <param name="schema.string" value="*${usecase.vv}*"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.vv}"/>
         </antcall>
         
         <!-- xml voorbeelden -->
