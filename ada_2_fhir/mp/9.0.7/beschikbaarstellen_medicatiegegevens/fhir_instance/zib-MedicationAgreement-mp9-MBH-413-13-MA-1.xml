@@ -21,13 +21,13 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>09:12:00, 6 augustus 2018</td>
+                  <td>${DATE, T, D, -28}T09:12:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
                   <td>
                      <ul>
-                        <li>Vanaf 00:00:00, 6 augustus 2018</li>
+                        <li>Vanaf ${DATE, T, D, -28}T00:00:00+02:00</li>
                         <li>8 dag</li>
                      </ul>
                   </td>
@@ -36,7 +36,7 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 6 aug 2018, gedurende 8 dagen, 0.5 ml per uur parenteraal</div>
+                     <div>Tekst: Vanaf &lt;T-28D&gt;, gedurende 8 dagen, 0.5 ml per uur parenteraal</div>
                      <div>Toedieningsweg: <span title="parenteraal (10 - G-Standaard thesaurus subtabel 0007)">parenteraal</span>
                      </div>
                      <div>Doseerverhouding: 0.5 milliliter / 1 uur</div>
@@ -48,7 +48,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-08-06T00:00:00+02:00"/>
+         <start value="${DATE, T, D, -28}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -86,7 +86,7 @@
       <reference value="Patient/XXX-STRENGERSZ"/>
       <display value="R. XXX_Strengersz"/>
    </subject>
-   <authoredOn value="2018-08-06T09:12:00+02:00"/>
+   <authoredOn value="${DATE, T, D, -28}T09:12:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -101,7 +101,7 @@
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 6 aug 2018, gedurende 8 dagen, 0.5 ml per uur parenteraal"/>
+      <text value="Vanaf &lt;T-28D&gt;, gedurende 8 dagen, 0.5 ml per uur parenteraal"/>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>

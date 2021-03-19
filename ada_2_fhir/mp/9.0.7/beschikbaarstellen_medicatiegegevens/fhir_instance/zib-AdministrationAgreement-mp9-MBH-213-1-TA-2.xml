@@ -21,7 +21,7 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>09:13:00, 25 juli 2018</td>
+                  <td>${DATE, T, D, -40}T09:13:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebaseerd op</th>
@@ -33,13 +33,13 @@
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>15 juli 2018 00:00:00 - 24 juli 2018 23:59:00</td>
+                  <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -41}T23:59:59+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 15 jul 2018 tot en met 24 jul 2018, 1 à 2 maal per dag 1 tablet, oraal</div>
+                     <div>Tekst: Vanaf T- 50 dagen, tot en met T- 41 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal</div>
                      <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
                      </div>
                      <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
@@ -54,12 +54,12 @@
       </div>
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-      <valueDateTime value="2018-07-25T09:13:00+02:00"/>
+      <valueDateTime value="${DATE, T, D, -40}T09:13:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-07-15T00:00:00+02:00"/>
-         <end value="2018-07-24T23:59:00+02:00"/>
+         <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -41}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -112,7 +112,7 @@
    </authorizingPrescription>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 15 jul 2018 tot en met 24 jul 2018, 1 à 2 maal per dag 1 tablet, oraal"/>
+      <text value="Vanaf T- 50 dagen, tot en met T- 41 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

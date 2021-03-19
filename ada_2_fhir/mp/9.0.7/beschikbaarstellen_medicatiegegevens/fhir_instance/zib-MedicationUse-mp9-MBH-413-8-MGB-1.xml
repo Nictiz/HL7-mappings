@@ -25,11 +25,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 3 september 2018, 10 week</td>
+                  <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 10 week</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>23:59:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T23:59:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen</div>
                      <div>Instructie: <ul>
                            <li>
                               <span title="voor de nacht (1128 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">voor de nacht</span>
@@ -68,7 +68,7 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3b0659a6-87da-11eb-1418-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-ce0ea826-88ab-11eb-8165-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -114,9 +114,9 @@
             <code value="wk"/>
          </valueDuration>
       </extension>
-      <start value="2018-09-03T00:00:00+02:00"/>
+      <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-09-03T23:59:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, +0}T23:59:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-STRENGERSZ"/>
       <display value="R. XXX_Strengersz"/>
@@ -131,7 +131,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen"/>
+      <text value="Vanaf &lt;T&gt;, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen"/>
       <additionalInstruction>
          <coding>
             <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>

@@ -17,17 +17,17 @@
                </tr>
                <tr>
                   <th>Medicatie</th>
-                  <td>INSULINE ISOFAAN INJSUSP 100IE/ML</td>
+                  <td>METFORMINE 500MG TABLET</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>09:35:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
                   <td>
                      <ul>
-                        <li>Vanaf 00:00:00, 3 september 2018</li>
+                        <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                         <li>14 dag</li>
                      </ul>
                   </td>
@@ -36,12 +36,12 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 3 sep 2018, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 uur 16IE</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, gedurende 14 dagen, 3 maal daags 1 tablet om 08:00, 14:00 en 20:00 uur, oraal</div>
                      <div>Timing: <div>08:00:00, 14:00:00, 20:00:00</div>
                      </div>
-                     <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
                      </div>
-                     <div>Dosering: 16 internationale eenheid</div>
+                     <div>Dosering: 1 stuk</div>
                   </td>
                </tr>
             </tbody>
@@ -50,7 +50,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-09-03T00:00:00+02:00"/>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -81,14 +81,14 @@
       <text value="Medicatieafspraak"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-34851"/>
-      <display value="INSULINE ISOFAAN INJSUSP 100IE/ML"/>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-1090"/>
+      <display value="METFORMINE 500MG TABLET"/>
    </medicationReference>
    <subject>
       <reference value="Patient/XXX-STRENGERSZ"/>
       <display value="R. XXX_Strengersz"/>
    </subject>
-   <authoredOn value="2018-09-03T09:35:00+02:00"/>
+   <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -103,7 +103,7 @@
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 3 sep 2018, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 uur 16IE"/>
+      <text value="Vanaf &lt;T&gt;, gedurende 14 dagen, 3 maal daags 1 tablet om 08:00, 14:00 en 20:00 uur, oraal"/>
       <timing>
          <repeat>
             <timeOfDay value="08:00:00"/>
@@ -114,15 +114,15 @@
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="21"/>
-            <display value="subcutaan"/>
+            <code value="9"/>
+            <display value="oraal"/>
          </coding>
       </route>
       <doseQuantity>
-         <value value="16"/>
-         <unit value="internationale eenheid"/>
+         <value value="1"/>
+         <unit value="stuk"/>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-         <code value="217"/>
+         <code value="245"/>
       </doseQuantity>
    </dosageInstruction>
 </MedicationRequest>

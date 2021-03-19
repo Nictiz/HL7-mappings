@@ -21,13 +21,13 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>11:25:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
                   <td>
                      <ul>
-                        <li>Vanaf 00:00:00, 3 september 2018</li>
+                        <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                         <li>60 dag</li>
                      </ul>
                   </td>
@@ -36,7 +36,7 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 3 sep 2018, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal</div>
                      <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -50,7 +50,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-09-03T00:00:00+02:00"/>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -88,7 +88,7 @@
       <reference value="Patient/XXX-STRENGERSZ"/>
       <display value="R. XXX_Strengersz"/>
    </subject>
-   <authoredOn value="2018-09-03T11:25:00+02:00"/>
+   <authoredOn value="${DATE, T, D, +0}T11:25:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -103,7 +103,7 @@
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 3 sep 2018, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal"/>
+      <text value="Vanaf &lt;T&gt;, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

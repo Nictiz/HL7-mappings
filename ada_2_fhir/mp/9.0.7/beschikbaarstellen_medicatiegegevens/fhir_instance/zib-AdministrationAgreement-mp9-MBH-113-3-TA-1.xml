@@ -17,7 +17,7 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>14:57:00, 4 augustus 2018</td>
+                  <td>${DATE, T, D, -30}T14:57:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebaseerd op</th>
@@ -29,13 +29,13 @@
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>Vanaf 00:00:00, 4 augustus 2018</td>
+                  <td>Vanaf ${DATE, T, D, -30}T00:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 4 aug 2018, tot nader order, 1 maal per dag 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf T- 30 dagen, 1 maal per dag 1 stuk, oraal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -48,11 +48,11 @@
       </div>
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-      <valueDateTime value="2018-08-04T14:57:00+02:00"/>
+      <valueDateTime value="${DATE, T, D, -30}T14:57:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-08-04T00:00:00+02:00"/>
+         <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -96,7 +96,7 @@
    </authorizingPrescription>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 4 aug 2018, tot nader order, 1 maal per dag 1 stuk, oraal"/>
+      <text value="Vanaf T- 30 dagen, 1 maal per dag 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

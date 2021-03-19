@@ -25,7 +25,7 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 3 september 2018, 4 dag</td>
+                  <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 9 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
@@ -38,7 +38,7 @@
                <tr>
                   <th>Dosering</th>
                   <td>
-                     <div>Tekst: Vanaf 3 sep 2018, gedurende 4 dagen, cutaan</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, gedurende 9 dagen, cutaan</div>
                      <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                      </div>
                      <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
@@ -54,11 +54,11 @@
       </div>
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
-      <valueBoolean value="false"/>
+      <valueBoolean value="true"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3b0659a6-87da-11eb-1418-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-ce0ea826-88ab-11eb-8165-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -98,13 +98,13 @@
    <effectivePeriod>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
          <valueDuration>
-            <value value="4"/>
+            <value value="9"/>
             <unit value="dag"/>
             <system value="http://unitsofmeasure.org"/>
             <code value="d"/>
          </valueDuration>
       </extension>
-      <start value="2018-09-03T00:00:00+02:00"/>
+      <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
    </effectivePeriod>
    <dateAsserted value="2018-09-03T10:35:00+02:00"/>
    <subject>
@@ -120,7 +120,7 @@
    </derivedFrom>
    <taken value="y"/>
    <dosage>
-      <text value="Vanaf 3 sep 2018, gedurende 4 dagen, cutaan"/>
+      <text value="Vanaf &lt;T&gt;, gedurende 9 dagen, cutaan"/>
       <additionalInstruction>
          <coding>
             <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>

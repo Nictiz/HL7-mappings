@@ -25,11 +25,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 11 augustus 2018, 2 dag</td>
+                  <td>Vanaf ${DATE, T, D, -5}T00:00:00+02:00, 2 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>20:58:00, 12 augustus 2018</td>
+                  <td>${DATE, T, D, -4}T20:58:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -56,7 +56,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3aaeef24-87da-11eb-2364-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-cdbaa0d4-88ab-11eb-4365-020000000000"/>
          <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
       </valueReference>
    </extension>
@@ -102,9 +102,9 @@
             <code value="d"/>
          </valueDuration>
       </extension>
-      <start value="2018-08-11T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-08-12T20:58:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, -4}T20:58:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-BOURGONJE"/>
       <display value="Pauline P. XXX_Bourgonje"/>

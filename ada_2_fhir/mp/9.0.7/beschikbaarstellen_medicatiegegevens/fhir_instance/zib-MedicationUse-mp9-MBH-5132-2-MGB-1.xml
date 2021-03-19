@@ -21,11 +21,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 16 augustus 2018, 1 dag</td>
+                  <td>Vanaf ${DATE, T, D, -1}T00:00:00+02:00, 8 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>20:59:00, 16 augustus 2018</td>
+                  <td>${DATE, T, D, +0}T20:59:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -35,7 +35,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf T, gedurende 1 dag, 1 maal daags 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf T-1 dag, gedurende 8 dagen, 1 maal daags 1 stuk, oraal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -87,15 +87,15 @@
    <effectivePeriod>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
          <valueDuration>
-            <value value="1"/>
+            <value value="8"/>
             <unit value="dag"/>
             <system value="http://unitsofmeasure.org"/>
             <code value="d"/>
          </valueDuration>
       </extension>
-      <start value="2018-08-16T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -1}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-08-16T20:59:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, +0}T20:59:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-AMAYA"/>
       <display value="J. XXX_Amaya"/>
@@ -110,7 +110,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf T, gedurende 1 dag, 1 maal daags 1 stuk, oraal"/>
+      <text value="Vanaf T-1 dag, gedurende 8 dagen, 1 maal daags 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

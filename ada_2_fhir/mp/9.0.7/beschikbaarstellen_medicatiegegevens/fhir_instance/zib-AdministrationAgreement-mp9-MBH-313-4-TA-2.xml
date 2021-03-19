@@ -21,7 +21,7 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>09:54:00, 24 januari 2018</td>
+                  <td>${DATE, T, D, -222}T09:54:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebaseerd op</th>
@@ -33,13 +33,13 @@
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>7 november 2017 00:00:00 - 23 januari 2018 23:59:00</td>
+                  <td>${DATE, T, D, -300}T00:00:00+02:00 - ${DATE, T, D, -223}T23:59:59+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 7 nov 2017 tot en met 23 jan 2018, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken</div>
+                     <div>Tekst: Vanaf T- 300 dagen, tot en met T- 223 dagen, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -52,12 +52,12 @@
       </div>
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-      <valueDateTime value="2018-01-24T09:54:00+01:00"/>
+      <valueDateTime value="${DATE, T, D, -222}T09:54:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2017-11-07T00:00:00+01:00"/>
-         <end value="2018-01-23T23:59:00+01:00"/>
+         <start value="${DATE, T, D, -300}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -223}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -110,7 +110,7 @@
    </authorizingPrescription>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 7 nov 2017 tot en met 23 jan 2018, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken"/>
+      <text value="Vanaf T- 300 dagen, tot en met T- 223 dagen, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken"/>
       <timing>
          <repeat>
             <frequency value="1"/>

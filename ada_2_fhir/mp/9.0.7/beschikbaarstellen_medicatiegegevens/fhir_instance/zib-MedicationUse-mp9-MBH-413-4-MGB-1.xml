@@ -25,7 +25,7 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>14 augustus 2018 00:00:00 - 19 augustus 2018 23:59:00</td>
+                  <td>${DATE, T, D, -20}T00:00:00+02:00 - ${DATE, T, D, -15}T23:59:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 14 aug 2018 tot en met 19 aug 2018, 3 maal per dag aanbrengen, cutaan</div>
+                     <div>Tekst: Vanaf &lt;T-20D&gt; tot en met &lt;T-15D&gt;, 3 maal per dag aanbrengen, cutaan</div>
                      <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                      </div>
                      <div>Timing: <div>3 maal per dag</div>
@@ -58,7 +58,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3b0659a6-87da-11eb-1418-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-ce0ea826-88ab-11eb-8165-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -96,8 +96,8 @@
       <display value="Cetomacrogolcreme met vaseline"/>
    </medicationReference>
    <effectivePeriod>
-      <start value="2018-08-14T00:00:00+02:00"/>
-      <end value="2018-08-19T23:59:00+02:00"/>
+      <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -15}T23:59:00+02:00"/>
    </effectivePeriod>
    <dateAsserted value="2018-08-19T13:44:00+02:00"/>
    <subject>
@@ -114,7 +114,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf 14 aug 2018 tot en met 19 aug 2018, 3 maal per dag aanbrengen, cutaan"/>
+      <text value="Vanaf &lt;T-20D&gt; tot en met &lt;T-15D&gt;, 3 maal per dag aanbrengen, cutaan"/>
       <additionalInstruction>
          <coding>
             <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>

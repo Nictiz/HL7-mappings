@@ -25,7 +25,7 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>14:32:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T14:32:00+02:00</td>
                </tr>
                <tr>
                   <th>Reden</th>
@@ -35,7 +35,7 @@
                   <th>Gebruiksduur</th>
                   <td>
                      <ul>
-                        <li>Vanaf 00:00:00, 3 september 2018</li>
+                        <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                         <li>28 dag</li>
                      </ul>
                   </td>
@@ -44,7 +44,7 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 3 sep 2018, gedurende 28 dagen, 1 maal per week 5 stuks, oraal</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, gedurende 28 dagen, 1 maal per week 5 stuks, oraal</div>
                      <div>Timing: <div>eenmalig per week</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -58,7 +58,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-09-03T00:00:00+02:00"/>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -98,14 +98,14 @@
       <text value="Medicatieafspraak"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-6009"/>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-141631"/>
       <display value="METHOTREXAAT TABLET 2,5MG"/>
    </medicationReference>
    <subject>
       <reference value="Patient/XXX-AMAYA"/>
       <display value="J. XXX_Amaya"/>
    </subject>
-   <authoredOn value="2018-09-03T14:32:00+02:00"/>
+   <authoredOn value="${DATE, T, D, +0}T14:32:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -124,7 +124,7 @@
    </reasonReference>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 3 sep 2018, gedurende 28 dagen, 1 maal per week 5 stuks, oraal"/>
+      <text value="Vanaf &lt;T&gt;, gedurende 28 dagen, 1 maal per week 5 stuks, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

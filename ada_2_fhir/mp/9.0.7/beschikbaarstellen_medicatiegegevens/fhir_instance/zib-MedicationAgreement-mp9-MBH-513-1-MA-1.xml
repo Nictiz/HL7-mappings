@@ -21,13 +21,13 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>11:25:00, 2 september 2018</td>
+                  <td>${DATE, T, D, -1}T11:25:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
                   <td>
                      <ul>
-                        <li>Vanaf 00:00:00, 2 september 2018</li>
+                        <li>Vanaf ${DATE, T, D, -1}T00:00:00+02:00</li>
                         <li>1 jaar</li>
                      </ul>
                   </td>
@@ -36,7 +36,7 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 2 sep 2018, gedurende 1 jaar, 10 maal per dag 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf &lt;T-1D&gt;, gedurende 1 jaar, 10 maal per dag 1 stuk, oraal</div>
                      <div>Timing: <div>10 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -50,7 +50,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-09-02T00:00:00+02:00"/>
+         <start value="${DATE, T, D, -1}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -89,7 +89,7 @@
       <reference value="Patient/XXX-AMAYA"/>
       <display value="J. XXX_Amaya"/>
    </subject>
-   <authoredOn value="2018-09-02T11:25:00+02:00"/>
+   <authoredOn value="${DATE, T, D, -1}T11:25:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -104,7 +104,7 @@
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 2 sep 2018, gedurende 1 jaar, 10 maal per dag 1 stuk, oraal"/>
+      <text value="Vanaf &lt;T-1D&gt;, gedurende 1 jaar, 10 maal per dag 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="10"/>

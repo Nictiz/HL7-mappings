@@ -25,11 +25,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 3 september 2018, 3 week</td>
+                  <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 3 week</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>22:35:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T22:35:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 3 sep 2018, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal</div>
                      <div>Timing: <div>eenmalig per 3 uren</div>
                      </div>
                      <div>Zo nodig: <span title="bij hoest (1387 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">bij hoest</span>
@@ -63,7 +63,7 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3b0659a6-87da-11eb-1418-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-ce0ea826-88ab-11eb-8165-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -109,9 +109,9 @@
             <code value="wk"/>
          </valueDuration>
       </extension>
-      <start value="2018-09-03T00:00:00+02:00"/>
+      <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-09-03T22:35:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, +0}T22:35:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-STRENGERSZ"/>
       <display value="R. XXX_Strengersz"/>
@@ -126,7 +126,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf 3 sep 2018, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal"/>
+      <text value="Vanaf &lt;T&gt;, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

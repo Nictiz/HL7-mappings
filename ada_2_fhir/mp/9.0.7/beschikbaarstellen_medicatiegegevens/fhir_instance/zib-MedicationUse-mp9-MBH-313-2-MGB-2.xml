@@ -24,11 +24,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 2 september 2017</td>
+                  <td>Vanaf ${DATE, T, D, -366}T00:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>17:54:00, 3 september 2017</td>
+                  <td>${DATE, T, D, -365}T17:54:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -37,7 +37,7 @@
                <tr>
                   <th>Dosering</th>
                   <td>
-                     <div>Tekst: Vanaf T-366 , geen gebruik</div>
+                     <div>Tekst: Vanaf T-366 dagen , gebruik gestopt</div>
                   </td>
                </tr>
                <tr>
@@ -53,7 +53,7 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3ab832cc-87da-11eb-1912-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-cdc4de7c-88ab-11eb-1847-020000000000"/>
          <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -87,9 +87,9 @@
       <display value="Timolol/Latanoprost oogdr 5mg/50ug/ml fl 2,5ml"/>
    </medicationReference>
    <effectivePeriod>
-      <start value="2017-09-02T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -366}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2017-09-03T17:54:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, -365}T17:54:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-CNOSSEN"/>
       <display value="J. XXX_Cnossen"/>
@@ -103,6 +103,6 @@
    </derivedFrom>
    <taken value="n"/>
    <dosage>
-      <text value="Vanaf T-366 , geen gebruik"/>
+      <text value="Vanaf T-366 dagen , gebruik gestopt"/>
    </dosage>
 </MedicationStatement>

@@ -25,11 +25,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 15 juli 2018, 3 dag</td>
+                  <td>Vanaf ${DATE, T, D, -50}T00:00:00+02:00, 3 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>11:25:00, 18 juli 2018</td>
+                  <td>${DATE, T, D, -47}T11:25:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 15 jul 2018, gedurende 3 dagen, 1 maal per dag 1 tablet, oraal</div>
+                     <div>Tekst: Vanaf T- 50 dagen, gedurende 3 dagen, 1 maal per dag 1 tablet, oraal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -49,7 +49,7 @@
                </tr>
                <tr>
                   <th>Medicatie gebruikt</th>
-                  <td>ja</td>
+                  <td>nee</td>
                </tr>
             </tbody>
          </table>
@@ -57,7 +57,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3aea8941-87da-11eb-9491-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-cdf48571-88ab-11eb-1110-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -103,9 +103,9 @@
             <code value="d"/>
          </valueDuration>
       </extension>
-      <start value="2018-07-15T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-07-18T11:25:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, -47}T11:25:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-GOBEE"/>
       <display value="R. XXX_Gobee"/>
@@ -117,10 +117,10 @@
       </identifier>
       <display value="relatie naar medicatieafspraak"/>
    </derivedFrom>
-   <taken value="y"/>
+   <taken value="n"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf 15 jul 2018, gedurende 3 dagen, 1 maal per dag 1 tablet, oraal"/>
+      <text value="Vanaf T- 50 dagen, gedurende 3 dagen, 1 maal per dag 1 tablet, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

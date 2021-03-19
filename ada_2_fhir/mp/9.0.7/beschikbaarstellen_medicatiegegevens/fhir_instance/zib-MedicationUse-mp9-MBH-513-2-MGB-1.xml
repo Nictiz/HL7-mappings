@@ -25,11 +25,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 1 september 2018</td>
+                  <td>Vanaf ${DATE, T, D, -2}T00:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>15:39:00, 1 september 2018 - J. XXX_Amaya</td>
+                  <td>${DATE, T, D, -2}T15:39:00+02:00 - J. XXX_Amaya</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 1 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf &lt;T-2D&gt;, 1 maal daags 1 stuk, oraal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -57,13 +57,13 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3a8aeda5-87da-11eb-7483-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-cd9d2735-88ab-11eb-8740-020000000000"/>
          <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
       </valueReference>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3a8aeda5-87da-11eb-7483-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-cd9d2735-88ab-11eb-8740-020000000000"/>
          <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
       </valueReference>
    </extension>
@@ -95,9 +95,9 @@
       <display value="FUROSEMIDE TABLET 40MG"/>
    </medicationReference>
    <effectivePeriod>
-      <start value="2018-09-01T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -2}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-09-01T15:39:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, -2}T15:39:00+02:00"/>
    <informationSource>
       <reference value="Patient/XXX-AMAYA"/>
       <display value="J. XXX_Amaya"/>
@@ -116,7 +116,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf 1 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+      <text value="Vanaf &lt;T-2D&gt;, 1 maal daags 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

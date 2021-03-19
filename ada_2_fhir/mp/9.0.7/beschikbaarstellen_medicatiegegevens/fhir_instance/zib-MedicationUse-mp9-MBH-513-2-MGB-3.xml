@@ -21,11 +21,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 3 september 2018</td>
+                  <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>21:39:00, 3 september 2018 - Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</td>
+                  <td>${DATE, T, D, +0}T21:39:00+02:00 - Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -35,7 +35,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, 1 maal daags 1 stuk, oraal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -53,7 +53,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
       <valueReference>
-         <reference value="Organization/nl-core-organization-mp9-3a8aedba-87da-11eb-7483-020000000000"/>
+         <reference value="Organization/nl-core-organization-mp9-cd9d274a-88ab-11eb-8740-020000000000"/>
          <display value="Ziekenhuis Stitswerd"/>
       </valueReference>
    </extension>
@@ -85,13 +85,13 @@
       <display value="FUROSEMIDE TABLET 40MG"/>
    </medicationReference>
    <effectivePeriod>
-      <start value="2018-09-03T00:00:00+02:00"/>
+      <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-09-03T21:39:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, +0}T21:39:00+02:00"/>
    <informationSource>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/l-core-practitionerrole-mp9-3a8adb44-87da-11eb-7483-020000000000"/>
+            <reference value="PractitionerRole/l-core-practitionerrole-mp9-cd9d14d4-88ab-11eb-8740-020000000000"/>
             <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
          </valueReference>
       </extension>
@@ -112,7 +112,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+      <text value="Vanaf &lt;T&gt;, 1 maal daags 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

@@ -36,14 +36,14 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>09:35:00, 29 augustus 2018</td>
+                  <td>${DATE, T, D, -5}T09:35:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
                   <td>
                      <ul>
-                        <li>Vanaf 00:00:00, 29 augustus 2018</li>
-                        <li>10 dag</li>
+                        <li>Vanaf ${DATE, T, D, -5}T00:00:00+02:00</li>
+                        <li>14 dag</li>
                      </ul>
                   </td>
                </tr>
@@ -51,7 +51,7 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 29 aug 2018, gedurende 10 dagen, 3 maal per dag 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf &lt;T-5D&gt;, gedurende 14 dagen, 3 maal per dag 1 stuk, oraal</div>
                      <div>Timing: <div>3 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -65,12 +65,12 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-08-29T00:00:00+02:00"/>
+         <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
       <valueDuration>
-         <value value="10"/>
+         <value value="14"/>
          <unit value="dag"/>
          <system value="http://unitsofmeasure.org"/>
          <code value="d"/>
@@ -120,7 +120,7 @@
       <reference value="Observation/zib-BodyWeight-mp9-XXX-AMAYA54KG2018-08-29T093500"/>
       <display value="Gewicht: 54 kg. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
    </supportingInformation>
-   <authoredOn value="2018-08-29T09:35:00+02:00"/>
+   <authoredOn value="${DATE, T, D, -5}T09:35:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -138,7 +138,7 @@
    </note>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 29 aug 2018, gedurende 10 dagen, 3 maal per dag 1 stuk, oraal"/>
+      <text value="Vanaf &lt;T-5D&gt;, gedurende 14 dagen, 3 maal per dag 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="3"/>

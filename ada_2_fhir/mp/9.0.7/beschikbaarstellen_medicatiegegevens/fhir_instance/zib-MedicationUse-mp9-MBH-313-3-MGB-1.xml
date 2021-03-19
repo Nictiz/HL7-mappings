@@ -25,11 +25,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 26 mei 2018</td>
+                  <td>Vanaf ${DATE, T, D, -100}T00:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>14:11:00, 26 mei 2018</td>
+                  <td>${DATE, T, D, -100}T14:11:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf T-100, tot nader order, 1 maal per dag 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf T-100 dagen, 1 maal per dag 1 stuk, oraal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -60,7 +60,7 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3ab83283-87da-11eb-1912-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-cdc4de33-88ab-11eb-1847-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -98,9 +98,9 @@
       <display value="CARBASALAATCALCIUM 100MG PO"/>
    </medicationReference>
    <effectivePeriod>
-      <start value="2018-05-26T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -100}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-05-26T14:11:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, -100}T14:11:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-CNOSSEN"/>
       <display value="J. XXX_Cnossen"/>
@@ -115,7 +115,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf T-100, tot nader order, 1 maal per dag 1 stuk, oraal"/>
+      <text value="Vanaf T-100 dagen, 1 maal per dag 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

@@ -17,7 +17,7 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>11:25:00, 15 juli 2018</td>
+                  <td>${DATE, T, D, -50}T11:25:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebaseerd op</th>
@@ -29,13 +29,13 @@
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>15 juli 2018 00:00:00 - 13 augustus 2018 23:59:59</td>
+                  <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -20}T23:59:59+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 15 jul 2018, gedurende 30 dagen, zo nodig 1 maal per dag 1 stuk, rectaal</div>
+                     <div>Tekst: Vanaf T- 50 dagen, tot en met T- 20 dagen, zo nodig 1 maal per dag 1 stuk, rectaal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
@@ -50,12 +50,12 @@
       </div>
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-      <valueDateTime value="2018-07-15T11:25:00+02:00"/>
+      <valueDateTime value="${DATE, T, D, -50}T11:25:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-07-15T00:00:00+02:00"/>
-         <end value="2018-08-13T23:59:59+02:00"/>
+         <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -20}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -99,7 +99,7 @@
    </authorizingPrescription>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 15 jul 2018, gedurende 30 dagen, zo nodig 1 maal per dag 1 stuk, rectaal"/>
+      <text value="Vanaf T- 50 dagen, tot en met T- 20 dagen, zo nodig 1 maal per dag 1 stuk, rectaal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

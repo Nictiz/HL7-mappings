@@ -25,17 +25,17 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>13:54:00, 30 augustus 2018</td>
+                  <td>${DATE, T, D, -4}T13:54:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>26 mei 2018 00:00:00 - 29 augustus 2018 23:59:00</td>
+                  <td>${DATE, T, D, -100}T00:00:00+02:00 - ${DATE, T, D, -5}T23:59:59+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 26 mei 2018 tot en met 29 aug 2018, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken</div>
+                     <div>Tekst: Vanaf T- 100 dagen, tot en met T- 5 dagen, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -49,8 +49,8 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-05-26T00:00:00+02:00"/>
-         <end value="2018-08-29T23:59:00+02:00"/>
+         <start value="${DATE, T, D, -100}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -5}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -89,7 +89,7 @@
       <reference value="Patient/XXX-CNOSSEN"/>
       <display value="J. XXX_Cnossen"/>
    </subject>
-   <authoredOn value="2018-08-30T13:54:00+02:00"/>
+   <authoredOn value="${DATE, T, D, -4}T13:54:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -98,13 +98,13 @@
                <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
             </valueReference>
          </extension>
-         <reference value="Practitioner/nl-core-practitioner-mp9-3ab846fe-87da-11eb-1912-020000000000"/>
+         <reference value="Practitioner/nl-core-practitioner-mp9-cdc4d6ca-88ab-11eb-1847-020000000000"/>
          <display value="John de Vries"/>
       </agent>
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 26 mei 2018 tot en met 29 aug 2018, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken"/>
+      <text value="Vanaf T- 100 dagen, tot en met T- 5 dagen, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken"/>
       <timing>
          <repeat>
             <frequency value="1"/>

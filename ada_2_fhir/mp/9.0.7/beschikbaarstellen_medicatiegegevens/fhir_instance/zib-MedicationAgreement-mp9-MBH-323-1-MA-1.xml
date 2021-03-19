@@ -29,17 +29,17 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>15:34:00, 29 augustus 2018</td>
+                  <td>${DATE, T, D, -5}T15:34:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>14 augustus 2018 00:00:00 - 28 augustus 2018 23:59:00</td>
+                  <td>${DATE, T, D, -20}T00:00:00+02:00 - ${DATE, T, D, -6}T23:59:59+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 14 aug 2018 tot en met 28 aug 2018, 3x per dag 1 tablet</div>
+                     <div>Tekst: Vanaf T- 20 dagen, tot en met T- 6 dagen, 3x per dag 1 tablet</div>
                      <div>Timing: <div>3 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -53,8 +53,8 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-08-14T00:00:00+02:00"/>
-         <end value="2018-08-28T23:59:00+02:00"/>
+         <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -6}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -102,7 +102,7 @@
       <reference value="Patient/XXX-KILKENNY"/>
       <display value="J. XXX_Kilkenny"/>
    </subject>
-   <authoredOn value="2018-08-29T15:34:00+02:00"/>
+   <authoredOn value="${DATE, T, D, -5}T15:34:00+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -111,13 +111,13 @@
                <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
             </valueReference>
          </extension>
-         <reference value="Practitioner/nl-core-practitioner-mp9-3b00b5ec-87da-11eb-1900-020000000000"/>
+         <reference value="Practitioner/nl-core-practitioner-mp9-ce085774-88ab-11eb-7284-020000000000"/>
          <display value="John de Vries"/>
       </agent>
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 14 aug 2018 tot en met 28 aug 2018, 3x per dag 1 tablet"/>
+      <text value="Vanaf T- 20 dagen, tot en met T- 6 dagen, 3x per dag 1 tablet"/>
       <timing>
          <repeat>
             <frequency value="3"/>

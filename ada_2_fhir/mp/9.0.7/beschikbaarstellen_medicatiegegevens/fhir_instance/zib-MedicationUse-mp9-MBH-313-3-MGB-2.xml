@@ -24,11 +24,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 29 augustus 2018</td>
+                  <td>Vanaf ${DATE, T, D, -4}T00:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>13:54:00, 29 augustus 2018</td>
+                  <td>${DATE, T, D, -4}T13:54:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -37,7 +37,7 @@
                <tr>
                   <th>Dosering</th>
                   <td>
-                     <div>Tekst: Vanaf T-4, gebruik onderbroken</div>
+                     <div>Tekst: Vanaf T-4 dagen, gebruik onderbroken</div>
                   </td>
                </tr>
                <tr>
@@ -53,7 +53,7 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3ab832cc-87da-11eb-1912-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-cdc4de7c-88ab-11eb-1847-020000000000"/>
          <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -87,9 +87,9 @@
       <display value="CARBASALAATCALCIUM 100MG PO"/>
    </medicationReference>
    <effectivePeriod>
-      <start value="2018-08-29T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -4}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-08-29T13:54:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, -4}T13:54:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-CNOSSEN"/>
       <display value="J. XXX_Cnossen"/>
@@ -103,6 +103,6 @@
    </derivedFrom>
    <taken value="n"/>
    <dosage>
-      <text value="Vanaf T-4, gebruik onderbroken"/>
+      <text value="Vanaf T-4 dagen, gebruik onderbroken"/>
    </dosage>
 </MedicationStatement>

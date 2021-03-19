@@ -21,15 +21,15 @@
                </tr>
                <tr>
                   <th>Medicatie</th>
-                  <td>INSULINE ISOFAAN INJSUSP 100IE/ML</td>
+                  <td>METFORMINE 500MG TABLET</td>
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>07:00 - 23:59 op 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T07:00:00+02:00 - ${DATE, T, D, +14}T21:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>14:05:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T14:05:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -39,12 +39,12 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: vanaf 3 sep 2018, gedurende 1 dag, elke dag om 08:00, 14:00 en 20:00 uur 16IE</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, tot en met &lt;T+14D&gt;, 3 maal per dag om 08:00, 14:00 en 20:00 uur, oraal</div>
                      <div>Timing: <div>08:00:00, 14:00:00, 20:00:00</div>
                      </div>
-                     <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
                      </div>
-                     <div>Dosering: 16 internationale eenheid</div>
+                     <div>Dosering: 1 stuk</div>
                   </td>
                </tr>
                <tr>
@@ -57,7 +57,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3b0659a6-87da-11eb-1418-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-ce0ea826-88ab-11eb-8165-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -91,14 +91,14 @@
       <text value="Medicatiegebruik"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-34851"/>
-      <display value="INSULINE ISOFAAN INJSUSP 100IE/ML"/>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-1090"/>
+      <display value="METFORMINE 500MG TABLET"/>
    </medicationReference>
    <effectivePeriod>
-      <start value="2018-09-03T07:00:00+02:00"/>
-      <end value="2018-09-03T23:59:00+02:00"/>
+      <start value="${DATE, T, D, +0}T07:00:00+02:00"/>
+      <end value="${DATE, T, D, +14}T21:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-09-03T14:05:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, +0}T14:05:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-STRENGERSZ"/>
       <display value="R. XXX_Strengersz"/>
@@ -113,7 +113,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="vanaf 3 sep 2018, gedurende 1 dag, elke dag om 08:00, 14:00 en 20:00 uur 16IE"/>
+      <text value="Vanaf &lt;T&gt;, tot en met &lt;T+14D&gt;, 3 maal per dag om 08:00, 14:00 en 20:00 uur, oraal"/>
       <timing>
          <repeat>
             <timeOfDay value="08:00:00"/>
@@ -124,15 +124,15 @@
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="21"/>
-            <display value="subcutaan"/>
+            <code value="9"/>
+            <display value="oraal"/>
          </coding>
       </route>
       <doseQuantity>
-         <value value="16"/>
-         <unit value="internationale eenheid"/>
+         <value value="1"/>
+         <unit value="stuk"/>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-         <code value="217"/>
+         <code value="245"/>
       </doseQuantity>
    </dosage>
 </MedicationStatement>

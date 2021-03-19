@@ -1,0 +1,3456 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="cee5c49d-88ab-11eb-1133-020000000000"/>
+   <type value="searchset"/>
+   <total value="21"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
+   <entry>
+      <fullUrl value="urn:uuid:cee5ddac-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -50}T11:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>Vanaf ${DATE, T, D, -50}T00:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T-50 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
+                              </div>
+                              <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_213_1_MA_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -50}T11:25:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:cee5ddb6-88ab-11eb-1133-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T-50 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <frequencyMax value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c5e5-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_MA_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th colspan="2">Medicatie is gestopt: <span title="Definitief (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Definitief</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -40}T09:13:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -41}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 50 dagen, tot en met T- 41 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
+                              </div>
+                              <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -41}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_213_1_MA_1"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                     <code value="2"/>
+                     <display value="Definitief"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_213_1_MA_2"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -40}T09:13:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:cee5c5f9-88ab-11eb-1133-020000000000"/>
+                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:uuid:cee5c956-88ab-11eb-1133-020000000000"/>
+                  <display value="John de Vries"/>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T- 50 dagen, tot en met T- 41 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <frequencyMax value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c65d-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -40}T09:13:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>
+                              <span title="Geen of onvoldoende effect (5 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Geen of onvoldoende effect</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>
+                              <ul>
+                                 <li>Vanaf ${DATE, T, D, -40}T00:00:00+02:00</li>
+                                 <li>30 dag</li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 40 dagen, gedurende 30 dagen, 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -40}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="30"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_213_1_MA_1"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_213_1_MA_3"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -40}T09:13:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:cee5c5f9-88ab-11eb-1133-020000000000"/>
+                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:uuid:cee5c956-88ab-11eb-1133-020000000000"/>
+                  <display value="John de Vries"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                  <code value="5"/>
+                  <display value="Geen of onvoldoende effect"/>
+               </coding>
+            </reasonCode>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T- 40 dagen, gedurende 30 dagen, 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c6cb-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_MA_4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th colspan="2">Medicatie is gestopt: <span title="Definitief (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Definitief</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -15}T16:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, D, -40}T00:00:00+02:00 - ${DATE, T, D, -15}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 40 dagen, tot en met T- 15 dagen, 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -40}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -15}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_213_1_MA_3"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                     <code value="2"/>
+                     <display value="Definitief"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_213_1_MA_4"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -15}T16:25:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:cee5ddb6-88ab-11eb-1133-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T- 40 dagen, tot en met T- 15 dagen, 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c73c-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_MA_5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -15}T16:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>
+                              <span title="Beleidswijziging (10 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Beleidswijziging</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>
+                              <ul>
+                                 <li>Vanaf ${DATE, T, D, -14}T00:00:00+02:00</li>
+                                 <li>30 dag</li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 14 dagen, gedurende 30 dagen, 1 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -14}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="30"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_213_1_MA_3"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_213_1_MA_5"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -15}T16:25:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:cee5ddb6-88ab-11eb-1133-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                  <code value="10"/>
+                  <display value="Beleidswijziging"/>
+               </coding>
+            </reasonCode>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T- 14 dagen, gedurende 30 dagen, 1 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c7ae-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsverzoek. Subject: R. XXX_Gobee. Id: MBH_213_1_VV_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>Relatie naar medicatieafspraak, id = MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -50}T11:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Toedieningsverzoek</th>
+                           <td>
+                              <div>Max Repeats: 1</div>
+                              <div>Hoeveelheid: </div>
+                              <div>Uitvoerende: Apotheek De Gulle Gaper</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_213_1_MA_1"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_213_1_VV_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+               <text value="Verstrekkingsverzoek"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -50}T11:25:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:cee5c7b4-88ab-11eb-1133-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
+               </agent>
+            </requester>
+            <dispenseRequest>
+               <numberOfRepeatsAllowed value="1"/>
+               <quantity>
+                  <value value="40"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </quantity>
+               <performer>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </performer>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c805-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsverzoek. Subject: R. XXX_Gobee. Id: MBH_213_1_VV_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>Relatie naar medicatieafspraak, id = MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -40}T09:13:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Toedieningsverzoek</th>
+                           <td>
+                              <div>Max Repeats: 1</div>
+                              <div>Hoeveelheid: </div>
+                              <div>Uitvoerende: Apotheek De Gulle Gaper</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_213_1_MA_3"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_213_1_VV_2"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+               <text value="Verstrekkingsverzoek"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -40}T09:13:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:cee5c80b-88ab-11eb-1133-020000000000"/>
+                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:uuid:cee5c956-88ab-11eb-1133-020000000000"/>
+                  <display value="John de Vries"/>
+               </agent>
+            </requester>
+            <dispenseRequest>
+               <numberOfRepeatsAllowed value="1"/>
+               <quantity>
+                  <value value="60"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </quantity>
+               <performer>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </performer>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c85a-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsverzoek. Subject: R. XXX_Gobee. Id: MBH_213_1_VV_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>Relatie naar medicatieafspraak, id = MBH_213_1_MA_5 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -15}T16:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Toedieningsverzoek</th>
+                           <td>
+                              <div>Geldigheidsperiode: Vanaf 00:00:00, 1 augustus 2018</div>
+                              <div>Verwachte duur voorraad: 30 dag</div>
+                              <div>Uitvoerende: Apotheek De Gulle Gaper</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_213_1_MA_5"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_213_1_MA_5 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_213_1_VV_3"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+               <text value="Verstrekkingsverzoek"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -15}T16:25:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:cee5c7b4-88ab-11eb-1133-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
+               </agent>
+            </requester>
+            <dispenseRequest>
+               <validityPeriod>
+                  <start value="2018-08-01T00:00:00+02:00"/>
+               </validityPeriod>
+               <expectedSupplyDuration>
+                  <value value="30"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </expectedSupplyDuration>
+               <performer>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </performer>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c8b8-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_TA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1), Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -50}T11:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>Vanaf ${DATE, T, D, -50}T00:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T-50 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
+                              </div>
+                              <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="${DATE, T, D, -50}T11:25:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_213_1_TA_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T-50 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <frequencyMax value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c90f-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_TA_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1), Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th colspan="2">Medicatie is gestopt: <span title="Definitief (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Definitief</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -40}T09:13:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -41}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 50 dagen, tot en met T- 41 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
+                              </div>
+                              <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="${DATE, T, D, -40}T09:13:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -41}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                     <code value="2"/>
+                     <display value="Definitief"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_213_1_TA_2"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_2"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_213_1_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T- 50 dagen, tot en met T- 41 dagen, zonodig 1 à 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <frequencyMax value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c197-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_TA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1), Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -40}T09:13:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>
+                              <ul>
+                                 <li>Vanaf ${DATE, T, D, -40}T00:00:00+02:00</li>
+                                 <li>30 dag</li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 40 dagen, gedurende 30 dagen, 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="${DATE, T, D, -40}T09:13:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -40}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="30"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_213_1_TA_3"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_3"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T- 40 dagen, gedurende 30 dagen, 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c1e6-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_TA_4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1), Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th colspan="2">Medicatie is gestopt: <span title="Definitief (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Definitief</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -15}T16:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_4 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, D, -40}T00:00:00+02:00 - ${DATE, T, D, -15}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 40 dagen, tot en met T- 15 dagen, 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="${DATE, T, D, -15}T16:25:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -40}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -15}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                     <code value="2"/>
+                     <display value="Definitief"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_213_1_TA_4"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_4"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_213_1_MA_4 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T- 40 dagen, tot en met T- 15 dagen, 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c233-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsafspraak. Subject: R. XXX_Gobee. Id: MBH_213_1_TA_5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1), Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -15}T16:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_213_1_MA_5 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>
+                              <ul>
+                                 <li>Vanaf ${DATE, T, D, -14}T00:00:00+02:00</li>
+                                 <li>30 dag</li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 14 dagen, gedurende 30 dagen, 1 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="${DATE, T, D, -15}T16:25:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -14}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="30"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_213_1_TA_5"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_5"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_213_1_MA_5 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf T- 14 dagen, gedurende 30 dagen, 1 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c27e-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieverstrekking. Subject: R. XXX_Gobee. Id: MBH_213_1_MVE_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>Verstrekkingsverzoek met identificatie MBH_213_1_VV_1 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1. (Id: MBH_213_1_VV_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Hoeveelheid</th>
+                           <td>40 stuk</td>
+                        </tr>
+                        <tr>
+                           <th>Datum overhandigd</th>
+                           <td>${DATE, T, D, -50}T13:25:00+02:00</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_213_1_MVE_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="Dispensing medication (procedure)"/>
+               </coding>
+               <text value="Medicatieverstrekking"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_213_1_VV_1"/>
+               </identifier>
+               <display value="Verstrekkingsverzoek met identificatie MBH_213_1_VV_1 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+            </authorizingPrescription>
+            <quantity>
+               <value value="40"/>
+               <unit value="stuk"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </quantity>
+            <whenHandedOver value="${DATE, T, D, -50}T13:25:00+02:00"/>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c2a8-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieverstrekking. Subject: R. XXX_Gobee. Id: MBH_213_1_MVE_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>Verstrekkingsverzoek met identificatie MBH_213_1_VV_2 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1. (Id: MBH_213_1_VV_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Hoeveelheid</th>
+                           <td>60 stuk</td>
+                        </tr>
+                        <tr>
+                           <th>Datum overhandigd</th>
+                           <td>${DATE, T, D, -40}T09:13:00+02:00</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_213_1_MVE_2"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="Dispensing medication (procedure)"/>
+               </coding>
+               <text value="Medicatieverstrekking"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_213_1_VV_2"/>
+               </identifier>
+               <display value="Verstrekkingsverzoek met identificatie MBH_213_1_VV_2 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+            </authorizingPrescription>
+            <quantity>
+               <value value="60"/>
+               <unit value="stuk"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </quantity>
+            <whenHandedOver value="${DATE, T, D, -40}T09:13:00+02:00"/>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c2d2-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieverstrekking. Subject: R. XXX_Gobee. Id: MBH_213_1_MVE_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>Verstrekkingsverzoek met identificatie MBH_213_1_VV_2 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1. (Id: MBH_213_1_VV_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Hoeveelheid</th>
+                           <td>30 stuk</td>
+                        </tr>
+                        <tr>
+                           <th>Dagen voorraad</th>
+                           <td>30 dag</td>
+                        </tr>
+                        <tr>
+                           <th>Datum overhandigd</th>
+                           <td>${DATE, T, D, -15}T17:25:00+02:00</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_213_1_MVE_3"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="Dispensing medication (procedure)"/>
+               </coding>
+               <text value="Medicatieverstrekking"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_213_1_VV_2"/>
+               </identifier>
+               <display value="Verstrekkingsverzoek met identificatie MBH_213_1_VV_2 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+            </authorizingPrescription>
+            <quantity>
+               <value value="30"/>
+               <unit value="stuk"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </quantity>
+            <daysSupply>
+               <value value="30"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </daysSupply>
+            <whenHandedOver value="${DATE, T, D, -15}T17:25:00+02:00"/>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c2fd-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationStatement. Subject: R. XXX_Gobee. Id: MBH_213_1_MGB_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+                        <span style="display: block;">Auteur: R. XXX_Gobee</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Voorschrijver</th>
+                           <td>Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Datum/tijd</th>
+                           <td>Vanaf ${DATE, T, D, -50}T00:00:00+02:00, 3 dag</td>
+                        </tr>
+                        <tr>
+                           <th>Informant</th>
+                           <td>${DATE, T, D, -47}T11:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Ondersteunende informatie</th>
+                           <td>relatie naar medicatieafspraak (Id: MBH_213_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Dosering</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 50 dagen, gedurende 3 dagen, 1 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie gebruikt</th>
+                           <td>nee</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c341-88ab-11eb-1133-020000000000"/>
+                  <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+                  <display value="R. XXX_Gobee"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_213_1_MGB_1"/>
+            </identifier>
+            <status>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                  <valueDuration>
+                     <value value="3"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </valueDuration>
+               </extension>
+               <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="${DATE, T, D, -47}T11:25:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="n"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf T- 50 dagen, gedurende 3 dagen, 1 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c365-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationStatement. Subject: R. XXX_Gobee. Id: MBH_213_1_MGB_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+                        <span style="display: block;">Auteur: R. XXX_Gobee</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Voorschrijver</th>
+                           <td>Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Datum/tijd</th>
+                           <td>Vanaf ${DATE, T, D, -46}T00:00:00+02:00, 6 dag</td>
+                        </tr>
+                        <tr>
+                           <th>Informant</th>
+                           <td>${DATE, T, D, -41}T11:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Ondersteunende informatie</th>
+                           <td>relatie naar medicatieafspraak (Id: MBH_213_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Dosering</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 46 dagen, gedurende 6 dagen, 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie gebruikt</th>
+                           <td>ja</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c341-88ab-11eb-1133-020000000000"/>
+                  <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+                  <display value="R. XXX_Gobee"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_213_1_MGB_2"/>
+            </identifier>
+            <status>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                  <valueDuration>
+                     <value value="6"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </valueDuration>
+               </extension>
+               <start value="${DATE, T, D, -46}T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="${DATE, T, D, -41}T11:25:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf T- 46 dagen, gedurende 6 dagen, 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c3cd-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationStatement. Subject: R. XXX_Gobee. Id: MBH_213_1_MGB_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+                        <span style="display: block;">Auteur: R. XXX_Gobee</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLLEN TABLET MGA 10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Datum/tijd</th>
+                           <td>Vanaf ${DATE, T, D, -40}T00:00:00+02:00, 6 dag</td>
+                        </tr>
+                        <tr>
+                           <th>Informant</th>
+                           <td>${DATE, T, D, -35}T19:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Ondersteunende informatie</th>
+                           <td>relatie naar toedieningsafspraak (Id: MBH_213_1_TA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Dosering</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 40 dagen, gedurende 6 dagen, 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie gebruikt</th>
+                           <td>ja</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+                  <display value="R. XXX_Gobee"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_213_1_MGB_3"/>
+            </identifier>
+            <status>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+               <display value="MIZOLLEN TABLET MGA 10MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                  <valueDuration>
+                     <value value="6"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </valueDuration>
+               </extension>
+               <start value="${DATE, T, D, -40}T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="${DATE, T, D, -35}T19:25:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_213_1_TA_3"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf T- 40 dagen, gedurende 6 dagen, 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c417-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationStatement. Subject: R. XXX_Gobee. Id: MBH_213_1_MGB_4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+                        <span style="display: block;">Auteur: R. XXX_Gobee</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Voorschrijver</th>
+                           <td>Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Datum/tijd</th>
+                           <td>Vanaf ${DATE, T, D, -34}T00:00:00+02:00, 19 dag</td>
+                        </tr>
+                        <tr>
+                           <th>Informant</th>
+                           <td>${DATE, T, D, -16}T11:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Ondersteunende informatie</th>
+                           <td>relatie naar medicatieafspraak (Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Dosering</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 34 dagen, gedurende 19 dagen, 2 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie gebruikt</th>
+                           <td>ja</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c341-88ab-11eb-1133-020000000000"/>
+                  <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+                  <display value="R. XXX_Gobee"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_213_1_MGB_4"/>
+            </identifier>
+            <status>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                  <valueDuration>
+                     <value value="19"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </valueDuration>
+               </extension>
+               <start value="${DATE, T, D, -34}T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="${DATE, T, D, -16}T11:25:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_3"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf T- 34 dagen, gedurende 19 dagen, 2 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c47f-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationStatement. Subject: R. XXX_Gobee. Id: MBH_213_1_MGB_5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+                        <span style="display: block;">Auteur: R. XXX_Gobee</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Voorschrijver</th>
+                           <td>Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Datum/tijd</th>
+                           <td>Vanaf ${DATE, T, D, -14}T00:00:00+02:00, 5 dag</td>
+                        </tr>
+                        <tr>
+                           <th>Informant</th>
+                           <td>${DATE, T, D, -10}T11:25:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Ondersteunende informatie</th>
+                           <td>relatie naar medicatieafspraak (Id: MBH_213_1_MA_5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Dosering</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: Vanaf T- 14 dagen, gedurende 5 dagen, 1 maal per dag 1 tablet, oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie gebruikt</th>
+                           <td>ja</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c341-88ab-11eb-1133-020000000000"/>
+                  <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+                  <display value="R. XXX_Gobee"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_213_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_213_1_MGB_5"/>
+            </identifier>
+            <status>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                  <valueDuration>
+                     <value value="5"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </valueDuration>
+               </extension>
+               <start value="${DATE, T, D, -14}T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="${DATE, T, D, -10}T11:25:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+               <display value="R. XXX_Gobee"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_213_1_MA_5"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf T- 14 dagen, gedurende 5 dagen, 1 maal per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c4a5-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Id 21104 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1), R. XXX_Gobee, Vrouw, 1 augustus 1964</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
+               <value value="21104"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX_Gobee">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Gobee"/>
+                  </extension>
+               </family>
+               <given value="R.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1964-08-01"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 000001111 (UZI-NR-PERS), Peter van Pulver</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001111"/>
+            </identifier>
+            <name>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c956-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>John de Vries</div>
+               </div>
+            </text>
+            <name>
+               <family value="de Vries">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Vries"/>
+                  </extension>
+               </family>
+               <given value="John">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c356-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 01236578 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Apotheek De Gulle Gaper</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5ddb6-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Peter van Pulver</div>
+                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <display value="Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c7b4-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Peter van Pulver</div>
+                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <display value="Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c341-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Peter van Pulver</div>
+                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <display value="Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:cee5c356-88ab-11eb-1133-020000000000"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c5f9-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>John de Vries</div>
+                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:uuid:cee5c956-88ab-11eb-1133-020000000000"/>
+               <display value="John de Vries"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cee5c80b-88ab-11eb-1133-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>John de Vries</div>
+                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:uuid:cee5c956-88ab-11eb-1133-020000000000"/>
+               <display value="John de Vries"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="MIZOLASTINE TABLET MGA  10MG (48291 - G-Standaard PRK)">MIZOLASTINE TABLET MGA  10MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="48291"/>
+                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="102164"/>
+                  <display value="MIZOLASTINE TABLET MGA 10MG"/>
+               </coding>
+               <text value="MIZOLASTINE TABLET MGA  10MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.7.1101099"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="MIZOLLEN TABLET MGA 10MG (1101099 - G-Standaard HPK)">MIZOLLEN TABLET MGA 10MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1101099"/>
+                  <display value="MIZOLLEN TABLET MGA 10MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="48291"/>
+                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="102164"/>
+                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
+               </coding>
+               <text value="MIZOLLEN TABLET MGA 10MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

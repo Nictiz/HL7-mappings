@@ -21,7 +21,7 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>17:54:00, 2 september 2017</td>
+                  <td>${DATE, T, D, -366}T17:54:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebaseerd op</th>
@@ -33,13 +33,13 @@
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>21 april 2017 00:00:00 - 2 september 2017 17:00:00</td>
+                  <td>${DATE, T, D, -500}T00:00:00+02:00 - ${DATE, T, D, -366}T17:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 21 apr 2017 tot en met 2 sep 2017 17:00, 1x per dag 1 druppel, in beide ogen</div>
+                     <div>Tekst: Vanaf T- 500 dagen, tot en met T- 366 dagen 17:00, 1x per dag 1 druppel, in beide ogen</div>
                      <div>Instructie: <span title="in beide ogen (1026 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">in beide ogen</span>
                      </div>
                      <div>Timing: <div>eenmalig per dag</div>
@@ -54,12 +54,12 @@
       </div>
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-      <valueDateTime value="2017-09-02T17:54:00+02:00"/>
+      <valueDateTime value="${DATE, T, D, -366}T17:54:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2017-04-21T00:00:00+02:00"/>
-         <end value="2017-09-02T17:00:00+02:00"/>
+         <start value="${DATE, T, D, -500}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -366}T17:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -112,7 +112,7 @@
    </authorizingPrescription>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 21 apr 2017 tot en met 2 sep 2017 17:00, 1x per dag 1 druppel, in beide ogen"/>
+      <text value="Vanaf T- 500 dagen, tot en met T- 366 dagen 17:00, 1x per dag 1 druppel, in beide ogen"/>
       <additionalInstruction>
          <coding>
             <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>

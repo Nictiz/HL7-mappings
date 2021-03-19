@@ -17,7 +17,7 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>09:35:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                </tr>
                <tr>
                   <th>Gebaseerd op</th>
@@ -31,7 +31,7 @@
                   <th>Gebruiksduur</th>
                   <td>
                      <ul>
-                        <li>Vanaf 00:00:00, 3 september 2018</li>
+                        <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                         <li>10 week</li>
                      </ul>
                   </td>
@@ -40,7 +40,7 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan</div>
                      <div>Instructie: <ul>
                            <li>
                               <span title="voor de nacht (1128 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">voor de nacht</span>
@@ -61,11 +61,11 @@
       </div>
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-      <valueDateTime value="2018-09-03T09:35:00+02:00"/>
+      <valueDateTime value="${DATE, T, D, +0}T09:35:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-09-03T00:00:00+02:00"/>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -117,7 +117,7 @@
    </authorizingPrescription>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan"/>
+      <text value="Vanaf &lt;T&gt;, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan"/>
       <additionalInstruction>
          <coding>
             <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>

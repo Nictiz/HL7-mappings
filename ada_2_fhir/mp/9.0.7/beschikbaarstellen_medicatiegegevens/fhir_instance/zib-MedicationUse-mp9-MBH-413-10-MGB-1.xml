@@ -25,11 +25,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 3 september 2018</td>
+                  <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>09:35:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -43,7 +43,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 3 sep 2018, tot nader order, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal</div>
+                     <div>Tekst: Vanaf &lt;T&gt;, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal</div>
                      <div>Timing: <div>21 dag, eenmalig per dag</div>
                      </div>
                      <div>Dosering: 1 stuk</div>
@@ -62,7 +62,7 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3b0659a6-87da-11eb-1418-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-ce0ea826-88ab-11eb-8165-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -108,9 +108,9 @@
       <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
    </medicationReference>
    <effectivePeriod>
-      <start value="2018-09-03T00:00:00+02:00"/>
+      <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-09-03T09:35:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, +0}T09:35:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-STRENGERSZ"/>
       <display value="R. XXX_Strengersz"/>
@@ -125,7 +125,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf 3 sep 2018, tot nader order, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
+      <text value="Vanaf &lt;T&gt;, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
       <timing>
          <repeat>
             <boundsDuration>
