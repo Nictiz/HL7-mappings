@@ -953,7 +953,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- aanschrijfdatum -->
                     <xsl:for-each select="aanschrijfdatum[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
-                            <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                            <valueDateTime>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </valueDateTime>
                         </extension>
                     </xsl:for-each>
                     <!-- aanvullende_informatie -->
