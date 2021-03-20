@@ -40,11 +40,12 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens VV -->
-        <!-- beschikbaarstellen_medicatiegegevens VV -->
         <antcall target="setup_sub_instances">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="fileset.dir" value="ada_instance_VV"/>
             <param name="fileset.include" value="*VV*.xml"/>
+            <!-- exclude the initating scenario's -->
+            <param name="fileset.exclude" value="*8i*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
             <param name="ada.refs.dir" value="ada_instance"/>
         </antcall>
