@@ -25,7 +25,7 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf ${DATE, T, D, -48}T00:00:00+02:00, 4 dag</td>
+                  <td>Vanaf ${DATE, T, D, -48}, 1 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf T- 48 dagen, gedurende 4 dagen, 1 maal per dag 1 stuk, rectaal</div>
+                     <div>Tekst: Vanaf T - 48 dagen, gedurende 1 dag, zo nodig 1 maal per dag 1 stuk, Rectaal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
@@ -59,7 +59,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3cdeab5e-88b3-11eb-1174-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-54cec45e-8b3f-11eb-4170-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -99,13 +99,13 @@
    <effectivePeriod>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
          <valueDuration>
-            <value value="4"/>
+            <value value="1"/>
             <unit value="dag"/>
             <system value="http://unitsofmeasure.org"/>
             <code value="d"/>
          </valueDuration>
       </extension>
-      <start value="${DATE, T, D, -48}T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -48}"/>
    </effectivePeriod>
    <dateAsserted value="${DATE, T, D, -48}T11:25:00+02:00"/>
    <subject>
@@ -122,7 +122,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf T- 48 dagen, gedurende 4 dagen, 1 maal per dag 1 stuk, rectaal"/>
+      <text value="Vanaf T - 48 dagen, gedurende 1 dag, zo nodig 1 maal per dag 1 stuk, Rectaal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

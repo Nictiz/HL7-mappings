@@ -33,13 +33,13 @@
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>${DATE, T, D, -20}T00:00:00+02:00 - ${DATE, T, D, -6}T23:59:59+02:00</td>
+                  <td>${DATE, T, D, -20}T00:00:00+02:00 - ${DATE, T, D, -6}T23:59:00+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf T- 20 dagen, tot en met T- 6 dagen, 3x per dag 1 tablet</div>
+                     <div>Tekst: Vanaf T - 20 dagen, tot en met T - 6 dagen, 3 maal per dag 1 stuk, oraal</div>
                      <div>Timing: <div>3 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -54,7 +54,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
          <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
-         <end value="${DATE, T, D, -6}T23:59:59+02:00"/>
+         <end value="${DATE, T, D, -6}T23:59:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -111,13 +111,13 @@
                <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
             </valueReference>
          </extension>
-         <reference value="Practitioner/nl-core-practitioner-mp9-3d0a2434-88b3-11eb-7284-020000000000"/>
+         <reference value="Practitioner/nl-core-practitioner-mp9-54f712e4-8b3f-11eb-1557-020000000000"/>
          <display value="John de Vries"/>
       </agent>
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf T- 20 dagen, tot en met T- 6 dagen, 3x per dag 1 tablet"/>
+      <text value="Vanaf T - 20 dagen, tot en met T - 6 dagen, 3 maal per dag 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="3"/>

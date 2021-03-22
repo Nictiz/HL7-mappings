@@ -29,7 +29,7 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf ${DATE, T, D, -3}T00:00:00+02:00, 10 dag</td>
+                  <td>Vanaf ${DATE, T, D, -3}T00:00:00+02:00, 3 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
@@ -38,7 +38,7 @@
                <tr>
                   <th>Dosering</th>
                   <td>
-                     <div>Tekst: Vanaf T-3, gedurende 10 dagen, 4 maal per dag 1 tablet, oraal</div>
+                     <div>Tekst: Vanaf T - 3 dagen, gedurende 3 dagen, 4 maal per dag 1 stuk, oraal</div>
                      <div>Timing: <div>4 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -48,7 +48,7 @@
                </tr>
                <tr>
                   <th>Medicatie gebruikt</th>
-                  <td>nee</td>
+                  <td>ja</td>
                </tr>
             </tbody>
          </table>
@@ -93,7 +93,7 @@
    <effectivePeriod>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
          <valueDuration>
-            <value value="10"/>
+            <value value="3"/>
             <unit value="dag"/>
             <system value="http://unitsofmeasure.org"/>
             <code value="d"/>
@@ -106,12 +106,12 @@
       <reference value="Patient/XXX-JANGI"/>
       <display value="I. XXX_Jangi"/>
    </subject>
-   <taken value="n"/>
+   <taken value="y"/>
    <note>
       <text value="Pijn"/>
    </note>
    <dosage>
-      <text value="Vanaf T-3, gedurende 10 dagen, 4 maal per dag 1 tablet, oraal"/>
+      <text value="Vanaf T - 3 dagen, gedurende 3 dagen, 4 maal per dag 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="4"/>

@@ -25,7 +25,7 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
+                  <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 1 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf &lt;T&gt;, 2x per dag 10 tot 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen</div>
+                     <div>Tekst: Vanaf T, gedurende 1 dag, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen</div>
                      <div>Instructie: <ul>
                            <li>
                               <span title="Eerst oplossen in water (27 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">Eerst oplossen in water</span>
@@ -66,7 +66,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3d0eee46-88b3-11eb-8165-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-54fc9646-8b3f-11eb-5089-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -104,6 +104,14 @@
       <display value="WATERSTOFPEROXIDE 30MG/ML"/>
    </medicationReference>
    <effectivePeriod>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+         <valueDuration>
+            <value value="1"/>
+            <unit value="dag"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </valueDuration>
+      </extension>
       <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
    </effectivePeriod>
    <dateAsserted value="${DATE, T, D, +0}T21:37:00+02:00"/>
@@ -121,7 +129,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf &lt;T&gt;, 2x per dag 10 tot 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
+      <text value="Vanaf T, gedurende 1 dag, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
       <additionalInstruction>
          <coding>
             <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>

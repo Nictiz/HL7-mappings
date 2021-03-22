@@ -25,11 +25,11 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf 00:00:00, 14 augustus 2018, 30 dag</td>
+                  <td>Vanaf ${DATE, T, D, -20}T00:00:00+02:00, 30 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>12:38:00, 3 september 2018</td>
+                  <td>${DATE, T, D, +0}T12:38:00+02:00</td>
                </tr>
                <tr>
                   <th>Ondersteunende informatie</th>
@@ -39,7 +39,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf 14 aug 2018, gedurende 30 dagen, 2 maal per dag 1/2 tablet</div>
+                     <div>Tekst: Vanaf T - 20 dagen, gedurende 30 dagen, 2 maal per dag 0.5 stuk, oraal</div>
                      <div>Timing: <div>2 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -57,7 +57,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3d0eee46-88b3-11eb-8165-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-54fc9646-8b3f-11eb-5089-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -103,9 +103,9 @@
             <code value="d"/>
          </valueDuration>
       </extension>
-      <start value="2018-08-14T00:00:00+02:00"/>
+      <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2018-09-03T12:38:00+02:00"/>
+   <dateAsserted value="${DATE, T, D, +0}T12:38:00+02:00"/>
    <subject>
       <reference value="Patient/XXX-STRENGERSZ"/>
       <display value="R. XXX_Strengersz"/>
@@ -120,7 +120,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf 14 aug 2018, gedurende 30 dagen, 2 maal per dag 1/2 tablet"/>
+      <text value="Vanaf T - 20 dagen, gedurende 30 dagen, 2 maal per dag 0.5 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="2"/>

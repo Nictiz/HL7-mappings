@@ -29,13 +29,13 @@
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>${DATE, T, D, -100}T00:00:00+02:00 - ${DATE, T, D, -5}T23:59:59+02:00</td>
+                  <td>${DATE, T, D, -100}T00:00:00+02:00 - ${DATE, T, D, -5}T23:59:00+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf T- 100 dagen, tot en met T- 5 dagen, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken</div>
+                     <div>Tekst: Vanaf T - 100 dagen, tot en met T - 5 dagen, 1 maal per dag 1 stuk, oraal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -50,7 +50,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
          <start value="${DATE, T, D, -100}T00:00:00+02:00"/>
-         <end value="${DATE, T, D, -5}T23:59:59+02:00"/>
+         <end value="${DATE, T, D, -5}T23:59:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -98,13 +98,13 @@
                <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
             </valueReference>
          </extension>
-         <reference value="Practitioner/nl-core-practitioner-mp9-3cbdc9ea-88b3-11eb-1847-020000000000"/>
+         <reference value="Practitioner/nl-core-practitioner-mp9-54b4f026-8b3f-11eb-1160-020000000000"/>
          <display value="John de Vries"/>
       </agent>
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf T- 100 dagen, tot en met T- 5 dagen, 1 maal per dag 1 stuk, oraal - tijdelijk onderbreken"/>
+      <text value="Vanaf T - 100 dagen, tot en met T - 5 dagen, 1 maal per dag 1 stuk, oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>

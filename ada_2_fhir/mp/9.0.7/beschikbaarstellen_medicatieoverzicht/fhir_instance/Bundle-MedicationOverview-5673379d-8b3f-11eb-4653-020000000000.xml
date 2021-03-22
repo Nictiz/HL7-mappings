@@ -1,0 +1,216 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="Bundle-MedicationOverview-5673379d-8b3f-11eb-4653-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
+   </meta>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:56732a4e-8b3f-11eb-4653-020000000000"/>
+      <resource>
+         <List>
+            <id value="d2406e54"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
+               <extension url="VerificationPatient">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="VerificationHealthProfessional">
+                  <valueBoolean value="false"/>
+               </extension>
+            </extension>
+            <status value="current"/>
+            <mode value="snapshot"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="11181000146103"/>
+                  <display value="Actual medication overview (record artifact)"/>
+               </coding>
+               <text value="Medicatieoverzicht"/>
+            </code>
+            <subject>
+               <reference value="Patient/XXX-RUYS"/>
+               <display value="R. XXX_Ruys"/>
+            </subject>
+            <date value="${DATE, T, D, +0}T00:00:00+02:00"/>
+            <source>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
+                  <valueReference>
+                     <reference value="Organization/nl-core-organization-mp9-56732a56-8b3f-11eb-4653-020000000000"/>
+                     <display value="Apotheek de Gulle Gaper"/>
+                  </valueReference>
+               </extension>
+               <display value="Apotheek de Gulle Gaper"/>
+            </source>
+         </List>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:567337a5-8b3f-11eb-4653-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="XXX-RUYS"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Id 13103 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1), R. XXX_Ruys, Man, 1 augustus 1964</div>
+                  <div>
+                     <a href="tel:+31612341234">+31612341234</a> (Tel)</div>
+                  <div>Knolweg 1000, 9999XA Stitswerd (Bezoek)</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
+               <value value="13103"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX_Ruys">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Ruys"/>
+                  </extension>
+               </family>
+               <given value="R.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <system value="phone"/>
+               <value value="+31612341234"/>
+            </telecom>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1964-08-01"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="PHYS"/>
+                        <display value="Woon-/verblijfadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                  <valueCode value="PHYS"/>
+               </extension>
+               <use value="home"/>
+               <type value="physical"/>
+               <line value="Knolweg 1000">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Knolweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1000"/>
+                  </extension>
+               </line>
+               <city value="Stitswerd"/>
+               <postalCode value="9999XA"/>
+            </address>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:56732a56-8b3f-11eb-4653-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-organization-mp9-56732a56-8b3f-11eb-4653-020000000000"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Apotheek de Gulle Gaper</td>
+                        </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <a href="tel:+31703655424">+31703655424</a> (Tel)br<a href="mailto:info@apotheekgullegaper.com">info@apotheekgullegaper.com</a> (E-mail)br</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Straat 5, 1598FG Utrecht (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <name value="Apotheek de Gulle Gaper"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="+31703655424"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="info@apotheekgullegaper.com"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Straat 5">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Straat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="5"/>
+                  </extension>
+               </line>
+               <city value="Utrecht"/>
+               <postalCode value="1598FG"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

@@ -30,7 +30,7 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>${DATE, T, D, -8}T00:00:00+02:00 - ${DATE, T, D, -3}T23:59:59+02:00</td>
+                  <td>${DATE, T, D, -8}T00:00:00+02:00 - ${DATE, T, D, -3}T23:59:00+02:00</td>
                </tr>
                <tr>
                   <th>Informant</th>
@@ -40,7 +40,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf &lt;T-8D&gt; tot en met &lt;T-3D&gt; 1 maal per week 5 stuks, oraal</div>
+                     <div>Tekst: Vanaf T - 8 dagen, tot en met T - 3 dagen, 1 maal per week 5 stuks</div>
                      <div>Timing: <div>eenmalig per week</div>
                      </div>
                      <div>Dosering: 5 stuk</div>
@@ -60,7 +60,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-3c899735-88b3-11eb-8740-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-548be075-8b3f-11eb-9273-020000000000"/>
          <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
       </valueReference>
    </extension>
@@ -94,12 +94,12 @@
       <text value="Medicatiegebruik"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-141631"/>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-6009"/>
       <display value="METHOTREXAAT TABLET 2,5MG"/>
    </medicationReference>
    <effectivePeriod>
       <start value="${DATE, T, D, -8}T00:00:00+02:00"/>
-      <end value="${DATE, T, D, -3}T23:59:59+02:00"/>
+      <end value="${DATE, T, D, -3}T23:59:00+02:00"/>
    </effectivePeriod>
    <dateAsserted value="${DATE, T, D, -3}T20:59:00+02:00"/>
    <subject>
@@ -115,7 +115,7 @@
    </note>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf &lt;T-8D&gt; tot en met &lt;T-3D&gt; 1 maal per week 5 stuks, oraal"/>
+      <text value="Vanaf T - 8 dagen, tot en met T - 3 dagen, 1 maal per week 5 stuks"/>
       <timing>
          <repeat>
             <frequency value="1"/>

@@ -33,13 +33,13 @@
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
-                  <td>${DATE, T, D, -100}T00:00:00+02:00 - ${DATE, T, D, -59}T23:59:59+02:00</td>
+                  <td>${DATE, T, D, -100}T00:00:00+02:00 - ${DATE, T, D, -59}T23:59:00+02:00</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf T- 100 dagen, tot en met T- 59 dagen, 1 maal per dag 1 dosis, inhalatie</div>
+                     <div>Tekst: Vanaf T - 100 dagen, tot en met T - 59 dagen, 1 maal per dag 1 dosis, inhalatie</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="inhalatie (62 - G-Standaard thesaurus subtabel 0007)">inhalatie</span>
@@ -57,7 +57,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
          <start value="${DATE, T, D, -100}T00:00:00+02:00"/>
-         <end value="${DATE, T, D, -59}T23:59:59+02:00"/>
+         <end value="${DATE, T, D, -59}T23:59:00+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -110,7 +110,7 @@
    </authorizingPrescription>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf T- 100 dagen, tot en met T- 59 dagen, 1 maal per dag 1 dosis, inhalatie"/>
+      <text value="Vanaf T - 100 dagen, tot en met T - 59 dagen, 1 maal per dag 1 dosis, inhalatie"/>
       <timing>
          <repeat>
             <frequency value="1"/>

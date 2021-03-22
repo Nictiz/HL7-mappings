@@ -21,7 +21,7 @@
                </tr>
                <tr>
                   <th>Datum/tijd</th>
-                  <td>Vanaf ${DATE, T, D, -1}T00:00:00+02:00, 8 dag</td>
+                  <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 1 dag</td>
                </tr>
                <tr>
                   <th>Informant</th>
@@ -35,7 +35,7 @@
                   <th>Dosering</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Tekst: Vanaf T-1 dag, gedurende 8 dagen, 1 maal daags 1 stuk, oraal</div>
+                     <div>Tekst: Vanaf T, gedurende 1 dag, 1 maal per dag 1 stuk, Oraal</div>
                      <div>Timing: <div>eenmalig per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -87,13 +87,13 @@
    <effectivePeriod>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
          <valueDuration>
-            <value value="8"/>
+            <value value="1"/>
             <unit value="dag"/>
             <system value="http://unitsofmeasure.org"/>
             <code value="d"/>
          </valueDuration>
       </extension>
-      <start value="${DATE, T, D, -1}T00:00:00+02:00"/>
+      <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
    </effectivePeriod>
    <dateAsserted value="${DATE, T, D, +0}T20:59:00+02:00"/>
    <subject>
@@ -110,7 +110,7 @@
    <taken value="y"/>
    <dosage>
       <sequence value="1"/>
-      <text value="Vanaf T-1 dag, gedurende 8 dagen, 1 maal daags 1 stuk, oraal"/>
+      <text value="Vanaf T, gedurende 1 dag, 1 maal per dag 1 stuk, Oraal"/>
       <timing>
          <repeat>
             <frequency value="1"/>
