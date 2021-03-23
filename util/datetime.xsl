@@ -228,4 +228,45 @@
             <xsl:value-of select="xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7"/>
         </xsl:if>
     </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Returns YEAR, MONTH, DAY, HOUR, MINUTE, SECOND or MILLISECOND depending on input string. Empty input -> no output.</xd:desc>
+        <xd:param name="in">input ada (vague) (relative) date(time)</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:determine_date_precision_from_ada_datetime" as="xs:string?">
+        <xsl:param name="in" as="xs:string?"/>
+        <xsl:for-each select="string-length($in) gt 0">
+            <xsl:choose>
+                <xsl:when test="(starts-with($in, 'T') or starts-with($in, 'DOB'))">
+                    <!-- a relative date -->
+                    <!-- let's look if there is a time present -->
+                    <xsl:variable name="timePart" select="
+                        if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then
+                        replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2')
+                        else
+                        ()"/>
+                    <xsl:choose>
+                        <xsl:when test="string-length($timePart) = 2">
+                            <!-- time given in hours -->
+                            <xsl:value-of select="'HOUR'"/>
+                        </xsl:when>
+                        <xsl:when test="string-length($timePart) = 5">
+                            <!-- time given in minutes, let's add 0 seconds -->
+                            <xsl:value-of select="'MINUTE'"/>
+                        </xsl:when>
+                        <!-- no support for milliseconds in relative ada datetime -->
+                        <xsl:otherwise>SECOND</xsl:otherwise>
+                    </xsl:choose>                    
+                </xsl:when>
+                <!-- date or dateTime, which may be vague -->
+                <xsl:when test="string-length($in) = 4">YEAR</xsl:when>
+                <xsl:when test="string-length($in) = 7">MONTH</xsl:when>
+                <xsl:when test="string-length($in) = 10">DAY</xsl:when>
+                <xsl:when test="string-length($in) = 13">HOUR</xsl:when>
+                <xsl:when test="string-length($in) = 16">MINUTE</xsl:when>
+                <xsl:when test="string-length($in) = 19">SECOND</xsl:when>
+                <xsl:when test="string-length($in) gt 19">MILLISECOND</xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:function>
 </xsl:stylesheet>
