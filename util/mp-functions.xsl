@@ -551,7 +551,14 @@
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($relativeDate, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
                 <xsl:variable name="timePart" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)\})?', '$4')"/>
-                <xsl:variable name="time" select="$timePart"/>
+                <xsl:variable name="time" as="xs:string?">
+                    <xsl:choose>
+                        <xsl:when test="string-length($timePart)=8 and ends-with($timePart, ':00')">
+                            <xsl:value-of select="substring($timePart, 1, 5)"/>  
+                        </xsl:when>
+                        <xsl:otherwise><xsl:value-of select="$timePart"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
 
                 <!-- output a relative date for display -->
                 <xsl:choose>
