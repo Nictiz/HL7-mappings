@@ -25,13 +25,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <!-- <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/> -->
+    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada Contactpersoon to FHIR resource conforming to profile zib-ContactPerson</xd:desc>
+        <xd:desc>Converts ada Contactpersoon to FHIR resource conforming to profile nl-core-ContactPerson</xd:desc>
     </xd:doc>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
@@ -39,15 +39,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Unwrap contactpersoon_registratie element</xd:desc>
     </xd:doc>
     <xsl:template match="contactpersoon_registratie">
-        <xsl:apply-templates select="contactpersoon" mode="zib-ContactPerson"/>
+        <xsl:apply-templates select="contactpersoon" mode="nl-core-ContactPerson"/>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Mapping of zib-Contactpersoon concept in ADA to FHIR resource.</xd:desc>
+        <xd:desc>Mapping of nl-core-Contactpersoon concept in ADA to FHIR resource.</xd:desc>
         <xd:param name="logicalId">RelatedPerson.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a RelatedPerson resource</xd:param>
     </xd:doc>
-        <xsl:template match="contactpersoon" name="zib-ContactPerson" mode="zib-ContactPerson">
+        <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         
@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <id value="{$logicalId}"/>
                     </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson"/>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
                     </meta>
                     
                     <!--
@@ -86,22 +86,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </relationship>
                     </xsl:for-each>
                     
-                    <!-- naamgegevens -->
-                    <!--<xsl:call-template name="zib-NameInformation">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </xsl:for-each>-->
+                    <!-- sub-zibs -->
+                    <xsl:for-each select="naamgegevens">
+                        <xsl:call-template name="nl-core-NameInformation"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="contactgegevens">
+                        <xsl:call-template name="nl-core-ContactInformation"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="adresgegevens">
+                        <xsl:call-template name="nl-core-AddressInformation"/>
+                    </xsl:for-each>
                     
-                    <!-- contactgegevens -->
-                    <!--<xsl:call-template name="zib-ContactInformation">
-                    <xsl:with-param name="in" select="contactgegevens"/>
-                     </xsl:call-template>-->
-                    
-                    <!-- address -->
-                    <!--<xsl:call-template name="zib-AddressInformation">
-                    <xsl:with-param name="in" select="adresgegevens"/>
-                    </xsl:call-template>-->
-
                 </RelatedPerson>
         </xsl:for-each>
     </xsl:template>
