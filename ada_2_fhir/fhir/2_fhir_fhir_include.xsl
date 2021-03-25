@@ -323,7 +323,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
         </xsl:choose>
-        <xsl:if test="$in[@originalText]">
+        <xsl:if test="$in[string-length(@originalText) gt 0]">
             <text value="{replace($in/@originalText, '(^\s+)|(\s+$)', '')}"/>
         </xsl:if>
     </xsl:template>
