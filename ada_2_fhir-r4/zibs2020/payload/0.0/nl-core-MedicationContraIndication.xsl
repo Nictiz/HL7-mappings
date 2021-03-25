@@ -36,11 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Unwrap medicatie_contra_indicatie_registratie element</xd:desc>
     </xd:doc>
     <xsl:template match="medicatie_contra_indicatie_registratie">
-        
-        <xsl:apply-templates select="medicatie_contra_indicatie" mode="nl-core-MedicationContraIndication">
-            <xsl:with-param name="patientReference"  select="'Patient/nl-core-Patient-01'"/>
-            <xsl:with-param name="patientReferenceDisplay" select="'Test Patient nummer 1'"/>
-        </xsl:apply-templates>
+        <xsl:apply-templates select="medicatie_contra_indicatie" mode="nl-core-MedicationContraIndication"/>
     </xsl:template>
     
     <xd:doc>
@@ -149,14 +145,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>  
                                         
                    <!-- Reporter - NL-CM:9.14.5 -->                                     
-                   <xsl:if test="$melder">
+<!--                   <xsl:if test="$melder">
                         <author>
-                           <!--<xsl:call-template name="nl-core-HealthProfessional-reference">
+                           <xsl:call-template name="nl-core-HealthProfessional-reference">
                                <xsl:with-param name="in" select="$melder"/>
                                <xsl:with-param name="logicalId" select="$melderLogicalId"/>
-                           </xsl:call-template>-->
+                           </xsl:call-template>
                        </author>
-                   </xsl:if>
+                   </xsl:if>-->
                                       
                 </Flag>
         </xsl:for-each>

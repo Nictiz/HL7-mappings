@@ -28,16 +28,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>
-            Process a bundle containing ADA instances for zibs that are mapped onto/into the nl-core-Patient profile:
+            Process ADA instances to create resources that conform to the nl-core-MedicationContraIndication profile and include the reference resources inside a Bundle as output:
             <xd:ul>
-                <xd:li>nl-core-MedicationContraIndicatino</xd:li>
+                <xd:li>nl-core-MedicationContraIndication</xd:li>
+                <xd:li>nl-core-Patient</xd:li>
+                <xd:li>nl-core-HealthProfessional</xd:li>
             </xd:ul>
         </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <Bundle>
+        <Bundle>            
             <xsl:for-each select=".//medicatie_contra_indicatie">
                 <xsl:variable name="onderwerp" as="element()">
+                    <!-- Currently an inline Patient adaxml. This should likely be solved differently with for example an additional seperate file. -->
                     <patient xmlns="" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1">
                         <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.6">
                             <voornamen value="Johanna Petronella Maria" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.287"/>
