@@ -23,10 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
-    
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/> -->
-    
+        
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
@@ -54,8 +51,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="medicatie_contra_indicatie" name="nl-core-MedicationContraIndication" mode="nl-core-MedicationContraIndication">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="patientReference" as="xs:string?"/>
-        <xsl:param name="patientReferenceDisplay" as="xs:string?"/>
+        <xsl:param name="onderwerp" as="element()?"/>
+        <xsl:param name="onderwerpLogicalId" as="xs:string?"/>
+        <xsl:param name="melder" as="element()?"/>
+        <xsl:param name="melderLogicalId" as="xs:string?"/>
           
         <xsl:for-each select="$in">
                 <Flag>
@@ -122,15 +121,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:if>         
                     
-                    <subject>
-                        <reference>
-                            <xsl:attribute name="value" select="$patientReference"/>
-                        </reference>
-                        <display>
-                            <xsl:attribute name="value" select="$patientReferenceDisplay"/>
-                        </display>
-                    </subject>
-                    
+                    <!-- Subject is mandatory by FHIR -->
+                    <xsl:if test="$onderwerp">
+                        <subject>
+                            <xsl:call-template name="nl-core-Patient-reference">
+                                <xsl:with-param name="in" select="$onderwerp"/>
+                                <xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>
+                            </xsl:call-template>
+                        </subject>
+                    </xsl:if>
+                   
                     <xsl:if test="$beginDatum|$eindDatum">
                         <period>
                             <!-- StartDate - NL-CM:9.14.2 -->
@@ -148,8 +148,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </period>
                     </xsl:if>  
                                         
-                   <!-- TO DO - Melder - Reference to HealthProfessional -->                                     
-                   
+                   <!-- Reporter - NL-CM:9.14.5 -->                                     
+                   <xsl:if test="$melder">
+                        <author>
+                           <!--<xsl:call-template name="nl-core-HealthProfessional-reference">
+                               <xsl:with-param name="in" select="$melder"/>
+                               <xsl:with-param name="logicalId" select="$melderLogicalId"/>
+                           </xsl:call-template>-->
+                       </author>
+                   </xsl:if>
+                                      
                 </Flag>
         </xsl:for-each>
     </xsl:template>  
