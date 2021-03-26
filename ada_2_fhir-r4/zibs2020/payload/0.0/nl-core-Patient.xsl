@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="nationality" as="element(nationaliteit_rc)?"/>
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?"/>
         <xsl:param name="languageProficiencys" as="element(taalvaardigheid)*"/>
-        <xsl:param name="contactPersons" as="element(contact_persoon)*"/>
+        <xsl:param name="contactPersons" as="element(contactpersoon)*"/>
 
         <Patient>
             <xsl:if test="string-length($logicalId) gt 0">
@@ -171,9 +171,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </multipleBirthBoolean>
             </xsl:for-each>
             
+            <!-- Only "Eerste relatie/contactpersoon" and "Tweede relatie/contactpersoon" as Patient.contacts. Otherwise they should be entered as RelatedPerson-->
             <xsl:for-each select="$contactPersons">
-                <xsl:call-template name="nl-core-ContactPerson-embedded"/>
-            </xsl:for-each>
+                <xsl:if test="$contactPersons/rol[@value='1']|$contactPersons/rol[@value='2']">
+                    <xsl:call-template name="nl-core-ContactPerson-embedded"/>
+                </xsl:if>
+            </xsl:for-each>           
             
             <xsl:for-each select="$languageProficiencys">
                 <communication>
@@ -237,9 +240,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code value="{$typeCode}"/>
                         <display>
                             <xsl:choose>
-                                <xsl:when test="$typeCode='RSP'">Received spoken</xsl:when>
-                                <xsl:when test="$typeCode='ESP'">Expressed spoken</xsl:when>
-                                <xsl:when test="$typeCode='RWR'">Received written</xsl:when>
+                                <xsl:when test="$typeCode='RSP'">
+                                    <xsl:attribute name="value" select="'Received spoken'"/>
+                                </xsl:when>
+                                <xsl:when test="$typeCode='ESP'">
+                                    <xsl:attribute name="value" select="'Expressed spoken'"/>
+                                </xsl:when>
+                                <xsl:when test="$typeCode='RWR'">
+                                    <xsl:attribute name="value" select="'Received written'"/>
+                                </xsl:when>
                             </xsl:choose>
                         </display>
                     </valueCoding>
@@ -247,5 +256,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </extension>
         </xsl:if>
     </xsl:template>
-
+   
 </xsl:stylesheet>
