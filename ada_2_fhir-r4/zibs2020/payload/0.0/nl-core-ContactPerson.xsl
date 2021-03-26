@@ -43,13 +43,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Mapping of nl-core-Contactpersoon concept in ADA to FHIR resource.</xd:desc>
+        <xd:desc>Mapping of nl-core-Contactpersoon concept in ADA to FHIR RelatedPerson resource.</xd:desc>
         <xd:param name="logicalId">RelatedPerson.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a RelatedPerson resource</xd:param>
     </xd:doc>
         <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
+<!--        <xsl:param name="onderwerp" as="element()?"/>
+        <xsl:param name="onderwerpLogicalId" as="xs:string?"/>   --> 
         
           
         <xsl:for-each select="$in">
@@ -61,13 +63,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
                     </meta>
                     
-                    <!--
-                    <patient>
-                        <reference value="{$patientReference}"/>
-                        <display value="{$patientName}"/>
-                    </patient>
+<!--                    
+                    <!-\- Patient is mandatory by FHIR -\->
+                    <xsl:if test="$onderwerp">
+                        <patient>
+                            <xsl:call-template name="nl-core-Patient-reference">
+                                <xsl:with-param name="in" select="$onderwerp"/>
+                                <xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>
+                            </xsl:call-template>
+                        </patient>
+                    </xsl:if>
                     -->
-                    
                     <!-- role -->
                     <xsl:for-each select="rol[@code]">
                         <relationship>
@@ -96,8 +102,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="adresgegevens">
                         <xsl:call-template name="nl-core-AddressInformation"/>
                     </xsl:for-each>
-                    
+                   
                 </RelatedPerson>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Mapping of nl-core-Contactpersoon concept in ADA to FHIR within the Patient resource.</xd:desc>
+        <xd:param name="in">Node to consider in the creation of a Patient.contact element.</xd:param>
+    </xd:doc>
+    <xsl:template match="contactpersoon" name="nl-core-ContactPerson-embedded" mode="nl-core-ContactPerson-embedded">
+        <xsl:param name="in" select="." as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <contact>
+                <!-- role -->
+                <xsl:for-each select="rol[@code]">
+                    <relationship>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </relationship>
+                </xsl:for-each>
+                
+                <!-- relatie -->
+                <xsl:for-each select="relatie[@code]">
+                    <relationship>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </relationship>
+                </xsl:for-each>
+                
+                <!-- sub-zibs -->
+                <xsl:for-each select="naamgegevens">
+                    <xsl:call-template name="nl-core-NameInformation"/>
+                </xsl:for-each>
+                <xsl:for-each select="contactgegevens">
+                    <xsl:call-template name="nl-core-ContactInformation"/>
+                </xsl:for-each>
+                <xsl:for-each select="adresgegevens">
+                    <xsl:call-template name="nl-core-AddressInformation"/>
+                </xsl:for-each>
+            </contact>
         </xsl:for-each>
     </xsl:template>
         
