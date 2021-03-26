@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+  <!--  <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner" name="nl-core-HealthProfessional-Practitioner" as="element(f:Practitioner)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">          
-            <Practitioner>
+            <Practitioner>                
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
                 </meta>
@@ -56,6 +56,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="adresgegevens">
                     <xsl:call-template name="nl-core-AddressInformation"/>
                 </xsl:for-each>-->          
+          <!--      <xsl:for-each select="geslacht">
+                    <gender>
+                        <xsl:call-template name="code-to-code">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="codeMap" as="element()*">
+                                <map inCode="M" inCodeSystem="2.16.840.1.113883.5.1" code="male"/>
+                                <map inCode="F" inCodeSystem="2.16.840.1.113883.5.1" code="female"/>
+                                <map inCode="UN" inCodeSystem="2.16.840.1.113883.5.1" code="other"/>
+                                <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                        <xsl:call-template name="ext-CodeSpecification"/>
+                    </gender>
+                </xsl:for-each>-->
             </Practitioner>
         </xsl:for-each>
     </xsl:template>
