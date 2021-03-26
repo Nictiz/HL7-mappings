@@ -237,9 +237,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code value="{$typeCode}"/>
                         <display>
                             <xsl:choose>
-                                <xsl:when test="$typeCode='RSP'">Received spoken</xsl:when>
-                                <xsl:when test="$typeCode='ESP'">Expressed spoken</xsl:when>
-                                <xsl:when test="$typeCode='RWR'">Received written</xsl:when>
+                                <xsl:when test="$typeCode='RSP'">
+                                    <xsl:attribute name="value" select="'Received spoken'"/>
+                                </xsl:when>
+                                <xsl:when test="$typeCode='ESP'">
+                                    <xsl:attribute name="value" select="'Expressed spoken'"/>
+                                </xsl:when>
+                                <xsl:when test="$typeCode='RWR'">
+                                    <xsl:attribute name="value" select="'Received written'"/>
+                                </xsl:when>
                             </xsl:choose>
                         </display>
                     </valueCoding>
@@ -247,5 +253,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </extension>
         </xsl:if>
     </xsl:template>
-
+   
 </xsl:stylesheet>
