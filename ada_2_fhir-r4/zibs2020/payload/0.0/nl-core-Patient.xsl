@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="nationality" as="element(nationaliteit_rc)?"/>
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?"/>
         <xsl:param name="languageProficiencys" as="element(taalvaardigheid)*"/>
-        <xsl:param name="contactPersons" as="element(contact_persoon)*"/>
+        <xsl:param name="contactPersons" as="element(contactpersoon)*"/>
 
         <Patient>
             <xsl:if test="string-length($logicalId) gt 0">
