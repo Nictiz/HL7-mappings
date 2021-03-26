@@ -171,9 +171,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </multipleBirthBoolean>
             </xsl:for-each>
             
+            <!-- Only "Eerste relatie/contactpersoon" and "Tweede relatie/contactpersoon" as Patient.contacts. Otherwise they should be entered as RelatedPerson-->
             <xsl:for-each select="$contactPersons">
-                <xsl:call-template name="nl-core-ContactPerson-embedded"/>
-            </xsl:for-each>
+                <xsl:if test="$contactPersons/rol[@value='1']|$contactPersons/rol[@value='2']">
+                    <xsl:call-template name="nl-core-ContactPerson-embedded"/>
+                </xsl:if>
+            </xsl:for-each>           
             
             <xsl:for-each select="$languageProficiencys">
                 <communication>
