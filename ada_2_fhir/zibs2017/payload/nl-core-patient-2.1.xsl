@@ -14,11 +14,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="_zib2017.xsl"/>
     <xsl:import href="nl-core-address-2.0.xsl"/>
-    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
-    <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
+    <!-\- beware: choose the appropriate contactpoint xsl -\->
+    <!-\- 2019.01 -\->
+<!-\-    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>-\->
+    <!-\- 2020.01 -\->    
+    <xsl:import href="nl-core-contactpoint-2.0.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>
+    <xsl:import href="ext-code-specification-1.0.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -112,12 +117,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">
+                    <xsl:choose>
+                        <xsl:when test="parent::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Patient</xsl:when>
+                        <xsl:otherwise>http://fhir.nl/fhir/StructureDefinition/nl-core-patient</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <Patient>
                     <xsl:if test="string-length($logicalId) gt 0">
+                        <!-- do not add profile-id to patient id, we need the patient id to match the qualification token stuff -->
                         <id value="{$logicalId}"/>
                     </xsl:if>
                     <meta>
-                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <!-- patient_identificatienummer  -->
                     <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number)[@value | @nullFlavor]">
@@ -148,6 +160,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
                                 </xsl:with-param>
                             </xsl:call-template>
+                            <!-- MM-1036, add  -->
+                            <xsl:call-template name="ext-code-specification-1.0"/>                            
                         </gender>
                     </xsl:for-each>
                     <!-- geboortedatum -->

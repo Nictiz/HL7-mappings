@@ -517,7 +517,7 @@
                 <xsl:value-of select="concat($daynum, ' ', nf:getDutchMonthName($monthnum, 3, 'low'), ' ', $yearnum)"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="$inputDate"/>
+                <xsl:value-of select="nf:formatTDate($inputDate, false(), false())"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>

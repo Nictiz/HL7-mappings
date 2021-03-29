@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e309efc-5992-11eb-1174-020000000000"/>
+   <id value="44481a6c-8b3f-11eb-1937-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e3096a8-5992-11eb-1174-020000000000"/>
+      <fullUrl value="urn:uuid:44481230-8b3f-11eb-1937-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T-20D{00:00:00}, tot en met T+9D{23:59:59}, 1 maal per dag 2 stuks, Oraal</div>
+                              <div>Tekst: Vanaf T - 20 dagen, tot en met T + 9 dagen, 1 maal per dag 2 stuks, Oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -84,7 +84,7 @@
                <display value="IBUPROFEN TABLET 600MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e309f02-5992-11eb-1174-020000000000"/>
+               <reference value="urn:uuid:44481214-8b3f-11eb-1937-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
@@ -92,7 +92,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e3096ae-5992-11eb-1174-020000000000"/>
+                        <reference value="urn:uuid:4448123c-8b3f-11eb-1937-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -101,7 +101,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T-20D{00:00:00}, tot en met T+9D{23:59:59}, 1 maal per dag 2 stuks, Oraal"/>
+               <text value="Vanaf T - 20 dagen, tot en met T + 9 dagen, 1 maal per dag 2 stuks, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -130,7 +130,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e309f02-5992-11eb-1174-020000000000"/>
+      <fullUrl value="urn:uuid:44481214-8b3f-11eb-1937-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -165,7 +165,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-05-08"/>
          </Patient>
       </resource>
@@ -270,7 +280,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e3096ae-5992-11eb-1174-020000000000"/>
+      <fullUrl value="urn:uuid:4448123c-8b3f-11eb-1937-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

@@ -16,16 +16,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
     <xsl:import href="../../../2_fhir_mp90_include.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
             <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR STU3 profiles.</xd:p>
-            <xd:p>
-                <xd:b>History:</xd:b>
-                <xd:ul>
-                    <xd:li>2019-02-25 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
-                </xd:ul>
-            </xd:p>
         </xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
@@ -41,11 +36,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
     
-    <xsl:variable name="usecase">mp9</xsl:variable>
-    <xsl:variable name="commonEntries" as="element(f:entry)*">
+       <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
     </xsl:variable>
-
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
+    
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
     </xd:doc>
@@ -70,42 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates select="$entries/f:resource/*" mode="doResourceInResultdoc"/>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Creates xml document for a FHIR resource</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name">
-            <xsl:choose>
-                <xsl:when test="./local-name() = 'Organization'">mp612-Organization</xsl:when>
-                <xsl:when test="./local-name() = 'Patient'">mp612-Patient</xsl:when>
-                <xsl:when test="./local-name() = 'Medication'">mp612-Product</xsl:when>
-                <xsl:otherwise><xsl:value-of select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-DispenseToFHIRConversion-', '-')"/></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
-            <xsl:apply-templates select="." mode="ResultOutput"/>
-        </xsl:result-document>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:Organization/f:meta/f:profile" mode="ResultOutput">
-        <xsl:copy>
-            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:Patient/f:meta/f:profile" mode="ResultOutput">
-        <xsl:copy>
-            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Patient</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
+      <xd:doc>
         <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
     </xd:doc>
     <xsl:template match="f:Medication/f:meta/f:profile" mode="ResultOutput">

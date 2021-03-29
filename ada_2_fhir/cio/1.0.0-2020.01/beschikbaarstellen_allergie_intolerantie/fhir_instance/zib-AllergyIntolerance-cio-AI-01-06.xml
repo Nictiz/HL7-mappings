@@ -1,0 +1,88 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-cio-AI-01-06"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_06 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op voedsel (418471000 - SNOMED CT)">neiging tot ongewenste reactie op voedsel</span>, Status: opgelost / <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Ingevoerd door: Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Pinda (91935009 - SNOMED CT)">Pinda</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>Véronique V. Véronique XXX-TEST-D</td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -5000}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="AI_01_06"/>
+   </identifier>
+   <clinicalStatus value="resolved">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="completed"/>
+               <display value="Niet meer aanwezig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </verificationStatus>
+   <category value="food">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="418471000"/>
+               <display value="neiging tot ongewenste reactie op voedsel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="91935009"/>
+         <display value="Pinda"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -5000}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-cio-2222222320100"/>
+            <display value="Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd"/>
+         </valueReference>
+      </extension>
+      <display value="Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd"/>
+   </recorder>
+   <asserter>
+      <reference value="Patient/XXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
+   </asserter>
+</AllergyIntolerance>

@@ -39,6 +39,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- date T for relativedate calculation (only relevant for test instances) -->
     <xsl:param name="dateT" as="xs:date?"/>
     
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+    
+    
     <xd:doc>
         <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
     </xd:doc>

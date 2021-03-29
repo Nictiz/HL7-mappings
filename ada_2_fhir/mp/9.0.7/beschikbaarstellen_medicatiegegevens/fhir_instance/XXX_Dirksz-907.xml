@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="587b7c41-5992-11eb-7585-020000000000"/>
+   <id value="55a0a8b9-8b3f-11eb-3600-020000000000"/>
    <type value="searchset"/>
    <total value="15"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:587b6531-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a0b994-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -33,17 +33,17 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 15 juli 2018</td>
+                           <td>${DATE, T, D, -50}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>15 juli 2018 00:00:00 - 13 augustus 2018 23:59:59</td>
+                           <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -20}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 15 jul 2018, gedurende 30 dagen, zo nodig 1 maal per dag 1 stuk, rectaal</div>
+                              <div>Tekst: Vanaf T - 50 dagen, tot en met T - 20 dagen, zo nodig 1 maal per dag 1 stuk, Rectaal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
@@ -59,8 +59,8 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-07-15T00:00:00+02:00"/>
-                  <end value="2018-08-13T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -20}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -87,15 +87,15 @@
                <display value="Metoclopramide zetpil 20mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
-            <authoredOn value="2018-07-15T11:25:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -50}T11:25:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:587b6537-5992-11eb-7585-020000000000"/>
+                        <reference value="urn:uuid:55a0b9a0-8b3f-11eb-3600-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -105,7 +105,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 15 jul 2018, gedurende 30 dagen, zo nodig 1 maal per dag 1 stuk, rectaal"/>
+               <text value="Vanaf T - 50 dagen, tot en met T - 20 dagen, zo nodig 1 maal per dag 1 stuk, Rectaal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -141,7 +141,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6904-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09f2f-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -165,17 +165,17 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>14:55:00, 4 augustus 2018</td>
+                           <td>${DATE, T, D, -30}T14:55:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>4 augustus 2018 00:00:00 - 24 augustus 2018 23:59:59</td>
+                           <td>${DATE, T, D, -30}T00:00:00+02:00 - ${DATE, T, D, -9}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 4 aug 2018, gedurende 3 weken, 1 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T - 30 dagen, tot en met T - 9 dagen, 1 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -189,8 +189,8 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-04T00:00:00+02:00"/>
-                  <end value="2018-08-24T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -9}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -217,15 +217,15 @@
                <display value="ZESTRIL TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
-            <authoredOn value="2018-08-04T14:55:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -30}T14:55:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:587b6537-5992-11eb-7585-020000000000"/>
+                        <reference value="urn:uuid:55a0b9a0-8b3f-11eb-3600-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -235,7 +235,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 4 aug 2018, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T - 30 dagen, tot en met T - 9 dagen, 1 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -264,7 +264,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b69b2-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a0a0da-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -288,17 +288,17 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>14:57:00, 4 augustus 2018</td>
+                           <td>${DATE, T, D, -30}T14:57:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 4 augustus 2018</td>
+                           <td>Vanaf ${DATE, T, D, -30}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 4 aug 2018, tot nader order, 1 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T - 30 dagen, 1 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -312,7 +312,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-04T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -339,15 +339,15 @@
                <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
-            <authoredOn value="2018-08-04T14:57:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -30}T14:57:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:587b6537-5992-11eb-7585-020000000000"/>
+                        <reference value="urn:uuid:55a0b9a0-8b3f-11eb-3600-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -357,7 +357,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 4 aug 2018, tot nader order, 1 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -386,7 +386,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6560-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09de7-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -414,7 +414,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 15 juli 2018</td>
+                           <td>${DATE, T, D, -50}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Toedieningsverzoek</th>
@@ -460,15 +460,15 @@
                <display value="Metoclopramide zetpil 20mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
-            <authoredOn value="2018-07-15T11:25:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -50}T11:25:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:587b6563-5992-11eb-7585-020000000000"/>
+                        <reference value="urn:uuid:55a09ded-8b3f-11eb-3600-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -495,7 +495,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6931-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09f9c-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -523,7 +523,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>14:55:00, 4 augustus 2018</td>
+                           <td>${DATE, T, D, -30}T14:55:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Toedieningsverzoek</th>
@@ -569,15 +569,15 @@
                <display value="ZESTRIL TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
-            <authoredOn value="2018-08-04T14:55:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -30}T14:55:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:587b6563-5992-11eb-7585-020000000000"/>
+                        <reference value="urn:uuid:55a09ded-8b3f-11eb-3600-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -604,7 +604,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b69dd-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09973-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -632,7 +632,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>14:57:00, 4 augustus 2018</td>
+                           <td>${DATE, T, D, -30}T14:57:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Toedieningsverzoek</th>
@@ -678,15 +678,15 @@
                <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
-            <authoredOn value="2018-08-04T14:57:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -30}T14:57:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:587b6563-5992-11eb-7585-020000000000"/>
+                        <reference value="urn:uuid:55a09ded-8b3f-11eb-3600-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -713,7 +713,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b68a5-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09e40-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -733,7 +733,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 15 juli 2018</td>
+                           <td>${DATE, T, D, -50}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -745,13 +745,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>15 juli 2018 00:00:00 - 13 augustus 2018 23:59:59</td>
+                           <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -20}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 15 jul 2018, gedurende 30 dagen, zo nodig 1 maal per dag 1 stuk, rectaal</div>
+                              <div>Tekst: Vanaf T - 50 dagen, tot en met T - 20 dagen, zo nodig 1 maal per dag 1 stuk, Rectaal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
@@ -766,12 +766,12 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-07-15T11:25:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -50}T11:25:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-07-15T00:00:00+02:00"/>
-                  <end value="2018-08-13T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -20}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -797,7 +797,7 @@
                <display value="PRIMPERAN ZETPIL 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <performer>
@@ -815,7 +815,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 15 jul 2018, gedurende 30 dagen, zo nodig 1 maal per dag 1 stuk, rectaal"/>
+               <text value="Vanaf T - 50 dagen, tot en met T - 20 dagen, zo nodig 1 maal per dag 1 stuk, Rectaal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -851,7 +851,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6957-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09ff7-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -871,7 +871,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>14:55:00, 4 augustus 2018</td>
+                           <td>${DATE, T, D, -30}T14:55:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -883,13 +883,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>4 augustus 2018 00:00:00 - 24 augustus 2018 23:59:59</td>
+                           <td>${DATE, T, D, -30}T00:00:00+02:00 - ${DATE, T, D, -9}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 4 aug 2018, gedurende 3 weken, 1 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T - 30 dagen, tot en met T - 9 dagen, 1 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -902,12 +902,12 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-04T14:55:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -30}T14:55:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-04T00:00:00+02:00"/>
-                  <end value="2018-08-24T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -9}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -933,7 +933,7 @@
                <display value="ZESTRIL TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <performer>
@@ -951,7 +951,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 4 aug 2018, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T - 30 dagen, tot en met T - 9 dagen, 1 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -980,7 +980,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6a01-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a099ca-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1000,7 +1000,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>14:57:00, 4 augustus 2018</td>
+                           <td>${DATE, T, D, -30}T14:57:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -1012,13 +1012,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 4 augustus 2018</td>
+                           <td>Vanaf ${DATE, T, D, -30}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 4 aug 2018, tot nader order, 1 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T - 30 dagen, 1 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -1031,11 +1031,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-04T14:57:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -30}T14:57:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-04T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -1061,7 +1061,7 @@
                <display value="ROTER APC TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <performer>
@@ -1079,7 +1079,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 4 aug 2018, tot nader order, 1 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -1108,7 +1108,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b68c5-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09e91-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1140,7 +1140,7 @@
                         </tr>
                         <tr>
                            <th>Datum overhandigd</th>
-                           <td>12:25:00, 15 juli 2018</td>
+                           <td>${DATE, T, D, -50}T12:25:00+02:00</td>
                         </tr>
                      </tbody>
                   </table>
@@ -1169,7 +1169,7 @@
                <display value="PRIMPERAN ZETPIL 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <performer>
@@ -1191,7 +1191,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                <code value="245"/>
             </quantity>
-            <whenHandedOver value="2018-07-15T12:25:00+02:00"/>
+            <whenHandedOver value="${DATE, T, D, -50}T12:25:00+02:00"/>
          </MedicationDispense>
       </resource>
       <search>
@@ -1199,7 +1199,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6974-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a0a040-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1231,7 +1231,7 @@
                         </tr>
                         <tr>
                            <th>Datum overhandigd</th>
-                           <td>15:55:00, 4 augustus 2018</td>
+                           <td>${DATE, T, D, -30}T15:55:00+02:00</td>
                         </tr>
                      </tbody>
                   </table>
@@ -1260,7 +1260,7 @@
                <display value="ZESTRIL TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <performer>
@@ -1282,7 +1282,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                <code value="245"/>
             </quantity>
-            <whenHandedOver value="2018-08-04T15:55:00+02:00"/>
+            <whenHandedOver value="${DATE, T, D, -30}T15:55:00+02:00"/>
          </MedicationDispense>
       </resource>
       <search>
@@ -1290,7 +1290,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6a1e-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09a13-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1322,7 +1322,7 @@
                         </tr>
                         <tr>
                            <th>Datum overhandigd</th>
-                           <td>15:56:00, 4 augustus 2018</td>
+                           <td>${DATE, T, D, -30}T15:56:00+02:00</td>
                         </tr>
                      </tbody>
                   </table>
@@ -1351,7 +1351,7 @@
                <display value="ROTER APC TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <performer>
@@ -1373,7 +1373,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                <code value="245"/>
             </quantity>
-            <whenHandedOver value="2018-08-04T15:56:00+02:00"/>
+            <whenHandedOver value="${DATE, T, D, -30}T15:56:00+02:00"/>
          </MedicationDispense>
       </resource>
       <search>
@@ -1381,7 +1381,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b68d5-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09eba-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1409,11 +1409,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 17 juli 2018, 1 dag</td>
+                           <td>Vanaf ${DATE, T, D, -48}, 1 dag</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>11:25:00, 17 juli 2018</td>
+                           <td>${DATE, T, D, -48}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -1423,7 +1423,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 17 jul 2018, gedurende 1 dag, 1 maal per dag 1 stuk, rectaal</div>
+                              <div>Tekst: Vanaf T - 48 dagen, gedurende 1 dag, zo nodig 1 maal per dag 1 stuk, Rectaal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
@@ -1443,13 +1443,13 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:587b68f4-5992-11eb-7585-020000000000"/>
+                  <reference value="urn:uuid:55a09f06-8b3f-11eb-3600-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+                  <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                   <display value="R. XXX_Dirksz"/>
                </valueReference>
             </extension>
@@ -1489,11 +1489,11 @@
                      <code value="d"/>
                   </valueDuration>
                </extension>
-               <start value="2018-07-17"/>
+               <start value="${DATE, T, D, -48}"/>
             </effectivePeriod>
-            <dateAsserted value="2018-07-17T11:25:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, -48}T11:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <derivedFrom>
@@ -1506,7 +1506,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 17 jul 2018, gedurende 1 dag, 1 maal per dag 1 stuk, rectaal"/>
+               <text value="Vanaf T - 48 dagen, gedurende 1 dag, zo nodig 1 maal per dag 1 stuk, Rectaal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -1542,7 +1542,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6984-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a0a069-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1570,11 +1570,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 4 augustus 2018, 3 week</td>
+                           <td>Vanaf ${DATE, T, D, -30}, 3 week</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>14:55:00, 21 augustus 2018</td>
+                           <td>${DATE, T, D, -13}T14:55:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -1584,7 +1584,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 4 aug 2018, gedurende 3 weken, 1 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T - 30 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -1605,13 +1605,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:587b68f4-5992-11eb-7585-020000000000"/>
+                  <reference value="urn:uuid:55a09f06-8b3f-11eb-3600-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+                  <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                   <display value="R. XXX_Dirksz"/>
                </valueReference>
             </extension>
@@ -1651,11 +1651,11 @@
                      <code value="wk"/>
                   </valueDuration>
                </extension>
-               <start value="2018-08-04"/>
+               <start value="${DATE, T, D, -30}"/>
             </effectivePeriod>
-            <dateAsserted value="2018-08-21T14:55:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, -13}T14:55:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <derivedFrom>
@@ -1668,7 +1668,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 4 aug 2018, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T - 30 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -1697,7 +1697,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6a2e-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09a3c-8b3f-11eb-3600-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1725,11 +1725,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>5 augustus 2018 - 23:59:59, 26 augustus 2018</td>
+                           <td>${DATE, T, D, -29} - ${DATE, T, D, -8}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>14:57:00, 5 augustus 2018</td>
+                           <td>${DATE, T, D, -29}T14:57:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -1739,7 +1739,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 5 aug 2018 tot en met 26 aug 2018, 1 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T - 29 dagen, tot en met T - 8 dagen, 1 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -1757,13 +1757,13 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:587b68f4-5992-11eb-7585-020000000000"/>
+                  <reference value="urn:uuid:55a09f06-8b3f-11eb-3600-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+                  <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                   <display value="R. XXX_Dirksz"/>
                </valueReference>
             </extension>
@@ -1795,12 +1795,12 @@
                <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </medicationReference>
             <effectivePeriod>
-               <start value="2018-08-05"/>
-               <end value="2018-08-26T23:59:59+02:00"/>
+               <start value="${DATE, T, D, -29}"/>
+               <end value="${DATE, T, D, -8}T23:59:59+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-08-05T14:57:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, -29}T14:57:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
                <display value="R. XXX_Dirksz"/>
             </subject>
             <derivedFrom>
@@ -1813,7 +1813,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 5 aug 2018 tot en met 26 aug 2018, 1 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T - 29 dagen, tot en met T - 8 dagen, 1 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -1842,7 +1842,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b7c45-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a0a8c1-8b3f-11eb-3600-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -1881,7 +1881,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-08-01"/>
          </Patient>
       </resource>
@@ -1986,7 +1996,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b68fd-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09f1b-8b3f-11eb-3600-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -2050,7 +2060,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6537-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a0b9a0-8b3f-11eb-3600-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2102,7 +2112,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b6563-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09ded-8b3f-11eb-3600-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2154,7 +2164,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:587b68f4-5992-11eb-7585-020000000000"/>
+      <fullUrl value="urn:uuid:55a09f06-8b3f-11eb-3600-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2188,7 +2198,7 @@
                <display value="Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:587b68fd-5992-11eb-7585-020000000000"/>
+               <reference value="urn:uuid:55a09f1b-8b3f-11eb-3600-020000000000"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>

@@ -111,12 +111,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <!-- NL-CM:8.2.1    AllergieIntolerantie -->
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance</xsl:variable>
                 <AllergyIntolerance>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
 
                     <!-- text narrative 
