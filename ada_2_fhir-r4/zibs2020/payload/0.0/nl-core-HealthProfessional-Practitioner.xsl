@@ -14,40 +14,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions"
     xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    
+
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-  <!--  <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada zorgverlener to FHIR resource conforming to profile nl-core-HealthProfessional-Practitioner</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Unwrap zorgverlener_registratie element</xd:desc>
     </xd:doc>
     <xsl:template match="zorgverlener_registratie">
         <xsl:apply-templates select="zorgverlener" mode="nl-core-HealthProfessional-Practitioner"/>
     </xsl:template>
-    
-    <xd:doc>       
+
+    <xd:doc>
         <xd:param name="in">Ada 'zorgverlener' element containing the zib data</xd:param>
     </xd:doc>
-    <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner" name="nl-core-HealthProfessional-Practitioner" as="element(f:Practitioner)*">
+    <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner"
+        name="nl-core-HealthProfessional-Practitioner" as="element(f:Practitioner)*">
         <xsl:param name="in" select="." as="element()*"/>
-        <xsl:for-each select="$in[.//@value]">          
-            <Practitioner>                
+        <xsl:for-each select="$in[.//@value]">
+            <Practitioner>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
                 </meta>
                 <xsl:for-each select="zorgverlener_identificatienummer">
                     <identifier>
-                        <xsl:call-template name="id-to-Identifier"/>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
                     </identifier>
                 </xsl:for-each>
                 <!-- sub-zibs -->
-             <!--   <xsl:for-each select="naamgegevens">
+        <!--        <xsl:for-each select="naamgegevens">
                     <xsl:call-template name="nl-core-NameInformation"/>
                 </xsl:for-each>
                 <xsl:for-each select="contactgegevens">
@@ -55,8 +58,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <xsl:for-each select="adresgegevens">
                     <xsl:call-template name="nl-core-AddressInformation"/>
-                </xsl:for-each>-->          
-          <!--      <xsl:for-each select="geslacht">
+                </xsl:for-each>
+                <xsl:for-each select="geslacht">
                     <gender>
                         <xsl:call-template name="code-to-code">
                             <xsl:with-param name="in" select="."/>
@@ -64,7 +67,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <map inCode="M" inCodeSystem="2.16.840.1.113883.5.1" code="male"/>
                                 <map inCode="F" inCodeSystem="2.16.840.1.113883.5.1" code="female"/>
                                 <map inCode="UN" inCodeSystem="2.16.840.1.113883.5.1" code="other"/>
-                                <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
+                                <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008"
+                                    code="unknown"/>
                             </xsl:with-param>
                         </xsl:call-template>
                         <xsl:call-template name="ext-CodeSpecification"/>
