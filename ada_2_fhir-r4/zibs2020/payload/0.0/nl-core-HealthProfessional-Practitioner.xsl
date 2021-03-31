@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-   <!-- <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -72,15 +72,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                         <xsl:call-template name="ext-CodeSpecification"/>
                     </gender>
-                </xsl:for-each>
-                // is dit de juiste mapping? 
+                </xsl:for-each>            
                 <xsl:for-each select="zorgaanbieder">
-                    <xsl:call-template name="nl-core-HealthcareProvider"/>
-                </xsl:for-each>
-             //   Specialisme zit in hierin?
-                <xsl:for-each select="zorgverlener_rol">
-                    <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole"/>
+                    <xsl:call-template name="nl-core-HealthcareProvider-reference"/>
                 </xsl:for-each>-->
+                <xsl:if test="specialisme">
+                    <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole"/>
+                </xsl:if>
             </Practitioner>
         </xsl:for-each>
     </xsl:template>
