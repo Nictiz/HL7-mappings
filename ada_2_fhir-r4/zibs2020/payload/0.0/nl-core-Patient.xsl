@@ -194,18 +194,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                     <xsl:for-each select="communicatie_bijzonderheden">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-LanguageProficiency-CommunicationDetails">
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="elementName" select="'valueCodeableConcept'"/>
-                            </xsl:call-template>
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
                         </extension>
                     </xsl:for-each>
                     <xsl:for-each select="toelichting">
                         <xsl:call-template name="ext-Comment"/>
                     </xsl:for-each>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="communicatie_taal"/>
-                    </xsl:call-template>
+                    <language>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="communicatie_taal"/>
+                        </xsl:call-template>
+                    </language>
                 </communication>
             </xsl:for-each>
         </Patient>
