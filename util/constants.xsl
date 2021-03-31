@@ -81,6 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidHL7ObservationInterpretation">2.16.840.1.113883.5.83</xsl:variable>
     <xsl:variable name="oidHL7ParticipationType">2.16.840.1.113883.5.90</xsl:variable>
     <xsl:variable name="oidHL7RoleCode">2.16.840.1.113883.5.111</xsl:variable>
+    <xsl:variable name="oidHL7V3MaritalStatus">2.16.840.1.113883.5.2</xsl:variable>
     <xsl:variable name="oidISO3166">1.0.3166.1.2.2</xsl:variable>
     <xsl:variable name="oidICPC1NL">2.16.840.1.113883.2.4.4.31.1</xsl:variable>
     <xsl:variable name="oidJournaalregeltypen">2.16.840.1.113883.2.4.4.32.2</xsl:variable>
@@ -185,7 +186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <map oid="{$oidHL7AddressUse}" uri="http://hl7.org/fhir/v3/AddressUse" displayName="HL7 AddressUse"/>
                 <map oid="{$oidHL7RoleCode}" uri="http://hl7.org/fhir/v3/RoleCode" displayName="HL7 RoleCode"/>
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://hl7.org/fhir/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
-        <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
+                <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
             </xsl:when>
             <xsl:when test="$fhirVersion='R4'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://terminology.hl7.org/CodeSystem/choice-list-orientation" displayName="ChoiceListOrientation"/>
@@ -200,6 +201,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <map oid="{$oidHL7NullFlavor}" uri="http://terminology.hl7.org/CodeSystem/v3-NullFlavor" displayName="HL7 NullFlavor"/>
                 <map oid="{$oidHL7AddressUse}" uri="http://terminology.hl7.org/CodeSystem/v3-AddressUse" displayName="HL7 AddressUse"/>
                 <map oid="{$oidHL7RoleCode}" uri="http://terminology.hl7.org/CodeSystem/v3-RoleCode" displayName="HL7 RoleCode"/>
+                <map oid="{$oidHL7V3MaritalStatus}" uri="http://terminology.hl7.org/CodeSystem/v3-MaritalStatus" displayName="HL7 MaritalStatus"/>
 
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://terminology.hl7.org/CodeSystem/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
                 <map uri="http://terminology.hl7.org/CodeSystem/v2-0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
