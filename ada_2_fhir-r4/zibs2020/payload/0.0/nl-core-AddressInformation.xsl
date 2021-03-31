@@ -144,7 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                             <valueCodeableConcept>
                                 <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="in" select="land"/>
                                 </xsl:call-template>
                             </valueCodeableConcept>
                         </extension>
