@@ -17,6 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
     <xsl:import href="nl-core-ContactPerson.xsl"/>
+    <xsl:import href="nl-core-HealthcareProvider.xsl"/>
     <xsl:import href="nl-core-HealthProfessional-Practitioner.xsl"/>
     <xsl:import href="nl-core-HealthProfessional-PractitionerRole.xsl"/>
     <xsl:import href="nl-core-MedicationContraIndication.xsl"/>
