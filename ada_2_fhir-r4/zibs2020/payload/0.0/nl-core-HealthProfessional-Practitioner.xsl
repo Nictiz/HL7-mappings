@@ -75,10 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>            
                 <xsl:for-each select="zorgaanbieder">
                     <xsl:call-template name="nl-core-HealthcareProvider-reference"/>
-                </xsl:for-each>-->
-                <xsl:if test="specialisme">
-                    <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole"/>
-                </xsl:if>
+                </xsl:for-each>-->       
             </Practitioner>
         </xsl:for-each>
     </xsl:template>
