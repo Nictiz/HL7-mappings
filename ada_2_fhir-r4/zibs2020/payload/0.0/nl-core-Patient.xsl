@@ -193,7 +193,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="typeCode" select="'RWR'"/>
                     </xsl:call-template>
                     <xsl:for-each select="communicatie_bijzonderheden">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-LanguageProficiency-CommunicationDetails">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails">
                             <valueCodeableConcept>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
