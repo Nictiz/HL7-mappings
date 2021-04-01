@@ -24,17 +24,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
-    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada Contactpersoon to FHIR resource conforming to profile nl-core-ContactPerson</xd:desc>
-    </xd:doc>
-    <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    
+       
     <xd:doc>
         <xd:desc>Unwrap contactpersoon_registratie element</xd:desc>
     </xd:doc>
@@ -43,16 +35,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Mapping of nl-core-Contactpersoon concept in ADA to FHIR RelatedPerson resource.</xd:desc>
+        <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
         <xd:param name="logicalId">RelatedPerson.id value</xd:param>
-        <xd:param name="in">Node to consider in the creation of a RelatedPerson resource</xd:param>
     </xd:doc>
         <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-<!--        <xsl:param name="onderwerp" as="element()?"/>
-        <xsl:param name="onderwerpLogicalId" as="xs:string?"/>   --> 
-        
           
         <xsl:for-each select="$in">
                 <RelatedPerson>
@@ -63,17 +51,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
                     </meta>
                     
-<!--                    
-                    <!-\- Patient is mandatory by FHIR -\->
-                    <xsl:if test="$onderwerp">
+                   <!--                    
+                   TODO: Patient reference
                         <patient>
                             <xsl:call-template name="nl-core-Patient-reference">
-                                <xsl:with-param name="in" select="$onderwerp"/>
-                                <xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>
+                                <xsl:with-param name="in" select="XXXXXX"/>
+                                <xsl:with-param name="logicalId" select="XXXXXX"/>
                             </xsl:call-template>
                         </patient>
                     </xsl:if>
                     -->
+                    
                     <!-- role -->
                     <xsl:for-each select="rol[@code]">
                         <relationship>
@@ -108,7 +96,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Mapping of nl-core-Contactpersoon concept in ADA to FHIR within the Patient resource.</xd:desc>
+        <xd:desc>Create a nl-core-Contactperson FHIR instance emmbedded in the Patient instance from ada Contactpersoon. Since it is embedded in the Patient no Resource.id is needed.</xd:desc>
         <xd:param name="in">Node to consider in the creation of a Patient.contact element.</xd:param>
     </xd:doc>
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson-embedded" mode="nl-core-ContactPerson-embedded">
