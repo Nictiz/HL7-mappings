@@ -41,59 +41,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <address>
                 <!--adres_soort-->
                 <xsl:for-each select="adres_soort[@codeSystem = '2.16.840.1.113883.5.1119'][@code]">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </extension>
                     <xsl:choose>
-                        <!-- Postadres -->
                         <xsl:when test="@code = 'PST'">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>                      
+                            <type value="postal"/>
                         </xsl:when>
-                        <!-- Officieel adres -->
                         <xsl:when test="@code = 'HP'">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
                             <use value="home"/>
+                            <type value="both"/>
                         </xsl:when>
-                        <!-- Tijdelijk adres -->
-                        <xsl:when test="@code = 'TMP'">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
+                        <xsl:when test="@code = 'PHYS'">
+                            <use value="home"/>
+                            <type value="physical"/>
+                        </xsl:when>
+                        <xsl:when test="@code = ('TMP', 'HV')">
                             <use value="temp"/>
                         </xsl:when>
-                        <!-- Werkadres -->
                         <xsl:when test="@code = 'WP'">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
                             <use value="work"/>
-                        </xsl:when>
-                        <!-- Vakantie adres -->
-                        <xsl:when test="@code = 'HV'">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-zib-AddressInformation-AddressType">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
                         </xsl:when>
                     </xsl:choose>
                 </xsl:for-each>
