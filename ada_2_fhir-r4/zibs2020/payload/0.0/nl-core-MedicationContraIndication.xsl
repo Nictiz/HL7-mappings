@@ -27,26 +27,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada medicatie_contra_indicatie to FHIR resource conforming to profile nl-core-MedicationContraIndication</xd:desc>
-    </xd:doc>
-    <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    
     <xd:doc>
         <xd:desc>Unwrap medicatie_contra_indicatie_registratie element</xd:desc>
     </xd:doc>
     <xsl:template match="medicatie_contra_indicatie_registratie">
-        
-        <xsl:apply-templates select="medicatie_contra_indicatie" mode="nl-core-MedicationContraIndication">
-            <xsl:with-param name="patientReference"  select="'Patient/nl-core-Patient-01'"/>
-            <xsl:with-param name="patientReferenceDisplay" select="'Test Patient nummer 1'"/>
-        </xsl:apply-templates>
+        <xsl:apply-templates select="medicatie_contra_indicatie" mode="nl-core-MedicationContraIndication"/>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Mapping of zib-MedicationContraIndication concept in ADA to FHIR resource.</xd:desc>
+        <xd:desc>Create a nl-core-MedicationContraIndication FHIR Flag resource from the ada medicatie_contra_indicatie part.</xd:desc>
         <xd:param name="logicalId">Flag.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a Flag resource</xd:param>
+        
+        <!-- TODO Needs to get more documentation about the references. The current approach may not the final one. -->
+       
     </xd:doc>
     <xsl:template match="medicatie_contra_indicatie" name="nl-core-MedicationContraIndication" mode="nl-core-MedicationContraIndication">
         <xsl:param name="in" select="." as="element()?"/>
@@ -71,9 +65,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="eindDatum" select="eind_datum/@value"/>
                     <xsl:variable name="medicatieContraIndicatieNaam" select="medicatie_contra_indicatie_naam"/>
                                         
-                    <!-- ReasonClosure - NL-CM:9.14.4 - cardinality is 0..1 hence an if statement and not a for-each -->                        
+                    <!-- ReasonClosure - NL-CM:9.14.4 -->                        
                     <xsl:if test="string-length($redenVanAfsluiten) gt 0">   
-                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-nl-core-MedicationContraIndication-ReasonClosure">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.ReasonClosure">
                              <valueString>
                                  <xsl:attribute name="value" select="$redenVanAfsluiten"/>
                              </valueString>
@@ -82,11 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- Comment - NL-CM:9.14.7 -->
                     <xsl:if test="string-length($toelichting) gt 0">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-                            <valueString>
-                                <xsl:attribute name="value" select="$toelichting"/>
-                            </valueString>
-                        </extension>
+                         <xsl:call-template name="ext-Comment"/>
                     </xsl:if>
                     
                     <!-- Decide on mandatory Flag.status value based on presence of 'reden_van_afsluiten' value or an 'eind_datum' that lies in the past. -->
@@ -121,15 +111,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:if>         
                     
-                    <!-- Subject is mandatory by FHIR -->
-                    <xsl:if test="$onderwerp">
+                    <!-- TODO Subject is mandatory by FHIR -->
+<!--                    <xsl:if test="$onderwerp">
                         <subject>
                             <xsl:call-template name="nl-core-Patient-reference">
                                 <xsl:with-param name="in" select="$onderwerp"/>
                                 <xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>
                             </xsl:call-template>
                         </subject>
-                    </xsl:if>
+                    </xsl:if>-->
                    
                     <xsl:if test="$beginDatum|$eindDatum">
                         <period>
@@ -148,15 +138,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </period>
                     </xsl:if>  
                                         
-                   <!-- Reporter - NL-CM:9.14.5 -->                                     
-                   <xsl:if test="$melder">
+                   <!-- TODO Reporter - NL-CM:9.14.5 -->                                     
+<!--                   <xsl:if test="$melder">
                         <author>
-                           <!--<xsl:call-template name="nl-core-HealthProfessional-reference">
+                           <xsl:call-template name="nl-core-HealthProfessional-reference">
                                <xsl:with-param name="in" select="$melder"/>
                                <xsl:with-param name="logicalId" select="$melderLogicalId"/>
-                           </xsl:call-template>-->
+                           </xsl:call-template>
                        </author>
-                   </xsl:if>
+                   </xsl:if>-->
                                       
                 </Flag>
         </xsl:for-each>
