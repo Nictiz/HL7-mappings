@@ -67,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         
                     <!-- ReasonClosure - NL-CM:9.14.4 -->                        
                     <xsl:if test="string-length($redenVanAfsluiten) gt 0">   
-                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-nl-core-MedicationContraIndication-ReasonClosure">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.ReasonClosure">
                              <valueString>
                                  <xsl:attribute name="value" select="$redenVanAfsluiten"/>
                              </valueString>
@@ -76,11 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- Comment - NL-CM:9.14.7 -->
                     <xsl:if test="string-length($toelichting) gt 0">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-                            <valueString>
-                                <xsl:attribute name="value" select="$toelichting"/>
-                            </valueString>
-                        </extension>
+                         <xsl:call-template name="ext-Comment"/>
                     </xsl:if>
                     
                     <!-- Decide on mandatory Flag.status value based on presence of 'reden_van_afsluiten' value or an 'eind_datum' that lies in the past. -->
