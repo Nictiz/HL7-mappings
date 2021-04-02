@@ -60,7 +60,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </meta>
                     
                     <xsl:variable name="redenVanAfsluiten" select="reden_van_afsluiten/@value"/>
-                    <xsl:variable name="toelichting" select="toelichting/@value"/>
                     <xsl:variable name="beginDatum" select="begin_datum/@value"/>
                     <xsl:variable name="eindDatum" select="eind_datum/@value"/>
                     <xsl:variable name="medicatieContraIndicatieNaam" select="medicatie_contra_indicatie_naam"/>
@@ -75,9 +74,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if> 
                     
                     <!-- Comment - NL-CM:9.14.7 -->
-                    <xsl:if test="string-length($toelichting) gt 0">
-                         <xsl:call-template name="ext-Comment"/>
-                    </xsl:if>
+                    <xsl:for-each select="toelichting">
+                        <xsl:call-template name="ext-Comment"/>
+                    </xsl:for-each>
                     
                     <!-- Decide on mandatory Flag.status value based on presence of 'reden_van_afsluiten' value or an 'eind_datum' that lies in the past. -->
                     <status>
