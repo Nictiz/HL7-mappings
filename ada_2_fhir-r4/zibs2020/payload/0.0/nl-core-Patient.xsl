@@ -34,11 +34,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Global variable that can be called anywhere in the process to access, include or reference any unique patient present in the input data</xd:desc>
     </xd:doc>
     <!-- Based on variable 'patients' in _zib2017.xsl -->
-    <xsl:variable name="patients" as="element()*">
+    <xsl:template name="getAllPatients" as="element()*">
+        <xsl:param name="in" select="."/>
         <!-- Originally, this grouping contained the 'nf:ada-pat-id' function, but because this function is not used outside this variable I edited it out. Maybe it should be removed from 2_fhir_fhir_include and added to _zib2017? -->
         <xsl:variable name="identifier" select="(identificatienummer[@root = $oidBurgerservicenummer],identificatienummer[not(@root = $oidBurgerservicenummer)])[1]"/>
-        <!-- How do we include 'bundle's here? Add $inputBundle//patient in some way? But maybe $inputBundle is too zib2020-R4-specific? -->
-        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="concat($identifier/@root, $identifier/@value)">
+        <xsl:for-each-group select="$in//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="concat($identifier/@root, $identifier/@value)">
             <!-- This for-each-group should be enough to sort patients by their official identifier, but $patients does a second group-by. Apparently there are enough use cases where no identificatienummer is present (or masked?), or dummy identificatienummers that exist in multiple patients. So I guess this second group-by is necessary? If a use case uses the same patient multiple times, it still gets filtered out -->
             <!-- nf:getGroupingKeyPatient() is a function that concatenates a lot of Patient values together. It is not only used here, but also when generating the reference -->
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
@@ -96,7 +96,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </nm:resource>
             </xsl:for-each-group>
         </xsl:for-each-group>
-    </xsl:variable>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Create an nl-core-Patient FHIR instance from the following ada parts:
@@ -329,33 +329,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="nl-core-Patient-reference" match="patient" mode="nl-core-Patient-reference" as="element()*">
         <xsl:param name="in" select="." as="element()*"/>
-        <!--<xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="fullUrl" as="xs:string?"/>
-        <xsl:variable name="identifier" select="$in/identificatienummer[normalize-space(@value | @nullFlavor)]"/>
-        <xsl:choose>
-            <xsl:when test="$logicalId">
-                <reference value="Patient/{$logicalId}"/>
-            </xsl:when>
-            <xsl:when test="$fullUrl">
-                <reference value="{$fullUrl}"/>
-            </xsl:when>
-            <xsl:when test="$identifier">
-                <identifier>
-                    <xsl:call-template name="id-to-Identifier">
-                        <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
-                    </xsl:call-template>
-                </identifier>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:param name="patients" tunnel="yes" as="element()*"/>
         
-        <xsl:variable name="display" select="$in/normalize-space(string-join(.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '))"/>
-        <xsl:if test="string-length($display) gt 0">
-            <display value="{$display}"/>
-        </xsl:if>-->
+        <xsl:variable name="groupKey" select="nf:getGroupingKeyPatient($in)"/>
         
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyPatient(.)"/>
         <xsl:variable name="patient" select="$patients[nm:group-key = $groupKey]" as="element()?"/>
         <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
+        
         <xsl:choose>
             <xsl:when test="$patient/nm:logical-id">
                 <reference value="{concat($patient/@type, '/', $patient/nm:logical-id)}"/>

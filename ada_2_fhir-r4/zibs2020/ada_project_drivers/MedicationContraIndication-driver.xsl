@@ -45,12 +45,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="document(@href)"/>
             </xsl:for-each>
         </xsl:variable>
-        
+        <xsl:variable name="patients" as="element()*">
+            <xsl:call-template name="getAllPatients">
+                <xsl:with-param name="in" select="$inputBundle"/>
+            </xsl:call-template>
+        </xsl:variable>
         <Bundle>            
             <xsl:for-each select="$inputBundle//medicatie_contra_indicatie">
-                <xsl:variable name="subject" as="element()" select="$inputBundle//patient">
-                    
-                </xsl:variable>
                 <!--<xsl:variable name="melderId" select="melder/zorgverlener[@datatype = 'reference']/@value"/>
                 <xsl:variable name="melder" select="referenties/zorgverlener[@id = $melderId]" as="element()"/>-->
                 <!--<xsl:variable name="onderwerpLogicalId" select="nf:get-uuid($onderwerp)"/>-->
@@ -59,6 +60,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <resource>
                         <xsl:call-template name="nl-core-MedicationContraIndication">
                             <xsl:with-param name="logicalId" select="nf:get-uuid(.)"/>
+                            <xsl:with-param name="subject" as="element()" select="$inputBundle//patient"/>
+                            <xsl:with-param name="patients" select="$patients" tunnel="yes" as="element()*"/>
                             <!--<xsl:with-param name="onderwerp" select="$onderwerp"/>-->
                             <!--<xsl:with-param name="onderwerpLogicalId" select="$onderwerpLogicalId"/>-->
                             <!--<xsl:with-param name="melder" select="$melder"/>

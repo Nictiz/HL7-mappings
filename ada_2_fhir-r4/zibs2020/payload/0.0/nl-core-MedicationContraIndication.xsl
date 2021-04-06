@@ -45,10 +45,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="medicatie_contra_indicatie" name="nl-core-MedicationContraIndication" mode="nl-core-MedicationContraIndication">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="onderwerp" as="element()?"/>
+        <xsl:param name="subject" as="element()?"/>
+        <!--<xsl:param name="onderwerp" as="element()?"/>
         <xsl:param name="onderwerpLogicalId" as="xs:string?"/>
         <xsl:param name="melder" as="element()?"/>
-        <xsl:param name="melderLogicalId" as="xs:string?"/>
+        <xsl:param name="melderLogicalId" as="xs:string?"/>-->
           
         <xsl:for-each select="$in">
                 <Flag>
@@ -111,14 +112,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>         
                     
                     <!-- TODO Subject is mandatory by FHIR -->
-<!--                    <xsl:if test="$onderwerp">
+                    <!--<xsl:if test="$onderwerp">-->
                         <subject>
                             <xsl:call-template name="nl-core-Patient-reference">
-                                <xsl:with-param name="in" select="$onderwerp"/>
-                                <xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>
+                                <xsl:with-param name="in" select="$subject"/>
+                                <!--<xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>-->
                             </xsl:call-template>
                         </subject>
-                    </xsl:if>-->
+                    <!--</xsl:if>-->
                    
                     <xsl:if test="$beginDatum|$eindDatum">
                         <period>
