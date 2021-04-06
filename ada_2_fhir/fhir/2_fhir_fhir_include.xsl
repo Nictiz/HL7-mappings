@@ -13,7 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:util="urn:hl7:utilities"
+    version="2.0">
     <!-- import because we want to be able to override the param for macAddress -->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
@@ -30,6 +32,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <xsl:param name="dateT" as="xs:date?"/>
+    
+    <xd:doc>
+        <xd:param name="patientTokensXml">Optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
+    </xd:doc>
+    <xsl:param name="patientTokensXml" select="document('../../fhir/QualificationTokens.xml')"/>
     
     <xd:doc>
         <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
@@ -485,7 +492,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ada element with datatype identifier</xd:param>
     </xd:doc>
     <xsl:template name="id-to-Identifier" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:choose>
             <xsl:when test="$in[@nullFlavor and not(string-length(@root) gt 0 and @nullFlavor='MSK')]">
                 <extension url="{$urlExtHL7NullFlavor}">
@@ -1067,6 +1074,82 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:sequence select="$currentAdaTransaction//*[@id = $adaElement/@value]"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Searches for resourceid using the input ada patient in global param patientTokensXml (configuration document) and returns it when found. 
+            First attempt on bsn. Second attempt on exact match familyName. Third attempt on contains familyName. Then gives up.</xd:desc>
+        <xd:param name="adaPatient">Input ada patient</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-resourceid-from-token" as="xs:string?">
+        <xsl:param name="adaPatient" as="element(patient)?"/>
+        
+        <xsl:variable name="adaBsn" select="normalize-space($adaPatient/(identificatienummer | patient_identificatienummer | patient_identification_number)[@root = $oidBurgerservicenummer]/@value)"/>
+        <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[bsn/normalize-space(text()) = $adaBsn]/resourceId"/>
+        
+        <xsl:choose>
+            <xsl:when test="count($tokenResourceId) = 1">
+                <xsl:value-of select="$tokenResourceId"/>
+            </xsl:when>
+            <xsl:when test="count($tokenResourceId) gt 1">
+                <!-- more than one token on same BSN, something is really bogus in the QualificationTokens file let's report and quit here -->
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logDEBUG"/>
+                    <xsl:with-param name="msg">
+                        <xsl:text>Found more then one token in QualificationTokens for bsn </xsl:text>
+                        <xsl:value-of select="$adaBsn"/>
+                        <xsl:text>. So we will not use either of those.</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- not found using bsn, let's try exact match on family name -->
+                <xsl:variable name="adaEigenAchternaam" select="upper-case(normalize-space($adaPatient//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])/geslachtsnaam/achternaam/@value))"/>
+                <xsl:variable name="tokenResourceId" select="($patientTokensXml//*[familyName/upper-case(normalize-space(text())) = $adaEigenAchternaam]/resourceId)"/>
+                
+                <xsl:choose>
+                    <xsl:when test="count($tokenResourceId) = 1">
+                        <xsl:value-of select="$tokenResourceId"/>
+                    </xsl:when>
+                    <xsl:when test="count($tokenResourceId) gt 1">
+                        <!-- more than one token on same last name, this is really not how it should be, let's report and quit here -->
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logDEBUG"/>
+                            <xsl:with-param name="msg">
+                                <xsl:text>Found more then one token in QualificationTokens for exact match on last name </xsl:text>
+                                <xsl:value-of select="$adaEigenAchternaam"/>
+                                <xsl:text>. So we will not use any of those.</xsl:text>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- not found using exact, let's try contains on family name -->
+                        <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[contains(familyName/upper-case(normalize-space(text())), $adaEigenAchternaam)]/resourceId"/>
+                        
+                        <xsl:choose>
+                            <xsl:when test="count($tokenResourceId) = 1">
+                                <xsl:value-of select="$tokenResourceId"/>
+                            </xsl:when>
+                            <xsl:when test="count($tokenResourceId) gt 1">
+                                <!-- more than one token on containing last name, this can happen, but is a shame, let's report -->
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logDEBUG"/>
+                                    <xsl:with-param name="msg">
+                                        <xsl:text>Found more then one token in QualificationTokens for contains of last name </xsl:text>
+                                        <xsl:value-of select="$adaEigenAchternaam"/>
+                                        <xsl:text>. So we will not use any of those.</xsl:text>
+                                    </xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- return nothing -->
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:otherwise>
+        </xsl:choose>
+        
     </xsl:function>
 
     <xd:doc>

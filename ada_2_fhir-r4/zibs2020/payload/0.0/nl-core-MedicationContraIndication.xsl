@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- Comment - NL-CM:9.14.7 -->
                     <xsl:for-each select="toelichting">
-                        <xsl:call-template name="ext-Comment"/>
+                        <!--<xsl:call-template name="ext-Comment"/>-->
                     </xsl:for-each>
                     
                     <!-- Decide on mandatory Flag.status value based on presence of 'reden_van_afsluiten' value or an 'eind_datum' that lies in the past. -->
