@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Global variable that can be called anywhere in the process to access, include or reference any unique patient present in the input data</xd:desc>
     </xd:doc>
     <!-- Based on variable 'patients' in _zib2017.xsl -->
-    <xsl:template name="getAllPatients" as="element()*">
+    <xsl:template name="getFhirMetadataPatients" as="element()*">
         <xsl:param name="in" select="."/>
         <!-- Originally, this grouping contained the 'nf:ada-pat-id' function, but because this function is not used outside this variable I edited it out. Maybe it should be removed from 2_fhir_fhir_include and added to _zib2017? -->
         <xsl:variable name="identifier" select="(identificatienummer[@root = $oidBurgerservicenummer],identificatienummer[not(@root = $oidBurgerservicenummer)])[1]"/>
@@ -329,11 +329,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="nl-core-Patient-reference" match="patient" mode="nl-core-Patient-reference" as="element()*">
         <xsl:param name="in" select="." as="element()*"/>
-        <xsl:param name="patients" tunnel="yes" as="element()*"/>
+        <xsl:param name="fhirMetadata" tunnel="yes" as="element()*"/>
         
         <xsl:variable name="groupKey" select="nf:getGroupingKeyPatient($in)"/>
         
-        <xsl:variable name="patient" select="$patients[nm:group-key = $groupKey]" as="element()?"/>
+        <xsl:variable name="patient" select="$fhirMetadata[type = 'Patient' and nm:group-key = $groupKey]" as="element()?"/>
         <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
         
         <xsl:choose>
