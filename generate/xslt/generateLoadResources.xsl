@@ -69,7 +69,6 @@
             <url value="http://nictiz.nl/fhir/TestScript/load-resources-purgecreateupdate-xml"/>
             <name value="Load Test Resources - Purge Create Update - XML"/>
             <status value="active"/>
-            <date value="{format-date(current-date(), '[Y0001]-[M01]-[D01]')}"/>
             <publisher value="Nictiz"/>
             <contact>
                 <name value="MedMij"/>

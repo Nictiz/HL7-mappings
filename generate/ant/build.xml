@@ -58,6 +58,8 @@
     <property name="dependency.dir" value="${lib.dir}/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${dependency.dir}/ivy.jar" />
     
+    <property name="version.addition" value=""/>
+    
     <property name="targets.additional" value=""/> <!-- By default, we don't build additional targets -->
         
     <!-- Set the verbosity level of the output. A higher value means more verbose output -->
@@ -222,6 +224,7 @@
                                     <param name="projectComponentFolder" expression="${components.dir.abs}"/>
                                     <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
                                     <param name="target" expression="@{target}"/>
+                                    <param name="versionAddition" expression="${version.addition}"/>
                                 </parameters>
                             </saxon-transform>
                             
@@ -238,6 +241,7 @@
                             <param name="commonComponentFolder" expression="${commoncomponents.dir.abs}"/>
                             <param name="projectComponentFolder" expression="${components.dir.abs}"/>
                             <param name="target" expression="@{target}"/>
+                            <param name="versionAddition" expression="${version.addition}"/>
                         </parameters>
                     </saxon-transform>
                     <collect-references testscript.path="@{output.dir}/${nts.file.newname}" references.file="@{references.file}" reference.dir.rel="@{reference.dir.rel}"/>

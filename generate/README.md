@@ -237,6 +237,7 @@ The following optional parameters may be used:
   targets.additional=Cert-with-setup
   ```
   The TestScript resources can use the `nts:in-targets` to define which element should be included in a target (see above). Multiple extra targets may be separated using comma's.
+- `version.addition`: a string that will be added verbatim to the value in the `TestScript.version` from the input file. If this element is absent, it will be populated with this value. 
 
 ## Schematron
 
