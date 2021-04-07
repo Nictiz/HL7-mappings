@@ -251,6 +251,11 @@ Because of the verbosity of the ANT build, the logging level is set to 1 (warnin
 
 ## Changelog
 
+### 1.5.0
+- Remove the date from TestScripts (MM-1976)
+- Add the option to pass a version addition to the build script (MM-1976)
+- Don't strip out unknown input elements in the NTS source file
+
 ### 1.4.0
 - Add the option to build different variants of a folder that include/exclude parts in the output (HIT-15). 
 
