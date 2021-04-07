@@ -1,10 +1,15 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="c17d3cf9-85a5-11eb-8640-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:53062dfa-fdbc-11ea-5177-020000000000"/>
+      <fullUrl value="urn:uuid:c17d4c8e-85a5-11eb-8640-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -26,11 +31,11 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>2020-08-24 - Joris Hansman</td>
+                           <td>2021-02-13 - Joris Hansman</td>
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2020-08-04</td>
+                           <td>2021-01-24</td>
                         </tr>
                      </tbody>
                   </table>
@@ -75,22 +80,22 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:53061ec7-fdbc-11ea-5177-020000000000"/>
+               <reference value="urn:uuid:c17d3d01-85a5-11eb-8640-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
-            <onsetDateTime value="2020-08-04"/>
-            <assertedDate value="2020-08-24"/>
+            <onsetDateTime value="2021-01-24"/>
+            <assertedDate value="2021-02-13"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:53062e0c-fdbc-11ea-5177-020000000000"/>
+                     <reference value="urn:uuid:c17d4cb8-85a5-11eb-8640-020000000000"/>
                      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
                <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:53061ec7-fdbc-11ea-5177-020000000000"/>
+               <reference value="urn:uuid:c17d3d01-85a5-11eb-8640-020000000000"/>
                <display value="Joris Hansman"/>
             </asserter>
          </AllergyIntolerance>
@@ -100,7 +105,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:53061ec7-fdbc-11ea-5177-020000000000"/>
+      <fullUrl value="urn:uuid:c17d3d01-85a5-11eb-8640-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -109,12 +114,16 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 012345672 (BSN), Joris Hansman, Man, 12 mei 1984</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Joris Hansman, Man, 12 mei 1984</div>
                </div>
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="012345672"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -131,7 +140,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1984-05-12"/>
          </Patient>
       </resource>
@@ -150,7 +169,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 111111112 (UZI-NR-PERS), I.N. ter Nist</div>
-                  <div>Valkendael 45 1 hoog, 6245HK Maastricht (Werk)</div>
+                  <div>Valkendael 45 1 hoog, 6245HK Maastricht (WP)</div>
                </div>
             </text>
             <identifier>
@@ -176,6 +195,15 @@
                </given>
             </name>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Valkendael 45 1 hoog">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -222,7 +250,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Valkendael 45, 6245HK Maastricht (Werk)</td>
+                           <td>Valkendael 45, 6245HK Maastricht (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -241,6 +269,15 @@
             </type>
             <name value="Test Medisch Centrum"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Valkendael 45">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -260,7 +297,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:53062e0c-fdbc-11ea-5177-020000000000"/>
+      <fullUrl value="urn:uuid:c17d4cb8-85a5-11eb-8640-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -312,7 +349,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:53062955-fdbc-11ea-5177-020000000000"/>
+      <fullUrl value="urn:uuid:c17d4b6d-85a5-11eb-8640-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
@@ -339,7 +376,7 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:53061ec7-fdbc-11ea-5177-020000000000"/>
+               <reference value="urn:uuid:c17d3d01-85a5-11eb-8640-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <name>
@@ -417,6 +454,15 @@
                </use>
             </telecom>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="PHYS"/>
+                        <display value="Woon-/verblijfadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                   <valueCode value="PHYS"/>
                </extension>

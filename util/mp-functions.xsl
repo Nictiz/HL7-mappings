@@ -411,6 +411,8 @@
             <!-- return singular form -->
             <xsl:when test="$floatValue gt 0 and $floatValue lt 2">
                 <xsl:choose>
+                    <xsl:when test="$unit = ('seconde', 'sec', 's')">seconde</xsl:when>
+                    <xsl:when test="$unit = ('minuut', 'min')">minuut</xsl:when>
                     <xsl:when test="$unit = ('dag', 'd')">dag</xsl:when>
                     <xsl:when test="$unit = ('week', 'wk')">week</xsl:when>
                     <xsl:when test="$unit = ('jaar', 'a')">jaar</xsl:when>
@@ -425,6 +427,8 @@
             <!-- return plural form -->
             <xsl:otherwise>
                 <xsl:choose>
+                    <xsl:when test="$unit = ('seconde', 'sec', 's')">seconden</xsl:when>
+                    <xsl:when test="$unit = ('minuut', 'min')">minuten</xsl:when>
                     <xsl:when test="$unit = ('dag', 'd')">dagen</xsl:when>
                     <xsl:when test="$unit = ('week', 'wk')">weken</xsl:when>
                     <xsl:when test="$unit = ('jaar', 'a')">jaar</xsl:when>
@@ -513,7 +517,7 @@
                 <xsl:value-of select="concat($daynum, ' ', nf:getDutchMonthName($monthnum, 3, 'low'), ' ', $yearnum)"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="$inputDate"/>
+                <xsl:value-of select="nf:formatTDate($inputDate, false(), false())"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -546,9 +550,16 @@
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($relativeDate, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
-                <xsl:variable name="timePart" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)})?', '$4')"/>
-                <xsl:variable name="time" select="$timePart"/>
-
+                <xsl:variable name="timePart" select="replace($relativeDate, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)\})?', '$4')"/>
+                <xsl:variable name="time" as="xs:string?">
+                    <xsl:choose>
+                        <xsl:when test="string-length($timePart)=8 and ends-with($timePart, ':00')">
+                            <xsl:value-of select="substring($timePart, 1, 5)"/>  
+                        </xsl:when>
+                        <xsl:otherwise><xsl:value-of select="$timePart"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                
                 <!-- output a relative date for display -->
                 <xsl:choose>
                     <xsl:when test="string-length($amount) = 0 or xs:integer($amount) = 0">

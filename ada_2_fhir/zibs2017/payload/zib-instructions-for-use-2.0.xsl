@@ -360,6 +360,9 @@
         </xd:desc>
     </xd:doc>
     <xsl:template name="zib-InstructionsForUse-2.0-di" match="doseerinstructie" mode="doDosageContents">
+        <xsl:for-each select="volgnummer[@value]">
+            <sequence value="{@value}"/>
+        </xsl:for-each>
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:call-template name="_handleGebruiksinstructieOmschrijving">
             <xsl:with-param name="in" select=".."/>

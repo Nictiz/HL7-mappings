@@ -1,0 +1,509 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
+   </meta>
+   <id value="5d8390fd-85a6-11eb-1971-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:5d83a5a1-85a6-11eb-1971-020000000000"/>
+      <resource>
+         <List>
+            <id value="d2086e145"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
+               <extension url="VerificationPatient">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="VerificationHealthProfessional">
+                  <valueBoolean value="false"/>
+               </extension>
+            </extension>
+            <status value="current"/>
+            <mode value="snapshot"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="11181000146103"/>
+                  <display value="Actual medication overview (record artifact)"/>
+               </coding>
+               <text value="Medicatieoverzicht"/>
+            </code>
+            <subject>
+               <reference value="Patient/XXX-MAASZ"/>
+               <display value="N. XXX_Maasz"/>
+            </subject>
+            <date value="${DATE, T, D, +0}"/>
+            <source>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
+                  <valueReference>
+                     <reference value="Organization/nl-core-organization-mp9-5d83a5a9-85a6-11eb-1971-020000000000"/>
+                     <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </source>
+            <entry>
+               <item>
+                  <reference value="MedicationRequest/zib-MedicationAgreement-mp9-MBH-910-start-duur2-MA"/>
+                  <display value="Medicatieafspraak identifier: value='MBH_910_start_duur2_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+               </item>
+            </entry>
+         </List>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5d83af61-85a6-11eb-1971-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="zib-MedicationAgreement-mp9-MBH-910-start-duur2-MA"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: N. XXX_Maasz. Id: MBH_910_start_duur2_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisarts, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_910_start_duur2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>PANTOPRAZOL TABLET MSR 20MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -60}T11:30:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>
+                              <ul>
+                                 <li>Vanaf ${DATE, T, D, -60}T00:00:00+02:00</li>
+                                 <li>28 dag</li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -60}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="28"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_910_start_duur2"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
+               <valueString value="Vanaf T-60D{00:00:00}, gedurende 28 dagen, 1 maal per dag 1 stuk, Oraal"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_910_start_duur2_MA"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-52272"/>
+               <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="Patient/XXX-MAASZ"/>
+               <display value="N. XXX_Maasz"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -60}T11:30:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/nl-core-practitionerrole-mp9-000001111010000001111"/>
+                        <display value="Peter van Pulver || Huisarts, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001111"/>
+                  <display value="Peter van Pulver"/>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5d83af44-85a6-11eb-1971-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="XXX-MAASZ"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999910747 (BSN), N. XXX_Maasz, Vrouw, 10 augustus 1954</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999910747"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX_Maasz">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Maasz"/>
+                  </extension>
+               </family>
+               <given value="N.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1954-08-10"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+      <resource>
+         <Practitioner>
+            <id value="nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001111"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 000001111 (UZI-NR-PERS), Peter van Pulver</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001111"/>
+            </identifier>
+            <name>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-organization-mp9-2-16-528-1-1007-3-3-00001111"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5d83a5a9-85a6-11eb-1971-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-organization-mp9-5d83a5a9-85a6-11eb-1971-020000000000"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <a href="tel:099-12345678">099-12345678</a> (Tel)</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="099-12345678"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5d83af6d-85a6-11eb-1971-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="nl-core-practitionerrole-mp9-000001111010000001111"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Peter van Pulver</div>
+                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisarts, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisarts, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001111"/>
+               <display value="Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/nl-core-organization-mp9-2-16-528-1-1007-3-3-00001111"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0100"/>
+                  <display value="Huisarts, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.52272"/>
+      <resource>
+         <Medication>
+            <id value="zib-Product-mp9-2-16-840-1-113883-2-4-4-10-52272"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="PANTOPRAZOL TABLET MSR 20MG (52272 - G-Standaard PRK)">PANTOPRAZOL TABLET MSR 20MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="52272"/>
+                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="106275"/>
+                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+               </coding>
+               <text value="PANTOPRAZOL TABLET MSR 20MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

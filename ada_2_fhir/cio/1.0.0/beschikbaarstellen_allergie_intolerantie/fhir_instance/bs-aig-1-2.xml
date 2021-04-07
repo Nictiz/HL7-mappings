@@ -1,10 +1,15 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="bccb0207-85a5-11eb-1919-020000000000"/>
    <type value="searchset"/>
    <total value="0"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:a0a69eff-e54c-11ea-1039-020000000000"/>
+      <fullUrl value="urn:uuid:bccb0207-85a5-11eb-1919-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -50,7 +55,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1970-05-05"/>
             <address>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
