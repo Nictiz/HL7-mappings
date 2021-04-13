@@ -218,7 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                         </subject>
                     </xsl:for-each>
-                    <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we could opt to only support Encounter here. -->
+                    <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we opt to only support Encounter here and move EpisodeOfCare to an extension -->
                     <xsl:for-each select="../encounter">
                         <context>
                             <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
