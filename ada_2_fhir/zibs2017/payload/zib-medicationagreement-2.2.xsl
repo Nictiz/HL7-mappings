@@ -153,6 +153,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="stoptype[@code]">
                         <xsl:call-template name="ext-zib-Medication-StopType-2.0"/>
                     </xsl:for-each>
+                    <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                    <xsl:for-each select="relaties_ketenzorg/identificatie_episode[@value]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+                            <valueReference>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                                <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>
                     <!-- MA id -->
                     <xsl:for-each select="identificatie[@value]">
                         <identifier>
@@ -183,32 +196,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </subject>
                     <!-- relaties_ketenzorg -->
                     <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we could opt to only support Encounter here. -->
-                    <xsl:choose>
-                        <xsl:when test="relaties_ketenzorg/identificatie_episode[@value]">
-                            <xsl:for-each select="(relaties_ketenzorg/identificatie_episode[@value])[1]">
-                                <context>
-                                    <identifier>
-                                        <xsl:call-template name="id-to-Identifier">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </identifier>
-                                    <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
-                                </context>
-                            </xsl:for-each>
-                        </xsl:when>
-                        <xsl:when test="relaties_ketenzorg/identificatie_contactmoment[@value]">
-                            <xsl:for-each select="(relaties_ketenzorg/identificatie_contactmoment[@value])[1]">
-                                <context>
-                                    <identifier>
-                                        <xsl:call-template name="id-to-Identifier">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </identifier>
-                                    <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
-                                </context>
-                            </xsl:for-each>
-                        </xsl:when>
-                    </xsl:choose>
+                    <xsl:for-each select="(relaties_ketenzorg/identificatie_contactmoment[@value])[1]">
+                        <context>
+                            <identifier>
+                                <xsl:call-template name="id-to-Identifier">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </identifier>
+                            <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
+                        </context>
+                    </xsl:for-each>
                     <!-- lichaamslengte -->
                     <xsl:for-each select="lichaamslengte[.//@value]">
                         <supportingInformation>

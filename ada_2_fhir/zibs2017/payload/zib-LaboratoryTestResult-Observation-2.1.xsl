@@ -157,6 +157,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                         <profile value="{$profileValue}"/>
                     </meta>
+                    <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                    <xsl:for-each select="episode">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+                            <valueReference>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                                <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>
                     <!--NL-CM:0.0.6   Identificatienummer-->
                     <xsl:for-each select="hcimroot/identification_number">
                         <identifier>
