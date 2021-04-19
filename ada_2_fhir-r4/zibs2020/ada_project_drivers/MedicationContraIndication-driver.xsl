@@ -47,9 +47,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:variable name="fhirMetadata" as="element()*">
-            <xsl:call-template name="getFhirMetadataPatients">
-                <xsl:with-param name="in" select="$inputBundle"/>
-            </xsl:call-template>
             <xsl:call-template name="getFhirMetadata">
                 <xsl:with-param name="in" select="$inputBundle"/>
             </xsl:call-template>
