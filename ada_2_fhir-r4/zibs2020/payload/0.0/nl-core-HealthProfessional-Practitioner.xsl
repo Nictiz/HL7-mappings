@@ -12,6 +12,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
@@ -82,4 +83,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Practitioner>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Returns contents of Reference datatype element</xd:desc>
+    </xd:doc>
+    <xsl:template name="nl-core-HealthProfessional-Practitioner-reference" match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner-reference" as="element()*">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="fhirMetadata" tunnel="yes" as="element()*"/>
+        
+        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        
+        <xsl:variable name="healthProfessional" select="$fhirMetadata[@type = 'Practitioner' and nm:group-key = $groupKey]" as="element()?"/>
+        <xsl:variable name="identifier" select="zorgverlener_identificatienummer[normalize-space(@value | @nullFlavor)]"/>
+        
+        <xsl:choose>
+            <xsl:when test="$healthProfessional/nm:logical-id">
+                <reference value="{concat($healthProfessional/@type, '/', $healthProfessional/nm:logical-id)}"/>
+            </xsl:when>
+            <xsl:when test="$referById and $healthProfessional/nm:fullurl">
+                <reference value="{$healthProfessional/nm:fullurl}"/>
+            </xsl:when>
+            <xsl:when test="$identifier">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:if test="string-length($healthProfessional/nm:reference-display) gt 0">
+            <display value="{$healthProfessional/nm:reference-display}"/>
+        </xsl:if>
+    </xsl:template>
+    
 </xsl:stylesheet>

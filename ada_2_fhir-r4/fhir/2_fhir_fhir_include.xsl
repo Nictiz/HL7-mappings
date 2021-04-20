@@ -34,10 +34,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in"/>
         
         <!-- if-statement to allow for local variables -->
-        <xsl:if test="$in//patient">
+        <xsl:if test="$in//patient[not(patient)][not(@datatype = 'reference')]">
             <xsl:variable name="identifier" select="(identificatienummer[@root = $oidBurgerservicenummer],identificatienummer[not(@root = $oidBurgerservicenummer)])[1]"/>
             <!-- How necessary is it to add [not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] behind every group? -->
-            <xsl:for-each-group select="$in//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="concat($identifier/@root, $identifier/@value)">
+            <xsl:for-each-group select="$in//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="concat($identifier/@root, $identifier/normalize-space(@value))">
                 <!-- Experiment: why don't we just use nf:getGroupingKeyDefault()? Less hardly-used functions, and nobody is going to see the result anyways. -->
                 <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="getFhirMetadataForAdaEntry">
@@ -47,12 +47,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:if>
         
-        <xsl:for-each-group select="$in//bloeddruk" group-by="nf:getGroupingKeyDefault()">
+        <xsl:if test="$in//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')]">
+            <xsl:variable name="identifier" select="nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer)"/>
+            <xsl:for-each-group select="$in//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+                concat($identifier/@root,
+                $identifier/normalize-space(@value))">
+                <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="getFhirMetadataForAdaEntry">
+                        <xsl:with-param name="type">Practitioner</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each-group>
+            </xsl:for-each-group>
+        </xsl:if>
+        
+        <xsl:for-each-group select="$in//bloeddruk" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="getFhirMetadataForAdaEntry">
                 <xsl:with-param name="type">BloodPressure</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each-group>
-        <xsl:for-each-group select="$in//lichaams_lengte" group-by="nf:getGroupingKeyDefault()">
+        <xsl:for-each-group select="$in//lichaams_lengte" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="getFhirMetadataForAdaEntry">
                 <xsl:with-param name="type">BodyLenght</xsl:with-param>
             </xsl:call-template>
@@ -82,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <xsl:when test="
                             (:not($uuid) and :)
-                            string-length(nf:get-resourceid-from-token(.)) gt 0">
+                            $type = 'Patient' and string-length(nf:get-resourceid-from-token(.)) gt 0">
                             <xsl:value-of select="nf:get-resourceid-from-token(.)"/>
                         </xsl:when>
                         <xsl:otherwise>
@@ -115,9 +128,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
     <xsl:template match="patient" mode="generateDisplay">
         <xsl:value-of select="normalize-space(string-join(.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
+    </xsl:template>
+    
+    <xsl:template match="zorgverlener" mode="generateId">
+        <xsl:param name="fullUrl" tunnel="yes"/>
+        <xsl:choose>
+            <xsl:when test="(zorgverlener_identificatienummer)[@value | @root]">
+                <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgverlener_identificatienummer)[1]/(@value | @root), ''))))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="zorgverlener" mode="generateDisplay">
+        <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1] | .//zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])/@value"/>
+        <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
+        <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
+        <xsl:variable name="specialty" select=".//(specialisme | specialty)[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
+        <xsl:variable name="role" select=".//zorgverleners_rol/(@displayName, @code)[1] | .//health_professional_role/(@displayName, @code)[1]"/>
+        
+        <xsl:choose>
+            <xsl:when test="$personName">
+                <xsl:value-of select="normalize-space(string-join($personName, ' '))"/>
+            </xsl:when>
+            <xsl:when test="$role">
+                <xsl:value-of select="normalize-space($role)"/>
+            </xsl:when>
+            <xsl:when test="$personIdentifier">
+                <xsl:value-of select="normalize-space($personIdentifier)"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>

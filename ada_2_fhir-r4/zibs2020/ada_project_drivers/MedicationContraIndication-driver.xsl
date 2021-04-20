@@ -54,41 +54,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <Bundle>            
             <xsl:for-each select="$inputBundle//medicatie_contra_indicatie">
-                <!--<xsl:variable name="melderId" select="melder/zorgverlener[@datatype = 'reference']/@value"/>
-                <xsl:variable name="melder" select="referenties/zorgverlener[@id = $melderId]" as="element()"/>-->
-                <!--<xsl:variable name="onderwerpLogicalId" select="nf:get-uuid($onderwerp)"/>-->
-                <!--<xsl:variable name="melderLogicalId" select="nf:get-uuid($melder)"/>-->
                 <entry>
                     <resource>
                         <xsl:call-template name="nl-core-MedicationContraIndication">
                             <xsl:with-param name="logicalId" select="nf:get-uuid(.)"/>
                             <xsl:with-param name="subject" as="element()" select="$inputBundle//patient"/>
                             <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
-                            <!--<xsl:with-param name="onderwerp" select="$onderwerp"/>-->
-                            <!--<xsl:with-param name="onderwerpLogicalId" select="$onderwerpLogicalId"/>-->
-                            <!--<xsl:with-param name="melder" select="$melder"/>
-                            <xsl:with-param name="melderLogicalId" select="$melderLogicalId"/>-->
                         </xsl:call-template>
                     </resource>
                 </entry>
-                <xsl:if test="$inputBundle//patient">
+                <xsl:if test="$inputBundle//patient[not(patient)][not(@datatype = 'reference')]">
                     <entry>
                         <resource>
                             <xsl:apply-templates mode="nl-core-Patient" select="$inputBundle//patient">
-                                <!--<xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>-->
+                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
                             </xsl:apply-templates>
                         </resource>
                     </entry>
                 </xsl:if>
-                <!--<xsl:if test="$melder">
+                <xsl:if test="$inputBundle//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')]">
                     <entry>
                         <resource>
-                            <xsl:apply-templates mode="nl-core-HealthProfessional" select="$melder">
-                                <xsl:with-param name="logicalId" select="$melderLogicalId"/>
+                            <xsl:apply-templates mode="nl-core-HealthProfessional-Practitioner" select="$inputBundle//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')]">
+                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
                             </xsl:apply-templates>
                         </resource>
                     </entry>
-                </xsl:if>-->
+                </xsl:if>
             </xsl:for-each>
         </Bundle>
     </xsl:template>

@@ -46,10 +46,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="subject" as="element()?"/>
-        <!--<xsl:param name="onderwerp" as="element()?"/>
-        <xsl:param name="onderwerpLogicalId" as="xs:string?"/>
-        <xsl:param name="melder" as="element()?"/>
-        <xsl:param name="melderLogicalId" as="xs:string?"/>-->
           
         <xsl:for-each select="$in">
                 <Flag>
@@ -76,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- Comment - NL-CM:9.14.7 -->
                     <xsl:for-each select="toelichting">
-                        <!--<xsl:call-template name="ext-Comment"/>-->
+                        <xsl:call-template name="ext-Comment"/>
                     </xsl:for-each>
                     
                     <!-- Decide on mandatory Flag.status value based on presence of 'reden_van_afsluiten' value or an 'eind_datum' that lies in the past. -->
@@ -111,15 +107,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:if>         
                     
-                    <!-- TODO Subject is mandatory by FHIR -->
-                    <!--<xsl:if test="$onderwerp">-->
+                    <xsl:if test="onderwerp">
                         <subject>
                             <xsl:call-template name="nl-core-Patient-reference">
-                                <xsl:with-param name="in" select="$subject"/>
-                                <!--<xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>-->
+                                <xsl:with-param name="in" as="element()">
+                                    <xsl:choose>
+                                        <xsl:when test="$subject">
+                                            <xsl:copy-of select="$subject"/>
+                                        </xsl:when>
+                                        <xsl:when test="onderwerp/patient-id">
+                                            <!-- TO DO -->
+                                        </xsl:when>
+                                    </xsl:choose>
+                                </xsl:with-param>
                             </xsl:call-template>
                         </subject>
-                    <!--</xsl:if>-->
+                    </xsl:if>
                    
                     <xsl:if test="$beginDatum|$eindDatum">
                         <period>
@@ -139,14 +142,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>  
                                         
                    <!-- TODO Reporter - NL-CM:9.14.5 -->                                     
-<!--                   <xsl:if test="$melder">
+                   <xsl:if test="melder/zorgverlener">
                         <author>
-                           <xsl:call-template name="nl-core-HealthProfessional-reference">
-                               <xsl:with-param name="in" select="$melder"/>
-                               <xsl:with-param name="logicalId" select="$melderLogicalId"/>
+                           <xsl:call-template name="nl-core-HealthProfessional-Practitioner-reference">
+                               <xsl:with-param name="in" as="element()">
+                                   <xsl:choose>
+                                       <xsl:when test="melder/zorgverlener[@datatype='reference']/@value = referenties/zorgverlener/@id">
+                                           <xsl:variable name="adaId" select="melder/zorgverlener[@datatype='reference']/@value"/>
+                                           <xsl:copy-of select="referenties/zorgverlener[@id = $adaId]"/>
+                                       </xsl:when>
+                                   </xsl:choose>
+                               </xsl:with-param>
                            </xsl:call-template>
                        </author>
-                   </xsl:if>-->
+                   </xsl:if>
                                       
                 </Flag>
         </xsl:for-each>

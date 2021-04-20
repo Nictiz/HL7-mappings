@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <PractitionerRole>
                 <xsl:if test="zorgaanbieder">
                     <organization>
-                        <xsl:call-template name="nl-core-HealthcareProvider-reference"/>
+                        <!--<xsl:call-template name="nl-core-HealthcareProvider-reference"/>-->
                     </organization>
                 </xsl:if>
                 <xsl:if test="specialisme/@value">                    

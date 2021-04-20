@@ -89,10 +89,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- sub-zibs -->
             <xsl:for-each select="naamgegevens">
-                <!--<xsl:call-template name="nl-core-NameInformation"/>-->
+                <xsl:call-template name="nl-core-NameInformation"/>
             </xsl:for-each>
             <xsl:for-each select="contactgegevens">
-                <!--<xsl:call-template name="nl-core-ContactInformation"/>-->
+                <xsl:call-template name="nl-core-ContactInformation"/>
             </xsl:for-each>
             
             <xsl:for-each select="geslacht">
@@ -106,7 +106,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
                         </xsl:with-param>
                     </xsl:call-template>
-                    <!--<xsl:call-template name="ext-CodeSpecification"/>-->
+                    <xsl:call-template name="ext-CodeSpecification"/>
                 </gender>
             </xsl:for-each>
             
@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- sub-zib -->
             <xsl:for-each select="adresgegevens">
-                <!--<xsl:call-template name="nl-core-AddressInformation"/>-->
+                <xsl:call-template name="nl-core-AddressInformation"/>
             </xsl:for-each>
             
             
@@ -198,7 +198,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>
                     <xsl:for-each select="toelichting">
-                        <!--<xsl:call-template name="ext-Comment"/>-->
+                        <xsl:call-template name="ext-Comment"/>
                     </xsl:for-each>
                     <language>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -263,9 +263,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="fhirMetadata" tunnel="yes" as="element()*"/>
         
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyPatient($in)"/>
+        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
         
-        <xsl:variable name="patient" select="$fhirMetadata[type = 'Patient' and nm:group-key = $groupKey]" as="element()?"/>
+        <xsl:variable name="patient" select="$fhirMetadata[@type = 'Patient' and nm:group-key = $groupKey]" as="element()?"/>
         <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
         
         <xsl:choose>
