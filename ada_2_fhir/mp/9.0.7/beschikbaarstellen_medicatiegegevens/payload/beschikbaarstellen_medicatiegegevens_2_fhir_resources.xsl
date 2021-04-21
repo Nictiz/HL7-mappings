@@ -41,7 +41,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
-
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
+    
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $relatedPersons/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>
     </xsl:variable>
@@ -66,12 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:copy-of select="$commonEntries"/>
         </xsl:variable>
 
-        <!-- https://bits.nictiz.nl/browse/MM-1752 , 
-            Examples en fixtures op basis van deze conventie:
-            Bestandsnaam: [profielnaam]-[unieke string]
-            Resource.id: [profielnaam]-[unieke string] -->
-        <!-- update the f:id -->       
-        <!-- and output the resource in a file -->
+         <!-- and output the resource in a file -->
         <xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
     </xsl:template>
 

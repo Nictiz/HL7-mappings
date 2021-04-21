@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../zibs2017/payload/all-zibs.xsl"/>
+    <xsl:import href="../zibs2017/payload/package-1.3.10.xsl"/>
     <!--    <xsl:import href="../../util/mp-functions.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
@@ -54,7 +54,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                             </xsl:when>
                             <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
-                                <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>
+                                <!-- <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@codeSystem, @code), '-'))"/>-->
+                                <!-- string-join follows order of @code / @codeSystem in XML, but we want a predictable order -->
+                                <xsl:value-of select="nf:removeSpecialCharacters(concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code))"/>
                             </xsl:when>
                             <xsl:when test="./product_specificatie/product_naam/@value">
                                 <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
@@ -951,7 +953,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- aanschrijfdatum -->
                     <xsl:for-each select="aanschrijfdatum[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
-                            <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                            <valueDateTime>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </valueDateTime>
                         </extension>
                     </xsl:for-each>
                     <!-- aanvullende_informatie -->
@@ -1217,11 +1225,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="zib-Product" match="product" mode="doMedication">
         <xsl:param name="in" select="."/>
-        <xsl:param name="profile-uri" as="xs:string"> <xsl:choose>
-            <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:when>
-            <xsl:otherwise>http://nictiz.nl/fhir/StructureDefinition/zib-Product</xsl:otherwise>
-        </xsl:choose>
-            </xsl:param>
+        <xsl:param name="profile-uri" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:when>
+                <xsl:otherwise>http://nictiz.nl/fhir/StructureDefinition/zib-Product</xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
         <xsl:param name="medication-id" as="xs:string?"/>
         <xsl:for-each select="$in">
             <xsl:variable name="resource">

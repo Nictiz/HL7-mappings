@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/units.xsl"/>
-<!--    <xsl:import href="../../util/utilities.xsl"/>-->
+    <!--    <xsl:import href="../../util/utilities.xsl"/>-->
     <xsl:import href="NarrativeGenerator.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
 
@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <xsl:param name="dateT" as="xs:date?"/>
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?"/>
 
     <xd:doc>
         <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
@@ -970,8 +972,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:make-fhir-logicalid" as="xs:string">
         <xsl:param name="prefix" as="xs:string?"/>
         <xsl:param name="uniqueString" as="xs:string?"/>
-    
-        <xsl:variable name="joinedString" select="concat($prefix, '-', $uniqueString)"/>
+
+        <xsl:variable name="joinedString" select="string-join(($prefix, $usecase, $uniqueString), '-')"/>
         <xsl:variable name="lengthJoinedString" select="string-length($joinedString)" as="xs:integer"/>
         <xsl:variable name="startingLoc" as="xs:integer">
             <xsl:choose>
@@ -980,13 +982,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="msg">We have encountered an id (<xsl:value-of select="$joinedString"/>) longer than 64 characters, we are truncating it, but it should be looked at.</xsl:with-param>
                         <xsl:with-param name="level" select="$logWARN"/>
                         <xsl:with-param name="terminate" select="false()"/>
-                    </xsl:call-template>                    
-                    <xsl:value-of select="$lengthJoinedString - 64"/>
+                    </xsl:call-template>
+                    <xsl:value-of select="$lengthJoinedString - 63"/>
                 </xsl:when>
-                <xsl:otherwise><xsl:value-of select="1"/></xsl:otherwise>
+                <xsl:otherwise>
+                    <xsl:value-of select="1"/>
+                </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-            
+
         <xsl:value-of select="substring($joinedString, $startingLoc, $lengthJoinedString)"/>
     </xsl:function>
 
@@ -1019,7 +1023,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getGroupingKeyPatient" as="xs:string?">
         <xsl:param name="patient" as="element()?"/>
         <xsl:if test="$patient">
-            <xsl:value-of select="concat(nf:getGroupingKeyDefault($patient/(identificatienummer | patient_identificatie_nummer | patient_identification_number)[not(@root = $oidBurgerservicenummer)]), nf:getGroupingKeyDefault($patient/(patient_naam | .//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)])), nf:getGroupingKeyDefault($patient/(adres | .//adresgegevens[not(adresgegevens)] | .//address_information[not(address_information)])), nf:getGroupingKeyDefault($patient/(telefoon_email | .//contactgegevens[not(contactgegevens)] | .//contact_information[not(contact_information)])))"/>
+            <!-- <xsl:value-of select="concat(nf:getGroupingKeyDefault($patient/(identificatienummer | patient_identificatie_nummer | patient_identification_number)[not(@root = $oidBurgerservicenummer)]), nf:getGroupingKeyDefault($patient/(patient_naam | .//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)])), nf:getGroupingKeyDefault($patient/(adres | .//adresgegevens[not(adresgegevens)] | .//address_information[not(address_information)])), nf:getGroupingKeyDefault($patient/(telefoon_email | .//contactgegevens[not(contactgegevens)] | .//contact_information[not(contact_information)])))"/>-->
+            <!-- use all fields of patient except bsn -->
+            <xsl:variable name="patientKey" as="xs:string*">
+                <xsl:for-each select="$patient/*[not(@root = $oidBurgerservicenummer)]">
+                    <xsl:value-of select="nf:getGroupingKeyDefault(.)"/>
+                </xsl:for-each>
+            </xsl:variable>
+            <xsl:value-of select="string-join($patientKey, '')"/>
         </xsl:if>
     </xsl:function>
 

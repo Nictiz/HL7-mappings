@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="672e7ba9-7da9-11eb-1640-020000000000"/>
+   <id value="55b8bc8d-8b3f-11eb-1149-020000000000"/>
    <type value="searchset"/>
    <total value="49"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:672e7c44-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8d31c-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -33,13 +33,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>60 dag</li>
                               </ul>
                            </td>
@@ -48,7 +48,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -62,7 +62,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -97,15 +97,15 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T11:25:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T11:25:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -115,7 +115,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -145,7 +145,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e821f-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8ca1f-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -169,17 +169,17 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, tot nader order, exact iedere 12 uur 16 IE, subcutaan</div>
+                              <div>Tekst: Vanaf T, exact iedere 12 uur 16 internationale eenheid, subcutaan</div>
                               <div>Timing: <div>12 uren</div>
                               </div>
                               <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
@@ -193,7 +193,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -220,15 +220,15 @@
                <display value="INSULINE ISOFAAN 100IE/ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T11:25:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T11:25:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -238,7 +238,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, exact iedere 12 uur 16 IE, subcutaan"/>
+               <text value="Vanaf T, exact iedere 12 uur 16 internationale eenheid, subcutaan"/>
                <timing>
                   <repeat>
                      <period value="12"/>
@@ -266,7 +266,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e8326-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8cb26-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -290,13 +290,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 15 juli 2018</td>
+                           <td>${DATE, T, D, -50}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 15 juli 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -50}T00:00:00+02:00</li>
                                  <li>4 week</li>
                               </ul>
                            </td>
@@ -305,7 +305,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 15 jul 2018, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal</div>
+                              <div>Tekst: Vanaf T - 50 dagen, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal</div>
                               <div>Timing: <div>3 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -319,7 +319,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-07-15T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -354,15 +354,15 @@
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-07-15T11:25:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -50}T11:25:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -372,7 +372,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 15 jul 2018, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal"/>
+               <text value="Vanaf T - 50 dagen, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="3"/>
@@ -409,7 +409,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e8451-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8cc51-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -433,13 +433,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>10:26:00, 14 augustus 2018</td>
+                           <td>${DATE, T, D, -20}T10:26:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 14 augustus 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -20}T00:00:00+02:00</li>
                                  <li>30 dag</li>
                               </ul>
                            </td>
@@ -448,7 +448,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018, gedurende 30 dagen, 3 maal per dag aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T - 20 dagen, gedurende 30 dagen, 3 maal per dag, aanbrengen, cutaan</div>
                               <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                               </div>
                               <div>Timing: <div>3 maal per dag</div>
@@ -463,7 +463,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-14T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -498,15 +498,15 @@
                <display value="Cetomacrogolcreme met vaseline"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-08-14T10:26:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -20}T10:26:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -516,7 +516,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, gedurende 30 dagen, 3 maal per dag aanbrengen, cutaan"/>
+               <text value="Vanaf T - 20 dagen, gedurende 30 dagen, 3 maal per dag, aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -546,7 +546,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e661d-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b5ed-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -570,13 +570,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>10:46:00, 14 augustus 2018</td>
+                           <td>${DATE, T, D, -20}T10:46:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 14 augustus 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -20}T00:00:00+02:00</li>
                                  <li>30 dag</li>
                               </ul>
                            </td>
@@ -585,7 +585,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018, gedurende 30 dagen, 2 maal per dag 1/2 tablet</div>
+                              <div>Tekst: Vanaf T - 20 dagen, gedurende 30 dagen, 2 maal per dag 0.5 stuk, oraal</div>
                               <div>Timing: <div>2 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -599,7 +599,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-14T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -634,15 +634,15 @@
                <display value="Naproxen CF tablet 500mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-08-14T10:46:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -20}T10:46:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -652,7 +652,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, gedurende 30 dagen, 2 maal per dag 1/2 tablet"/>
+               <text value="Vanaf T - 20 dagen, gedurende 30 dagen, 2 maal per dag 0.5 stuk, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -681,7 +681,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6744-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b714-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -705,13 +705,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>14 dag</li>
                               </ul>
                            </td>
@@ -720,7 +720,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 14 dagen, 2x per dag 10 tot 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen</div>
+                              <div>Tekst: Vanaf T, gedurende 14 dagen, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen</div>
                               <div>Instructie: <ul>
                                     <li>
                                        <span title="Eerst oplossen in water (27 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">Eerst oplossen in water</span>
@@ -743,7 +743,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -778,15 +778,15 @@
                <display value="WATERSTOFPEROXIDE 30MG/ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T09:35:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -796,7 +796,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 14 dagen, 2x per dag 10 tot 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
+               <text value="Vanaf T, gedurende 14 dagen, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -847,7 +847,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6879-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b849-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -871,13 +871,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>14 dag</li>
                               </ul>
                            </td>
@@ -886,7 +886,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 uur 16IE</div>
+                              <div>Tekst: Vanaf T, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 16 internationale eenheid, subcutaan</div>
                               <div>Timing: <div>08:00:00, 14:00:00, 20:00:00</div>
                               </div>
                               <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
@@ -900,7 +900,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -935,15 +935,15 @@
                <display value="INSULINE ISOFAAN INJSUSP 100IE/ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T09:35:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -953,7 +953,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 uur 16IE"/>
+               <text value="Vanaf T, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 16 internationale eenheid, subcutaan"/>
                <timing>
                   <repeat>
                      <timeOfDay value="08:00:00"/>
@@ -982,7 +982,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6990-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b960-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1006,13 +1006,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>10 week</li>
                               </ul>
                            </td>
@@ -1021,7 +1021,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen</div>
+                              <div>Tekst: Vanaf T, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan</div>
                               <div>Instructie: <ul>
                                     <li>
                                        <span title="voor de nacht (1128 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">voor de nacht</span>
@@ -1043,7 +1043,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -1078,15 +1078,15 @@
                <display value="IMIQUIMOD CREME 50MG/G"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T09:35:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -1096,7 +1096,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen"/>
+               <text value="Vanaf T, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -1133,7 +1133,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6a97-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8ba67-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1157,17 +1157,17 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, 1 maal daags 1 stuk ’s avonds innemen, oraal</div>
+                              <div>Tekst: Vanaf T, 1 maal per dag 1 stuk 's avonds, oraal</div>
                               <div>Timing: <div>eenmalig per dag, EVE</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -1181,7 +1181,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -1208,15 +1208,15 @@
                <display value="EZETIMIB/SIMVASTATINE TABLET 10/20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T09:35:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -1226,7 +1226,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, 1 maal daags 1 stuk ’s avonds innemen, oraal"/>
+               <text value="Vanaf T, 1 maal per dag 1 stuk 's avonds, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -1256,7 +1256,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6be8-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bbb8-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1280,7 +1280,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Herhaalperiode cyclisch schedule</th>
@@ -1288,13 +1288,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, tot nader order, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet</div>
+                              <div>Tekst: Vanaf T, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal</div>
                               <div>Timing: <div>21 dag, eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -1308,7 +1308,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -1343,15 +1343,15 @@
                <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T09:35:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -1361,7 +1361,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet"/>
+               <text value="Vanaf T, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
                <timing>
                   <repeat>
                      <boundsDuration>
@@ -1396,7 +1396,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6d12-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bce2-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1420,13 +1420,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>41 dag</li>
                               </ul>
                            </td>
@@ -1435,7 +1435,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>2 week, eenmalig per dag</div>
@@ -1449,7 +1449,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 2</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>3 week, eenmalig per dag</div>
@@ -1463,7 +1463,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 3</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>6 dag, eenmalig per dag</div>
@@ -1479,7 +1479,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -1514,15 +1514,15 @@
                <display value="FUSIDINEZUUR CREME 20MG/G"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T09:35:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -1532,7 +1532,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -1569,7 +1569,7 @@
             </dosageInstruction>
             <dosageInstruction>
                <sequence value="2"/>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -1606,7 +1606,7 @@
             </dosageInstruction>
             <dosageInstruction>
                <sequence value="3"/>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -1648,7 +1648,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6f05-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bed5-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1672,13 +1672,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>3 week</li>
                               </ul>
                            </td>
@@ -1687,7 +1687,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal</div>
+                              <div>Tekst: Vanaf T, gedurende 3 weken, bij hoest 1 maal per 3 uur 1 stuk , maximaal 6 stuks per dag, oraal</div>
                               <div>Timing: <div>eenmalig per 3 uren</div>
                               </div>
                               <div>Zo nodig: <span title="bij hoest (1387 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">bij hoest</span>
@@ -1704,7 +1704,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -1739,15 +1739,15 @@
                <display value="CODEINE TABLET 10MG (FOSFAAT)"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T11:25:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T11:25:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -1757,7 +1757,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal"/>
+               <text value="Vanaf T, gedurende 3 weken, bij hoest 1 maal per 3 uur 1 stuk , maximaal 6 stuks per dag, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -1807,7 +1807,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e705d-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c02d-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1831,13 +1831,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:12:00, 6 augustus 2018</td>
+                           <td>${DATE, T, D, -28}T09:12:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 6 augustus 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -28}T00:00:00+02:00</li>
                                  <li>8 dag</li>
                               </ul>
                            </td>
@@ -1846,7 +1846,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 6 aug 2018, gedurende 8 dagen, 0.5 ml per uur parenteraal</div>
+                              <div>Tekst: Vanaf T - 28 dagen, gedurende 8 dagen, 0.5 ml per uur, parenteraal</div>
                               <div>Toedieningsweg: <span title="parenteraal (10 - G-Standaard thesaurus subtabel 0007)">parenteraal</span>
                               </div>
                               <div>Doseerverhouding: 0.5 milliliter / 1 uur</div>
@@ -1858,7 +1858,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-06T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -28}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -1893,15 +1893,15 @@
                <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-08-06T09:12:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -28}T09:12:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -1911,7 +1911,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 6 aug 2018, gedurende 8 dagen, 0.5 ml per uur parenteraal"/>
+               <text value="Vanaf T - 28 dagen, gedurende 8 dagen, 0.5 ml per uur, parenteraal"/>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -1941,7 +1941,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e70bb-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c08b-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1965,13 +1965,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 14 augustus 2018</td>
+                           <td>${DATE, T, D, -20}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 14 augustus 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -20}T00:00:00+02:00</li>
                                  <li>8 dag</li>
                               </ul>
                            </td>
@@ -1980,7 +1980,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018, gedurende 8 dagen, 0.2 tot 0.5 ml per uur parenteraal</div>
+                              <div>Tekst: Vanaf T - 20 dagen, gedurende 8 dagen, 0.2 à 0.5 ml per uur, parenteraal</div>
                               <div>Toedieningsweg: <span title="parenteraal (10 - G-Standaard thesaurus subtabel 0007)">parenteraal</span>
                               </div>
                               <div>Doseerverhouding: 0.2 ml/h - 0.5 ml/h</div>
@@ -1992,7 +1992,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-14T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -2027,15 +2027,15 @@
                <display value="MORFINE INFVLST 5MG/ML (HCL)"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-08-14T11:25:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -20}T11:25:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -2045,7 +2045,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, gedurende 8 dagen, 0.2 tot 0.5 ml per uur parenteraal"/>
+               <text value="Vanaf T - 20 dagen, gedurende 8 dagen, 0.2 à 0.5 ml per uur, parenteraal"/>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -2075,7 +2075,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e71a6-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c176-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -2099,13 +2099,13 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: tot nader order, eenmaal daags 1 pleister aanbrengen gedurende 16 uur (daarna 8 uur geen pleister), transdermaal</div>
+                              <div>Tekst: 1 maal per dag 1 stuk gedurende 16 uur, transdermaal</div>
                               <div>Timing: <div>16 uren, eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="transdermaal (58 - G-Standaard thesaurus subtabel 0007)">transdermaal</span>
@@ -2141,15 +2141,15 @@
                <display value="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T11:25:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T11:25:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -2159,7 +2159,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="tot nader order, eenmaal daags 1 pleister aanbrengen gedurende 16 uur (daarna 8 uur geen pleister), transdermaal"/>
+               <text value="1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
                <timing>
                   <repeat>
                      <duration value="16"/>
@@ -2190,7 +2190,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e72c6-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c296-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -2214,17 +2214,17 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, zo nodig, cutaan</div>
+                              <div>Tekst: Vanaf T, bij hoest, cutaan</div>
                               <div>Zo nodig: <span title="bij hoest (1387 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">bij hoest</span>
                               </div>
                               <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
@@ -2237,7 +2237,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -2260,19 +2260,19 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:672e72fd-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8c2cd-8b3f-11eb-1149-020000000000"/>
                <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T09:35:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -2282,7 +2282,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, zo nodig, cutaan"/>
+               <text value="Vanaf T, bij hoest, cutaan"/>
                <asNeededCodeableConcept>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -2305,7 +2305,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e734f-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c31f-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -2333,7 +2333,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Toedieningsverzoek</th>
@@ -2376,19 +2376,19 @@
                <text value="Verstrekkingsverzoek"/>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:672e72fd-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8c2cd-8b3f-11eb-1149-020000000000"/>
                <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
-            <authoredOn value="2018-09-03T09:35:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:672e7355-7da9-11eb-1640-020000000000"/>
+                        <reference value="urn:uuid:55b8c325-8b3f-11eb-1149-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -2416,7 +2416,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e8163-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c963-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -2436,7 +2436,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -2450,7 +2450,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>60 dag</li>
                               </ul>
                            </td>
@@ -2459,7 +2459,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -2472,11 +2472,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T11:25:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T11:25:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -2510,7 +2510,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -2528,7 +2528,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -2558,7 +2558,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e8282-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8ca82-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -2578,7 +2578,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -2590,13 +2590,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, tot nader order, exact iedere 12 uur 16 IE, subcutaan</div>
+                              <div>Tekst: Vanaf T, exact iedere 12 uur 16 internationale eenheid, subcutaan</div>
                               <div>Timing: <div>12 uren</div>
                               </div>
                               <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
@@ -2609,11 +2609,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T11:25:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T11:25:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -2639,7 +2639,7 @@
                <display value="HUMULINE NPH INJ 100IE/ML PATROON 3ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -2657,7 +2657,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, exact iedere 12 uur 16 IE, subcutaan"/>
+               <text value="Vanaf T, exact iedere 12 uur 16 internationale eenheid, subcutaan"/>
                <timing>
                   <repeat>
                      <period value="12"/>
@@ -2685,7 +2685,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e8395-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8cb95-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -2705,7 +2705,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 15 juli 2018</td>
+                           <td>${DATE, T, D, -50}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -2719,7 +2719,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 15 juli 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -50}T00:00:00+02:00</li>
                                  <li>4 week</li>
                               </ul>
                            </td>
@@ -2728,7 +2728,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 15 jul 2018, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal</div>
+                              <div>Tekst: Vanaf T - 50 dagen, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal</div>
                               <div>Timing: <div>3 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -2741,11 +2741,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-07-15T11:25:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -50}T11:25:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-07-15T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -2779,7 +2779,7 @@
                <display value="PARACETAMOL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -2797,7 +2797,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 15 jul 2018, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal"/>
+               <text value="Vanaf T - 50 dagen, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="3"/>
@@ -2834,7 +2834,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e84b6-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8ccb6-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -2854,7 +2854,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>10:26:00, 14 augustus 2018</td>
+                           <td>${DATE, T, D, -20}T10:26:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -2868,7 +2868,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 14 augustus 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -20}T00:00:00+02:00</li>
                                  <li>30 dag</li>
                               </ul>
                            </td>
@@ -2877,7 +2877,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018, gedurende 30 dagen, 3 maal per dag aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T - 20 dagen, gedurende 30 dagen, 3 maal per dag, aanbrengen, cutaan</div>
                               <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                               </div>
                               <div>Timing: <div>3 maal per dag</div>
@@ -2891,11 +2891,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-14T10:26:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -20}T10:26:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-14T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -2929,7 +2929,7 @@
                <display value="Cetomacrogolcreme met 10% vaseline FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -2947,7 +2947,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, gedurende 30 dagen, 3 maal per dag aanbrengen, cutaan"/>
+               <text value="Vanaf T - 20 dagen, gedurende 30 dagen, 3 maal per dag, aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -2977,7 +2977,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e668c-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b65c-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -2997,7 +2997,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>10:46:00, 14 augustus 2018</td>
+                           <td>${DATE, T, D, -20}T10:46:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -3011,7 +3011,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 14 augustus 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -20}T00:00:00+02:00</li>
                                  <li>30 dag</li>
                               </ul>
                            </td>
@@ -3020,7 +3020,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018, gedurende 30 dagen, 2 maal per dag 1/2 tablet</div>
+                              <div>Tekst: Vanaf T - 20 dagen, gedurende 30 dagen, 2 maal per dag 0.5 stuk, oraal</div>
                               <div>Timing: <div>2 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -3033,11 +3033,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-14T10:46:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -20}T10:46:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-14T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -3071,7 +3071,7 @@
                <display value="Naproxen CF tablet 500mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -3089,7 +3089,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, gedurende 30 dagen, 2 maal per dag 1/2 tablet"/>
+               <text value="Vanaf T - 20 dagen, gedurende 30 dagen, 2 maal per dag 0.5 stuk, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -3118,7 +3118,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e67b7-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b787-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -3138,7 +3138,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -3152,7 +3152,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>14 dag</li>
                               </ul>
                            </td>
@@ -3161,7 +3161,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 14 dagen, 2x per dag 10 tot 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen</div>
+                              <div>Tekst: Vanaf T, gedurende 14 dagen, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen</div>
                               <div>Instructie: <ul>
                                     <li>
                                        <span title="Eerst oplossen in water (27 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">Eerst oplossen in water</span>
@@ -3183,11 +3183,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T09:35:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -3221,7 +3221,7 @@
                <display value="SOLUTIO HYDROGENII PEROXIDI 3% M/V"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -3239,7 +3239,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 14 dagen, 2x per dag 10 tot 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
+               <text value="Vanaf T, gedurende 14 dagen, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -3290,7 +3290,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e68e2-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b8b2-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -3310,7 +3310,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -3324,7 +3324,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>14 dag</li>
                               </ul>
                            </td>
@@ -3333,7 +3333,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 uur 16IE, subcutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 16 internationale eenheid, subcutaan</div>
                               <div>Timing: <div>08:00:00, 14:00:00, 20:00:00</div>
                               </div>
                               <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
@@ -3346,11 +3346,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T09:35:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -3384,7 +3384,7 @@
                <display value="HUMULINE NPH INJ 100IE/ML PATROON 3ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -3402,7 +3402,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 uur 16IE, subcutaan"/>
+               <text value="Vanaf T, gedurende 14 dagen, elke dag om 08:00, 14:00 en 20:00 16 internationale eenheid, subcutaan"/>
                <timing>
                   <repeat>
                      <timeOfDay value="08:00:00"/>
@@ -3431,7 +3431,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e69f3-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b9c3-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -3451,7 +3451,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -3465,7 +3465,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>10 week</li>
                               </ul>
                            </td>
@@ -3474,7 +3474,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, subcutaan</div>
                               <div>Instructie: <ul>
                                     <li>
                                        <span title="voor de nacht (1128 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">voor de nacht</span>
@@ -3495,11 +3495,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T09:35:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -3533,7 +3533,7 @@
                <display value="ALDARA CREME 50MG/G IN SACHET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -3551,7 +3551,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, subcutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -3588,7 +3588,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6b04-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bad4-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -3608,7 +3608,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -3620,13 +3620,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk ’s avonds innemen, oraal</div>
+                              <div>Tekst: Vanaf T, 1 maal per dag 1 stuk 's avonds, oraal</div>
                               <div>Timing: <div>eenmalig per dag, EVE</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -3639,11 +3639,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T09:35:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -3669,7 +3669,7 @@
                <display value="INEGY TABLET 10/20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -3687,7 +3687,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk ’s avonds innemen, oraal"/>
+               <text value="Vanaf T, 1 maal per dag 1 stuk 's avonds, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -3717,7 +3717,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6c57-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bc27-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -3737,7 +3737,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -3753,13 +3753,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, tot nader order, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal</div>
+                              <div>Tekst: Vanaf T, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal</div>
                               <div>Timing: <div>21 dag, eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -3772,11 +3772,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T09:35:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -3810,7 +3810,7 @@
                <display value="MARVELON TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -3828,7 +3828,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
+               <text value="Vanaf T, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
                <timing>
                   <repeat>
                      <boundsDuration>
@@ -3863,7 +3863,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6dc6-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bd96-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -3883,7 +3883,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -3897,7 +3897,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>41 dag</li>
                               </ul>
                            </td>
@@ -3906,7 +3906,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>2 week, eenmalig per dag</div>
@@ -3920,7 +3920,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 2</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>3 week, eenmalig per dag</div>
@@ -3934,7 +3934,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 3</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>6 dag, eenmalig per dag</div>
@@ -3949,11 +3949,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T09:35:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -3987,7 +3987,7 @@
                <display value="FUCIDIN CREME 20MG/G"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -4005,7 +4005,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -4042,7 +4042,7 @@
             </dosageInstruction>
             <dosageInstruction>
                <sequence value="2"/>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -4079,7 +4079,7 @@
             </dosageInstruction>
             <dosageInstruction>
                <sequence value="3"/>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -4121,7 +4121,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6f83-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bf53-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -4141,7 +4141,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -4155,7 +4155,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 3 september 2018</li>
+                                 <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
                                  <li>3 week</li>
                               </ul>
                            </td>
@@ -4164,7 +4164,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal</div>
+                              <div>Tekst: Vanaf T, gedurende 3 weken, bij hoest 1 maal per 3 uur 1 stuk , maximaal 6 stuks per dag, oraal</div>
                               <div>Timing: <div>eenmalig per 3 uren</div>
                               </div>
                               <div>Zo nodig: <span title="bij hoest (1387 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">bij hoest</span>
@@ -4180,11 +4180,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T11:25:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T11:25:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -4218,7 +4218,7 @@
                <display value="CODEINEFOSFAAT PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -4236,7 +4236,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal"/>
+               <text value="Vanaf T, gedurende 3 weken, bij hoest 1 maal per 3 uur 1 stuk , maximaal 6 stuks per dag, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -4286,7 +4286,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e711f-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c0ef-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -4306,7 +4306,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:12:00, 6 augustus 2018</td>
+                           <td>${DATE, T, D, -28}T09:12:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -4320,7 +4320,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 6 augustus 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -28}T00:00:00+02:00</li>
                                  <li>8 dag</li>
                               </ul>
                            </td>
@@ -4329,7 +4329,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 6 aug 2018, gedurende 8 dagen, 0.5 ml per uur parenteraal</div>
+                              <div>Tekst: Vanaf T - 28 dagen, gedurende 8 dagen, 0.5 ml per uur, parenteraal</div>
                               <div>Toedieningsweg: <span title="parenteraal (10 - G-Standaard thesaurus subtabel 0007)">parenteraal</span>
                               </div>
                               <div>Doseerverhouding: 0.5 milliliter / 1 uur</div>
@@ -4340,11 +4340,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-06T09:12:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -28}T09:12:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-06T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -28}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -4378,7 +4378,7 @@
                <display value="MORFINEHYDROCHLORIDE 5MG/ML DELTEC CAS 100ML PA"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -4396,7 +4396,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 6 aug 2018, gedurende 8 dagen, 0.5 ml per uur parenteraal"/>
+               <text value="Vanaf T - 28 dagen, gedurende 8 dagen, 0.5 ml per uur, parenteraal"/>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -4426,7 +4426,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e7161-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c131-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -4446,7 +4446,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 14 augustus 2018</td>
+                           <td>${DATE, T, D, -20}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -4460,7 +4460,7 @@
                            <th>Gebruiksduur</th>
                            <td>
                               <ul>
-                                 <li>Vanaf 00:00:00, 14 augustus 2018</li>
+                                 <li>Vanaf ${DATE, T, D, -20}T00:00:00+02:00</li>
                                  <li>8 dag</li>
                               </ul>
                            </td>
@@ -4469,7 +4469,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018, gedurende 8 dagen, 0.2 tot 0.5 ml per uur parenteraal</div>
+                              <div>Tekst: Vanaf T - 20 dagen, gedurende 8 dagen, 0.2 à 0.5 ml per uur, parenteraal</div>
                               <div>Toedieningsweg: <span title="parenteraal (10 - G-Standaard thesaurus subtabel 0007)">parenteraal</span>
                               </div>
                               <div>Doseerverhouding: 0.2 ml/h - 0.5 ml/h</div>
@@ -4480,11 +4480,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-14T11:25:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -20}T11:25:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-14T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
@@ -4518,7 +4518,7 @@
                <display value="MORFINEHYDROCHLORIDE 5MG/ML DELTEC CAS 100ML PA"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -4536,7 +4536,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, gedurende 8 dagen, 0.2 tot 0.5 ml per uur parenteraal"/>
+               <text value="Vanaf T - 20 dagen, gedurende 8 dagen, 0.2 à 0.5 ml per uur, parenteraal"/>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -4566,7 +4566,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e7210-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c1e0-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -4586,7 +4586,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>11:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -4604,7 +4604,7 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: tot nader order, eenmaal daags 1 pleister aanbrengen gedurende 16 uur (daarna 8 uur geen pleister), transdermaal</div>
+                              <div>Tekst: Vanaf 16 aug 2018, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal</div>
                               <div>Timing: <div>16 uren, eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="transdermaal (58 - G-Standaard thesaurus subtabel 0007)">transdermaal</span>
@@ -4617,7 +4617,7 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T11:25:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T11:25:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
@@ -4647,7 +4647,7 @@
                <display value="DEPONIT T 5 PLEISTER TRANSDERMAAL 18,7MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -4665,7 +4665,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="tot nader order, eenmaal daags 1 pleister aanbrengen gedurende 16 uur (daarna 8 uur geen pleister), transdermaal"/>
+               <text value="Vanaf 16 aug 2018, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
                <timing>
                   <repeat>
                      <duration value="16"/>
@@ -4696,7 +4696,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e73d7-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c3a7-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -4716,7 +4716,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -4728,13 +4728,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, zo nodig, cutaan</div>
+                              <div>Tekst: Vanaf T, bij hoest, cutaan</div>
                               <div>Zo nodig: <span title="bij hoest (1387 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">bij hoest</span>
                               </div>
                               <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
@@ -4746,11 +4746,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T09:35:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -4772,11 +4772,11 @@
                <text value="Toedieningsafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:672e72fd-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8c2cd-8b3f-11eb-1149-020000000000"/>
                <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -4794,7 +4794,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, zo nodig, cutaan"/>
+               <text value="Vanaf T, bij hoest, cutaan"/>
                <asNeededCodeableConcept>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -4817,7 +4817,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6b4f-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bb1f-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -4855,7 +4855,7 @@
                         </tr>
                         <tr>
                            <th>Datum overhandigd</th>
-                           <td>10:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T10:35:00+02:00</td>
                         </tr>
                      </tbody>
                   </table>
@@ -4893,7 +4893,7 @@
                <display value="INEGY TABLET 10/20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -4915,7 +4915,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                <code value="245"/>
             </quantity>
-            <whenHandedOver value="2018-09-03T10:35:00+02:00"/>
+            <whenHandedOver value="${DATE, T, D, +0}T10:35:00+02:00"/>
          </MedicationDispense>
       </resource>
       <search>
@@ -4923,7 +4923,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e743e-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c40e-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -4955,7 +4955,7 @@
                         </tr>
                         <tr>
                            <th>Datum overhandigd</th>
-                           <td>10:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T10:35:00+02:00</td>
                         </tr>
                      </tbody>
                   </table>
@@ -4980,11 +4980,11 @@
                <text value="Medicatieverstrekking"/>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:672e72fd-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8c2cd-8b3f-11eb-1149-020000000000"/>
                <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <performer>
@@ -5006,7 +5006,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                <code value="215"/>
             </quantity>
-            <whenHandedOver value="2018-09-03T10:35:00+02:00"/>
+            <whenHandedOver value="${DATE, T, D, +0}T10:35:00+02:00"/>
          </MedicationDispense>
       </resource>
       <search>
@@ -5014,7 +5014,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e81ae-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c9ae-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -5042,11 +5042,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018, 60 dag</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 60 dag</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>16:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T16:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -5056,7 +5056,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig, max frequentie 2 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -5077,13 +5077,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -5123,11 +5123,11 @@
                      <code value="d"/>
                   </valueDuration>
                </extension>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T16:25:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T16:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -5140,7 +5140,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, oraal"/>
+               <text value="Vanaf T, gedurende 60 dagen, 1 à 2 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -5170,7 +5170,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e82c1-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8cac1-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -5198,11 +5198,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018, 14 dag</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 14 dag</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>14:25:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T14:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -5212,7 +5212,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 14 dagen, exact iedere 12 uur 16 IE, subcutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 14 dagen, exact iedere 12 uur 16 internationale eenheid, subcutaan</div>
                               <div>Timing: <div>12 uren</div>
                               </div>
                               <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
@@ -5230,13 +5230,13 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -5276,11 +5276,11 @@
                      <code value="d"/>
                   </valueDuration>
                </extension>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T14:25:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T14:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -5293,7 +5293,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 14 dagen, exact iedere 12 uur 16 IE, subcutaan"/>
+               <text value="Vanaf T, gedurende 14 dagen, exact iedere 12 uur 16 internationale eenheid, subcutaan"/>
                <timing>
                   <repeat>
                      <period value="12"/>
@@ -5321,7 +5321,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e83e0-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8cbe0-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -5349,11 +5349,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 15 juli 2018, 4 week</td>
+                           <td>Vanaf ${DATE, T, D, -50}T00:00:00+02:00, 4 week</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>10:45:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T10:45:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -5363,7 +5363,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 15 jul 2018, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal</div>
+                              <div>Tekst: Vanaf T - 50 dagen, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal</div>
                               <div>Timing: <div>3 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -5384,13 +5384,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -5430,11 +5430,11 @@
                      <code value="wk"/>
                   </valueDuration>
                </extension>
-               <start value="2018-07-15T00:00:00+02:00"/>
+               <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T10:45:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T10:45:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -5447,7 +5447,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 15 jul 2018, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal"/>
+               <text value="Vanaf T - 50 dagen, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="3"/>
@@ -5484,7 +5484,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e65b7-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b587-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -5512,11 +5512,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>14 augustus 2018 00:00:00 - 19 augustus 2018 23:59:00</td>
+                           <td>${DATE, T, D, -20}T00:00:00+02:00 - ${DATE, T, D, -15}T23:59:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>13:44:00, 19 augustus 2018</td>
+                           <td>${DATE, T, D, -15}T13:44:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -5526,7 +5526,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018 tot en met 19 aug 2018, 3 maal per dag aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T - 20 dagen, tot en met T - 15 dagen, 3 maal per dag, aanbrengen, cutaan</div>
                               <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                               </div>
                               <div>Timing: <div>3 maal per dag</div>
@@ -5545,13 +5545,13 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -5583,12 +5583,12 @@
                <display value="Cetomacrogolcreme met vaseline"/>
             </medicationReference>
             <effectivePeriod>
-               <start value="2018-08-14T00:00:00+02:00"/>
-               <end value="2018-08-19T23:59:00+02:00"/>
+               <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+               <end value="${DATE, T, D, -15}T23:59:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-08-19T13:44:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, -15}T13:44:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -5601,7 +5601,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018 tot en met 19 aug 2018, 3 maal per dag aanbrengen, cutaan"/>
+               <text value="Vanaf T - 20 dagen, tot en met T - 15 dagen, 3 maal per dag, aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -5631,7 +5631,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e66d5-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b6a5-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -5659,11 +5659,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 14 augustus 2018, 30 dag</td>
+                           <td>Vanaf ${DATE, T, D, -20}T00:00:00+02:00, 30 dag</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>12:38:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T12:38:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -5673,7 +5673,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018, gedurende 30 dagen, 2 maal per dag 1/2 tablet</div>
+                              <div>Tekst: Vanaf T - 20 dagen, gedurende 30 dagen, 2 maal per dag 0.5 stuk, oraal</div>
                               <div>Timing: <div>2 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -5691,13 +5691,13 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -5737,11 +5737,11 @@
                      <code value="d"/>
                   </valueDuration>
                </extension>
-               <start value="2018-08-14T00:00:00+02:00"/>
+               <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T12:38:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T12:38:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -5754,7 +5754,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, gedurende 30 dagen, 2 maal per dag 1/2 tablet"/>
+               <text value="Vanaf T - 20 dagen, gedurende 30 dagen, 2 maal per dag 0.5 stuk, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -5783,7 +5783,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6806-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b7d6-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -5811,11 +5811,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018, 1 dag</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 1 dag</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>21:37:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T21:37:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -5825,7 +5825,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 1 dag, 2x per dag 10 tot 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen</div>
+                              <div>Tekst: Vanaf T, gedurende 1 dag, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen</div>
                               <div>Instructie: <ul>
                                     <li>
                                        <span title="Eerst oplossen in water (27 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">Eerst oplossen in water</span>
@@ -5852,13 +5852,13 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -5898,11 +5898,11 @@
                      <code value="d"/>
                   </valueDuration>
                </extension>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T21:37:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T21:37:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -5915,7 +5915,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 1 dag, 2x per dag 10 tot 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
+               <text value="Vanaf T, gedurende 1 dag, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -5966,7 +5966,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6927-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8b8f7-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -5994,11 +5994,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>07:00 - 23:59 op 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T07:00:00+02:00 - ${DATE, T, D, +0}T23:59:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>14:05:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T14:05:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -6008,7 +6008,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: vanaf 3 sep 2018, gedurende 1 dag, elke dag om 08:00, 14:00 en 20:00 uur 16IE</div>
+                              <div>Tekst: Vanaf T om 07:00 uur, tot en met T, elke dag om 08:00, 14:00 en 20:00 16 internationale eenheid, subcutaan</div>
                               <div>Timing: <div>08:00:00, 14:00:00, 20:00:00</div>
                               </div>
                               <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
@@ -6026,13 +6026,13 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -6064,12 +6064,12 @@
                <display value="INSULINE ISOFAAN INJSUSP 100IE/ML"/>
             </medicationReference>
             <effectivePeriod>
-               <start value="2018-09-03T07:00:00+02:00"/>
-               <end value="2018-09-03T23:59:00+02:00"/>
+               <start value="${DATE, T, D, +0}T07:00:00+02:00"/>
+               <end value="${DATE, T, D, +0}T23:59:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T14:05:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T14:05:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -6082,7 +6082,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="vanaf 3 sep 2018, gedurende 1 dag, elke dag om 08:00, 14:00 en 20:00 uur 16IE"/>
+               <text value="Vanaf T om 07:00 uur, tot en met T, elke dag om 08:00, 14:00 en 20:00 16 internationale eenheid, subcutaan"/>
                <timing>
                   <repeat>
                      <timeOfDay value="08:00:00"/>
@@ -6111,7 +6111,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6a32-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8ba02-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -6139,11 +6139,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018, 10 week</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 10 week</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>23:59:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T23:59:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -6153,7 +6153,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen</div>
+                              <div>Tekst: Vanaf T, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan</div>
                               <div>Instructie: <ul>
                                     <li>
                                        <span title="voor de nacht (1128 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">voor de nacht</span>
@@ -6182,13 +6182,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -6228,11 +6228,11 @@
                      <code value="wk"/>
                   </valueDuration>
                </extension>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T23:59:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T23:59:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -6245,7 +6245,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht aanbrengen"/>
+               <text value="Vanaf T, gedurende 10 weken, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -6282,7 +6282,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6b79-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bb49-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -6310,11 +6310,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>22:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T22:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -6324,7 +6324,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, tot nader order, 1 maal daags ’s avonds innemen</div>
+                              <div>Tekst: Vanaf T, 1 maal per dag 1 stuk 's avonds, oraal</div>
                               <div>Timing: <div>eenmalig per dag, EVE</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -6345,13 +6345,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -6383,11 +6383,11 @@
                <display value="EZETIMIB/SIMVASTATINE TABLET 10/20MG"/>
             </medicationReference>
             <effectivePeriod>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T22:35:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T22:35:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -6400,7 +6400,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, 1 maal daags ’s avonds innemen"/>
+               <text value="Vanaf T, 1 maal per dag 1 stuk 's avonds, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -6430,7 +6430,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6ca2-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bc72-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -6458,11 +6458,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>09:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T09:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -6476,7 +6476,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, tot nader order, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal</div>
+                              <div>Tekst: Vanaf T, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk</div>
                               <div>Timing: <div>21 dag, eenmalig per dag</div>
                               </div>
                               <div>Dosering: 1 stuk</div>
@@ -6495,13 +6495,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -6541,11 +6541,11 @@
                <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
             </medicationReference>
             <effectivePeriod>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T09:35:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T09:35:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -6558,7 +6558,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, cyclus van 28 dagen: steeds 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
+               <text value="Vanaf T, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk"/>
                <timing>
                   <repeat>
                      <boundsDuration>
@@ -6586,7 +6586,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6e56-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8be26-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -6614,11 +6614,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018, 41 dag</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 41 dag</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>15:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T15:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -6628,7 +6628,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, gedurende 2 weken 1 maal per dag 3 gram, gedurende 3 weken 1 maal per dag 2 gram, gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>2 week, eenmalig per dag</div>
@@ -6639,7 +6639,7 @@
                         <tr>
                            <th>Dosering</th>
                            <td>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, gedurende 2 weken 1 maal per dag 3 gram, gedurende 3 weken 1 maal per dag 2 gram, gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>3 week, eenmalig per dag</div>
@@ -6650,7 +6650,7 @@
                         <tr>
                            <th>Dosering</th>
                            <td>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 41 dagen, gedurende 2 weken 1 maal per dag 3 gram, gedurende 3 weken 1 maal per dag 2 gram, gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen</div>
                               <div>Instructie: <span title="dun aanbrengen (1033 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">dun aanbrengen</span>
                               </div>
                               <div>Timing: <div>6 dag, eenmalig per dag</div>
@@ -6671,13 +6671,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -6717,11 +6717,11 @@
                      <code value="d"/>
                   </valueDuration>
                </extension>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T15:35:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T15:35:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -6734,7 +6734,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, gedurende 2 weken 1 maal per dag 3 gram, gedurende 3 weken 1 maal per dag 2 gram, gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -6763,7 +6763,7 @@
                </doseQuantity>
             </dosage>
             <dosage>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, gedurende 2 weken 1 maal per dag 3 gram, gedurende 3 weken 1 maal per dag 2 gram, gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -6792,7 +6792,7 @@
                </doseQuantity>
             </dosage>
             <dosage>
-               <text value="Vanaf 3 sep 2018, gedurende 41 dagen, eerst 2 weken 3gr per dag, dan 3 weken 2gr per dag, dan 6 dagen 1gr per dag, dun aanbrengen, cutaan"/>
+               <text value="Vanaf T, gedurende 41 dagen, gedurende 2 weken 1 maal per dag 3 gram, gedurende 3 weken 1 maal per dag 2 gram, gedurende 6 dagen 1 maal per dag 1 gram, dun aanbrengen"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -6827,7 +6827,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e6fdd-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bfad-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -6855,11 +6855,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018, 3 week</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 3 week</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>22:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T22:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -6869,7 +6869,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal</div>
+                              <div>Tekst: Vanaf T, gedurende 3 weken, bij hoest 1 maal per 3 uur 1 stuk , maximaal 6 stuks per dag, oraal</div>
                               <div>Timing: <div>eenmalig per 3 uren</div>
                               </div>
                               <div>Zo nodig: <span title="bij hoest (1387 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">bij hoest</span>
@@ -6893,13 +6893,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -6939,11 +6939,11 @@
                      <code value="wk"/>
                   </valueDuration>
                </extension>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T22:35:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T22:35:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -6956,7 +6956,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 3 weken, iedere 3 uur 1 stuk bij hoest, maximaal 6 stuks per dag, oraal"/>
+               <text value="Vanaf T, gedurende 3 weken, bij hoest 1 maal per 3 uur 1 stuk , maximaal 6 stuks per dag, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -7006,7 +7006,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e7259-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c229-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -7034,7 +7034,7 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>22:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T22:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -7044,7 +7044,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: tot nader order, eenmaal daags 1 pleister aanbrengen gedurende 16 uur (daarna 8 uur geen pleister).</div>
+                              <div>Tekst: 1 maal per dag 1 stuk gedurende 16 uur, transdermaal</div>
                               <div>Timing: <div>16 uren, eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="transdermaal (58 - G-Standaard thesaurus subtabel 0007)">transdermaal</span>
@@ -7065,13 +7065,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -7102,9 +7102,9 @@
                <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.44520"/>
                <display value="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
             </medicationReference>
-            <dateAsserted value="2018-09-03T22:35:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T22:35:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -7117,7 +7117,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="tot nader order, eenmaal daags 1 pleister aanbrengen gedurende 16 uur (daarna 8 uur geen pleister)."/>
+               <text value="1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
                <timing>
                   <repeat>
                      <duration value="16"/>
@@ -7148,7 +7148,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e7494-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c464-8b3f-11eb-1149-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -7176,11 +7176,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 3 september 2018, 4 dag</td>
+                           <td>Vanaf ${DATE, T, D, +0}T00:00:00+02:00, 4 dag</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>10:35:00, 3 september 2018</td>
+                           <td>${DATE, T, D, +0}T10:35:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -7189,7 +7189,7 @@
                         <tr>
                            <th>Dosering</th>
                            <td>
-                              <div>Tekst: Vanaf 3 sep 2018, gedurende 4 dagen, cutaan</div>
+                              <div>Tekst: Vanaf T, gedurende 4 dagen, aanbrengen, cutaan</div>
                               <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                               </div>
                               <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
@@ -7209,13 +7209,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+                  <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                   <display value="R. XXX_Strengersz"/>
                </valueReference>
             </extension>
@@ -7243,7 +7243,7 @@
                <text value="Medicatiegebruik"/>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:672e72fd-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8c2cd-8b3f-11eb-1149-020000000000"/>
                <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <effectivePeriod>
@@ -7255,11 +7255,11 @@
                      <code value="d"/>
                   </valueDuration>
                </extension>
-               <start value="2018-09-03T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-09-03T10:35:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, +0}T10:35:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
                <display value="R. XXX_Strengersz"/>
             </subject>
             <derivedFrom>
@@ -7271,7 +7271,7 @@
             </derivedFrom>
             <taken value="y"/>
             <dosage>
-               <text value="Vanaf 3 sep 2018, gedurende 4 dagen, cutaan"/>
+               <text value="Vanaf T, gedurende 4 dagen, aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -7294,7 +7294,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e7bb1-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8bc95-8b3f-11eb-1149-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -7448,7 +7448,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e820b-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8ca0b-8b3f-11eb-1149-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -7512,7 +7512,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e7c50-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8d328-8b3f-11eb-1149-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -7564,7 +7564,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e81f6-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c9f6-8b3f-11eb-1149-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -7598,7 +7598,7 @@
                <display value="Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:672e820b-7da9-11eb-1640-020000000000"/>
+               <reference value="urn:uuid:55b8ca0b-8b3f-11eb-1149-020000000000"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>
@@ -7616,7 +7616,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e7355-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c325-8b3f-11eb-1149-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -8783,7 +8783,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:672e72fd-7da9-11eb-1640-020000000000"/>
+      <fullUrl value="urn:uuid:55b8c2cd-8b3f-11eb-1149-020000000000"/>
       <resource>
          <Medication>
             <meta>

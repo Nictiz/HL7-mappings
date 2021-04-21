@@ -35,11 +35,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
-
+    
        <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
     </xsl:variable>
-
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
+    
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
     </xd:doc>
@@ -65,23 +67,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
       <xd:doc>
-        <xd:desc>Creates xml document for a FHIR resource</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name">
-            <xsl:choose>
-                <xsl:when test="./local-name() = 'Organization'">mp612-Organization</xsl:when>
-                <xsl:when test="./local-name() = 'Patient'">mp612-Patient</xsl:when>
-                <xsl:when test="./local-name() = 'Medication'">mp612-Product</xsl:when>
-                <xsl:otherwise><xsl:value-of select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-DispenseToFHIRConversion-', '-')"/></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
-            <xsl:apply-templates select="." mode="ResultOutput"/>
-        </xsl:result-document>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
     </xd:doc>
     <xsl:template match="f:Medication/f:meta/f:profile" mode="ResultOutput">

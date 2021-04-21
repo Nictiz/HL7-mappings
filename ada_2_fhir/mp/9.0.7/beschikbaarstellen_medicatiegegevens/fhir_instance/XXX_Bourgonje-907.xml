@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="6706aceb-7da9-11eb-1239-020000000000"/>
+   <id value="5590ab35-8b3f-11eb-1982-020000000000"/>
    <type value="searchset"/>
    <total value="5"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:6706af9a-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590b65e-8b3f-11eb-1982-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -33,17 +33,17 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>2018-08-27</td>
+                           <td>${DATE, T, D, -7}</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 27 augustus 2018</td>
+                           <td>Vanaf ${DATE, T, D, -7}</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 27 aug 2018, Zo nodig 2 maal daags aanbrengen, op de huid</div>
+                              <div>Tekst: Vanaf T - 7 dagen, zo nodig 2 maal per dag, aanbrengen, Cutaan</div>
                               <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                               </div>
                               <div>Timing: <div>2 maal per dag</div>
@@ -60,7 +60,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-27"/>
+                  <start value="${DATE, T, D, -7}"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -87,15 +87,15 @@
                <display value="Cetomacrogolcreme met vaseline"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6706acf3-7da9-11eb-1239-020000000000"/>
+               <reference value="urn:uuid:5590ab3d-8b3f-11eb-1982-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
-            <authoredOn value="2018-08-27"/>
+            <authoredOn value="${DATE, T, D, -7}"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:6706afa4-7da9-11eb-1239-020000000000"/>
+                        <reference value="urn:uuid:5590b668-8b3f-11eb-1982-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
                      </valueReference>
                   </extension>
@@ -105,7 +105,7 @@
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 27 aug 2018, Zo nodig 2 maal daags aanbrengen, op de huid"/>
+               <text value="Vanaf T - 7 dagen, zo nodig 2 maal per dag, aanbrengen, Cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -142,7 +142,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706a255-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590afbd-8b3f-11eb-1982-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -170,7 +170,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>2018-08-27</td>
+                           <td>${DATE, T, D, -7}</td>
                         </tr>
                         <tr>
                            <th>Toedieningsverzoek</th>
@@ -216,15 +216,15 @@
                <display value="Cetomacrogolcreme met vaseline"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6706acf3-7da9-11eb-1239-020000000000"/>
+               <reference value="urn:uuid:5590ab3d-8b3f-11eb-1982-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
-            <authoredOn value="2018-08-27"/>
+            <authoredOn value="${DATE, T, D, -7}"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:6706a25b-7da9-11eb-1239-020000000000"/>
+                        <reference value="urn:uuid:5590afc3-8b3f-11eb-1982-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
                      </valueReference>
                   </extension>
@@ -251,7 +251,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706a2aa-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590b012-8b3f-11eb-1982-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -271,7 +271,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>00:00:00, 27 augustus 2018</td>
+                           <td>${DATE, T, D, -7}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
@@ -283,13 +283,13 @@
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf 00:00:00, 27 augustus 2018</td>
+                           <td>Vanaf ${DATE, T, D, -7}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 27 aug 2018, Zo nodig 2 maal daags aanbrengen, op de huid</div>
+                              <div>Tekst: Vanaf T - 7 dagen, zo nodig 2 maal per dag, aanbrengen, Cutaan</div>
                               <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                               </div>
                               <div>Timing: <div>2 maal per dag</div>
@@ -305,11 +305,11 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-27T00:00:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -7}T00:00:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-27T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -7}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -335,7 +335,7 @@
                <display value="Cetomacrogolcreme met 10% vaseline FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6706acf3-7da9-11eb-1239-020000000000"/>
+               <reference value="urn:uuid:5590ab3d-8b3f-11eb-1982-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
             <performer>
@@ -353,7 +353,7 @@
             </authorizingPrescription>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 27 aug 2018, Zo nodig 2 maal daags aanbrengen, op de huid"/>
+               <text value="Vanaf T - 7 dagen, zo nodig 2 maal per dag, aanbrengen, Cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -390,7 +390,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706a2f3-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590b05b-8b3f-11eb-1982-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -422,7 +422,7 @@
                         </tr>
                         <tr>
                            <th>Datum overhandigd</th>
-                           <td>2018-08-27</td>
+                           <td>${DATE, T, D, -7}</td>
                         </tr>
                      </tbody>
                   </table>
@@ -451,7 +451,7 @@
                <display value="Cetomacrogolcreme met 10% vaseline FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6706acf3-7da9-11eb-1239-020000000000"/>
+               <reference value="urn:uuid:5590ab3d-8b3f-11eb-1982-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
             <performer>
@@ -473,7 +473,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                <code value="215"/>
             </quantity>
-            <whenHandedOver value="2018-08-27"/>
+            <whenHandedOver value="${DATE, T, D, -7}"/>
          </MedicationDispense>
       </resource>
       <search>
@@ -481,7 +481,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706a31c-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590b084-8b3f-11eb-1982-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -509,11 +509,11 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 11 augustus 2018, 2 dag</td>
+                           <td>Vanaf ${DATE, T, D, -5}T00:00:00+02:00, 2 dag</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>20:58:00, 12 augustus 2018</td>
+                           <td>${DATE, T, D, -4}T20:58:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -523,7 +523,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf T-5 dagen, gedurende 2 dagen, 2 maal per dag aanbrengen</div>
+                              <div>Tekst: Vanaf T - 5 dagen, gedurende 2 dagen, 2 maal per dag, aanbrengen</div>
                               <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                               </div>
                               <div>Timing: <div>2 maal per dag</div>
@@ -540,13 +540,13 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:6706a354-7da9-11eb-1239-020000000000"/>
+                  <reference value="urn:uuid:5590b0bc-8b3f-11eb-1982-020000000000"/>
                   <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:6706acf3-7da9-11eb-1239-020000000000"/>
+                  <reference value="urn:uuid:5590ab3d-8b3f-11eb-1982-020000000000"/>
                   <display value="Pauline P. XXX_Bourgonje"/>
                </valueReference>
             </extension>
@@ -586,11 +586,11 @@
                      <code value="d"/>
                   </valueDuration>
                </extension>
-               <start value="2018-08-11T00:00:00+02:00"/>
+               <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-08-12T20:58:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, -4}T20:58:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:6706acf3-7da9-11eb-1239-020000000000"/>
+               <reference value="urn:uuid:5590ab3d-8b3f-11eb-1982-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
             <derivedFrom>
@@ -603,7 +603,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf T-5 dagen, gedurende 2 dagen, 2 maal per dag aanbrengen"/>
+               <text value="Vanaf T - 5 dagen, gedurende 2 dagen, 2 maal per dag, aanbrengen"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -626,7 +626,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706acf3-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590ab3d-8b3f-11eb-1982-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -785,7 +785,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706a369-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590b0d1-8b3f-11eb-1982-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -849,7 +849,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706afa4-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590b668-8b3f-11eb-1982-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -901,7 +901,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706a25b-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590afc3-8b3f-11eb-1982-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -953,7 +953,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6706a354-7da9-11eb-1239-020000000000"/>
+      <fullUrl value="urn:uuid:5590b0bc-8b3f-11eb-1982-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -987,7 +987,7 @@
                <display value="Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:6706a369-7da9-11eb-1239-020000000000"/>
+               <reference value="urn:uuid:5590b0d1-8b3f-11eb-1982-020000000000"/>
                <display value="Huisartsenpraktijk Stitswerd Oost"/>
             </organization>
             <specialty>
