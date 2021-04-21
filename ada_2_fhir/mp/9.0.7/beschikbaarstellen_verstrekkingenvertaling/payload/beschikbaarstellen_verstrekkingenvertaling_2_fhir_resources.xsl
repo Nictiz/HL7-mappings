@@ -65,6 +65,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
       <xd:doc>
+        <xd:desc>Creates xml document for a FHIR resource</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
+        <xsl:variable name="zib-name">
+            <xsl:choose>
+                <xsl:when test="./local-name() = 'Organization'">mp612-Organization</xsl:when>
+                <xsl:when test="./local-name() = 'Patient'">mp612-Patient</xsl:when>
+                <xsl:when test="./local-name() = 'Medication'">mp612-Product</xsl:when>
+                <xsl:otherwise><xsl:value-of select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-DispenseToFHIRConversion-', '-')"/></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
+            <xsl:apply-templates select="." mode="ResultOutput"/>
+        </xsl:result-document>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
     </xd:doc>
     <xsl:template match="f:Medication/f:meta/f:profile" mode="ResultOutput">
