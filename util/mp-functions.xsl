@@ -10,20 +10,20 @@
 
     <!-- mp constants -->
     <xsl:variable name="weekdayMap" as="element()+">
-        <map xmlns="" dayOfWeek="1" weekday="monday" hl7PIVLPhaseLow="19700601" code="307145004" codeSystem="{$oidSNOMEDCT}" displayName="maandag" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayOfWeek="2" weekday="tuesday" hl7PIVLPhaseLow="19700602" code="307147007" codeSystem="{$oidSNOMEDCT}" displayName="dinsdag" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayOfWeek="3" weekday="wednesday" hl7PIVLPhaseLow="19700603" code="307148002" codeSystem="{$oidSNOMEDCT}" displayName="woensdag" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayOfWeek="4" weekday="thursday" hl7PIVLPhaseLow="19700604" code="307149005" codeSystem="{$oidSNOMEDCT}" displayName="donderdag" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayOfWeek="5" weekday="friday" hl7PIVLPhaseLow="19700605" code="307150005" codeSystem="{$oidSNOMEDCT}" displayName="vrijdag" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayOfWeek="6" weekday="saturday" hl7PIVLPhaseLow="19700606" code="307151009" codeSystem="{$oidSNOMEDCT}" displayName="zaterdag" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayOfWeek="0" weekday="sunday" hl7PIVLPhaseLow="19700607" code="307146003" codeSystem="{$oidSNOMEDCT}" displayName="zondag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="1" weekday="monday" fhirDayOfWeek="mon" hl7PIVLPhaseLow="19700601" code="307145004" codeSystem="{$oidSNOMEDCT}" displayName="maandag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="2" weekday="tuesday" fhirDayOfWeek="tue" hl7PIVLPhaseLow="19700602" code="307147007" codeSystem="{$oidSNOMEDCT}" displayName="dinsdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="3" weekday="wednesday" fhirDayOfWeek="wed" hl7PIVLPhaseLow="19700603" code="307148002" codeSystem="{$oidSNOMEDCT}" displayName="woensdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="4" weekday="thursday" fhirDayOfWeek="thu" hl7PIVLPhaseLow="19700604" code="307149005" codeSystem="{$oidSNOMEDCT}" displayName="donderdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="5" weekday="friday" fhirDayOfWeek="fri" hl7PIVLPhaseLow="19700605" code="307150005" codeSystem="{$oidSNOMEDCT}" displayName="vrijdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="6" weekday="saturday" fhirDayOfWeek="sat" hl7PIVLPhaseLow="19700606" code="307151009" codeSystem="{$oidSNOMEDCT}" displayName="zaterdag" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayOfWeek="0" weekday="sunday" fhirDayOfWeek="sun" hl7PIVLPhaseLow="19700607" code="307146003" codeSystem="{$oidSNOMEDCT}" displayName="zondag" codeSystemName="SNOMED CT"/>
     </xsl:variable>
 
     <xsl:variable name="daypartMap" as="element()+">
-        <map xmlns="" dayPart="night" hl7PIVLPhaseLow="1970010100" hl7PIVLPhaseHigh="1970010106" code="2546009" codeSystem="{$oidSNOMEDCT}" displayName="'s nachts" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayPart="morning" hl7PIVLPhaseLow="1970010106" hl7PIVLPhaseHigh="1970010112" code="73775008" codeSystem="{$oidSNOMEDCT}" displayName="'s ochtends" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayPart="afternoon" hl7PIVLPhaseLow="1970010112" hl7PIVLPhaseHigh="1970010118" code="255213009" codeSystem="{$oidSNOMEDCT}" displayName="'s middags" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayPart="evening" hl7PIVLPhaseLow="1970010118" hl7PIVLPhaseHigh="1970010200" code="3157002" codeSystem="{$oidSNOMEDCT}" displayName="'s avonds" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="night" fhirWhen="NIGHT" hl7PIVLPhaseLow="1970010100" hl7PIVLPhaseHigh="1970010106" code="2546009" codeSystem="{$oidSNOMEDCT}" displayName="'s nachts" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="morning" fhirWhen="MORN" hl7PIVLPhaseLow="1970010106" hl7PIVLPhaseHigh="1970010112" code="73775008" codeSystem="{$oidSNOMEDCT}" displayName="'s ochtends" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="afternoon" fhirWhen="AFT" hl7PIVLPhaseLow="1970010112" hl7PIVLPhaseHigh="1970010118" code="255213009" codeSystem="{$oidSNOMEDCT}" displayName="'s middags" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="evening" fhirWhen="EVE" hl7PIVLPhaseLow="1970010118" hl7PIVLPhaseHigh="1970010200" code="3157002" codeSystem="{$oidSNOMEDCT}" displayName="'s avonds" codeSystemName="SNOMED CT"/>
     </xsl:variable>
 
     <xd:doc>
