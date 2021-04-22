@@ -32,6 +32,10 @@
             </xsl:copy>
         </xsl:for-each>
     </xsl:template>
+    
+    <xsl:template match="/">
+        <xsl:apply-templates select="@* | node()" mode="addConceptId"/>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Default copy template</xd:desc>
