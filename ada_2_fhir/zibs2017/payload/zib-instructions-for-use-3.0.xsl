@@ -116,7 +116,7 @@
         <xd:desc>zib-Administration-Schedule-3.0</xd:desc>
         <xd:param name="toedieningsschema">ada toedieningsschema</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Administration-Schedule-3.0" match="toedieningsschema">
+    <xsl:template name="zib-Administration-Schedule-3.0" match="toedieningsschema" mode="zib-Administration-Schedule-3.0">
         <xsl:param name="toedieningsschema" as="element()?" select="."/>
         <xsl:for-each select="$toedieningsschema">
             <timing>
