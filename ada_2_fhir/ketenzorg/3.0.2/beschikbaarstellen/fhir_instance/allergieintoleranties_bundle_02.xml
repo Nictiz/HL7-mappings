@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="07f9c7c8-5a6a-11eb-2135-020000000000"/>
+   <id value="3a403524-9c68-11eb-2061-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <link>
@@ -75,7 +75,7 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:07f9c590-5a6a-11eb-2135-020000000000"/>
+               <reference value="urn:uuid:3a4032ec-9c68-11eb-2061-020000000000"/>
                <display value="van Anoniempje"/>
             </patient>
             <onsetDateTime value="2011-08-16"/>
@@ -152,7 +152,7 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:07f9c590-5a6a-11eb-2135-020000000000"/>
+               <reference value="urn:uuid:3a4032ec-9c68-11eb-2061-020000000000"/>
                <display value="van Anoniempje"/>
             </patient>
             <onsetDateTime value="2011-08-16"/>
@@ -163,7 +163,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07f9c590-5a6a-11eb-2135-020000000000"/>
+      <fullUrl value="urn:uuid:3a4032ec-9c68-11eb-2061-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -207,7 +207,17 @@
                </system>
                <value value="0123-123456"/>
             </telecom>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Male"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="2000-01-01"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
