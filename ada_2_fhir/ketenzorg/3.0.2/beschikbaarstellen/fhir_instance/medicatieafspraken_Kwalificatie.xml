@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="0d57f2c6-5a6a-11eb-1368-020000000000"/>
+   <id value="3e9f7df0-9c68-11eb-6414-020000000000"/>
    <type value="searchset"/>
    <total value="7"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:0d580259-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8d83-9c68-11eb-6414-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -29,7 +29,12 @@
                         </tr>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: 996624 2.16.840.1.113883.2.4.6.6.90000258.4.1 (Id: 996624 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1))</td>
+                           <td>
+                              <ul>
+                                 <li>Episode ID: hc657498ft562.9895 2.16.528.1.1007.3.3.765332.1.12 (Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12))</li>
+                                 <li>Contact ID: 996624 2.16.840.1.113883.2.4.6.6.90000258.4.1 (Id: 996624 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1))</li>
+                              </ul>
+                           </td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -83,6 +88,15 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
                <valueBoolean value="false"/>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+                     <value value="hc657498ft562.9895"/>
+                  </identifier>
+                  <display value="Episode ID: hc657498ft562.9895 2.16.528.1.1007.3.3.765332.1.12"/>
+               </valueReference>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
                <value value="14996"/>
@@ -101,7 +115,7 @@
                <display value="PANTOPRAZOL TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -116,7 +130,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0d580261-5a6a-11eb-1368-020000000000"/>
+                        <reference value="urn:uuid:3e9f8d8c-9c68-11eb-6414-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
                      </valueReference>
                   </extension>
@@ -133,7 +147,7 @@
                <text value="Volgens afspraak"/>
             </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:0d580274-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f8d9f-9c68-11eb-6414-020000000000"/>
                <display value="Maagpijn"/>
             </reasonReference>
             <dosageInstruction>
@@ -172,7 +186,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d58028b-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8db6-9c68-11eb-6414-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -268,7 +282,7 @@
                <display value="PARACETAMOL TABLET  500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -283,7 +297,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0d580261-5a6a-11eb-1368-020000000000"/>
+                        <reference value="urn:uuid:3e9f8d8c-9c68-11eb-6414-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
                      </valueReference>
                   </extension>
@@ -300,7 +314,7 @@
                <text value="Volgens afspraak"/>
             </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:0d580116-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f8c41-9c68-11eb-6414-020000000000"/>
                <display value="Emfyseem/COPD"/>
             </reasonReference>
             <dosageInstruction>
@@ -353,7 +367,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d580131-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8c5c-9c68-11eb-6414-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -445,7 +459,7 @@
                <display value="FLUTICASON INHALATIEPOEDER 250UG/DO 60DO DISKUS"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -460,7 +474,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0d580261-5a6a-11eb-1368-020000000000"/>
+                        <reference value="urn:uuid:3e9f8d8c-9c68-11eb-6414-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
                      </valueReference>
                   </extension>
@@ -477,7 +491,7 @@
                <text value="Volgens afspraak"/>
             </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:0d580116-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f8c41-9c68-11eb-6414-020000000000"/>
                <display value="Emfyseem/COPD"/>
             </reasonReference>
             <dosageInstruction>
@@ -516,7 +530,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d580163-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8c8e-9c68-11eb-6414-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -608,7 +622,7 @@
                <display value="AMOXICILLINE/CLAVULAANZUUR TABLET 500/125MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -623,7 +637,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0d580261-5a6a-11eb-1368-020000000000"/>
+                        <reference value="urn:uuid:3e9f8d8c-9c68-11eb-6414-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
                      </valueReference>
                   </extension>
@@ -640,7 +654,7 @@
                <text value="Volgens afspraak"/>
             </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:0d580116-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f8c41-9c68-11eb-6414-020000000000"/>
                <display value="Emfyseem/COPD"/>
             </reasonReference>
             <dosageInstruction>
@@ -679,7 +693,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d580195-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8cc0-9c68-11eb-6414-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -770,7 +784,7 @@
                <display value="SALBUTAMOL INHALATIEPOEDER 100UG/DO PATR 200DO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -785,7 +799,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0d580261-5a6a-11eb-1368-020000000000"/>
+                        <reference value="urn:uuid:3e9f8d8c-9c68-11eb-6414-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
                      </valueReference>
                   </extension>
@@ -802,7 +816,7 @@
                <text value="Volgens afspraak"/>
             </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:0d580116-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f8c41-9c68-11eb-6414-020000000000"/>
                <display value="Emfyseem/COPD"/>
             </reasonReference>
             <dosageInstruction>
@@ -837,7 +851,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d5801c9-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8cf4-9c68-11eb-6414-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -929,7 +943,7 @@
                <display value="DESLORATADINE TABLET 5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -944,7 +958,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0d580261-5a6a-11eb-1368-020000000000"/>
+                        <reference value="urn:uuid:3e9f8d8c-9c68-11eb-6414-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
                      </valueReference>
                   </extension>
@@ -961,7 +975,7 @@
                <text value="Volgens afspraak"/>
             </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:0d5801e4-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f8d0f-9c68-11eb-6414-020000000000"/>
                <display value="Hooikoorts/allergische rhinitis"/>
             </reasonReference>
             <dosageInstruction>
@@ -1000,7 +1014,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d5801fb-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8d26-9c68-11eb-6414-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1092,7 +1106,7 @@
                <display value="CARBASALAATCALCIUM BRUISTABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -1107,7 +1121,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0d580261-5a6a-11eb-1368-020000000000"/>
+                        <reference value="urn:uuid:3e9f8d8c-9c68-11eb-6414-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
                      </valueReference>
                   </extension>
@@ -1124,7 +1138,7 @@
                <text value="Volgens afspraak"/>
             </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:0d580216-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f8d41-9c68-11eb-6414-020000000000"/>
                <display value="Boezemfibrilleren/-fladderen"/>
             </reasonReference>
             <dosageInstruction>
@@ -1163,7 +1177,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -1220,7 +1234,16 @@
                   </extension>
                </use>
             </telecom>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-08-02"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
@@ -1348,7 +1371,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d580261-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8d8c-9c68-11eb-6414-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1693,7 +1716,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d580274-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8d9f-9c68-11eb-6414-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -1729,7 +1752,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Condition>
@@ -1739,7 +1762,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d580116-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8c41-9c68-11eb-6414-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -1775,7 +1798,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Condition>
@@ -1785,7 +1808,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d5801e4-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8d0f-9c68-11eb-6414-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -1821,7 +1844,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Condition>
@@ -1831,7 +1854,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d580216-5a6a-11eb-1368-020000000000"/>
+      <fullUrl value="urn:uuid:3e9f8d41-9c68-11eb-6414-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -1867,7 +1890,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0d57f2ca-5a6a-11eb-1368-020000000000"/>
+               <reference value="urn:uuid:3e9f7df4-9c68-11eb-6414-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Condition>
