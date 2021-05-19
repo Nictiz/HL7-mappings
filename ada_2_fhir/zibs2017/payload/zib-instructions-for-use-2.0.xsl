@@ -106,6 +106,13 @@
             <timing>
                 <xsl:if test="../../doseerduur or ../toedieningsduur or .//*[@value or @code]">
                     <repeat>
+                        <!-- issue MP-331 timing-exact extension is missing for interval  -->
+                        <!--  timing-exact = true by dataset definition for interval -->
+                        <xsl:if test="interval[@value]">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="true"/>                                            
+                            </extension>
+                        </xsl:if>
                         <!-- doseerduur -->
                         <xsl:for-each select="../../doseerduur[@value]">
                             <boundsDuration>
