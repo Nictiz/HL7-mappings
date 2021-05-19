@@ -40,7 +40,7 @@
                   <td>
                      <div>Volgnummer: 1</div>
                      <div>Tekst: Vanaf T, gedurende 14 dagen, exact iedere 12 uur 16 internationale eenheid, subcutaan</div>
-                     <div>Timing: <div>12 uren</div>
+                     <div>Timing: <div>12 uren. Tijden zo precies mogelijk aanhouden</div>
                      </div>
                      <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
                      </div>
@@ -57,7 +57,7 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/l-core-practitionerrole-mp9-54fc9646-8b3f-11eb-5089-020000000000"/>
+         <reference value="PractitionerRole/l-core-practitionerrole-mp9-2b4e36d6-b8b4-11eb-1411-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -123,6 +123,9 @@
       <text value="Vanaf T, gedurende 14 dagen, exact iedere 12 uur 16 internationale eenheid, subcutaan"/>
       <timing>
          <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="true"/>
+            </extension>
             <period value="12"/>
             <periodUnit value="h"/>
          </repeat>
