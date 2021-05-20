@@ -13463,7 +13463,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             <xsl:if test="f:count">
-                                <xsl:if test="f:count/preceding-sibling::f:*">
+                                <xsl:if test="f:count/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:choose>
@@ -13486,7 +13486,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:if>
                             <xsl:if test="f:countMax">
-                                <xsl:if test="f:countMax/preceding-sibling::f:*">
+                                <xsl:if test="f:countMax/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -13514,7 +13514,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:if>
                             <xsl:if test="f:duration">
-                                <xsl:if test="f:duration/preceding-sibling::f:*">
+                                <xsl:if test="f:duration/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="doDT_Integer">
@@ -13531,7 +13531,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="f:durationMax">
-                                <xsl:if test="f:durationMax/preceding-sibling::f:*">
+                                <xsl:if test="f:durationMax/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -13553,7 +13553,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="f:frequency">
-                                <xsl:if test="f:frequency/preceding-sibling::f:*">
+                                <xsl:if test="f:frequency/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <!--<xsl:call-template name="util:getLocalizedString">
@@ -13581,7 +13581,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:if>
                             <xsl:if test="f:frequencyMax">
-                                <xsl:if test="f:frequencyMax/preceding-sibling::f:*">
+                                <xsl:if test="f:frequencyMax/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -13617,7 +13617,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:with-param name="post" select="' '"/>
                                         </xsl:call-template>
                                     </xsl:when>
-                                    <xsl:when test="f:period/preceding-sibling::f:*">
+                                    <xsl:when test="f:period/preceding-sibling::f:*[not(self::f:extension)]">
                                         <xsl:text>, </xsl:text>
                                     </xsl:when>
                                 </xsl:choose>
@@ -13639,7 +13639,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="f:periodMax">
-                                <xsl:if test="f:periodMax/preceding-sibling::f:*">
+                                <xsl:if test="f:periodMax/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -13661,7 +13661,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="f:dayOfWeek">
-                                <xsl:if test="f:dayOfWeek/preceding-sibling::f:*">
+                                <xsl:if test="f:dayOfWeek/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:call-template name="util:getLocalizedString">
                                         <xsl:with-param name="pre" select="', '"/>
                                         <xsl:with-param name="key">on</xsl:with-param>
@@ -13674,7 +13674,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             <xsl:if test="f:timeOfDay">
-                                <xsl:if test="f:timeOfWeek/preceding-sibling::f:*">
+                                <xsl:if test="f:timeOfWeek/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:call-template name="util:getLocalizedString">
                                         <xsl:with-param name="pre" select="', '"/>
                                         <xsl:with-param name="key">at</xsl:with-param>
@@ -13687,7 +13687,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             <xsl:if test="f:when">
-                                <xsl:if test="f:when/preceding-sibling::f:*">
+                                <xsl:if test="f:when/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="doDT_Code">
@@ -13696,11 +13696,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             <xsl:if test="f:offset">
-                                <xsl:if test="f:when/preceding-sibling::f:*">
+                                <xsl:if test="f:when/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="doDT_CodeableConcept">
                                     <xsl:with-param name="in" select="f:offset"/>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                </xsl:call-template>
+                            </xsl:if>
+                            <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/timing-exact']/f:valueBoolean/@value = 'true'">
+                                <!-- test for following sibling, the text for this extension is at the end, but the extension in fhir is the first element -->
+                                <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/timing-exact'][f:valueBoolean/@value = 'true']/following-sibling::f:*">
+                                    <xsl:text>. </xsl:text>
+                                </xsl:if>
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">Timing exact</xsl:with-param>
                                     <xsl:with-param name="textLang" select="$textLang"/>
                                 </xsl:call-template>
                             </xsl:if>
