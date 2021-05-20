@@ -36,7 +36,7 @@
                   <td>
                      <div>Volgnummer: 1</div>
                      <div>Tekst: Vanaf T, exact iedere 12 uur 16 internationale eenheid, subcutaan</div>
-                     <div>Timing: <div>12 uren</div>
+                     <div>Timing: <div>12 uren. Tijden zo precies mogelijk aanhouden</div>
                      </div>
                      <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
                      </div>
@@ -99,6 +99,9 @@
       <text value="Vanaf T, exact iedere 12 uur 16 internationale eenheid, subcutaan"/>
       <timing>
          <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="true"/>
+            </extension>
             <period value="12"/>
             <periodUnit value="h"/>
          </repeat>

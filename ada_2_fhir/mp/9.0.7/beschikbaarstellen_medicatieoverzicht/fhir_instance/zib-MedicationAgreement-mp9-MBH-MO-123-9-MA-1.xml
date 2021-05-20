@@ -35,7 +35,7 @@
                   <td>
                      <div>Volgnummer: 1</div>
                      <div>Tekst: Vanaf T - 45 dagen, tot en met T - 31 dagen, exact iedere 8 uur 1 stuk, oraal</div>
-                     <div>Timing: <div>8 uren</div>
+                     <div>Timing: <div>8 uren. Tijden zo precies mogelijk aanhouden</div>
                      </div>
                      <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
                      </div>
@@ -91,7 +91,7 @@
                <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
             </valueReference>
          </extension>
-         <reference value="Practitioner/nl-core-practitioner-mp9-56559c82-8b3f-11eb-1240-020000000000"/>
+         <reference value="Practitioner/nl-core-practitioner-mp9-2cca0752-b8b4-11eb-7558-020000000000"/>
          <display value="John de Vries"/>
       </agent>
    </requester>
@@ -100,6 +100,9 @@
       <text value="Vanaf T - 45 dagen, tot en met T - 31 dagen, exact iedere 8 uur 1 stuk, oraal"/>
       <timing>
          <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="true"/>
+            </extension>
             <period value="8"/>
             <periodUnit value="h"/>
          </repeat>

@@ -138,6 +138,13 @@
                                 </valueBoolean>
                             </extension>
                         </xsl:for-each>
+                        
+                        <!-- is_flexibel = false, meaning timing-exact = true by dataset definition for interval -->
+                        <xsl:if test="interval[@value] and not(is_flexibel[@value | @nullFlavor])">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="true"/>                                            
+                            </extension>
+                        </xsl:if>
 
                         <!-- doseerduur -->
                         <xsl:for-each select="../../doseerduur[@value]">
