@@ -78,7 +78,7 @@
                                 </xsl:element>
                             </xsl:for-each>
                         </xsl:when>
-                        <!-- when there the dosering does not have contents, but there is content in doseerinstructie -->
+                        <!-- when the dosering does not have contents, but there is content in doseerinstructie -->
                         <xsl:when test=".[.//(@value | @code)]">
                             <xsl:element name="{$fhir-dosage-name}">
                                 <xsl:apply-templates select="." mode="doDosageContents"/>
@@ -374,8 +374,11 @@
         <xsl:call-template name="_handleGebruiksinstructieOmschrijving">
             <xsl:with-param name="in" select=".."/>
         </xsl:call-template>
-        <!-- gebruiksinstructie/aanvullende_instructie  -->
-        <xsl:for-each select="../aanvullende_instructie[@code]">
+          <!-- gebruiksinstructie/aanvullende_instructie and toedieningsweg are only relevant if there is at least one of outputText/keerdosis/toedieningsschema -->
+        <xsl:variable name="gebruiksinstructieItemsRelevant" select="dosering/keerdosis[.//(@value | @unit)] or dosering/toedieningsschema[.//(@value | @code | @nullFlavor)]"/>
+    <!-- gebruiksinstructie/aanvullende_instructie  -->
+         <xsl:if test="$gebruiksinstructieItemsRelevant">
+      <xsl:for-each select="../aanvullende_instructie[@code]">
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
@@ -383,7 +386,8 @@
                 </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>
-        <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
+        </xsl:if>
+       <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
         <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./dosering/toedieningsschema[.//(@value | @code | @nullFlavor)])">
             <!-- pauze periode -->
             <xsl:for-each select="doseerduur[.//(@value | @code)]">
@@ -399,7 +403,9 @@
             </xsl:for-each>
         </xsl:if>
         <!-- gebruiksinstructie/toedieningsweg -->
-        <xsl:apply-templates select="../toedieningsweg" mode="_handleToedieningsweg"/>
+         <xsl:if test="$gebruiksinstructieItemsRelevant">
+       <xsl:apply-templates select="../toedieningsweg" mode="_handleToedieningsweg"/>
+      </xsl:if>
 
 
     </xsl:template>

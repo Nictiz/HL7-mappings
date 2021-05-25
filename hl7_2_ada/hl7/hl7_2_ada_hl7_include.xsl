@@ -209,7 +209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc> Returns DAY if the input is &lt;= 8 characters, or SECOND otherwise. </xd:desc>
+        <xd:desc>Returns YEAR, MONTH, DAY, HOUR or MINUTE depending on input string-length, or SECOND otherwise. </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
     </xd:doc>
     <xsl:function name="nf:determine_date_precision">

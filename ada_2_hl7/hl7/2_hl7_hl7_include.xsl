@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/utilities.xsl"/>
@@ -41,6 +41,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
                 <xsl:when test="upper-case($precision) = ('HOUR', 'UUR', 'HOURS', 'UREN', 'HR', 'HH', 'H', 'U')">[Y0001][M01][D01][H01]</xsl:when>
+                <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDE', 'SECONDES', 'SECONDEN', 'SEC', 'S')">[Y0001][M01][D01][H01][m01][s01]</xsl:when>
+                <xsl:when test="upper-case($precision) = ('MILLISECOND', 'MILLISECONDE', 'MILLISECONDES', 'MILLISECONDEN', 'MILLISEC', 'MS', 'MSEC')">[Y0001][M01][D01][H01][m01][s01].[f001]</xsl:when>
                 <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -1156,16 +1158,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Makes HL7 TS value attribute, based on input ada possible vague date/time string</xd:desc>
         <xd:param name="inputValue">The input ada value string</xd:param>
-        <xd:param name="inputNullFlavor"/>
+        <xd:param name="inputNullFlavor">The input ada nullFlavor</xd:param>
+        <xd:param name="precision">Determines the picture of the date(time) format. Seconds is the default.</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValueAttr" match="element()" mode="MakeTSValueAttr">
+        <xsl:param name="inputDateT" as="xs:date?" select="$dateT"/>
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
         <xsl:param name="inputNullFlavor" as="xs:string?" select="@nullFlavor"/>
+        <xsl:param name="precision" as="xs:string?">second</xsl:param>
         <xsl:choose>
             <xsl:when test="$inputValue">
                 <xsl:attribute name="value">
                     <xsl:call-template name="format2HL7Date">
                         <xsl:with-param name="dateTime" select="$inputValue"/>
+                        <xsl:with-param name="inputDateT" select="$inputDateT"/>
+                        <xsl:with-param name="precision" select="$precision"/>
                     </xsl:call-template>
                 </xsl:attribute>
             </xsl:when>

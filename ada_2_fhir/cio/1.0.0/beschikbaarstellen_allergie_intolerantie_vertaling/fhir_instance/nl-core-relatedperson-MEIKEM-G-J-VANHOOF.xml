@@ -1,0 +1,122 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="nl-core-relatedperson-MEIKEM-G-J-VANHOOF"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Meike M.G.J. van Hoof</div>
+         <div>
+            <a href="tel:06-12345678">06-12345678</a> (Tel Mobiel), <a href="mailto:m.vanhoof@werkmail.nl">m.vanhoof@werkmail.nl</a> (E-mail Werk)</div>
+         <div>Heuvellaan 10 b, 9999XX Ons Dorp (Bezoek)</div>
+         <div>
+            <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span> van M.P.H. Mike XXX_Smits</div>
+      </div>
+   </text>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <patient>
+      <reference value="Patient/XXX-Smits"/>
+      <display value="M.P.H. Mike XXX_Smits"/>
+   </patient>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <family value="van Hoof">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Hoof"/>
+         </extension>
+      </family>
+      <given value="Meike">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="M.G.J.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="06-12345678"/>
+      <use value="mobile">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="m.vanhoof@werkmail.nl"/>
+      <use value="work">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk e-mailadres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+         <valueCode value="PHYS"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Heuvellaan 10 b">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Heuvellaan"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="10"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="b"/>
+         </extension>
+      </line>
+      <city value="Ons Dorp"/>
+      <postalCode value="9999XX"/>
+   </address>
+</RelatedPerson>
