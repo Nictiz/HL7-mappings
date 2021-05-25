@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-05-25
+* MM-1453 Updated population of Encounter.period. In absence of an Encounter.period.end, substitute Encounter.period.start
 2021-01-19
 * MM-1698 Corrected display for SNOMED CT 64572001 from Condition to aandoening
 * MM-1751 Add Bundle.id
