@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "op maandag, woensdag, vrijdag" and id: "3voorbeeld_toedientijd-flexfalse".-->
+<!--Generated from ada instance with title: "oxycodon: 4 maal per dag 1st, zo nodig 's nachts bij pijn 1 extra" and id: "13voorbeeld_vast_zonodig_5oxycodon_4dd1st-zn1st".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -33,16 +33,16 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9324"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9323"/>
-         <id extension="MBH-1vbld-freq-MA-1"
+         <id extension="MBH-7104-MA-7104-1"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 dagen, elke dag om 09:00:00 1 stuk , let op! Tijden exact aanhouden., oraal</text>
+         <text mediaType="text/plain">Vanaf 17 sep 2020, 4 maal per dag 1 stuk en bij pijn 1 stuk 's nachts, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20200920000000"/>
-            <width value="14" unit="d"/>
+            <low value="20200917000000"/>
+            <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -52,37 +52,37 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="67903"
+                  <code code="102059"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="PARACETAMOL TABLET 500MG"
+                        displayName="OXYCODON TABLET 10MG"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="2194"
+                     <translation code="139750"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="PARACETAMOL TABLET 500MG"
+                                  displayName="OXYCODON 10MG TABLET"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20200920124500"/>
+            <time value="20161023174500"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
+               <code code="0306"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
+                     displayName="Medisch specialisten, urologie"
                      codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                      codeSystemVersion="2017-12-14T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
+                     <given qualifier="BR">Simon</given>
                      <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <family qualifier="BR">Pecialist</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <id extension="71041111" root="2.16.528.1.1007.3.3"/>
+                  <name>Ziekenhuis zus en zo</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
                      <houseNumber>1</houseNumber>
@@ -96,11 +96,11 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
-               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="false">
-                  <hl7nl:phase>
-                     <hl7nl:low value="19700101090000"/>
-                  </hl7nl:phase>
-                  <hl7nl:period unit="d" value="1"/>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                  <hl7nl:frequency>
+                     <hl7nl:numerator xsi:type="hl7nl:INT" value="4"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                  </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">
@@ -114,10 +114,43 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS"
+                              operator="A"
+                              isFlexible="true"
+                              alignment="HD">
+                  <hl7nl:phase>
+                     <hl7nl:low value="1970010100"/>
+                     <hl7nl:high value="1970010106"/>
+                  </hl7nl:phase>
+                  <hl7nl:period value="1" unit="d"/>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+               <precondition>
+                  <criterion>
+                     <code code="1028"
+                           codeSystem="2.16.840.1.113883.2.4.4.5"
+                           displayName="bij pijn"/>
+                  </criterion>
+               </precondition>
+            </substanceAdministration>
+         </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH-1vbld-freq"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH-7104"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "op maandag, woensdag, vrijdag" and id: "3voorbeeld_toedientijd-flexfalse".-->
+<!--Generated from ada instance with title: "op maandag, woensdag, vrijdag" and id: "3voorbeeld_toedientijd".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -39,7 +39,7 @@
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 dagen, elke dag om 09:00:00 1 stuk , let op! Tijden exact aanhouden., oraal</text>
+         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 dagen, 1 maal per 2 dagen om 09:00 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20200920000000"/>
             <width value="14" unit="d"/>
@@ -96,11 +96,19 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
-               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="false">
-                  <hl7nl:phase>
-                     <hl7nl:low value="19700101090000"/>
-                  </hl7nl:phase>
-                  <hl7nl:period unit="d" value="1"/>
+               <effectiveTime xsi:type="SXPR_TS" operator="A">
+                  <comp xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                     <hl7nl:phase>
+                        <hl7nl:low value="197001010900"/>
+                     </hl7nl:phase>
+                     <hl7nl:period unit="d" value="1"/>
+                  </comp>
+                  <comp xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                     <hl7nl:frequency>
+                        <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                        <hl7nl:denominator xsi:type="hl7nl:PQ" value="2" unit="d"/>
+                     </hl7nl:frequency>
+                  </comp>
                </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">

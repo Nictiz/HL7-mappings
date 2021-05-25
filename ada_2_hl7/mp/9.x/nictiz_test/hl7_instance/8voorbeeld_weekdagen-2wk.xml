@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "op maandag, woensdag, vrijdag" and id: "3voorbeeld_toedientijd-flexfalse".-->
+<!--Generated from ada instance with title: "op dinsdag 1 maal per 2 weken" and id: "8voorbeeld_weekdagen-2wk".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -33,16 +33,16 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9324"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9323"/>
-         <id extension="MBH-1vbld-freq-MA-1"
+         <id extension="MBH-83-MA-1"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 dagen, elke dag om 09:00:00 1 stuk , let op! Tijden exact aanhouden., oraal</text>
+         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 weken, op dinsdag 1 maal per 2 weken 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20200920000000"/>
-            <width value="14" unit="d"/>
+            <width value="14" unit="wk"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -96,11 +96,22 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
-               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="false">
-                  <hl7nl:phase>
-                     <hl7nl:low value="19700101090000"/>
-                  </hl7nl:phase>
-                  <hl7nl:period unit="d" value="1"/>
+               <effectiveTime xsi:type="SXPR_TS" operator="A">
+                  <comp xsi:type="hl7nl:PIVL_TS"
+                        operator="A"
+                        isFlexible="true"
+                        alignment="DW">
+                     <hl7nl:phase>
+                        <hl7nl:low value="19700602"/>
+                     </hl7nl:phase>
+                     <hl7nl:period value="1" unit="wk"/>
+                  </comp>
+                  <comp xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                     <hl7nl:frequency>
+                        <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                        <hl7nl:denominator xsi:type="hl7nl:PQ" value="2" unit="wk"/>
+                     </hl7nl:frequency>
+                  </comp>
                </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">
@@ -117,7 +128,7 @@
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH-1vbld-freq"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH-83"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
