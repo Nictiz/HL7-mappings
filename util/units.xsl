@@ -1,4 +1,5 @@
 <xsl:stylesheet xmlns:ucum="http://unitsofmeasure.org/ucum-essence" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
+    <xsl:import href="constants.xsl"/>
     <xd:doc>
         <xd:desc>Functions for <xd:a href="http://unitsofmeasure.org/ucum.html">UCUM</xd:a> units based on the <xd:a href="http://www.unitsofmeasure.org/ucum-essence.xml">UCUM essence</xd:a> file. This is not a complete file but little is missing.</xd:desc>
     </xd:doc>
@@ -287,7 +288,31 @@
                 <!-- geen integer meegekregen --> G-standaard code is not an integer. Unsupported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+ 
+    <xd:doc>
+        <xd:desc>Converts an ada time unit to the UCUM unit as used in FHIR</xd:desc>
+        <xd:param name="ADAtime">The ada time unit string</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_ADA_unit2UCUM_FHIR" as="xs:string?">
+        <xsl:param name="ADAtime" as="xs:string?"/>
+        <xsl:if test="$ADAtime">
+            <xsl:choose>
+                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
+                <xsl:otherwise>
+                    <!-- If all else fails: wrap in {} to make it an annotation -->
+                    <xsl:value-of select="concat('{', $ADAtime, '}')"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
     
+ 
     <xd:doc>
         <xd:desc/>
         <xd:param name="UCUM"/>
