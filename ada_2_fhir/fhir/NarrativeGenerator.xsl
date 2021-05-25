@@ -12369,6 +12369,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:variable>
                         <xsl:value-of select="format-dateTime($date, concat('[H01]:[m01]:[s01], [D] ',$monthName,' [Y0001]'))"/>
                     </xsl:when>
+                    <xsl:when test="@value castable as xs:date">
+                        <xsl:variable name="date" select="xs:date(@value)"/>
+                        <xsl:variable name="monthName" as="xs:string?">
+                            <xsl:call-template name="getLocalizedMonthOfTheYear">
+                                <xsl:with-param name="in" select="month-from-date($date)"/>
+                                <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:value-of select="format-date($date, concat('[D] ',$monthName,' [Y0001]'))"/>
+                    </xsl:when>
                     <xsl:when test="@value">
                         <xsl:value-of select="@value"/>
                     </xsl:when>
