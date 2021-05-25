@@ -678,15 +678,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:attribute>
                     </start>
-                    <xsl:if test="end_date_time">
-                        <end>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="end_date_time/@value"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </end>
-                    </xsl:if>
+                    <!-- https://bits.nictiz.nl/browse/MM-1453 - GP encounters may not have an end date, but that should still be interpreted as ended on that date. Substitute low as end date -->
+                    <end>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="end_date_time">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="end_date_time/@value"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="start_date_time/@value"/>
+                                    </xsl:call-template>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </end>
                 </period>
                 <!-- Encounter.reason is a codeableconcept with a binding on a valueset containing all SNOMED codes. The ADA model doesn't support this coding, but it does support the contact_reason/deviating_result string, which can be mapped to the text field of the .reason. -->
                 <xsl:if test="contact_reason/deviating_result">
