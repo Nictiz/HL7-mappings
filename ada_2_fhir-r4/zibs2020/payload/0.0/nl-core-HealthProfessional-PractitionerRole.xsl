@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
- <!--   <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+  <!--  <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -31,20 +31,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">
             <PractitionerRole>
+                <xsl:if test="zorgverlener">
+                    <xsl:call-template name="nl-core-HealthProfessional-Practitioner"/>
+                </xsl:if>
                 <xsl:if test="zorgaanbieder">
                     <organization>
                         <xsl:call-template name="nl-core-HealthcareProvider-reference"/>
                     </organization>
                 </xsl:if>
-                <xsl:if test="specialisme/@value">                    
-                    <specialty>
-                        <coding>
-                            <system value="{normalize-space(specialisme/@codeSystem)}"/>
-                            <code value="{normalize-space(specialisme/@code)}"/>
-                            <display value="{normalize-space(specialisme/@displayName)}"/>
-                        </coding>
-                    </specialty>
+                <xsl:if test="specialisme/@value">
+                    <valueCodeableConcept>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </valueCodeableConcept>
                 </xsl:if>
+                <xsl:for-each select="contactgegevens">
+                    <xsl:call-template name="nl-core-ContactInformation"/>
+                </xsl:for-each>
             </PractitionerRole>
         </xsl:for-each>
     </xsl:template>
