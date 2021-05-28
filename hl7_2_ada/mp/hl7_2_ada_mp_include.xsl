@@ -740,7 +740,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <!-- keerdosis -->
                                 <xsl:for-each select="hl7:doseQuantity">
                                     <xsl:variable name="elemName">keerdosis</xsl:variable>
-                                    <xsl:element name="{$elemName}">u                                        
+                                    <xsl:element name="{$elemName}">                                        
                                         <!-- aantal --><xsl:variable name="elemName">aantal</xsl:variable>
                                         <xsl:element name="{$elemName}">
                                             <xsl:for-each select="hl7:low/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
