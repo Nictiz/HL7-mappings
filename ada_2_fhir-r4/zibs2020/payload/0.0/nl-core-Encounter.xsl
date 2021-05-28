@@ -44,6 +44,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
                 </meta>
+                
+                <xsl:for-each select="contact_type[@code]">
+                    <class>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </class>
+                </xsl:for-each>
+                
                 <xsl:for-each select="contact_met">
                     <participant>                        
                         <individual>                          
