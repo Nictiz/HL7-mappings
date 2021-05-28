@@ -42,6 +42,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
                 </meta>      
+                <xsl:for-each select="probleem_status[@code]">
+                    <clinicalStatus>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </clinicalStatus>
+                </xsl:for-each>
                 <xsl:for-each select="verificatie_status[@code]">
                     <verificationStatus>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -72,6 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>                
                 <xsl:for-each select="probleem_naam[@code]">
                     <code>
+                        <!--Bug in ada? no system value-->
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
