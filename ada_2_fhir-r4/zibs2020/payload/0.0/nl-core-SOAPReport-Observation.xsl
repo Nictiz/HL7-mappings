@@ -26,7 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
     <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
-
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
@@ -35,10 +35,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap [...]_registratie element</xd:desc>
+        <xd:desc>Unwrap soepverslag_registratie element</xd:desc>
     </xd:doc>
-    <xsl:template match="[...]_registratie">
-        <xsl:apply-templates select="[...]" mode="[...]"/><!-- Vul hier de juiste elementnamen en mode in -->
+    <xsl:template match="soepverslag_registratie">
+        <xsl:apply-templates select="soepverslag" mode="nl-core-SOAPReport-Observation"/>
     </xsl:template>
-
+    
+    <xsl:template match="soepverslag" name="nl-core-SOAPReport-Observation" mode="nl-core-SOAPReport-Observation">
+        <xsl:for-each select="soepregel">
+            <Observation>
+                <id value="nl-core-SOAPReport-Observation-0{position()}"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport-Observation"/>
+                </meta>
+                <xsl:for-each select="soepregel_code">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each>
+                <status value="final"/>
+                <xsl:for-each select="soepregel_naam">
+                    <code>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </code>
+                </xsl:for-each>
+                <xsl:for-each select="soepverslag_tekst">
+                    <valueString value="{@value}"/>
+                </xsl:for-each>
+            </Observation>
+        </xsl:for-each>
+        
+    </xsl:template>
+    
 </xsl:stylesheet>
