@@ -57,8 +57,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <period>
                     <start value="{normalize-space(begin_datum_tijd/@value)}"/>
                     <end value="{normalize-space(eind_datum_tijd/@value)}"/>
-                    </period>
-                </xsl:if>             
+                    </period>                    
+                </xsl:if>    
+                
+                <xsl:for-each select="reden_contact/toelichting_reden_contact">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+                        <valueString>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueString>
+                    </extension>
+                </xsl:for-each>  
                 
                 <xsl:for-each select="herkomst[@code]">
                     <admitSource>
