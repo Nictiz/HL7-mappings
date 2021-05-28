@@ -48,7 +48,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus"/>
             </meta>
             <xsl:if test="datum_einde[@value]">
-                <clinicalStatus value="inactive"/>
+                <clinicalStatus>
+                    <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+                        <code value="inactive"/>
+                        <display value="Inactive"/>
+                    </coding>
+                </clinicalStatus>
             </xsl:if>
             <category>
                 <coding>
