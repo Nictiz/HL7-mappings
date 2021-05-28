@@ -347,7 +347,7 @@
 
                 <!-- doseerinstructie(s) (schema) -->
                 <xsl:variable name="doseerinstructieText" as="xs:string*">
-                    <xsl:for-each select="doseerinstructie">
+                    <xsl:for-each select="doseerinstructie[.//(@value | @code | @unit)]">
                         <xsl:value-of select="nf:dosering-string(., $amount-doseerinstructies, $non-parallel-doseerinstructie)"/>
                     </xsl:for-each>
                 </xsl:variable>
