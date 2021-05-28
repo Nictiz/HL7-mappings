@@ -40,6 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:template match="refractie" name="nl-core-Refraction" mode="nl-core-Refraction">
         <Observation>
+            <id value="nl-core-Refraction-01"/>
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Refraction"/>
             </meta>
@@ -94,12 +95,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="_refractionComponent">
                         <xsl:with-param name="snomedCode">251797004</xsl:with-param>
                         <xsl:with-param name="snomedDisplay">Power of cylinder</xsl:with-param>
+                        <xsl:with-param name="unit">[diop]</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 <xsl:for-each select="cilindrische_refractie_as">
                     <xsl:call-template name="_refractionComponent">
                         <xsl:with-param name="snomedCode">251799001</xsl:with-param>
                         <xsl:with-param name="snomedDisplay">Axis of cylinder</xsl:with-param>
+                        <xsl:with-param name="unit">deg</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
             </xsl:for-each>
@@ -109,12 +112,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="_refractionComponent">
                         <xsl:with-param name="snomedCode">251762001</xsl:with-param>
                         <xsl:with-param name="snomedDisplay">Prism power</xsl:with-param>
+                        <xsl:with-param name="unit">[diop]</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 <xsl:for-each select="prisma_basis">
                     <xsl:call-template name="_refractionComponent">
                         <xsl:with-param name="snomedCode">246223004</xsl:with-param>
                         <xsl:with-param name="snomedDisplay">Prism base direction</xsl:with-param>
+                        <xsl:with-param name="unit">deg</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
             </xsl:for-each>
@@ -124,20 +129,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="_refractionComponent">
                         <xsl:with-param name="snomedCode">251795007</xsl:with-param>
                         <xsl:with-param name="snomedDisplay">Power of sphere</xsl:with-param>
+                        <xsl:with-param name="unit">[diop]</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 <xsl:for-each select="sferisch_equivalent">
                     <xsl:call-template name="_refractionComponent">
                         <xsl:with-param name="snomedCode">112881000146107</xsl:with-param>
                         <xsl:with-param name="snomedDisplay">Spherical equivalent</xsl:with-param>
+                        <xsl:with-param name="unit">[diop]</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
             </xsl:for-each>
             
             <xsl:for-each select="lees_additie">
                 <xsl:call-template name="_refractionComponent">
-                    <xsl:with-param name="snomedCode">251718005</xsl:with-param>
+                    <xsl:with-param name="snomedCode">TODO-ZIB-1443</xsl:with-param>
                     <xsl:with-param name="snomedDisplay">Refractive power</xsl:with-param>
+                    <xsl:with-param name="unit">[diop]</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
         </Observation>
@@ -149,6 +157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="_refractionComponent">
         <xsl:param name="snomedCode"/>
         <xsl:param name="snomedDisplay"/>
+        <xsl:param name="unit" select="@unit"/>
         <component>
             <code>
                 <coding>
@@ -159,9 +168,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </code>
             <valueQuantity>
                 <value value="{@value}"/>
-                <unit value="{@unit}"/>
+                <unit value="{$unit}"/>
                 <system value="http://unitsofmeasure.org"/>
-                <code value="{nf:convert_ADA_unit2UCUM_FHIR(@unit)}"/>
+                <code value="{nf:convert_ADA_unit2UCUM_FHIR($unit)}"/>
             </valueQuantity>
         </component>
     </xsl:template>
