@@ -38,31 +38,63 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="probleem" mode="nl-core-Problem" name="nl-core-Problem" as="element(f:Condition)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">          
-            <Condition>              
+            <Condition> 
+                
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
                 </meta>      
-                <xsl:for-each select="probleem_status[@code]">
+                <xsl:for-each select="probleem_status">
                     <clinicalStatus>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </clinicalStatus>
                 </xsl:for-each>
-                <xsl:for-each select="verificatie_status[@code]">
+                
+                <xsl:for-each select="verificatie_status">
                     <verificationStatus>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </verificationStatus>
-                </xsl:for-each>                
-                <xsl:for-each select="probleem_type[@code]">
+                </xsl:for-each>         
+                
+                <xsl:for-each select="probleem_type">
                     <category>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </category>
-                </xsl:for-each>                
+                </xsl:for-each> 
+                
+                <xsl:for-each select="probleem_naam">
+                    <code>                       
+                        <!--Bug in ada? no system value-->
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </code>
+                </xsl:for-each>     
+                
+                <!-- This is still incorrect here -->
+                <xsl:for-each select="nadere_specificatie_probleem_naam">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName">
+                        <valueString>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueString>
+                    </extension>
+                </xsl:for-each> 
+                
+                <xsl:for-each select="probleem_anatomische_locatie/lateraliteit">
+                    <bodySite>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </bodySite>
+                </xsl:for-each>    
+                
                 <xsl:for-each select="probleem_begin_datum[@value]">
                     <onsetDateTime>
                         <xsl:call-template name="date-to-datetime">
@@ -76,31 +108,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </abatementDateTime>
-                </xsl:for-each>                
-                <xsl:for-each select="probleem_naam[@code]">
-                    <code>
-                        <!--Bug in ada? no system value-->
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </code>
-                </xsl:for-each>                
-                <xsl:for-each select="nadere_specificatie_probleem_naam">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName">
-                        <valueString>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueString>
-                    </extension>
-                </xsl:for-each>               
-                <xsl:for-each select="probleem_anatomische_locatie/lateraliteit[@code]">
-                    <bodySite>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </bodySite>
-                </xsl:for-each>                 
+                </xsl:for-each>                        
+                            
                 <xsl:if test="toelichting/@value">
                     <note>
                         <text value="{normalize-space(toelichting/@value)}"/>
