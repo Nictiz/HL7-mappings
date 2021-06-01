@@ -52,35 +52,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:variable>
         
-        <Bundle>            
+        <Bundle>
             <xsl:for-each select="$inputBundle//verrichting">
                 <entry>
                     <resource>
                         <xsl:call-template name="nl-core-Procedure">
                             <xsl:with-param name="logicalId" select="nf:get-uuid(.)"/>
-                            <!--<xsl:with-param name="subject" as="element()" select="$inputBundle//patient"/>
-                            <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>-->
+                            <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
                         </xsl:call-template>
                     </resource>
                 </entry>
-                <xsl:if test="$inputBundle//patient[not(@datatype = 'reference')]">
-                    <entry>
-                        <resource>
-                            <xsl:apply-templates mode="nl-core-Patient" select="$inputBundle//patient">
-                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
-                            </xsl:apply-templates>
-                        </resource>
-                    </entry>
-                </xsl:if>
-                <!--<xsl:if test="$inputBundle//zorgverlener[not(@datatype = 'reference')]">
-                    <entry>
-                        <resource>
-                            <xsl:apply-templates mode="nl-core-HealthProfessional-Practitioner" select="$inputBundle//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')]">
-                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
-                            </xsl:apply-templates>
-                        </resource>
-                    </entry>
-                </xsl:if>-->
             </xsl:for-each>
         </Bundle>
     </xsl:template>
