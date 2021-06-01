@@ -14,7 +14,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet 
-    exclude-result-prefixes="#all" 
+    exclude-result-prefixes="#all"
+    xmlns="http://hl7.org/fhir"
     xmlns:f="http://hl7.org/fhir" 
     xmlns:uuid="http://www.uuid.org" 
     xmlns:local="urn:fhir:stu3:functions" 
@@ -30,6 +31,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- Here all overrules be placed -->
     
+    <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
+    
+    <xsl:variable name="ada2resourceType">
+        <nm:map ada="patient" resource="Patient"/>
+        <nm:map ada="probleem" resource="Condition"/>
+        <nm:map ada="verrichting" resource="Procedure"/>
+    </xsl:variable>
+    
     <xsl:template name="getFhirMetadata">
         <xsl:param name="in"/>
         
@@ -41,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Experiment: why don't we just use nf:getGroupingKeyDefault()? Less hardly-used functions, and nobody is going to see the result anyways. -->
                 <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="getFhirMetadataForAdaEntry">
-                        <xsl:with-param name="type">Patient</xsl:with-param>
+                        <xsl:with-param name="type">patient</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:for-each-group>
@@ -54,20 +63,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $identifier/normalize-space(@value))">
                 <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="getFhirMetadataForAdaEntry">
-                        <xsl:with-param name="type">Practitioner</xsl:with-param>
+                        <xsl:with-param name="type">zorgverlener</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:for-each-group>
         </xsl:if>
         
-        <xsl:for-each-group select="$in//bloeddruk" group-by="nf:getGroupingKeyDefault(.)">
+        <!-- General rule for all zib root concepts -->
+        <xsl:for-each-group select="$in//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1.1')][not(local-name() = ('patient','zorgverlener'))]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="getFhirMetadataForAdaEntry">
-                <xsl:with-param name="type">BloodPressure</xsl:with-param>
-            </xsl:call-template>
-        </xsl:for-each-group>
-        <xsl:for-each-group select="$in//lichaams_lengte" group-by="nf:getGroupingKeyDefault(.)">
-            <xsl:call-template name="getFhirMetadataForAdaEntry">
-                <xsl:with-param name="type">BodyLenght</xsl:with-param>
+                <xsl:with-param name="type">
+                    <xsl:value-of select="local-name()"/>
+                </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each-group>
     </xsl:template>
@@ -95,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <xsl:when test="
                             (:not($uuid) and :)
-                            $type = 'Patient' and string-length(nf:get-resourceid-from-token(.)) gt 0">
+                            $type = 'patient' and string-length(nf:get-resourceid-from-token(.)) gt 0">
                             <xsl:value-of select="nf:get-resourceid-from-token(.)"/>
                         </xsl:when>
                         <xsl:otherwise>
@@ -161,6 +168,73 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="normalize-space($personIdentifier)"/>
             </xsl:when>
         </xsl:choose>
+    </xsl:template>
+    
+    <!-- Generic (fallback) templates, each zib transformation should(?) have more relevant id and display generation mechanisms -->
+    <xsl:template match="*" mode="generateId">
+        <xsl:param name="fullUrl" tunnel="yes"/>
+        <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
+    </xsl:template>
+    <xsl:template match="*" mode="generateDisplay">
+        <xsl:choose>
+            <xsl:when test="*[ends-with(local-name(), '_naam')][@displayName or @originalText]">
+                <xsl:value-of select="(*[ends-with(local-name(), '_naam')]/(@displayName, @originalText))[1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="local-name()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <!-- Override STU3 function to be able to not only input an ADA element, but also a fhirMetaData element -->
+    <xsl:function name="nf:getGroupingKeyDefault" as="xs:string?">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:choose>
+            <!-- is fhirMetaData-element -->
+            <xsl:when test="$in/nm:group-key">
+                <xsl:value-of select="$in/nm:group-key"/>
+            </xsl:when>
+            <!-- otherwise assume ADA-element -->
+            <xsl:when test="$in">
+                <xsl:value-of select="upper-case(string-join(($in//@value, $in//@root, $in//@unit, $in//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:function>
+    
+    <!-- Outputs reference if input is ADA or fhirMetadata element -->
+    <xsl:template name="makeReference">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elementName" as="xs:string" required="yes"/>
+        <xsl:param name="fhirMetadata" tunnel="yes" as="element()*"/>
+        
+        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <xsl:variable name="element" select="$fhirMetadata[@type = $elementName and nm:group-key = $groupKey]" as="element()?"/>
+        <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
+        
+        <!-- Debug -->
+        <xsl:if test="not($ada2resourceType/nm:map[@ada = $elementName])">
+            <xsl:message terminate="yes">Cannot map ada elementName to FHIR resource type ($ada2resourceType)</xsl:message>
+        </xsl:if>
+        
+        <xsl:choose>
+            <xsl:when test="$element/nm:logical-id">
+                <reference value="{concat($ada2resourceType/nm:map[@ada = $elementName]/@resource, '/', $element/nm:logical-id)}"/>
+            </xsl:when>
+            <xsl:when test="$referById and $element/nm:fullurl">
+                <reference value="{$element/nm:fullurl}"/>
+            </xsl:when>
+            <xsl:when test="$identifier">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:if test="string-length($element/nm:reference-display) gt 0">
+            <display value="{$element/nm:reference-display}"/>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

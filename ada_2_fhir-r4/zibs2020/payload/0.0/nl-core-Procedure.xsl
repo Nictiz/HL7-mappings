@@ -19,6 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -39,8 +40,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template match="verrichting" name="nl-core-Procedure" mode="nl-core-Procedure">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="fhirMetadata" as="element()*" tunnel="yes"/>
+        
         <Procedure>
-            <id value="nl-core-Procedure-01"/>
+            <xsl:if test="$logicalId">
+                <id value="{$logicalId}"/>
+            </xsl:if>
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure"/>
             </meta>
@@ -68,8 +75,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </code>
             </xsl:for-each>
             <subject>
-                <reference value="Patient/nl-core-patient-01"/>
-                <display value="Johan XXX_Helleman"/>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" as="element()">
+                        <!-- How do we end up with Patient? Do we need a parameter? Is it enough if just 1 patient is present in $fhirMetaData? -->
+                        <xsl:choose>
+                            <xsl:when test="count($fhirMetadata[@type = 'patient']) = 1">
+                                <xsl:copy-of select="$fhirMetadata[@type = 'patient']"/>
+                            </xsl:when>
+                            <!--<xsl:when test="$subject">
+                                <xsl:copy-of select="$subject"/>
+                            </xsl:when>-->
+                            <!--<xsl:when test="onderwerp/patient-id">
+                                This system is only implemented in zib2020 ADAforms, does it have any merit outside of it?
+                                <!-\- TO DO -\->
+                            </xsl:when>-->
+                            <xsl:otherwise>
+                                <xsl:message terminate="yes"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
+                    <xsl:with-param name="elementName">patient</xsl:with-param>
+                </xsl:call-template>
             </subject>
             <xsl:choose>
                 <xsl:when test="verrichting_start_datum and verrichting_eind_datum">
@@ -104,7 +130,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="indicatie">
                 <reasonReference>
-                    <!--<xsl:call-template name="nl-core-Problem-Reference"/>-->
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" as="element()">
+                            <xsl:choose>
+                                <xsl:when test="probleem[@datatype = 'reference']">
+                                    <!--This system is only implemented in zib2020 ADAforms, does it have any merit outside of it?-->
+                                    <xsl:variable name="adaId" select="probleem/@value"/>
+                                    <xsl:copy-of select="//referenties/probleem[@id = $adaId]"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:with-param>
+                        <xsl:with-param name="elementName">probleem</xsl:with-param>
+                    </xsl:call-template>
                 </reasonReference>
             </xsl:for-each>
             <xsl:for-each select="verrichting_anatomische_locatie">

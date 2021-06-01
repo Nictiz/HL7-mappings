@@ -109,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:if test="onderwerp">
                         <subject>
-                            <xsl:call-template name="nl-core-Patient-reference">
+                            <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" as="element()">
                                     <xsl:choose>
                                         <xsl:when test="$subject">
@@ -120,6 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:when>
                                     </xsl:choose>
                                 </xsl:with-param>
+                                <xsl:with-param name="elementName">patient</xsl:with-param>
                             </xsl:call-template>
                         </subject>
                     </xsl:if>
