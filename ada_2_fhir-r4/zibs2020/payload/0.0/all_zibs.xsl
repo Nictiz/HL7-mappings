@@ -27,6 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-NameInformation.xsl"/>
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     
+    <xsl:import href="nl-core-Problem.xsl"/>
     <xsl:import href="nl-core-Procedure.xsl"/>
     <!--<xsl:import href="nl-core-Procedure-ServiceRequest.xsl"/>-->
     
