@@ -696,7 +696,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="hl7Doseerinstructie" select="hl7:entryRelationship[hl7:substanceAdministration/hl7:templateId/@root = $templateId-toedienschema]"/>
                 <!-- herhaalperiode_cyclisch_schema -->
                 <!-- er mag er maar eentje zijn -->
-                <xsl:for-each select="$hl7Doseerinstructie/hl7:substanceAdministration/hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'SXPR_TS')]/hl7:comp[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][hl7nl:phase[hl7nl:width]]/hl7nl:period">
+                <xsl:for-each select="$hl7Doseerinstructie/hl7:substanceAdministration/hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'SXPR_TS')]/hl7:comp[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][hl7nl:phase[hl7nl:width]]/hl7nl:period">
                     <xsl:variable name="elemName">herhaalperiode_cyclisch_schema</xsl:variable>
                     <xsl:call-template name="handlePQ">
                         <xsl:with-param name="elemName" select="$elemName"/>
@@ -717,8 +717,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="elemName">doseerduur</xsl:variable>
                         <xsl:choose>
                             <!-- doseerduur in Cyclisch doseerschema. -->
-                            <xsl:when test="hl7:substanceAdministration/hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'SXPR_TS')][hl7:comp[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
-                                <xsl:for-each select="hl7:substanceAdministration/hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'SXPR_TS')][hl7:comp[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
+                            <xsl:when test="hl7:substanceAdministration/hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'SXPR_TS')][hl7:comp[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
+                                <xsl:for-each select="hl7:substanceAdministration/hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'SXPR_TS')][hl7:comp[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
                                     <xsl:call-template name="mp9-duration">
                                         <xsl:with-param name="elemName" select="$elemName"/>
                                     </xsl:call-template>
@@ -765,11 +765,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                                 <!-- toedieningsschema -->
                                 <!-- er moet een PIVL_TS zijn om een toedieningsschema te maken -->
-                                <xsl:if test=".//*[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')]">
+                                <xsl:if test=".//*[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')]">
                                     <xsl:variable name="elemName">toedieningsschema</xsl:variable>
                                     <xsl:element name="{$elemName}">
                                         <!-- eenvoudig doseerschema met alleen één frequentie of X tot Y keer per dag -->
-                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][xs:string(@isFlexible) = 'true' or hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
+                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][xs:string(@isFlexible) = 'true' or hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
                                             <xsl:if test="(not(exists(@isFlexible) or xs:string(@isFlexible) = 'false') and hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange)">
                                                 <!-- this is unexpected, @isFlexible should have been true, however seems how
                                                 hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange is present we assume flexibility
@@ -784,7 +784,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Eenvoudig doseerschema met alleen één interval.-->
-                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][(xs:string(@isFlexible) = 'false' or not(@isFlexible))][not(@alignment)][hl7nl:frequency[hl7nl:numerator/@value]]">
+                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][(xs:string(@isFlexible) = 'false' or not(@isFlexible))][not(@alignment)][hl7nl:frequency[hl7nl:numerator/@value]]">
                                             <!-- interval -->
                                             <xsl:variable name="elemName">interval</xsl:variable>
                                             <xsl:variable name="interval-value" select="format-number(number(hl7nl:frequency/hl7nl:denominator/@value) div number(./hl7nl:frequency/hl7nl:numerator/@value), '0.####')"/>
@@ -802,7 +802,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Eenvoudig doseerschema met alleen vast tijdstip.-->
-                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][hl7nl:phase[not(hl7nl:width)]]">
+                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][hl7nl:phase[not(hl7nl:width)]]">
                                             <is_flexibel>
                                                 <xsl:copy-of select="nf:getIsFlexible(.)"/>
                                             </is_flexibel>
@@ -815,7 +815,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
 
                                         <!-- Doseerschema met toedieningsduur. -->
-                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][not(hl7nl:period)][hl7nl:phase[hl7nl:width]]">
+                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][not(hl7nl:period)][hl7nl:phase[hl7nl:width]]">
                                             <xsl:comment>Doseerschema met toedieningsduur.</xsl:comment>
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
 
@@ -847,12 +847,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:if>
 
                                         <!-- Cyclisch doseerschema. -->
-                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'SXPR_TS')][hl7:comp[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
+                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'SXPR_TS')][hl7:comp[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
                                         </xsl:for-each>
 
                                         <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
-                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][hl7nl:count]/hl7nl:count">
+                                        <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][hl7nl:count]/hl7nl:count">
                                             <frequentie>
                                                 <aantal>
                                                     <xsl:choose>
@@ -1118,7 +1118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:choose>
                                 </xsl:for-each>
                                 <!-- Doseerschema met toedieningsduur. -->
-                                <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
+                                <xsl:for-each select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
                                     <toedieningsduur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                 </xsl:for-each>
                                 <!-- Doseerschema één keer per week op één weekdag met toedieningsduur -->
@@ -1254,10 +1254,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                                 <!-- toedieningsschema -->
                                 <!-- er moet een PIVL_TS zijn om een toedieningsschema te maken -->
-                                <xsl:if test=".//*[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')]">
+                                <xsl:if test=".//*[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')]">
                                     <toedieningsschema>
                                         <!-- eenvoudig doseerschema met één PIVL in effectiveTime-->
-                                        <xsl:variable name="PivlEffectiveTime" select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')]"/>
+                                        <xsl:variable name="PivlEffectiveTime" select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')]"/>
                                         <xsl:if test="$PivlEffectiveTime">
 
                                             <!-- Eenvoudig doseerschema met alleenéén (variabele) frequentie.-->
@@ -1757,7 +1757,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:choose>
                                 </xsl:for-each>
                                 <!-- Doseerschema met toedieningsduur. -->
-                                <xsl:for-each select="(//*[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'PIVL_TS')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width)[1]">
+                                <xsl:for-each select="(//*[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-nl:v3', 'PIVL_TS')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width)[1]">
                                     <toedieningsduur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
                                 </xsl:for-each>
                             </dosering>
