@@ -584,7 +584,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <xsl:choose>
                 <!-- eenmalig gebruik, in 1 mar met 1 eenmalige effectiveTime -->
-                <xsl:when test="count($effectiveTimes-eenmalig) = 1 and count($mar-sorted) = 1">
+                <xsl:when test="count($effectiveTimes-eenmalig[@value]) = 1 and count($mar-sorted) = 1">
                     <xsl:call-template name="mp9-doseerinstructie-from-mp612-eenmalig">
                         <xsl:with-param name="current-hl7-mar" select="$mar-sorted"/>
                     </xsl:call-template>
