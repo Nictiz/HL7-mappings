@@ -25,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
+    <!--    <xsl:import href="../payload/zibs2020_2_fhir.xsl"/>-->
     <xsl:import href="../payload/0.0/all_zibs.xsl"/>
     
     <xsl:variable name="referById" select="true()"/>
@@ -39,7 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:ul>
         </xd:desc>
     </xd:doc>
-    <xsl:template match="//bundle">
+    <xsl:template match="/bundle">
         <xsl:variable name="inputBundle">
             <xsl:for-each select="source[@href]">
                 <xsl:copy-of select="document(@href)"/>

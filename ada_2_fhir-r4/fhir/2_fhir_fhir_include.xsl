@@ -37,6 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="patient" resource="Patient"/>
         <nm:map ada="probleem" resource="Condition"/>
         <nm:map ada="verrichting" resource="Procedure"/>
+        <nm:map ada="zorgverlener" resource="PractitionerRole"/>
     </xsl:variable>
     
     <xsl:template name="getFhirMetadata">
@@ -201,14 +202,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     
-    <!-- Outputs reference if input is ADA or fhirMetadata element -->
+    <!-- Outputs reference if input is ADA, fhirMetadata or ADA reference element -->
     <xsl:template name="makeReference">
-        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="in" select="." as="element()*"/> <!-- Could be an ADA instance or an ADA reference element -->
         <xsl:param name="elementName" as="xs:string" required="yes"/>
+        <xsl:param name="wrapIn" as="xs:string?"/>
         <xsl:param name="fhirMetadata" tunnel="yes" as="element()*"/>
         
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
-        <xsl:variable name="element" select="$fhirMetadata[@type = $elementName and nm:group-key = $groupKey]" as="element()?"/>
+        <xsl:variable name="element" as="element()?">
+            <xsl:choose>
+                <xsl:when test="$in[@datatype = 'reference' and @value]">
+                    <xsl:copy-of select="$fhirMetadata[@type = $elementName and nm:ada-id = $in/@value]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$fhirMetadata[@type = $elementName and nm:group-key = $groupKey]"/> 
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
         
         <!-- Debug -->
@@ -216,24 +227,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:message terminate="yes">Cannot map ada elementName to FHIR resource type ($ada2resourceType)</xsl:message>
         </xsl:if>
         
-        <xsl:choose>
-            <xsl:when test="$element/nm:logical-id">
-                <reference value="{concat($ada2resourceType/nm:map[@ada = $elementName]/@resource, '/', $element/nm:logical-id)}"/>
-            </xsl:when>
-            <xsl:when test="$referById and $element/nm:fullurl">
-                <reference value="{$element/nm:fullurl}"/>
-            </xsl:when>
-            <xsl:when test="$identifier">
-                <identifier>
-                    <xsl:call-template name="id-to-Identifier">
-                        <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
-                    </xsl:call-template>
-                </identifier>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:variable name="populatedReference" as="element()*">
+            <xsl:choose>
+                <xsl:when test="$element/nm:logical-id">
+                    <reference value="{concat($ada2resourceType/nm:map[@ada = $elementName]/@resource, '/', $element/nm:logical-id)}"/>
+                </xsl:when>
+                <xsl:when test="$referById and $element/nm:fullurl">
+                    <reference value="{$element/nm:fullurl}"/>
+                </xsl:when>
+                <xsl:when test="$identifier">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                        </xsl:call-template>
+                    </identifier>
+                </xsl:when>
+                <xsl:when test="local-name() = $elementName and .[@value]">
+                    
+                </xsl:when>
+            </xsl:choose>
+            
+            <xsl:if test="string-length($element/nm:reference-display) gt 0">
+                <display value="{$element/nm:reference-display}"/>
+            </xsl:if>
+        </xsl:variable>
         
-        <xsl:if test="string-length($element/nm:reference-display) gt 0">
-            <display value="{$element/nm:reference-display}"/>
+        <xsl:if test="count($populatedReference) &gt; 0">
+            <xsl:choose>
+                <xsl:when test="$wrapIn">
+                    <xsl:element name="{$wrapIn}">
+                        <xsl:copy-of select="$populatedReference"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$populatedReference"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:if>
     </xsl:template>
 

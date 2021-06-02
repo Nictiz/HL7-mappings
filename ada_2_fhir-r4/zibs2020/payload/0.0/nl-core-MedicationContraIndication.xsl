@@ -46,6 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="subject" as="element()?"/>
+        <xsl:param name="reporter" as="element()?" select="melder/zorgverlener"/>
           
         <xsl:for-each select="$in">
                 <Flag>
@@ -107,24 +108,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:if>         
                     
-                    <xsl:if test="onderwerp">
-                        <subject>
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" as="element()">
-                                    <xsl:choose>
-                                        <xsl:when test="$subject">
-                                            <xsl:copy-of select="$subject"/>
-                                        </xsl:when>
-                                        <xsl:when test="onderwerp/patient-id">
-                                            <!-- TO DO -->
-                                        </xsl:when>
-                                    </xsl:choose>
-                                </xsl:with-param>
-                                <xsl:with-param name="elementName">patient</xsl:with-param>
-                            </xsl:call-template>
-                        </subject>
-                    </xsl:if>
-                   
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="elementName">patient</xsl:with-param>
+                        <xsl:with-param name="wrapIn">subject</xsl:with-param>
+                    </xsl:call-template>
+                    
                     <xsl:if test="$beginDatum|$eindDatum">
                         <period>
                             <!-- StartDate - NL-CM:9.14.2 -->
@@ -141,23 +130,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>                       
                         </period>
                     </xsl:if>  
-                                        
-                   <!-- TODO Reporter - NL-CM:9.14.5 -->                                     
-                   <xsl:if test="melder/zorgverlener">
-                        <author>
-                           <xsl:call-template name="nl-core-HealthProfessional-Practitioner-reference">
-                               <xsl:with-param name="in" as="element()">
-                                   <xsl:choose>
-                                       <xsl:when test="melder/zorgverlener[@datatype='reference']/@value = referenties/zorgverlener/@id">
-                                           <xsl:variable name="adaId" select="melder/zorgverlener[@datatype='reference']/@value"/>
-                                           <xsl:copy-of select="referenties/zorgverlener[@id = $adaId]"/>
-                                       </xsl:when>
-                                   </xsl:choose>
-                               </xsl:with-param>
-                           </xsl:call-template>
-                       </author>
-                   </xsl:if>
-                                      
+                               
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$reporter"/>
+                        <xsl:with-param name="elementName">zorgverlener</xsl:with-param>
+                        <xsl:with-param name="wrapIn">author</xsl:with-param>
+                    </xsl:call-template>
+
                 </Flag>
         </xsl:for-each>
     </xsl:template>  
