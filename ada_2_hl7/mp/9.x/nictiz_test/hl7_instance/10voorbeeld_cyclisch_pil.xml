@@ -50,7 +50,7 @@
                     codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
                   <code code="16292"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -95,20 +95,27 @@
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9319"/>
-               <effectiveTime xsi:type="SXPR_TS" operator="A">
-                  <comp xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
-                     <hl7nl:frequency>
-                        <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
-                        <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
-                     </hl7nl:frequency>
-                  </comp>
-                  <comp xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
-                     <hl7nl:phase>
-                        <hl7nl:width xsi:type="hl7nl:PQ" value="21" unit="d"/>
-                     </hl7nl:phase>
-                     <hl7nl:period value="28" unit="d"/>
-                  </comp>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir">
+                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+                     <valueDuration>
+                        <value value="28"/>
+                        <unit value="d"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </valueDuration>
+                  </modifierExtension>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="21"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
                </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">

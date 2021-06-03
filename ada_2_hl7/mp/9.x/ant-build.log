@@ -15,7 +15,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 83ms :: artifacts dl 11ms
+[ivy:resolve] :: resolution report :: resolve 140ms :: artifacts dl 22ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -24,7 +24,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/36ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/40ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -46,7 +46,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 62ms :: artifacts dl 10ms
+[ivy:resolve] :: resolution report :: resolve 87ms :: artifacts dl 15ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -55,7 +55,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/32ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/34ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -64,8 +64,14 @@ convert_ada_2_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
      [echo] ADA to HL7 ../../nictiz_test/../sturen_medicatievoorschrift/payload/sturen_medicatievoorschrift_org.xsl input dir ../../nictiz_test/ada_instance
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_dagdelen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_dagdelen.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_61d7dpauze.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_61d7dpauze.xml
      [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\sturen_medicatievoorschrift\payload\sturen_medicatievoorschrift_org.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\mp-functions-fhir.xsl:2:376: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/mp-functions-fhir.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\mp-functions.xsl:2:376: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/mp-functions.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_dagdelen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_dagdelen.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_interval.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_interval.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_pil.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_pil.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_toedientijden.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_toedientijden.xml
@@ -96,6 +102,7 @@ convert_ada_2_hl7_sub:
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\2voorbeeld_interval.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\2voorbeeld_interval.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\3voorbeeld_toedientijd-flexfalse.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\3voorbeeld_toedientijd-flexfalse.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\3voorbeeld_toedientijd-flextrue.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\3voorbeeld_toedientijd-flextrue.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\3voorbeeld_toedientijd-freq1x2d.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\3voorbeeld_toedientijd-freq1x2d.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\3voorbeeld_toedientijd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\3voorbeeld_toedientijd.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\4voorbeeld_toedieningsduur-alleen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\4voorbeeld_toedieningsduur-alleen.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\4voorbeeld_toedieningsduur-flexfalse.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\4voorbeeld_toedieningsduur-flexfalse.xml
@@ -117,4 +124,4 @@ convert_ada_2_hl7_sub:
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\9voorbeeld_toedientijd-flexfalse-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\9voorbeeld_toedientijd-flexfalse-freq.xml
 
 BUILD SUCCESSFUL
-Total time: 4 seconds
+Total time: 9 seconds

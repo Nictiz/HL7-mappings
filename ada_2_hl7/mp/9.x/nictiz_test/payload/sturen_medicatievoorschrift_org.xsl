@@ -25,8 +25,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
     <!-- param to influence whether to output schematron references, typically only needed for test instances -->
-    <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
-
+<!--    <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>-->
+    <xsl:param name="schematronRef" as="xs:boolean" select="true()"/>
+    
     <xsl:template match="/">
         <xsl:call-template name="Voorschrift_9x">
             <xsl:with-param name="in" select="adaxml/data/sturen_medicatievoorschrift"/>
@@ -43,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
             <!--                        <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>-->
             <!--            <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>-->
-            <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+            <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp92_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             <xsl:if test="not(contains($in/@id, 'voorbeeld'))">
                 <xsl:processing-instruction name="xml-model">href="../../../../../../../../../../../SVN/art_decor/trunk/ada-data/ada_2_test-xslt/mp/9.1.0/sturen_medicatievoorschrift/test_xslt_instance/<xsl:value-of select="$in/@id"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:if>
@@ -98,23 +99,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
         </organizer>
-    </xsl:template>
-
-
-    <xd:doc>
-        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x SXPR_TS version. Override of version in 2_hl7_mp_include_9x.xsl</xd:desc>
-        <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9349_202010105160422" match="toedieningsschema" mode="HandleFHIRinCDAAdministrationSchedule9x">
-        <xsl:param name="in" as="element()*" select="."/>
-        <xsl:for-each select="$in">
-            <effectiveTime xmlns="http://hl7.org/fhir">
-            <xsl:call-template name="adaToedieningsschema2FhirTimingContents">
-                <xsl:with-param name="in" select="."/>
-                <xsl:with-param name="inHerhaalperiodeCyclischschema" select="../../../herhaalperiode_cyclisch_schema"/>
-            </xsl:call-template>
-            </effectiveTime>
-        </xsl:for-each>
     </xsl:template>
 
 
