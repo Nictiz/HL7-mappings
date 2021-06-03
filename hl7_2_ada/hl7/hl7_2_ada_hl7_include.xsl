@@ -44,12 +44,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Use formatHL72VagueAdaDate for other formats, such as year / month / hour / minute -->
         <xsl:param name="precision"/>
 
-        <xsl:variable name="yyyy">
+        <xsl:variable name="yyyy" as="xs:string?">
             <xsl:if test="string-length($input-hl7-date) ge 4">
                 <xsl:value-of select="substring($input-hl7-date, 1, 4)"/>
             </xsl:if>
         </xsl:variable>
-        <xsl:variable name="mm">
+        <xsl:variable name="mm" as="xs:string?">
             <xsl:if test="string-length($input-hl7-date) ge 6">
                 <xsl:value-of select="substring($input-hl7-date, 5, 2)"/>
             </xsl:if>
@@ -70,10 +70,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="substring($input-hl7-date, 11, 2)"/>
             </xsl:if>
         </xsl:variable>
+        <!-- http://hl7.org/fhir/datatypes.html#dateTime
+            Seconds must be provided due to schema type constraints but may be zero-filled and may be ignored at receiver discretion. 
+        -->
         <xsl:variable name="SS" as="xs:string?">
-            <xsl:if test="string-length($input-hl7-date) ge 14">
-                <xsl:value-of select="substring($input-hl7-date, 13, 2)"/>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="string-length($input-hl7-date) ge 14">
+                    <xsl:value-of select="substring($input-hl7-date, 13, 2)"/>
+                </xsl:when>
+                <xsl:when test="string-length($input-hl7-date) ge 12">
+                    <xsl:text>00</xsl:text>
+                </xsl:when>
+            </xsl:choose>
         </xsl:variable>
 
         <xsl:variable name="sss" as="xs:string?">
@@ -81,7 +89,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="replace($input-hl7-date, '^\d+(\.\d+)', '$1')"/>
             </xsl:if>
         </xsl:variable>
-
+        
+        <!-- http://hl7.org/fhir/datatypes.html#dateTime
+            If hours and minutes are specified, a time zone SHALL be populated.
+        -->
         <xsl:variable name="TZ" as="xs:string?">
             <xsl:if test="matches($input-hl7-date, '^\d+(\.\d+)')">
                 <xsl:value-of select="replace($input-hl7-date, '.*([+-]\d{2,4})$', '$1')"/>

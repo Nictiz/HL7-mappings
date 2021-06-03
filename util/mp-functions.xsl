@@ -153,16 +153,16 @@
     <xd:doc>
         <xd:desc>Calculates the start date of a dosage instruction</xd:desc>
         <xd:param name="startdatum-dosering-1"/>
-        <xd:param name="dosering"/>
+        <xd:param name="theDosering"/>
         <xd:param name="doseerinstructies"/>
     </xd:doc>
     <xsl:function name="nf:calculate_Doseerinstructie_Startdate" as="xs:date?">
         <xsl:param name="startdatum-dosering-1" as="xs:date?"/>
-        <xsl:param name="dosering"/>
+        <xsl:param name="theDosering"/>
         <xsl:param name="doseerinstructies"/>
         <xsl:choose>
             <xsl:when test="count($doseerinstructies) gt 1">
-                <xsl:variable name="current-volgnummer" select="$dosering/../volgnummer/@value"/>
+                <xsl:variable name="current-volgnummer" select="$theDosering/../volgnummer/@value"/>
                 <xsl:variable name="offset-in-days">
                     <!-- doseerduur mag in uur, dag, week, jaar in MP 9-->
                     <!-- uur kan niet vertaald naar 6.12, want in 6.12 moet het vertaald worden naar hele dagen bij een cyclisch schema, 
@@ -471,7 +471,7 @@
 
                 <!-- doseerinstructie(s) (schema) -->
                 <xsl:variable name="doseerinstructieText" as="xs:string*">
-                    <xsl:for-each select="doseerinstructie">
+                    <xsl:for-each select="doseerinstructie[.//(@value | @code | @unit)]">
                         <xsl:value-of select="nf:dosering-string(., $amount-doseerinstructies, $non-parallel-doseerinstructie)"/>
                     </xsl:for-each>
                 </xsl:variable>

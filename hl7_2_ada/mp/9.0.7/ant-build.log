@@ -13,9 +13,9 @@ fetch-imports:
 [ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
 [ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
 [ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 258ms :: artifacts dl 27ms
+[ivy:resolve] :: resolution report :: resolve 93ms :: artifacts dl 12ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -24,9 +24,40 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/15ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/37ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
-[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_hl7_2_ada_907:
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 75ms :: artifacts dl 11ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/31ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
 convert_hl7_2_ada:
@@ -44,9 +75,9 @@ fetch-imports:
 [ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
 [ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
 [ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 111ms :: artifacts dl 24ms
+[ivy:resolve] :: resolution report :: resolve 68ms :: artifacts dl 12ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -55,92 +86,9 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/11ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/33ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
-[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
-[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
-
-convert_hl7_2_ada_sub:
-     [echo] Deleting previous results, if any
-     [echo] 
-     [echo] ADA to HL7 ../../sturen_medicatievoorschrift/payload/sturen_medicatievoorschrift_hl7_2_ada.xsl input dir ../../sturen_medicatievoorschrift/cda_instance
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\CDA_MP90_Voorschrift_01a_MA_VV_1dd1st-fout.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\CDA_MP90_Voorschrift_01a_MA_VV_1dd1st-fout.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\payload\sturen_medicatievoorschrift_hl7_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\CDA_MP90_Voorschrift_01a_MA_VV_1dd1st.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\CDA_MP90_Voorschrift_01a_MA_VV_1dd1st.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\CDA_MP90_Voorschrift_01b_staken.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\CDA_MP90_Voorschrift_01b_staken.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\CDA_MP90_Voorschrift_01c_MA_2VV_1dd1st.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\CDA_MP90_Voorschrift_01c_MA_2VV_1dd1st.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_chronisch-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_chronisch-3.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_chronisch-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_chronisch-4.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_dosis_stuks-6.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_dosis_stuks-6.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_start_duur-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_start_duur-2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_start_duur2-5.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_start_duur2-5.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_start_eind-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_start_eind-1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset10-MBH_907_HPKvoorschrijven-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset10-MBH_907_HPKvoorschrijven-1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset10-MBH_907_ZINRvoorschrijven-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset10-MBH_907_ZINRvoorschrijven-2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset2-MBH_907_aanvullendeinformatiewensen-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset2-MBH_907_aanvullendeinformatiewensen-4.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset2-MBH_907_aanvullendeinstructie-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset2-MBH_907_aanvullendeinstructie-1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset2-MBH_907_redenvanvoorschrijven-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset2-MBH_907_redenvanvoorschrijven-3.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset2-MBH_907_toelichting-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset2-MBH_907_toelichting-2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset3-MBH_907_aanvullendeinformatiewensen-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset3-MBH_907_aanvullendeinformatiewensen-4.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset3-MBH_907_aanvullendeinstructie-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset3-MBH_907_aanvullendeinstructie-1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset3-MBH_907_redenvanvoorschrijven-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset3-MBH_907_redenvanvoorschrijven-3.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset3-MBH_907_toelichting-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset3-MBH_907_toelichting-2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset4_a-MBH_907_Lengte_Gewicht-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset4_a-MBH_907_Lengte_Gewicht-1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_afbouwschema-11.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_afbouwschema-11.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_bijzonderekeerdosis-5.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_bijzonderekeerdosis-5.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_cyclischschema-10.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_cyclischschema-10.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_dagdeel-9.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_dagdeel-9.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_interval-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_interval-2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_tijdstippen-7.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_tijdstippen-7.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_toedieningsduur-14.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_toedieningsduur-14.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_toedieningssnelheid-13.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_toedieningssnelheid-13.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_variabelefrequentie-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_variabelefrequentie-1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheid-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheid-3.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheid2-6.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheid2-6.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheidenmaximum-12.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheidenmaximum-12.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_weekdagen-8.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_weekdagen-8.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_zonderkeerdosis-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_zonderkeerdosis-4.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_zonodig-15.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_zonodig-15.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset7-MBH_907_magistraal90miljoennr-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset7-MBH_907_magistraal90miljoennr-3.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset7-MBH_907_magistraalactieveingredient-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset7-MBH_907_magistraalactieveingredient-2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset7-MBH_907_magistraalalleingredienten-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset7-MBH_907_magistraalalleingredienten-1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset8-MBH_907_VVandermansMA-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset8-MBH_907_VVandermansMA-1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset8-MBH_907_onderbrekenandermansMA-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset8-MBH_907_onderbrekenandermansMA-3.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset8-MBH_907_stakenandermansMA-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset8-MBH_907_stakenandermansMA-2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset8-MBH_907_wijzigenandermansMA-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset8-MBH_907_wijzigenandermansMA-4.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_afleverlocatie-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_afleverlocatie-3.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_herhalingen-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_herhalingen-2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_duur_dagen-5.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_duur_dagen-5.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_eind-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_eind-4.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_start_eind-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_start_eind-1.xml
-
-download-ivy:
-     [echo] installing ivy...
-      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
-      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
-      [get] Not modified - so not downloaded
-
-install-ivy:
-
-fetch-imports:
-[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
-[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
-[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
-[ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
-[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 191ms :: artifacts dl 24ms
-	---------------------------------------------------------------------
-	|                  |            modules            ||   artifacts   |
-	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
-	---------------------------------------------------------------------
-	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
-	---------------------------------------------------------------------
-[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
-[ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/9ms)
-[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
-[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
 convert_hl7_2_ada_sub:
@@ -149,6 +97,7 @@ convert_hl7_2_ada_sub:
      [echo] ADA to HL7 ../../beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_hl7_2_ada.xsl input dir ../../beschikbaarstellen_medicatiegegevens/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\hl7_instance\MP90_Medicatiegegevens_01a_MA_zn1dd1st.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\ada_instance\MP90_Medicatiegegevens_01a_MA_zn1dd1st.xml
      [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\payload\beschikbaarstellen_medicatiegegevens_hl7_2_ada.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\hl7_instance\MP90_Medicatiegegevens_01b_MA_20d_1dd1st.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\ada_instance\MP90_Medicatiegegevens_01b_MA_20d_1dd1st.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\hl7_instance\MP90_Medicatiegegevens_01c_MA_2ddAanbrengen.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\ada_instance\MP90_Medicatiegegevens_01c_MA_2ddAanbrengen.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\hl7_instance\MP90_Medicatiegegevens_01d_MA_eenmalig.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_medicatiegegevens\ada_instance\MP90_Medicatiegegevens_01d_MA_eenmalig.xml
@@ -253,9 +202,9 @@ fetch-imports:
 [ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
 [ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
 [ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.8.0-15 in maven
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 193ms :: artifacts dl 28ms
+[ivy:resolve] :: resolution report :: resolve 134ms :: artifacts dl 50ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -264,9 +213,93 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/13ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/78ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
-[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.8.0-15
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_hl7_2_ada_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../sturen_medicatievoorschrift/payload/sturen_medicatievoorschrift_hl7_2_ada.xsl input dir ../../sturen_medicatievoorschrift/cda_instance
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\CDA_MP90_Voorschrift_01a_MA_VV_1dd1st-fout.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\CDA_MP90_Voorschrift_01a_MA_VV_1dd1st-fout.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\payload\sturen_medicatievoorschrift_hl7_2_ada.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\CDA_MP90_Voorschrift_01a_MA_VV_1dd1st.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\CDA_MP90_Voorschrift_01a_MA_VV_1dd1st.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\CDA_MP90_Voorschrift_01b_staken.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\CDA_MP90_Voorschrift_01b_staken.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\CDA_MP90_Voorschrift_01c_MA_2VV_1dd1st.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\CDA_MP90_Voorschrift_01c_MA_2VV_1dd1st.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_chronisch-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_chronisch-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_chronisch-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_chronisch-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_dosis_stuks-6.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_dosis_stuks-6.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_start_duur-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_start_duur-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_start_duur2-5.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_start_duur2-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset1-MBH_907_start_eind-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset1-MBH_907_start_eind-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset10-MBH_907_HPKvoorschrijven-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset10-MBH_907_HPKvoorschrijven-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset10-MBH_907_ZINRvoorschrijven-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset10-MBH_907_ZINRvoorschrijven-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset2-MBH_907_aanvullendeinformatiewensen-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset2-MBH_907_aanvullendeinformatiewensen-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset2-MBH_907_aanvullendeinstructie-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset2-MBH_907_aanvullendeinstructie-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset2-MBH_907_redenvanvoorschrijven-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset2-MBH_907_redenvanvoorschrijven-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset2-MBH_907_toelichting-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset2-MBH_907_toelichting-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset3-MBH_907_aanvullendeinformatiewensen-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset3-MBH_907_aanvullendeinformatiewensen-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset3-MBH_907_aanvullendeinstructie-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset3-MBH_907_aanvullendeinstructie-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset3-MBH_907_redenvanvoorschrijven-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset3-MBH_907_redenvanvoorschrijven-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset3-MBH_907_toelichting-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset3-MBH_907_toelichting-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset4_a-MBH_907_Lengte_Gewicht-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset4_a-MBH_907_Lengte_Gewicht-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_afbouwschema-11.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_afbouwschema-11.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_bijzonderekeerdosis-5.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_bijzonderekeerdosis-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_cyclischschema-10.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_cyclischschema-10.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_dagdeel-9.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_dagdeel-9.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_interval-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_interval-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_tijdstippen-7.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_tijdstippen-7.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_toedieningsduur-14.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_toedieningsduur-14.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_toedieningssnelheid-13.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_toedieningssnelheid-13.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_variabelefrequentie-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_variabelefrequentie-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheid-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheid-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheid2-6.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheid2-6.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheidenmaximum-12.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_variabelehoeveelheidenmaximum-12.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_weekdagen-8.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_weekdagen-8.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_zonderkeerdosis-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_zonderkeerdosis-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset6-MBH_907_zonodig-15.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset6-MBH_907_zonodig-15.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset7-MBH_907_magistraal90miljoennr-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset7-MBH_907_magistraal90miljoennr-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset7-MBH_907_magistraalactieveingredient-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset7-MBH_907_magistraalactieveingredient-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset7-MBH_907_magistraalalleingredienten-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset7-MBH_907_magistraalalleingredienten-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset8-MBH_907_VVandermansMA-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset8-MBH_907_VVandermansMA-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset8-MBH_907_onderbrekenandermansMA-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset8-MBH_907_onderbrekenandermansMA-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset8-MBH_907_stakenandermansMA-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset8-MBH_907_stakenandermansMA-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset8-MBH_907_wijzigenandermansMA-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset8-MBH_907_wijzigenandermansMA-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_afleverlocatie-3.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_afleverlocatie-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_herhalingen-2.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_herhalingen-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_duur_dagen-5.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_duur_dagen-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_eind-4.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_eind-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\cda_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_start_eind-1.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\sturen_medicatievoorschrift\ada_instance\mv-mvr-Scenarioset9-MBH_907_logistiekeverbruiksperiode_start_eind-1.xml
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 95ms :: artifacts dl 20ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/36ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
 convert_hl7_2_ada_sub:
@@ -275,11 +308,17 @@ convert_hl7_2_ada_sub:
      [echo] ADA to HL7 ../../beschikbaarstellen_verstrekkingenvertaling/payload/beschikbaarstellen_verstrekkingenvertaling_hl7_2_ada.xsl input dir ../../beschikbaarstellen_verstrekkingenvertaling/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_01.xml
      [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\payload\beschikbaarstellen_verstrekkingenvertaling_hl7_2_ada.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_01_555555112_RP.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_01_555555112_RP.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_02.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_02.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_02_gebruiksperiode.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_02_gebruiksperiode.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_02_magistraal.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_02_magistraal.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_02a_999999060_RP.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_02a_999999060_RP.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_02b_555555914_RP.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_02b_555555914_RP.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_02c_999911715.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_02c_999911715.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_99.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_99.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\QURX_EX990113NL_MVS_3_filtering.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\QURX_EX990113NL_MVS_3_filtering.xml
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\hl7_instance\Toedientijd.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\mp\9.0.7\beschikbaarstellen_verstrekkingenvertaling\ada_instance\Toedientijd.xml
 
 BUILD SUCCESSFUL
-Total time: 15 seconds
+Total time: 9 seconds

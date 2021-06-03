@@ -1,6 +1,6 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../../util/mp-functions.xsl"/>
-    <!-- <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+   <!-- <xsl:import href="../../../util/mp-functions.xsl"/>
+    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
 
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
@@ -374,11 +374,11 @@
         <xsl:call-template name="_handleGebruiksinstructieOmschrijving">
             <xsl:with-param name="in" select=".."/>
         </xsl:call-template>
-          <!-- gebruiksinstructie/aanvullende_instructie and toedieningsweg are only relevant if there is at least one of outputText/keerdosis/toedieningsschema -->
+        <!-- gebruiksinstructie/aanvullende_instructie and toedieningsweg are only relevant if there is at least one of outputText/keerdosis/toedieningsschema -->
         <xsl:variable name="gebruiksinstructieItemsRelevant" select="dosering/keerdosis[.//(@value | @unit)] or dosering/toedieningsschema[.//(@value | @code | @nullFlavor)]"/>
     <!-- gebruiksinstructie/aanvullende_instructie  -->
-         <xsl:if test="$gebruiksinstructieItemsRelevant">
-      <xsl:for-each select="../aanvullende_instructie[@code]">
+        <xsl:if test="$gebruiksinstructieItemsRelevant">
+            <xsl:for-each select="../aanvullende_instructie[@code]">
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
@@ -403,9 +403,9 @@
             </xsl:for-each>
         </xsl:if>
         <!-- gebruiksinstructie/toedieningsweg -->
-         <xsl:if test="$gebruiksinstructieItemsRelevant">
-       <xsl:apply-templates select="../toedieningsweg" mode="_handleToedieningsweg"/>
-      </xsl:if>
+        <xsl:if test="$gebruiksinstructieItemsRelevant">
+            <xsl:apply-templates select="../toedieningsweg" mode="_handleToedieningsweg"/>
+        </xsl:if>
 
 
     </xsl:template>

@@ -18,7 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:import href="../../util/uuid.xsl"/>
-    <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/units.xsl"/>
     <!--    <xsl:import href="../../util/utilities.xsl"/>-->
@@ -629,29 +628,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </denominator>
         </xsl:for-each>
     </xsl:template>
-    <xd:doc>
-        <xd:desc>Converts an ada time unit to the UCUM unit as used in FHIR</xd:desc>
-        <xd:param name="ADAtime">The ada time unit string</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:convertTime_ADA_unit2UCUM_FHIR" as="xs:string?">
-        <xsl:param name="ADAtime" as="xs:string?"/>
-        <xsl:if test="$ADAtime">
-            <xsl:choose>
-                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
-                <xsl:otherwise>
-                    <!-- If all else fails: wrap in {} to make it an annotation -->
-                    <xsl:value-of select="concat('{', $ADAtime, '}')"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-    </xsl:function>
-    <xd:doc>
+    
+     <xd:doc>
         <xd:desc>Converts an ada unit to the UCUM unit as used in FHIR</xd:desc>
         <xd:param name="ADAunit">The ada unit string</xd:param>
     </xd:doc>
