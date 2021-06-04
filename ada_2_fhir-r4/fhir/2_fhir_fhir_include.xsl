@@ -30,6 +30,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="fhirVersion" select="'R4'"/>
 
     <!-- Here all overrules be placed -->
+    <xsl:param name="referById" as="xs:boolean" select="true()"/>
+    <xsl:param name="referByUuid" as="xs:boolean" select="false()"/>
     
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
     
@@ -174,7 +176,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Generic (fallback) templates, each zib transformation should(?) have more relevant id and display generation mechanisms -->
     <xsl:template match="*" mode="generateId">
         <xsl:param name="fullUrl" tunnel="yes"/>
-        <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
+        <!--<xsl:choose>
+            <!-\- You would like to reference zib identificatienummer BasicElement here -\->
+            <xsl:when test="">
+                
+            </xsl:when>
+            <xsl:otherwise>-->
+                <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
+            <!--</xsl:otherwise>
+        </xsl:choose>-->
     </xsl:template>
     <xsl:template match="*" mode="generateDisplay">
         <xsl:choose>

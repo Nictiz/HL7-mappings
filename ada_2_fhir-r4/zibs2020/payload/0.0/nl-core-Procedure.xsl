@@ -41,114 +41,130 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:template match="verrichting" name="nl-core-Procedure" mode="nl-core-Procedure">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="subject" as="element()?"/>
-        
-        <Procedure>
-            <xsl:if test="$logicalId">
-                <id value="{$logicalId}"/>
-            </xsl:if>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure"/>
-            </meta>
-            <xsl:for-each select="verrichting_methode">
-                <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
-                    <valueCodeableConcept>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </valueCodeableConcept>
-                </extension>
-            </xsl:for-each>
-            <xsl:for-each select="aanvrager">
-                <basedOn>
-                    <reference value="ServiceRequest/nl-core-Procedure-ServiceRequest-01"/>
-                    <!--<xsl:call-template name="nl-core-Procedure-ServiceRequest-Reference"/>-->
-                </basedOn>
-            </xsl:for-each>
-            <status value="completed"/>
-            <xsl:for-each select="verrichting_type">
-                <code>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </code>
-            </xsl:for-each>
-            <xsl:if test="$subject">
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="elementName">patient</xsl:with-param>
-                    <xsl:with-param name="wrapIn">subject</xsl:with-param>
-                </xsl:call-template>
-            </xsl:if>
+        <xsl:param name="logicalId" as="xs:string?">
             <xsl:choose>
-                <xsl:when test="verrichting_start_datum and verrichting_eind_datum">
-                    <performedPeriod>
-                        <xsl:call-template name="startend-to-Period">
-                            <xsl:with-param name="start" select="verrichting_start_datum"/>
-                            <xsl:with-param name="end" select="verrichting_eind_datum"/>
-                        </xsl:call-template>
-                    </performedPeriod>
-                </xsl:when>
-                <xsl:when test="verrichting_start_datum">
-                    <performedDateTime>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
-                            </xsl:call-template>
-                        </xsl:attribute>
-                    </performedDateTime>
+                <xsl:when test="$referById">
+                    <xsl:choose>
+                        <xsl:when test="$referByUuid">
+                            <xsl:value-of select="nf:get-uuid(.)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:apply-templates select="." mode="generateId"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:when>
             </xsl:choose>
-            <xsl:for-each select="uitvoerder">
-                <performer>
-                    <actor>
-                        <!--<xsl:call-template name="nl-core-HealthProfessional-PractitionerRole-Reference"/>-->
-                    </actor>
-                </performer>
-            </xsl:for-each>
-            <xsl:for-each select="locatie">
-                <location>
-                    <!--<xsl:call-template name="nl-core-HealthcareProvider-Reference"/>-->
-                </location>
-            </xsl:for-each>
-            <xsl:for-each select="indicatie">
-                <reasonReference>
-                    <xsl:call-template name="makeReference">
-                        <xsl:with-param name="in" as="element()" select="probleem"/>
-                        <xsl:with-param name="elementName">probleem</xsl:with-param>
-                    </xsl:call-template>
-                </reasonReference>
-            </xsl:for-each>
-            <xsl:for-each select="verrichting_anatomische_locatie">
-                <bodySite>
-                    <xsl:for-each select="lateraliteit">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
-                            <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueCodeableConcept>
-                        </extension>
-                    </xsl:for-each>
-                    <xsl:for-each select="locatie">
+        </xsl:param>
+        <xsl:param name="subject" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Procedure>
+                <xsl:if test="$logicalId">
+                    <id value="{$logicalId}"/>
+                </xsl:if>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure"/>
+                </meta>
+                <xsl:for-each select="verrichting_methode">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="aanvrager">
+                    <basedOn>
+                        <reference value="ServiceRequest/nl-core-Procedure-ServiceRequest-01"/>
+                        <!--<xsl:call-template name="nl-core-Procedure-ServiceRequest-Reference"/>-->
+                    </basedOn>
+                </xsl:for-each>
+                <status value="completed"/>
+                <xsl:for-each select="verrichting_type">
+                    <code>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </xsl:for-each>
-                </bodySite>
-            </xsl:for-each>
-            
-            <!-- .report here - mapping from TextResult -->
-            
-            <xsl:for-each select="medisch_hulpmiddel">
-                <focalDevice>
-                    <manipulated>
-                        <!--<xsl:call-template name="nl-core-MedicalDevice-Reference"/>-->
-                    </manipulated>
-                </focalDevice>
-            </xsl:for-each>
-        </Procedure>
+                    </code>
+                </xsl:for-each>
+                <xsl:if test="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="elementName">patient</xsl:with-param>
+                        <xsl:with-param name="wrapIn">subject</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="verrichting_start_datum and verrichting_eind_datum">
+                        <performedPeriod>
+                            <xsl:call-template name="startend-to-Period">
+                                <xsl:with-param name="start" select="verrichting_start_datum"/>
+                                <xsl:with-param name="end" select="verrichting_eind_datum"/>
+                            </xsl:call-template>
+                        </performedPeriod>
+                    </xsl:when>
+                    <xsl:when test="verrichting_start_datum">
+                        <performedDateTime>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </performedDateTime>
+                    </xsl:when>
+                </xsl:choose>
+                <xsl:for-each select="uitvoerder">
+                    <performer>
+                        <actor>
+                            <!--<xsl:call-template name="nl-core-HealthProfessional-PractitionerRole-Reference"/>-->
+                        </actor>
+                    </performer>
+                </xsl:for-each>
+                <xsl:for-each select="locatie">
+                    <location>
+                        <!--<xsl:call-template name="nl-core-HealthcareProvider-Reference"/>-->
+                    </location>
+                </xsl:for-each>
+                <xsl:for-each select="indicatie">
+                    <reasonReference>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" as="element()" select="probleem"/>
+                            <xsl:with-param name="elementName">probleem</xsl:with-param>
+                        </xsl:call-template>
+                    </reasonReference>
+                </xsl:for-each>
+                <xsl:for-each select="verrichting_anatomische_locatie">
+                    <bodySite>
+                        <xsl:for-each select="lateraliteit">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+                                <valueCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueCodeableConcept>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select="locatie">
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </bodySite>
+                </xsl:for-each>
+                
+                <!-- .report here - mapping from TextResult -->
+                
+                <xsl:for-each select="medisch_hulpmiddel">
+                    <focalDevice>
+                        <manipulated>
+                            <!--<xsl:call-template name="nl-core-MedicalDevice-Reference"/>-->
+                        </manipulated>
+                    </focalDevice>
+                </xsl:for-each>
+            </Procedure>
+        </xsl:for-each>
+        
     </xsl:template>
     
 </xsl:stylesheet>

@@ -27,7 +27,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../payload/0.0/all_zibs.xsl"/>
     
-    <xsl:variable name="referById" select="true()"/>
+    <!-- Refer by logical id -->
+    <xsl:param name="referById" select="true()"/>
+    <!-- If referById = true(), refer by uuid or by (generated) Resource.id in relative reference  -->
+    <xsl:param name="referByUuid" select="false()"/>
     
     <xd:doc>
         <xd:desc>
@@ -57,8 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <resource>
                         <xsl:call-template name="nl-core-Procedure">
-                            <xsl:with-param name="logicalId" select="nf:get-uuid(.)"/>
-                            <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
+                            <xsl:with-param name="logicalId" select="concat('nl-core-Procedure-', format-number(position(), '00'))"/>
                         </xsl:call-template>
                     </resource>
                 </entry>
