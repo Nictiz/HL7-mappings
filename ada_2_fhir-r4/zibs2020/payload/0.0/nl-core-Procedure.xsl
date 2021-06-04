@@ -42,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="verrichting" name="nl-core-Procedure" mode="nl-core-Procedure">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="fhirMetadata" as="element()*" tunnel="yes"/>
+        <xsl:param name="subject" as="element()?"/>
         
         <Procedure>
             <xsl:if test="$logicalId">
@@ -74,29 +74,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </code>
             </xsl:for-each>
-            <subject>
+            <xsl:if test="$subject">
                 <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" as="element()">
-                        <!-- How do we end up with Patient? Do we need a parameter? Is it enough if just 1 patient is present in $fhirMetaData? -->
-                        <xsl:choose>
-                            <xsl:when test="count($fhirMetadata[@type = 'patient']) = 1">
-                                <xsl:copy-of select="$fhirMetadata[@type = 'patient']"/>
-                            </xsl:when>
-                            <!--<xsl:when test="$subject">
-                                <xsl:copy-of select="$subject"/>
-                            </xsl:when>-->
-                            <!--<xsl:when test="onderwerp/patient-id">
-                                This system is only implemented in zib2020 ADAforms, does it have any merit outside of it?
-                                <!-\- TO DO -\->
-                            </xsl:when>-->
-                            <xsl:otherwise>
-                                <xsl:message terminate="yes"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:with-param>
+                    <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="elementName">patient</xsl:with-param>
+                    <xsl:with-param name="wrapIn">subject</xsl:with-param>
                 </xsl:call-template>
-            </subject>
+            </xsl:if>
             <xsl:choose>
                 <xsl:when test="verrichting_start_datum and verrichting_eind_datum">
                     <performedPeriod>
@@ -131,15 +115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="indicatie">
                 <reasonReference>
                     <xsl:call-template name="makeReference">
-                        <xsl:with-param name="in" as="element()">
-                            <xsl:choose>
-                                <xsl:when test="probleem[@datatype = 'reference']">
-                                    <!--This system is only implemented in zib2020 ADAforms, does it have any merit outside of it?-->
-                                    <xsl:variable name="adaId" select="probleem/@value"/>
-                                    <xsl:copy-of select="//referenties/probleem[@id = $adaId]"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:with-param>
+                        <xsl:with-param name="in" as="element()" select="probleem"/>
                         <xsl:with-param name="elementName">probleem</xsl:with-param>
                     </xsl:call-template>
                 </reasonReference>
