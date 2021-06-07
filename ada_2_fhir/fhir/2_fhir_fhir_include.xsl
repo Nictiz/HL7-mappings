@@ -485,7 +485,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ada element with datatype identifier</xd:param>
     </xd:doc>
     <xsl:template name="id-to-Identifier" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:choose>
             <xsl:when test="$in[@nullFlavor and not(string-length(@root) gt 0 and @nullFlavor='MSK')]">
                 <extension url="{$urlExtHL7NullFlavor}">
