@@ -16,16 +16,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
-<<<<<<< HEAD
     <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
+    <xsl:import href="nl-core-HealthProfessional-Practitioner.xsl"/>
+    <xsl:import href="nl-core-HealthProfessional-PractitionerRole.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
     
     <xsl:import href="ext-CodeSpecification.xsl"/>
     <xsl:import href="ext-Comment.xsl"/>
-=======
-    <xsl:import href="nl-core-ContactPerson.xsl"/>
->>>>>>> Fixed import in all_zibs
     
 </xsl:stylesheet>
