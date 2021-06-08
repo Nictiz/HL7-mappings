@@ -17,6 +17,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet 
     exclude-result-prefixes="#all" 
     xmlns:f="http://hl7.org/fhir" 
+    xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -57,10 +59,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Start conversion.</xd:desc>
     </xd:doc>
-    <xsl:template match="/">
+    <!-- TODO: Had to silence this to make the driver work -->
+<!--    <xsl:template match="/">
         <xsl:apply-templates select="adaxml/data"/>
     </xsl:template>
-    
+-->    
     <xd:doc>
         <xd:desc>Build a FHIR Bundle of type collection.</xd:desc>
     </xd:doc>
@@ -89,4 +92,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </Bundle>
     </xsl:template>
 
+    <!-- Special purpose overridden makeReference template that recognizes the Patient references by identifier which are unique for this project. -->
+    <xsl:template name="makeReference">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="elementName" as="xs:string"/>
+        <xsl:param name="wrapIn" as="xs:string?"/>
+        <xsl:param name="fhirMetadata" tunnel="yes" as="element()*"/>
+        
+        <xsl:variable name="reference">
+            <xsl:choose>
+                <xsl:when test="$in">
+                    <!-- TODO: This doesn't work with named templates. No idea how we can fix this -->
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$in"/>
+                        <xsl:with-param name="elementName" select="$in"/>
+                        <xsl:with-param name="wrapIn"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$elementName = 'patient' and onderwerp[patient-id]">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="onderwerp/patient-id"/>
+                        </xsl:call-template>
+                    </identifier>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:if test="count($reference) &gt; 0">
+            <xsl:choose>
+                <xsl:when test="$outputElement">
+                    <xsl:element name="{$outputElement}">
+                        <xsl:copy-of select="$reference"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$reference"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:template>
 </xsl:stylesheet>
