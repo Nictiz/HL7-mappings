@@ -14,11 +14,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all"
+    xmlns="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
-    xmlns="http://hl7.org/fhir"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -26,6 +27,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xd:doc scope="stylesheet"> 
+        <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
+    </xd:doc>
        
     <xd:doc>
         <xd:desc>Unwrap contactpersoon_registratie element</xd:desc>
@@ -36,7 +41,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
-        <xd:param name="logicalId">RelatedPerson.id value</xd:param>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+            <xd:param name="logicalId">Optional logical id for the FHIR instance.</xd:param>
     </xd:doc>
         <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson">
         <xsl:param name="in" select="." as="element()?"/>
@@ -80,13 +86,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </relationship>
                     </xsl:for-each>
                     
-                    <!-- sub-zibs -->
-                    <xsl:for-each select="naamgegevens">
+                    <!--<xsl:for-each select="naamgegevens">
                         <xsl:call-template name="nl-core-NameInformation"/>
-                    </xsl:for-each>
+                    </xsl:for-each>-->
+                    
                     <xsl:for-each select="contactgegevens">
                         <xsl:call-template name="nl-core-ContactInformation"/>
                     </xsl:for-each>
+                    
                     <xsl:for-each select="adresgegevens">
                         <xsl:call-template name="nl-core-AddressInformation"/>
                     </xsl:for-each>
@@ -122,13 +129,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </relationship>
                 </xsl:for-each>
                 
-                <!-- sub-zibs -->
-                <xsl:for-each select="naamgegevens">
+                <!--<xsl:for-each select="naamgegevens">
                     <xsl:call-template name="nl-core-NameInformation"/>
-                </xsl:for-each>
+                </xsl:for-each>-->
+                
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
                 </xsl:for-each>
+                
                 <xsl:for-each select="adresgegevens">
                     <xsl:call-template name="nl-core-AddressInformation"/>
                 </xsl:for-each>

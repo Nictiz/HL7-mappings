@@ -15,10 +15,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 <xsl:stylesheet exclude-result-prefixes="#all"
     xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+    xmlns:util="urn:hl7:utilities" 
+    xmlns:f="http://hl7.org/fhir" 
+    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+    xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nm="http://www.nictiz.nl/mappings"
+    xmlns:uuid="http://www.uuid.org"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    version="2.0">
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -46,29 +51,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             
             <Location>
-                <id value="{nf:get-uuid($uuidNode)}"/>
+                <xsl:if test="string-length($logicalId) gt 0">
+                    <id value="{$logicalId}"/>
+                </xsl:if>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
                 </meta>
-                <!-- name - locatie_naam -->
-                <xsl:if test="organisatie_locatie/locatie_naam/@value">
+                
+                <xsl:for-each select="organisatie_locatie/locatie_naam/@value">
                     <name value="{organisatie_locatie/locatie_naam/@value}"/>
-                </xsl:if>
-                <!-- alias - locatie_nummer -->
-                <xsl:if test="organisatie_locatie/locatie_nummer/@value">
+                </xsl:for-each>
+                
+                <xsl:for-each select="organisatie_locatie/locatie_nummer/@value">
                     <alias value="{organisatie_locatie/locatie_nummer/@value}"/>
-                </xsl:if>
-                <!-- telecom -->
-                <!--<xsl:call-template name="nl-core-ContactInformation">
-                        <xsl:with-param name="in" select="contactgegevens"/>
-                    </xsl:call-template>-->
-                <!-- address -->
+                </xsl:for-each>
+                
+                <xsl:call-template name="nl-core-ContactInformation">
+                    <xsl:with-param name="in" select="contactgegevens"/>
+                </xsl:call-template>
+                
                 <!--<xsl:call-template name="nl-core-AddressInformation">
                         <xsl:with-param name="in" select="adresgegevens"/>
                     </xsl:call-template>-->
-                <!-- managingOrganization -->
+                
                 <managingOrganization>
-                    <xsl:call-template name="nl-core-HealthcareProvider-Organization-reference"/>
+                    <!--<xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select=""/>
+                        <xsl:with-param name="elementName" select=""/>
+                    </xsl:call-template>-->
+                    <!--<xsl:call-template name="nl-core-HealthcareProvider-Organization-reference"/>-->
                 </managingOrganization>
             </Location>
         </xsl:for-each>
@@ -110,18 +121,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <name value="{organisatie_naam/@value}"/>
                 </xsl:if>
                 <!-- contactgegevens -->
-                <!--<xsl:call-template name="nl-core-ContactInformation">
+                <xsl:call-template name="nl-core-ContactInformation">
                     <xsl:with-param name="in" select="contactgegevens"/>
-                </xsl:call-template>-->
+                </xsl:call-template>
                 <!-- address -->
-                <!--<xsl:call-template name="nl-core-AddressInformation">
+                <xsl:call-template name="nl-core-AddressInformation">
                     <xsl:with-param name="in" select="adresgegevens"/>
-                </xsl:call-template>-->
+                </xsl:call-template>
             </Organization>
         </xsl:for-each>
     </xsl:template>
     
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Creates nl-core-HealthcareProvider-Organization reference</xd:desc>
     </xd:doc>
     <xsl:template name="nl-core-HealthcareProvider-Organization-reference" match="zorgaanbieder[not(zorgaanbieder)]" mode="nl-core-HealthcareProvider-Organization-reference" as="element(f:reference)">
@@ -129,7 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="fullUrl" as="xs:string?"/>
         
-        <!-- Because we need to generate a unique uuid, we slightly edit the ada input to make the input node unique -->
+        <!-\- Because we need to generate a unique uuid, we slightly edit the ada input to make the input node unique -\->
         <xsl:variable name="uuidNode" as="element()" select="."/>
         
         <xsl:variable name="identifier" select="$in/zorgaanbieder_identificatienummer[normalize-space(@value | @nullFlavor)]"/>
@@ -183,6 +194,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </display>
             </xsl:if>
         </reference>
-    </xsl:template>
+    </xsl:template>-->
     
 </xsl:stylesheet>

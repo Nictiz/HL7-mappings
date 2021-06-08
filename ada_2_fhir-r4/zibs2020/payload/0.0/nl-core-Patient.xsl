@@ -12,13 +12,13 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-
 <xsl:stylesheet exclude-result-prefixes="#all"
     xmlns="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -26,6 +26,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xd:doc scope="stylesheet"> 
+        <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
+    </xd:doc>
     
     <xd:doc>
         <xd:desc>Unwrap patient_registratie element</xd:desc>
@@ -46,172 +50,173 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xd:li>zib ContactInformation</xd:li>
                 <xd:li>zib AddressInformation</xd:li>
             </xd:ul>
-        </xd:desc>    
+        </xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="logicalId">Optional logical id for the FHIR instance.</xd:param>
         
         The following components need to be passed as ada instances; although the zibs themselves are not related
         to a patient, the translation to FHIR is specific to the Patient resource:
         <xd:param name="nationality">Optional ada instance of zib Nationality</xd:param>
         <xd:param name="maritalStatus">Optional ada instance of zib MaritalStatus</xd:param>
-        <xd:param name="languageProficiencys">Optional ada instances of zib LanguageProficiency</xd:param>
+        <xd:param name="languageProficiency">Optional ada instances of zib LanguageProficiency</xd:param>
         <xd:param name="contactPersons">Optional ada instances of zib ContactPerson that need to be mapped to Patient.contact in FHIR (this is not always the case).</xd:param>
     </xd:doc>
     <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient" as="element(f:Patient)">
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="nationality" as="element(nationaliteit_rc)?"/>
-        <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?"/>
-        <xsl:param name="languageProficiencys" as="element(taalvaardigheid)*"/>
-        <xsl:param name="contactPersons" as="element(contactpersoon)*"/>
-
-        <Patient>
-            <xsl:if test="string-length($logicalId) gt 0">
-                <id value="{$logicalId}"/>
-            </xsl:if>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
-            </meta>
-
-            <!-- Nationality is a zib on its own, but the implementation is specific for the Patient resource. 
-                 Therefore, it is created inline. -->
-            <xsl:for-each select="$nationality/nationaliteit">
-                <extension url="http://hl7.org/fhir/StructureDefinition/patient-nationality">
-                    <extension url="code">
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
-                    </extension>
-                </extension>
-            </xsl:for-each>
-            
-            <xsl:for-each select="identificatienummer">
-                <identifier>
-                    <xsl:call-template name="id-to-Identifier"/>
-                </identifier>
-            </xsl:for-each>
-            
-            <!-- sub-zibs -->
-            <xsl:for-each select="naamgegevens">
-                <xsl:call-template name="nl-core-NameInformation"/>
-            </xsl:for-each>
-            <xsl:for-each select="contactgegevens">
-                <xsl:call-template name="nl-core-ContactInformation"/>
-            </xsl:for-each>
-            
-            <xsl:for-each select="geslacht">
-                <gender>
-                    <xsl:call-template name="code-to-code">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="codeMap" as="element()*">
-                            <map inCode="M" inCodeSystem="2.16.840.1.113883.5.1" code="male"/>
-                            <map inCode="F" inCodeSystem="2.16.840.1.113883.5.1" code="female"/>
-                            <map inCode="UN" inCodeSystem="2.16.840.1.113883.5.1" code="other"/>
-                            <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    <xsl:call-template name="ext-CodeSpecification"/>
-                </gender>
-            </xsl:for-each>
-            
-            <xsl:for-each select="geboortedatum">
-                <birthDate>
-                    <xsl:attribute name="value">
-                        <xsl:call-template name="format2FHIRDate">
-                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                            <xsl:with-param name="precision" select="'DAY'"/>
-                        </xsl:call-template>
-                    </xsl:attribute>
-                </birthDate>
-            </xsl:for-each>
-            
-            <!-- The zib allows both a boolean indicator for the death of the patient and a date of death, whereas
-                 FHIR allows just one of these concepts. Therefore, we first check is a date is present and translate
-                 that. If not, we can continue with the boolean indicator. -->
-            <xsl:choose>
-                <xsl:when test="datum_overlijden[@value]">
-                    <deceasedDateTime>
-                        <xsl:call-template name="date-to-datetime">
-                            <xsl:with-param name="in" select="datum_overlijden[@value][1]"/>
-                        </xsl:call-template>
-                    </deceasedDateTime>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:for-each select="overlijdens_indicator">
-                        <deceasedBoolean>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="boolean-to-boolean"/>                        
-                            </xsl:attribute>
-                        </deceasedBoolean>
-                    </xsl:for-each>
-                </xsl:otherwise>
-            </xsl:choose>
-            
-            <!-- sub-zib -->
-            <xsl:for-each select="adresgegevens">
-                <xsl:call-template name="nl-core-AddressInformation"/>
-            </xsl:for-each>
-            
-            
-            <!-- MaritalStatus is a zib on its own, but the implementation is specific for the Patient resource. 
-                 Therefore, it is created inline. -->
-            <xsl:for-each select="$maritalStatus">
-                <maritalStatus>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="burgerlijke_staat"/>
-                    </xsl:call-template>
-                </maritalStatus>
-            </xsl:for-each>
-            
-            <xsl:for-each select="meerling_indicator">
-                <multipleBirthBoolean>
-                    <xsl:attribute name="value">
-                        <xsl:call-template name="boolean-to-boolean"/>                        
-                    </xsl:attribute>
-                </multipleBirthBoolean>
-            </xsl:for-each>
-            
-            <!-- Only "Eerste relatie/contactpersoon" and "Tweede relatie/contactpersoon" as Patient.contacts. Otherwise they should be entered as RelatedPerson-->
-            <xsl:for-each select="$contactPersons">
-                <xsl:if test="$contactPersons/rol[@value='1']|$contactPersons/rol[@value='2']">
-                    <xsl:call-template name="nl-core-ContactPerson-embedded"/>
+        <xsl:param name="nationality" as="element(nationaliteit_rc)?" select="$in/nationaliteit_rc"/>
+        <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?" select="$in/burgerlijke_staat_rc"/>
+        <xsl:param name="languageProficiency" as="element(taalvaardigheid)*" select="$in/taalvaardigheid"/>
+        <xsl:param name="contactPersons" as="element(contactpersoon)*"  select="$in/contactpersoon"/>
+        
+        <xsl:for-each select="$in">
+            <Patient>
+                <xsl:if test="string-length($logicalId) gt 0">
+                    <id value="{$logicalId}"/>
                 </xsl:if>
-            </xsl:for-each>           
-            
-            <xsl:for-each select="$languageProficiencys">
-                <communication>
-                    <xsl:call-template name="_patientProficiency">
-                        <xsl:with-param name="in" select="taalvaardigheid_begrijpen"/>
-                        <xsl:with-param name="typeCode" select="'RSP'"/>
-                    </xsl:call-template>
-                    <xsl:call-template name="_patientProficiency">
-                        <xsl:with-param name="in" select="taalvaardigheid_spreken"/>
-                        <xsl:with-param name="typeCode" select="'ESP'"/>
-                    </xsl:call-template>
-                    <xsl:call-template name="_patientProficiency">
-                        <xsl:with-param name="in" select="taalvaardigheid_lezen"/>
-                        <xsl:with-param name="typeCode" select="'RWR'"/>
-                    </xsl:call-template>
-                    <xsl:for-each select="communicatie_bijzonderheden">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails">
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+                </meta>
+                <!-- Nationality is a zib on its own, but the implementation is specific for the Patient resource. 
+                 Therefore, it is created inline. -->
+                <xsl:for-each select="$nationality/nationaliteit">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/patient-nationality">
+                        <extension url="code">
                             <valueCodeableConcept>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </valueCodeableConcept>
                         </extension>
-                    </xsl:for-each>
-                    <xsl:for-each select="toelichting">
-                        <xsl:call-template name="ext-Comment"/>
-                    </xsl:for-each>
-                    <language>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="communicatie_taal"/>
+                    </extension>
+                </xsl:for-each>
+                
+                <xsl:for-each select="identificatienummer">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier"/>
+                    </identifier>
+                </xsl:for-each>
+                
+                <!--<xsl:for-each select="naamgegevens">
+                <!-\-<xsl:call-template name="nl-core-NameInformation"/>-\->
+            </xsl:for-each>-->
+                
+                <xsl:for-each select="contactgegevens">
+                    <xsl:call-template name="nl-core-ContactInformation"/>
+                </xsl:for-each>
+                
+                <xsl:for-each select="geslacht">
+                    <gender>
+                        <xsl:call-template name="code-to-code">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="codeMap" as="element()*">
+                                <map inCode="M" inCodeSystem="2.16.840.1.113883.5.1" code="male"/>
+                                <map inCode="F" inCodeSystem="2.16.840.1.113883.5.1" code="female"/>
+                                <map inCode="UN" inCodeSystem="2.16.840.1.113883.5.1" code="other"/>
+                                <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
+                            </xsl:with-param>
                         </xsl:call-template>
-                    </language>
-                </communication>
-            </xsl:for-each>
-        </Patient>
+                        <xsl:call-template name="ext-CodeSpecification"/>
+                    </gender>
+                </xsl:for-each>
+                
+                <xsl:for-each select="geboortedatum">
+                    <birthDate>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                <xsl:with-param name="precision" select="'DAY'"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </birthDate>
+                </xsl:for-each>
+                
+                <!-- The zib allows both a boolean indicator for the death of the patient and a date of death, whereas
+                 FHIR allows just one of these concepts. Therefore, we first check is a date is present and translate
+                 that. If not, we can continue with the boolean indicator. -->
+                <xsl:choose>
+                    <xsl:when test="datum_overlijden[@value]">
+                        <deceasedDateTime>
+                            <xsl:call-template name="date-to-datetime">
+                                <xsl:with-param name="in" select="datum_overlijden[@value][1]"/>
+                            </xsl:call-template>
+                        </deceasedDateTime>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="overlijdens_indicator">
+                            <deceasedBoolean>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="boolean-to-boolean"/>                        
+                                </xsl:attribute>
+                            </deceasedBoolean>
+                        </xsl:for-each>
+                    </xsl:otherwise>
+                </xsl:choose>
+                
+                <xsl:for-each select="adresgegevens">
+                    <xsl:call-template name="nl-core-AddressInformation"/>
+                </xsl:for-each>
+                
+                <!-- MaritalStatus is a zib on its own, but the implementation is specific for the Patient resource. 
+                 Therefore, it is created inline. -->
+                <xsl:for-each select="$maritalStatus">
+                    <maritalStatus>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="burgerlijke_staat"/>
+                        </xsl:call-template>
+                    </maritalStatus>
+                </xsl:for-each>
+                
+                <xsl:for-each select="meerling_indicator">
+                    <multipleBirthBoolean>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="boolean-to-boolean"/>                        
+                        </xsl:attribute>
+                    </multipleBirthBoolean>
+                </xsl:for-each>
+                
+                <!-- Only "Eerste relatie/contactpersoon" and "Tweede relatie/contactpersoon" as Patient.contacts. Otherwise they should be entered as RelatedPerson-->
+                <xsl:for-each select="$contactPersons">
+                    <xsl:if test="$contactPersons/rol[@value='1']|$contactPersons/rol[@value='2']">
+                        <xsl:call-template name="nl-core-ContactPerson-embedded"/>
+                    </xsl:if>
+                </xsl:for-each>           
+                
+                <xsl:for-each select="$languageProficiency">
+                    <communication>
+                        <xsl:call-template name="_patientProficiency">
+                            <xsl:with-param name="in" select="taalvaardigheid_begrijpen"/>
+                            <xsl:with-param name="typeCode" select="'RSP'"/>
+                        </xsl:call-template>
+                        <xsl:call-template name="_patientProficiency">
+                            <xsl:with-param name="in" select="taalvaardigheid_spreken"/>
+                            <xsl:with-param name="typeCode" select="'ESP'"/>
+                        </xsl:call-template>
+                        <xsl:call-template name="_patientProficiency">
+                            <xsl:with-param name="in" select="taalvaardigheid_lezen"/>
+                            <xsl:with-param name="typeCode" select="'RWR'"/>
+                        </xsl:call-template>
+                        <xsl:for-each select="communicatie_bijzonderheden">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails">
+                                <valueCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueCodeableConcept>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select="toelichting">
+                            <xsl:call-template name="ext-Comment"/>
+                        </xsl:for-each>
+                        <language>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="communicatie_taal"/>
+                            </xsl:call-template>
+                        </language>
+                    </communication>
+                </xsl:for-each>
+            </Patient>
+        </xsl:for-each>
     </xsl:template>
     
     <xd:doc>
