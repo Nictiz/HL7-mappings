@@ -42,6 +42,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in[.//@value]">
             <PractitionerRole>
+                <xsl:if test="string-length($logicalId) gt 0">
+                    <id value="{$logicalId}"/>
+                </xsl:if>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+                </meta>
                 <xsl:if test="zorgverlener_identificatienummer | naamgegevens | geslacht | adresgegevens">
                     <practitioner>
                         <xsl:call-template name="makeReference">
@@ -76,8 +82,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner"
         name="nl-core-HealthProfessional-Practitioner" as="element(f:Practitioner)*">
         <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
+        
         <xsl:for-each select="$in[.//@value]">
             <Practitioner>
+                <xsl:if test="string-length($logicalId) gt 0">
+                    <id value="{$logicalId}"/>
+                </xsl:if>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
                 </meta>
@@ -119,6 +130,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing a HealthProfessional, both to a PractitionerRole and a Practitioner resource</xd:desc>
+        <xd:param name="profile"></xd:param>
+    </xd:doc>
     <xsl:template match="zorgverlener" mode="_generateDisplay">
         <xsl:param name="profile" required="yes" as="xs:string"/>
         
@@ -175,6 +190,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to generate a unique id to identify a HealthProfessional present in a (set of) ada-instance(s)</xd:desc>
+        <xd:param name="profile">If the patient is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
+        <xd:param name="fullUrl">If the patient is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
+    </xd:doc>
     <xsl:template match="zorgverlener" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
         <xsl:param name="fullUrl" tunnel="yes"/>
