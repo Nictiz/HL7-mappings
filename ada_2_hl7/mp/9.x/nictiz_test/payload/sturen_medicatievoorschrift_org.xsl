@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="nf xd xs xsl"  xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:nf="http://www.nictiz.nl/functions" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../2_hl7_mp_include_9x.xsl"/>
-    <xsl:import href="../../../../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>
+<!--    <xsl:import href="../../../../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <!-- Generates a HL7 message based on ADA input -->
 
@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Verstrekkingsverzoek -->
                 <xsl:for-each select="verstrekkingsverzoek">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9301_20191125141436"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9356_20210402132627"/>
                     </component>
                 </xsl:for-each>
             </xsl:for-each>

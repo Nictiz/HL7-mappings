@@ -14,7 +14,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../2_hl7_mp_include.xsl"/>
-    <xsl:import href="../../../util/mp-functions-fhir.xsl"/>
     <xsl:import href="../../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>
     
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
@@ -303,7 +302,128 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
+    <xd:doc>
+        <xd:desc> Verstrekkingsverzoek vanaf 9.1.0</xd:desc>
+        <xd:param name="in">ada verstrekkingsverzoek to be converted</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9356_20210402132627" match="verstrekkingsverzoek" mode="HandleVV92">
+        <xsl:param name="in" select="."/>
+        
+        <xsl:for-each select="$in[.//(@value | @code)]">
+            <supply classCode="SPLY" moodCode="RQO">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9356"/>
+                
+                <!-- identificatie -->
+                <xsl:for-each select="identificatie[@value]">
+                    <xsl:call-template name="makeIIid"/>
+                </xsl:for-each>
+                <code code="52711000146108" displayName="Verstrekkingsverzoek" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                
+                <!-- aantal herhalingen -->
+                <xsl:for-each select="aantal_herhalingen[@value]">
+                    <repeatNumber>
+                        <xsl:attribute name="value" select="xs:integer(./@value) + 1"/>
+                    </repeatNumber>
+                </xsl:for-each>
+                
+                <!-- Te verstrekken hoeveelheid -->
+                <xsl:for-each select="te_verstrekken_hoeveelheid[.//@value]">
+                    <quantity>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9165_20170118000000"/>
+                    </quantity>
+                </xsl:for-each>
+                
+                <!-- verbruiksperiode -->
+                <xsl:for-each select="verbruiksperiode[.//(@value | @code)]">
+                    <expectedUseTime>
+                        <xsl:for-each select="ingangsdatum">
+                            <low>
+                                <xsl:call-template name="makeTSValueAttr"/>
+                            </low>
+                        </xsl:for-each>
+                        <xsl:for-each select="duur">
+                            <width>
+                                <xsl:call-template name="makeTimePQValueAttribs"/>
+                            </width>
+                        </xsl:for-each>
+                        <xsl:for-each select="einddatum">
+                            <high>
+                                <xsl:call-template name="makeTSValueAttr"/>
+                            </high>
+                        </xsl:for-each>
+                    </expectedUseTime>
+                </xsl:for-each>
+                
+                <!-- Te verstrekken geneesmiddel -->
+                <xsl:for-each select="te_verstrekken_geneesmiddel/product[.//(@value | @code)]">
+                    <product>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9362_20210602154632">
+                            <xsl:with-param name="product" select="."/>
+                        </xsl:call-template>
+                    </product>
+                </xsl:for-each>
+                
+                <!-- beoogd verstrekker -->
+                <xsl:for-each select="beoogd_verstrekker/zorgaanbieder[.//(@value | @code)]">
+                    <performer>
+                        <assignedEntity>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9088_20160621133312"/>
+                        </assignedEntity>
+                    </performer>
+                </xsl:for-each>
+                
+                <!-- Auteur / zorgverlener -->
+                <xsl:for-each select="./auteur/zorgverlener[.//(@value | @code)]">
+                    <author>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
+                            <xsl:with-param name="authorTime" select="../../datum"/>
+                        </xsl:call-template>
+                    </author>
+                </xsl:for-each>
+                
+                <!-- afleverlocatie -->
+                <xsl:for-each select="afleverlocatie[.//(@value | @code)]">
+                    <participant typeCode="DST">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9091_20160621153127"/>
+                    </participant>
+                </xsl:for-each>
+                
+                <!-- aanvullende wensen -->
+                <xsl:for-each select="aanvullende_wensen[@value | @code | @nullFlavor | @originalText]">
+                    <!-- kunnen er 0 of meer zijn -->
+                    <entryRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9093_20160623183534"/>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!-- Toelichting -->
+                <xsl:for-each select="./toelichting[@value]">
+                    <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!-- relatie naar MA -->
+                <xsl:for-each select="./relatie_naar_medicatieafspraak[.//(@value | @code)]">
+                    <!-- kunnen er 0 of meer zijn -->
+                    <entryRelationship typeCode="REFR">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9086_20160621122009">
+                            <xsl:with-param name="identificatieElement" select="./identificatie"/>
+                        </xsl:call-template>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!--Relatie naar medicamenteuze behandeling - wordt automatisch gegenereerd -->
+                <entryRelationship typeCode="COMP" inversionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9084_20160621103838">
+                        <xsl:with-param name="MBHroot" select="./.."/>
+                    </xsl:call-template>
+                </entryRelationship>
+                
+            </supply>
+        </xsl:for-each>
+    </xsl:template>    
+    
     <xd:doc>
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x SXPR_TS version. Override of version in 2_hl7_mp_include_9x.xsl</xd:desc>
         <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>

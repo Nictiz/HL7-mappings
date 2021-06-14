@@ -14,9 +14,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
+     
     <!-- Uncomment only for development purposes -->
     <!--<xsl:import href="../../util/mp-functions.xsl"/>
-    <xsl:import href="../../util/utilities.xsl"/>-->
+    -->
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -208,7 +209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Outputs an hl7 product code with translations based on the GstandaardLevel.</xd:desc>
         <xd:param name="productCode">The collection of ada product codes to be converted</xd:param>
-        <xd:param name="GstandaardLevel">The Gstandaard level that should be the main level, the other codes are added as translations.Defaults to ZI nummer</xd:param>
+        <xd:param name="GstandaardLevel">The Gstandaard level that should be the main level, the other codes are added as translations. Defaults to ZI nummer.</xd:param>
         <xd:param name="elemName">Optional. The element name to be created. Defaults to code.</xd:param>
     </xd:doc>
     <xsl:template name="makeProductCode" as="element()?">
