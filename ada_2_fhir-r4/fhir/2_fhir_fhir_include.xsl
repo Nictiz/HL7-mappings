@@ -109,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="nf:get-resourceid-from-token($in)"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:apply-templates select="$in" mode="generateId">
+                                <xsl:apply-templates select="$in" mode="_generateId">
                                     <xsl:with-param name="profile" select="$profile"/>
                                     <xsl:with-param name="fullUrl" select="$fullUrl" tunnel="yes"/>
                                 </xsl:apply-templates>
@@ -118,7 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </nm:logical-id>
                 </xsl:if>
                 <nm:reference-display>
-                    <xsl:apply-templates select="$in" mode="generateDisplay">
+                    <xsl:apply-templates select="$in" mode="_generateDisplay">
                         <xsl:with-param name="profile" select="$profile"/>
                     </xsl:apply-templates>
                 </nm:reference-display>
@@ -127,7 +127,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
         
         <!-- Generic (fallback) templates, each zib transformation should(?) have more relevant id and display generation mechanisms -->
-        <xsl:template match="*" mode="generateId">
+        <xsl:template match="*" mode="_generateId">
             <xsl:param name="fullUrl" tunnel="yes"/>
             <!--<xsl:choose>
             <!-\- You would like to reference zib identificatienummer BasicElement here -\->
@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!--</xsl:otherwise>
         </xsl:choose>-->
         </xsl:template>
-        <xsl:template match="*" mode="generateDisplay">
+        <xsl:template match="*" mode="_generateDisplay">
             <xsl:choose>
                 <xsl:when test="*[ends-with(local-name(), '_naam')][@displayName or @originalText]">
                     <xsl:value-of select="(*[ends-with(local-name(), '_naam')]/(@displayName, @originalText))[1]"/>

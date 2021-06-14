@@ -54,8 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="logicalId">Optional logical id for the FHIR instance.</xd:param>
         
-        The following components need to be passed as ada instances; although the zibs themselves are not related
-        to a patient, the translation to FHIR is specific to the Patient resource:
+        The following components need to be passed as ada instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource:
         <xd:param name="nationality">Optional ada instance of zib Nationality</xd:param>
         <xd:param name="maritalStatus">Optional ada instance of zib MaritalStatus</xd:param>
         <xd:param name="languageProficiency">Optional ada instances of zib LanguageProficiency</xd:param>
@@ -263,6 +262,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </extension>
         </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a unique id to identify a patient present in a (set of) ada-instance(s)</xd:desc>
+        <xd:param name="fullUrl">If the patient is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
+    </xd:doc>
+    <xsl:template match="patient" mode="_generateId">
+        <xsl:param name="fullUrl" tunnel="yes"/>
+        <xsl:choose>
+            <!-- Tries to match patient to token -->
+            <xsl:when test="string-length(nf:get-resourceid-from-token(.)) gt 0">
+                <xsl:value-of select="nf:get-resourceid-from-token(.)"/>
+            </xsl:when>
+            <xsl:when test="naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value">
+                <xsl:value-of select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '))))"/>
+            </xsl:when>
+            <xsl:when test="$fullUrl">
+                <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- Debug -->
+                <xsl:message terminate="yes"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing a patient</xd:desc>
+    </xd:doc>
+    <xsl:template match="patient" mode="_generateDisplay">
+        <xsl:value-of select="normalize-space(string-join(.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
     </xsl:template>
    
 </xsl:stylesheet>

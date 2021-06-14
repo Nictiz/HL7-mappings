@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <entry>
                         <resource>
                             <xsl:call-template name="nl-core-HealthProfessional-Practitioner">
-                                <!--<xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>-->
+                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
                             </xsl:call-template>
                         </resource>
                     </entry>

@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="zorgverlener" mode="generateDisplay">
+    <xsl:template match="zorgverlener" mode="_generateDisplay">
         <xsl:param name="profile" required="yes" as="xs:string"/>
         
         <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1])"/>
@@ -175,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="zorgverlener" mode="generateId">
+    <xsl:template match="zorgverlener" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
         <xsl:param name="fullUrl" tunnel="yes"/>
         
