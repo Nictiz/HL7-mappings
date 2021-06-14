@@ -70,7 +70,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <start value="{normalize-space(begin_datum_tijd/@value)}"/>
                         <end value="{normalize-space(eind_datum_tijd/@value)}"/>
                     </period>                    
-                </xsl:if>   
+                </xsl:if>                   
+                <xsl:for-each select="reden_contact/afwijkende_uitslag">
+                    <reasonReference>
+                        <!--<xsl:call-template name="nl-core-Procedure-Reference"/>-->
+                    </reasonReference>                    
+                </xsl:for-each>                  
                 <xsl:for-each select="herkomst[@code]">
                     <admitSource>
                         <xsl:call-template name="code-to-CodeableConcept">
