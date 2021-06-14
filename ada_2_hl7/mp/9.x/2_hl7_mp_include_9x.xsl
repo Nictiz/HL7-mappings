@@ -311,7 +311,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9358_20210517124213" match="toedieningsschema" mode="HandleFHIRinCDAAdministrationSchedule9x">
         <xsl:param name="in" as="element()*" select="."/>
         <xsl:for-each select="$in">
-            <effectiveTime xmlns="http://hl7.org/fhir">
+            <effectiveTime xsi:type="Timing" xmlns="http://hl7.org/fhir">
                 <xsl:call-template name="adaToedieningsschema2FhirTimingContents">
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="inHerhaalperiodeCyclischschema" select="../../../herhaalperiode_cyclisch_schema"/>
