@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?nictiz status="example"?>
 <?xml-model phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp92_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
-<!--Generated from ada instance with title: "op maandag, woensdag, vrijdag" and id: "1voorbeeld_freq".-->
+<!--Generated from ada instance with title: "op maandag, woensdag, vrijdag" and id: "9voorbeeld_toedientijd-flexfalse-freq".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -42,7 +42,7 @@
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 dagen, 1 maal per dag 1 stuk, oraal</text>
+         <text mediaType="text/plain">Vanaf 20 sep 2020, gedurende 14 dagen, elke dag om 10:00:00, 14:00:00 en 20:00:00 1 stuk en zo nodig 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20200920000000"/>
             <width value="14" unit="d"/>
@@ -101,9 +101,12 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
                   <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <timeOfDay value="10:00:00"/>
+                     <timeOfDay value="14:00:00"/>
+                     <timeOfDay value="20:00:00"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -116,6 +119,29 @@
                   </center>
                </doseQuantity>
                <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+               <precondition>
+                  <criterion>
+                     <code code="1137"
+                           codeSystem="2.16.840.1.113883.2.4.4.5"
+                           displayName="zo nodig"/>
+                  </criterion>
+               </precondition>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
