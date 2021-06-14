@@ -37,6 +37,55 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="contact" mode="nl-core-Encounter" name="nl-core-Encounter"  as="element(f:Encounter)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value]">
+            
+            
+            <!-- Foreach  -->
+            <xsl:variable name="contactType" select="contact_type/@code"/>
+            <xsl:variable name="contactSystem" as="xs:string?">
+                <xsl:choose>
+                    <xsl:when test="$contactType = 'AMB'">ambulatory</xsl:when>
+                    <xsl:when test="$contactType = 'EMER'">emergency</xsl:when>
+                    <xsl:when test="$contactType = 'FLD'">field</xsl:when>
+                    <xsl:when test="$contactType = 'HH'">home</xsl:when>                    
+                    <xsl:when test="$contactType = 'IMP'">inpatient</xsl:when>
+                    <xsl:when test="$contactType = 'SS'">short stay</xsl:when>
+                    <xsl:when test="$contactType = 'VR'">virtual</xsl:when>
+                    <xsl:when test="$contactType = 'OTH'">other</xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            
+            <xsl:variable name="destinationCode" select="bestemming/@code"/>
+            <xsl:variable name="destinationSystem" as="xs:string?">
+                <xsl:choose>
+                    <xsl:when test="$destinationCode = '264362003'">home</xsl:when>
+                    <xsl:when test="$destinationCode = '445060000'">left against medical advice</xsl:when>
+                    <xsl:when test="$destinationCode = '80522000'">rehabilitation hospital</xsl:when>
+                    <xsl:when test="$destinationCode = '42665001'">long term care facility</xsl:when>                    
+                    <xsl:when test="$destinationCode = '62480006'">psychiatric hospital</xsl:when>
+                    <xsl:when test="$destinationCode = '22232009'">hospital</xsl:when>
+                    <xsl:when test="$destinationCode = '183676005'">died in hospital</xsl:when>
+                    <xsl:when test="$destinationCode = '284546000'">hospice</xsl:when>
+                    <xsl:when test="$destinationCode = 'OTH'">other</xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            
+            <xsl:variable name="originCode" select="herkomst/@code"/>
+            <xsl:variable name="originSystem" as="xs:string?">
+                <xsl:choose>
+                    <xsl:when test="$originCode = '264362003'">home</xsl:when>
+                    <xsl:when test="$originCode = '80522000'">rehabilitation hospital</xsl:when>                    
+                    <xsl:when test="$originCode = '42665001'">long term care facility</xsl:when>  
+                    <xsl:when test="$originCode = '62480006'">psychiatric hospital</xsl:when>
+                    <xsl:when test="$originCode = '22232009'">hospital</xsl:when>                    
+                    <xsl:when test="$originCode = '442311008'">liveborn born in hospital</xsl:when>  
+                    <xsl:when test="$originCode = '284546000'">hospice</xsl:when>               
+                    <xsl:when test="$originCode = 'OTH'">other</xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            
+            
+            
+            
             <Encounter>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
