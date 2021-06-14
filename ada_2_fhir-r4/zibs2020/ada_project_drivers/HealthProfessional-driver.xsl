@@ -34,19 +34,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:template match="/">
+        <xsl:variable name="fhirMetadata" as="element()*">
+            <xsl:call-template name="getFhirMetadata">
+                <xsl:with-param name="in" select="."/>
+            </xsl:call-template>
+        </xsl:variable>
+        
         <Bundle>            
             <xsl:for-each select=".//zorgverlener">
+                <!-- Always create PractitionerRole according to Profiling Guidelines -->
+                    <entry>
+                        <resource>
+                            <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
+                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
+                            </xsl:call-template>
+                        </resource>
+                    </entry>
                 <xsl:if test="zorgverlener_identificatienummer |naamgegevens | geslacht | adresgegevens | contactgegevens">
                     <entry>
                         <resource>
-                            <xsl:call-template name="nl-core-HealthProfessional-Practitioner"/>
-                        </resource>
-                    </entry>
-                </xsl:if>
-                <xsl:if test="specialisme | zorgaanbieder">
-                    <entry>
-                        <resource>
-                            <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole"/>
+                            <xsl:call-template name="nl-core-HealthProfessional-Practitioner">
+                                <!--<xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>-->
+                            </xsl:call-template>
                         </resource>
                     </entry>
                 </xsl:if>

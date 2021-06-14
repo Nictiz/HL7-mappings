@@ -37,8 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
-    <xsl:import href="nl-core-HealthProfessional-Practitioner.xsl"/>
-    <xsl:import href="nl-core-HealthProfessional-PractitionerRole.xsl"/>
+    <xsl:import href="nl-core-HealthProfessional.xsl"/>
     <xsl:import href="nl-core-HealthcareProvider.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
     
