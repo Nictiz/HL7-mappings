@@ -39,19 +39,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:template match="/">
+        <xsl:variable name="fhirMetadata" as="element()*">
+            <xsl:call-template name="getFhirMetadata">
+                <xsl:with-param name="in" select="."/>
+            </xsl:call-template>
+        </xsl:variable>
+        
         <Bundle>            
             <xsl:for-each select=".//zorgaanbieder">
                 <xsl:if test="organisatie_locatie/locatie_naam[@value] | contactgegevens | adresgegevens">
                     <entry>
                         <resource>
-                            <xsl:call-template name="nl-core-HealthcareProvider"/>
+                            <xsl:call-template name="nl-core-HealthcareProvider">
+                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes"/>
+                            </xsl:call-template>
                         </resource>
                     </entry>
                 </xsl:if>
                 <xsl:if test="zorgaanbieder_identificatienummer | afdeling_specialisme | organisatie_type | organisatie_naam">
                     <entry>
                         <resource>
-                            <xsl:call-template name="nl-core-HealthcareProvider-Organization"/>
+                            <xsl:call-template name="nl-core-HealthcareProvider-Organization">
+                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes"/>
+                            </xsl:call-template>
                         </resource>
                     </entry>
                 </xsl:if>

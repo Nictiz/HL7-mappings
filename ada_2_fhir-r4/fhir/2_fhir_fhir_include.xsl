@@ -39,6 +39,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
+        <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
+        <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
         <nm:map ada="zorgverlener" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
         <nm:map ada="zorgverlener" resource="Practitioner" profile="nl-core-HealthProfessional-Practitioner"/>
     </xsl:variable>
@@ -70,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         
         <!-- General rule for all zib root concepts -->
-        <xsl:for-each-group select="$in//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1.1')][not(local-name() = ('patient', 'zorgverlener'))]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="$in//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')][not(local-name() = ('patient', 'zorgverlener'))]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="getFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
     </xsl:template>
@@ -111,7 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:otherwise>
                                 <xsl:apply-templates select="$in" mode="_generateId">
                                     <xsl:with-param name="profile" select="$profile"/>
-                                    <xsl:with-param name="fullUrl" select="$fullUrl" tunnel="yes"/>
+                                    <!--<xsl:with-param name="fullUrl" select="$fullUrl" tunnel="yes"/>-->
                                 </xsl:apply-templates>
                             </xsl:otherwise>
                         </xsl:choose>
@@ -128,21 +130,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <!-- Generic (fallback) templates, each zib transformation should(?) have more relevant id and display generation mechanisms -->
         <xsl:template match="*" mode="_generateId">
-            <xsl:param name="fullUrl" tunnel="yes"/>
-            <!--<xsl:choose>
-            <!-\- You would like to reference zib identificatienummer BasicElement here -\->
-            <xsl:when test="">
-                
-            </xsl:when>
-            <xsl:otherwise>-->
+            <xsl:param name="in" select="."/>
+            
+            <xsl:variable name="adaElement" as="xs:string" select="$in/local-name()"/>
+            <xsl:if test="count($ada2resourceType/nm:map[@ada = $adaElement]) gt 1">
+                <xsl:message>Generating a uuid for an ada-element (<xsl:value-of select="$adaElement"/>) which produces multiple profiles can produce unreliable results.</xsl:message>
+            </xsl:if>
+            
+            <xsl:variable name="fullUrl">
+                <xsl:value-of select="nf:get-fhir-uuid($in)"/>
+            </xsl:variable>
+            
             <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
-            <!--</xsl:otherwise>
-        </xsl:choose>-->
         </xsl:template>
         <xsl:template match="*" mode="_generateDisplay">
             <xsl:choose>
-                <xsl:when test="*[ends-with(local-name(), '_naam')][@displayName or @originalText]">
-                    <xsl:value-of select="(*[ends-with(local-name(), '_naam')]/(@displayName, @originalText))[1]"/>
+                <xsl:when test=".//*[ends-with(local-name(.), '_naam')][@value or @displayName or @originalText]">
+                    <xsl:value-of select="(.//*[ends-with(local-name(.), '_naam')]/(@displayName, @originalText, @value))[1]"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="local-name()"/>
@@ -156,6 +160,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:param name="profile" as="xs:string" required="yes"/>
             <xsl:param name="wrapIn" as="xs:string?"/>
             <xsl:param name="fhirMetadata" tunnel="yes" as="element()*"/>
+            
+            <xsl:if test="count($fhirMetadata) = 0">
+                <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
+            </xsl:if>
             
             <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
             <xsl:variable name="element" as="element()?">
