@@ -23,17 +23,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../payload/0.0/all_zibs.xsl"/>
     
-    <!--<xsl:param name="referById" as="xs:boolean" select="true()"/>-->
     <xd:doc>
         <xd:desc>
-            <xd:ul>
-                <xd:li>logicalId</xd:li>
-                <xd:li>uuid</xd:li>
-                <xd:li>none</xd:li>
-            </xd:ul>
-            When $referencingStrategy is 'logicalId', a Resource.id is generated. The generated id can be overruled by adding an @logicalId to the root of the ada element being referenced. When referencing, a relative uri is generated from the id.
-            When $referencingStrategy is 'uuid', a uuid is added to Resource.id and all referencing is done by these uuids. Meant for use within Bundles. Be sure to include all referenced resources in the Bundle! 
-            When $referencingStrategy is 'none', it is attempted to generate any Reference from an identifier being present in the referenced ada-element. This can be overruled by adding an @referenceUri to the root of the ada element, which is added to Reference.reference (for example an absolute url). No Resource.id is added by default. This can be overruled by adding an @logicalId to the root of the ada element being referenced.
+            When $populateId equals true(), Resource.id will be filled. It will be filled with @logicalId if it is present in the ada-element or generated if no @logicalId is present.
+            When $populateId equals false(), Resource.id will not be filled. 
+            
+            If $referincingStrategy equals 'logicalId', the value of $populateId will be ignored.
+        </xd:desc>
+    </xd:doc>
+    <xsl:param name="populateId" select="true()" as="xs:boolean"/>
+    
+    <xd:doc>
+        <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
+            <xd:li>logicalId</xd:li>
+            <xd:li>uuid</xd:li>
+            <xd:li>none</xd:li>
+        </xd:ul>
+            When $referencingStrategy equals 'logicalId', the value of $populateId is ignored. A Resource.id is added to the resource, with its value being populated from (in this order) @logicalId on the root of the ada element being referenced or from a template with mode '_generateId'. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata.
+            When $referencingStrategy equals 'uuid', all referinging is done using uuids. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Meant for use within Bundles. Be sure to include all referenced resources in the Bundle! 
+            When $referencingStrategy equals 'none', it is attempted to generate a Reference from an identifier being present in the referenced ada-element. If this is not possible, referencing fails.
+            
+            With any strategy, the referencing of a specific ada element can be overruled by adding an @referenceUri to the ada reference element. The value of @referenceUri is added to Reference.reference (for example an absolute url or URN). An attempt is made to parse a fullUrl form @referenceUri within $fhirMetadata.
         </xd:desc>
     </xd:doc>
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
@@ -42,8 +52,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="editedZorgverlener">
         <xsl:for-each select=".//zorgverlener">
             <!-- Aargh why doesn't ada have a namespace -->
-            <zorgverlener xmlns="" logicalId="nl-core-HealthProfessional-{format-number(position(),'00')}" referenceUri="http://nictiz.nl/fhir/PractitionerRole/nl-core-HealthProfessional-{format-number(position(),'00')}">
-                <xsl:copy-of select="*"/>
+            <zorgverlener xmlns="" logicalId="nl-core-HealthProfessional-{format-number(position(),'00')}">
+                <!--<xsl:copy-of select="*"/>-->
+                <!-- Copy-of dekt de lading niet, maar bijv. zorgaanbieder zou zo aangepast kunnen/moeten worden: -->
+                <!-- [...] -->
+                <zorgaanbieder datatype="reference" nullFlavor="NI" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.526" referenceUri="http://nictiz.nl/fhir/PractitionerRole/nl-core-HealthcareProvider-Location-{format-number(position(),'00')}"/>
+                <!-- [...] -->
             </zorgverlener>
         </xsl:for-each>
     </xsl:variable>
