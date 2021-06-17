@@ -26,11 +26,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-
+    
     <xd:doc scope="stylesheet"> 
         <xd:desc>Converts ada zorgverlener_rol to FHIR resource conforming to profile nl-core-HealthProfessional-PractitionerRole</xd:desc>
     </xd:doc>
-
+    
     <xd:doc>
         <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole FHIR instance from an ada 'zorgverlener' element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,9 +42,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in[.//@value]">
             <PractitionerRole>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
+                <xsl:call-template name="insertId">
+                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
                 </meta>
@@ -60,13 +60,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!--<xsl:call-template name="nl-core-HealthcareProvider-reference"/>-->
                     </organization>
                 </xsl:if>
-                <xsl:if test="specialisme/@value">
-                    <valueCodeableConcept>
+                <xsl:for-each select="specialisme">
+                    <specialty>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </valueCodeableConcept>
-                </xsl:if>
+                    </specialty>
+                </xsl:for-each>
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
                 </xsl:for-each>
@@ -86,9 +86,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in[.//@value]">
             <Practitioner>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
+                <xsl:call-template name="insertId">
+                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-Practitioner'"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
                 </meta>
@@ -218,7 +218,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:when>
         </xsl:choose>
-        
     </xsl:template>
     
 </xsl:stylesheet>

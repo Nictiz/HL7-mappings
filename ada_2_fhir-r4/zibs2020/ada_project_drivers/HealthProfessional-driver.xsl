@@ -23,29 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../payload/0.0/all_zibs.xsl"/>
     
-    <xd:doc>
-        <xd:desc>
-            When $populateId equals true(), Resource.id will be filled. It will be filled with @logicalId if it is present in the ada-element or generated if no @logicalId is present.
-            When $populateId equals false(), Resource.id will not be filled. 
-            
-            If $referincingStrategy equals 'logicalId', the value of $populateId will be ignored.
-        </xd:desc>
-    </xd:doc>
     <xsl:param name="populateId" select="true()" as="xs:boolean"/>
-    
-    <xd:doc>
-        <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
-            <xd:li>logicalId</xd:li>
-            <xd:li>uuid</xd:li>
-            <xd:li>none</xd:li>
-        </xd:ul>
-            When $referencingStrategy equals 'logicalId', the value of $populateId is ignored. A Resource.id is added to the resource, with its value being populated from (in this order) @logicalId on the root of the ada element being referenced or from a template with mode '_generateId'. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata.
-            When $referencingStrategy equals 'uuid', all referinging is done using uuids. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Meant for use within Bundles. Be sure to include all referenced resources in the Bundle! 
-            When $referencingStrategy equals 'none', it is attempted to generate a Reference from an identifier being present in the referenced ada-element. If this is not possible, referencing fails.
-            
-            With any strategy, the referencing of a specific ada element can be overruled by adding an @referenceUri to the ada reference element. The value of @referenceUri is added to Reference.reference (for example an absolute url or URN). An attempt is made to parse a fullUrl form @referenceUri within $fhirMetadata.
-        </xd:desc>
-    </xd:doc>
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
     
     <!-- Because we create fhirMetadata from ada elements, overruling either a generated logicalId (Resource.id) or a generated referenceUri (Reference.reference), should be done by adding it to the ada element. How unwanted is this? Because I think you get something like this. And this doesn't even work because there are two different resources being created from 1 zorgverlener element -->

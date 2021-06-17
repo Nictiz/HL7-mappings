@@ -29,6 +29,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:param name="fhirVersion" select="'R4'"/>
     
+    <xd:doc>
+        <xd:desc>
+            When $populateId equals true(), Resource.id will be filled. It will be filled with @logicalId if it is present in the ada-element or generated if no @logicalId is present.
+            When $populateId equals false(), Resource.id will not be filled. 
+            
+            If $referincingStrategy equals 'logicalId', the value of $populateId will be ignored.
+        </xd:desc>
+    </xd:doc>
+    <xsl:param name="populateId" select="true()" as="xs:boolean"/>
+    
+    <xd:doc>
+        <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
+            <xd:li>logicalId</xd:li>
+            <xd:li>uuid</xd:li>
+            <xd:li>none</xd:li>
+        </xd:ul>
+            When $referencingStrategy equals 'logicalId', the value of $populateId is ignored. A Resource.id is added to the resource, with its value being populated from (in this order) @logicalId on the root of the ada element being referenced or from a template with mode '_generateId'. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Should not be used when there is no FHIR server available to retrieve the resources.
+            When $referencingStrategy equals 'uuid', all referencing is done using uuids. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Meant for use within Bundles. Be sure to include all referenced resources in the Bundle! 
+            When $referencingStrategy equals 'none', it is attempted to generate a Reference from an identifier being present in the referenced ada-element. If this is not possible, referencing fails.
+            
+            With any strategy, the referencing of a specific ada element can be overruled by adding an @referenceUri to the ada reference element. The value of @referenceUri is added to Reference.reference (for example an absolute url or URN). An attempt is made to parse a fullUrl form @referenceUri within $fhirMetadata.
+        </xd:desc>
+    </xd:doc>
+    <xsl:param name="referencingStrategy" select="'uuid'" as="xs:string"/>
+    
+    <xsl:param name="serverBaseUri" select="'http://example.nictiz.nl/fhir'" as="xs:string"/>
+    
     <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
     
     <!-- Here all overrules be placed -->
@@ -48,6 +75,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="getFhirMetadata">
         <xsl:param name="in"/>
         
+        <xsl:if test="not($referencingStrategy = ('logicalId', 'uuid', 'none'))">
+            <xsl:message terminate="yes">Invalid $referencingStrategy. Should be one of 'logicalId', 'uuid', 'none'</xsl:message>
+        </xsl:if>
+        
         <!-- if-statement to allow for local variables -->
         <xsl:if test="$in//patient[not(patient)][not(@datatype = 'reference')]">
             <xsl:variable name="identifier" select="(identificatienummer[@root = $oidBurgerservicenummer],identificatienummer[not(@root = $oidBurgerservicenummer)])[1]"/>
@@ -61,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         
         <xsl:if test="$in//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')]">
-            <xsl:variable name="identifier" select="nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer)"/>
+            <xsl:variable name="identifier" select="nf:ada-zvl-id(zorgverlener_identificatienummer)"/>
             <xsl:for-each-group select="$in//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
                 concat($identifier/@root,
                 $identifier/normalize-space(@value))">
@@ -97,31 +128,66 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <nm:group-key>
                     <xsl:value-of select="$groupKey"/>
                 </nm:group-key>
-                <!-- Unless overruled, fullUrl is always a uuid? -->
-                <!-- fullUrl should be unique per profile -->
-                <xsl:variable name="fullUrl">
-                    <xsl:value-of select="nf:get-fhir-uuid($in)"/>
-                </xsl:variable>
-                <nm:full-url>
-                    <xsl:value-of select="$fullUrl"/>
-                </nm:full-url>
-                <xsl:if test="$referById">
-                    <nm:logical-id>
-                        <xsl:choose>
-                            <xsl:when test="
+                <xsl:variable name="logicalId">
+                    <xsl:choose>
+                        <!--<xsl:when test="
                                 (:not($uuid) and :)
                                 $adaElement = 'patient' and string-length(nf:get-resourceid-from-token($in)) gt 0">
                                 <xsl:value-of select="nf:get-resourceid-from-token($in)"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:apply-templates select="$in" mode="_generateId">
-                                    <xsl:with-param name="profile" select="$profile"/>
-                                    <!--<xsl:with-param name="fullUrl" select="$fullUrl" tunnel="yes"/>-->
-                                </xsl:apply-templates>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                            </xsl:when>-->
+                        <xsl:when test="$in/@logicalId">
+                            <xsl:value-of select="$in/@logicalId"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:apply-templates select="$in" mode="_generateId">
+                                <xsl:with-param name="profile" select="$profile"/>
+                            </xsl:apply-templates>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:if test="$populateId = true() or $referencingStrategy = 'logicalId'">
+                    <nm:logical-id>
+                        <xsl:value-of select="$logicalId"/>
                     </nm:logical-id>
                 </xsl:if>
+                
+                <xsl:choose>
+                    <xsl:when test="$in/@referenceUri">
+                        <nm:full-url>
+                            <xsl:value-of select="$in/@referenceUri"/>
+                        </nm:full-url>
+                        <nm:ref-url>
+                            <xsl:value-of select="$in/@referenceUri"/>
+                        </nm:ref-url>
+                    </xsl:when>
+                    <xsl:when test="$referencingStrategy = 'logicalId'">
+                        <xsl:variable name="serverBaseUriEdit">
+                            <xsl:choose>
+                                <xsl:when test="ends-with($serverBaseUri, '/')">
+                                    <xsl:value-of select="$serverBaseUri"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="concat($serverBaseUri, '/')"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <nm:full-url>
+                            <xsl:value-of select="concat($serverBaseUriEdit, @resource, '/', $logicalId)"/>
+                        </nm:full-url>
+                        <nm:ref-url>
+                            <xsl:value-of select="concat(@resource, '/', $logicalId)"/>
+                        </nm:ref-url>
+                    </xsl:when>
+                    <xsl:when test="$referencingStrategy = 'uuid'">
+                        <nm:full-url>
+                            <xsl:value-of select="nf:get-fhir-uuid($in)"/>
+                        </nm:full-url>
+                        <nm:ref-url>
+                            <xsl:value-of select="nf:get-fhir-uuid($in)"/>
+                        </nm:ref-url>
+                    </xsl:when>
+                </xsl:choose>
+
                 <nm:reference-display>
                     <xsl:apply-templates select="$in" mode="_generateDisplay">
                         <xsl:with-param name="profile" select="$profile"/>
@@ -187,19 +253,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
             
             <xsl:variable name="populatedReference" as="element()*">
-                <xsl:choose>
-                    <xsl:when test="$referById and $element/nm:logical-id">
-                        <reference value="{concat($ada2resourceType/nm:map[@profile = $profile]/@resource, '/', $element/nm:logical-id)}"/>
-                    </xsl:when>
-                    <xsl:when test="$referById and $element/nm:fullurl">
-                        <reference value="{$element/nm:fullurl}"/>
-                    </xsl:when>
-                </xsl:choose>
+                <xsl:if test="string-length($element/nm:ref-url) gt 0">
+                    <reference value="{$element/nm:ref-url}"/>
+                </xsl:if>
                 <xsl:if test="string-length($element/nm:resource-type) gt 0">
                     <type value="{$element/nm:resource-type}"/>
                 </xsl:if>                
                 <xsl:choose>
-                    <xsl:when test="$identifier and not($referById)">
+                    <xsl:when test="$referencingStrategy = 'none' and not($element/nm:ref-url) and $identifier">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
@@ -229,5 +290,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:if>
         </xsl:template>
-
+    
+    <xsl:template name="insertId">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="profile" as="xs:string"/>
+        <xsl:param name="fhirMetadata" tunnel="yes"/>
+        
+        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        
+        <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and not($profile)">
+            <xsl:message terminate="yes">Dublicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+        </xsl:if>
+        
+        <xsl:variable name="logicalId">
+            <xsl:choose>
+                <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                    <xsl:value-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]/nm:logical-id"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$fhirMetadata[nm:group-key = $groupKey]/nm:logical-id"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:if test="string-length($logicalId) gt 0">
+            <id value="{$logicalId}"/>
+        </xsl:if>
+    </xsl:template>
+    
 </xsl:stylesheet>
