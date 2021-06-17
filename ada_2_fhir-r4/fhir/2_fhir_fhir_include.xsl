@@ -86,6 +86,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$ada2resourceType/nm:map[@ada = $adaElement]">
             <xsl:variable name="profile" select="@profile"/>
             <nm:resource profile="{$profile}">
+                <nm:resource-type>
+                    <xsl:value-of select="@resource"/>
+                </nm:resource-type>
                 <xsl:if test="$adaId">
                     <nm:ada-id>
                         <xsl:value-of select="$adaId"/>
@@ -134,7 +137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:variable name="adaElement" as="xs:string" select="$in/local-name()"/>
             <xsl:if test="count($ada2resourceType/nm:map[@ada = $adaElement]) gt 1">
-                <xsl:message>Generating a uuid for an ada-element (<xsl:value-of select="$adaElement"/>) which produces multiple profiles can produce unreliable results.</xsl:message>
+                <xsl:message>Generating a uuid for an ada-element ('<xsl:value-of select="$adaElement"/>') which can produce multiple profiles can produce unreliable results.</xsl:message>
             </xsl:if>
             
             <xsl:variable name="fullUrl">
@@ -185,13 +188,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:variable name="populatedReference" as="element()*">
                 <xsl:choose>
-                    <xsl:when test="$element/nm:logical-id">
+                    <xsl:when test="$referById and $element/nm:logical-id">
                         <reference value="{concat($ada2resourceType/nm:map[@profile = $profile]/@resource, '/', $element/nm:logical-id)}"/>
                     </xsl:when>
                     <xsl:when test="$referById and $element/nm:fullurl">
                         <reference value="{$element/nm:fullurl}"/>
                     </xsl:when>
-                    <xsl:when test="$identifier">
+                </xsl:choose>
+                <xsl:if test="string-length($element/nm:resource-type) gt 0">
+                    <type value="{$element/nm:resource-type}"/>
+                </xsl:if>                
+                <xsl:choose>
+                    <xsl:when test="$identifier and not($referById)">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
@@ -221,7 +229,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:if>
         </xsl:template>
-        
-    <!--</xsl:stylesheet>-->
 
 </xsl:stylesheet>
