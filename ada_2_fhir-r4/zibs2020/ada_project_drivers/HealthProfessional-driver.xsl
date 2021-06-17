@@ -23,7 +23,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../payload/0.0/all_zibs.xsl"/>
     
-    <xsl:param name="referById" as="xs:boolean" select="true()"/>
+    <!--<xsl:param name="referById" as="xs:boolean" select="true()"/>-->
+    <xd:doc>
+        <xd:desc>
+            <xd:ul>
+                <xd:li>logicalId</xd:li>
+                <xd:li>uuid</xd:li>
+                <xd:li>none</xd:li>
+            </xd:ul>
+            When $referencingStrategy is 'logicalId', a Resource.id is generated. The generated id can be overruled by adding an @logicalId to the root of the ada element being referenced. When referencing, a relative uri is generated from the id.
+            When $referencingStrategy is 'uuid', a uuid is added to Resource.id and all referencing is done by these uuids. Meant for use within Bundles. Be sure to include all referenced resources in the Bundle! 
+            When $referencingStrategy is 'none', it is attempted to generate any Reference from an identifier being present in the referenced ada-element. This can be overruled by adding an @referenceUri to the root of the ada element, which is added to Reference.reference (for example an absolute url). No Resource.id is added by default. This can be overruled by adding an @logicalId to the root of the ada element being referenced.
+        </xd:desc>
+    </xd:doc>
+    <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
+    
+    <!-- Because we create fhirMetadata from ada elements, overruling either a generated logicalId (Resource.id) or a generated referenceUri (Reference.reference), should be done by adding it to the ada element. How unwanted is this? Because I think you get something like this. And this doesn't even work because there are two different resources being created from 1 zorgverlener element -->
+    <xsl:variable name="editedZorgverlener">
+        <xsl:for-each select=".//zorgverlener">
+            <!-- Aargh why doesn't ada have a namespace -->
+            <zorgverlener xmlns="" logicalId="nl-core-HealthProfessional-{format-number(position(),'00')}" referenceUri="http://nictiz.nl/fhir/PractitionerRole/nl-core-HealthProfessional-{format-number(position(),'00')}">
+                <xsl:copy-of select="*"/>
+            </zorgverlener>
+        </xsl:for-each>
+    </xsl:variable>
     
     <xd:doc>
         <xd:desc>Process ADA instances to create resources that conform to the nl-core-HealthProfessional-Practitioner profile and include the reference resources inside a Bundle as output:
