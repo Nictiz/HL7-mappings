@@ -59,6 +59,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select=".//zorgverlener">
                 <!-- Always create PractitionerRole according to Profiling Guidelines -->
                     <entry>
+                        <xsl:call-template name="insertFullUrl">
+                            <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        </xsl:call-template>
                         <resource>
                             <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
                             </xsl:call-template>
@@ -66,6 +69,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </entry>
                 <xsl:if test="zorgverlener_identificatienummer |naamgegevens | geslacht | adresgegevens | contactgegevens">
                     <entry>
+                        <xsl:call-template name="insertFullUrl">
+                            <xsl:with-param name="profile" select="'nl-core-HealthProfessional-Practitioner'"/>
+                        </xsl:call-template>
                         <resource>
                             <xsl:call-template name="nl-core-HealthProfessional-Practitioner">
                             </xsl:call-template>

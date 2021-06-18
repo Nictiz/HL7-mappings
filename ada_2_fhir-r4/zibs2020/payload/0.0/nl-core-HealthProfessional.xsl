@@ -34,13 +34,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole FHIR instance from an ada 'zorgverlener' element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="logicalId">Optional logical id for the FHIR instance.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-PractitionerRole" name="nl-core-HealthProfessional-PractitionerRole" as="element(f:PractitionerRole)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="logicalId" as="xs:string?"/>
         
-        <xsl:for-each select="$in[.//@value]">
+        <xsl:for-each select="$in">
             <PractitionerRole>
                 <xsl:call-template name="insertId">
                     <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
@@ -55,11 +53,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </practitioner>
                 </xsl:if>
-                <xsl:if test="zorgaanbieder">
+                <xsl:for-each select="zorgaanbieder">
                     <organization>
-                        <!--<xsl:call-template name="nl-core-HealthcareProvider-reference"/>-->
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile">nl-core-HealthcareProvider</xsl:with-param>
+                        </xsl:call-template>
                     </organization>
-                </xsl:if>
+                </xsl:for-each>
                 <xsl:for-each select="specialisme">
                     <specialty>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -77,14 +77,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates an nl-core-HealthProfessional-Practitioner FHIR instance from an ada 'zorgverlener' element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="logicalId">Optional logical id for the FHIR instance.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner"
         name="nl-core-HealthProfessional-Practitioner" as="element(f:Practitioner)*">
-        <xsl:param name="in" select="." as="element()*"/>
-        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="in" select="." as="element()?"/>
         
-        <xsl:for-each select="$in[.//@value]">
+        <xsl:for-each select="$in">
             <Practitioner>
                 <xsl:call-template name="insertId">
                     <xsl:with-param name="profile" select="'nl-core-HealthProfessional-Practitioner'"/>
@@ -140,8 +138,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1])"/>
         <xsl:variable name="personName" select=".//naamgegevens[not(naamgegevens)][1]//*[not(name() = 'naamgebruik')]/@value"/>
         
-        <!--<xsl:variable name="theHealthCareProvider" select="naf:resolve-ada-reference(.//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]))"/>-->
-        <!--<xsl:variable name="organizationName" select="$theHealthCareProvider//(organisatie_naam | organization_name)[1]/@value"/>-->
         <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value"/>
         <xsl:variable name="specialty" select=".//specialisme[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
         <xsl:variable name="role" select=".//zorgverleners_rol[1]/(@displayName, @code)[1]"/>

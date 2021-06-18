@@ -29,6 +29,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:param name="fhirVersion" select="'R4'"/>
     
+    <xsl:param name="fhirMetadata" as="element()*">
+        <xsl:call-template name="getFhirMetadata">
+            <xsl:with-param name="in" select="/."/>
+        </xsl:call-template>
+    </xsl:param>   
+    
     <xd:doc>
         <xd:desc>
             When $populateId equals true(), Resource.id will be filled. It will be filled with @logicalId if it is present in the ada-element or generated if no @logicalId is present.
@@ -179,11 +185,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </nm:ref-url>
                     </xsl:when>
                     <xsl:when test="$referencingStrategy = 'uuid'">
+                        <xsl:variable name="profileSpecificUuid" as="element(nm:uuid)">
+                            <nm:uuid profile="{$profile}">
+                                <xsl:copy-of select="$in"/>
+                            </nm:uuid>
+                        </xsl:variable>
                         <nm:full-url>
-                            <xsl:value-of select="nf:get-fhir-uuid($in)"/>
+                            <xsl:value-of select="nf:get-fhir-uuid($profileSpecificUuid)"/>
                         </nm:full-url>
                         <nm:ref-url>
-                            <xsl:value-of select="nf:get-fhir-uuid($in)"/>
+                            <xsl:value-of select="nf:get-fhir-uuid($profileSpecificUuid)"/>
                         </nm:ref-url>
                     </xsl:when>
                 </xsl:choose>
@@ -224,80 +235,104 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:template>
         
         <!-- Outputs reference if input is ADA, fhirMetadata or ADA reference element -->
-        <xsl:template name="makeReference">
-            <xsl:param name="in" select="." as="element()*"/> <!-- Could be an ADA instance or an ADA reference element -->
-            <xsl:param name="profile" as="xs:string" required="yes"/>
-            <xsl:param name="wrapIn" as="xs:string?"/>
-            
-            <xsl:if test="count($fhirMetadata) = 0">
-                <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
+    <xsl:template name="makeReference">
+        <xsl:param name="in" select="." as="element()*"/>
+        <!-- Could be an ADA instance or an ADA reference element -->
+        <xsl:param name="profile" as="xs:string" select="''"/>
+        <xsl:param name="wrapIn" as="xs:string?"/>
+
+        <xsl:if test="count($fhirMetadata) = 0">
+            <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
+        </xsl:if>
+
+        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+
+        <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
+            <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+        </xsl:if>
+
+        <xsl:variable name="element" as="element()?">
+            <xsl:choose>
+                <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                    <xsl:choose>
+                        <xsl:when test="$in[@datatype = 'reference' and @value]">
+                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:ada-id = $in/@value]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:choose>
+                        <xsl:when test="$in[@datatype = 'reference' and @value]">
+                            <xsl:copy-of select="$fhirMetadata[nm:ada-id = $in/@value]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
+
+        <!-- Debug -->
+        <xsl:if test="count($element) = 0">
+            <xsl:message terminate="yes">Cannot resolve reference within set of ada-instances</xsl:message>
+        </xsl:if>
+
+        <xsl:if test="not($ada2resourceType/nm:map[@profile = $profile])">
+            <xsl:message terminate="yes">Cannot map adaElement to FHIR resource type ($ada2resourceType)</xsl:message>
+        </xsl:if>
+
+        <xsl:variable name="populatedReference" as="element()*">
+            <xsl:if test="string-length($element/nm:ref-url) gt 0">
+                <reference value="{$element/nm:ref-url}"/>
             </xsl:if>
-            
-            <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
-            <xsl:variable name="element" as="element()?">
-                <xsl:choose>
-                    <xsl:when test="$in[@datatype = 'reference' and @value]">
-                        <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:ada-id = $in/@value]"/>
-                    </xsl:when>
-                    <xsl:otherwise> 
-                        <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
-            <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
-            
-            <!-- Debug -->
-            <xsl:if test="not($ada2resourceType/nm:map[@profile = $profile])">
-                <xsl:message terminate="yes">Cannot map adaElement to FHIR resource type ($ada2resourceType)</xsl:message>
+            <xsl:if test="string-length($element/nm:resource-type) gt 0">
+                <type value="{$element/nm:resource-type}"/>
             </xsl:if>
-            
-            <xsl:variable name="populatedReference" as="element()*">
-                <xsl:if test="string-length($element/nm:ref-url) gt 0">
-                    <reference value="{$element/nm:ref-url}"/>
-                </xsl:if>
-                <xsl:if test="string-length($element/nm:resource-type) gt 0">
-                    <type value="{$element/nm:resource-type}"/>
-                </xsl:if>                
-                <xsl:choose>
-                    <xsl:when test="$referencingStrategy = 'none' and not($element/nm:ref-url) and $identifier">
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
-                            </xsl:call-template>
-                        </identifier>
-                    </xsl:when>
-                    <!--<xsl:when test="local-name() = $adaElement and .[@value]">
+            <xsl:choose>
+                <xsl:when test="$referencingStrategy = 'none' and not($element/nm:ref-url) and $identifier">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                        </xsl:call-template>
+                    </identifier>
+                </xsl:when>
+                <!--<xsl:when test="local-name() = $adaElement and .[@value]">
                         Fallback?
                     </xsl:when>-->
-                </xsl:choose>
-                
-                <xsl:if test="string-length($element/nm:reference-display) gt 0">
-                    <display value="{$element/nm:reference-display}"/>
-                </xsl:if>
-            </xsl:variable>
-            
-            <xsl:if test="count($populatedReference) &gt; 0">
-                <xsl:choose>
-                    <xsl:when test="$wrapIn">
-                        <xsl:element name="{$wrapIn}">
-                            <xsl:copy-of select="$populatedReference"/>
-                        </xsl:element>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:copy-of select="$populatedReference"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+            </xsl:choose>
+
+            <xsl:if test="string-length($element/nm:reference-display) gt 0">
+                <display value="{$element/nm:reference-display}"/>
             </xsl:if>
-        </xsl:template>
+        </xsl:variable>
+
+        <xsl:if test="count($populatedReference) &gt; 0">
+            <xsl:choose>
+                <xsl:when test="$wrapIn">
+                    <xsl:element name="{$wrapIn}">
+                        <xsl:copy-of select="$populatedReference"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$populatedReference"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:template>
     
     <xsl:template name="insertId">
         <xsl:param name="in" select="."/>
-        <xsl:param name="profile" as="xs:string"/>
+        <xsl:param name="profile" as="xs:string" select="''"/>
         
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
         
-        <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and not($profile)">
-            <xsl:message terminate="yes">Dublicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+        <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
+            <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
         </xsl:if>
         
         <xsl:variable name="logicalId">
@@ -313,6 +348,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:if test="string-length($logicalId) gt 0">
             <id value="{$logicalId}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="insertFullUrl">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="profile" as="xs:string" select="''"/>
+        <!--<xsl:param name="fhirMetadata" tunnel="yes"/>-->
+        
+        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        
+        <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and  string-length($profile) = 0">
+            <xsl:message terminate="yes">insertFullUrl: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+        </xsl:if>
+        
+        <xsl:variable name="fullUrl">
+            <xsl:choose>
+                <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                    <xsl:value-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]/nm:full-url"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$fhirMetadata[nm:group-key = $groupKey]/nm:full-url"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:if test="string-length($fullUrl) gt 0">
+            <fullUrl value="{$fullUrl}"/>
         </xsl:if>
     </xsl:template>
     
