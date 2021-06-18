@@ -40,10 +40,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>parameter to determine whether to refer by resource/id should be false when there is no FHIR server available to retrieve the resources </xd:desc>
     </xd:doc>
-    <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <xsl:param name="referById" as="xs:boolean" select="false()"/>-->
     
     <xd:doc>
         <xd:desc>dateT may be given for relative dates, only applicable for test instances</xd:desc>

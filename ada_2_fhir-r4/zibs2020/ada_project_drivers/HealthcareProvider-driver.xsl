@@ -26,8 +26,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../payload/0.0/all_zibs.xsl"/>
     
-    <xsl:param name="referById" as="xs:boolean" select="true()"/>
-    
     <xd:doc>
         <xd:desc>
             Process ADA instances to create resources that conform to the nl-core-MedicationContraIndication profile and include the reference resources inside a Bundle as output:

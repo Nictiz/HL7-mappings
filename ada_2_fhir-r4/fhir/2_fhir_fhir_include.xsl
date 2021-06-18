@@ -69,6 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
     
     <xsl:variable name="ada2resourceType">
+        <nm:map ada="contactgegevens" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>

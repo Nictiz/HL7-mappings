@@ -91,6 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$emailType = 'HP'">home</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
+                
                 <telecom>
                     <system value="email"/>
                     <xsl:for-each select="email_adres">

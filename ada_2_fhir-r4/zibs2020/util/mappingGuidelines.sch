@@ -68,18 +68,18 @@
         </sch:rule>
     </sch:pattern>
     
-    <sch:pattern id="display-template">
+    <!-- I guess the profile attributes are only required if there are multiple profiles to an ada element -->
+    <!--<sch:pattern id="display-template">
         <sch:rule context="xsl:template[@mode = '_generateDisplay']">
             <sch:assert test="xsl:param/@name = 'profile'">x</sch:assert>
         </sch:rule>
-    </sch:pattern>
+    </sch:pattern>-->
     
-    <sch:pattern id="id-template">
+    <!--<sch:pattern id="id-template">
         <sch:rule context="xsl:template[@mode = '_generateId']">
             <sch:assert test="xsl:param/@name = 'profile'">xx</sch:assert>
-            <sch:assert test="xsl:param/@name = 'fullUrl'">xxx</sch:assert>
         </sch:rule>
-    </sch:pattern>
+    </sch:pattern>-->
     
     <sch:pattern id="driver">
         <sch:rule context="xsl:stylesheet[ends-with($id, '-driver')]">

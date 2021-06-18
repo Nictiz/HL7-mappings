@@ -37,6 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-PractitionerRole" name="nl-core-HealthProfessional-PractitionerRole" as="element(f:PractitionerRole)?">
         <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="organization" select="zorgaanbieder" as="element()?"/>
         
         <xsl:for-each select="$in">
             <PractitionerRole>
@@ -53,13 +54,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </practitioner>
                 </xsl:if>
-                <xsl:for-each select="zorgaanbieder">
-                    <organization>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile">nl-core-HealthcareProvider</xsl:with-param>
-                        </xsl:call-template>
-                    </organization>
-                </xsl:for-each>
+                
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$organization"></xsl:with-param>
+                    <xsl:with-param name="profile">nl-core-HealthcareProvider</xsl:with-param>
+                    <xsl:with-param name="wrapIn" select="'organization'"/>
+                </xsl:call-template>
+                
                 <xsl:for-each select="specialisme">
                     <specialty>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -67,6 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </specialty>
                 </xsl:for-each>
+                
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
                 </xsl:for-each>

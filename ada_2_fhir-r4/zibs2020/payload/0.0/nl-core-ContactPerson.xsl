@@ -42,63 +42,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-            <xd:param name="logicalId">Optional logical id for the FHIR instance.</xd:param>
+            <xd:param name="patient">Optional logical id for the FHIR instance.</xd:param>
     </xd:doc>
-        <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson">
+    <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson" as="element(f:RelatedPerson)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="logicalId" as="xs:string?"/>
-          
+        <xsl:param name="patient" select="patient" as="element()?"/>
+        
         <xsl:for-each select="$in">
-                <RelatedPerson>
-                    <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
-                    </xsl:if>
-                    <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
-                    </meta>
-                    
-                   <!--                    
-                   TODO: Patient reference
-                        <patient>
-                            <xsl:call-template name="nl-core-Patient-reference">
-                                <xsl:with-param name="in" select="XXXXXX"/>
-                                <xsl:with-param name="logicalId" select="XXXXXX"/>
-                            </xsl:call-template>
-                        </patient>
-                    </xsl:if>
-                    -->
-                    
-                    <!-- role -->
-                    <xsl:for-each select="rol[@code]">
-                        <relationship>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </relationship>
-                    </xsl:for-each>
-                    
-                    <!-- relatie -->
-                    <xsl:for-each select="relatie[@code]">
-                        <relationship>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </relationship>
-                    </xsl:for-each>
-                    
-                    <!--<xsl:for-each select="naamgegevens">
-                        <xsl:call-template name="nl-core-NameInformation"/>
-                    </xsl:for-each>-->
-                    
-                    <xsl:for-each select="contactgegevens">
-                        <xsl:call-template name="nl-core-ContactInformation"/>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="adresgegevens">
-                        <xsl:call-template name="nl-core-AddressInformation"/>
-                    </xsl:for-each>
-                   
-                </RelatedPerson>
+            <RelatedPerson>
+                <xsl:call-template name="insertId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
+                </meta>
+
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$patient"/>
+                    <xsl:with-param name="wrapIn" select="'patient'"/>
+                </xsl:call-template>
+
+                <xsl:for-each select="rol">
+                    <relationship>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </relationship>
+                </xsl:for-each>
+
+                <xsl:for-each select="relatie">
+                    <relationship>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </relationship>
+                </xsl:for-each>
+
+                <!--<xsl:for-each select="naamgegevens">
+                    <xsl:call-template name="nl-core-NameInformation"/>
+                </xsl:for-each>-->
+
+                <xsl:for-each select="contactgegevens">
+                    <xsl:call-template name="nl-core-ContactInformation"/>
+                </xsl:for-each>
+
+                <xsl:for-each select="adresgegevens">
+                    <xsl:call-template name="nl-core-AddressInformation"/>
+                </xsl:for-each>
+            </RelatedPerson>
         </xsl:for-each>
     </xsl:template>
     
@@ -106,13 +95,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-Contactperson FHIR instance emmbedded in the Patient instance from ada Contactpersoon. Since it is embedded in the Patient no Resource.id is needed.</xd:desc>
         <xd:param name="in">Node to consider in the creation of a Patient.contact element.</xd:param>
     </xd:doc>
-    <xsl:template match="contactpersoon" name="nl-core-ContactPerson-embedded" mode="nl-core-ContactPerson-embedded">
+    <xsl:template match="contactpersoon" name="nl-core-ContactPerson-embedded" mode="nl-core-ContactPerson-embedded" as="element(f:contact)?">
         <xsl:param name="in" select="." as="element()?"/>
         
         <xsl:for-each select="$in">
             <contact>
-                <!-- role -->
-                <xsl:for-each select="rol[@code]">
+                <xsl:for-each select="rol">
                     <relationship>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -120,8 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </relationship>
                 </xsl:for-each>
                 
-                <!-- relatie -->
-                <xsl:for-each select="relatie[@code]">
+                <xsl:for-each select="relatie">
                     <relationship>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -142,6 +129,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </contact>
         </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a unique id to identify a patient present in a (set of) ada-instance(s)</xd:desc>
+    </xd:doc>
+    <xsl:template match="contactpersoon" mode="_generateId">
+        <xsl:choose>
+            <xsl:when test="naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value">
+                <xsl:value-of select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '))))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:next-match/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing a ContactPerson</xd:desc>
+    </xd:doc>
+    <xsl:template match="contactpersoon" mode="_generateDisplay">
+        <xsl:value-of select="current-group()[1]/normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
     </xsl:template>
         
 </xsl:stylesheet>
