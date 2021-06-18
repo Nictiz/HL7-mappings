@@ -18,7 +18,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -36,8 +37,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Ada 'contactgegevens' element containing the nl-core data</xd:param>
     </xd:doc>
     <xsl:template match="contactgegevens" mode="nl-core-ContactInformation" name="nl-core-ContactInformation" as="element(f:telecom)*">
-        <xsl:param name="in" select="." as="element()*"/>
-        <xsl:for-each select="$in[.//@value]">
+        <xsl:param name="in" select="." as="element()?"/>
+        
+        <xsl:for-each select="$in">
             <xsl:for-each select="telefoonnummers[telefoonnummer/@value]">
                 <xsl:variable name="telecomType" select="telecom_type/@code"/>
                 <xsl:variable name="telecomSystem" as="xs:string?">
@@ -56,25 +58,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$numberType = 'WP'">work</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
+                
                 <telecom>
-                    <xsl:if test="toelichting[./@value]">
+                    <xsl:for-each select="toelichting">
                         <xsl:call-template name="ext-Comment">
-                            <xsl:with-param name="in" select="toelichting"/>
+                            <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </xsl:if>
+                    </xsl:for-each>
                     <xsl:if test="$telecomType">
                         <system>
                             <xsl:if test="string-length($telecomSystem) gt 0">
                                 <xsl:attribute name="value" select="$telecomSystem"/>
                             </xsl:if>
                             <xsl:call-template name="ext-CodeSpecification">
-                                <xsl:with-param name="in" select="$telecomType/parent::*"/>
+                                <xsl:with-param name="in" select="telecom_type"/>
                             </xsl:call-template>
                         </system>
                     </xsl:if>
-                    <xsl:if test="telefoonnummer/@value">
-                        <value value="{normalize-space(telefoonnummer/@value)}"/>
-                    </xsl:if>
+                    <xsl:for-each select="telefoonnummer">
+                        <value value="{normalize-space(@value)}"/>
+                    </xsl:for-each>
                     <xsl:if test="string-length($numberUse) gt 0">
                         <use value="{$numberUse}"/>
                     </xsl:if>
@@ -90,8 +93,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <telecom>
                     <system value="email"/>
-                    <xsl:for-each select="email_adres/@value">
-                        <value value="{normalize-space(.)}"/>
+                    <xsl:for-each select="email_adres">
+                        <value value="{normalize-space(@value)}"/>
                     </xsl:for-each>
                     <xsl:if test="$emailUse">
                         <use value="{$emailUse}"/>
