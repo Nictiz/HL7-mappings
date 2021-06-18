@@ -40,6 +40,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:variable>
     
+    <xsl:variable name="fhirMetadata" as="element()*">
+        <xsl:call-template name="getFhirMetadata">
+            <xsl:with-param name="in" select="/."/>
+        </xsl:call-template>
+    </xsl:variable>
+    
     <xd:doc>
         <xd:desc>Process ADA instances to create resources that conform to the nl-core-HealthProfessional-Practitioner profile and include the reference resources inside a Bundle as output:
             <xd:ul>
@@ -49,19 +55,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:variable name="fhirMetadata" as="element()*">
-            <xsl:call-template name="getFhirMetadata">
-                <xsl:with-param name="in" select="."/>
-            </xsl:call-template>
-        </xsl:variable>
-        
         <Bundle>            
             <xsl:for-each select=".//zorgverlener">
                 <!-- Always create PractitionerRole according to Profiling Guidelines -->
                     <entry>
                         <resource>
                             <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
-                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
                             </xsl:call-template>
                         </resource>
                     </entry>
@@ -69,7 +68,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <entry>
                         <resource>
                             <xsl:call-template name="nl-core-HealthProfessional-Practitioner">
-                                <xsl:with-param name="fhirMetadata" select="$fhirMetadata" tunnel="yes" as="element()*"/>
                             </xsl:call-template>
                         </resource>
                     </entry>

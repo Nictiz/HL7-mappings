@@ -228,7 +228,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:param name="in" select="." as="element()*"/> <!-- Could be an ADA instance or an ADA reference element -->
             <xsl:param name="profile" as="xs:string" required="yes"/>
             <xsl:param name="wrapIn" as="xs:string?"/>
-            <xsl:param name="fhirMetadata" tunnel="yes" as="element()*"/>
             
             <xsl:if test="count($fhirMetadata) = 0">
                 <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
@@ -294,7 +293,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="insertId">
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string"/>
-        <xsl:param name="fhirMetadata" tunnel="yes"/>
         
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
         
