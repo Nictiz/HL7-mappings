@@ -37,6 +37,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate"/>
             </meta>
+            <status value="final"/>
+            <category>
+                <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                    <code value="vital-signs"/>
+                    <display value="Vital Signs"/>
+                </coding>
+            </category>
+            <code>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="8867-4"/>
+                    <display value="Heart rate"/>
+                </coding>
+            </code>
             <xsl:for-each select="hartfrequentie_datum_tijd">
                 <effectiveDateTime>
                     <xsl:call-template name="date-to-datetime">
@@ -69,6 +84,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="hartslag_regelmatigheid">
                 <component>
+                    <code>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="301112006"/>
+                            <display value="Finding of heart rhythm"/>
+                        </coding>
+                    </code>
                     <valueCodeableConcept>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -78,6 +100,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="interpretatie_frequentie">
                 <component>
+                    <code>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="301113001"/>
+                            <display value="Finding of heart rate"/>
+                        </coding>
+                    </code>
                     <valueCodeableConcept>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
