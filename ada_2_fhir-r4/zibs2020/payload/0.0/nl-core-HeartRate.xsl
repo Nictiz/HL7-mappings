@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada hartfrequentie to FHIR Procedure conforming to profile http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate</xd:desc>
+        <xd:desc>Converts ada hartfrequentie to FHIR Observation conforming to profile http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate</xd:desc>
     </xd:doc>
     
     <xd:doc>
