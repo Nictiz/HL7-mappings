@@ -42,6 +42,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyTemperature"/>
             </meta>  
+            <status value="final"/>
+            <category>
+                <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                    <code value="vital-signs"/>
+                    <display value="Vital Signs"/>
+                </coding>
+            </category>
+            <code>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="8310-5"/>
+                    <display value="Body temperature"/>
+                </coding>
+                <coding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="415974002"/>
+                    <display value="Tympanische temperatuur"/>
+                </coding>
+            </code>
             <xsl:for-each select="temperatuur_type">
                 <code>
                     <xsl:call-template name="code-to-CodeableConcept">
