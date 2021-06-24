@@ -38,6 +38,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-O2Saturation"/>
             </meta>
+            <status value="final"/>
+            <category>
+                <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                    <code value="vital-signs"/>
+                    <display value="Vital Signs"/>
+                </coding>
+            </category>
+            <code>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="2708-6"/>
+                    <display value="Oxygen saturation in Arterial blood"/>
+                </coding>
+            </code>
             <xsl:for-each select="o2saturatie_datum_tijd">
                 <effectiveDateTime>
                     <xsl:call-template name="date-to-datetime">
@@ -63,6 +78,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="extra_zuurstof_toediening">
                 <component>
+                    <code>
+                        <coding>
+                            <system value="http://loinc.org"/>
+                            <code value="74206-4"/>
+                            <display value="Oxygen therapy was given [NTDS]"/>
+                        </coding>
+                    </code>
                     <valueBoolean>
                         <xsl:call-template name="boolean-to-boolean">
                             <xsl:with-param name="in" select="."/>
