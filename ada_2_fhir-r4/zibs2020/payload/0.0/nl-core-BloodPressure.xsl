@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada bloeddruk to FHIR Procedure conforming to profile http://nictiz.nl/fhir/StructureDefinition/nl-core-BloodPressure</xd:desc>
+        <xd:desc>Converts ada bloeddruk to FHIR Observation conforming to profile http://nictiz.nl/fhir/StructureDefinition/nl-core-BloodPressure</xd:desc>
     </xd:doc>
     
     <xd:doc>
@@ -46,6 +46,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </valueCodeableConcept>
                 </extension>
             </xsl:for-each>
+            <status value="final"/>
+            <category>
+                <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                    <code value="vital-signs"/>
+                    <display value="Vital Signs"/>
+                </coding>
+            </category>
+            <code>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="85354-9"/>
+                    <display value="Blood pressure panel with all children optional"/>
+                </coding>
+            </code>
             <xsl:for-each select="bloeddruk_datum_tijd">
                 <effectiveDateTime>
                     <xsl:call-template name="date-to-datetime">
@@ -71,6 +86,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>                  
             <xsl:for-each select="systolische_bloeddruk">
                 <component>
+                    <code>
+                        <coding>
+                            <system value="http://loinc.org"/>
+                            <code value="8480-6"/>
+                            <display value="Systolic blood pressure"/>
+                        </coding>
+                    </code>
                     <valueQuantity>
                         <xsl:call-template name="hoeveelheid-to-Quantity">
                             <xsl:with-param name="in" select="."/>
@@ -80,6 +102,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="manchet_type">
                 <component>
+                    <code>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="70665002"/>
+                            <display value="Blood pressure cuff"/>
+                        </coding>
+                    </code>
                     <valueCodeableConcept>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -89,6 +118,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="diastolische_bloeddruk">
                 <component>
+                    <code>
+                        <coding>
+                            <system value="http://loinc.org"/>
+                            <code value="8462-4"/>
+                            <display value="Diastolic blood pressure"/>
+                        </coding>
+                    </code>
                     <valueQuantity>
                         <xsl:call-template name="hoeveelheid-to-Quantity">
                             <xsl:with-param name="in" select="."/>
