@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada lichaamslengte to FHIR Procedure conforming to profile http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight</xd:desc>
+        <xd:desc>Converts ada lichaamslengte to FHIR Observation conforming to profile http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight</xd:desc>
     </xd:doc>
     
     <xd:doc>
@@ -37,6 +37,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight"/>
             </meta>
+            <status value="final"/>
+            <category>
+                <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                    <code value="vital-signs"/>
+                    <display value="Vital Signs"/>
+                </coding>
+            </category>
+            <code>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="8302-2"/>
+                    <display value="Body height"/>
+                </coding>
+            </code>
             <xsl:for-each select="lengte_datum_tijd">
                 <effectiveDateTime>
                     <xsl:call-template name="date-to-datetime">
@@ -62,6 +77,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>  
             <xsl:for-each select="positie">
                 <component>
+                    <code>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="425260001"/>
+                            <display value="Body position for height measurement"/>
+                        </coding>
+                    </code>
                     <valueCodeableConcept>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
