@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet exclude-result-prefixes="#all" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsl:stylesheet exclude-result-prefixes="#all" version="2.0" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xsl:import href="../../../../../util/constants.xsl"/>
+    <xsl:import href="../../../../../util/mp-functions.xsl"/>
+    <xsl:import href="../../../../../util/datetime.xsl"/>
     <xsl:import href="../../../../ada/AddConceptIds.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
@@ -52,7 +54,7 @@
             <!-- the bouwstenen stuff -->
             <bouwstenen>
                 <xsl:for-each select=".//product">
-                    <xsl:variable name="theId" select="generate-id(.)"/>
+                    <xsl:variable name="theId" select="nf:generate-productref-id(.)"/>
                     <farmaceutisch_product>
                         <xsl:attribute name="id" select="$theId"/>
                         <xsl:apply-templates select="node()"/>
@@ -90,8 +92,8 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- handling for verstrekkingsverzoek, mostly different order in elements. -->
-    <xsl:template match="verstrekkingsverzoek">
+    <!-- handling for verstrekkingsverzoek, only for non-reference transactions, so with proper 907 conceptId. Mostly different order in elements. -->
+    <xsl:template match="verstrekkingsverzoek[not(@conceptId) or @conceptId = '2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963']">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="identificatie | datum | auteur"/>
@@ -100,6 +102,8 @@
             <xsl:apply-templates select="*[not(self::identificatie | self::datum | self::auteur | self::te_verstrekken_geneesmiddel | self::te_verstrekken_hoeveelheid)]"/>
         </xsl:copy>
     </xsl:template>
+
+
 
     <xsl:template match="toedieningsafspraak">
         <xsl:copy>
@@ -253,14 +257,14 @@
     </xsl:template>
 
     <xsl:template match="afgesproken_geneesmiddel | te_verstrekken_geneesmiddel | geneesmiddel_bij_toedieningsafspraak | verstrekt_geneesmiddel">
-        <xsl:variable name="theId" select="generate-id(product)"/>
+        <xsl:variable name="theId" select="nf:generate-productref-id(product)"/>
         <xsl:copy>
             <farmaceutisch_product datatype="reference" value="{$theId}"/>
         </xsl:copy>
     </xsl:template>
 
     <xsl:template match="gebruiks_product">
-        <xsl:variable name="theId" select="generate-id(product)"/>
+        <xsl:variable name="theId" select="nf:generate-productref-id(product)"/>
         <gebruiksproduct>
             <farmaceutisch_product datatype="reference" value="{$theId}"/>
         </gebruiksproduct>
@@ -286,7 +290,53 @@
         </product_hoeveelheid>
     </xsl:template>
 
+    <!-- relaties -->
+    <xsl:template match="relatie_naar_medicatieafspraak | relatie_naar_verstrekkingsverzoek">
+        <xsl:element name="{replace(local-name(), '(relatie_naar)(.+)', 'relatie$2')}">
+            <xsl:apply-templates select="@* | node()"/>
+        </xsl:element>
+    </xsl:template>
 
+    <xsl:template match="gerelateerde_afspraak[*]">
+        <xsl:for-each select="identificatie_medicatieafspraak">
+            <relatie_medicatieafspraak>
+                <identificatie>
+                    <xsl:apply-templates select="@* | node()"/>
+                </identificatie>
+            </relatie_medicatieafspraak>
+        </xsl:for-each>
+        <xsl:for-each select="identificatie_toedieningsafspraak">
+            <relatie_toedieningsafspraak>
+                <identificatie>
+                    <xsl:apply-templates select="@* | node()"/>
+                </identificatie>
+            </relatie_toedieningsafspraak>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template match="relatie_naar_afspraak_of_gebruik[*]">
+        <xsl:for-each select="identificatie">
+            <relatie_medicatieafspraak>
+                <identificatie>
+                    <xsl:apply-templates select="@* | node()"/>
+                </identificatie>
+            </relatie_medicatieafspraak>
+        </xsl:for-each>
+        <xsl:for-each select="identificatie_23288">
+            <relatie_toedieningsafspraak>
+                <identificatie>
+                    <xsl:apply-templates select="@* | node()"/>
+                </identificatie>
+            </relatie_toedieningsafspraak>
+        </xsl:for-each>
+        <xsl:for-each select="identificatie_23289">
+            <relatie_medicatiegebruik>
+                <identificatie>
+                    <xsl:apply-templates select="@* | node()"/>
+                </identificatie>
+            </relatie_medicatiegebruik>
+        </xsl:for-each>
+    </xsl:template>
 
     <!-- zorgverlener specialisme "toevoegen" als het ontbreekt -->
     <xsl:template match="zorgverlener[not(specialisme)]">
@@ -365,6 +415,16 @@
             </gebruiksperiode>
         </xsl:for-each>
     </xsl:template>
+
+    <xsl:function name="nf:generate-productref-id" as="xs:string?">
+        <xsl:param name="inProduct" as="element()?"/>
+        
+        <xsl:variable name="mainGstdLevel" select="nf:get-main-gstd-level($inProduct/product_code)"/>
+        
+        <xsl:value-of select="$inProduct/product_code[@codeSystem = $mainGstdLevel]/concat(@code, '-', @codeSystem)"/>
+        
+
+    </xsl:function>
 
 
 </xsl:stylesheet>
