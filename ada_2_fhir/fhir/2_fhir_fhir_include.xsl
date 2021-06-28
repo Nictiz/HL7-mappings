@@ -20,6 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../util/uuid.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/units.xsl"/>
+    <xsl:import href="../../util/constants.xsl"/>
     <!--    <xsl:import href="../../util/utilities.xsl"/>-->
     <xsl:import href="NarrativeGenerator.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
