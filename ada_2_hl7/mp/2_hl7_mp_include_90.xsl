@@ -24,6 +24,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
 
+    <xd:doc scope="stylesheet">
+        <xd:desc>
+            <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
+            <xd:p><xd:b>Author:</xd:b> nictiz</xd:p>
+            <xd:p>Mapping xslt for creating HL7 for Medicatieproces 9.0.x. To be imported or included from another xslt. Only templates for 9.0.x which are not shared by other versions.</xd:p>
+        </xd:desc>
+    </xd:doc>
+
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>

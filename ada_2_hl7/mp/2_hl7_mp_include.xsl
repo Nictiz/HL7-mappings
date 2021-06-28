@@ -14,9 +14,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
+     
     <!-- Uncomment only for development purposes -->
     <!--<xsl:import href="../../util/mp-functions.xsl"/>
-    <xsl:import href="../../util/utilities.xsl"/>-->
+    -->
+
+    <xd:doc scope="stylesheet">
+        <xd:desc>
+            <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
+            <xd:p><xd:b>Author:</xd:b> nictiz</xd:p>
+            <xd:p>Mapping xslt for creating HL7 for Medicatieproces. To be imported or included from another xslt. Only templateswhich are shared by more then one version of the information standard.</xd:p>
+        </xd:desc>
+    </xd:doc>
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -200,7 +209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Outputs an hl7 product code with translations based on the GstandaardLevel.</xd:desc>
         <xd:param name="productCode">The collection of ada product codes to be converted</xd:param>
-        <xd:param name="GstandaardLevel">The Gstandaard level that should be the main level, the other codes are added as translations.Defaults to ZI nummer</xd:param>
+        <xd:param name="GstandaardLevel">The Gstandaard level that should be the main level, the other codes are added as translations. Defaults to ZI nummer.</xd:param>
         <xd:param name="elemName">Optional. The element name to be created. Defaults to code.</xd:param>
     </xd:doc>
     <xsl:template name="makeProductCode" as="element()?">
@@ -492,7 +501,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> MP CDA Medication Contents </xd:desc>
+        <xd:desc> MP CDA Medication Contents 9.1 </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9264_20181211154905">
         <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
@@ -531,6 +540,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc> MP CDA Medication Contents vanaf 9.2 </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9361_20210602154629">
+        <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+            <xsl:if test="product_code[.//(@value | @code)]">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9360_20210602150453">
+                    <xsl:with-param name="productCode" select="product_code"/>
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="./product_specificatie[.//(@value | @code)]">
+                <!-- magistrale medicatie -->
+                <xsl:for-each select="./product_specificatie/product_naam[@value]">
+                    <name>
+                        <xsl:value-of select="./@value"/>
+                    </name>
+                </xsl:for-each>
+                <xsl:for-each select="./product_specificatie/omschrijving[@value]">
+                    <pharm:desc>
+                        <xsl:value-of select="./@value"/>
+                    </pharm:desc>
+                </xsl:for-each>
+                <xsl:for-each select="./product_specificatie/farmaceutische_vorm[.//(@value | @code)]">
+                    <pharm:formCode>
+                        <xsl:call-template name="makeCodeAttribs">
+                            <xsl:with-param name="originalText" select="."/>
+                        </xsl:call-template>
+                    </pharm:formCode>
+                </xsl:for-each>
+                <xsl:for-each select="./product_specificatie/ingredient[.//(@value | @code)]">
+                    <pharm:ingredient classCode="INGR">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9367_20210602171147"/>
+                    </pharm:ingredient>
+                </xsl:for-each>
+            </xsl:if>
+        </manufacturedMaterial>
+        
+    </xsl:template>
+    
+
+    <xd:doc>
         <xd:desc> Reden voor medicatieafspraak vanaf 9.1.0</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9314_20200120115920" match="reden_afspraak" mode="HandleRedenAfspraak91">
@@ -552,6 +601,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <manufacturedProduct>
                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9264_20181211154905"/>
+                </manufacturedProduct>
+            </xsl:for-each>
+        </xsl:if>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>MP CDA Medication Information vanaf 9.2</xd:desc>
+        <xd:param name="product"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9362_20210602154632">
+        <xsl:param name="product"/>
+        <xsl:if test="$product[1] instance of element()">
+            <xsl:for-each select="$product">
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9361_20210602154629"/>
                 </manufacturedProduct>
             </xsl:for-each>
         </xsl:if>
@@ -586,6 +651,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="ingredientCode" as="element()*"/>
         <pharm:ingredient classCode="MMAT" determinerCode="KIND">
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9074_20160618205801">
+                <xsl:with-param name="ingredientCode" select="$ingredientCode"/>
+            </xsl:call-template>
+        </pharm:ingredient>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>MP CDA Ingredient Material Kind</xd:desc>
+        <xd:param name="ingredientCode">ada element ingredient_code</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9368_20210602171340">
+        <xsl:param name="ingredientCode" as="element()*"/>
+        <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9369_20210602171615">
                 <xsl:with-param name="ingredientCode" select="$ingredientCode"/>
             </xsl:call-template>
         </pharm:ingredient>
@@ -644,6 +722,62 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </pharm:code>-->
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>MP CDA Material Code Ext</xd:desc>
+        <xd:param name="ingredientCode">ada element ingredient_code</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9369_20210602171615">
+        <xsl:param name="ingredientCode" as="element()*"/>
+        <xsl:variable name="productCode" select="$ingredientCode"/>
+        
+        <!-- TODO add support for ATC / GTIN -->
+        
+        <xsl:if test="$productCode[1] instance of element()">
+            <xsl:variable name="mainGstdLevel" as="xs:string?">
+                <xsl:choose>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardZInummer]">
+                        <xsl:value-of select="$oidGStandaardZInummer"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardHPK]">
+                        <xsl:value-of select="$oidGStandaardHPK"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardPRK]">
+                        <xsl:value-of select="$oidGStandaardPRK"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardGPK]">
+                        <xsl:value-of select="$oidGStandaardGPK"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardSSK]">
+                        <xsl:value-of select="$oidGStandaardSSK"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardSNK]">
+                        <xsl:value-of select="$oidGStandaardSNK"/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:choose>
+                <xsl:when test="string-length($mainGstdLevel) gt 0">
+                    <xsl:call-template name="makeProductCode">
+                        <xsl:with-param name="productCode" select="$productCode"/>
+                        <xsl:with-param name="GstandaardLevel" select="$mainGstdLevel"/>
+                        <xsl:with-param name="elemName">pharm:code</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="$productCode">
+                        <xsl:call-template name="makeCode">
+                            <xsl:with-param name="elemName">pharm:code</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+        
+        <!-- <pharm:code>
+            <xsl:call-template name="makeCodeAttribs"/>
+        </pharm:code>-->
+    </xsl:template>
+    
 
     <xd:doc>
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema for 9.0.7</xd:desc>
@@ -1602,6 +1736,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>MP CDA Ingredient from MP 9.2 onwards</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9367_20210602171147">
+        <xsl:for-each select="./sterkte[.//(@value | @code | @nullFlavor)]">
+            <pharm:quantity>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9071_20160618204153"/>
+            </pharm:quantity>
+        </xsl:for-each>
+        
+        <xsl:if test="ingredient_code[.//(@value | @code | @nullFlavor)]">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9368_20210602171340">
+                <xsl:with-param name="ingredientCode" select="ingredient_code"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>MP CDA author zorgverlener of patient vanaf 9.0.7 </xd:desc>
@@ -1685,6 +1836,54 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc> MP CDA Medication Code vanaf 9.2 </xd:desc>
+        <xd:param name="productCode"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9360_20210602150453">
+        <xsl:param name="productCode" as="element(product_code)*"/>
+        
+        <!-- TODO: add support for ATC / GTIN -->
+        
+        <xsl:if test="$productCode[1] instance of element()">
+            <xsl:variable name="mainGstdLevel" as="xs:string?">
+                <xsl:choose>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardZInummer]">
+                        <xsl:value-of select="$oidGStandaardZInummer"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardHPK]">
+                        <xsl:value-of select="$oidGStandaardHPK"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardPRK]">
+                        <xsl:value-of select="$oidGStandaardPRK"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardGPK]">
+                        <xsl:value-of select="$oidGStandaardGPK"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardSSK]">
+                        <xsl:value-of select="$oidGStandaardSSK"/>
+                    </xsl:when>
+                    <xsl:when test="$productCode[@codeSystem = $oidGStandaardSNK]">
+                        <xsl:value-of select="$oidGStandaardSNK"/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:choose>
+                <xsl:when test="string-length($mainGstdLevel) gt 0">
+                    <xsl:call-template name="makeProductCode">
+                        <xsl:with-param name="productCode" select="$productCode"/>
+                        <xsl:with-param name="GstandaardLevel" select="$mainGstdLevel"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="$productCode">
+                        <xsl:call-template name="makeCode"/>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc/>
     </xd:doc>

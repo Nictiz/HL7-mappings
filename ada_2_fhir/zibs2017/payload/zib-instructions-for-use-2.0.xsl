@@ -110,7 +110,7 @@
                         <!--  timing-exact = true by dataset definition for interval -->
                         <xsl:if test="interval[@value]">
                             <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                <valueBoolean value="true"/>
+                                <valueBoolean value="true"/>                                            
                             </extension>
                         </xsl:if>
                         <!-- doseerduur -->
@@ -376,18 +376,18 @@
         </xsl:call-template>
         <!-- gebruiksinstructie/aanvullende_instructie and toedieningsweg are only relevant if there is at least one of outputText/keerdosis/toedieningsschema -->
         <xsl:variable name="gebruiksinstructieItemsRelevant" select="dosering/keerdosis[.//(@value | @unit)] or dosering/toedieningsschema[.//(@value | @code | @nullFlavor)]"/>
-        <!-- gebruiksinstructie/aanvullende_instructie  -->
+    <!-- gebruiksinstructie/aanvullende_instructie  -->
         <xsl:if test="$gebruiksinstructieItemsRelevant">
             <xsl:for-each select="../aanvullende_instructie[@code]">
-                <additionalInstruction>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
-                    </xsl:call-template>
-                </additionalInstruction>
-            </xsl:for-each>
+            <additionalInstruction>
+                <xsl:call-template name="code-to-CodeableConcept">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
+                </xsl:call-template>
+            </additionalInstruction>
+        </xsl:for-each>
         </xsl:if>
-        <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
+       <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
         <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./dosering/toedieningsschema[.//(@value | @code | @nullFlavor)])">
             <!-- pauze periode -->
             <xsl:for-each select="doseerduur[.//(@value | @code)]">

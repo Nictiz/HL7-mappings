@@ -2,8 +2,8 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- this import should be commented out here, as the import must be chosen in the calling xslt -->
     <!-- uncomment only for development purposes -->
-<!--    <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
-    
+    <!--    <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
+
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
@@ -126,25 +126,25 @@
                     <xsl:otherwise>
                         <xsl:for-each select="dosering">
                             <xsl:variable name="zo-nodig" as="xs:string*">
-                                <xsl:value-of select="./zo_nodig/criterium/code/@displayName"/>
+                                <xsl:value-of select="zo_nodig/criterium/(code | criterium)/@displayName"/>
                             </xsl:variable>
-                            <xsl:variable name="frequentie" select="./toedieningsschema/frequentie[.//(@value | @code)]"/>
+                            <xsl:variable name="frequentie" select="toedieningsschema/frequentie[.//(@value | @code)]"/>
                             <xsl:variable name="frequentie-string" as="xs:string*">
                                 <xsl:choose>
                                     <!-- vaste waarde -->
-                                    <xsl:when test="$frequentie/aantal/vaste_waarde[@value]">
-                                        <xsl:value-of select="$frequentie/aantal/vaste_waarde/@value"/>
+                                    <xsl:when test="$frequentie/aantal/(vaste_waarde | nominale_waarde)[@value]">
+                                        <xsl:value-of select="$frequentie/aantal/(vaste_waarde | nominale_waarde)/@value"/>
                                     </xsl:when>
                                     <!-- min/max -->
-                                    <xsl:when test="$frequentie/aantal/min | max[@value]">
-                                        <xsl:if test="$frequentie/aantal/min/@value and not($frequentie/aantal/max/@value)">minimaal </xsl:if>
-                                        <xsl:if test="$frequentie/aantal/max/@value and not($frequentie/aantal/min/@value)">maximaal </xsl:if>
-                                        <xsl:if test="$frequentie/aantal/min/@value">
-                                            <xsl:value-of select="$frequentie/aantal/min/@value"/>
+                                    <xsl:when test="$frequentie/aantal/(min | minimale_waarde) | max[@value]">
+                                        <xsl:if test="$frequentie/aantal/(min | minimale_waarde)/@value and not($frequentie/aantal/(max | maximale_waarde)/@value)">minimaal </xsl:if>
+                                        <xsl:if test="$frequentie/aantal/(max | maximale_waarde)/@value and not($frequentie/aantal/(min | minimale_waarde)/@value)">maximaal </xsl:if>
+                                        <xsl:if test="$frequentie/aantal/(min | minimale_waarde)/@value">
+                                            <xsl:value-of select="$frequentie/aantal/(min | minimale_waarde)/@value"/>
                                         </xsl:if>
-                                        <xsl:if test="$frequentie/aantal/min/@value and $frequentie/aantal/max/@value"> à </xsl:if>
-                                        <xsl:if test="$frequentie/aantal/max/@value">
-                                            <xsl:value-of select="$frequentie/aantal/max/@value"/>
+                                        <xsl:if test="$frequentie/aantal/(min | minimale_waarde)/@value and $frequentie/aantal/(max | maximale_waarde)/@value"> à </xsl:if>
+                                        <xsl:if test="$frequentie/aantal/(max | maximale_waarde)/@value">
+                                            <xsl:value-of select="$frequentie/aantal/(max | maximale_waarde)/@value"/>
                                         </xsl:if>
                                     </xsl:when>
                                 </xsl:choose>
@@ -192,19 +192,19 @@
                                 </xsl:if>
                                 <xsl:choose>
                                     <!-- vaste waarde -->
-                                    <xsl:when test="$toedieningssnelheid/waarde/vaste_waarde[@value]">
-                                        <xsl:value-of select="$toedieningssnelheid/waarde/vaste_waarde/@value"/>
+                                    <xsl:when test="$toedieningssnelheid/waarde/(vaste_waarde | nominale_waarde)[@value]">
+                                        <xsl:value-of select="$toedieningssnelheid/waarde/(vaste_waarde | nominale_waarde)/@value"/>
                                     </xsl:when>
                                     <!-- min/max -->
-                                    <xsl:when test="$toedieningssnelheid/waarde/min | max[@value]">
-                                        <xsl:if test="$toedieningssnelheid/waarde/min/@value and not($toedieningssnelheid/waarde/max/@value)">minimaal </xsl:if>
-                                        <xsl:if test="$toedieningssnelheid/waarde/max/@value and not($toedieningssnelheid/waarde/min/@value)">maximaal </xsl:if>
-                                        <xsl:if test="$toedieningssnelheid/waarde/min/@value">
-                                            <xsl:value-of select="$toedieningssnelheid/waarde/min/@value"/>
+                                    <xsl:when test="$toedieningssnelheid/waarde/(min | minimale_waarde) | (max | maximale_waarde)[@value]">
+                                        <xsl:if test="$toedieningssnelheid/waarde/(min | minimale_waarde)/@value and not($toedieningssnelheid/waarde/(max | maximale_waarde)/@value)">minimaal </xsl:if>
+                                        <xsl:if test="$toedieningssnelheid/waarde/(max | maximale_waarde)/@value and not($toedieningssnelheid/waarde/min/@value)">maximaal </xsl:if>
+                                        <xsl:if test="$toedieningssnelheid/waarde/(min | minimale_waarde)/@value">
+                                            <xsl:value-of select="$toedieningssnelheid/waarde/(min | minimale_waarde)/@value"/>
                                         </xsl:if>
-                                        <xsl:if test="$toedieningssnelheid/waarde/min/@value and $toedieningssnelheid/waarde/max/@value"> à </xsl:if>
-                                        <xsl:if test="$toedieningssnelheid/waarde/max/@value">
-                                            <xsl:value-of select="$toedieningssnelheid/waarde/max/@value"/>
+                                        <xsl:if test="$toedieningssnelheid/waarde/(min | minimale_waarde)/@value and $toedieningssnelheid/waarde/(max | maximale_waarde)/@value"> à </xsl:if>
+                                        <xsl:if test="$toedieningssnelheid/waarde/(max | maximale_waarde)/@value">
+                                            <xsl:value-of select="$toedieningssnelheid/waarde/(max | maximale_waarde)/@value"/>
                                         </xsl:if>
                                     </xsl:when>
                                 </xsl:choose>
@@ -234,23 +234,23 @@
                             <xsl:variable name="keerdosis-string" as="xs:string*">
                                 <xsl:choose>
                                     <!-- vaste waarde -->
-                                    <xsl:when test="$keerdosis/aantal/vaste_waarde[@value]">
-                                        <xsl:value-of select="$keerdosis/aantal/vaste_waarde/@value"/>
+                                    <xsl:when test="$keerdosis/aantal/(vaste_waarde | nominale_waarde)[@value]">
+                                        <xsl:value-of select="$keerdosis/aantal/(vaste_waarde | nominale_waarde)/@value"/>
                                     </xsl:when>
                                     <!-- min/max -->
-                                    <xsl:when test="$keerdosis/aantal/min | max[@value]">
-                                        <xsl:if test="$keerdosis/aantal/min/@value and not($keerdosis/aantal/max/@value)">minimaal</xsl:if>
-                                        <xsl:if test="$keerdosis/aantal/max/@value and not($keerdosis/aantal/min/@value)">maximaal</xsl:if>
-                                        <xsl:if test="$keerdosis/aantal/min/@value">
-                                            <xsl:value-of select="$keerdosis/aantal/min/@value"/>
+                                    <xsl:when test="$keerdosis/aantal/(min | minimale_waarde) | (max | maximale_waarde)[@value]">
+                                        <xsl:if test="$keerdosis/aantal/(min | minimale_waarde)/@value and not($keerdosis/aantal/(max | maximale_waarde)/@value)">minimaal</xsl:if>
+                                        <xsl:if test="$keerdosis/aantal/(max | maximale_waarde)/@value and not($keerdosis/aantal/(min | minimale_waarde)/@value)">maximaal</xsl:if>
+                                        <xsl:if test="$keerdosis/aantal/(min | minimale_waarde)/@value">
+                                            <xsl:value-of select="$keerdosis/aantal/(min | minimale_waarde)/@value"/>
                                         </xsl:if>
-                                        <xsl:if test="$keerdosis/aantal/min/@value and $keerdosis/aantal/max/@value"> à </xsl:if>
-                                        <xsl:if test="$keerdosis/aantal/max/@value">
-                                            <xsl:value-of select="$keerdosis/aantal/max/@value"/>
+                                        <xsl:if test="$keerdosis/aantal/(min | minimale_waarde)/@value and $keerdosis/aantal/(max | maximale_waarde)/@value"> à </xsl:if>
+                                        <xsl:if test="$keerdosis/aantal/(max | maximale_waarde)/@value">
+                                            <xsl:value-of select="$keerdosis/aantal/(max | maximale_waarde)/@value"/>
                                         </xsl:if>
                                     </xsl:when>
                                 </xsl:choose>
-                                <xsl:variable name="max-aantal" select="max($keerdosis/aantal/(min | vaste_waarde | max)/@value)"/>
+                                <xsl:variable name="max-aantal" select="max($keerdosis/aantal/((min | minimale_waarde) | (vaste_waarde | nominale_waarde) | (max | maximale_waarde))/@value)"/>
                                 <xsl:value-of select="nwf:unit-string($max-aantal, $keerdosis/eenheid/@displayName)"/>
                             </xsl:variable>
                             <xsl:variable name="dagdeel" select="toedieningsschema/dagdeel[.//(@value | @code)]"/>
@@ -333,7 +333,7 @@
             <xsl:variable name="theOmschrijving" as="xs:string*">
 
                 <!-- gebruiksperiode -->
-                <xsl:variable name="periodeString" select="nf:periode-string(., ../gebruiksperiode_start, ../gebruiksperiode, ../gebruiksperiode_eind)"/>
+                <xsl:variable name="periodeString" select="nf:periode-string(., ../(gebruiksperiode_start | gebruiksperiode/start_datum_tijd), ../(gebruiksperiode[@value] | gebruiksperiode/tijds_duur), ../(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd))"/>
                 <xsl:if test="string-length($periodeString) gt 0">
                     <xsl:value-of select="$periodeString"/>
                 </xsl:if>
@@ -664,6 +664,34 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:if>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Returns the most specific G-standaard oid based on a collection of product codes</xd:desc>
+        <xd:param name="productCode">Input param for ada product_code element</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-main-gstd-level" as="xs:string?">
+        <xsl:param name="productCode" as="element()*"/>
+        <xsl:choose>
+            <xsl:when test="$productCode[@codeSystem = $oidGStandaardZInummer]">
+                <xsl:value-of select="$oidGStandaardZInummer"/>
+            </xsl:when>
+            <xsl:when test="$productCode[@codeSystem = $oidGStandaardHPK]">
+                <xsl:value-of select="$oidGStandaardHPK"/>
+            </xsl:when>
+            <xsl:when test="$productCode[@codeSystem = $oidGStandaardPRK]">
+                <xsl:value-of select="$oidGStandaardPRK"/>
+            </xsl:when>
+            <xsl:when test="$productCode[@codeSystem = $oidGStandaardGPK]">
+                <xsl:value-of select="$oidGStandaardGPK"/>
+            </xsl:when>
+            <xsl:when test="$productCode[@codeSystem = $oidGStandaardSSK]">
+                <xsl:value-of select="$oidGStandaardSSK"/>
+            </xsl:when>
+            <xsl:when test="$productCode[@codeSystem = $oidGStandaardSNK]">
+                <xsl:value-of select="$oidGStandaardSNK"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:function>
 
 </xsl:stylesheet>

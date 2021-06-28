@@ -4,7 +4,7 @@
     <xsl:strip-space elements="*"/>
 
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml instance -->
-    <xsl:param name="schemaFileString" as="xs:string?">../ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
+    <xsl:param name="schemaFileString" as="xs:string?">../ada_schemas/sturen_medicatiegegevens.xsd</xsl:param>
     <xsl:variable name="schema" select="document($schemaFileString)"/>
 
     <xd:doc>
