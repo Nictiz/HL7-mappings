@@ -1,4 +1,4 @@
-Buildfile: C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\_ant-buildfiles\ant-publish\build-ada2hl7-mp-9x.xml
+Buildfile: C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\_ant-buildfiles\ant-publish\build-ada2hl7-mp-920.xml
 
 download-ivy:
      [echo] installing ivy...
@@ -15,7 +15,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 140ms :: artifacts dl 22ms
+[ivy:resolve] :: resolution report :: resolve 205ms :: artifacts dl 30ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -24,12 +24,12 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/40ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/50ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
-convert_ada_2_hl7_9x:
+convert_ada_2_hl7_920:
 
 download-ivy:
      [echo] installing ivy...
@@ -46,7 +46,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 87ms :: artifacts dl 15ms
+[ivy:resolve] :: resolution report :: resolve 95ms :: artifacts dl 21ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -64,64 +64,469 @@ convert_ada_2_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
      [echo] ADA to HL7 ../../nictiz_test/../sturen_medicatievoorschrift/payload/sturen_medicatievoorschrift_org.xsl input dir ../../nictiz_test/ada_instance
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_61d7dpauze.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_61d7dpauze.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\sturen_medicatievoorschrift\payload\sturen_medicatievoorschrift_org.xsl
-     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\mp-functions-fhir.xsl:2:376: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/mp-functions-fhir.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
-     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\mp-functions.xsl:2:376: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/mp-functions.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\10voorbeeld_cyclisch_61d7dpauze.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\10voorbeeld_cyclisch_61d7dpauze.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\payload\sturen_medicatievoorschrift_org.xsl
      [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
      [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
      [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_dagdelen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_dagdelen.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_interval.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_interval.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_pil.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_pil.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\10voorbeeld_cyclisch_toedientijden.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\10voorbeeld_cyclisch_toedientijden.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-freq.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-interval.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-interval.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijd-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijd-freq.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijd.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijden-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijden-freq.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijden.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijden.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijdenexact-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijdenexact-freq.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijdexact-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijdexact-freq.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\12voorbeeld_afbouw_1_PRK_1_MA.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\12voorbeeld_afbouw_1_PRK_1_MA.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\12voorbeeld_afbouw_1_PRK_4_MA.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\12voorbeeld_afbouw_1_PRK_4_MA.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\12voorbeeld_afbouw_1ma.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\12voorbeeld_afbouw_1ma.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\12voorbeeld_afbouw_2mas.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\12voorbeeld_afbouw_2mas.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\12voorbeeld_afbouw_par_opnv_mbhs.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\12voorbeeld_afbouw_par_opnv_mbhs.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\12voorbeeld_dagdelen_2keerdosis.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\12voorbeeld_dagdelen_2keerdosis.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\12voorbeeld_dagdelen_2keerdosis_cyclisch.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\12voorbeeld_dagdelen_2keerdosis_cyclisch.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\12voorbeeld_onregelm_keerdosis_novorapid.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\12voorbeeld_onregelm_keerdosis_novorapid.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\13voorbeeld_vast_zonodig_1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\13voorbeeld_vast_zonodig_1.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\13voorbeeld_vast_zonodig_4a6dd1a2stmax6.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\13voorbeeld_vast_zonodig_4a6dd1a2stmax6.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\13voorbeeld_vast_zonodig_5oxycodon_4dd1st-zn1st.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\13voorbeeld_vast_zonodig_5oxycodon_4dd1st-zn1st.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\13voorbeeld_zonodig_1a2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\13voorbeeld_zonodig_1a2.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\1voorbeeld_freq-per3d.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\1voorbeeld_freq-per3d.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\1voorbeeld_freq-var.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\1voorbeeld_freq-var.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\1voorbeeld_freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\1voorbeeld_freq.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\1voorbeeld_keerdosis-var.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\1voorbeeld_keerdosis-var.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\2voorbeeld_interval.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\2voorbeeld_interval.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\3voorbeeld_toedientijd-flexfalse.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\3voorbeeld_toedientijd-flexfalse.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\3voorbeeld_toedientijd-flextrue.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\3voorbeeld_toedientijd-flextrue.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\3voorbeeld_toedientijd-freq1x2d.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\3voorbeeld_toedientijd-freq1x2d.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\3voorbeeld_toedientijd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\3voorbeeld_toedientijd.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\4voorbeeld_toedieningsduur-alleen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\4voorbeeld_toedieningsduur-alleen.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\4voorbeeld_toedieningsduur-flexfalse.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\4voorbeeld_toedieningsduur-flexfalse.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\5voorbeeld_1tot4malig.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\5voorbeeld_1tot4malig.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\5voorbeeld_eenmalig.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\5voorbeeld_eenmalig.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\5voorbeeld_viermalig.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\5voorbeeld_viermalig.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\6voorbeeld_weekdag.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\6voorbeeld_weekdag.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\6voorbeeld_weekdag_tijd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\6voorbeeld_weekdag_tijd.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\7voorbeeld_dagdeel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\7voorbeeld_dagdeel.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\7voorbeeld_dagdeel_freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\7voorbeeld_dagdeel_freq.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\7voorbeeld_dagdeel_freq24h.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\7voorbeeld_dagdeel_freq24h.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\8voorbeeld_weekdagen-2dd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\8voorbeeld_weekdagen-2dd.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\8voorbeeld_weekdagen-2wk.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\8voorbeeld_weekdagen-2wk.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\8voorbeeld_weekdagen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\8voorbeeld_weekdagen.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\8voorbeeld_weekdagen_dagdelen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\8voorbeeld_weekdagen_dagdelen.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\8voorbeeld_weekdagen_tijden.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\8voorbeeld_weekdagen_tijden.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\9voorbeeld_2d_toedientijd1s1dagrust.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\9voorbeeld_2d_toedientijd1s1dagrust.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\9voorbeeld_2d_toedientijden1s1dagrust.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\9voorbeeld_2d_toedientijden1s1dagrust.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\ada_instance\9voorbeeld_toedientijd-flexfalse-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.x\nictiz_test\hl7_instance\9voorbeeld_toedientijd-flexfalse-freq.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\10voorbeeld_cyclisch_dagdelen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\10voorbeeld_cyclisch_dagdelen.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\10voorbeeld_cyclisch_interval.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\10voorbeeld_cyclisch_interval.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\10voorbeeld_cyclisch_pil.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\10voorbeeld_cyclisch_pil.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\10voorbeeld_cyclisch_toedientijden.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\10voorbeeld_cyclisch_toedientijden.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-freq.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-interval.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-interval.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijd-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijd-freq.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijd.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijden-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijden-freq.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijden.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijden.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijdenexact-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijdenexact-freq.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\11voorbeeld_toedieningsduur-toedientijdexact-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\11voorbeeld_toedieningsduur-toedientijdexact-freq.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\12voorbeeld_afbouw_1_PRK_1_MA.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\12voorbeeld_afbouw_1_PRK_1_MA.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\12voorbeeld_afbouw_1_PRK_4_MA.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\12voorbeeld_afbouw_1_PRK_4_MA.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\12voorbeeld_afbouw_1ma.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\12voorbeeld_afbouw_1ma.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\12voorbeeld_afbouw_2mas.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\12voorbeeld_afbouw_2mas.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\12voorbeeld_afbouw_par_opnv_mbhs.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\12voorbeeld_afbouw_par_opnv_mbhs.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\12voorbeeld_dagdelen_2keerdosis.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\12voorbeeld_dagdelen_2keerdosis.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\12voorbeeld_dagdelen_2keerdosis_cyclisch.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\12voorbeeld_dagdelen_2keerdosis_cyclisch.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\12voorbeeld_onregelm_keerdosis_novorapid.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\12voorbeeld_onregelm_keerdosis_novorapid.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\13voorbeeld_vast_zonodig_1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\13voorbeeld_vast_zonodig_1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\13voorbeeld_vast_zonodig_4a6dd1a2stmax6.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\13voorbeeld_vast_zonodig_4a6dd1a2stmax6.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\13voorbeeld_vast_zonodig_5oxycodon_4dd1st-zn1st.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\13voorbeeld_vast_zonodig_5oxycodon_4dd1st-zn1st.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\13voorbeeld_zonodig_1a2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\13voorbeeld_zonodig_1a2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\14voorbeeld_atc.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\14voorbeeld_atc.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\15voorbeeld_zinr.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\15voorbeeld_zinr.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\16voorbeeld_ssk-snk.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\16voorbeeld_ssk-snk.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\16voorbeeld_toedientijd-zn.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\16voorbeeld_toedientijd-zn.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\1voorbeeld_freq-per3d.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\1voorbeeld_freq-per3d.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\1voorbeeld_freq-var.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\1voorbeeld_freq-var.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\1voorbeeld_freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\1voorbeeld_freq.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\1voorbeeld_keerdosis-var.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\1voorbeeld_keerdosis-var.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\2voorbeeld_interval.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\2voorbeeld_interval.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\3voorbeeld_toedientijd-flexfalse.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\3voorbeeld_toedientijd-flexfalse.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\3voorbeeld_toedientijd-flextrue.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\3voorbeeld_toedientijd-flextrue.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\3voorbeeld_toedientijd-freq1x2d.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\3voorbeeld_toedientijd-freq1x2d.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\3voorbeeld_toedientijd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\3voorbeeld_toedientijd.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\4voorbeeld_toedieningsduur-alleen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\4voorbeeld_toedieningsduur-alleen.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\4voorbeeld_toedieningsduur-flexfalse.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\4voorbeeld_toedieningsduur-flexfalse.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\5voorbeeld_1tot4malig.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\5voorbeeld_1tot4malig.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\5voorbeeld_eenmalig.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\5voorbeeld_eenmalig.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\5voorbeeld_viermalig.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\5voorbeeld_viermalig.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\6voorbeeld_weekdag.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\6voorbeeld_weekdag.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\6voorbeeld_weekdag_tijd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\6voorbeeld_weekdag_tijd.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\7voorbeeld_dagdeel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\7voorbeeld_dagdeel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\7voorbeeld_dagdeel_freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\7voorbeeld_dagdeel_freq.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\7voorbeeld_dagdeel_freq24h.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\7voorbeeld_dagdeel_freq24h.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\8voorbeeld_weekdagen-2dd.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\8voorbeeld_weekdagen-2dd.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\8voorbeeld_weekdagen-2wk.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\8voorbeeld_weekdagen-2wk.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\8voorbeeld_weekdagen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\8voorbeeld_weekdagen.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\8voorbeeld_weekdagen_dagdelen.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\8voorbeeld_weekdagen_dagdelen.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\8voorbeeld_weekdagen_tijden.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\8voorbeeld_weekdagen_tijden.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\9voorbeeld_2d_toedientijd1s1dagrust.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\9voorbeeld_2d_toedientijd1s1dagrust.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\9voorbeeld_2d_toedientijden1s1dagrust.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\9voorbeeld_2d_toedientijden1s1dagrust.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\ada_instance\9voorbeeld_toedientijd-flexfalse-freq.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\nictiz_test\hl7_instance\9voorbeeld_toedientijd-flexfalse-freq.xml
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 113ms :: artifacts dl 18ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/50ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_medicatiegegevens/../beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_org.xsl input dir ../../beschikbaarstellen_medicatiegegevens/ada_instance_MA
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-1.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\payload\beschikbaarstellen_medicatiegegevens_org.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-6.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-6.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-7.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-7.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-8.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset0-0-8.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-2a.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-2a.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-2b.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-2b.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset1-1-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset10-10-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset10-10-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset10-10-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset10-10-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset2-2-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset3-3-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset3-3-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset3-3-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset3-3-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset3-3-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset3-3-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset3-3-4optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset3-3-4optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset4-4-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset4-4-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-10optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-10optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-11optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-11optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-12optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-12optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-13optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-13optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-14optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-14optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-15.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-15.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-4optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-4optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-5optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-5optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-6optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-6optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-7.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-7.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-8optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-8optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-9.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset6-6-9.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset7-7-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset7-7-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset7-7-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset7-7-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset7-7-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset7-7-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset8-8-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset8-8-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset8.0-8i-01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset8.0-8i-01.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset8.0-8i-02.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset8.0-8i-02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset8.0-8i-03.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset8.0-8i-03.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MA\mg-mgr-mg-MA-Scenarioset8.0-8i-04.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MA\mg-mgr-mg-MA-Scenarioset8.0-8i-04.xml
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 166ms :: artifacts dl 24ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/40ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_medicatiegegevens/../beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_org.xsl input dir ../../beschikbaarstellen_medicatiegegevens/ada_instance_VV
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-1.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\payload\beschikbaarstellen_medicatiegegevens_org.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset0-0-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset1-1-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset1-1-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset10-10-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset10-10-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset10-10-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset10-10-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset2-2-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset2-2-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset2-2-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset2-2-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset7-7-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset7-7-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset7-7-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset7-7-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset7-7-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset7-7-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset8-8-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset8-8-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset8.0-8i-01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset8.0-8i-01.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-1aoptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-1aoptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-1boptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-1boptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-1coptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-1coptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_VV\mg-mgr-mg-VV-Scenarioset9-9-3optioneel.xml
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 125ms :: artifacts dl 22ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/50ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_medicatiegegevens/../beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_org.xsl input dir ../../beschikbaarstellen_medicatiegegevens/ada_instance_TA
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-1.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\payload\beschikbaarstellen_medicatiegegevens_org.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-6.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-6.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-7.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-7.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-8.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset0-0-8.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-2a.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-2a.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-2b.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-2b.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset1-1-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset10-10-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset10-10-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset2-2-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-4optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-4optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset3-3-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset4-4-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset4-4-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-10optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-10optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-11optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-11optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-12optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-12optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-13optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-13optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-14optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-14optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-15.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-15.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-4optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-4optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-5optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-5optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-6optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-6optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-7.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-7.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-8optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-8optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-9.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset6-6-9.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset7-7-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset7-7-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset7-7-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset7-7-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset7-7-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset7-7-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-1aoptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-1aoptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-1boptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-1boptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-1coptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-1coptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_TA\mg-mgr-mg-TA-Scenarioset9-9-3optioneel.xml
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 112ms :: artifacts dl 17ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/37ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_medicatiegegevens/../beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_org.xsl input dir ../../beschikbaarstellen_medicatiegegevens/ada_instance_MVE
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-1.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\payload\beschikbaarstellen_medicatiegegevens_org.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-6.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-6.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-7.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-7.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-8.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset0-0-8.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-2a.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-2a.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-2b.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-2b.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset1-1-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset10-10-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset10-10-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset2-2-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset3-3-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset3-3-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset3-3-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset3-3-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-10optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-10optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-11optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-11optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-12optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-12optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-13optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-13optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-14optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-14optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-15.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-15.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-4optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-4optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-5optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-5optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-6optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-6optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-7.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-7.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-8optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-8optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-9.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset6-6-9.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset7-7-1optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset7-7-1optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset7-7-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset7-7-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset7-7-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset7-7-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-1aoptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-1aoptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-1boptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-1boptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-1coptioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-1coptioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-2optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-2optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MVE\mg-mgr-mg-MVE-Scenarioset9-9-3optioneel.xml
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 77ms :: artifacts dl 15ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/34ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_medicatiegegevens/../beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_org.xsl input dir ../../beschikbaarstellen_medicatiegegevens/ada_instance_MGB
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-1.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\payload\beschikbaarstellen_medicatiegegevens_org.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-2.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-2.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-3optioneel.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-3optioneel.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-4.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-5.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-5.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-6.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-6.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-7.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-7.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-8.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset0-0-8.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-1.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-2a.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-2a.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-2b.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-2b.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-3.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-3.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-4.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MGB\mg-mgr-mg-MGB-Scenarioset1-1-4.xml
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 114ms :: artifacts dl 18ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/42ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+    [mkdir] Created dir: C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MTD
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_medicatiegegevens/../beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_org.xsl input dir ../../beschikbaarstellen_medicatiegegevens/ada_instance_MTD
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\ada_instance_MTD\mg-mgr-mg-MTD-MtdWds-0-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_MTD\mg-mgr-mg-MTD-MtdWds-0-1.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\payload\beschikbaarstellen_medicatiegegevens_org.xsl
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
+     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
 
 BUILD SUCCESSFUL
-Total time: 9 seconds
+Total time: 29 seconds
