@@ -1073,38 +1073,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:element name="{$elmContactInformation}">
 
-                <xsl:if test="$telephoneNumbers">
+                <xsl:for-each select="$telephoneNumbers">
                     <xsl:element name="{$elmTelephoneNumbers}">
 
-                        <xsl:for-each select="$telephoneNumbers">
-                            <xsl:variable name="theUse" select="tokenize(@use, '\s')"/>
-                            <xsl:variable name="telecomType" as="element()?">
-                                <xsl:choose>
-                                    <!-- @use=MC or any of +316... +3106... 06... 6... are mobile numbers -->
-                                    <xsl:when test="tokenize(@use, '\s') = 'MC' or matches(replace(normalize-space(@value), '[^\d]', ''), '^(31)?0?6')">
-                                        <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="code">MC</xsl:attribute>
-                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
-                                            <xsl:attribute name="displayName">Mobiele telefoon</xsl:attribute>
-                                        </xsl:element>
-                                    </xsl:when>
-                                    <!-- @use=PG is a pager -->
-                                    <xsl:when test="tokenize(@use, '\s') = 'PG'">
-                                        <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="code">PG</xsl:attribute>
-                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
-                                            <xsl:attribute name="displayName">Pager</xsl:attribute>
-                                        </xsl:element>
-                                    </xsl:when>
-                                    <!-- @value starts with fax: is a fax (note that this RFC is obsolete so in practice this scheme should not occur) -->
-                                    <xsl:when test="starts-with(@value, 'fax:')">
-                                        <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="code">FAX</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
-                                            <xsl:attribute name="displayName">Fax</xsl:attribute>
-                                        </xsl:element>
-                                    </xsl:when>
-                                    <!-- anything else is a landline. hence this includes 0900, 0800 and 088 (national numbers). we do this not because 
+                        <xsl:variable name="theUse" select="tokenize(@use, '\s')"/>
+                        <xsl:variable name="telecomType" as="element()?">
+                            <xsl:choose>
+                                <!-- @use=MC or any of +316... +3106... 06... 6... are mobile numbers -->
+                                <xsl:when test="tokenize(@use, '\s') = 'MC' or matches(replace(normalize-space(@value), '[^\d]', ''), '^(31)?0?6')">
+                                    <xsl:element name="{$elmTelecomType}">
+                                        <xsl:attribute name="code">MC</xsl:attribute>
+                                        <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
+                                        <xsl:attribute name="displayName">Mobiele telefoon</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:when>
+                                <!-- @use=PG is a pager -->
+                                <xsl:when test="tokenize(@use, '\s') = 'PG'">
+                                    <xsl:element name="{$elmTelecomType}">
+                                        <xsl:attribute name="code">PG</xsl:attribute>
+                                        <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
+                                        <xsl:attribute name="displayName">Pager</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:when>
+                                <!-- @value starts with fax: is a fax (note that this RFC is obsolete so in practice this scheme should not occur) -->
+                                <xsl:when test="starts-with(@value, 'fax:')">
+                                    <xsl:element name="{$elmTelecomType}">
+                                        <xsl:attribute name="code">FAX</xsl:attribute>
+                                        <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
+                                        <xsl:attribute name="displayName">Fax</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:when>
+                                <!-- anything else is a landline. hence this includes 0900, 0800 and 088 (national numbers). we do this not because 
                                         it is necessarily true, but because the HCIM says the element is required and LandLine is the best worst option
                                         https://zibs.nl/wiki/ContactInformation-v1.0(2017EN)
                                         NL-CM:20.6.5			TelecomType	1	The telecom or device type that the telephone number is connected to.
@@ -1112,59 +1111,57 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         https://bits.nictiz.nl/browse/ZIB-761
                                         https://bits.nictiz.nl/browse/ZIB-958
                                     -->
-                                    <xsl:otherwise>
-                                        <xsl:element name="{$elmTelecomType}">
-                                            <!--<xsl:attribute name="code">LL</xsl:attribute>
+                                <xsl:otherwise>
+                                    <xsl:element name="{$elmTelecomType}">
+                                        <!--<xsl:attribute name="code">LL</xsl:attribute>
                                             <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
                                             <xsl:attribute name="displayName">Landline</xsl:attribute>-->
-                                            <xsl:attribute name="code">UNK</xsl:attribute>
-                                            <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                                            <xsl:attribute name="displayName">unknown</xsl:attribute>
-                                        </xsl:element>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <xsl:variable name="numberType" as="element()?">
-                                <xsl:choose>
-                                    <xsl:when test="$theUse = 'HP'">
-                                        <xsl:element name="{$elmNumberType}">
-                                            <xsl:attribute name="code">HP</xsl:attribute>
-                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
-                                            <xsl:attribute name="displayName">Primary Home</xsl:attribute>
-                                        </xsl:element>
-                                    </xsl:when>
-                                    <xsl:when test="$theUse = 'TMP'">
-                                        <xsl:element name="{$elmNumberType}">
-                                            <xsl:attribute name="code">HP</xsl:attribute>
-                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
-                                            <xsl:attribute name="displayName">Temporary Address</xsl:attribute>
-                                        </xsl:element>
-                                    </xsl:when>
-                                    <xsl:when test="$theUse = 'WP'">
-                                        <xsl:element name="{$elmNumberType}">
-                                            <xsl:attribute name="code">HP</xsl:attribute>
-                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
-                                            <xsl:attribute name="displayName">Work place</xsl:attribute>
-                                        </xsl:element>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:variable>
+                                        <xsl:attribute name="code">UNK</xsl:attribute>
+                                        <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
+                                        <xsl:attribute name="displayName">unknown</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <xsl:variable name="numberType" as="element()?">
+                            <xsl:choose>
+                                <xsl:when test="$theUse = 'HP'">
+                                    <xsl:element name="{$elmNumberType}">
+                                        <xsl:attribute name="code">HP</xsl:attribute>
+                                        <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
+                                        <xsl:attribute name="displayName">Primary Home</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test="$theUse = 'TMP'">
+                                    <xsl:element name="{$elmNumberType}">
+                                        <xsl:attribute name="code">HP</xsl:attribute>
+                                        <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
+                                        <xsl:attribute name="displayName">Temporary Address</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test="$theUse = 'WP'">
+                                    <xsl:element name="{$elmNumberType}">
+                                        <xsl:attribute name="code">HP</xsl:attribute>
+                                        <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
+                                        <xsl:attribute name="displayName">Work place</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:variable>
 
-                            <xsl:element name="{$elmTelephoneNumber}">
-                                <!-- remove the tel: or fax: prefix, since that information is in telecomtype -->
-                                <xsl:attribute name="value" select="replace(@value, '^((tel|fax):)(.+)', '$3')"/>
-                            </xsl:element>
-                            <xsl:if test="$outputTelecomType">
-                                <xsl:copy-of select="$telecomType"/>
-                            </xsl:if>
-                            <xsl:copy-of select="$numberType"/>
-                        </xsl:for-each>
+                        <xsl:element name="{$elmTelephoneNumber}">
+                            <!-- remove the tel: or fax: prefix, since that information is in telecomtype -->
+                            <xsl:attribute name="value" select="replace(@value, '^((tel|fax):)(.+)', '$3')"/>
+                        </xsl:element>
+                        <xsl:if test="$outputTelecomType">
+                            <xsl:copy-of select="$telecomType"/>
+                        </xsl:if>
+                        <xsl:copy-of select="$numberType"/>
                     </xsl:element>
-                </xsl:if>
-                <xsl:if test="$emailAddresses">
+                </xsl:for-each>
+                <xsl:for-each select="$emailAddresses">
                     <xsl:element name="{$elmEmailAddresses}">
 
-                        <xsl:for-each select="$emailAddresses">
                             <xsl:variable name="theUse" select="tokenize(@use, '\s')"/>
                             <xsl:variable name="emailType" as="element()?">
                                 <xsl:choose>
@@ -1191,10 +1188,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:if test="$emailType">
                                 <xsl:copy-of select="$emailType"/>
                             </xsl:if>
-                        </xsl:for-each>
                     </xsl:element>
-                </xsl:if>
-
+                </xsl:for-each>
             </xsl:element>
         </xsl:if>
     </xsl:template>

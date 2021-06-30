@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-06-30
+* MM-2251 Fixed a problem in handling multiple telecom elements of the same type (phone or email)
 2021-05-25
 * MM-1453 Updated conversion of HL7 TS to ISO 8601. Now substitutes 00 for seconds if TS is specified to minutes to avoid loosing time entirely
 2021-01-19
