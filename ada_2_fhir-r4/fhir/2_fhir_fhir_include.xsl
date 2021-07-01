@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
     
     <xsl:variable name="ada2resourceType">
-        <nm:map ada="contactgegevens" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
+        <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
@@ -288,10 +288,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Debug -->
         <xsl:if test="$in and count($element) = 0">
             <xsl:message terminate="yes">Cannot resolve reference within set of ada-instances</xsl:message>
-        </xsl:if>
-
-        <xsl:if test="not($ada2resourceType/nm:map[@profile = $profile])">
-            <xsl:message terminate="yes">Cannot map adaElement to FHIR resource type ($ada2resourceType)</xsl:message>
         </xsl:if>
 
         <xsl:variable name="populatedReference" as="element()*">
