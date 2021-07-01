@@ -3,6 +3,8 @@
 This contains resources for generic conversions of HL7v3 messages/CDA to a relatively simple dataset xml format in response type transactions. 
 
 ===Release Notes===
+2021-06-30
+* MM-2251 Fixed a problem in handling multiple telecom elements of the same type (phone or email) 
 2020-08-15
 * HL7 V3 Instance Identifier - Terminates upon detection of an OID with leading zeroes in a node
 2019-12-17
