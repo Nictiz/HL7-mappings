@@ -1481,8 +1481,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
 
             <!-- cyclisch schema, doseerinstructie zonder toedieningsschema -->
-            <!-- todo: check if this may be removed since it may (should?) have been handled in the place this template is called.... -->
-            <xsl:if test="../../herhaalperiode_cyclisch_schema[.//(@value | @code)] and not(./toedieningsschema[.//(@value | @code)])">
+             <xsl:if test="../../herhaalperiode_cyclisch_schema[.//(@value | @code)] and not(./toedieningsschema[.//(@value | @code)])">
                 <!-- pauze periode -->
                 <xsl:for-each select="../doseerduur[.//(@value | @code)]">
                     <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
@@ -1547,6 +1546,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </precondition>
             </xsl:for-each>
         </substanceAdministration>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Handle Contactpersoon as relatedEntity</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9311_20191210094346" match="contactpersoon" mode="handleContactPersRelEnt">
+        <xsl:attribute name="classCode">AGNT</xsl:attribute>
+
+        <xsl:choose>
+            <xsl:when test="rol[@code]">
+                <xsl:for-each select="rol[@code]">
+                    <xsl:call-template name="makeCode"/>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- default to mantelzorg -->
+                <code code="100001" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1" displayName="mantelzorger" codeSystemName="ExtraRolcodes"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        <xsl:for-each select="naamgegevens[.//(@value | @code | @nullFlavor)]">
+            <relatedPerson classCode="PSN" determinerCode="INSTANCE">
+                <name>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
+                        <xsl:with-param name="naamgegevens" select="."/>
+                    </xsl:call-template>
+                </name>
+            </relatedPerson>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>

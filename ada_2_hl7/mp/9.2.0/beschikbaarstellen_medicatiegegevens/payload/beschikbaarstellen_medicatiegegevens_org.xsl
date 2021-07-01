@@ -141,6 +141,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </component>
                 </xsl:for-each>
+                <!-- wisselend_doseerschema -->
+                <xsl:for-each select="wisselend_doseerschema">
+                    <component typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9380_202106171758546">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </component>
+                </xsl:for-each>
             </xsl:for-each>
         </organizer>
     </xsl:template>
