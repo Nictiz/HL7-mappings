@@ -159,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorgaanbieder" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
         
-        <xsl:variable name="organizationLocation" select="organisatie_locatie/locatie_naam/@value[not(. = '')]"/>
+        <xsl:variable name="organizationLocation" select="(organisatie_locatie/locatie_naam/@value[not(. = '')], 'Location')[1]"/>
         
         <xsl:choose>
             <xsl:when test="$profile = 'nl-core-HealthcareProvider'">

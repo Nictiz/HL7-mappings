@@ -143,7 +143,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="nf:get-resourceid-from-token($in)"/>
                             </xsl:when>-->
                         <xsl:when test="$in/@logicalId">
-                            <xsl:value-of select="$in/@logicalId"/>
+                            <xsl:choose>
+                                <xsl:when test="count($ada2resourceType/nm:map[@ada = $adaElement]) gt 1">
+                                    <xsl:value-of select="concat($in/@logicalId,'-',@resource)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$in/@logicalId"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:apply-templates select="$in" mode="_generateId">
@@ -279,7 +286,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
 
         <!-- Debug -->
-        <xsl:if test="count($element) = 0">
+        <xsl:if test="$in and count($element) = 0">
             <xsl:message terminate="yes">Cannot resolve reference within set of ada-instances</xsl:message>
         </xsl:if>
 
@@ -330,6 +337,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
         
+        <xsl:variable name="logicalId">
+            <xsl:call-template name="getId">
+                <xsl:with-param name="in" select="$in"/>
+                <xsl:with-param name="profile" select="$profile"/>
+            </xsl:call-template>
+        </xsl:variable>
+        
+        <xsl:if test="string-length($logicalId) gt 0">
+            <id value="{$logicalId}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="getId">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="profile" as="xs:string" select="''"/>
+        
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
         
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
@@ -348,7 +371,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:if test="string-length($logicalId) gt 0">
-            <id value="{$logicalId}"/>
+            <xsl:value-of select="$logicalId"/>
         </xsl:if>
     </xsl:template>
     

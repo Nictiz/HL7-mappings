@@ -26,6 +26,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../payload/0.0/all_zibs.xsl"/>
     
+    <xsl:param name="fhirMetadata" as="element()*">
+        <xsl:variable name="bundle">
+            <xsl:for-each select="/bundle/source[@href]">
+                <xsl:copy-of select="document(@href)"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:call-template name="getFhirMetadata">
+            <xsl:with-param name="in" select="$bundle"/>
+        </xsl:call-template>
+    </xsl:param>
+    
     <xd:doc>
         <xd:desc>
             Process a bundle containing ADA instances for zibs that are mapped onto/into the nl-core-Patient profile:
@@ -48,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="nl-core-Patient">
                 <xsl:with-param name="nationality" select="$bundle//nationaliteit_rc"/>
                 <xsl:with-param name="maritalStatus" select="$bundle//burgerlijke_staat_rc"/>
-                <xsl:with-param name="languageProficiencys" select="$bundle//taalvaardigheid"/>
+                <xsl:with-param name="languageProficiency" select="$bundle//taalvaardigheid"/>
                 <xsl:with-param name="contactPersons" select="$bundle//contactpersoon"/>
             </xsl:call-template>
         </xsl:for-each>
