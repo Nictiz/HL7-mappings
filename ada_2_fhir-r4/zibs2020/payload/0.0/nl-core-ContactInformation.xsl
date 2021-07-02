@@ -48,6 +48,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$telecomType = 'FAX'">fax</xsl:when>
                         <xsl:when test="$telecomType = 'MC'">phone</xsl:when>
                         <xsl:when test="$telecomType = 'PG'">pager</xsl:when>
+                        <!-- Otherwise we don't know, assumption is phone -->
+                        <xsl:otherwise>phone</xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="numberType" select="nummer_soort/@code"/>
@@ -65,14 +67,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </xsl:for-each>
-                    <xsl:if test="$telecomType">
+                    <xsl:if test="telefoonnummer[@value]">
                         <system>
                             <xsl:if test="string-length($telecomSystem) gt 0">
                                 <xsl:attribute name="value" select="$telecomSystem"/>
                             </xsl:if>
-                            <xsl:call-template name="ext-CodeSpecification">
-                                <xsl:with-param name="in" select="telecom_type"/>
-                            </xsl:call-template>
+                            <xsl:if test="$telecomType">
+                                <xsl:call-template name="ext-CodeSpecification">
+                                    <xsl:with-param name="in" select="telecom_type"/>
+                                </xsl:call-template>
+                            </xsl:if>
                         </system>
                     </xsl:if>
                     <xsl:for-each select="telefoonnummer">
