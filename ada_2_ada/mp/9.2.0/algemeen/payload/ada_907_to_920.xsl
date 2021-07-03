@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet exclude-result-prefixes="#all" version="2.0" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xsl:import href="../../../../../util/constants.xsl"/>
+    <xsl:import href="../../../ada_2_ada_mp.xsl"/>
     <xsl:import href="../../../../../util/uuid.xsl"/>
     <xsl:import href="../../../../../util/mp-functions.xsl"/>
     <xsl:import href="../../../../../util/datetime.xsl"/>
@@ -12,7 +12,6 @@
     <xsl:param name="schemaFileString" as="xs:string?">../mp/9.2.0/medicatiegegevens_met_references/ada_schemas/sturen_medicatiegegevens.xsd</xsl:param>
     <!-- the macAddress for uuid generation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-
 
     <xd:doc>
         <xd:desc>Start template</xd:desc>
@@ -28,7 +27,7 @@
     <xd:doc>
         <xd:desc>Add a temp reference id for the groups that will be moved to bouwstenen group</xd:desc>
     </xd:doc>
-    <xsl:template match="product | zorgverlener[not(zorgverlener)] | zorgaanbieder[not(zorgaanbieder)] | contactpersoon" mode="addReferenceId">
+    <xsl:template match="product | zorgverlener[not(zorgverlener)] | zorgaanbieder[not(zorgaanbieder)] | contactpersoon | informant/persoon" mode="addReferenceId">
         <xsl:copy>
             <xsl:attribute name="referenceId">
                 <!-- in ada the id must start with alphanumeric, a uuid may start with digit, so we add a dummy string 'uuid_' to avoid schema errors in ada instances -->
@@ -37,7 +36,7 @@
             <xsl:apply-templates select="@* | node()" mode="addReferenceId"/>
         </xsl:copy>
     </xsl:template>
-      
+
 
     <xd:doc>
         <xd:desc>Copy template in addReferenceId mode. Adds temporary id's for ada group elements that are now in bouwstenen group in 9 2.0 version</xd:desc>
@@ -89,8 +88,15 @@
                 </xsl:when>
             </xsl:choose>
             <xsl:apply-templates select="patient | medicamenteuze_behandeling"/>
+
             <!-- the bouwstenen stuff -->
             <bouwstenen>
+                <xsl:for-each select=".//informant/persoon[not(rol_of_functie[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.4'])]">
+                    <contactpersoon>
+                        <xsl:attribute name="id" select="@referenceId"/>
+                        <xsl:apply-templates select="node()"/>
+                    </contactpersoon>
+                </xsl:for-each>
                 <xsl:for-each select=".//product">
                     <farmaceutisch_product>
                         <xsl:attribute name="id" select="@referenceId"/>
@@ -100,13 +106,81 @@
                 <xsl:for-each select=".//zorgverlener[not(zorgverlener)]">
                     <xsl:copy>
                         <xsl:attribute name="id" select="@referenceId"/>
-                        <xsl:apply-templates select="node()"/>
+                        <!-- zorgverlener_identificatienummer 1..* R, but we may not have it -->
+                        <xsl:choose>
+                            <xsl:when test="not((zorgverlener_identificatienummer | zorgverlener_identificatie_nummer)[@value | @nullFlavor | @root])">
+                                <zorgverlener_identificatienummer nullFlavor="NI"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <!-- naamgegevens -->
+                        <xsl:apply-templates select="zorgverlener_naam | naamgegevens"/>
+                        <!-- specialisme 1..1 R, but we may not have it -->
+                        <xsl:choose>
+                            <xsl:when test="not(specialisme[@code])">
+                                <specialisme code="NI" codeSystem="{$oidHL7NullFlavor}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="specialisme"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <!-- copy the other elements -->
+                        <xsl:apply-templates select="node()[not(self::zorgverlener_identificatienummer | self::zorgverlener_identificatie_nummer | self::zorgverlener_naam | self::naamgegevens | self::specialisme)]"/>
                     </xsl:copy>
                 </xsl:for-each>
+                <!-- and the thuiszorg professionals see issue https://bits.nictiz.nl/browse/ZIB-1075 -->
+                <xsl:for-each select=".//informant/persoon[rol_of_functie[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.4']]">
+                    <xsl:variable name="zaId" select="concat('uuid_', uuid:get-uuid(.))"/>
+                    <zorgverlener>
+                        <xsl:attribute name="id" select="@referenceId"/>
+                        <!-- zorgverlener identificatienummer is 1..* R, maar we hebben die niet in 907 -->
+                        <zorgverlener_identificatienummer nullFlavor="NI"/>
+                        <xsl:apply-templates select="naamgegevens"/>
+                        <xsl:apply-templates select="adresgegevens"/>
+                        <zorgaanbieder>
+                            <zorgaanbieder datatype="reference" value="{$zaId}"/>
+                        </zorgaanbieder>
+                    </zorgverlener>
+                    <zorgaanbieder id="{$zaId}">
+                        <!-- zorgaanbieder identificatienummer en naam is 1..x R, maar we hebben die niet in 907 -->
+                        <zorgaanbieder_identificatienummer nullFlavor="NI"/>
+                        <organisatie_naam nullFlavor="NI"/>
+                        <!-- adresgegevens not in 907 either, but required in 920, see MP-407 -->
+                        <adresgegevens>
+                            <straat/>
+                            <huisnummer/>
+                            <postcode/>
+                            <woonplaats/>
+                        </adresgegevens>
+                        <!-- organisatieType not yet MP 920 transacties, so will give ada schema error, see MP-408 -->
+                        <organisatie_type code="T2" displayName="Thuiszorg" codeSystem="{$oidRoleCodeNLOrganizations}" codeSystemName="{$oidMap[@oid=$oidRoleCodeNLOrganizations]/@displayName}"/>
+                    </zorgaanbieder>
+                </xsl:for-each>
+
                 <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)]">
                     <xsl:copy>
                         <xsl:attribute name="id" select="@referenceId"/>
-                        <xsl:apply-templates select="node()"/>
+                        <!-- zorgaanbieder_identificatienummer 1..* R, but we may not have it -->
+                        <xsl:choose>
+                            <xsl:when test="not((zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer)[@value | @nullFlavor | @root])">
+                                <zorgaanbieder_identificatienummer nullFlavor="NI"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <!-- organisatie_naam 1..1 R, but we may not have it -->
+                        <xsl:choose>
+                            <xsl:when test="not(organisatie_naam[@value])">
+                                <organisatie_naam nullFlavor="NI"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="organisatie_naam"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:apply-templates select="node()[not(self::zorgaanbieder_identificatienummer | self::zorgaanbieder_identificatie_nummer | self::organisatie_naam)]"/>
                     </xsl:copy>
                 </xsl:for-each>
             </bouwstenen>
@@ -164,7 +238,18 @@
         <xd:desc>handling for toedieningsafspraak aanvullende_informatie</xd:desc>
     </xd:doc>
     <xsl:template match="toedieningsafspraak/aanvullende_informatie">
-        <xsl:element name="{concat(local-name(..), '_', local-name(.))}"/>
+        <xsl:element name="{concat(local-name(..), '_', local-name(.))}">
+            <xsl:apply-templates select="@* | node()"/>
+        </xsl:element>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>handling for verstrekking aanvullende_informatie</xd:desc>
+    </xd:doc>
+    <xsl:template match="verstrekking/aanvullende_informatie">
+        <medicatieverstrekking_aanvullende_informatie>
+            <xsl:apply-templates select="@* | node()"/>
+        </medicatieverstrekking_aanvullende_informatie>
     </xsl:template>
 
 
@@ -250,13 +335,37 @@
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
+
     <xd:doc>
-        <xd:desc/>
+        <xd:desc> datum van 9.0.7 naar 9 2.0 </xd:desc>
     </xd:doc>
     <xsl:template match="verstrekkingsverzoek/datum">
         <xsl:element name="{concat(local-name(..), '_datum')}">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc> datum van 9.0.7 naar 9 2.0 </xd:desc>
+    </xd:doc>
+    <xsl:template match="verstrekking/aanschrijfdatum">
+        <xsl:element name="aanschrijf_datum">
+            <xsl:apply-templates select="@* | node()"/>
+        </xsl:element>
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc> replacement of terminology codes for reden wijzigen staken </xd:desc>
+    </xd:doc>
+    <xsl:template match="reden_wijzigen_of_staken | reden_wijzigen_of_stoppen_gebruik">
+        <xsl:copy>
+            <!-- do not copy @value, because it is a silly ada UI attribute for coded elements, for which we also cannot really predict the appropriate content that ada -->
+            <xsl:apply-templates select="@*[not(name() = 'value')]"/>
+            <xsl:for-each select="$mapRedenwijzigenstaken[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp920]">
+                <xsl:copy-of select="mp920/@*"/>
+            </xsl:for-each>
+        </xsl:copy>
     </xsl:template>
 
     <xd:doc>
@@ -320,17 +429,17 @@
     <xd:doc>
         <xd:desc> stoptype van 9.0.7 naar 9 2.0 </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak)/stoptype">
+    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)/stoptype">
         <xsl:element name="{concat(local-name(..), '_stop_type')}">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Handle zorgverlener</xd:desc>
     </xd:doc>
     <xsl:template match="voorschrijver | verstrekkingsverzoek/auteur | auteur_is_zorgverlener | informant_is_zorgverlener">
-       <xsl:copy>
+        <xsl:copy>
             <zorgverlener datatype="reference" value="{zorgverlener/@referenceId}"/>
         </xsl:copy>
     </xsl:template>
@@ -346,12 +455,12 @@
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="(verstrekkingsverzoek/beoogd_verstrekker | toedieningsafspraak/verstrekker | verstrekking/verstrekker | zorgverlener/zorgaanbieder )[zorgaanbieder]">
-       <xsl:copy>
+    <xsl:template match="(verstrekkingsverzoek/beoogd_verstrekker | toedieningsafspraak/verstrekker | verstrekking/verstrekker | zorgverlener/zorgaanbieder)[zorgaanbieder] | auteur_is_zorgaanbieder">
+        <xsl:copy>
             <zorgaanbieder datatype="reference" value="{zorgaanbieder/@referenceId}"/>
         </xsl:copy>
-    </xsl:template> 
-    
+    </xsl:template>
+
     <xd:doc>
         <xd:desc>There is a double nested zorgaanbieder in the bouwstenen/zorgverlener group, but not in the original 907 zorgverlener/zorgaanbieder. Special handling here for the reference</xd:desc>
     </xd:doc>
@@ -359,7 +468,7 @@
         <xsl:copy>
             <zorgaanbieder datatype="reference" value="{@referenceId}"/>
         </xsl:copy>
-    </xsl:template> 
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Handle the now references to bouwstenen folder for product</xd:desc>
@@ -378,6 +487,40 @@
             <farmaceutisch_product datatype="reference" value="{product/@referenceId}"/>
         </gebruiksproduct>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Handle the medicatiegebruik/informant/persoon</xd:desc>
+    </xd:doc>
+    <xsl:template match="informant/persoon">
+        <!-- special handling for thuiszorg, because in 920 a thuiszorg professional is conveyed using zorgverlener see issue https://bits.nictiz.nl/browse/ZIB-1075 -->
+        <xsl:choose>
+            <xsl:when test="rol_of_functie[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.4']">
+                <informant_is_zorgverlener>
+                    <zorgverlener datatype="reference" value="{@referenceId}"/>
+                </informant_is_zorgverlener>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- simply output contactpersoon using reference -->
+                <xsl:copy>
+                    <contactpersoon datatype="reference" value="{@referenceId}"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Handle contactpersoon rol</xd:desc>
+    </xd:doc>
+    <xsl:template match="rol_of_functie">
+        <rol>
+            <!-- do not copy @value, because it is a silly ada UI attribute for coded elements, for which we also cannot really predict the appropriate content that ada -->
+            <xsl:apply-templates select="@*[not(name() = 'value')]"/>
+            <xsl:for-each select="$mapRedenwijzigenstaken[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp920]">
+                <xsl:copy-of select="mp920/@*"/>
+            </xsl:for-each>
+        </rol>
+    </xsl:template>
+
 
     <xd:doc>
         <xd:desc> ordering update ingredient </xd:desc>
@@ -464,21 +607,18 @@
         </xsl:for-each>
     </xsl:template>
 
-
     <xd:doc>
-        <xd:desc> zorgverlener specialisme "toevoegen" als het ontbreekt </xd:desc>
+        <xd:desc> relaties </xd:desc>
     </xd:doc>
-    <xsl:template match="zorgverlener[not(specialisme)]">
-        <xsl:copy>
-            <!-- attributen kopiëren en alle elementen die vóór specialisme komen -->
-            <xsl:apply-templates select="@*"/>
-            <xsl:apply-templates select="zorgverlener_identificatienummer | naamgegevens"/>
-            <specialisme code="UNK" codeSystem="{$oidHL7NullFlavor}"/>
-            <!-- copy the other elements -->
-            <xsl:apply-templates select="*[not(self::zorgverlener_identificatienummer)][not(self::naamgegevens)]"/>
-        </xsl:copy>
+    <xsl:template match="gerelateerde_verstrekking[*]">
+        <xsl:for-each select="identificatie">
+            <relatie_medicatieverstrekking>
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()"/>
+                </xsl:copy>
+            </relatie_medicatieverstrekking>
+        </xsl:for-each>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc> aantal | waarde </xd:desc>
