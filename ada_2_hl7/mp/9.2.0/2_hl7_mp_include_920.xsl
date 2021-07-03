@@ -737,7 +737,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- aanschrijfdatum -->
-                <xsl:for-each select="aanschrijfdatum[.//(@value | @code | @nullFlavor)]">
+                <xsl:for-each select="(aanschrijfdatum | aanschrijf_datum)[.//(@value | @code | @nullFlavor)]">
                     <entryRelationship typeCode="COMP">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9095_20160623195047"/>
                     </entryRelationship>
