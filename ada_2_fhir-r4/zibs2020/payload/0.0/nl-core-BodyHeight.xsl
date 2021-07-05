@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
+ <!--   <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:template match="lichaamslengte" name="nl-core-BodyHeight" mode="nl-core-BodyHeight">
         <Observation>
-            <id value="nl-core-BodyHeight-01"/>
+           <!-- <xsl:call-template name="insertId"/>-->
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight"/>
             </meta>
