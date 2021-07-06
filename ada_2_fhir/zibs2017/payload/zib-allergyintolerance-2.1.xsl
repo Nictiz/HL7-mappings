@@ -163,6 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
 
                     <!-- Conceptmap: https://simplifier.net/NictizSTU3-Zib2017/AllergieStatusCodelijst-to-allergy-status -->
+                    <!-- https://bits.nictiz.nl/browse/MM-2235 -->
                     <verificationStatus>
                         <xsl:choose>
                             <xsl:when test="(allergie_status | allergy_status)[@code = 'nullified']">
