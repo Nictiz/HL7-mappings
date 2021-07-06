@@ -385,6 +385,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
                 <code code="52711000146108" displayName="Verstrekkingsverzoek" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                
+                <!-- statusCode: voor foutcorrectie -->
+                 <xsl:if test="geannuleerd_indicator/@value = 'true'">
+                    <statusCode code="nullified"/>
+                </xsl:if>                
 
                 <!-- aantal herhalingen -->
                 <xsl:for-each select="aantal_herhalingen[@value]">

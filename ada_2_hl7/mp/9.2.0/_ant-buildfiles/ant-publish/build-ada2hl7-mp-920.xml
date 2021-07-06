@@ -85,6 +85,15 @@
             <param name="fileset.include" value="mg-*WDS*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
+        <!-- beschikbaarstellen_medicatiegegevens appropriate ada instances from refs.dir for regression the old MedMij stuff -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="XXX*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        
+        
         <!-- at the moment only schemas for medicatievoorschrift-->
         <antcall target="setup_sub_schemas">
             <param name="usecase" value="${usecase.mv}"/>
@@ -148,6 +157,12 @@
             <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance_WDS"/>
             <param name="xsl.out" value="hl7_instance_WDS"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
         </antcall>
     </target>
 
