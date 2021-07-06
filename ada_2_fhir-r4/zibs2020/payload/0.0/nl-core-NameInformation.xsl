@@ -46,8 +46,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         
         <xsl:for-each select="$in">
-            <!-- Processing zib-NameInformation is paused until https://github.com/Nictiz/Nictiz-R4-zib2020/issues/82 is resolved. -->
-            <name/>
+            
+            <name><xsl:comment>Processing zib-NameInformation is paused until https://github.com/Nictiz/Nictiz-R4-zib2020/issues/82 is resolved.</xsl:comment>
+                <text value="TODO"/>
+            </name>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
