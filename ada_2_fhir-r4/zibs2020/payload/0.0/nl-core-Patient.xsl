@@ -94,9 +94,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
-                <!--<xsl:for-each select="naamgegevens">
-                <!-\-<xsl:call-template name="nl-core-NameInformation"/>-\->
-            </xsl:for-each>-->
+                <xsl:for-each select="naamgegevens">
+                    <xsl:call-template name="nl-core-NameInformation"/>
+                </xsl:for-each>
                 
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>

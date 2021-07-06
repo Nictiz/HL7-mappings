@@ -100,9 +100,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
-                <!--<xsl:for-each select="naamgegevens">
+                <xsl:for-each select="naamgegevens">
                     <xsl:call-template name="nl-core-NameInformation"/>
-                </xsl:for-each>-->
+                </xsl:for-each>
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
                 </xsl:for-each>
@@ -122,10 +122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                         <xsl:call-template name="ext-CodeSpecification"/>
                     </gender>
-                </xsl:for-each>            
-                <!--<xsl:for-each select="zorgaanbieder">
-                    <xsl:call-template name="nl-core-HealthcareProvider-reference"/>
-                </xsl:for-each>-->       
+                </xsl:for-each>
             </Practitioner>
         </xsl:for-each>
     </xsl:template>
