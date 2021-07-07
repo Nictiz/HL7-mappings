@@ -31,18 +31,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet"> 
         <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
     </xd:doc>
-       
-    <xd:doc>
-        <xd:desc>Unwrap contactpersoon_registratie element</xd:desc>
-    </xd:doc>
-    <xsl:template match="contactpersoon_registratie">
-        <xsl:apply-templates select="contactpersoon" mode="nl-core-ContactPerson"/>
-    </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-            <xd:param name="patient">Optional logical id for the FHIR instance.</xd:param>
+        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson" as="element(f:RelatedPerson)?">
         <xsl:param name="in" select="." as="element()?"/>

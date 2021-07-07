@@ -32,13 +32,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Unwrap adresgegevens_registratie element</xd:desc>
-    </xd:doc>
-    <xsl:template match="adresgegevens_registratie">
-        <xsl:apply-templates select="adresgegevens" mode="nl-core-AddressInformation"/>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Produces FHIR Address datatypes with address elements.</xd:desc>
         <xd:param name="in">Ada 'adresgegevens' element containing the zib data</xd:param>
     </xd:doc>

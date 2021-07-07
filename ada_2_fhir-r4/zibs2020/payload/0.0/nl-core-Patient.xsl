@@ -32,13 +32,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap patient_registratie element</xd:desc>
-    </xd:doc>
-    <xsl:template match="patient_registratie">
-        <xsl:apply-templates select="patient" mode="nl-core-Patient"/>
-    </xsl:template>
-    
-    <xd:doc>
         <xd:desc>Create an nl-core-Patient FHIR instance from the following ada parts:
             <xd:ul>
                 <xd:li>zib Patient</xd:li>

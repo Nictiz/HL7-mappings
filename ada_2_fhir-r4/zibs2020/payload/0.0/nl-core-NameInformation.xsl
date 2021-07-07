@@ -30,14 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada naamgegevens to FHIR 'name' element conforming to profile nl-core-NameInformation</xd:desc>
     </xd:doc>
-    
-    <xd:doc>
-        <xd:desc>Unwrap naamgegevens_registratie element</xd:desc>
-    </xd:doc>
-    <xsl:template match="naamgegevens_registratie">
-        <xsl:apply-templates select="naamgegevens" mode="zib-NameInformation"/>
-    </xsl:template>
-    
+        
     <xd:doc>
         <xd:desc>Produces FHIR Address datatypes with address elements.</xd:desc>
         <xd:param name="in">Ada 'adresgegevens' element containing the zib data</xd:param>
