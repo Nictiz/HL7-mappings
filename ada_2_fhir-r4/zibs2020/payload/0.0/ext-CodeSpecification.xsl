@@ -24,30 +24,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
+    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
+    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ada code to FHIR extension conforming to profile ext-CodeSpecification</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-[zib name] instance as a [resource name] FHIR instance from ADA [ADA instance name].</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:desc>Template for shared extension http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification</xd:desc>
+        <xd:param name="in">Optional. Ada element containing the comment code element</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-[zib name]" mode="nl-core-[zib name]" as="element(f:[resource name])">
+    <xsl:template match="*" name="ext-CodeSpecification" mode="ext-CodeSpecification" as="element()?">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:for-each select="$in">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                <valueCodeableConcept>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
+                    </xsl:call-template>
+                </valueCodeableConcept>
+            </extension>
+        </xsl:for-each>
     </xsl:template>
     
-    <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateId">
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateDisplay">
-    </xsl:template>
 </xsl:stylesheet>
