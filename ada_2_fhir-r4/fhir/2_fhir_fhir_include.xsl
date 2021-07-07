@@ -344,10 +344,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
         
+        <xsl:variable name="logicalId">
+            <xsl:call-template name="getLogicalIdFromFhirMetadata">
+                <xsl:with-param name="in" select="$in"/>
+                <xsl:with-param name="profile" select="$profile"/>
+            </xsl:call-template>
+        </xsl:variable>
+        
+        <xsl:if test="string-length($logicalId) gt 0">
+            <id value="{$logicalId}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Get the FHIR resource id element for the specified ADA instance, if an id is available (see the <xd:ref name="populateId" type="parameter"/> and <xd:ref name="referencingStrategy" type="parameter"/> parameters).
+        </xd:desc>
+        <xd:param name="in">The ADA instance that the FHIR resource is generated for.</xd:param>
+        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+    </xd:doc>
+    <xsl:template name="getLogicalIdFromFhirMetadata">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="profile" as="xs:string" select="''"/>
+        
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
         
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
-            <xsl:message terminate="yes">insertLogicalId: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+            <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
         </xsl:if>
         
         <xsl:variable name="logicalId">
@@ -362,7 +384,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:if test="string-length($logicalId) gt 0">
-            <id value="{$logicalId}"/>
+            <xsl:value-of select="$logicalId"/>
         </xsl:if>
     </xsl:template>
     
