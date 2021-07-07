@@ -14,5 +14,5 @@ The folder structure uses the following conventions:
 - `util` containts utility files
 - `ada_instance` contains instances of the zib scenarios in ADA format.
 - `ada_schemas` contains the (generated) XSD's of the ADA descriptions. These can be used to validate the ADA instances.
-- `ada_project_drivers` contains the XSLT 'drivers' that can be called to start the transformation from ada to FHIR for the zib scenarios
+- `ada_project_drivers` contains the XSLT 'drivers' that can be called to start the transformation from ada to FHIR for the zib scenarios. See the README in this folder for more information.
 - `fhir_instance` contains FHIR instances generated from ada instances
