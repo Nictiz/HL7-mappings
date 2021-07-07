@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="document(@href)"/>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:call-template name="getFhirMetadata">
+        <xsl:call-template name="buildFhirMetadata">
             <xsl:with-param name="in" select="$bundle"/>
         </xsl:call-template>
     </xsl:param>

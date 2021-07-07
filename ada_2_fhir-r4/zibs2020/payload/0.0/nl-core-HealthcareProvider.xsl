@@ -41,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Location>
-                <xsl:call-template name="insertId">
+                <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                 </xsl:call-template>
                 <meta>
@@ -82,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Organization>
-                <xsl:call-template name="insertId">
+                <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
                 </xsl:call-template>
                 <meta>

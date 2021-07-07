@@ -59,7 +59,7 @@
             <sch:assert test="count(f:*) = 1">xsl:for-each should have 1 child (the FHIR resource</sch:assert>
         </sch:rule>
         <sch:rule context="xsl:template[starts-with(@mode, $id)]/xsl:for-each[@select = '$in']/f:*">
-            <sch:assert test="xsl:call-template[@name = 'insertId']">xsl:call-template @name = 'insertId' should be present.</sch:assert>
+            <sch:assert test="xsl:call-template[@name = 'insertLogicalId']">xsl:call-template @name = 'insertLogicalId' should be present.</sch:assert>
             <sch:assert test="f:meta/f:profile/@value[starts-with(., concat('http://nictiz.nl/fhir/StructureDefinition/', $id))]">meta.profile should be declared correctly.</sch:assert>
             <sch:report test="xsl:if" role="warn">xsl:if within the FHIR resource should only be used for custom logic. For 'regular' elements, xsl:for-each should be used.</sch:report>
             

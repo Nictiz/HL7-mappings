@@ -52,7 +52,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:ul>
         </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="logicalId">Optional logical id for the FHIR instance.</xd:param>
         
         The following components need to be passed as ada instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource:
         <xd:param name="nationality">Optional ada instance of zib Nationality</xd:param>
@@ -62,7 +61,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient" as="element(f:Patient)">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="nationality" as="element(nationaliteit_rc)?" select="$in/nationaliteit_rc"/>
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?" select="$in/burgerlijke_staat_rc"/>
         <xsl:param name="languageProficiency" as="element(taalvaardigheid)*" select="$in/taalvaardigheid"/>
@@ -70,7 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Patient>
-                <xsl:call-template name="insertId"/>
+                <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
                 </meta>
