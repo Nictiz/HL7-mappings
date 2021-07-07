@@ -61,9 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:for-each select="$bundle//patient">
             <xsl:variable name="logicalId">
-                <xsl:call-template name="getId">
-                    <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
-                </xsl:call-template>
+                <xsl:call-template name="getId"/>
             </xsl:variable>
             <xsl:result-document href="{$outputDir}/{$logicalId}.xml">
                 <xsl:call-template name="nl-core-Patient">
