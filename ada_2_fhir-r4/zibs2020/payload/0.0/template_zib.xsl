@@ -24,21 +24,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <!--<xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
-
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap [...]_registratie element</xd:desc>
+        <xd:desc>Create a nl-core-[zib name] instance as a [resource name] FHIR instance from ADA [ADA instance name].</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
-    <xsl:template match="[...]_registratie">
-        <xsl:apply-templates select="[...]" mode="[...]"/><!-- Vul hier de juiste elementnamen en mode in -->
+    <xsl:template name="nl-core-[zib name]" mode="nl-core-[zib name]" as="element(f:[resource name])">
+        <xsl:param name="in" as="element()?" select="."/>
     </xsl:template>
-
+    
+    <xd:doc>
+        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="[ada_element]" mode="_generateId">
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="[ada_element]" mode="_generateDisplay">
+    </xsl:template>
 </xsl:stylesheet>
