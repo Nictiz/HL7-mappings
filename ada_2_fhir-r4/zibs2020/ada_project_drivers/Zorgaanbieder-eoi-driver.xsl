@@ -62,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select=".//zorgaanbieder">
                     <xsl:if test="organisatie_locatie/locatie_naam[@value] | contactgegevens | adresgegevens">
                         <xsl:variable name="logicalId">
-                            <xsl:call-template name="getId">
+                            <xsl:call-template name="getLogicalIdFromFhirMetadata">
                                 <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                             </xsl:call-template>
                         </xsl:variable>
@@ -72,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                     <xsl:if test="zorgaanbieder_identificatienummer | afdeling_specialisme | organisatie_type | organisatie_naam">
                         <xsl:variable name="logicalId">
-                            <xsl:call-template name="getId">
+                            <xsl:call-template name="getLogicalIdFromFhirMetadata">
                                 <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
                             </xsl:call-template>
                         </xsl:variable>
