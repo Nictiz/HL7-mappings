@@ -154,14 +154,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="code-to-code">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="codeMap" as="element()*">
-                                    <map inCode="M" inCodeSystem="2.16.840.1.113883.5.1" code="male"/>
-                                    <map inCode="F" inCodeSystem="2.16.840.1.113883.5.1" code="female"/>
-                                    <map inCode="UN" inCodeSystem="2.16.840.1.113883.5.1" code="other"/>
-                                    <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
+                                    <xsl:for-each select="$genderMap">
+                                        <map>
+                                            <xsl:attribute name="inCode" select="@hl7Code"/>
+                                            <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
+                                            <xsl:attribute name="code" select="@fhirCode"/>
+                                        </map>
+                                    </xsl:for-each>
                                 </xsl:with-param>
                             </xsl:call-template>
-                            <!-- MM-1036, add  -->
-                            <xsl:call-template name="ext-code-specification-1.0"/>                            
+                            <!-- MM-1036, add ext-code-specification-1.0 -->
+                            <xsl:choose>
+                                <!-- MM-1781, FHIR requires display, but display not always present in input ada -->
+                                <xsl:when test="not(@displayName)">
+                                    <xsl:variable name="geslachtIncludingDisplay" as="element()">
+                                        <xsl:copy>
+                                            <xsl:copy-of select="@*"/>
+                                            <xsl:attribute name="displayName" select="$genderMap[@hl7Code = current()/@code][@hl7CodeSystem = current()/@codeSystem]/@displayName"/>
+                                        </xsl:copy>
+                                    </xsl:variable>
+                                    <xsl:for-each select="$geslachtIncludingDisplay">
+                                        <xsl:call-template name="ext-code-specification-1.0"/>
+                                    </xsl:for-each>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:call-template name="ext-code-specification-1.0"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </gender>
                     </xsl:for-each>
                     <!-- geboortedatum -->
