@@ -1,21 +1,29 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-CIO-01-04"/>
+   <id value="zib-AllergyIntolerance-cio-0008967554"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
    <text>
-      <status value="additional"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">Medicatiegerelateerde allergie/intolerantie voor patiënt Maria Christina van XXX_Stalewska. Status is actief. Begindatum T - 200 dagen.
-Informant: Peter van den Herik.
-Auteur O. Orthopeed [specialisme: Medisch specialisten, orthopedie].
-Datum: T - 120 dagen.
-Veroorzakende stof: Penicillines.
-
-</div>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008967554 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="PENICILLINES (35 - G-Standaard Tabel 122)">PENICILLINES</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
    </text>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
-      <value value="CIO_01_04"/>
+      <system value="urn:oid:2.16.528.1.1007.3.3.123451.1.432"/>
+      <value value="0008967554"/>
    </identifier>
    <clinicalStatus value="active">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -23,7 +31,7 @@ Veroorzakende stof: Penicillines.
             <coding>
                <system value="http://hl7.org/fhir/v3/ActStatus"/>
                <code value="active"/>
-               <display value="Actief"/>
+               <display value="active"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -48,26 +56,20 @@ Veroorzakende stof: Penicillines.
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
          <code value="35"/>
-         <display value="Penicillines"/>
+         <display value="PENICILLINES"/>
       </coding>
    </code>
    <patient>
-      <reference value="Patient/XXX-Stalewska"/>
-      <display value="Maria Christina M. Marieke van XXX_Stalewska"/>
+      <reference value="Patient/DEGROOT"/>
+      <display value="de Groot"/>
    </patient>
-   <onsetDateTime value="${DATE, T, D, -200}"/>
-   <assertedDate value="${DATE, T, D, -120}"/>
    <recorder>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/nl-core-practitionerrole-2222222230305"/>
-            <display value="O. Orthopeed || Medisch specialisten, orthopedie || Test Medisch Centrum"/>
+            <reference value="PractitionerRole/nl-core-practitionerrole-cio-000001111"/>
+            <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
          </valueReference>
       </extension>
-      <display value="O. Orthopeed || Medisch specialisten, orthopedie || Test Medisch Centrum"/>
+      <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
    </recorder>
-   <asserter>
-      <reference value="RelatedPerson/nl-core-relatedperson-PETERP-J-PETERVANDENHERIKVANXXX-STALEWSKA"/>
-      <display value="Peter P.J. Peter van den Herik van XXX_Stalewska"/>
-   </asserter>
 </AllergyIntolerance>

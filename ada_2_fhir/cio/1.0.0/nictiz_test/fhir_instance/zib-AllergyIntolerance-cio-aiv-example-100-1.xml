@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-CIO-02-02"/>
+   <id value="zib-AllergyIntolerance-cio-aiv-example-100-1"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -7,28 +7,23 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_02 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: inactief / <i>onbekend (ontbrekend gegeven)</i>
+            <caption>Allergie/intolerantie. Patiënt: Joris Hansman. Id: aiv-example_100_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
                <span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
             </caption>
-            <tfoot>
-               <tr>
-                  <td colspan="2">Betreft nu Ciprofloxacine. Leidt tot paarse vlekjes op de huid en jeuk.</td>
-               </tr>
-            </tfoot>
             <tbody>
                <tr>
                   <th>Code</th>
                   <td>
-                     <span title="Amoxicilline (23167 - G-Standaard Bestand 750)">Amoxicilline</span>
+                     <span title="AMOXI/CLAV SANDOZ TABLET 500/125MG (1127039 - G-Standaard HPK)">AMOXI/CLAV SANDOZ TABLET 500/125MG</span>
                   </td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>${DATE, T, D, -60} - I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</td>
+                  <td>${DATE, T, D, -30} - Joris Hansman</td>
                </tr>
                <tr>
                   <th>Eerste symptomen</th>
-                  <td>${DATE, T, D, -100}</td>
+                  <td>${DATE, T, D, -50}</td>
                </tr>
             </tbody>
          </table>
@@ -36,15 +31,15 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
-      <value value="CIO_02_02"/>
+      <value value="aiv-example_100_1"/>
    </identifier>
-   <clinicalStatus value="inactive">
+   <clinicalStatus value="active">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/ActStatus"/>
-               <code value="obsolete"/>
-               <display value="Achterhaald"/>
+               <code value="active"/>
+               <display value="Actief"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -67,36 +62,28 @@
    </category>
    <code>
       <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
-         <code value="23167"/>
-         <display value="Amoxicilline"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+         <code value="1127039"/>
+         <display value="AMOXI/CLAV SANDOZ TABLET 500/125MG"/>
       </coding>
    </code>
    <patient>
-      <reference value="Patient/XXX-Smits"/>
-      <display value="M.P.H. Mike XXX_Smits"/>
+      <reference value="Patient/JORISHANSMAN"/>
+      <display value="Joris Hansman"/>
    </patient>
-   <onsetDateTime value="${DATE, T, D, -100}"/>
-   <assertedDate value="${DATE, T, D, -60}"/>
+   <onsetDateTime value="${DATE, T, D, -50}"/>
+   <assertedDate value="${DATE, T, D, -30}"/>
    <recorder>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/nl-core-practitionerrole-1111111120313"/>
+            <reference value="PractitionerRole/nl-core-practitionerrole-cio-1111111120313"/>
             <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
          </valueReference>
       </extension>
       <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
    </recorder>
    <asserter>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-         <valueReference>
-            <reference value="PractitionerRole/nl-core-practitionerrole-1111111120313"/>
-            <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
-         </valueReference>
-      </extension>
-      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+      <reference value="Patient/JORISHANSMAN"/>
+      <display value="Joris Hansman"/>
    </asserter>
-   <note>
-      <text value="Betreft nu Ciprofloxacine. Leidt tot paarse vlekjes op de huid en jeuk."/>
-   </note>
 </AllergyIntolerance>
