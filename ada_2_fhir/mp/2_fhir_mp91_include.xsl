@@ -1600,23 +1600,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <medicationReference>
             <reference value="{nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.), false())}"/>
             <display>
+                <xsl:variable name="displayValue" as="element()">
+                    <reference>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="product_code[@codeSystem = $mainGstdLevel]/@displayName">
+                                    <xsl:value-of select="product_code[@codeSystem = $mainGstdLevel]/@displayName"/>
+                                </xsl:when>
+                                <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor][@code = 'OTH'][../product_specificatie/product_naam[@value]]">
+                                    <xsl:value-of select="product_specificatie/product_naam/@value"/>
+                                </xsl:when>
+                                <!-- assume the first product_code displayName if not match above -->
+                                <xsl:when test="product_code/@displayName">
+                                    <xsl:value-of select="product_code[@displayName][1]/@displayName"/>
+                                </xsl:when>
+                                <xsl:when test="product_specificatie/product_naam/@value">
+                                    <xsl:value-of select="product_specificatie/product_naam/@value"/>
+                                </xsl:when>
+                                <xsl:otherwise>ERROR: DISPLAYNAME NOT FOUND IN INPUT</xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </reference>
+                </xsl:variable>
                 <xsl:attribute name="value">
-                    <xsl:choose>
-                        <xsl:when test="product_code[@codeSystem = $mainGstdLevel]/@displayName">
-                            <xsl:value-of select="product_code[@codeSystem = $mainGstdLevel]/@displayName"/>
-                        </xsl:when>
-                        <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor][@code = 'OTH'][../product_specificatie/product_naam[@value]]">
-                            <xsl:value-of select="product_specificatie/product_naam/@value"/>
-                        </xsl:when>
-                        <!-- assume the first product_code displayName if not match above -->
-                        <xsl:when test="product_code/@displayName">
-                            <xsl:value-of select="product_code[@displayName][1]/@displayName"/>
-                        </xsl:when>
-                        <xsl:when test="product_specificatie/product_naam/@value">
-                            <xsl:value-of select="product_specificatie/product_naam/@value"/>
-                        </xsl:when>
-                        <xsl:otherwise>ERROR: DISPLAYNAME NOT FOUND IN INPUT</xsl:otherwise>
-                    </xsl:choose>
+                    <!-- remove leading / trailing spaces to adhere to FHIR requirements for strings, MM-1781 -->
+                    <xsl:call-template name="string-to-string">
+                        <xsl:with-param name="in" select="$displayValue"/>                        
+                    </xsl:call-template>
                 </xsl:attribute>
             </display>
         </medicationReference>
