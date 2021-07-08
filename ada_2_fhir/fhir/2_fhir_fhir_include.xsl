@@ -266,7 +266,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="elementName" as="xs:string?">coding</xsl:param>
         <xsl:param name="userSelected" as="xs:boolean?"/>
         <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
