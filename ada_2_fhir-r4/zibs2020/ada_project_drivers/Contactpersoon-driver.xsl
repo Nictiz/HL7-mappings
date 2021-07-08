@@ -24,18 +24,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="_buildFhirMetadata.xsl"/>
+    <xsl:import href="_driverInclude.xsl"/>
+    
+    <xsl:template match="/bundle">
+        <xsl:apply-templates mode="_doTransform" select="$bundle[local-name() = 'contactpersoon']"/>
+    </xsl:template>
+    
+    <xsl:template match="//contactpersoon_registratie/contactpersoon">
+        <xsl:apply-templates mode="_doTransform" select="."/>
+    </xsl:template>
+    
+    <xsl:template mode="_doTransform" match="contactpersoon">
+        <xsl:variable name="subject" as="element()?">
+            <xsl:call-template name="_resolveAdaPatient">
+                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
+            </xsl:call-template>
+        </xsl:variable>
         
-    <xd:doc>
-        <xd:desc>
-            Process ADA instances to create resources that conform to the nl-core-HealthcareProvider profile.
-        </xd:desc>
-    </xd:doc>
-    <xsl:template match="//contactpersoon_registratie">
-        <xsl:variable name="patient-id" select="contactpersoon/onderwerp/patient-id/@value"/>
-        <xsl:apply-templates mode="nl-core-ContactPerson" select="contactpersoon">
-            <xsl:with-param name="patient" select="collection('../ada_instance')//patient[identificatienummer/@value = $patient-id]"/>
-        </xsl:apply-templates>
+        <xsl:call-template name="nl-core-ContactPerson">
+            <xsl:with-param name="patient" select="$subject"/>
+        </xsl:call-template>
     </xsl:template>
     
 </xsl:stylesheet>
