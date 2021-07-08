@@ -26,26 +26,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
-    <xd:doc>
-        <xd:desc>
-            Process a bundle containing ADA instances for zibs that are mapped onto/into the nl-core-Patient profile:
-            <xd:ul>
-                <xd:li>zib Patient</xd:li>
-                <xd:li>zib Nationality</xd:li>
-                <xd:li>zib MaritalStatus</xd:li>
-                <xd:li>zib LanguageProfiency</xd:li>
-                <xd:li>zib ContactPerson</xd:li>
-            </xd:ul>
-        </xd:desc>
-    </xd:doc>
     <xsl:template match="/bundle">
-        <xsl:for-each select="$bundle[local-name() = 'patient']">
-            <xsl:call-template name="nl-core-Patient">
-                <xsl:with-param name="nationality" select="$bundle[local-name() = 'nationaliteit_rc']"/>
-                <xsl:with-param name="maritalStatus" select="$bundle[local-name() = 'burgerlijke_staat_rc']"/>
-                <xsl:with-param name="languageProficiency" select="$bundle[local-name() = 'taalvaardigheid']"/>
-                <xsl:with-param name="contactPersons" select="$bundle[local-name() = 'contactpersoon']"/>
-            </xsl:call-template>
-        </xsl:for-each>
+        <xsl:apply-templates mode="_doTransform" select="$bundle[local-name() = 'contactpersoon']"/>
     </xsl:template>
+    
+    <xsl:template match="//contactpersoon_registratie/contactpersoon">
+        <xsl:apply-templates mode="_doTransform" select="."/>
+    </xsl:template>
+    
+    <xsl:template mode="_doTransform" match="contactpersoon">
+        <xsl:variable name="subject" as="element()?">
+            <xsl:call-template name="_resolveAdaPatient">
+                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
+            </xsl:call-template>
+        </xsl:variable>
+        
+        <xsl:call-template name="nl-core-ContactPerson">
+            <xsl:with-param name="patient" select="$subject"/>
+        </xsl:call-template>
+    </xsl:template>
+    
 </xsl:stylesheet>
