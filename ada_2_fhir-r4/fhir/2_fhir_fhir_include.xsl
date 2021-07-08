@@ -108,20 +108,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         
         <!-- if-statement to allow for local variables -->
-        <xsl:if test="$in//patient[not(patient)][not(@datatype = 'reference')]">
-            <xsl:variable name="identifier" select="(identificatienummer[@root = $oidBurgerservicenummer],identificatienummer[not(@root = $oidBurgerservicenummer)])[1]"/>
+        <xsl:variable name="patient" select="$in[local-name() = 'patient']"/>
+        <xsl:if test="$patient">
+            <xsl:variable name="identifier" select="($patient/identificatienummer[@root = $oidBurgerservicenummer],$patient/identificatienummer[not(@root = $oidBurgerservicenummer)])[1]"/>
             <!-- How necessary is it to add [not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] behind every group? -->
-            <xsl:for-each-group select="$in//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="concat($identifier/@root, $identifier/normalize-space(@value))">
+            <xsl:for-each-group select="$patient[.//(@value | @code | @nullFlavor)]" group-by="concat($identifier/@root, $identifier/normalize-space(@value))">
                 <!-- Experiment: why don't we just use nf:getGroupingKeyDefault()? Less hardly-used functions, and nobody is going to see the result anyways. -->
                 <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
             </xsl:for-each-group>
         </xsl:if>
-        
-        <xsl:if test="$in//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')]">
-            <xsl:variable name="identifier" select="nf:ada-zvl-id(zorgverlener_identificatienummer)"/>
-            <xsl:for-each-group select="$in//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+
+        <xsl:variable name="zorgverlener" select="$in[local-name() = 'zorgverlener']"/>
+        <xsl:if test="$zorgverlener">
+            <xsl:variable name="identifier" select="nf:ada-zvl-id($zorgverlener/zorgverlener_identificatienummer)"/>
+            <xsl:for-each-group select="$zorgverlener[.//(@value | @code | @nullFlavor)]" group-by="
                 concat($identifier/@root,
                 $identifier/normalize-space(@value))">
                 <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
@@ -131,7 +133,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         
         <!-- General rule for all zib root concepts -->
-        <xsl:for-each-group select="$in//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')][not(local-name() = ('patient', 'zorgverlener'))]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="$in[not(local-name() = ('patient', 'zorgverlener'))]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
     </xsl:template>
