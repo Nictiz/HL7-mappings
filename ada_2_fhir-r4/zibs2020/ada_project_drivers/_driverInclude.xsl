@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../payload/0.0/all_zibs.xsl"/>
+    <xsl:import href="../payload/zib_latest_package.xsl"/>
 
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
 
