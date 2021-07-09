@@ -38,13 +38,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:ul>
         </xd:desc>
     </xd:doc>
-    <xsl:template match="/bundle">
-        <xsl:for-each select="$bundle[local-name() = 'patient']">
+    <xsl:template match="/">
+        <xsl:for-each select="$bundle/patient">
             <xsl:call-template name="nl-core-Patient">
-                <xsl:with-param name="nationality" select="$bundle[local-name() = 'nationaliteit_rc']"/>
-                <xsl:with-param name="maritalStatus" select="$bundle[local-name() = 'burgerlijke_staat_rc']"/>
-                <xsl:with-param name="languageProficiency" select="$bundle[local-name() = 'taalvaardigheid']"/>
-                <xsl:with-param name="contactPersons" select="$bundle[local-name() = 'contactpersoon']"/>
+                <xsl:with-param name="nationality" select="$bundle/nationaliteit_rc"/>
+                <xsl:with-param name="maritalStatus" select="$bundle/burgerlijke_staat_rc"/>
+                <xsl:with-param name="languageProficiency" select="$bundle/taalvaardigheid"/>
+                <xsl:with-param name="contactPersons" select="$bundle/contactpersoon"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
