@@ -432,7 +432,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ada element may have any name but should have datatype aantal (count)</xd:param>
     </xd:doc>
     <xsl:template name="hoeveelheid-to-Quantity" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:choose>
             <xsl:when test="$in[not(@value) or @nullFlavor]">
                 <extension url="{$urlExtHL7NullFlavor}">
