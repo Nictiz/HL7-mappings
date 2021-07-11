@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../2_hl7_mp_include.xsl"/>
     <xsl:import href="../../zib2020bbr/payload/hl7-Contactpersoon-20210701.xsl"/>
     <xsl:import href="../../zib2020bbr/payload/hl7-Zorgverlener-20210701.xsl"/>
+    <xsl:import href="../../zib2020bbr/payload/hl7-Lichaamsgewicht-20210701.xsl"/>
     <!-- this import leads to multiple imports for util xsl's -->
     <xsl:import href="../../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>
 
@@ -1097,7 +1098,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557" match="medicatie_toediening_reden_van_afwijken" mode="HandleMtdRedenVanAfwijken92">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
-            <code code="TODO" displayName="Reden van afwijken" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <code code="153631000146105" displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>

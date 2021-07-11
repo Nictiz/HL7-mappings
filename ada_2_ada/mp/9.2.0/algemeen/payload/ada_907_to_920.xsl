@@ -8,7 +8,7 @@
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml instance -->
+    <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml instance, het pad is relatief aan de xslt AddConceptIds.xsl die in ada2ada/ada staat -->
     <xsl:param name="schemaFileString" as="xs:string?">../mp/9.2.0/medicatiegegevens_met_references/ada_schemas/sturen_medicatiegegevens.xsd</xsl:param>
     <!-- the macAddress for uuid generation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
@@ -86,6 +86,12 @@
                     <xsl:attribute name="transactionRef">2.16.840.1.113883.2.4.3.11.60.20.77.4.172</xsl:attribute>
                     <xsl:attribute name="transactionEffectiveDate">2021-04-02T09:33:39</xsl:attribute>
                 </xsl:when>
+                <!-- sturen_medicatievoorschrift -->
+                <xsl:when test="@transactionRef = 'TODO'">
+                    <xsl:attribute name="transactionRef">2.16.840.1.113883.2.4.3.11.60.20.77.4.271</xsl:attribute>
+                    <xsl:attribute name="transactionEffectiveDate">2021-05-05T10:25:34</xsl:attribute>
+                </xsl:when>
+                
             </xsl:choose>
             <xsl:apply-templates select="patient | medicamenteuze_behandeling"/>
 
@@ -189,9 +195,9 @@
 
 
     <xd:doc>
-        <xd:desc> handling for medicatieafspraak, mostly different order in elements. </xd:desc>
+        <xd:desc> handling for medicatieafspraak, , only for non-reference transactions, so with proper 907 conceptId. mostly different order in elements. </xd:desc>
     </xd:doc>
-    <xsl:template match="medicatieafspraak">
+    <xsl:template match="medicatieafspraak[not(@conceptId) or @conceptId = '2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798']">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="identificatie | afspraakdatum"/>
