@@ -1481,7 +1481,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
 
             <!-- cyclisch schema, doseerinstructie zonder toedieningsschema -->
-             <xsl:if test="../../herhaalperiode_cyclisch_schema[.//(@value | @code)] and not(./toedieningsschema[.//(@value | @code)])">
+            <xsl:if test="../../herhaalperiode_cyclisch_schema[.//(@value | @code)] and not(./toedieningsschema[.//(@value | @code)])">
                 <!-- pauze periode -->
                 <xsl:for-each select="../doseerduur[.//(@value | @code)]">
                     <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
@@ -1546,34 +1546,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </precondition>
             </xsl:for-each>
         </substanceAdministration>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Handle Contactpersoon as relatedEntity</xd:desc>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9311_20191210094346" match="contactpersoon" mode="handleContactPersRelEnt">
-        <xsl:attribute name="classCode">AGNT</xsl:attribute>
-
-        <xsl:choose>
-            <xsl:when test="rol[@code]">
-                <xsl:for-each select="rol[@code]">
-                    <xsl:call-template name="makeCode"/>
-                </xsl:for-each>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- default to mantelzorg -->
-                <code code="100001" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1" displayName="mantelzorger" codeSystemName="ExtraRolcodes"/>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:for-each select="naamgegevens[.//(@value | @code | @nullFlavor)]">
-            <relatedPerson classCode="PSN" determinerCode="INSTANCE">
-                <name>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
-                        <xsl:with-param name="naamgegevens" select="."/>
-                    </xsl:call-template>
-                </name>
-            </relatedPerson>
-        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
@@ -1676,36 +1648,69 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9247_20181205102329">
         <xsl:param name="ada-auteur" as="element()*" select="."/>
-        <xsl:param name="authorTime"/>
+        <xsl:param name="authorTime" as="element()*"/>
 
-        <xsl:for-each select="$ada-auteur">
+        <xsl:choose>
+            <xsl:when test="$ada-auteur[.//(@value|@code|@nullFlavor)]">
+                <xsl:for-each select="$ada-auteur">
+                    <author>
+                        <!-- Voorstel- of Registratiedatum -->
+                        <xsl:choose>
+                            <xsl:when test="$authorTime">
+                                <xsl:for-each select="$authorTime">
+                                    <time>
+                                        <xsl:call-template name="makeTSValueAttr"/>
+                                    </time>
+                                </xsl:for-each>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- time is required -->
+                                <time nullFlavor="NI"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
 
-            <author>
-                <!-- Voorstel- of Registratiedatum -->
-                <xsl:for-each select="$authorTime">
-                    <time>
-                        <xsl:call-template name="makeTSValueAttr"/>
-                    </time>
+                        <!-- auteur -->
+                        <xsl:for-each select="auteur_is_zorgaanbieder/zorgaanbieder[*//(@value | @code)] | ../../../bouwstenen/zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value]">
+                            <assignedAuthor>
+                                <id nullFlavor="NI"/>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000"/>
+                            </assignedAuthor>
+                        </xsl:for-each>
+                        <xsl:for-each select="auteur_is_zorgverlener/zorgverlener[*//(@value | @code)] | ../../../bouwstenen/zorgverlener[@id = current()/auteur_is_zorgverlener/zorgverlener/@value]">
+                            <assignedAuthor>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20181205174044"/>
+                            </assignedAuthor>
+                        </xsl:for-each>
+                        <xsl:if test="auteur_is_patient/@value = 'true'">
+                            <assignedAuthor>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000"/>
+                            </assignedAuthor>
+                        </xsl:if>
+                    </author>
                 </xsl:for-each>
-                <!-- auteur -->
-                <xsl:for-each select="auteur_is_zorgaanbieder/zorgaanbieder[*//(@value | @code)] | ../../../bouwstenen/zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value]">
+            </xsl:when>
+            <xsl:otherwise>
+                <author>
+                    <!-- Voorstel- of Registratiedatum -->
+                    <xsl:choose>
+                        <xsl:when test="$authorTime">
+                            <xsl:for-each select="$authorTime">
+                                <time>
+                                    <xsl:call-template name="makeTSValueAttr"/>
+                                </time>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- time is required -->
+                            <time nullFlavor="NI"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <assignedAuthor>
                         <id nullFlavor="NI"/>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000"/>
                     </assignedAuthor>
-                </xsl:for-each>
-                <xsl:for-each select="auteur_is_zorgverlener/zorgverlener[*//(@value | @code)] | ../../../bouwstenen/zorgverlener[@id = current()/auteur_is_zorgverlener/zorgverlener/@value]">
-                    <assignedAuthor>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20181205174044"/>
-                    </assignedAuthor>
-                </xsl:for-each>
-                <xsl:if test="auteur_is_patient/@value = 'true'">
-                    <assignedAuthor>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000"/>
-                    </assignedAuthor>
-                </xsl:if>
-            </author>
-        </xsl:for-each>
+                </author>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xd:doc>
@@ -2599,6 +2604,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="Gstd_value" select="aantal/@value"/>
         </xsl:call-template>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>MP MA Voorschrijver</xd:desc>
     </xd:doc>
@@ -2701,7 +2707,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!--Patient-->
                     <xsl:if test="auteur_is_patient">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9188_20170825000000"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
+                            <xsl:with-param name="ada_patient_identificatienummer" select="ancestor::adaxml/data/*/patient/(patient_identificatienummer | identificatienummer)"/>
+                        </xsl:call-template>
                     </xsl:if>
                 </assignedAuthor>
             </author>
@@ -2901,9 +2909,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc> MP CDA author of informant patient </xd:desc>
+        <xd:param name="in">ada element for patient identification, defaults to first patient found in // context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9188_20170825000000">
-        <xsl:for-each select="//patient/(patient_identificatienummer | identificatienummer)">
+        <xsl:param name="in" select="//(patient[patient_identificatienummer | identificatienummer])[1]/(patient_identificatienummer | identificatienummer)"/>
+        
+        <xsl:for-each select="$in">
             <xsl:call-template name="makeIIid"/>
         </xsl:for-each>
         <code code="ONESELF" displayName="Self" codeSystem="{$oidHL7RoleCode}" codeSystemName="HL7 Role code"/>

@@ -157,7 +157,7 @@
         <xd:desc>Converts unit from G-Standaard to UCUM</xd:desc>
         <xd:param name="GstdBasiseenheid_code"/>
     </xd:doc>
-    <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string">
+    <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string*">
         <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
 
         <xsl:choose>
