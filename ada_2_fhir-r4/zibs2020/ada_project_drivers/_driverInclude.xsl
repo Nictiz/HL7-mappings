@@ -70,11 +70,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
+    <xsl:param name="input" select="/"/>
     <xd:doc>
         <xd:desc>Override the id generation with the file name of the ADA instance</xd:desc>
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
-        <xsl:value-of select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
+        <xsl:value-of select="replace(tokenize(base-uri($input), '/')[last()], '.xml', '')"/>
     </xsl:template>
 
 </xsl:stylesheet>
