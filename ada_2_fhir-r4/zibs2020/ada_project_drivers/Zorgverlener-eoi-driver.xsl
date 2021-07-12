@@ -20,12 +20,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../payload/0.0/all_zibs.xsl"/>
+    <xsl:import href="_driverInclude.xsl"/>
+    
     <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
     <xsl:param name="outputDir" select="'.'" as="xs:string"/>
-    
-    <xsl:param name="populateId" select="true()" as="xs:boolean"/>
-    <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
     
     <xd:doc>
         <xd:desc>Process ADA instances to create resources that conform to the nl-core-HealthProfessional-Practitioner profile and include the reference resources inside a Bundle as output:

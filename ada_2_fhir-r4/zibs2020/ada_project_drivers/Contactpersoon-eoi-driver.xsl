@@ -24,43 +24,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../payload/0.0/all_zibs.xsl"/>
+    <xsl:import href="_driverInclude.xsl"/>
     <xsl:param name="outputDir" select="'.'" as="xs:string"/>
-    
-    <xsl:param name="populateId" select="true()" as="xs:boolean"/>
-    <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
-    
-    <xsl:param name="fhirMetadata" as="element()*">
-        <xsl:variable name="bundle">
-            <xsl:for-each select="/bundle/source[@href]">
-                <xsl:copy-of select="document(@href)"/>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select="$bundle"/>
-        </xsl:call-template>
-    </xsl:param>
     
     <xd:doc>
         <xd:desc>
             Process ADA instances to create resources that conform to the nl-core-HealthcareProvider profile.
         </xd:desc>
     </xd:doc>
-    <xsl:template match="//bundle">
-        <xsl:variable name="bundle">
-            <xsl:for-each select="source[@href]">
-                <xsl:copy-of select="document(@href)"/>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:for-each select="$bundle//contactpersoon">
+    <xsl:template match="/">
+        <xsl:for-each select="$bundle/contactpersoon">
             <xsl:variable name="logicalId">
                 <xsl:call-template name="getLogicalIdFromFhirMetadata">
                     <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                 </xsl:call-template>
             </xsl:variable>
+            
             <xsl:result-document href="{$outputDir}/{$logicalId}.xml">
                 <xsl:call-template name="nl-core-ContactPerson">
-                    <xsl:with-param name="patient" as="element()" select="$bundle//patient"/>
+                    <xsl:with-param name="patient" as="element()" select="$bundle/patient"/>
                 </xsl:call-template>
             </xsl:result-document>
         </xsl:for-each>

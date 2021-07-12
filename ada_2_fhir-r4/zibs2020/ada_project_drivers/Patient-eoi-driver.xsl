@@ -24,22 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../payload/0.0/all_zibs.xsl"/>
+    <xsl:import href="_driverInclude.xsl"/>
     <xsl:param name="outputDir" select="'.'" as="xs:string"/>
-    
-    <xsl:param name="populateId" select="true()" as="xs:boolean"/>
-    <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
-    
-    <xsl:param name="fhirMetadata" as="element()*">
-        <xsl:variable name="bundle">
-            <xsl:for-each select="/bundle/source[@href]">
-                <xsl:copy-of select="document(@href)"/>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select="$bundle"/>
-        </xsl:call-template>
-    </xsl:param>
     
     <xd:doc>
         <xd:desc>
@@ -53,22 +39,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:ul>
         </xd:desc>
     </xd:doc>
-    <xsl:template match="//bundle">
-        <xsl:variable name="bundle">
-            <xsl:for-each select="source[@href]">
-                <xsl:copy-of select="document(@href)"/>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:for-each select="$bundle//patient">
+    <xsl:template match="/">
+        <xsl:for-each select="$bundle/patient">
             <xsl:variable name="logicalId">
                 <xsl:call-template name="getLogicalIdFromFhirMetadata"/>
             </xsl:variable>
             <xsl:result-document href="{$outputDir}/{$logicalId}.xml">
                 <xsl:call-template name="nl-core-Patient">
-                    <xsl:with-param name="nationality" select="$bundle//nationaliteit_rc"/>
-                    <xsl:with-param name="maritalStatus" select="$bundle//burgerlijke_staat_rc"/>
-                    <xsl:with-param name="languageProficiency" select="$bundle//taalvaardigheid"/>
-                    <xsl:with-param name="contactPersons" select="$bundle//contactpersoon"/>
+                    <xsl:with-param name="nationality" select="$bundle/nationaliteit_rc"/>
+                    <xsl:with-param name="maritalStatus" select="$bundle/burgerlijke_staat_rc"/>
+                    <xsl:with-param name="languageProficiency" select="$bundle/taalvaardigheid"/>
+                    <xsl:with-param name="contactPersons" select="$bundle/contactpersoon"/>
                 </xsl:call-template>
             </xsl:result-document>
         </xsl:for-each>
