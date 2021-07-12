@@ -27,10 +27,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="_driverInclude.xsl"/>
     
     <xsl:template match="/bundle">
-        <xsl:apply-templates mode="_doTransform" select="$bundle[local-name() = 'contactpersoon']"/>
+        <xsl:apply-templates mode="_doTransform" select="$bundle/contactpersoon"/>
     </xsl:template>
     
     <xsl:template match="//contactpersoon_registratie/contactpersoon">
+        <xsl:copy-of select="$fhirMetadata"></xsl:copy-of>
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     

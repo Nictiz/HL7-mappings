@@ -41,13 +41,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <!-- Generate metadata for all ADA instances -->
     <xsl:param name="fhirMetadata" as="element()*">
-        <xsl:variable name="in" as="element()">
-            <bundle xmlns="">
-                <xsl:copy-of select="collection('../ada_instance/')//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
-            </bundle>
-        </xsl:variable>
         <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select="$in"/>
+            <xsl:with-param name="in" select="collection('../ada_instance/')//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
         </xsl:call-template>
     </xsl:param>
     
@@ -64,18 +59,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$referencedPatient">
                 <xsl:copy-of select="$referencedPatient"/>
             </xsl:when>
-            <xsl:when test="$bundle/patient">
-                <xsl:copy-of select="$bundle/patient[1]"/>
+            <xsl:when test="$bundle[self::patient]">
+                <xsl:copy-of select="$bundle[self::patient][1]"/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
     
-    <xsl:param name="input" select="/"/>
     <xd:doc>
         <xd:desc>Override the id generation with the file name of the ADA instance</xd:desc>
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
-        <xsl:value-of select="replace(tokenize(base-uri($input), '/')[last()], '.xml', '')"/>
+        <xsl:value-of select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
     </xsl:template>
 
 </xsl:stylesheet>
