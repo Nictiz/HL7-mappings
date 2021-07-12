@@ -1,0 +1,215 @@
+<!--ada full xml for subscenario nr: 1-3--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2020-04-02T14:27:19.692+02:00"
+         last-update-date="2020-08-25T15:48:04.409+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp920"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172"
+                                            transactionEffectiveDate="2021-04-02T09:33:39"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="MP KWALIFICATIE Medicatiegegevens MGB Scenarioset 1"
+                                            desc="Medicatiegebruik gebruiksperiode ingangsdatum (chronische medicatie)"
+                                            id="mg-mgr-mg-MGB-Scenarioset1-1-3">
+         <scenario-nr value="1.3" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
+         <systeemrol value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"
+                     conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"/>
+         <!--Patient found in instance with id: mg-Scenarioset1 and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 1-->
+         <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
+            <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
+               <initialen value="A. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+               <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
+                  <voorvoegsels value="van de " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.8"/>
+                  <achternaam value="XXX_Boschman"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999912100"
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
+            <geboortedatum value="1964-01-08"
+                           datatype="datetime"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
+            <geslacht value="2"
+                      code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_chronisch-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_920_chronisch-BSC"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatiegebruik comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.362">
+               <identificatie value="MBH_920_chronisch_MGB-BSC"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
+               <medicatiegebruik_datum_tijd value="T-20D{11:43:12}"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.400"/>
+               <gebruik_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.406"/>
+               <volgens_afspraak_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.405"/>
+               <gebruiksproduct conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.365">
+                  <farmaceutisch_product datatype="reference"
+                                         value="uuid_413bf742-de5c-11eb-5018-020000000000"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.366"/>
+               </gebruiksproduct>
+               <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
+                  <omschrijving value="Vanaf &lt;T-30D{00:00:00}&gt;, 1 maal per dag 1 stuk, oraal"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.371"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.372">
+                     <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.375">
+                        <keerdosis comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.384">
+                           <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.566">
+                              <nominale_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.387"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.567"/>
+                        </keerdosis>
+                        <toedieningsschema comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.391">
+                           <frequentie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.392">
+                              <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.569">
+                                 <nominale_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.395"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.570"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.413">
+                  <identificatie value="MBH_920_chronisch_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.414"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.363">
+                  <zorgverlener datatype="reference"
+                                value="uuid_413bf757-de5c-11eb-5018-020000000000"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
+               </voorschrijver>
+               <informant comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.593">
+                  <informant_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.620"/>
+               </informant>
+               <auteur comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
+                  <auteur_is_patient value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.626"/>
+                  <auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627">
+                     <zorgverlener datatype="reference"
+                                   value="uuid_413bf768-de5c-11eb-5018-020000000000"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.628"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
+            <farmaceutisch_product id="uuid_413bf742-de5c-11eb-5018-020000000000"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="3891"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="APACOF 250/250/50MG TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="61433"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="202185"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="ROTER APC TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <zorgverlener id="uuid_413bf757-de5c-11eb-5018-020000000000"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"
+                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+               <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
+                  <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
+                  <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
+                     <voorvoegsels value="vab" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
+                     <achternaam value="Pulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme value="2"
+                            code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+                  <zorgaanbieder datatype="reference"
+                                 value="uuid_413bf760-de5c-11eb-5018-020000000000"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="uuid_413bf768-de5c-11eb-5018-020000000000"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"
+                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+               <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
+                  <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
+                  <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
+                     <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
+                     <achternaam value="Pulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme value="2"
+                            code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+                  <zorgaanbieder datatype="reference"
+                                 value="uuid_413bf772-de5c-11eb-5018-020000000000"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="uuid_413bf760-de5c-11eb-5018-020000000000"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="uuid_413bf772-de5c-11eb-5018-020000000000"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

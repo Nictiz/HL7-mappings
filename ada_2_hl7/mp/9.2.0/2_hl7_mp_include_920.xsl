@@ -14,9 +14,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../2_hl7_mp_include.xsl"/>
+    <xsl:import href="../../zib2020bbr/payload/hl7-patient-20210701.xsl"/>
     <xsl:import href="../../zib2020bbr/payload/hl7-Contactpersoon-20210701.xsl"/>
     <xsl:import href="../../zib2020bbr/payload/hl7-Zorgverlener-20210701.xsl"/>
     <xsl:import href="../../zib2020bbr/payload/hl7-Lichaamsgewicht-20210701.xsl"/>
+
     <!-- this import leads to multiple imports for util xsl's -->
     <xsl:import href="../../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>
 
@@ -1346,6 +1348,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <consumable xsi:nil="true"/>
         </substanceAdministration>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Reden voor wijzigen/stoppen medicatiegebruik vanaf MP9 2.0.0</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9385_20210628143123">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9385"/>
+            <code code="7" displayName="Reden stoppen/wijzigen medicatiegebruik" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties"/>
+            <value xsi:type="CE">
+                <xsl:call-template name="makeCodeAttribs"/>
+              </value>
+        </observation>
+    </xsl:template>
+    
+    
 
     <xd:doc>
         <xd:desc>MP Medicatiegebruik identificatie</xd:desc>
@@ -1442,6 +1459,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </substanceAdministration>
 
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>MP CDA author medicatieoverzicht - vanaf versie 9 2.0 </xd:desc>
+        <xd:param name="auteur"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9389_20210701000000" match="auteur" mode="HandleDocGegAuteur920">
+        <xsl:param name="auteur" select="."/>
+        <xsl:for-each select="$auteur">
+            <author>
+                <xsl:choose>
+                    <!-- use the document date if available -->
+                    <xsl:when test="../document_datum[@value | @nullFlavor]">
+                        <xsl:for-each select="../document_datum[@value | @nullFlavor]">
+                            <xsl:call-template name="makeTSValue">
+                                <xsl:with-param name="elemName">time</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <time nullFlavor="NI"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <assignedAuthor>
+                    <xsl:for-each select="auteur_is_zorgaanbieder/zorgaanbieder">
+                        <!--identificatie-->
+                        <id nullFlavor="NI"/>
+                        <!--Zorgaanbieder-->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
+                    </xsl:for-each>
+                    <!--Patient-->
+                    <xsl:if test="auteur_is_patient">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
+                            <xsl:with-param name="ada_patient_identificatienummer" select="ancestor::adaxml/data/*/patient/(patient_identificatienummer | identificatienummer)"/>
+                        </xsl:call-template>
+                    </xsl:if>
+                </assignedAuthor>
+            </author>
+        </xsl:for-each>
+    </xsl:template>
+
 
 
     <xd:doc>
@@ -1971,7 +2028,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Reden wijzigen/stoppen gebruik -->
             <xsl:for-each select="reden_wijzigen_of_stoppen_gebruik[.//(@value | @code)]">
                 <entryRelationship typeCode="RSON">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9271_20181218112127"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9385_20210628143123"/>
                 </entryRelationship>
             </xsl:for-each>
 
@@ -2318,6 +2375,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
             </xsl:for-each>
 
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Toedieningsafspraak vanaf 9.2.0 - kopie</xd:desc>
+        <xd:param name="in">ada Toedieningsafspraak</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9327_20201015133041" match="toedieningsafspraak" mode="HandleTAKopie920">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9327"/>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9326_20201015132826">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </substanceAdministration>
+        </xsl:for-each>
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Medicatiegebruik - vanaf MP 9 2.0 - Kopie </xd:desc>
+        <xd:param name="in">ada element voor medicatiegebruik</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9331_20201015134756" match="medicatie_gebruik | medicatiegebruik" mode="HandleMGBKopie920">
+        <xsl:param name="in" select="."/>
+
+        <xsl:for-each select="$in">
+            <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9331"/>
+                <!-- inhoud medicatiegebruik -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9321_20201015130824">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </substanceAdministration>
         </xsl:for-each>
     </xsl:template>
 
