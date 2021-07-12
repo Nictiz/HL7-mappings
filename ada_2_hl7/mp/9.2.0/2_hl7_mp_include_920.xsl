@@ -2154,7 +2154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:for-each select="$in">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9277"/>
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9325"/>
                 <!-- inhoud medicatieafspraak -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
                     <xsl:with-param name="in" select="."/>

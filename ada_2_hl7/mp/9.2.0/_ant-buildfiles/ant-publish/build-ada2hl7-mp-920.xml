@@ -95,11 +95,13 @@
         
         
         <!-- at the moment only schemas for medicatievoorschrift-->
-        <antcall target="setup_sub_schemas">
+        <antcall target="setup_sub">
             <param name="usecase" value="${usecase.mv}"/>
-            <param name="schema.string" value="*${usecase.mv}.xsd"/>
-        </antcall>
-        
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="mv-mvr*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>        
+         
         <!-- let's convert to hl7 too while we're at it -->
         <!-- generic stuff for all mp versions -->
         <antcall target="convert_ada_2_hl7_920"/>       
@@ -164,6 +166,15 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
+        
+        <!-- convert sturen_medicatievoorschrift -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.name" value="../${usecase.mv}/payload/${usecase.mv}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
+        </antcall>
+        
     </target>
 
 </project>
