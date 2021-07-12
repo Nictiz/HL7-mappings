@@ -27,7 +27,7 @@
     <xd:doc>
         <xd:desc>Add a temp reference id for the groups that will be moved to bouwstenen group</xd:desc>
     </xd:doc>
-    <xsl:template match="product | zorgverlener[not(zorgverlener)] | zorgaanbieder[not(zorgaanbieder)] | contactpersoon | informant/persoon" mode="addReferenceId">
+    <xsl:template match="product | zorgverlener[not(zorgverlener)] | zorgaanbieder[not(zorgaanbieder)][not(ancestor::documentgegevens)] | contactpersoon | informant/persoon" mode="addReferenceId">
         <xsl:copy>
             <xsl:attribute name="referenceId">
                 <!-- in ada the id must start with alphanumeric, a uuid may start with digit, so we add a dummy string 'uuid_' to avoid schema errors in ada instances -->
@@ -36,7 +36,6 @@
             <xsl:apply-templates select="@* | node()" mode="addReferenceId"/>
         </xsl:copy>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc>Copy template in addReferenceId mode. Adds temporary id's for ada group elements that are now in bouwstenen group in 9 2.0 version</xd:desc>
@@ -90,6 +89,11 @@
                 <xsl:when test="@transactionRef = 'TODO'">
                     <xsl:attribute name="transactionRef">2.16.840.1.113883.2.4.3.11.60.20.77.4.271</xsl:attribute>
                     <xsl:attribute name="transactionEffectiveDate">2021-05-05T10:25:34</xsl:attribute>
+                </xsl:when>
+                <!-- beschikbaarstellen_medicatieoverzicht -->
+                <xsl:when test="@transactionRef = '2.16.840.1.113883.2.4.3.11.60.20.77.4.148'">
+                    <xsl:attribute name="transactionRef">2.16.840.1.113883.2.4.3.11.60.20.77.4.191</xsl:attribute>
+                    <xsl:attribute name="transactionEffectiveDate">2021-04-14T15:39:26</xsl:attribute>
                 </xsl:when>
                 
             </xsl:choose>
@@ -165,7 +169,7 @@
                     </zorgaanbieder>
                 </xsl:for-each>
 
-                <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)]">
+                <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)][not(ancestor::documentgegevens)]">
                     <xsl:copy>
                         <xsl:attribute name="id" select="@referenceId"/>
                         <!-- zorgaanbieder_identificatienummer 1..* R, but we may not have it -->
@@ -190,6 +194,8 @@
                     </xsl:copy>
                 </xsl:for-each>
             </bouwstenen>
+            <xsl:apply-templates select="documentgegevens | voorstelgegevens"/>
+
         </xsl:copy>
     </xsl:template>
 
@@ -283,6 +289,32 @@
         <xd:desc> do not copy the original gebruiksperiode stuff, they are handled ín the mp building block </xd:desc>
     </xd:doc>
     <xsl:template match="gebruiksperiode_start | gebruiksperiode_eind | gebruiksperiode"/>
+
+    <xd:doc>
+        <xd:desc>datatype has been updated from dateTime to time</xd:desc>
+    </xd:doc>
+    <xsl:template match="toedientijd">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="datatype">time</xsl:attribute>
+            <xsl:attribute name="value">
+                <xsl:choose>
+                    <xsl:when test="@value castable as xs:dateTime">
+                        <xsl:value-of select="substring-after(@value, 'T')"/>
+                    </xsl:when>
+                    <xsl:when test="@value castable as xs:time">
+                        <xsl:value-of select="@value"/>
+                    </xsl:when>
+                    <xsl:when test="starts-with(@value, 'T')">
+                        <xsl:value-of select="replace(@value, '.+\{(.+)\}', '$1')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="@value"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>handling for verstrekkingsverzoek/verbruiksperiode, different concept naming from zibs 2020</xd:desc>
@@ -458,10 +490,31 @@
         <xsl:apply-templates select="node()"/>
     </xsl:template>
 
+
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>this is not a reference thing in the dataset, so override the default template that assumes it is</xd:desc>
     </xd:doc>
-    <xsl:template match="(verstrekkingsverzoek/beoogd_verstrekker | toedieningsafspraak/verstrekker | verstrekking/verstrekker | zorgverlener/zorgaanbieder)[zorgaanbieder] | auteur_is_zorgaanbieder">
+    <xsl:template match="documentgegevens/auteur/auteur_is_zorgaanbieder">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()"/>
+        </xsl:copy>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>this is not a reference thing in the dataset, so override the default template that assumes it is</xd:desc>
+    </xd:doc>
+    <xsl:template match="documentgegevens/auteur/auteur_is_zorgaanbieder/zorgaanbieder[not(zorgaanbieder_identificatienummer/(@value | @nullFlavor))]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <zorgaanbieder_identificatienummer nullFlavor="NI"/>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>this is a reference thing in the dtaset</xd:desc>
+    </xd:doc>
+    <xsl:template match="(verstrekkingsverzoek/beoogd_verstrekker | toedieningsafspraak/verstrekker | verstrekking/verstrekker | zorgverlener/zorgaanbieder)[zorgaanbieder] | auteur_is_zorgaanbieder[not(ancestor::documentgegevens)]">
         <xsl:copy>
             <zorgaanbieder datatype="reference" value="{zorgaanbieder/@referenceId}"/>
         </xsl:copy>
