@@ -41,8 +41,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <!-- Generate metadata for all ADA instances -->
     <xsl:param name="fhirMetadata" as="element()*">
+        <xsl:variable name="in" as="element()">
+            <bundle xmlns="">
+                <xsl:copy-of select="collection('../ada_instance/')/adaxml/data//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
+            </bundle>
+        </xsl:variable>
         <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select="collection('../ada_instance/')/adaxml/data//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
+            <xsl:with-param name="in" select="$in"/>
         </xsl:call-template>
     </xsl:param>
     
