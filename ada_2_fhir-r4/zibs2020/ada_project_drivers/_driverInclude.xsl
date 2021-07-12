@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:variable name="in" as="element()">
             <bundle xmlns="">
-                <xsl:copy-of select="collection('../ada_instance/')/adaxml/data//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
+                <xsl:copy-of select="collection('../ada_instance/')//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
             </bundle>
         </xsl:variable>
         <xsl:call-template name="buildFhirMetadata">
