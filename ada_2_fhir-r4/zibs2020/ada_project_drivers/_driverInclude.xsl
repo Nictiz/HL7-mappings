@@ -31,11 +31,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- When the input is specified as a bundle, collect all input into the $bundle parameter -->
     <xsl:param name="bundle" as="element()*">
         <xsl:for-each select="/bundle">
-            <bundle xmlns="">
+            <xsl:copy>
                 <xsl:for-each select="source[@href]">
                     <xsl:copy-of select="document(@href)//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
                 </xsl:for-each>
-            </bundle>
+            </xsl:copy>
         </xsl:for-each>
     </xsl:param>
     
@@ -59,8 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$referencedPatient">
                 <xsl:copy-of select="$referencedPatient"/>
             </xsl:when>
-            <xsl:when test="$bundle[local-name() = 'patient']">
-                <xsl:copy-of select="$bundle[local-name() = 'patient'][1]"/>
+            <xsl:when test="$bundle/patient">
+                <xsl:copy-of select="$bundle/patient[1]"/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>

@@ -108,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         
         <!-- if-statement to allow for local variables -->
-        <xsl:variable name="patient" select="$in//patient[not(patient)][not(@datatype = 'reference')]"/>
+        <xsl:variable name="patient" select="$in/patient"/>
         <xsl:if test="$patient">
             <xsl:variable name="identifier" select="($patient/identificatienummer[@root = $oidBurgerservicenummer],$patient/identificatienummer[not(@root = $oidBurgerservicenummer)])[1]"/>
             <!-- How necessary is it to add [not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] behind every group? -->
@@ -120,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:if>
 
-        <xsl:variable name="zorgverlener" select="$in//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')]"/>
+        <xsl:variable name="zorgverlener" select="$in/zorgverlener"/>
         <xsl:if test="$zorgverlener">
             <xsl:variable name="identifier" select="nf:ada-zvl-id($zorgverlener/zorgverlener_identificatienummer)"/>
             <xsl:for-each-group select="$zorgverlener[.//(@value | @code | @nullFlavor)]" group-by="
@@ -133,7 +133,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         
         <!-- General rule for all zib root concepts -->
-        <xsl:for-each-group select="$in//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')][not(self::patient or self::zorgverlener)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="$in/*[not(self::patient or self::zorgverlener)]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
     </xsl:template>
