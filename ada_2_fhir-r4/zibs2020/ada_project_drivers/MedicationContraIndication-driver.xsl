@@ -38,9 +38,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:ul>
         </xd:desc>
     </xd:doc>
-    <xsl:template match="/bundle">
+    <xsl:template match="/nm:bundle">
         <xsl:variable name="inputBundle">
-            <xsl:for-each select="source[@href]">
+            <xsl:for-each select="nm:source[@href]">
                 <xsl:copy-of select="document(@href)"/>
             </xsl:for-each>
         </xsl:variable>

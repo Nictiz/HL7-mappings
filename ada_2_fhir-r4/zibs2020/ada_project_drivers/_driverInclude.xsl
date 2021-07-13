@@ -30,9 +30,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- When the input is specified as a bundle, collect all input into the $bundle parameter -->
     <xsl:param name="bundle" as="element()*">
-        <xsl:for-each select="/bundle">
+        <xsl:for-each select="/nm:bundle">
             <xsl:copy>
-                <xsl:for-each select="source[@href]">
+                <xsl:for-each select="nm:source[@href]">
                     <xsl:copy-of select="document(@href)//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
                 </xsl:for-each>
             </xsl:copy>
