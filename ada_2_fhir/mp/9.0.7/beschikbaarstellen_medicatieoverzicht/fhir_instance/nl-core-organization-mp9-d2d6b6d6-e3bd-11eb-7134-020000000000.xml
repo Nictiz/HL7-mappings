@@ -1,0 +1,60 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-mp9-d2d6b6d6-e3bd-11eb-7134-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. </caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Apotheek de Gulle Gaper</td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:+31703655424">+31703655424</a> (Tel)br<a href="mailto:info@apotheekgullegaper.com">info@apotheekgullegaper.com</a> (E-mail)br</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Straat 5, 1598FG Utrecht (WP)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <name value="Apotheek de Gulle Gaper"/>
+   <telecom>
+      <system value="phone"/>
+      <value value="+31703655424"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@apotheekgullegaper.com"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Straat 5">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Straat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="5"/>
+         </extension>
+      </line>
+      <city value="Utrecht"/>
+      <postalCode value="1598FG"/>
+   </address>
+</Organization>
