@@ -24,30 +24,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:strip-space elements="*"/>
-    
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
-    </xd:doc>
+    <xsl:import href="_driverInclude.xsl"/>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-[zib name] instance as a [resource name] FHIR instance from ADA [ADA instance name].</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:desc>
+            Process a bundle containing ADA instances for zibs that are mapped onto/into the nl-core-Patient profile:
+            <xd:ul>
+                <xd:li>zib Patient</xd:li>
+                <xd:li>zib Nationality</xd:li>
+                <xd:li>zib MaritalStatus</xd:li>
+                <xd:li>zib LanguageProfiency</xd:li>
+                <xd:li>zib ContactPerson</xd:li>
+            </xd:ul>
+        </xd:desc>
     </xd:doc>
-    <xsl:template name="nl-core-[zib name]" mode="nl-core-[zib name]" as="element(f:[resource name])">
-        <xsl:param name="in" as="element()?" select="."/>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateId">
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateDisplay">
+    <xsl:template match="/">
+        <xsl:for-each select="$bundle/patient">
+            <xsl:call-template name="nl-core-Patient">
+                <xsl:with-param name="nationality" select="$bundle/nationaliteit_rc"/>
+                <xsl:with-param name="maritalStatus" select="$bundle/burgerlijke_staat_rc"/>
+                <xsl:with-param name="languageProficiency" select="$bundle/taalvaardigheid"/>
+                <xsl:with-param name="contactPersons" select="$bundle/contactpersoon"/>
+            </xsl:call-template>
+        </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

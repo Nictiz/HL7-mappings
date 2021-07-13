@@ -12,13 +12,13 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-
 <xsl:stylesheet exclude-result-prefixes="#all"
     xmlns="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -28,26 +28,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ada naamgegevens to FHIR 'name' element conforming to profile nl-core-NameInformation</xd:desc>
     </xd:doc>
-    
+        
     <xd:doc>
-        <xd:desc>Create a nl-core-[zib name] instance as a [resource name] FHIR instance from ADA [ADA instance name].</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:desc>Produces FHIR Address datatypes with address elements.</xd:desc>
+        <xd:param name="in">Ada 'adresgegevens' element containing the zib data</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-[zib name]" mode="nl-core-[zib name]" as="element(f:[resource name])">
-        <xsl:param name="in" as="element()?" select="."/>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateId">
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateDisplay">
+    <xsl:template match="naamgegevens" mode="nl-core-NameInformation" name="nl-core-NameInformation" as="element(f:name)*">
+        <xsl:param name="in" select="." as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            
+            <name><xsl:comment>Processing zib-NameInformation is paused until https://github.com/Nictiz/Nictiz-R4-zib2020/issues/82 is resolved.</xsl:comment>
+                <text value="TODO"/>
+            </name>
+        </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
