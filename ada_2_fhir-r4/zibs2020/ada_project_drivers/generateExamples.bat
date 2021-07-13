@@ -24,10 +24,10 @@ for /f %%f in ('dir /b "%inputDir%"') do (
  if "!id:~0,8!" == "nl-core-" (
   if not exist "%inputDir%\!id!-bundled.xml" (
    echo Converting !id!
-   set baseId=!id:-bundled=!
-   set baseId=!baseId:~0, -3!
+   set noDriverId=!id:-bundled=!
+   set baseId=!noDriverId:~0, -3!
 
-   java -jar "%jarPath%" -s:"%inputDir%/!id!.xml" -xsl:!baseId!-driver.xsl -o:"%outputDir%/!id!.xml
+   java -jar "%jarPath%" -s:"%inputDir%/!id!.xml" -xsl:!baseId!-driver.xsl -o:"%outputDir%/!noDriverId!.xml
   )
  )
 )

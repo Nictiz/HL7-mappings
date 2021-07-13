@@ -17,6 +17,7 @@
             <sch:assert test="namespace::nm">Nictiz mappings namespace prefix declaration should be declared - xmlns:nm="http://www.nictiz.nl/mappings".</sch:assert>
             <sch:assert test="@exclude-result-prefixes = '#all'">@exclude-result-prefixes should be '#all'.</sch:assert>
             <sch:assert test="not(xsl:import[contains(@href, 'fhir/2_fhir_fhir_include.xsl')])">Import of 2_fhir_fhir_include for debugging should be done via Master Files - all-zibs.xsl.</sch:assert>
+            <sch:assert test="not(xsl:template[ends-with(@match, '_registratie')])">'_registratie' template should be removed from zib-xslt.</sch:assert>
             <sch:assert test="xsl:output[@method = 'xml' and @indent = 'yes']">xsl:output with @method = 'xml' and @indent = 'yes' should be present.</sch:assert>
             <sch:assert test="xsl:strip-space[@elements = '*']">2</sch:assert>
             <sch:assert test="xd:doc[@scope='stylesheet']">A documentation node with scope 'stylesheet' should be present.</sch:assert>
@@ -35,19 +36,12 @@
         </sch:rule>
     </sch:pattern>
     
-    <sch:pattern id="registratie-template">
-        <sch:rule context="xsl:template[ends-with(@match, '_registratie')]">
-            <sch:assert test="substring-before(@match, '_registratie') = xsl:apply-templates/@select">Registratie template should match correct ada element</sch:assert>
-            <sch:assert test="xsl:apply-templates/@mode = $id">Registratie template should apply template in correct mode.</sch:assert>
-        </sch:rule>
-    </sch:pattern>
-    
     <sch:pattern id="main-template">
         <sch:rule context="xsl:template[starts-with(@mode, $id)]">
             <sch:assert test="@match">@match should be present</sch:assert>
             <sch:assert test="starts-with(@mode, $id)">@mode should be present should start with '<sch:value-of select="$id"/>'</sch:assert>
             <sch:assert test="@mode = @name">@name should be present and have the same value as @mode</sch:assert>
-            <sch:assert test="matches(@as, '^element\(f:.+\)?$')">@as should be present and be filled with the FHIR resource element</sch:assert>
+            <sch:assert test="matches(@as, '^element\(f:.+\)[?]$')">@as should be present and be filled with the FHIR resource element: 'element(f:...)?'.</sch:assert>
             <sch:assert test="xsl:param[@name = 'in'][@as = 'element()?'][@select = '.']">Use the xsl:param @name = 'in', @select = '.', @as = 'element()?' construction in the main template.</sch:assert>
             <sch:assert test="xsl:for-each[@select = '$in']">Use the xsl:for-each '$in' construction in the main template.</sch:assert>
         </sch:rule>
@@ -67,19 +61,6 @@
             <sch:report test="f:*[not(local-name() = ('meta'))]" role="warn">FHIR elements that are added without any logic are dangerous. Please check</sch:report>
         </sch:rule>
     </sch:pattern>
-    
-    <!-- I guess the profile attributes are only required if there are multiple profiles to an ada element -->
-    <!--<sch:pattern id="display-template">
-        <sch:rule context="xsl:template[@mode = '_generateDisplay']">
-            <sch:assert test="xsl:param/@name = 'profile'">x</sch:assert>
-        </sch:rule>
-    </sch:pattern>-->
-    
-    <!--<sch:pattern id="id-template">
-        <sch:rule context="xsl:template[@mode = '_generateId']">
-            <sch:assert test="xsl:param/@name = 'profile'">xx</sch:assert>
-        </sch:rule>
-    </sch:pattern>-->
     
     <sch:pattern id="driver">
         <sch:rule context="xsl:stylesheet[ends-with($id, '-driver')]">
