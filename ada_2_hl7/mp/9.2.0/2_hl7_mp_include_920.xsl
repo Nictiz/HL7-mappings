@@ -2115,7 +2115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Medicatiegebruik - vanaf MP 9 2.0 </xd:desc>
         <xd:param name="in">ada element voor medicatiegebruik</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9322_20201015131242" match="medicatie_gebruik | medicatiegebruik" mode="HandleMGB910">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9322_20201015131242" match="medicatie_gebruik | medicatiegebruik" mode="HandleMGB920">
         <xsl:param name="in" select="."/>
 
         <xsl:for-each select="$in">

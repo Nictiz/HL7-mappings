@@ -99,7 +99,23 @@
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>        
+        </antcall>  
+        
+        <!-- sturen_afhandeling_medicatievoorschrift copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.av}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>    
+        
+        <!-- sturen_medicatiegebruik copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mgb}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>            
 
         <!-- medicatieoverzicht-->
         <antcall target="setup_sub">
@@ -182,6 +198,23 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
+        
+        <!-- convert sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.av}"/>
+            <param name="xsl.name" value="../${usecase.av}/payload/${usecase.av}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
+        </antcall>
+        
+        <!-- convert sturen_medicatiegebruik -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mgb}"/>
+            <param name="xsl.name" value="../${usecase.mgb}/payload/${usecase.mgb}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
+        </antcall>
+        
         
         <!-- convert beschikbaarstellen_medicatieoverzicht -->
         <antcall target="convert_ada_2_hl7_sub">
