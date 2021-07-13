@@ -203,7 +203,7 @@
     <xd:doc>
         <xd:desc> handling for medicatieafspraak, , only for non-reference transactions, so with proper 907 conceptId. mostly different order in elements. </xd:desc>
     </xd:doc>
-    <xsl:template match="medicatieafspraak[not(@conceptId) or @conceptId = '2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798']">
+    <xsl:template match="medicatieafspraak[not(@conceptId) or @conceptId = '2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580']">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="identificatie | afspraakdatum"/>
@@ -743,7 +743,7 @@
 
     <xd:doc>
         <xd:desc> helper template </xd:desc>
-        <xd:param name="in"/>
+        <xd:param name="in">The input bouwsteen</xd:param>
     </xd:doc>
     <xsl:template name="_handleGebruiksperiode">
         <xsl:param name="in" select="."/>
