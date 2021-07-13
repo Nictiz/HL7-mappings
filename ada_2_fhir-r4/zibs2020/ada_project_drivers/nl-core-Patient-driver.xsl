@@ -19,7 +19,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:nf="http://www.nictiz.nl/functions" 
-    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -27,25 +26,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
-    <xsl:template match="/nm:bundle">
-        <xsl:apply-templates mode="_doTransform" select="$bundle/contactpersoon"/>
-    </xsl:template>
-    
-    <xsl:template match="//contactpersoon_registratie/contactpersoon">
-        <xsl:copy-of select="$fhirMetadata"></xsl:copy-of>
-        <xsl:apply-templates mode="_doTransform" select="."/>
-    </xsl:template>
-    
-    <xsl:template mode="_doTransform" match="contactpersoon">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient">
-                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
+    <xd:doc>
+        <xd:desc>
+            Process a bundle containing ADA instances for zibs that are mapped onto/into the nl-core-Patient profile:
+            <xd:ul>
+                <xd:li>zib Patient</xd:li>
+                <xd:li>zib Nationality</xd:li>
+                <xd:li>zib MaritalStatus</xd:li>
+                <xd:li>zib LanguageProfiency</xd:li>
+                <xd:li>zib ContactPerson</xd:li>
+            </xd:ul>
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="/">
+        <xsl:for-each select="$bundle/patient">
+            <xsl:call-template name="nl-core-Patient">
+                <xsl:with-param name="nationality" select="$bundle/nationaliteit_rc"/>
+                <xsl:with-param name="maritalStatus" select="$bundle/burgerlijke_staat_rc"/>
+                <xsl:with-param name="languageProficiency" select="$bundle/taalvaardigheid"/>
+                <xsl:with-param name="contactPersons" select="$bundle/contactpersoon"/>
             </xsl:call-template>
-        </xsl:variable>
-        
-        <xsl:call-template name="nl-core-ContactPerson">
-            <xsl:with-param name="patient" select="$subject"/>
-        </xsl:call-template>
+        </xsl:for-each>
     </xsl:template>
-    
 </xsl:stylesheet>

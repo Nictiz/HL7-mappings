@@ -17,16 +17,20 @@ if exist "%outputDir%" (
     rmdir "%outputDir%" /s /q
 )
 
-echo Converting Contactpersoon-eoi
-java -jar "%jarPath%" -s:"%inputDir%/Contactpersoon-eoi-bundled.xml" -xsl:Contactpersoon-eoi-driver.xsl outputDir=%outputDir%
+SET id=nl-core-ContactPerson
+echo Converting %id%-01
+java -jar "%jarPath%" -s:"%inputDir%/%id%-01.xml" -xsl:%id%-driver.xsl -o:"%outputDir%/%id%-01.xml
 
-echo Converting Zorgaanbieder-eoi
-java -jar "%jarPath%" -s:"%inputDir%/Zorgaanbieder-eoi.xml" -xsl:Zorgaanbieder-eoi-driver.xsl outputDir=%outputDir%
+SET id2=nl-core-HealthcareProvider
+echo Converting %id2%-01
+java -jar "%jarPath%" -s:"%inputDir%/%id2%-01.xml" -xsl:%id2%-driver.xsl -o:"%outputDir%/%id2%-01.xml
 
-echo Converting Zorgverlener-eoi
-java -jar "%jarPath%" -s:"%inputDir%/Zorgverlener-eoi.xml" -xsl:Zorgverlener-eoi-driver.xsl outputDir=%outputDir%
+SET id3=nl-core-HealthProfessional
+echo Converting %id3%-01
+java -jar "%jarPath%" -s:"%inputDir%/%id3%-01.xml" -xsl:%id3%-driver.xsl -o:"%outputDir%/%id3%-01.xml
 
-echo Converting Patient-eoi
-java -jar "%jarPath%" -s:"%inputDir%/Patient-eoi-bundled.xml" -xsl:Patient-eoi-driver.xsl outputDir=%outputDir%
+SET id4=nl-core-Patient
+echo Converting %id4%-01
+java -jar "%jarPath%" -s:"%inputDir%/%id4%-01-bundled.xml" -xsl:%id4%-driver.xsl -o:"%outputDir%/%id4%-01.xml
 
 pause

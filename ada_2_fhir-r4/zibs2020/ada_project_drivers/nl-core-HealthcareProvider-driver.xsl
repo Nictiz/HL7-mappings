@@ -26,7 +26,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
-    <xsl:param name="outputDir" select="'.'" as="xs:string"/>
     
     <xd:doc>
         <xd:desc>
@@ -63,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                             </xsl:call-template>
                         </xsl:variable>
-                        <xsl:result-document href="{$outputDir}/{$logicalId}.xml">
+                        <xsl:result-document href="./{$logicalId}.xml">
                             <xsl:call-template name="nl-core-HealthcareProvider"/>
                         </xsl:result-document>
                     </xsl:if>
@@ -73,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
                             </xsl:call-template>
                         </xsl:variable>
-                        <xsl:result-document href="{$outputDir}/{$logicalId}.xml">
+                        <xsl:result-document href="./{$logicalId}.xml">
                             <xsl:call-template name="nl-core-HealthcareProvider-Organization"/>
                         </xsl:result-document>
                     </xsl:if>
