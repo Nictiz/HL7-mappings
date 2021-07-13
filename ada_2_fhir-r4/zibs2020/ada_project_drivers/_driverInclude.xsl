@@ -18,7 +18,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -69,7 +70,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Override the id generation with the file name of the ADA instance</xd:desc>
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
-        <xsl:value-of select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
+        <xsl:param name="profile" as="xs:string" select="''"/>
+        <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
+        <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
+        <xsl:choose>
+            <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
+                <xsl:value-of select="$id"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$baseId"/>
+                <xsl:value-of select="substring-after($profile, $baseId)"/>
+                <xsl:value-of select="substring-after($id, $baseId)"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>
