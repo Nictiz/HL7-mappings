@@ -1,8 +1,10 @@
 @echo off
+setlocal enabledelayedexpansion
+
 :: CHECK BEFORE RUNNING ####
 SET jarPath=C:\SaxonHE9-9-1-7J\saxon9he.jar
-SET inputDir=../ada_instance
-SET outputDir=../fhir_instance
+SET inputDir=..\ada_instance
+SET outputDir=..\fhir_instance
 
 if not exist "%jarPath%" (
     echo.
@@ -17,20 +19,17 @@ if exist "%outputDir%" (
     rmdir "%outputDir%" /s /q
 )
 
-SET id=nl-core-ContactPerson
-echo Converting %id%-01
-java -jar "%jarPath%" -s:"%inputDir%/%id%-01.xml" -xsl:%id%-driver.xsl -o:"%outputDir%/%id%-01.xml
+for /f %%f in ('dir /b "%inputDir%"') do (
+ set id=%%~nf
+ if "!id:~0,8!" == "nl-core-" (
+  if not exist "%inputDir%\!id!-bundled.xml" (
+   echo Converting !id!
+   set baseId=!id:-bundled=!
+   set baseId=!baseId:~0, -3!
 
-SET id2=nl-core-HealthcareProvider
-echo Converting %id2%-01
-java -jar "%jarPath%" -s:"%inputDir%/%id2%-01.xml" -xsl:%id2%-driver.xsl -o:"%outputDir%/%id2%-01.xml
-
-SET id3=nl-core-HealthProfessional
-echo Converting %id3%-01
-java -jar "%jarPath%" -s:"%inputDir%/%id3%-01.xml" -xsl:%id3%-driver.xsl -o:"%outputDir%/%id3%-01.xml
-
-SET id4=nl-core-Patient
-echo Converting %id4%-01
-java -jar "%jarPath%" -s:"%inputDir%/%id4%-01-bundled.xml" -xsl:%id4%-driver.xsl -o:"%outputDir%/%id4%-01.xml
+   java -jar "%jarPath%" -s:"%inputDir%/!id!.xml" -xsl:!baseId!-driver.xsl -o:"%outputDir%/!id!.xml
+  )
+ )
+)
 
 pause
