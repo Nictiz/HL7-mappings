@@ -201,7 +201,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="specialism" select="upper-case(string-join((specialisme//@code)/normalize-space(), ''))"/>
                 <xsl:variable name="organizationId" select="nf:getValueAttrDefault(nf:ada-za-id(.//(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)))"/>
                 
-                <xsl:value-of select="concat($personIdentifier, $specialism, $organizationId)"/>
+                <xsl:variable name="display" select="concat($personIdentifier, $specialism, $organizationId)"/>
+                <xsl:choose>
+                    <xsl:when test="string-length($display) gt 0">
+                        <xsl:value-of select="$display"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:next-match/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="$profile = 'nl-core-HealthProfessional-Practitioner'">
                 <xsl:choose>
@@ -209,7 +217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgverlener_identificatienummer)[1]/(@value | @root), ''))))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
+                        <xsl:next-match/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>

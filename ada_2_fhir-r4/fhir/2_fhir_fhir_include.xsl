@@ -148,6 +148,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </nm:resource-type>
                 <xsl:if test="$adaId">
                     <nm:ada-id>
+                        <xsl:if test="string-length($in/base-uri()) gt 0">
+                            <xsl:value-of select="$in/base-uri()"/>
+                            <xsl:text>-</xsl:text>
+                        </xsl:if>
                         <xsl:value-of select="$adaId"/>
                     </nm:ada-id>
                 </xsl:if>
@@ -253,27 +257,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
 
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
-
-        <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
-            <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
-        </xsl:if>
-
+        
         <xsl:variable name="element" as="element()?">
             <xsl:choose>
-                <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                <xsl:when test="$in[@datatype = 'reference' and @value]">
+                    <xsl:variable name="adaId">
+                        <xsl:if test="string-length($in/base-uri()) gt 0">
+                            <xsl:value-of select="$in/base-uri()"/>
+                            <xsl:text>-</xsl:text>
+                        </xsl:if>
+                        <xsl:value-of select="$in/@value"/>
+                    </xsl:variable>
                     <xsl:choose>
-                        <xsl:when test="$in[@datatype = 'reference' and @value]">
-                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:ada-id = $in/@value]"/>
+                        <xsl:when test="count($fhirMetadata[nm:ada-id = $adaId]) gt 1">
+                            <xsl:if test="string-length($profile) = 0">
+                                <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+                            </xsl:if>
+                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:ada-id = $adaId]"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
+                            <xsl:copy-of select="$fhirMetadata[nm:ada-id = $adaId]"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:choose>
-                        <xsl:when test="$in[@datatype = 'reference' and @value]">
-                            <xsl:copy-of select="$fhirMetadata[nm:ada-id = $in/@value]"/>
+                        <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                            <xsl:if test="string-length($profile) = 0">
+                                <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+                            </xsl:if>
+                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
