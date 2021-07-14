@@ -63,6 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
+        <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
@@ -146,8 +147,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </nm:resource-type>
                 <xsl:if test="$adaId">
                     <nm:ada-id>
-                        <xsl:if test="string-length($in/base-uri()) gt 0">
-                            <xsl:value-of select="$in/base-uri()"/>
+                        <xsl:variable name="baseUri" select="replace(tokenize($in/base-uri(), '/')[last()], '.xml', '')"/>
+                        <xsl:if test="string-length($baseUri) gt 0">
+                            <xsl:value-of select="$baseUri"/>
                             <xsl:text>-</xsl:text>
                         </xsl:if>
                         <xsl:value-of select="$adaId"/>
@@ -260,8 +262,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="$in[@datatype = 'reference' and @value]">
                     <xsl:variable name="adaId">
-                        <xsl:if test="string-length($in/base-uri()) gt 0">
-                            <xsl:value-of select="$in/base-uri()"/>
+                        <xsl:variable name="baseUri" select="replace(tokenize($in/base-uri(), '/')[last()], '.xml', '')"/>
+                        <xsl:if test="string-length($baseUri) gt 0">
+                            <xsl:value-of select="$baseUri"/>
                             <xsl:text>-</xsl:text>
                         </xsl:if>
                         <xsl:value-of select="$in/@value"/>
