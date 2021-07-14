@@ -49,8 +49,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="codeMap" as="element()*">
-                                <map inCode="55561003" inCodeSystem="2.16.840.1.113883.6.96" code="active" codeSystem="http://terminology.hl7.org/CodeSystem/condition-clinical" display="Active"/>
-                                <map inCode="73425007" inCodeSystem="2.16.840.1.113883.6.96" code="inactive" codeSystem="http://terminology.hl7.org/CodeSystem/condition-clinical" display="Inactive"/>
+                                <map inCode="55561003" inCodeSystem="2.16.840.1.113883.6.96" code="active" codeSystem="http://terminology.hl7.org/CodeSystem/condition-clinical" displayName="Active"/>
+                                <map inCode="73425007" inCodeSystem="2.16.840.1.113883.6.96" code="inactive" codeSystem="http://terminology.hl7.org/CodeSystem/condition-clinical" displayName="Inactive"/>
                             </xsl:with-param>
                         </xsl:call-template>
                     </clinicalStatus>
@@ -99,8 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <xsl:for-each select="probleem_anatomische_locatie">
                     <bodySite>
-                        <xsl:comment>TODO nl-core-AnatomicalLocation</xsl:comment>
-                        <!--<xsl:call-template name="nl-core-AnatomicalLocation"/>-->
+                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
                     </bodySite>
                 </xsl:for-each>
                 <xsl:call-template name="makeReference">
