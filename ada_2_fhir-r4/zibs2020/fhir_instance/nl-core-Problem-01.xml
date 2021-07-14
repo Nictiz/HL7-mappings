@@ -40,7 +40,21 @@
          <display value="Oedeem"/>
       </coding>
    </code>
-   <bodySite><!--TODO nl-core-AnatomicalLocation--></bodySite>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="344001"/>
+      </coding>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </bodySite>
    <subject>
       <reference value="Patient/nl-core-Patient-01"/>
       <type value="Patient"/>
