@@ -26,73 +26,118 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada verrichting to FHIR Procedure resource conforming to profile nl-core-Encounter</xd:desc>
+        <xd:desc>Converts ada contact to FHIR Encounter resource conforming to profile nl-core-Encounter</xd:desc>
     </xd:doc>
     
+    <xd:doc>
+        <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="participantIndividual">Optional ADA instance or ADA reference element for a HealthProfessional-PractitionerRole instance to participant.individual</xd:param>
+        <xd:param name="location">Optional ADA instance or ADA reference element for a HealthcareProvider instance to location.location.</xd:param>
+    </xd:doc>
     <xsl:template match="contact" name="nl-core-Encounter" mode="nl-core-Encounter" as="element(f:Encounter)?">
-        <Encounter>
-            <xsl:call-template name="insertLogicalId"/>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
-            </meta>
-            <xsl:comment>.status: Dependent on outcome of https://github.com/Nictiz/Nictiz-R4-zib2020/issues/45</xsl:comment>
-            <status value="unknown"/>
-            <xsl:for-each select="contact_type[@code]">
-                <class>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </class>
-            </xsl:for-each>
-            <xsl:for-each select="contact_met">
-                <participant>
-                    <individual>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="zorgverlener"/>
-                            <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="participantIndividual" select="contact_met/zorgverlener"/>
+        <xsl:param name="location" select="locatie/zorgaanbieder"/>
+        
+        <xsl:for-each select="$in">
+            <Encounter>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
+                </meta>
+                <xsl:comment>.status: Dependent on outcome of https://github.com/Nictiz/Nictiz-R4-zib2020/issues/45</xsl:comment>
+                <status value="unknown"/>
+                <xsl:for-each select="contact_type[@code]">
+                    <class>
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </individual>
-                </participant>
-            </xsl:for-each>                
-            <xsl:if test="begin_datum_tijd/@value and eind_datum_tijd/@value">
-                <period>
-                    <start value="{normalize-space(begin_datum_tijd/@value)}"/>
-                    <end value="{normalize-space(eind_datum_tijd/@value)}"/>
-                </period>                    
-            </xsl:if>                   
-            <xsl:for-each select="reden_contact/afwijkende_uitslag">
-                <reasonReference>
-                    <xsl:for-each select="reden_contact/toelichting_reden_contact">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-                            <valueString>
-                                <xsl:call-template name="string-to-string">
+                    </class>
+                </xsl:for-each>
+                <xsl:for-each select="contact_met">
+                    <participant>
+                        <individual>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="$participantIndividual"/>
+                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                            </xsl:call-template>
+                        </individual>
+                    </participant>
+                </xsl:for-each>
+                <xsl:if test="begin_datum_tijd or eind_datum_tijd">
+                    <period>
+                        <xsl:if test="begin_datum_tijd">
+                            <start value="{normalize-space(begin_datum_tijd/@value)}"/>
+                        </xsl:if>
+                        <xsl:if test="eind_datum_tijd">
+                            <end value="{normalize-space(eind_datum_tijd/@value)}"/>
+                        </xsl:if>
+                    </period>
+                </xsl:if>
+                <xsl:for-each select="reden_contact">
+                    <reasonReference>
+                        <xsl:for-each select="toelichting_reden_contact">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+                                <valueString>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueString>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select="probleem">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <xsl:for-each select="verrichting">
+                            <xsl:comment>TODO: nl-core-Procedure</xsl:comment>
+                            <!--<xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="profile" select="'nl-core-Procedure'"/>
+                        </xsl:call-template>-->
+                        </xsl:for-each>
+                        <xsl:for-each select="afwijkende_uitslag">
+                            <xsl:comment>TODO: nl-core-LaboratoryTestResult</xsl:comment>
+                            <!--<xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult'"/>
+                        </xsl:call-template>-->
+                        </xsl:for-each>
+                    </reasonReference>
+                </xsl:for-each>
+                <xsl:if test="herkomst or bestemming">
+                    <hospitalization>
+                        <xsl:for-each select="herkomst">
+                            <admitSource>
+                                <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </valueString>
-                        </extension>
-                    </xsl:for-each>
-                    <!--<xsl:call-template name="nl-core-Procedure-Reference"/>-->
-                </reasonReference>                    
-            </xsl:for-each>                  
-            <xsl:for-each select="herkomst[@code]">
-                <admitSource>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </admitSource>
-            </xsl:for-each>
-            <xsl:for-each select="bestemming[@code]">
-                <dischargeDisposition>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </dischargeDisposition>
-            </xsl:for-each>
-            <xsl:for-each select="locatie">
-                <location>
-                    <!--<xsl:call-template name="nl-core-HealthcareProvider-Reference"/>-->
-                </location>
-            </xsl:for-each>
-        </Encounter>
+                            </admitSource>
+                        </xsl:for-each>
+                        <xsl:for-each select="bestemming">
+                            <dischargeDisposition>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </dischargeDisposition>
+                        </xsl:for-each>
+                    </hospitalization>
+                </xsl:if>
+                <xsl:for-each select="locatie">
+                    <location>
+                        <location>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="$location"/>
+                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                            </xsl:call-template>
+                        </location>
+                    </location>
+                </xsl:for-each>
+            </Encounter>
+        </xsl:for-each>
     </xsl:template>    
+    
 </xsl:stylesheet>
