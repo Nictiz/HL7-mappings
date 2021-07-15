@@ -22,7 +22,7 @@
     <xd:doc>
         <xd:desc> Transforms HL7 organizer example message into CDA version of the same thing. From publication 9.0.6 </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer" mode="organizer2CDA">
+    <xsl:template match="hl7:organizer[not(ancestor::hl7:organizer)]" mode="organizer2CDA">
         <ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication">
             <xsl:if test="$schematronRef">
                 <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/CDANL_extended.xsd</xsl:attribute>
@@ -50,7 +50,9 @@
                         </xsl:when>
                         <!-- 9.1.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9284'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9283</xsl:when>
-
+                        <!-- 9.2.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9341'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9338</xsl:when>
+                        
                         <!-- Afhandeling Voorschrift -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9124'">
                             <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9136'"/>
@@ -65,7 +67,9 @@
                         </xsl:when>
                         <!-- 9.1.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9295'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9296</xsl:when>
-
+                        <!-- 9.2.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9346'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9347</xsl:when>
+                        
                         <!-- Medicatiegebruik -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9125'">
                             <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9138'"/>
@@ -83,7 +87,9 @@
                         </xsl:when>
                         <!-- 9.1.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9290'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9291</xsl:when>
-
+                        <!-- 9.2.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9339'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9340</xsl:when>
+                        
                         <!-- Medicatieoverzicht -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9132'">
                             <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9146'"/>
@@ -101,7 +107,9 @@
                         </xsl:when>
                         <!-- 9.1.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9286'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9288</xsl:when>
-
+                        <!-- 9.2.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9333'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9334</xsl:when>
+                        
                         <!-- Voorschrift -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9126'">
                             <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9140'"/>
@@ -116,21 +124,17 @@
                         </xsl:when>
                         <!-- 9.1.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9272'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9273</xsl:when>
-
+                        <!-- 9.2.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9328'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9329</xsl:when>
+                        
                         <!-- Voorstel MA -->
-                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9127'">
-                            <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9142'"/>
-                        </xsl:when>
-
+                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9127'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9142</xsl:when>
+                          
                         <!-- Voorstel VV -->
-                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9130'">
-                            <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9144'"/>
-                        </xsl:when>
+                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9130'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9144</xsl:when>
 
                         <!-- Antwoord VVV -->
-                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211'">
-                            <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9215'"/>
-                        </xsl:when>
+                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9215</xsl:when>
                     </xsl:choose>
                 </xsl:attribute>
             </templateId>
@@ -256,6 +260,10 @@
                             <xsl:when test="$cdaAuthor/hl7:assignedAuthor/hl7:representedOrganization/hl7:id">
                                 <!-- ok, no worries, it is copied in the next step -->
                             </xsl:when>
+                            <xsl:when test="$cdaAuthor/hl7:assignedAuthor/hl7:code/@code='ONESELF'">
+                                <!-- copy the patient id, strange, but at least the schematron won't complain, and what other organizaiton to use? -->
+                                <xsl:copy-of select="$cdaAuthor/hl7:assignedAuthor/hl7:id"/>
+                            </xsl:when>
                             <xsl:otherwise>
                                 <!-- ouch, lets add an id element with a nullFlavor, even though the schematron does not like that either... -->
                                 <id nullFlavor="NI"/>
@@ -288,7 +296,7 @@
     <xd:doc>
         <xd:desc> Niet kopiëren </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer/hl7:templateId | hl7:organizer/hl7:code | hl7:organizer/hl7:statusCode | hl7:organizer/hl7:recordTarget | hl7:organizer/hl7:author" mode="organizer2CDA"/>
+    <xsl:template match="hl7:organizer[not(ancestor::hl7:organizer)]/hl7:templateId | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:code | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:statusCode | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:recordTarget | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:author" mode="organizer2CDA"/>
 
 
     <xd:doc>

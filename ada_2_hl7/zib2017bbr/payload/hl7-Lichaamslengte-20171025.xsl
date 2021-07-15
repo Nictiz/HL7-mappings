@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <observation classCode="OBS" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
                 <!-- id -->
-                <xsl:for-each select="(zibroot | hcimroot)/(identificatienummer | identification_number)[@value | @nullFlavor | @root]">
+                <xsl:for-each select="((zibroot | hcimroot)/(identificatienummer | identification_number) | identificatienummer  | identification_number)[@value | @nullFlavor | @root]">
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
                 <code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="{$oidMap[@oid=$oidLOINC]/@displayName}" displayName="Body height"/>

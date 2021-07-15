@@ -44,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="deZorgaanbieder">ada zorgaanbieder, defaults to context element</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000" match="zorgaanbieder | healthcare_provider">
-        <xsl:param name="deZorgaanbieder" select="."/>
+        <xsl:param name="deZorgaanbieder" select="." as="element()*"/>
 
         <xsl:for-each select="$deZorgaanbieder">
             <representedOrganization>

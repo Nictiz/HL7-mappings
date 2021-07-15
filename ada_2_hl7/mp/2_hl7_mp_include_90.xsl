@@ -585,10 +585,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="zo_nodig/criterium[.//(@value | @code)]">
                 <precondition>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9182_20170601000000">
-                        <xsl:with-param name="code" select="./code/@code"/>
-                        <xsl:with-param name="codeSystem" select="./code/@codeSystem"/>
-                        <xsl:with-param name="displayName" select="./code/@displayName"/>
-                        <xsl:with-param name="strOriginalText" select="./code/@originalText"/>
+                        <xsl:with-param name="inCode" select="code/@code"/>
+                        <xsl:with-param name="inCodeSystem" select="code/@codeSystem"/>
+                        <xsl:with-param name="inDisplayName" select="code/@displayName"/>
+                        <xsl:with-param name="strOriginalText" select="code/@originalText"/>
                     </xsl:call-template>
                 </precondition>
             </xsl:for-each>
