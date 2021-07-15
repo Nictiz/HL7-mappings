@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="theTime">The ada element which had the author time</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000" match="zorgverlener" mode="handleZorgverlenerAuthor">
-        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="in" as="element()*" select="."/>
         <xsl:param name="theTime" as="element()?"/>
 
         <xsl:call-template name="makeTSValue">

@@ -26,6 +26,9 @@
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
     <property name="usecase.mgb" value="sturen_medicatiegebruik"/>
     <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
+    <property name="usecase.vma" value="sturen_voorstel_medicatieafspraak"/>
+    <property name="usecase.vvv" value="sturen_voorstel_verstrekkingsverzoek"/>
+    <property name="usecase.avvv" value="sturen_antwoord_voorstel_verstrekkingsverzoek"/>
 
     <target name="setup" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir}">
 
@@ -221,6 +224,52 @@
             <echo/>
             <echo>${echo.label} ${build.dir}/${usecase.av}/payload/${usecase.av}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
             <xslt force="true" style="${build.dir}/${usecase.av}/payload/${usecase.av}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <!-- voorstel ma -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vma*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.vma}/payload/${usecase.vma}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vma}/payload/${usecase.vma}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <!-- voorstel vv -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vvv*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.vvv}/payload/${usecase.vvv}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vvv}/payload/${usecase.vvv}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        
+        <!-- antwoord voorstel vv -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="avvv*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.avvv}/payload/${usecase.avvv}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.avvv}/payload/${usecase.avvv}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
                 <fileset refid="inputfilesMP"/>
                 <param name="generateInstructionText" expression="true"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>

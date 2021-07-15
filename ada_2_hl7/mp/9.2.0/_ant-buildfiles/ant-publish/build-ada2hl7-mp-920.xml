@@ -115,7 +115,29 @@
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>            
+        </antcall>     
+        
+        <!-- sturen_voorstel_medicatieafspraak copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.vma}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>     
+        <!-- sturen_voorstel_verstrekkingsverzoek copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.vvv}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>     
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.avvv}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>     
 
         <!-- medicatieoverzicht-->
         <antcall target="setup_sub">
@@ -124,6 +146,40 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>        
+        
+        <!-- xml voorbeelden -->
+        <!-- schemas -->
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_schemas" includes="*.xsd"/>
+        </delete>
+        <copy todir="${build.dir}/xml-voorbeelden/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="*${usecase.mv}.xsd"/>
+                <include name="*${usecase.mg}.xsd"/>
+                <include name="*${usecase.mo}.xsd"/>
+                <include name="*${usecase.mgb}.xsd"/>
+                <include name="*${usecase.av}.xsd"/>
+                <include name="*${usecase.vma}.xsd"/>
+                <include name="*${usecase.vvv}.xsd"/>
+                <include name="*${usecase.avvv}.xsd"/>
+                <include name="ada_meta.xsd"/>
+            </fileset>
+        </copy>
+        <!-- instances -->
+        <echo/>
+        <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
+        
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*example*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/xml-voorbeelden/ada_instance" failonerror="true">
+            <fileset dir="${refs.dir}/xml-voorbeelden/ada_instance">
+                <include name="*example*.xml"/>
+            </fileset>
+        </copy>
+        
         
 
         <!-- let's convert to hl7 too while we're at it -->
@@ -213,8 +269,7 @@
             <param name="xsl.name" value="../${usecase.mgb}/payload/${usecase.mgb}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
-        </antcall>
-        
+        </antcall>        
         
         <!-- convert beschikbaarstellen_medicatieoverzicht -->
         <antcall target="convert_ada_2_hl7_sub">
@@ -223,6 +278,10 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
+        
+        <!-- also do the examples -->
+        <antcall target="convert_ada_2_hl7_examples"/>
+        
         
     </target>
 
