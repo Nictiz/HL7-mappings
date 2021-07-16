@@ -25,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="mask-ids"/>
          
     <xsl:variable name="usecase">partus</xsl:variable>
+    <xsl:variable name="adaversion" select="2.3"/>
      
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen partus gegevens".</xd:desc>

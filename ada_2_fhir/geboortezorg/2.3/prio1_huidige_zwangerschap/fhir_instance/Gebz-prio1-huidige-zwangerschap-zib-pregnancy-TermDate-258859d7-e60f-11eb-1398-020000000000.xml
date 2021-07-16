@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="258859d7-e60f-11eb-1398-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-pregnancy-TermDate"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/258859d3-e60f-11eb-1398-020000000000"/>
+         <display value="Zwangerschap 4 wouden"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="2.16.840.1.113883.2.4.4.13"/>
+         <code value="EDD"/>
+         <display value="A terme datum"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WOUDENVANDER"/>
+      <display value="Wouden van der"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/2588466e-e60f-11eb-1398-020000000000"/>
+      <display value="Zwangerschap 4 wouden"/>
+   </context>
+   <valueDateTime value="2021-07-13"/>
+</Observation>
