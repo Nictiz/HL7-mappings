@@ -16,19 +16,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <xsl:import href="../zibs2017/payload/all-zibs.xsl"/>
     <xsl:import href="../zibs2017/payload/zib-LaboratoryTestResult-Observation-2.1.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-patient.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-relatedperson.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-organization.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-practitioner.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-referralrequest.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_zib-pregnancy.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-maternalrecord.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-observation.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_zib-laboratory-testresult-observation.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-condition.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-procedure.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-composition.xsl"/>
-    <xsl:import href="2.3/bouwstenen/gebz_mappings.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_nl-core-patient.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_nl-core-relatedperson.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_nl-core-organization.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_nl-core-practitioner.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_bc-referralrequest.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_zib-pregnancy.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_bc-maternalrecord.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_bc-observation.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_zib-laboratory-testresult-observation.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_bc-condition.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_bc-procedure.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_bc-composition.xsl"/>
+    <xsl:import href="bouwstenen/gebz_mappings.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
@@ -41,6 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- ada instances -->
     <xsl:param name="patient-ada" as="element()*">
         <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
+        <!-- TODO: hier voor 3.2 rechtstreeks uit inputfile ophalen, bovenstaande conversie alleen nodig voor 2.3, geldt ook voor onderstaande rijen -->
     </xsl:param>
 
     <xsl:param name="partner-ada" as="element()*">
