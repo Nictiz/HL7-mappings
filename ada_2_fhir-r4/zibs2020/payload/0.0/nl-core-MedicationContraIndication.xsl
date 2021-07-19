@@ -14,140 +14,94 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all"
+    xmlns="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities" 
     xmlns:f="http://hl7.org/fhir" 
-    xmlns="http://hl7.org/fhir"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
-        
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
-    <xd:doc>
-        <xd:desc>Unwrap medicatie_contra_indicatie_registratie element</xd:desc>
+    <xd:doc scope="stylesheet"> 
+        <xd:desc>Converts ada medicatie_contra_indicatie element to FHIR resource conforming to profile nl-core-MedicationContraIndication</xd:desc>
     </xd:doc>
-    <xsl:template match="medicatie_contra_indicatie_registratie">
-        <xsl:apply-templates select="medicatie_contra_indicatie" mode="nl-core-MedicationContraIndication"/>
-    </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-MedicationContraIndication FHIR Flag resource from the ada medicatie_contra_indicatie part.</xd:desc>
-        <xd:param name="logicalId">Flag.id value</xd:param>
-        <xd:param name="in">Node to consider in the creation of a Flag resource</xd:param>
-        
-        <!-- TODO Needs to get more documentation about the references. The current approach may not the final one. -->
-       
+        <xd:desc>Create a nl-core-MedicationContraIndication FHIR Flag resource from ada medicatie_contra_indicatie element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>       
     </xd:doc>
-    <xsl:template match="medicatie_contra_indicatie" name="nl-core-MedicationContraIndication" mode="nl-core-MedicationContraIndication">
+    <xsl:template match="medicatie_contra_indicatie" name="nl-core-MedicationContraIndication" mode="nl-core-MedicationContraIndication" as="element(f:Flag)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="onderwerp" as="element()?"/>
-        <xsl:param name="onderwerpLogicalId" as="xs:string?"/>
-        <xsl:param name="melder" as="element()?"/>
-        <xsl:param name="melderLogicalId" as="xs:string?"/>
+        
+        <xsl:param name="subject" select="patient" as="element()?"/>
+        <xsl:param name="author" select="melder/*" as="element()?"/>
           
         <xsl:for-each select="$in">
-                <Flag>
-                    <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
-                    </xsl:if>
-                    <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationContraIndication"/>
-                    </meta>
-                    
-                    <xsl:variable name="redenVanAfsluiten" select="reden_van_afsluiten/@value"/>
-                    <xsl:variable name="beginDatum" select="begin_datum/@value"/>
-                    <xsl:variable name="eindDatum" select="eind_datum/@value"/>
-                    <xsl:variable name="medicatieContraIndicatieNaam" select="medicatie_contra_indicatie_naam"/>
-                                        
-                    <!-- ReasonClosure - NL-CM:9.14.4 -->                        
-                    <xsl:if test="string-length($redenVanAfsluiten) gt 0">   
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.ReasonClosure">
-                             <valueString>
-                                 <xsl:attribute name="value" select="$redenVanAfsluiten"/>
-                             </valueString>
-                         </extension>
-                    </xsl:if> 
-                    
-                    <!-- Comment - NL-CM:9.14.7 -->
-                    <xsl:for-each select="toelichting">
-                        <xsl:call-template name="ext-Comment"/>
-                    </xsl:for-each>
-                    
-                    <!-- Decide on mandatory Flag.status value based on presence of 'reden_van_afsluiten' value or an 'eind_datum' that lies in the past. -->
-                    <status>
-                        <xsl:choose>
-                            <xsl:when test="string-length($redenVanAfsluiten) gt 0">
-                                <xsl:attribute name="value" select="'inactive'"/>
-                            </xsl:when>
-                            <xsl:when test="xs:date($eindDatum) lt current-date()">
-                                <xsl:attribute name="value" select="'inactive'"/>
-                            </xsl:when>
-                           <xsl:otherwise>
-                               <xsl:attribute name="value" select="'active'"/>
-                           </xsl:otherwise>
-                        </xsl:choose>
-                    </status>
-                    
-                    <category>
-                        <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="140401000146105"/>
-                            <display value="contra-indicatie met betrekking op medicatiebewaking"/>
-                        </coding>
-                    </category>
-                    
-                    <!-- MedicationContraIndicationName - NL-CM:9.14.6 -->
-                    <xsl:if test="$medicatieContraIndicatieNaam">
-                        <code>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="$medicatieContraIndicatieNaam"/>
-                            </xsl:call-template>
-                        </code>
-                    </xsl:if>         
-                    
-                    <!-- TODO Subject is mandatory by FHIR -->
-<!--                    <xsl:if test="$onderwerp">
-                        <subject>
-                            <xsl:call-template name="nl-core-Patient-reference">
-                                <xsl:with-param name="in" select="$onderwerp"/>
-                                <xsl:with-param name="logicalId" select="$onderwerpLogicalId"/>
-                            </xsl:call-template>
-                        </subject>
-                    </xsl:if>-->
-                   
-                    <xsl:if test="$beginDatum|$eindDatum">
-                        <period>
-                            <!-- StartDate - NL-CM:9.14.2 -->
-                            <xsl:if test="$beginDatum">
-                                <start>
-                                    <xsl:attribute name="value" select="$beginDatum"/>
-                                </start>
-                            </xsl:if>
-                            <!-- EndDate - NL-CM:9.14.3 -->
-                            <xsl:if test="$eindDatum">
-                                <end>
-                                    <xsl:attribute name="value" select="$eindDatum"/>
-                                </end>
-                            </xsl:if>                       
-                        </period>
-                    </xsl:if>  
-                                        
-                   <!-- TODO Reporter - NL-CM:9.14.5 -->                                     
-<!--                   <xsl:if test="$melder">
-                        <author>
-                           <xsl:call-template name="nl-core-HealthProfessional-reference">
-                               <xsl:with-param name="in" select="$melder"/>
-                               <xsl:with-param name="logicalId" select="$melderLogicalId"/>
-                           </xsl:call-template>
-                       </author>
-                   </xsl:if>-->
-                                      
-                </Flag>
+            <Flag>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationContraIndication"/>
+                </meta>
+
+                <xsl:for-each select="reden_van_afsluiten">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.ReasonClosure">
+                        <valueString value="{@value}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="toelichting">
+                    <xsl:call-template name="ext-Comment"/>
+                </xsl:for-each>
+                <status>
+                    <xsl:choose>
+                        <xsl:when test="xs:date(eind_datum/@value) lt current-date()">
+                            <xsl:attribute name="value" select="'inactive'"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="value" select="'active'"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </status>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="140401000146105"/>
+                        <display value="contra-indicatie met betrekking op medicatiebewaking"/>
+                    </coding>
+                </category>
+                <xsl:for-each select="medicatie_contra_indicatie_naam">
+                    <code>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </code>
+                </xsl:for-each>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
+                <xsl:if test="begin_datum | eind_datum">
+                    <period>
+                        <xsl:for-each select="begin_datum">
+                            <start value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="eind_datum">
+                            <end value="{@value}"/>
+                        </xsl:for-each>
+                    </period>
+                </xsl:if>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$author"/>
+                    <xsl:with-param name="wrapIn" select="'author'"/>
+                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"></xsl:with-param>
+                </xsl:call-template>
+            </Flag>
         </xsl:for-each>
     </xsl:template>  
 </xsl:stylesheet>
