@@ -70,10 +70,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Override the id generation with the file name of the ADA instance</xd:desc>
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
-        <xsl:param name="profile" as="xs:string" select="''"/>
+        <xsl:param name="profile" as="xs:string" required="yes"/>
         <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
         <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
+        
         <xsl:choose>
+            <xsl:when test="parent::*/local-name() = 'referenties'">
+                <!-- This is a contained ada instance, therefor does not have a valid base-uri() -->
+                <xsl:next-match>
+                    <xsl:with-param name="profile" select="$profile"/>
+                </xsl:next-match>
+            </xsl:when>
             <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
                 <xsl:value-of select="$id"/>
             </xsl:when>
