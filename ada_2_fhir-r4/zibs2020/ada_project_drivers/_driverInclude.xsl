@@ -43,7 +43,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Generate metadata for all ADA instances -->
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select="collection('../ada_instance/')//*[starts-with(@conceptId, $zib2020Oid) and ends-with(@conceptId, '.1')]"/>
+            <xsl:with-param name="in" select="collection('../ada_instance/')//*[starts-with(@conceptId, $zib2020Oid) and (ends-with(@conceptId, '.1') or ends-with(@conceptId, '.13.6.4'))]"/>
+            <!-- Also adds 'soepregel' elements as seperate instances -->
         </xsl:call-template>
     </xsl:param>
     
@@ -73,6 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" as="xs:string" required="yes"/>
         <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
         <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
+        <xsl:variable name="localName" select="local-name()"/>
         
         <xsl:choose>
             <xsl:when test="parent::*/local-name() = 'referenties'">
@@ -83,6 +85,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
                 <xsl:value-of select="$id"/>
+            </xsl:when>
+            <xsl:when test="$localName = 'soepregel'">
+                <xsl:value-of select="$baseId"/>
+                <xsl:value-of select="substring-after($profile, $baseId)"/>
+                <xsl:text>-</xsl:text>
+                <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = $localName])+1, '00')"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$baseId"/>

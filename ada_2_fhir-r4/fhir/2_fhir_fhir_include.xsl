@@ -71,6 +71,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
+        <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
+        <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport-Observation"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>

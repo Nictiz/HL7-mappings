@@ -23,91 +23,128 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
-    
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ada soepverslag to FHIR Composition conforming to profile nl-core-SOAPReport and FHIR Observation conforming to profile nl-core-SOAPReport-Observation</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap soepverslag_registratie element</xd:desc>
+        <xd:desc>Create a FHIR Composition instance conforming to profile nl-core-SOAPReport from ada soepverslag element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="author">Optional ADA instance or ADA reference element for the author.</xd:param>
     </xd:doc>
-    <xsl:template match="soepverslag_registratie">
-        <xsl:apply-templates select="soepverslag" mode="nl-core-SOAPReport"/>
-    </xsl:template>
-    
-    <xsl:template match="soepverslag" name="nl-core-SOAPReport" mode="nl-core-SOAPReport">
-        <Composition>
-            <id value="nl-core-SOAPReport-01"/>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport"/>
-            </meta>
-            <status value="final"/>
-            <type>
-                <coding>
-                    <system value="http://loinc.org" />
-                    <code value="67781-5" />
-                    <display value="Summarization of encounter note Narrative"/>
-                </coding>
-            </type>
-            <xsl:for-each select="soepverslag_datum_tijd">
-                <date>
+    <xsl:template match="soepverslag" name="nl-core-SOAPReport" mode="nl-core-SOAPReport" as="element(f:Composition)?">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="author" select="auteur/*" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Composition>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport"/>
+                </meta>
+                <status value="final"/>
+                <type>
+                    <coding>
+                        <system value="http://loinc.org"/>
+                        <code value="67781-5"/>
+                        <display value="Summarization of encounter note Narrative"/>
+                    </coding>
+                </type>
+                <xsl:for-each select="soepverslag_datum_tijd">
+                    <date>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </date>
+                </xsl:for-each>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$author"/>
+                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                    <xsl:with-param name="wrapIn" select="'author'"/>
+                </xsl:call-template>
+                <title>
                     <xsl:attribute name="value">
-                        <xsl:call-template name="format2FHIRDate">
-                            <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
-                        </xsl:call-template>
+                        <!-- Suggested value is the ICPC display name on the E-entry -->
+                        <xsl:choose>
+                            <xsl:when test="soepregel[soepregel_naam/@code = '129265001'][1]/soepregel_code/@displayName">
+                                <xsl:value-of select="soepregel[soepregel_naam/@code = '129265001'][1]/soepregel_code/@displayName"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>SOEPverslag</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:attribute>
-                </date>
-            </xsl:for-each>
-            <xsl:for-each select="auteur">
-                <author>
-                    <reference value="PractitionerRole/nl-core-PractitionerRole-xx"/>
-                    <display value="Huisarts H.A. Janszens"/>
-                    <!--<xsl:for-each select="zorgverlener">
-                            <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole-Reference"/>
-                        </xsl:for-each>-->
-                    <!--This must be dynamic in the future-->
-                </author>
-            </xsl:for-each>
-            <title value="Example nl-core-SOAPReport"/>
-            <xsl:for-each select="soepregel">
-                <section>
-                    <xsl:for-each select="soepregel_code">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
-                            <valueCodeableConcept>
+                </title>
+                <xsl:for-each select="soepregel">
+                    <section>
+                        <xsl:for-each select="soepregel_code">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
+                                <valueCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueCodeableConcept>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select="soepregel_naam">
+                            <code>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </valueCodeableConcept>
-                        </extension>
-                    </xsl:for-each>
-                    <xsl:for-each select="soepregel_naam">
-                        <code>
+                            </code>
+                        </xsl:for-each>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="wrapIn" select="'entry'"/>
+                        </xsl:call-template>
+                    </section>
+                </xsl:for-each>
+            </Composition>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="soepregel" name="nl-core-SOAPReport-Observation" mode="nl-core-SOAPReport-Observation" as="element(f:Observation)?">
+        <xsl:param name="in" select="." as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport-Observation"/>
+                </meta>
+                <xsl:for-each select="soepregel_code">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
+                        <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </code>
-                    </xsl:for-each>
-                    <entry>
-                        <xsl:variable name="display">
-                            <xsl:variable name="regel" select="substring(soepregel_naam/@displayName, 1, 1)"/>
-                            <xsl:choose>
-                                <xsl:when test="$regel = 'B'">P</xsl:when>
-                                <xsl:otherwise><xsl:value-of select="$regel"/></xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:variable>
-                        <reference value="Observation/nl-core-SOAPReport-Observation-0{position()}"/>
-                        <display value="{$display}-regel"/>
-                        <!--<xsl:call-template name="nl-core-SOAPReport-Observation-Reference"/>-->
-                    </entry>
-                </section>
-            </xsl:for-each>
-        </Composition>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each>
+                <status value="final"/>
+                <xsl:for-each select="soepregel_naam">
+                    <code>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </code>
+                </xsl:for-each>
+                <xsl:for-each select="soepverslag_tekst">
+                    <valueString value="{@value}"/>
+                </xsl:for-each>
+            </Observation>
+        </xsl:for-each>
     </xsl:template>
-
 </xsl:stylesheet>
