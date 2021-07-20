@@ -435,11 +435,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="*" mode="_generateId">
         <xsl:param name="in" select="."/>
+        <xsl:param name="profile" as="xs:string" select="''"/>
         
-        <xsl:variable name="adaElement" as="xs:string" select="$in/local-name()"/>
-        <xsl:if test="count($ada2resourceType/nm:map[@ada = $adaElement]) gt 1">
-            <xsl:message>Generating a uuid for an ada-element ('<xsl:value-of select="$adaElement"/>') which can produce multiple profiles can produce unreliable results.</xsl:message>
-        </xsl:if>
+        <xsl:variable name="uuidIn" as="element()?">
+            <xsl:element name="{$in/local-name()}">
+                <xsl:copy-of select="$in/@*"/>
+                <xsl:attribute name="profile" select="$profile"/>
+                <xsl:copy-of select="$in/node()"/>
+            </xsl:element>
+        </xsl:variable>
         
         <xsl:variable name="fullUrl">
             <xsl:value-of select="nf:get-fhir-uuid($in)"/>
