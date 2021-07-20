@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code value="225317005"/>
                         <display value="beperking van bewegingsvrijheid"/>
                     </coding>
-                </category>               
+                </category>                   
                 <xsl:for-each select="soort_interventie">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -63,7 +63,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>               
+                </xsl:call-template>        
+                <xsl:choose>
+                    <xsl:when test="begin and einde">
+                        <performedPeriod>
+                            <xsl:call-template name="startend-to-Period">
+                                <xsl:with-param name="start" select="begin"/>
+                                <xsl:with-param name="end" select="einde"/>
+                            </xsl:call-template>
+                        </performedPeriod>
+                    </xsl:when>
+                    <xsl:when test="begin">
+                        <performedDateTime>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </performedDateTime>
+                    </xsl:when>
+                </xsl:choose>                
                 <xsl:for-each select="reden_van_toepassen">
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept">
