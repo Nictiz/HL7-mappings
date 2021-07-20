@@ -43,8 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Generate metadata for all ADA instances -->
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select="collection('../ada_instance/')//*[starts-with(@conceptId, $zib2020Oid) and (ends-with(@conceptId, '.1') or ends-with(@conceptId, '.13.6.4'))]"/>
-            <!-- Also adds 'soepregel' elements as seperate instances -->
+            <xsl:with-param name="in" select="collection('../ada_instance/')//*[starts-with(@conceptId, $zib2020Oid) and 
+                (ends-with(@conceptId, '.1') or 
+                (:soepverslag/soepregel:) ends-with(@conceptId, '.13.6.4') or (:tekst_uitslag/visueel_resultaat:) ends-with(@conceptId,'.13.2.7'))]"/>
         </xsl:call-template>
     </xsl:param>
     
@@ -86,7 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
                 <xsl:value-of select="$id"/>
             </xsl:when>
-            <xsl:when test="$localName = 'soepregel'">
+            <xsl:when test="$localName = ('soepregel','visueel_resultaat')">
                 <xsl:value-of select="$baseId"/>
                 <xsl:value-of select="substring-after($profile, $baseId)"/>
                 <xsl:text>-</xsl:text>

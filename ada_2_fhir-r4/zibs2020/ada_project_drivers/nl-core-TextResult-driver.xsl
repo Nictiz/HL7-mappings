@@ -30,14 +30,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
     
     <xsl:template match="/nm:bundle">
-        <xsl:apply-templates mode="_doTransform" select="$bundle/soepverslag"/>
+        <xsl:apply-templates mode="_doTransform" select="$bundle/tekst_uitslag"/>
     </xsl:template>
     
-    <xsl:template match="//soepverslag_registratie/soepverslag">
+    <xsl:template match="//tekst_uitslag_registratie/tekst_uitslag">
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
-    <xsl:template mode="_doTransform" match="soepverslag">
+    <xsl:template mode="_doTransform" match="tekst_uitslag">
         <!--<xsl:variable name="subject" as="element()?">
             <xsl:call-template name="_resolveAdaPatient">
                 <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
@@ -49,20 +49,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <Bundle>
                     <entry>
                         <xsl:call-template name="insertFullUrl">
-                            <xsl:with-param name="profile" select="'nl-core-SOAPReport'"/>
+                            <xsl:with-param name="profile" select="'nl-core-TextResult'"/>
                         </xsl:call-template>
                         <resource>
-                            <xsl:call-template name="nl-core-SOAPReport">
+                            <xsl:call-template name="nl-core-TextResult">
                                 <!--<xsl:with-param name="patient" select="$subject"/>-->
                             </xsl:call-template>
                         </resource>
-                        <xsl:for-each select="soepregel">
+                        <xsl:for-each select="visueel_resultaat">
                             <xsl:call-template name="insertFullUrl">
-                                <xsl:with-param name="profile" select="'nl-core-SOAPReport-Observation'"/>
+                                <xsl:with-param name="profile" select="'nl-core-TextResult-Media'"/>
                             </xsl:call-template>
                             <entry>
                                 <resource>
-                                    <xsl:call-template name="nl-core-SOAPReport-Observation"/>
+                                    <xsl:call-template name="nl-core-TextResult-Media"/>
                                 </resource>
                             </entry>
                         </xsl:for-each>
@@ -70,18 +70,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </Bundle>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:call-template name="nl-core-SOAPReport">
-                    <!--<xsl:with-param name="patient" select="$subject"/>-->
-                </xsl:call-template>
-                
-                <xsl:for-each select="soepregel">
+                <xsl:call-template name="nl-core-TextResult"/>
+
+                <xsl:for-each select="visueel_resultaat">
                     <xsl:variable name="logicalId">
                         <xsl:call-template name="getLogicalIdFromFhirMetadata">
                             <xsl:with-param name="profile" select="'nl-core-SOAPReport-Observation'"/>
                         </xsl:call-template>
                     </xsl:variable>
                     <xsl:result-document href="./{$logicalId}.xml">
-                        <xsl:call-template name="nl-core-SOAPReport-Observation"/>
+                        <xsl:call-template name="nl-core-TextResult-Media"/>
                     </xsl:result-document>
                 </xsl:for-each>
             </xsl:otherwise>
