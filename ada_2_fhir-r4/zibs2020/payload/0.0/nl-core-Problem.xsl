@@ -106,14 +106,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
-                <xsl:for-each select="probleem_begin_datum[@value]">
+                <xsl:for-each select="probleem_begin_datum">
                     <onsetDateTime>
                         <xsl:call-template name="date-to-datetime">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </onsetDateTime>
                 </xsl:for-each>
-                <xsl:for-each select="probleem_eind_datum[@value]">
+                <xsl:for-each select="probleem_eind_datum">
                     <abatementDateTime>
                         <xsl:call-template name="date-to-datetime">
                             <xsl:with-param name="in" select="."/>

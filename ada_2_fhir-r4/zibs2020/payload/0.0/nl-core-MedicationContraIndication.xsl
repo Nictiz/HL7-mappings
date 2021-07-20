@@ -86,14 +86,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
-                <xsl:if test="begin_datum | eind_datum">
+                <xsl:if test="begin_datum or eind_datum">
                     <period>
-                        <xsl:for-each select="begin_datum">
-                            <start value="{@value}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="eind_datum">
-                            <end value="{@value}"/>
-                        </xsl:for-each>
+                        <xsl:if test="begin_datum">
+                            <start>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(begin_datum/@value)"/>
+                                        <xsl:with-param name="precision" select="'DAY'"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </start>
+                        </xsl:if>
+                        <xsl:if test="eind_datum">
+                            <end>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(eind_datum/@value)"/>
+                                        <xsl:with-param name="precision" select="'DAY'"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </end>
+                        </xsl:if>
                     </period>
                 </xsl:if>
                 <xsl:call-template name="makeReference">

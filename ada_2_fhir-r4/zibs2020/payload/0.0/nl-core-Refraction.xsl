@@ -28,127 +28,128 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada Refraction to FHIR Observation conforming to profile nl-core-Refraction</xd:desc>
+        <xd:desc>Converts ada refractie to FHIR Observation conforming to profile nl-core-Refraction</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap refractie_registratie element</xd:desc>
+        <xd:desc>Create an nl-core-Refraction as a Observation FHIR instance from ada refractie element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="refractie_registratie">
-        <xsl:apply-templates select="refractie" mode="nl-core-Refraction"/><!-- Vul hier de juiste elementnamen en mode in -->
-    </xsl:template>
-
-    <xsl:template match="refractie" name="nl-core-Refraction" mode="nl-core-Refraction">
-        <Observation>
-            <id value="nl-core-Refraction-01"/>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Refraction"/>
-            </meta>
-            <status value="final"/>
-            <code>
-                <coding>
-                    <system value="http://snomed.info/sct"/>
-                    <code value="251718005"/>
-                    <display value="Refractive power (observable entity)"/>
-                </coding>
-            </code>
-            
-            <xsl:for-each select="refractie_datum_tijd">
-                <effectiveDateTime>
-                    <xsl:attribute name="value">
-                        <xsl:call-template name="format2FHIRDate">
-                            <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
-                        </xsl:call-template>
-                    </xsl:attribute>
-                </effectiveDateTime>
-            </xsl:for-each>
-            
-            <xsl:for-each select="anatomische_locatie[lateraliteit]">
-                <bodySite>
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="lateraliteit"/>
+    <xsl:template match="refractie" name="nl-core-Refraction" mode="nl-core-Refraction" as="element(f:Observation)?">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Refraction"/>
+                </meta>
+                <status value="final"/>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="251718005"/>
+                        <display value="Refractive power (observable entity)"/>
+                    </coding>
+                </code>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
+                <xsl:for-each select="refractie_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
                             </xsl:call-template>
-                        </valueCodeableConcept>
-                    </extension>
-                    
-                    <!-- TODO: Should this default to "eye" -->
-                    <xsl:if test=".[@value]">
+                        </xsl:attribute>
+                    </effectiveDateTime>
+                </xsl:for-each>
+                <xsl:for-each select="anatomische_locatie[lateraliteit]">
+                    <bodySite>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="lateraliteit"/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
+                        </extension>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="81745001"/>
+                            <display value="structuur van bulbus oculi (lichaamsstructuur)"/>
+                        </coding>
+                    </bodySite>
+                </xsl:for-each>
+                <xsl:for-each select="refractie_meet_methode">
+                    <method>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </xsl:if>
-                </bodySite>
-            </xsl:for-each>
-            
-            <xsl:for-each select="refractie_meet_methode">
-                <method>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </method>
-            </xsl:for-each>
-            
-            <xsl:for-each select="cilindrische_refractie">
-                <xsl:for-each select="cilindrische_refractie_waarde">
-                    <xsl:call-template name="_refractionComponent">
-                        <xsl:with-param name="snomedCode">251797004</xsl:with-param>
-                        <xsl:with-param name="snomedDisplay">Power of cylinder</xsl:with-param>
-                        <xsl:with-param name="unit">[diop]</xsl:with-param>
-                    </xsl:call-template>
+                    </method>
                 </xsl:for-each>
-                <xsl:for-each select="cilindrische_refractie_as">
-                    <xsl:call-template name="_refractionComponent">
-                        <xsl:with-param name="snomedCode">251799001</xsl:with-param>
-                        <xsl:with-param name="snomedDisplay">Axis of cylinder</xsl:with-param>
-                        <xsl:with-param name="unit">deg</xsl:with-param>
-                    </xsl:call-template>
+                <xsl:for-each select="cilindrische_refractie">
+                    <xsl:for-each select="cilindrische_refractie_waarde">
+                        <xsl:call-template name="_refractionComponent">
+                            <xsl:with-param name="snomedCode">251797004</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">Power of cylinder</xsl:with-param>
+                            <xsl:with-param name="unit">[diop]</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="cilindrische_refractie_as">
+                        <xsl:call-template name="_refractionComponent">
+                            <xsl:with-param name="snomedCode">251799001</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">Axis of cylinder</xsl:with-param>
+                            <xsl:with-param name="unit">deg</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
                 </xsl:for-each>
-            </xsl:for-each>
 
-            <xsl:for-each select="prisma">
-                <xsl:for-each select="prisma_waarde">
+                <xsl:for-each select="prisma">
+                    <xsl:for-each select="prisma_waarde">
+                        <xsl:call-template name="_refractionComponent">
+                            <xsl:with-param name="snomedCode">251762001</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">Prism power</xsl:with-param>
+                            <xsl:with-param name="unit">[diop]</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="prisma_basis">
+                        <xsl:call-template name="_refractionComponent">
+                            <xsl:with-param name="snomedCode">246223004</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">Prism base direction</xsl:with-param>
+                            <xsl:with-param name="unit">deg</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:for-each>
+
+                <xsl:for-each select="sferische_refractie">
+                    <xsl:for-each select="sferische_refractie_waarde">
+                        <xsl:call-template name="_refractionComponent">
+                            <xsl:with-param name="snomedCode">251795007</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">Power of sphere</xsl:with-param>
+                            <xsl:with-param name="unit">[diop]</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="sferisch_equivalent">
+                        <xsl:call-template name="_refractionComponent">
+                            <xsl:with-param name="snomedCode">112881000146107</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">Spherical equivalent (observable entity)</xsl:with-param>
+                            <xsl:with-param name="unit">[diop]</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:for-each>
+
+                <xsl:for-each select="lees_additie">
                     <xsl:call-template name="_refractionComponent">
-                        <xsl:with-param name="snomedCode">251762001</xsl:with-param>
-                        <xsl:with-param name="snomedDisplay">Prism power</xsl:with-param>
+                        <xsl:with-param name="snomedCode">251796008</xsl:with-param>
+                        <xsl:with-param name="snomedDisplay">leesadditie (waarneembare entiteit)</xsl:with-param>
                         <xsl:with-param name="unit">[diop]</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="prisma_basis">
-                    <xsl:call-template name="_refractionComponent">
-                        <xsl:with-param name="snomedCode">246223004</xsl:with-param>
-                        <xsl:with-param name="snomedDisplay">Prism base direction</xsl:with-param>
-                        <xsl:with-param name="unit">deg</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-            </xsl:for-each>
-            
-            <xsl:for-each select="sferische_refractie">
-                <xsl:for-each select="sferische_refractie_waarde">
-                    <xsl:call-template name="_refractionComponent">
-                        <xsl:with-param name="snomedCode">251795007</xsl:with-param>
-                        <xsl:with-param name="snomedDisplay">Power of sphere</xsl:with-param>
-                        <xsl:with-param name="unit">[diop]</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <xsl:for-each select="sferisch_equivalent">
-                    <xsl:call-template name="_refractionComponent">
-                        <xsl:with-param name="snomedCode">112881000146107</xsl:with-param>
-                        <xsl:with-param name="snomedDisplay">Spherical equivalent</xsl:with-param>
-                        <xsl:with-param name="unit">[diop]</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-            </xsl:for-each>
-            
-            <xsl:for-each select="lees_additie">
-                <xsl:call-template name="_refractionComponent">
-                    <xsl:with-param name="snomedCode">TODO-ZIB-1443</xsl:with-param>
-                    <xsl:with-param name="snomedDisplay">Refractive power</xsl:with-param>
-                    <xsl:with-param name="unit">[diop]</xsl:with-param>
-                </xsl:call-template>
-            </xsl:for-each>
-        </Observation>
+            </Observation>
+        </xsl:for-each>
     </xsl:template>
     
     <xd:doc>
@@ -158,6 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="snomedCode"/>
         <xsl:param name="snomedDisplay"/>
         <xsl:param name="unit" select="@unit"/>
+        <xsl:variable name="value" select="if (starts-with(@value, '+')) then substring-after(@value, '+') else @value"/>
         <component>
             <code>
                 <coding>
@@ -167,7 +169,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </coding>
             </code>
             <valueQuantity>
-                <value value="{@value}"/>
+                <value value="{$value}"/>
                 <unit value="{$unit}"/>
                 <system value="http://unitsofmeasure.org"/>
                 <code value="{nf:convert_ADA_unit2UCUM_FHIR($unit)}"/>

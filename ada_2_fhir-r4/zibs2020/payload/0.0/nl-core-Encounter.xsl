@@ -68,10 +68,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="begin_datum_tijd or eind_datum_tijd">
                     <period>
                         <xsl:if test="begin_datum_tijd">
-                            <start value="{normalize-space(begin_datum_tijd/@value)}"/>
+                            <start>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(begin_datum_tijd/@value)"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </start>
                         </xsl:if>
                         <xsl:if test="eind_datum_tijd">
-                            <end value="{normalize-space(eind_datum_tijd/@value)}"/>
+                            <end>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(eind_datum_tijd/@value)"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </end>
                         </xsl:if>
                     </period>
                 </xsl:if>

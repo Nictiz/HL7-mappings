@@ -24,128 +24,133 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
-    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ada visus to FHIR Observation conforming to profile nl-core-VisualAcuity</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap visus_registratie element</xd:desc>
+        <xd:desc>Create a FHIR Observation instance conforming to profile nl-core-VisualAcuity from ada visus element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="visus_registratie">
-        <xsl:apply-templates select="visus" mode="nl-core-VisualAcuity"/>
-    </xsl:template>
-    
-    <xsl:template match="visus" name="nl-core-VisualAcuity" mode="nl-core-VisualAcuity">
-        <Observation>
-            <id value="nl-core-VisualAcuity-01"/>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity"/>
-            </meta>
-            <xsl:for-each select="visus_meet_hulpmiddel">
-                <extension url="http://hl7.org/fhir/StructureDefinition/observation-deviceCode">
-                    <valueCodeableConcept>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </valueCodeableConcept>
-                </extension>
-            </xsl:for-each>
-            <status value="final"/>
-            <code>
-                <coding>
-                    <system value="http://snomed.info/sct"/>
-                    <code value="16830007"/>
-                    <display value="onderzoek van visus"/>
-                </coding>
-            </code>
-            <xsl:for-each select="visus_datum_tijd">
-                <effectiveDateTime>
-                    <xsl:attribute name="value">
-                        <xsl:call-template name="format2FHIRDate">
-                            <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
-                        </xsl:call-template>
-                    </xsl:attribute>
-                </effectiveDateTime>
-            </xsl:for-each>
-            <xsl:for-each select="decimale_visus_waarde">
-                <valueQuantity>
-                    <value value="{@value}"/>
-                    <unit value="decimal"/>
-                    <system value="http://unitsofmeasure.org"/>
-                    <code value="{nf:convert_ADA_unit2UCUM_FHIR('decimal')}"/>
-                </valueQuantity>
-            </xsl:for-each>
-            <xsl:for-each select="anatomische_locatie[lateraliteit]">
-                <bodySite>
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+    <xsl:template match="visus" name="nl-core-VisualAcuity" mode="nl-core-VisualAcuity" as="element(f:Observation)?">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity"/>
+                </meta>
+                <xsl:for-each select="visus_meet_hulpmiddel">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/observation-deviceCode">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="lateraliteit"/>
+                                <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </valueCodeableConcept>
                     </extension>
-                    
-                    <!-- TODO: Should this default to "eye" -->
-                    <xsl:if test=".[@value]">
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </xsl:if>
-                </bodySite>
-            </xsl:for-each>
-            <xsl:for-each select="visus_meting_type">
-                <component>
-                    <code>
-                        <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="TODO-ZIB-1445"/>
-                        </coding>
-                    </code>
-                    <valueCodeableConcept>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </valueCodeableConcept>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="visus_meting_kaart">
-                <component>
-                    <code>
-                        <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="363691001"/>
-                        </coding>
-                    </code>
-                    <valueCodeableConcept>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </valueCodeableConcept>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="afstand_tot_kaart">
-                <component>
-                    <code>
-                        <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="TODO-ZIB-1441"/>
-                        </coding>
-                    </code>
+                </xsl:for-each>
+                <status value="final"/>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="16830007"/>
+                        <display value="onderzoek van visus"/>
+                    </coding>
+                </code>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
+                <xsl:for-each select="visus_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </effectiveDateTime>
+                </xsl:for-each>
+                <xsl:for-each select="decimale_visus_waarde">
                     <valueQuantity>
                         <value value="{@value}"/>
-                        <unit value="m"/>
+                        <unit value="decimal"/>
                         <system value="http://unitsofmeasure.org"/>
-                        <code value="{nf:convert_ADA_unit2UCUM_FHIR('m')}"/>
+                        <code value="{nf:convert_ADA_unit2UCUM_FHIR('decimal')}"/>
                     </valueQuantity>
-                </component>
-            </xsl:for-each>
-        </Observation>
+                </xsl:for-each>
+                <xsl:for-each select="anatomische_locatie[lateraliteit]">
+                    <bodySite>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="lateraliteit"/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
+                        </extension>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="81745001"/>
+                            <display value="structuur van bulbus oculi (lichaamsstructuur)"/>
+                        </coding>
+                    </bodySite>
+                </xsl:for-each>
+                <xsl:for-each select="visus_meting_type">
+                    <component>
+                        <code>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="16830007"/>
+                                <display value="onderzoek van visus (verrichting)"/>
+                            </coding>
+                        </code>
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </component>
+                </xsl:for-each>
+                <xsl:for-each select="visus_meting_kaart">
+                    <component>
+                        <code>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="363691001"/>
+                                <display value="verrichting ingedeeld naar hulpmiddel (verrichting)"/>
+                            </coding>
+                        </code>
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </component>
+                </xsl:for-each>
+                <xsl:for-each select="afstand_tot_kaart">
+                    <component>
+                        <code>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="152731000146106"/>
+                                <display value="distance to visual acuity chart (observable entity)"/>
+                            </coding>
+                        </code>
+                        <valueQuantity>
+                            <value value="{@value}"/>
+                            <unit value="m"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="{nf:convert_ADA_unit2UCUM_FHIR('m')}"/>
+                        </valueQuantity>
+                    </component>
+                </xsl:for-each>
+            </Observation>
+        </xsl:for-each>
     </xsl:template>
     
 </xsl:stylesheet>
