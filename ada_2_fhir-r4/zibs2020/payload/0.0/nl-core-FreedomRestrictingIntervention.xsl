@@ -35,29 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FreedomRestrictingIntervention"/>
-                </meta>               
-                <xsl:for-each select="wilsbekwaam">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
-                            <valueBoolean>
-                                <xsl:call-template name="boolean-to-boolean">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueBoolean>
-                        </extension>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
-                            <valueString>
-                                <xsl:call-template name="string-to-string">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueString>
-                        </extension>
-                    </extension>
-                </xsl:for-each>
-             
-                
-                
-                
+                </meta>  
                 <xsl:for-each select="instemming">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.Assent">
                         <valueCodeableConcept>
@@ -65,8 +43,58 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </valueCodeableConcept>
-                    </extension>
+                    </extension>                  
+                </xsl:for-each>  
+                <xsl:for-each select="wilsbekwaam_toelichting">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
+                        <valueString>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueString>
+                    </extension>                  
+                </xsl:for-each> 
+                <status value="completed"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="225317005"/>
+                        <display value="beperking van bewegingsvrijheid"/>
+                    </coding>
+                </category>               
+                <xsl:for-each select="soort_interventie">
+                    <code>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </code>
                 </xsl:for-each>
+                
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
+         
+            
+                
+                
+                <xsl:for-each select="reden_van_toepassen">
+                    <reasonCode>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </reasonCode>
+                </xsl:for-each>
+                
+           <!--     <xsl:for-each select="//juridische_situatie/juridische_situatie">
+                    <reasonReference>                      
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                            </xsl:call-template>                      
+                    </reasonReference>
+                </xsl:for-each>-->
+                
             </Procedure>
         </xsl:for-each>
     </xsl:template>
