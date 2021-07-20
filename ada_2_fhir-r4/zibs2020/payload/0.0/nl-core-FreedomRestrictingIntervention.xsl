@@ -28,8 +28,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="vrijheidsbeperkende_interventie" name="nl-core-FreedomRestrictingIntervention" mode="nl-core-FreedomRestrictingIntervention" as="element(f:Procedure)">
-        <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" as="element()?"/>
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:for-each select="$in">
             <Procedure>
                 <xsl:call-template name="insertLogicalId"/>
@@ -42,18 +42,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </valueCodeableConcept>
+                        </valueCodeableConcept>                    
                     </extension>                  
-                </xsl:for-each>  
-                <xsl:for-each select="wilsbekwaam_toelichting">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
-                        <valueString>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueString>
-                    </extension>                  
-                </xsl:for-each> 
+                </xsl:for-each>              
                 <status value="completed"/>
                 <category>
                     <coding>
@@ -68,24 +59,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </code>
-                </xsl:for-each>
-                
+                </xsl:for-each>                
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
-         
-            
-                
-                
+                </xsl:call-template>               
                 <xsl:for-each select="reden_van_toepassen">
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </reasonCode>
-                </xsl:for-each>
-                
+                </xsl:for-each>                
            <!--     <xsl:for-each select="//juridische_situatie/juridische_situatie">
                     <reasonReference>                      
                             <xsl:call-template name="makeReference">
@@ -93,8 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
                             </xsl:call-template>                      
                     </reasonReference>
-                </xsl:for-each>-->
-                
+                </xsl:for-each>-->                
             </Procedure>
         </xsl:for-each>
     </xsl:template>
