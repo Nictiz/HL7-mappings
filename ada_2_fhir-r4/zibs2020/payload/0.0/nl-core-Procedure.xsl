@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
-            <!--    <xsl:for-each select="aanvrager">
+                <!--    <xsl:for-each select="aanvrager">
                     <location>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
@@ -85,26 +85,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </performedDateTime>
                     </xsl:when>
                 </xsl:choose>
-            <!--    <xsl:for-each select="uitvoerder">
+                <xsl:for-each select="//uitvoerder/zorgverlener">
                     <performer>
                         <actor>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile"
-                                select="'nl-core-HealthProfessional-PractitionerRole'"/>
-                        </xsl:call-template>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="profile"
+                                    select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                            </xsl:call-template>
                         </actor>
                     </performer>
-                </xsl:for-each>-->
-          <!--      <xsl:for-each select="locatie">
+                </xsl:for-each>
+                <xsl:for-each select="//locatie/zorgaanbieder">
                     <location>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="'nl-core-HealtcareProvider'"/>
+                            <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                         </xsl:call-template>
                     </location>
-                </xsl:for-each>-->
-    <!--            <xsl:for-each select="indicatie">
+                </xsl:for-each>
+                <!--<xsl:for-each select="indicatie">
                     <reasonReference>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
@@ -131,7 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </bodySite>
                 </xsl:for-each>
-         <!--       <xsl:for-each select="medisch_hulpmiddel">
+                <!--       <xsl:for-each select="medisch_hulpmiddel">
                     <focalDevice>
                         <manipulated>
                             <xsl:call-template name="makeReference">
