@@ -131,7 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </bodySite>
                 </xsl:for-each>
-                <!--       <xsl:for-each select="medisch_hulpmiddel">
+                <!--<xsl:for-each select="medisch_hulpmiddel">
                     <focalDevice>
                         <manipulated>
                             <xsl:call-template name="makeReference">
