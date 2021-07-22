@@ -86,13 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <xsl:for-each select="anatomische_locatie[lateraliteit]">
                     <bodySite>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
-                            <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="lateraliteit"/>
-                                </xsl:call-template>
-                            </valueCodeableConcept>
-                        </extension>
+                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
                         <coding>
                             <system value="http://snomed.info/sct"/>
                             <code value="81745001"/>

@@ -26,11 +26,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada probleem to FHIR Procedure conforming to profile nl-core-Problem</xd:desc>
+        <xd:desc>Converts ada probleem to FHIR Condition conforming to profile nl-core-Problem</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap probleem_registratie element</xd:desc>
+        <xd:desc>Create an nl-core-Problem as a Condition FHIR instance from ada probleem element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
