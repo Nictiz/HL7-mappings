@@ -19,35 +19,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:strip-space elements="*"/>
+    <xsl:import href="_driverInclude.xsl"/>
     
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
-    </xd:doc>
-    
-    <xd:doc>
-        <xd:desc>Create a nl-core-[zib name] instance as a [resource name] FHIR instance from ADA [ADA instance name].</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-    </xd:doc>
-    <xsl:template name="nl-core-[zib name]" mode="nl-core-[zib name]" as="element(f:[resource name])">
-        <xsl:param name="in" as="element()?" select="."/>
+    <xsl:template match="/nm:bundle">
+        <xsl:apply-templates mode="_doTransform" select="$bundle/contactpersoon"/>
     </xsl:template>
     
-    <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateId">
+    <xsl:template match="//contactpersoon_registratie/contactpersoon">
+        <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateDisplay">
+    <xsl:template mode="_doTransform" match="contactpersoon">
+        <xsl:variable name="subject" as="element()?">
+            <xsl:call-template name="_resolveAdaPatient">
+                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
+            </xsl:call-template>
+        </xsl:variable>
+        
+        <xsl:call-template name="nl-core-ContactPerson">
+            <xsl:with-param name="patient" select="$subject"/>
+        </xsl:call-template>
     </xsl:template>
+    
 </xsl:stylesheet>
