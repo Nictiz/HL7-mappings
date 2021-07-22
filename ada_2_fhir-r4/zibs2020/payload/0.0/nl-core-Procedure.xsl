@@ -112,25 +112,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </reasonReference>
                 </xsl:for-each>-->
-                <xsl:for-each select="verrichting_anatomische_locatie">
-                    <bodySite>
-                        <xsl:for-each select="lateraliteit">
-                            <extension
-                                url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
-                        </xsl:for-each>
-                        <xsl:for-each select="locatie">
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </xsl:for-each>
+      <!--          <xsl:for-each select="verrichting_anatomische_locatie">
+                    <bodySite>                       
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="profile" select="'nl-core-AnatomicalLocation'"/>
+                        </xsl:call-template>                    
                     </bodySite>
-                </xsl:for-each>
+                </xsl:for-each>-->
                 <!--<xsl:for-each select="medisch_hulpmiddel">
                     <focalDevice>
                         <manipulated>
