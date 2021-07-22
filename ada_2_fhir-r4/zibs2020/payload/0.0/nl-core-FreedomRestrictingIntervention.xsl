@@ -20,7 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA zorgteam to FHIR Procedure conforming to profile nl-core-FreedomRestrictingIntervention</xd:desc>
+        <xd:desc>Converts ADA vrijheidsbeperkendeinterventie to FHIR Procedure conforming to profile nl-core-FreedomRestrictingIntervention</xd:desc>
     </xd:doc>
     
     <xd:doc>
@@ -103,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reasonReference>                      
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                <xsl:with-param name="profile" select="'nl-core-LegalSituation-LegalStatus'"/>
                             </xsl:call-template>                      
                     </reasonReference>
                 </xsl:for-each>-->                
@@ -118,5 +118,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="concat('nl-core-CareTeam-', position())"/>
     </xsl:template>
     
-
 </xsl:stylesheet>
