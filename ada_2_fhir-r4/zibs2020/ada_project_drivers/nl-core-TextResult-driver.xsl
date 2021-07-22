@@ -82,6 +82,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="nl-core-TextResult-Media"/>
                     </xsl:result-document>
                 </xsl:for-each>
+                <xsl:for-each select="referenties/verrichting">
+                    <xsl:variable name="logicalId">
+                        <xsl:call-template name="getLogicalIdFromFhirMetadata">
+                            <xsl:with-param name="profile" select="'nl-core-Procedure'"/>
+                        </xsl:call-template>
+                    </xsl:variable>
+                    <xsl:result-document href="./{$logicalId}.xml">
+                        <xsl:call-template name="nl-core-Procedure">
+                            <xsl:with-param name="report" select="ancestor::tekst_uitslag"/>
+                        </xsl:call-template>
+                    </xsl:result-document>
+                </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
