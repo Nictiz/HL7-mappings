@@ -36,15 +36,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FreedomRestrictingIntervention"/>
                 </meta>               
-                <xsl:for-each select="wilsbekwaam_toelichting">
+                <xsl:if test="wilsbekwaam | wilsbekwaam_toelichting">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
-                        <valueString>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueString>                    
-                    </extension>                  
-                </xsl:for-each>                 
+                        <xsl:for-each select="wilsbekwaam">
+                            <extension url="legallyCapable">
+                                <valueBoolean> ... </valueBoolean>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select="wilsbekwaam_toelichting">
+                            <extension url="legallyCapableComment">
+                                <valueString>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueString>
+                            </extension>
+                        </xsl:for-each>
+                    </extension>
+                </xsl:if>
                 <xsl:for-each select="instemming">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.Assent">
                         <valueCodeableConcept>
