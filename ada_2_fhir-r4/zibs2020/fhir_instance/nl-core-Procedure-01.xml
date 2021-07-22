@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Procedure-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129284003"/>
+            <display value="chirurgische handeling"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <basedOn>
+      <reference value="Procedure/nl-core-Procedure-01"/>
+      <type value="Procedure"/>
+      <display value="UMCG"/>
+   </basedOn>
+   <status value="completed"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="609588000"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <performedPeriod>
+      <start value="2012-06-05"/>
+      <end value="2012-06-06"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="PractitionerRole/4402"/>
+         <type value="PractitionerRole"/>
+         <display value="Orthoptisten"/>
+      </actor>
+   </performer>
+   <location>
+      <reference value="Location/d401714e-eafa-11eb-8472-020000000000"/>
+      <type value="Location"/>
+      <display value="UMCG"/>
+   </location>
+   <reasonReference>
+      <reference value="Condition/d401752e-eafa-11eb-8472-020000000000"/>
+      <type value="Condition"/>
+      <display value="probleem"/>
+   </reasonReference>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="72696002"/>
+      </coding>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </bodySite>
+</Procedure>

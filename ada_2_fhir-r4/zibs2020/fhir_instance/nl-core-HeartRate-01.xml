@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-HeartRate-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate"/>
+   </meta>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="8867-4"/>
+         <display value="Heart rate"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2013-02-08T06:43:00+02:00"/>
+   <valueQuantity>
+      <value value="126"/>
+      <unit value="/min"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="/min"/>
+   </valueQuantity>
+   <note>
+      <text value="Misschien bigeminie?"/>
+   </note>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="37931006"/>
+         <display value="Auscultatie"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="301112006"/>
+            <display value="Finding of heart rhythm"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="361137007"/>
+            <display value="Onregelmatige hartslag"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="301113001"/>
+            <display value="Finding of heart rate"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="48867003"/>
+            <display value="Bradycardie"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>
