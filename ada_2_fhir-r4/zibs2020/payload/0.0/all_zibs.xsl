@@ -36,13 +36,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-AnatomicalLocation.xsl"/>
+    <xsl:import href="nl-core-BloodPressure.xsl"/>
     <xsl:import href="nl-core-BodyHeight.xsl"/>
     <xsl:import href="nl-core-BodyWeight.xsl"/>
+    <xsl:import href="nl-core-BodyTemperature.xsl"/>
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
     <xsl:import href="nl-core-Encounter.xsl"/>
+    <xsl:import href="nl-core-HeadCircumference.xsl"/>
     <xsl:import href="nl-core-HealthProfessional.xsl"/>
     <xsl:import href="nl-core-HealthcareProvider.xsl"/>
+    <xsl:import href="nl-core-HeartRate.xsl"/>
     <xsl:import href="nl-core-LegalSituation.xsl"/>
     <xsl:import href="nl-core-MedicationContraIndication.xsl"/>
     <xsl:import href="nl-core-NameInformation.xsl"/>

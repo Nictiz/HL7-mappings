@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
+
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
+
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
+
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
@@ -21,77 +24,76 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada lichaamstemperatuur to FHIR Observation conforming to profile http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyTemperature</xd:desc>
+        <xd:desc>Converts ada lichaamstemperatuur to FHIR Observation conforming to profile nl-core-BodyTemperature</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Unwrap lichaamstemperatuur_registratie element</xd:desc>
+        <xd:desc>Create an nl-core-BodyTemperature as a Observation FHIR instance from ada lichaamstemperatuur element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="lichaamstemperatuur_registratie">
-        <xsl:apply-templates select="lichaamstemperatuur" mode="nl-core-BodyTemperature"/>
-    </xsl:template>
-    
-    <xsl:template match="lichaamstemperatuur" name="nl-core-BodyTemperature" mode="nl-core-BodyTemperature">
-        <Observation>
-            <!-- <xsl:call-template name="insertId"/>-->
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyTemperature"/>
-            </meta>  
-            <status value="final"/>
-            <category>
-                <coding>
-                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
-                    <code value="vital-signs"/>
-                    <display value="Vital Signs"/>
-                </coding>
-            </category>
-            <code>
-                <coding>
-                    <system value="http://loinc.org"/>
-                    <code value="8310-5"/>
-                    <display value="Body temperature"/>
-                </coding>
-                <coding>
-                    <system value="http://snomed.info/sct"/>
-                    <code value="415974002"/>
-                    <display value="Tympanische temperatuur"/>
-                </coding>
-            </code>
-            <xsl:for-each select="temperatuur_type">
+    <xsl:template match="lichaamstemperatuur" name="nl-core-BodyTemperature" mode="nl-core-BodyTemperature" as="element(f:Observation)?">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyTemperature"/>
+                </meta>
+                <status value="final"/>
+                <category>
+                    <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                        <code value="vital-signs"/>
+                        <display value="Vital Signs"/>
+                    </coding>
+                </category>
                 <code>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </code>
-            </xsl:for-each>
-            <xsl:for-each select="temperatuur_datum_tijd">
-                <effectiveDateTime>
-                    <xsl:call-template name="date-to-datetime">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </effectiveDateTime>
-            </xsl:for-each>
-            <xsl:for-each select="temperatuur_waarde">
-                <valueQuantity>
-                    <xsl:call-template name="hoeveelheid-to-Quantity">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </valueQuantity>
-            </xsl:for-each>
-            <xsl:for-each select="toelichting">
-                <note>
-                    <text>
-                        <xsl:call-template name="string-to-string">
+                    <coding>
+                        <system value="http://loinc.org"/>
+                        <code value="8310-5"/>
+                        <display value="Body temperature"/>
+                    </coding>
+                    <xsl:for-each select="temperatuur_type">
+                        <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </text>
-                </note>
-            </xsl:for-each>
-        </Observation>
+                    </xsl:for-each>
+                </code>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
+                <xsl:for-each select="temperatuur_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
+                <xsl:for-each select="temperatuur_waarde">
+                    <valueQuantity>
+                        <xsl:call-template name="hoeveelheid-to-Quantity">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </valueQuantity>
+                </xsl:for-each>
+                <xsl:for-each select="toelichting">
+                    <note>
+                        <text>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </text>
+                    </note>
+                </xsl:for-each>
+            </Observation>
+        </xsl:for-each>
     </xsl:template>    
 </xsl:stylesheet>
