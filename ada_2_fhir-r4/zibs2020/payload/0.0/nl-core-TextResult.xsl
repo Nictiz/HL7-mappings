@@ -112,6 +112,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 <status value="unknown"/>
                 <content>
+                    <!-- Needed to satisfy contraint att-1. 'application/octet-stream' is basically 'unkown'('arbitrary binary data') -->
+                    <contentType value="application/octet-stream"/>
                     <data value="{@value}"/>
                 </content>
             </Media>

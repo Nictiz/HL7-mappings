@@ -667,6 +667,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-mmHg">mm[Hg]</xsl:when>
                 <xsl:when test="nf:isValidUCUMUnit($ADAunit)">
                     <xsl:value-of select="$ADAunit"/>
                 </xsl:when>

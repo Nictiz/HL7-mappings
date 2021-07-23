@@ -56,6 +56,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="juridische status van patiënt"/>
                     </coding>
                 </category>
+                <xsl:if test="datum_einde">
+                    <!-- Needed to satisfy constraint con-3 -->
+                    <clinicalStatus>
+                        <coding>
+                            <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+                            <code value="inactive"/>
+                            <display value="Inactive"/>
+                        </coding>
+                    </clinicalStatus>
+                </xsl:if>
                 <xsl:for-each select="juridische_status">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -113,6 +123,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="Type of guardian"/>
                     </coding>
                 </category>
+                <xsl:if test="datum_einde">
+                    <!-- Needed to satisfy constraint con-3 -->
+                    <clinicalStatus>
+                        <coding>
+                            <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+                            <code value="inactive"/>
+                            <display value="Inactive"/>
+                        </coding>
+                    </clinicalStatus>
+                </xsl:if>
                 <xsl:for-each select="vertegenwoordiging">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
