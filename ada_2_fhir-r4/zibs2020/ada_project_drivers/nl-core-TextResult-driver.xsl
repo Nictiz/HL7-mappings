@@ -38,11 +38,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template mode="_doTransform" match="tekst_uitslag">
-        <!--<xsl:variable name="subject" as="element()?">
+        <xsl:variable name="subject" as="element()?">
             <xsl:call-template name="_resolveAdaPatient">
                 <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
             </xsl:call-template>
-        </xsl:variable>-->
+        </xsl:variable>
         
         <xsl:choose>
             <xsl:when test="$createBundle">
@@ -90,6 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     <xsl:result-document href="./{$logicalId}.xml">
                         <xsl:call-template name="nl-core-Procedure">
+                            <xsl:with-param name="subject" select="$subject"/>
                             <xsl:with-param name="report" select="ancestor::tekst_uitslag"/>
                         </xsl:call-template>
                     </xsl:result-document>

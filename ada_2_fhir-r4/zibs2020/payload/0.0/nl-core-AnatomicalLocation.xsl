@@ -52,11 +52,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template name="_doAnatomicalLocation">
-        <xsl:for-each select="locatie">
-            <xsl:call-template name="code-to-CodeableConcept">
-                <xsl:with-param name="in" select="."/>
-            </xsl:call-template>
-        </xsl:for-each>
         <xsl:for-each select="lateraliteit">
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
                 <valueCodeableConcept>
@@ -65,7 +60,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </valueCodeableConcept>
             </extension>
-        </xsl:for-each>  
+        </xsl:for-each>
+        <xsl:for-each select="locatie">
+            <xsl:call-template name="code-to-CodeableConcept">
+                <xsl:with-param name="in" select="."/>
+            </xsl:call-template>
+        </xsl:for-each>
     </xsl:template>
     
 </xsl:stylesheet>

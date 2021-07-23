@@ -49,13 +49,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus"/>
                 </meta>
-                <category>
-                    <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="303186005"/>
-                        <display value="juridische status van patiënt"/>
-                    </coding>
-                </category>
                 <xsl:if test="datum_einde">
                     <!-- Needed to satisfy constraint con-3 -->
                     <clinicalStatus>
@@ -66,6 +59,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </clinicalStatus>
                 </xsl:if>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="303186005"/>
+                        <display value="juridische status van patiënt"/>
+                    </coding>
+                </category>
                 <xsl:for-each select="juridische_status">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -116,13 +116,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-Representation"/>
                 </meta>
-                <category>
-                    <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="151701000146105"/>
-                        <display value="Type of guardian"/>
-                    </coding>
-                </category>
                 <xsl:if test="datum_einde">
                     <!-- Needed to satisfy constraint con-3 -->
                     <clinicalStatus>
@@ -133,6 +126,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </clinicalStatus>
                 </xsl:if>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="151701000146105"/>
+                        <display value="Type of guardian"/>
+                    </coding>
+                </category>
                 <xsl:for-each select="vertegenwoordiging">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
