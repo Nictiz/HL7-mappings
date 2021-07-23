@@ -27,6 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="bouwstenen/gebz_2_fhir_zib-laboratory-testresult-observation.xsl"/>
     <xsl:import href="bouwstenen/gebz_2_fhir_bc-condition.xsl"/>
     <xsl:import href="bouwstenen/gebz_2_fhir_bc-procedure.xsl"/>
+    <xsl:import href="bouwstenen/gebz_2_fhir_bc-encounter.xsl"/>
     <xsl:import href="bouwstenen/gebz_2_fhir_bc-composition.xsl"/>
     <xsl:import href="bouwstenen/gebz_mappings.xsl"/>
     <xsl:output method="xml" indent="yes"/>
@@ -264,6 +265,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:variable>    
 
+    <!-- encounters -->
+    <xsl:variable name="encounters" as="element()*">       
+        <!-- maternale labonderzoekgegevens -->
+        <xsl:for-each-group select="//prenatale_controle[not(@datatype='reference')]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <xsl:variable name="elementName" select="name(.)"/>
+            <unieke-encounter xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display xmlns="">
+                    <xsl:value-of select="concat(replace($elementName, '_', ' '),$vrouwId)"/>
+                </reference-display>
+                <xsl:for-each select=".">
+                    <xsl:call-template name="bcEncounterEntry">
+                        <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </unieke-encounter>
+        </xsl:for-each-group>
+    </xsl:variable>
+
     <!-- observations -->
     <xsl:variable name="observations" as="element()*">       
         <!-- maternale labonderzoekgegevens -->
@@ -382,7 +406,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$composition">
             <xsl:apply-templates select="." mode="doCreateTransactionBundleEntry"/>
         </xsl:for-each>
-        <xsl:for-each select="$patients | $relatedPersons | $organizations | $referralRequests | $practitioners | $practitionerRoles | $conditions | $episodesofcare | $observations | $procedures">
+        <xsl:for-each select="$patients | $relatedPersons | $organizations | $referralRequests | $practitioners | $practitionerRoles | $conditions | $episodesofcare | $observations | $procedures | $encounters">
             <entry xmlns="http://hl7.org/fhir">
                 <xsl:copy-of select="f:entry/f:fullUrl"/>
                 <xsl:copy-of select="f:entry/f:resource"/>
@@ -397,7 +421,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates transaction bundle entry for a FHIR resource</xd:desc>
     </xd:doc>
-    <xsl:template name="createTransactionBundleEntry" match="f:resource/* | f:Patient | f:RelatedPerson | f:Organization | f:Practitioner | f:PractitionerRole | f:ReferralRequest | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:List | f:Composition" mode="doCreateTransactionBundleEntry">
+    <xsl:template name="createTransactionBundleEntry" match="f:resource/* | f:Patient | f:RelatedPerson | f:Organization | f:Practitioner | f:PractitionerRole | f:ReferralRequest | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Encounter | f:List | f:Composition" mode="doCreateTransactionBundleEntry">
         <entry xmlns="http://hl7.org/fhir">
             <fullUrl value="{nf:get-fhir-uuid(.)}"/>
             <resource>
