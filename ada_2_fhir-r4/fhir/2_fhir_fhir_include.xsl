@@ -482,4 +482,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <xsl:function name="nf:resolveAdaInstance">
+        <xsl:param name="in"/>
+        <xsl:param name="context"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in[@datatype = 'reference' and @value]">
+                <xsl:variable name="adaId" select="$in/@value"/>
+                <xsl:copy-of select="$context//*[@id = $adaId][1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="$in"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
 </xsl:stylesheet>

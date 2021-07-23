@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: CHECK BEFORE RUNNING ####
-SET jarPath=C:\Saxon\saxon-he-10.5.jar
+SET jarPath=C:\SaxonHE9-9-1-7J\saxon9he.jar
 SET inputDir=..\ada_instance
 SET outputDir=..\fhir_instance
 

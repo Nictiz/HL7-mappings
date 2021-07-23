@@ -20,16 +20,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA vrijheidsbeperkendeinterventie to FHIR Procedure conforming to profile nl-core-FreedomRestrictingIntervention</xd:desc>
+        <xd:desc>Converts ADA vrijheidsbeperkende_interventie to FHIR Procedure conforming to profile nl-core-FreedomRestrictingIntervention</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-FreedomRestrictingIntervention instance as a Procedure FHIR instance from ADA nl-core-FreedomRestrictingIntervention-01.</xd:desc>
+        <xd:desc>Create a nl-core-FreedomRestrictingIntervention instance as a Procedure FHIR instance from ADA vrijheidsbeperkende_interventie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="vrijheidsbeperkende_interventie" name="nl-core-FreedomRestrictingIntervention" mode="nl-core-FreedomRestrictingIntervention" as="element(f:Procedure)">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
+        
         <xsl:for-each select="$in">
             <Procedure>
                 <xsl:call-template name="insertLogicalId"/>
@@ -66,8 +67,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </valueCodeableConcept>                    
                     </extension>                  
-                </xsl:for-each>              
-                <status value="completed"/>
+                </xsl:for-each>   
+                <status>
+                    <xsl:choose>
+                        <xsl:when test="xs:date(eind_datum/@value) lt current-date()">
+                            <xsl:attribute name="value" select="'completed'"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- In any other situation, we cannot know if the status is 'preparation' or 'in-progress' because there is no concept of the time difference between transformation and sending the FHIR resource -->
+                            <xsl:attribute name="value" select="'unknown'"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </status>
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
@@ -112,14 +123,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </reasonCode>
                 </xsl:for-each>                
-           <!--     <xsl:for-each select="//juridische_situatie/juridische_situatie">
-                    <reasonReference>                      
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="profile" select="'nl-core-LegalSituation-LegalStatus'"/>
-                            </xsl:call-template>                      
+                <xsl:for-each select="juridische_situatie">
+                    <reasonReference>
+                        <xsl:choose>
+                            <xsl:when test="nf:resolveAdaInstance(juridische_situatie, $in)[vertegenwoordiging]">
+                                <xsl:call-template name="makeReference">
+                                    <xsl:with-param name="in" select="juridische_situatie"/>
+                                    <xsl:with-param name="profile" select="'nl-core-LegalSituation-Representation'"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:when test="nf:resolveAdaInstance(juridische_situatie, $in)[juridische_status]">
+                                <xsl:call-template name="makeReference">
+                                    <xsl:with-param name="in" select="juridische_situatie"/>
+                                    <xsl:with-param name="profile" select="'nl-core-LegalSituation-LegalStatus'"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                        </xsl:choose>
                     </reasonReference>
-                </xsl:for-each>-->                
+                </xsl:for-each>                
             </Procedure>
         </xsl:for-each>
     </xsl:template>
