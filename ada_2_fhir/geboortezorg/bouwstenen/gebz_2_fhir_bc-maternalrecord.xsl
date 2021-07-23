@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.EpisodeOfCare.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="maternalRecordEntry" match="zwangerschap" mode="doMaternalRecordEntry" as="element(f:entry)">
+    <xsl:template name="maternalRecordEntry" match="zorgverlening/zorg_episode" mode="doMaternalRecordEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaZorginstelling"/>
         <xsl:param name="adaZorgverlener"/>
@@ -148,6 +148,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="organizationReference"/>
                     </managingOrganization>
                 </xsl:for-each>   
+                <xsl:if test="begin_datum | eind_datum">
+                    <period>
+                        <xsl:for-each select="begin_datum[@value]">
+                            <start value="{./@value}">
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="precision" select="'DAY'"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </start>
+                        </xsl:for-each>
+                        <xsl:for-each select="eind_datum[@value]">
+                            <end value="{./@value}">
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="precision" select="'DAY'"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </end>
+                        </xsl:for-each>
+                    </period>
+                </xsl:if>
                 <xsl:for-each select="$adaZorgverlener">
                     <careManager>
                         <xsl:call-template name="practitionerReference"/>

@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="vrouwId" select="replace(lower-case(//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/naamgegevens/achternaam/achternaam/@value), ' ', '-')"/>
 
     <xd:doc>
-        <xd:desc>Converts ada vrouw to ada patient</xd:desc>
+        <xd:desc>Converts ada vrouw 2.3 to ada patient conform zib</xd:desc>
     </xd:doc>
     <xsl:template name="convert-vrouw-ada" mode="vrouw-ada" match="vrouw" as="element()*">
         <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>
@@ -64,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Converts ada kind to ada patient</xd:desc>
+        <xd:desc>Converts ada kind 2.3 to ada patient conform zib</xd:desc>
     </xd:doc>
     <xsl:template name="convert-kind-ada" mode="kind-ada" match="uitkomst_per_kind" as="element()*">
         <xsl:param name="theIdentifier" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>

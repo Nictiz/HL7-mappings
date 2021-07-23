@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="b80f6688-e47c-11eb-2834-020000000000"/>
+   <id value="140441d2-eb82-11eb-5073-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
@@ -8,8 +8,12 @@
       <status value="generated"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: <a href="Patient/WOUDENVANDER">Wouden van der</a>. Categorie: 49581000146104 (SNOMED CT), Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: <a href="Patient/XXX-KWEE">XXX_Kwee</a>. Categorie: 49581000146104 (SNOMED CT), Status: definitief</caption>
             <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>2020-12-30</td>
+               </tr>
                <tr>
                   <th>Code</th>
                   <th>Waarde</th>
@@ -19,7 +23,7 @@
                      <span title="little c Ag [Presence] on Red Blood Cells (1159-3 - LOINC)">little c Ag [Presence] on Red Blood Cells</span>
                   </td>
                   <td>
-                     <span title="Rh c Negatief (733119003 - SNOMED CT)">Rh c Negatief</span>
+                     <span title="Rh c Positief (733120009 - SNOMED CT)">Rh c Positief</span>
                   </td>
                </tr>
             </tbody>
@@ -52,18 +56,20 @@
       </coding>
    </code>
    <subject>
-      <reference value="Patient/WOUDENVANDER"/>
-      <display value="Wouden van der"/>
+      <reference value="Patient/XXX-KWEE"/>
+      <display value="XXX_Kwee"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/b80f5fa2-e47c-11eb-2834-020000000000"/>
-      <display value="Zwangerschap 4 wouden"/>
+      <identifier>
+         <value value="1"/>
+      </identifier>
    </context>
+   <effectiveDateTime value="2020-12-30"/>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="733119003"/>
-         <display value="Rh c Negatief"/>
+         <code value="733120009"/>
+         <display value="Rh c Positief"/>
       </coding>
    </valueCodeableConcept>
 </Observation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EpisodeOfCare xmlns="http://hl7.org/fhir">
-   <id value="fed6adf1-e4a5-11eb-2020-020000000000"/>
+   <id value="14043729-eb82-11eb-5073-020000000000"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
@@ -14,9 +14,18 @@
       </coding>
    </type>
    <diagnosis>
-      <condition>
-         <reference value="Condition/fed6c17a-e4a5-11eb-2020-020000000000"/>
-         <display value="Zwangerschap  "/>
-      </condition>
+      <condition/>
    </diagnosis>
+   <patient>
+      <reference value="Patient/XXX-KWEE"/>
+      <display value="XXX_Kwee"/>
+   </patient>
+   <managingOrganization>
+      <reference value="Organization/2-16-840-1-113883-2-4-6-112312312"/>
+      <display value="Organisatie met id '12312312' in identificerend systeem '2.16.840.1.113883.2.4.6.1'."/>
+   </managingOrganization>
+   <period>
+      <start value="${DATE, T, D, -205}"/>
+      <end value="${DATE, T, D, -194}"/>
+   </period>
 </EpisodeOfCare>

@@ -37,77 +37,88 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- dateT may be given for relative dates, only applicable for test instances -->
     <xsl:param name="dateT" as="xs:date?"/>
+    
+    <xsl:param name="vrouwId" select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/vrouw/demografische_gegevens/patient/@value"/><!-- alleen voor 3.2 -->
 
     <!-- ada instances -->
     <xsl:param name="patient-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
-        <!-- TODO: hier voor 3.2 rechtstreeks uit inputfile ophalen, bovenstaande conversie alleen nodig voor 2.3, geldt ook voor onderstaande rijen -->
+        <xsl:choose>
+            <!-- voor 2.3 moet ada eerst nog omgezet worden naar ada formaat conform zibs -->
+            <xsl:when test="$adaversion='2.3'">
+                <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
+            </xsl:when>
+            <!-- 3.2 volgt al zib structuur en kan rechtstreeks gebruikt worden -->
+            <xsl:otherwise>
+                <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id=$vrouwId]"></xsl:copy-of>
+            </xsl:otherwise>
+        </xsl:choose> 
     </xsl:param>
 
     <xsl:param name="partner-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/partner" mode="partner-ada"/>
+        <xsl:choose>
+            <!-- voor 2.3 moet ada eerst nog omgezet worden naar ada formaat conform zibs -->
+            <xsl:when test="$adaversion='2.3'">
+                <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/partner" mode="partner-ada"/>
+            </xsl:when>
+            <!-- 3.2 volgt al zib structuur en kan rechtstreeks gebruikt worden -->
+            <xsl:otherwise>
+                <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id='partner']"></xsl:copy-of><!-- todo: filter op partner -->
+            </xsl:otherwise>
+        </xsl:choose> 
     </xsl:param>
 
     <xsl:variable name="kind-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/uitkomst_per_kind" mode="kind-ada"/>
+        <xsl:choose>
+            <!-- voor 2.3 moet ada eerst nog omgezet worden naar ada formaat conform zibs -->
+            <xsl:when test="$adaversion='2.3'">
+                <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/uitkomst_per_kind" mode="kind-ada"/>
+            </xsl:when>
+            <!-- 3.2 volgt al zib structuur en kan rechtstreeks gebruikt worden -->
+            <xsl:otherwise>
+                <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id='Kind2']"></xsl:copy-of><!-- todo: filter op kind -->
+                <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id='Kind3']"></xsl:copy-of><!-- todo: filter op kind -->
+            </xsl:otherwise>
+        </xsl:choose> 
     </xsl:variable>
 
     <xsl:param name="zorginstelling-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling/zorginstelling" mode="zorginstelling-ada"/>
+        <xsl:choose>
+            <!-- voor 2.3 moet ada eerst nog omgezet worden naar ada formaat conform zibs -->
+            <xsl:when test="$adaversion='2.3'">
+                <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling/zorginstelling" mode="zorginstelling-ada"/>
+            </xsl:when>
+            <!-- 3.2 volgt al zib structuur en kan rechtstreeks gebruikt worden -->
+            <xsl:otherwise>
+                <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/zorgaanbieder"></xsl:copy-of>
+            </xsl:otherwise>
+        </xsl:choose> 
     </xsl:param>
     
     <xsl:param name="verwijzing-zorginstelling-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidige_zwangerschap | bevallingsgegevens_23)/zorgverlening/verwijsdetails/verwijzing_naar/zorginstelling" mode="zorginstelling-ada"/>
+        <xsl:choose>
+            <!-- voor 2.3 moet ada eerst nog omgezet worden naar ada formaat conform zibs -->
+            <xsl:when test="$adaversion='2.3'">
+                <xsl:apply-templates select="(prio1_huidige_zwangerschap | bevallingsgegevens_23)/zorgverlening/verwijsdetails/verwijzing_naar/zorginstelling" mode="zorginstelling-ada"/>
+            </xsl:when>
+            <!-- 3.2 volgt al zib structuur en kan rechtstreeks gebruikt worden --> <!-- todo: verwijzer zit er nu nog niet in in 3.2 -->
+<!--            <xsl:otherwise>
+                <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/...."></xsl:copy-of>
+            </xsl:otherwise>-->
+        </xsl:choose>
     </xsl:param>
 
     <xsl:param name="zorgverlener-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorgverlener-ada"/>
+        <xsl:choose>
+            <!-- voor 2.3 moet ada eerst nog omgezet worden naar ada formaat conform zibs -->
+            <xsl:when test="$adaversion='2.3'">
+                <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorgverlener-ada"/>
+            </xsl:when>
+            <!-- 3.2 volgt al zib structuur en kan rechtstreeks gebruikt worden -->
+            <xsl:otherwise>
+                <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/zorgverlener"></xsl:copy-of>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:param>
-
-    <!-- unique patients -->
-    <xsl:variable name="patients" as="element()*">
-        <!-- Patiënten -->
-        <xsl:for-each-group select="$patient-ada" group-by="
-                string-join(for $att in nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value)
-                return
-                    $att, '')">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
-                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <unieke-patient xmlns="">
-                    <group-key>
-                        <xsl:value-of select="current-grouping-key()"/>
-                    </group-key>
-                    <reference-display>
-                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
-                    </reference-display>
-                    <xsl:apply-templates select="current-group()[1]" mode="doPatientEntry-2.1">
-                        <xsl:with-param name="uuid" select="$uuid"/>
-                    </xsl:apply-templates>
-                </unieke-patient>
-            </xsl:for-each-group>
-        </xsl:for-each-group>
-        <!-- Kind -->
-        <xsl:for-each-group select="$kind-ada" group-by="nf:getGroupingKeyPatient(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <xsl:variable name="fullUrl" select="nf:get-fhir-uuid(.)"/>
-            <unieke-patient xmlns="">
-                <group-key>
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <reference-display>
-                    <xsl:value-of select="concat('Kind ',$vrouwId)"/>
-                </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doPatientEntry-2.1">
-                    <xsl:with-param name="uuid" select="$uuid"/>
-                    <!-- hier full url en resource Id meegeven gaat niet goed binnen nl-core-patient template doordat deze naar adaPatient kijkt ipv kindPatient -->
-                    <xsl:with-param name="entryFullUrl" select="$fullUrl"/>
-                    <xsl:with-param name="fhirResourceId" select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
-                </xsl:apply-templates>
-            </unieke-patient>
-        </xsl:for-each-group>
-    </xsl:variable>
     
     <!-- unieke related persons -->
     <xsl:variable name="relatedPersons" as="element()*">
@@ -133,99 +144,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pregnancyId -->
     <!-- TODO: ophalen uit ada transactie (nu nog niet beschikbaar) -->
     <xsl:variable name="pregnancyId">
-        <xsl:for-each select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zwangerschap">
+        <xsl:for-each select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23 | med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart)/zwangerschap">
             <xsl:value-of select="graviditeit/@value | a_terme_datum/@value | definitieve_a_terme_datum/@value"/>
         </xsl:for-each>
     </xsl:variable>
-    
-    <!-- unieke zorginstellingen -->
-    <xsl:variable name="organizations" as="element()*">
-        <!-- zorginstellingen -->
-        <xsl:for-each-group select="$zorginstelling-ada | $verwijzing-zorginstelling-ada" group-by="nf:getGroupingKeyDefault(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <unieke-zorgaanbieder xmlns="">
-                <group-key>
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <reference-display>
-                    <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value[not(. = '')]"/>
-                    <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value[not(. = '')]"/>
-                    <xsl:variable name="organizationIdentifier" select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer | healthcare_provider_identification_number)[@value[not(. = '')]]"/>
-                    
-                    <xsl:choose>
-                        <xsl:when test="$organizationName or $organizationLocation">
-                            <xsl:value-of select="current-group()[1]/normalize-space(string-join($organizationName[1] | $organizationLocation[1], ' - '))"/>
-                        </xsl:when>
-                        <xsl:when test="$organizationIdentifier">Organisatie met id '<xsl:value-of select="$organizationIdentifier/@value"/>' in identificerend systeem '<xsl:value-of select="$organizationIdentifier/@root"/>'.</xsl:when>
-                        <xsl:otherwise>Organisatie informatie: <xsl:value-of select="string-join(.//(@value | @code | @root | @codeSystem), ' - ')"/></xsl:otherwise>
-                    </xsl:choose>
-                </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doOrganizationEntry-2.0">
-                    <xsl:with-param name="uuid" select="$uuid"/>
-                </xsl:apply-templates>
-            </unieke-zorgaanbieder>
-        </xsl:for-each-group>
-    </xsl:variable>
-
-    <!-- unieke zorgverleners -->
-    <xsl:variable name="practitioners" as="element()*">
-        <!-- related-persons -->
-        <xsl:for-each-group select="$zorgverlener-ada/zorgverlener" group-by="nf:getGroupingKeyPractitioner(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <unieke-zorgverlener xmlns="">
-                <group-key>
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <reference-display>
-                    <xsl:value-of select="nf:get-practitioner-display(current-group()[1])"/>
-                </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doPractitionerEntry-2.0">
-                    <xsl:with-param name="uuid" select="$uuid"/>
-                </xsl:apply-templates>
-            </unieke-zorgverlener>
-        </xsl:for-each-group>
-    </xsl:variable>
-  
-    <xsl:variable name="practitionerRoles" as="element()*">
-        <!-- Zorgverleners in PractitionerRoles -->
-        <xsl:for-each-group select="$zorgverlener-ada/zorgverlener" group-by="
-                concat(nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
-                nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@value,
-                (specalisme | specialty)/@code)">
-                
-            <!-- use grouping key default in second group, we need all of hcim health_professional to determine uniqueness -->
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <!-- uuid as fullUrl and as fhir id from second group onwards, cannot guarantee unique FHIR resource id / filenames otherwise -->
-                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-<!--            <!-\\- the default is to input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner -\\->
-                <!-\\- However, that does not work in a dataset that puts zorgverlener as a separate concept group directly under transaction, and uses ada reference
-                     such as the cio dataset -\\->
-                <!-\\- so in that case we take the first element that has a reference to this zorgverlener, which will make a unique xml node for each PractitionerRole -\\->-->
-                <xsl:variable name="input-node-for-uuid" as="element()">
-                <!-- parent node contains unique xml element node for PractitionerRole -->
-                   <xsl:sequence select="./.."/>
-                </xsl:variable>
-                
-                <unieke-practitionerRole xmlns="">
-                    <group-key>
-                        <xsl:value-of select="current-grouping-key()"/>
-                    </group-key>
-                    <reference-display>
-                        <xsl:value-of select="nf:get-practitioner-role-display(current-group()[1])"/>
-                    </reference-display>
-                    <xsl:for-each select="current-group()[1]">
-                        <xsl:call-template name="practitionerRole-entry">
-                            <xsl:with-param name="uuid" select="$uuid"/>
-                            <xsl:with-param name="entryFullUrl" select="nf:get-fhir-uuid($input-node-for-uuid)"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </unieke-practitionerRole>
-            </xsl:for-each-group>
-        </xsl:for-each-group>
-    </xsl:variable>
-    
+      
     <!-- verwijzingen -->
     <xsl:variable name="referralRequests" as="element()*">
         <xsl:for-each-group select="//verwijsdetails" group-by="nf:getGroupingKeyDefault(.)">
@@ -288,7 +211,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- zwangerschapsdossier -->
     <xsl:variable name="episodesofcare" as="element()*">
-        <xsl:for-each-group select="//zwangerschap" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//zorgverlening/zorg_episode" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-episode xmlns="">
@@ -345,16 +268,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- observations -->
     <xsl:variable name="observations" as="element()*">       
         <!-- maternale labonderzoekgegevens -->
-        <xsl:for-each-group select="//(bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb)" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(laboratorium_test_bloedgroep | laboratorium_test_rhesus_d | laboratorium_test_rhesus_c)" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <xsl:variable name="labtest-ada" as="element()*">
-                <xsl:call-template name="convertToADAlabtest"/>
+                <xsl:call-template name="convertToADAlabtest"/><!-- todo conversie 3.2 naar zib2017 is anders dan die van 2.3 en het komt ook niet 1 op 1 overeen met zib 2017 -->
             </xsl:variable>
             <xsl:variable name="elementName" select="name(.)"/>
             <!-- need this later to create context element (ada context will be lost at that time) -->
             <xsl:variable name="context">
-                <xsl:for-each select="(ancestor::prio1_huidige_zwangerschap | ancestor::prio1_vorige_zwangerschap | ancestor::bevallingsgegevens_23)/zwangerschap">
+                <xsl:for-each select="(ancestor::med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart)/zwangerschapsgegevens/zwangerschap">
                     <context xmlns="http://hl7.org/fhir">
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>  
                     </context>
@@ -441,7 +364,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    
     <!-- Composition (nu alleen nog prio1) -->
     <xsl:variable name="composition" as="element(f:Composition)*">
-        <xsl:for-each select="//prio1_huidige_zwangerschap | //prio1_vorige_zwangerschap | //bevallingsgegevens_23">
+        <xsl:for-each select="//prio1_huidige_zwangerschap | //prio1_vorige_zwangerschap | //bevallingsgegevens_23 | //med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart">
             <xsl:call-template name="bc-composition">
                 <xsl:with-param name="logicalId">
                     <xsl:value-of select="concat('samenvatting-zwangerschap', $pregnancyId, '-', $vrouwId)"/>

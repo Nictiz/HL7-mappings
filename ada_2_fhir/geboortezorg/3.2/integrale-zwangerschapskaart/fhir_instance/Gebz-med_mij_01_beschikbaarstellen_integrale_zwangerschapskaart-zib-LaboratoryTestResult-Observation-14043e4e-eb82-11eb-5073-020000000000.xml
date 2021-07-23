@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="25884eee-e60f-11eb-1398-020000000000"/>
+   <id value="14043e4e-eb82-11eb-5073-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
@@ -8,11 +8,11 @@
       <status value="generated"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: <a href="Patient/WOUDENVANDER">Wouden van der</a>. Categorie: 49581000146104 (SNOMED CT), Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: <a href="Patient/XXX-KWEE">XXX_Kwee</a>. Categorie: 49581000146104 (SNOMED CT), Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>2021-05-05</td>
+                  <td>2020-12-30</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -20,9 +20,11 @@
                </tr>
                <tr>
                   <td>
-                     <span title="Hemoglobin (Bld) [Mass/Vol] (718-7 - LOINC)">Hemoglobin (Bld) [Mass/Vol]</span>
+                     <span title="ABO group [Type] in Blood (883-9 - LOINC)">ABO group [Type] in Blood</span>
                   </td>
-                  <td>8.5 mmol/L</td>
+                  <td>
+                     <span title="bloedgroep O (bevinding) (58460004 - SNOMED CT)">bloedgroep O (bevinding)</span>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -49,23 +51,25 @@
    <code>
       <coding>
          <system value="http://loinc.org"/>
-         <code value="718-7"/>
-         <display value="Hemoglobin (Bld) [Mass/Vol]"/>
+         <code value="883-9"/>
+         <display value="ABO group [Type] in Blood"/>
       </coding>
    </code>
    <subject>
-      <reference value="Patient/WOUDENVANDER"/>
-      <display value="Wouden van der"/>
+      <reference value="Patient/XXX-KWEE"/>
+      <display value="XXX_Kwee"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/2588466e-e60f-11eb-1398-020000000000"/>
-      <display value="Zwangerschap 4 wouden"/>
+      <identifier>
+         <value value="1"/>
+      </identifier>
    </context>
-   <effectiveDateTime value="2021-05-05"/>
-   <valueQuantity>
-      <value value="8.5"/>
-      <unit value="mmol/L"/>
-      <system value="http://unitsofmeasure.org"/>
-      <code value="mmol/L"/>
-   </valueQuantity>
+   <effectiveDateTime value="2020-12-30"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="58460004"/>
+         <display value="bloedgroep O (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
 </Observation>

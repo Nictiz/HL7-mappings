@@ -29,21 +29,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada maternale gegevens to ada labtest</xd:desc>
     </xd:doc>
                             
-    <xsl:template name="convertToADAlabtest" mode="doConvertToADAlabtest" match="bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb">
-            <xsl:variable name="code" select="@code"/>  
-            <xsl:variable name="codeSystem" select="@codeSystem"/> 
-            <xsl:variable name="display" select="@displayName"/>
-            <xsl:variable name="datum" select="ancestor::node()/datum_onderzoek/@value"/>
+    <xsl:template name="convertToADAlabtest" mode="doConvertToADAlabtest" match="bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb | laboratorium_test_bloedgroep | laboratorium_test_rhesus_d | laboratorium_test_rhesus_c">
+            <xsl:variable name="code" select="@code | test_uitslag/@code"/>  
+            <xsl:variable name="codeSystem" select="@codeSystem  | test_uitslag/@codeSystem"/> 
+            <xsl:variable name="display" select="@displayName |  test_uitslag/@displayName"/>
+            <xsl:variable name="datum" select="ancestor::node()/datum_onderzoek/@value | ancestor::medisch_onderzoek/verrichting_onderzoek/verrichting_start_datum/@value"/>
             <xsl:variable name="elementName" select="name(.)"/>
             <laboratory_test>
                 <xsl:choose>
-                    <xsl:when test="$elementName='bloedgroep_vrouw'">
+                    <xsl:when test="$elementName=('bloedgroep_vrouw','laboratorium_test_bloedgroep')"> 
                         <test_code code="883-9" codeSystem="2.16.840.1.113883.6.1" displayName="ABO group [Type] in Blood"/>
                     </xsl:when>
-                    <xsl:when test="$elementName='rhesus_d_factor_vrouw'">
+                    <xsl:when test="$elementName=('rhesus_d_factor_vrouw','laboratorium_test_rhesus_d')">
                         <test_code code="1305-2" codeSystem="2.16.840.1.113883.6.1" displayName="D Ag [Presence] in Blood"/>
                     </xsl:when>
-                    <xsl:when test="$elementName='rhesus_c_factor'">
+                    <xsl:when test="$elementName=('rhesus_c_factor','laboratorium_test_rhesus_c')">
                         <test_code code="1159-3" codeSystem="2.16.840.1.113883.6.1" displayName="little c Ag [Presence] on Red Blood Cells"/>
                     </xsl:when>
                     <xsl:when test="$elementName='hb'">
