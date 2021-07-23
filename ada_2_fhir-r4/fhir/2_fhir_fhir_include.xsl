@@ -93,6 +93,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="fhirVersion" select="'R4'"/>
     
     <xd:doc>
+        <xd:param name="patientTokensXml">Override optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
+    </xd:doc>
+    <xsl:param name="patientTokensXml" select="document('../../ada_2_fhir/fhir/QualificationTokens.xml')"/>
+    
+    <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
     </xd:doc>
     <xsl:param name="fhirMetadata" as="element()*">
