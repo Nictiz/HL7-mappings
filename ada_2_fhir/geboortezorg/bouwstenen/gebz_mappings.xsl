@@ -92,20 +92,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping of ADA geboortezorg terminology for Observations.</xd:desc>
     </xd:doc>
     <xsl:template name="bc-coding" mode="doTerminologyMapping" match="/" as="element()">      
-        <xsl:variable name="concept" select="key('dataset-concept-lookup', @conceptId, $dataset-doc)"/>     
-        <xsl:for-each select="$concept">
-           <xsl:variable name="terminologies">
-                <xsl:perform-sort select="terminologyAssociation" >
-                    <xsl:sort select="@conceptId"/>
-                </xsl:perform-sort>
-            </xsl:variable> 
-            <xsl:variable name="terminology" select="($terminologies/terminologyAssociation[@codeSystemName='SNOMED CT'] | $terminologies/terminologyAssociation[@codeSystemName='LOINC'] | $terminologies/terminologyAssociation)[1]"/>
-            <coding>
-                <system value="{$terminology/(@system|@codeSystem)}"/>
-                <code value="{$terminology/@code}"/>
-                <display value="{$terminology/(@display|@displayName)}"/>
-            </coding>   
-        </xsl:for-each>
+        <xsl:variable name="concept" select="key('dataset-concept-lookup', @conceptId, $dataset-doc)"/>   
+        <xsl:choose>
+            <xsl:when test="$concept">
+                <xsl:for-each select="$concept">
+                   <xsl:variable name="terminologies">
+                        <xsl:perform-sort select="terminologyAssociation" >
+                            <xsl:sort select="@conceptId"/>
+                        </xsl:perform-sort>
+                    </xsl:variable> 
+                    <xsl:variable name="terminology" select="($terminologies/terminologyAssociation[@codeSystemName='SNOMED CT'] | $terminologies/terminologyAssociation[@codeSystemName='LOINC'] | $terminologies/terminologyAssociation)[1]"/>
+                    <coding>
+                        <system value="{$terminology/(@system|@codeSystem)}"/>
+                        <code value="{$terminology/@code}"/>
+                        <display value="{$terminology/(@display|@displayName)}"/>
+                    </coding>   
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <coding>
+                    <system value="{@conceptId}"/>
+                    <code value="{name(.)}"/>
+                    <display value="Codering van dit element ontbreekt in ART-DECOR terminology association"/>
+                </coding>                
+            </xsl:otherwise>
+        </xsl:choose> 
     </xsl:template>
 
     <xsl:template name="any-to-date" match="/" mode="doAnyToDate">

@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcObservationEntry" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht" mode="doBcObservationEntry" as="element(f:entry)">
+    <xsl:template name="bcObservationEntry" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" mode="doBcObservationEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
@@ -98,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="adaChild">Optional. ADA child patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht" as="element()">
+    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
@@ -160,8 +160,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>
                 </xsl:for-each> 
-                <xsl:for-each select="../(datum_bepaling)">
-                      <effectiveDateTime value="{@value}">
+                <xsl:for-each select="../node()[name(.)='datum_bepaling' or substring(name(.),string-length(name(.)) + 1 - string-length('datum_tijd'), string-length(name(.)))='datum_tijd']">
+                    <effectiveDateTime value="{@value}">
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
                                 <xsl:with-param name="dateTime" select="xs:string(@value)"/>

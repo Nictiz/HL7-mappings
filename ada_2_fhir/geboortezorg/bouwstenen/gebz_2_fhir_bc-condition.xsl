@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Condition.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcConditionEntry" match="zwangerschap" mode="doBcConditionEntry" as="element(f:entry)">
+    <xsl:template name="bcConditionEntry" match="zwangerschap | probleem_zwangerschap" mode="doBcConditionEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
@@ -94,7 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of a Condition resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-condition" mode="doBcConditionResource" match="zwangerschap" as="element()">
+    <xsl:template name="bc-condition" mode="doBcConditionResource" match="zwangerschap | probleem_zwangerschap" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$parentElemName!='lichamelijk_onderzoek_kind'">
                     <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
                         <valueReference>
-                            <xsl:for-each select="ancestor::zwangerschap">
+                            <xsl:for-each select="ancestor::zwangerschap | ancestor::zwangerschapsgegevens/zwangerschap">
                                 <xsl:call-template name="pregnancyReference"/>
                             </xsl:for-each>
                             <xsl:for-each select="ancestor::bevalling | ancestor::baring | ancestor::postnatale_fase">
@@ -137,6 +137,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <system value="{@system|@codeSystem}"/>
                                 <code value="{@code}"/>
                                 <display value="{@display|@displayName}"/>
+                            </coding> 
+                        </code>
+                    </xsl:when>
+                    <xsl:when test="probleem_naam">
+                        <code>
+                            <coding>
+                                <system value="{probleem_naam/@codeSystem}"/>
+                                <code value="{probleem_naam/@code}"/>
+                                <display value="{probleem_naam/@displayName}"/>
                             </coding> 
                         </code>
                     </xsl:when>
@@ -166,9 +175,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <context>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>
-                </xsl:for-each>      
+                </xsl:for-each>  
+                <xsl:for-each select="probleem_begin_datum">
+                    <onsetDateTime value="{@value}">
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                <xsl:with-param name="precision" select="'DAY'"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </onsetDateTime>
+                </xsl:for-each>
+                <xsl:for-each select="toelichting">
+                    <note>
+                        <text value="{@value}"/>
+                    </note>
+                </xsl:for-each>
             </Condition>
         </xsl:for-each>
     </xsl:template>
-          
 </xsl:stylesheet>

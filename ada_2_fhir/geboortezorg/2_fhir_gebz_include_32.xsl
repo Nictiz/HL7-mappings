@@ -245,9 +245,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>       
             </unieke-problem>
         </xsl:for-each>
-<!--        TODO: ADD CONDITION ELEMENTS -->
-<!--        <xsl:for-each-group select="/" group-by="nf:getGroupingKeyDefault(.)">
-            <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
+        <!-- problems -->
+        <xsl:for-each-group select="//probleem_zwangerschap" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <xsl:variable name="elementName" select="name(.)"/>
             <unieke-bccondition xmlns="">
@@ -262,7 +261,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="adaChild" select="$kind-ada"/>
                 </xsl:call-template>
             </unieke-bccondition>
-        </xsl:for-each-group>-->
+        </xsl:for-each-group>
     </xsl:variable>    
 
     <!-- observations -->
@@ -305,7 +304,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-labobservation>
         </xsl:for-each-group>
         <!-- zwangerschaps- en bevallingsgegevens en kindspecifieke uitkomstgegevens -->
-        <xsl:for-each-group select="//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding) | //(baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht)))" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding) | //(baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht)) | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde'])" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <xsl:variable name="elementName" select="name(.)"/>
@@ -327,7 +326,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- bevalling, geboorte en obstetrische verrichtingen -->
     <!-- moet in 2 stappen ivm circular dependencies met zichzelf -->
     <xsl:variable name="verrichtingen" as="element()*">
-        <xsl:for-each-group select="//bevalling | //baring" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//bevalling | //baring | //verrichting_zwangerschap" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-procedure xmlns="">
@@ -346,7 +345,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- bevalling, geboorte en obstetrische verrichtingen -->
     <xsl:variable name="procedures" as="element()*">
-        <xsl:for-each select="//bevalling | //baring">
+        <xsl:for-each select="//bevalling | //baring | //verrichting_zwangerschap">
             <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
             <xsl:variable name="theGroupElement" select="$verrichtingen[group-key = $theGroupKey]" as="element()?"/>
             <xsl:variable name="resourceId" select="$theGroupElement/f:entry/f:resource/f:Procedure/f:id/@value"/>
