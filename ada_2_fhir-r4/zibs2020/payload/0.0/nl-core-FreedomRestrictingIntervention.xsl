@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>   
                 <status>
                     <xsl:choose>
-                        <xsl:when test="xs:date(eind_datum/@value) lt current-date()">
+                        <xsl:when test="xs:date(einde/@value) lt current-date()">
                             <xsl:attribute name="value" select="'completed'"/>
                         </xsl:when>
                         <xsl:otherwise>
