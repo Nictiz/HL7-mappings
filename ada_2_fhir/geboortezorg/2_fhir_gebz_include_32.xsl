@@ -224,7 +224,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="maternalRecordEntry">
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
                     <xsl:with-param name="adaZorginstelling" select="$zorginstelling-ada"/>
-                    <xsl:with-param name="adaZorgverlener" select="$zorgverlener-ada/zorgverlener"/>
+                    <xsl:with-param name="adaZorgverlener" select="$zorgverlener-ada"/>
                 </xsl:call-template>
             </unieke-episode>
         </xsl:for-each-group>
