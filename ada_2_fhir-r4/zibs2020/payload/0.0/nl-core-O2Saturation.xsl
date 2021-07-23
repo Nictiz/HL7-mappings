@@ -51,14 +51,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code value="2708-6"/>
                         <display value="Oxygen saturation in Arterial blood"/>
                     </coding>
-                </code>
-                <code>
                     <coding>
                         <system value="http://loinc.org"/>
                         <code value="59408-5"/>
                         <display value="Oxygen saturation in Arterial blood by Pulse oximetry"/>
                     </coding>
-                </code>
+                </code>              
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
