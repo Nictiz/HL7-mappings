@@ -4,6 +4,14 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FreedomRestrictingIntervention"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
+      <extension url="legallyCapable">
+         <valueBoolean value="false"/>
+      </extension>
+      <extension url="legallyCapableComment">
+         <valueString value="Wilsonbekwaam t.a.v. geldzaken."/>
+      </extension>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.Assent">
       <valueCodeableConcept>
          <coding>
@@ -13,10 +21,7 @@
          </coding>
       </valueCodeableConcept>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.Assent">
-      <valueString value="Wilsonbekwaam t.a.v. geldzaken."/>
-   </extension>
-   <status value="completed"/>
+   <status value="unknown"/>
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -31,6 +36,15 @@
          <display value="Placing restraint using limb restraint"/>
       </coding>
    </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <performedPeriod>
+      <start value="2019-05-01"/>
+      <end value="2019-05-05"/>
+   </performedPeriod>
    <reasonCode>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -38,4 +52,9 @@
          <display value="Diversion of crisis situation"/>
       </coding>
    </reasonCode>
+   <reasonReference>
+      <reference value="Condition/4e0dc2af-eb8a-11eb-1638-020000000000"/>
+      <type value="Condition"/>
+      <display value="juridische_situatie"/>
+   </reasonReference>
 </Procedure>
