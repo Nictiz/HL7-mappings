@@ -102,12 +102,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateId">
+    <xsl:template match="farmaceutisch_product" mode="_generateId">
+        <xsl:value-of select="substring(string-join(//*[@displayName or @value]/(@displayName, @value)[1], '-'), 0, 63)"/>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateDisplay">
+    <xsl:template match="farmaceutisch_product" mode="_generateDisplay">
+        <xsl:choose>
+            <xsl:when test="product_code[@displayName]">
+                <xsl:value-of select="product_code/@displayNmae"/>
+            </xsl:when>
+            <xsl:when test="product_specificatie[product_naam/@value]">
+                <xsl:value-of select="product_specificatie/product_naam/@value"/>
+            </xsl:when>
+            <xsl:when test="product_specificatie[ingredient/ingredient_code/@displayName]">
+                <xsl:value-of select="string-join(product_specificatie/ingredient/ingredient_code/@displayName, ',')"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
