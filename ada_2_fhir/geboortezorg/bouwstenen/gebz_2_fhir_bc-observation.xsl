@@ -98,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="adaChild">Optional. ADA child patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht" as="element()">
+    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
@@ -160,16 +160,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>
                 </xsl:for-each> 
+                <xsl:for-each select="../(datum_bepaling)">
+                      <effectiveDateTime value="{@value}">
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                <xsl:with-param name="precision" select="'DAY'"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </effectiveDateTime>
+                </xsl:for-each>
                 <xsl:for-each select=".">
                     <xsl:choose>
                         <xsl:when test="@datatype='datetime'">
-                            <xsl:variable name="dateValue">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"></xsl:with-param>
-                                    <xsl:with-param name="dateT" select="current-date()"></xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:variable>
-                            <valueDateTime value="{$dateValue}"/>
+                            <valueDateTime value="{@value}">
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="precision" select="'DAY'"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </valueDateTime>
                         </xsl:when>
                         <xsl:when test="not(@code) and @value castable as xs:integer">
                             <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">
@@ -185,7 +196,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:for-each>   
+                </xsl:for-each>  
+                <xsl:for-each select="../(bepalings_methode | observatie_methode)">
+                    <method>
+                        <system value="{@codeSystem}"/>
+                        <code value="{@code}"/>
+                        <display value="{@displayName}"/>
+                    </method>
+                </xsl:for-each>
             </Observation>
         </xsl:for-each>
     </xsl:template>

@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada maternale gegevens to ada labtest</xd:desc>
     </xd:doc>
                             
-    <xsl:template name="convertToADAlabtest" mode="doConvertToADAlabtest" match="bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb | laboratorium_test_bloedgroep | laboratorium_test_rhesus_d | laboratorium_test_rhesus_c">
+    <xsl:template name="convertToADAlabtest" mode="doConvertToADAlabtest" match="(bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb | laboratorium_test_bloedgroep | laboratorium_test_rhesus_d | laboratorium_test_rhesus_c)[not(@datatype='reference')]">
             <xsl:variable name="code" select="@code | test_uitslag/@code"/>  
             <xsl:variable name="codeSystem" select="@codeSystem  | test_uitslag/@codeSystem"/> 
             <xsl:variable name="display" select="@displayName |  test_uitslag/@displayName"/>
