@@ -262,6 +262,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:apply-templates>
                 </nm:reference-display>
             </nm:resource>
+            
+            <!-- SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
+            <xsl:choose>
+                <xsl:when test="$in/self::soepverslag">
+                    <xsl:for-each-group select="$in/soepregel" group-by="nf:getGroupingKeyDefault(.)">
+                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                    </xsl:for-each-group>
+                </xsl:when>
+                <xsl:when test="$in/self::tekst_uitslag">
+                    <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
+                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                    </xsl:for-each-group>
+                </xsl:when>
+            </xsl:choose>
         </xsl:for-each>
     </xsl:template>
     
@@ -424,7 +438,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
         
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
-            <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+            <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:message>
         </xsl:if>
         
         <xsl:variable name="logicalId">
