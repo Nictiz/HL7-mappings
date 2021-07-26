@@ -28,6 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../payload/zib_latest_package.xsl"/>
 
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
+    <xsl:param name="outputContained" select="true()" as="xs:boolean"/>
 
     <!-- When the input is specified as a bundle, collect all input into the $bundle parameter -->
     <xsl:param name="bundle" as="element()*">
