@@ -56,6 +56,56 @@
     </xsl:template>-->
 
     <xd:doc>
+        <xd:desc>Convert an ADA timestamp element to an xs:dateTime value, if possible.</xd:desc>
+        <xd:param name="timestamp">The ADA element of type timestamp to convert.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:timestamp-to-dateTime" as="xs:dateTime?">
+        <xsl:param name="timestamp" as="xs:string"/>
+        
+        <xsl:choose>
+            <xsl:when test="normalize-space($timestamp) castable as xs:dateTime">
+                <xsl:value-of select="xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(normalize-space($timestamp)))"/>
+            </xsl:when>
+            <xsl:when test="concat(normalize-space($timestamp), ':00') castable as xs:dateTime">
+                <xsl:value-of select="xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(concat(normalize-space($timestamp), ':00')))"/>
+            </xsl:when>
+            <xsl:when test="normalize-space($timestamp) castable as xs:date">
+                <xsl:value-of select="xs:dateTime(concat(normalize-space($timestamp), 'T00:00:00'))"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Convert an ADA quantity element to an xs:dayTimeDuration value, if possible. This means that the input unit should be either 'D', 'H', 'M', or 'S'.</xd:desc>
+        <xd:param name="quantity">The ADA element of type quantity to convert.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:quantity-to-dayTimeDuration" as="xs:dayTimeDuration?">
+        <xsl:param name="quantity" as="element()"/>
+
+        <xsl:if test="$quantity/@value != ''">
+            <xsl:variable name="initString">
+                <xsl:choose>
+                    <xsl:when test="upper-case($quantity/@unit) = 'D'">
+                        <xsl:value-of select="concat('P', normalize-space($quantity), 'D')"/>                    
+                    </xsl:when>
+                    <xsl:when test="upper-case($quantity/@unit) = 'H'">
+                        <xsl:value-of select="concat('PT', normalize-space($quantity), 'H')"/>                    
+                    </xsl:when>
+                    <xsl:when test="upper-case($quantity/@unit) = 'M'">
+                        <xsl:value-of select="concat('PT', normalize-space($quantity), 'M')"/>                    
+                    </xsl:when>
+                    <xsl:when test="upper-case($quantity/@unit) = 'S'">
+                        <xsl:value-of select="concat('PT', normalize-space($quantity), 'S')"/>                    
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:if test="$initString">
+                <xsl:value-of select="xs:dayTimeDuration($initString)"/>
+            </xsl:if>
+        </xsl:if>
+    </xsl:function>
+    
+    <xd:doc>
         <xd:desc>Takes input string. If it is a dateTime, it checks if it has a timezone. If it is a dateTime without timezone the appropriate Amsterdam timezone will be set. In all other cases, the input string is returned.</xd:desc>
         <xd:param name="in">ISO 8601 formatted dateTimeString with or without timezone "yyyy-mm-ddThh:mm:ss" or "yyyy-mm-ddThh:mm:ss[+/-]nn:nn"</xd:param>
     </xd:doc>
