@@ -283,7 +283,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Generate a FHIR reference. When there's no input or a reference can't otherwise be constructed, no output is generated.</xd:desc>
         
         <xd:param name="in">The target of the reference as either an ADA instance an ADA reference element. May be omitted if it is the same as the context.</xd:param>
-        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
         <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated as well.</xd:param>
     </xd:doc>
     <!-- Outputs reference if input is ADA, fhirMetadata or ADA reference element -->
@@ -407,7 +407,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Insert the FHIR resource id element for the specified ADA instance, if an id is required (see the <xd:ref name="populateId" type="parameter"/> and <xd:ref name="referencingStrategy" type="parameter"/> parameters).
         </xd:desc>
         <xd:param name="in">The ADA instance that the FHIR resource is generated for.</xd:param>
-        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
     </xd:doc>
     <xsl:template name="insertLogicalId">
         <xsl:param name="in" select="."/>
@@ -429,7 +429,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Get the FHIR resource id element for the specified ADA instance, if an id is available (see the <xd:ref name="populateId" type="parameter"/> and <xd:ref name="referencingStrategy" type="parameter"/> parameters).
         </xd:desc>
         <xd:param name="in">The ADA instance that the FHIR resource is generated for.</xd:param>
-        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
     </xd:doc>
     <xsl:template name="getLogicalIdFromFhirMetadata">
         <xsl:param name="in" select="."/>
@@ -460,7 +460,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Insert the FHIR fullUrl element for the specified instance, if one is available (see the <xd:ref name="referencingStrategy" type="parameter"/> parameter).</xd:desc>
         <xd:param name="in">The ADA instance that the FHIR resource is generated for.</xd:param>
-        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
     </xd:doc>    
     <xsl:template name="insertFullUrl">
         <xsl:param name="in" select="."/>
@@ -493,6 +493,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Generic template for generating an id for a FHIR resource. Stylesheets for specific zibs can override this with a more specific version.</xd:desc>
         <xd:param name="in">The ADA instance to generate the id for.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
     </xd:doc>
     <xsl:template match="*" mode="_generateId">
         <xsl:param name="in" select="."/>
@@ -530,6 +531,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Function to resolve internal references in an ADA instance. The output is the contained ADA instance being referenced or the input node if the input node isn't a reference.</xd:desc>
+        <xd:param name="in">The ADA instance to resolve.</xd:param>
+        <xd:param name="context">The complete ADA instance where the contained ADA instance is contained in.</xd:param>
+    </xd:doc>
     <xsl:function name="nf:resolveAdaInstance">
         <xsl:param name="in"/>
         <xsl:param name="context" as="node()"/>
@@ -545,6 +551,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     
+    <xd:doc>
+        <xd:desc>Template to output a referenced instance to disc.</xd:desc>
+        <xd:param name="in">The ADA instance to output.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+    </xd:doc>
     <xsl:template name="_outputReference">
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" required="yes"/>
