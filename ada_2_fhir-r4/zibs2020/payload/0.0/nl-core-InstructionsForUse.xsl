@@ -29,145 +29,174 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ADA InstructionsForUse to the various FHIR parts representing this zib.</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-[zib name] instance as a [resource name] FHIR instance from ADA [ADA instance name].</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
+        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-InstructionsForUse" mode="nl-core-InstructionsForUse" match="gebruiks_instructie" as="element(f:*)+">
+    <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiks_instructie" as="element(f:extension)+">
         <xsl:param name="in" as="element()?" select="."/>
         
         <xsl:for-each select="$in">
-            <xsl:for-each select="doseerinstructie">
-                <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction">
-                    <xsl:with-param name="additionalInstruction" select="../aanvullende_instructie"/>
-                    <xsl:with-param name="route" select="../toedieningsweg"/>
-                </xsl:call-template>
+            <xsl:for-each select="omschrijving[@value != '']">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString>
+                        <xsl:attribute name="value" select="./@value"/>
+                    </valueString>
+                </extension>
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="doseerinstructie" as="element(f:*)+">
+    <xd:doc>
+        <xd:desc>Create the ext-InstructionsForUse.RepeatPeriodCyclicalSchedule extension from ADA InstructionsForUse.</xd:desc>
+        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
+    </xd:doc>
+    <xsl:template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" mode="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" match="gebruiks_instructie" as="element(f:modifierExtension)+">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="additionalInstruction" as="element()?"/>
-        <xsl:param name="route" as="element()?"/>
         
         <xsl:for-each select="$in">
-            <xsl:variable name="sequence">
-                <xsl:for-each select="volgnummer">
-                    <sequence value="./@value"/>
-                </xsl:for-each>
-            </xsl:variable>
-            <xsl:variable name="boundsDuration">
-                <xsl:for-each select="doseerduur">
-                    <boundsDuration>
+            <xsl:for-each select="herhaalperiode_cyclisch_schema[@value != '']">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
+                    <valueDuration>
                         <xsl:call-template name="hoeveelheid-to-Duration"/>
-                    </boundsDuration>
-                </xsl:for-each>
-            </xsl:variable>
-            
-            <xsl:choose>
-                <xsl:when test="dosering">
-                    <xsl:for-each select="dosering">
-                        <xsl:copy-of select="$sequence"/>
-                        <xsl:for-each select="$additionalInstruction">
-                            <additionalInstruction>
-                                <text>
-                                    <xsl:attribute name="value" select="./@value"/>
-                                </text>
-                            </additionalInstruction>
-                            <!-- TODO: MP Additional instructions -->
-                        </xsl:for-each>
-                        <xsl:variable name="timingRepeat">
-                            <xsl:call-template name="_buildTimingRepeat"/>
-                        </xsl:variable>
-                        <xsl:if test="$timingRepeat">
-                            <timing>
-                                <repeat>
-                                    <xsl:copy-of select="$timing"/>
-                                </repeat>
-                            </timing>
-                        </xsl:if>
-                        
-                        <xsl:for-each select="zonodig/criterium">
-                            <asNeededCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept"/>
-                            </asNeededCodeableConcept>
-                        </xsl:for-each>
-                        
-                        <xsl:for-each select="$route">
-                            <route>
-                                <xsl:call-template name="code-to-CodeableConcept"/>
-                            </route>
-                        </xsl:for-each>
-                        
-                        <xsl:variable name="doseAndRate">
-                            <xsl:for-each select="keerdosis">
-                                <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
-                                    <doseRange>
-                                        <low value="${minimum_waarde/@value}"/>
-                                        <high value="${maximum_waarde/@value}"/>
-                                    </doseRange>
-                                </xsl:if>
-                                <xsl:if test="nominale_waarde[@value]">
-                                    <doseQuantity>
-                                        <xsl:call-template name="hoeveelheid-to-Quantity"/>
-                                    </doseQuantity>
-                                </xsl:if>
-                            </xsl:for-each>
-                            <xsl:for-each select="toediensnelheid">
-                                <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
-                                    <rateRange>
-                                        <low value="${minimum_waarde/@value}"/>
-                                        <high value="${maximum_waarde/@value}"/>
-                                    </rateRange>
-                                </xsl:if>
-                                <xsl:if test="nominale_waarde[@value]">
-                                    <rateQuantity>
-                                        <xsl:call-template name="hoeveelheid-to-Quantity"/>
-                                    </rateQuantity>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        <xsl:if test="$doseAndRate">
-                            <doseAndRate>
-                                <xsl:copy-of select="$doseAndRate"/>
-                            </doseAndRate>
-                        </xsl:if>
-                        
-                        <xsl:for-each select="maximale_dosering">
-                            <maxDosePerPeriod>
-                                <xsl:call-template name="hoeveelheid-complex-to-Ratio">
-                                    <xsl:with-param name="numerator" select="./@value"/>
-                                    <xsl:with-param name="denominator" select="./@unit"/>
-                                </xsl:call-template>
-                            </maxDosePerPeriod>
-                        </xsl:for-each>
-                    </xsl:for-each>
-                </xsl:when>
-                
-                <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
-                <xsl:when test="$sequence or $boundsDuration">
-                    <xsl:if test="$sequence">
-                        <xsl:copy-of select="$sequence"/>
-                    </xsl:if>
-                    <xsl:if test="$boundsDuration">
-                        <timing>
-                            <repeat>
-                                <xsl:copy-of select="$boundsDuration"/>
-                            </repeat>
-                        </timing>
-                    </xsl:if>
-                </xsl:when>
-            </xsl:choose>
-                            
+                    </valueDuration>
+                </extension>
+            </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Create the FHIR <xd:i>contents</xd:i> of the nl-core-InstructionsForUse.DosageInstruction datatype profile FHIR instance from ADA InstructionsForUse.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+    </xd:doc>
+    <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element(f:*)+">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:for-each select="$in">
+            <!-- AdditionalInstruction and route are duplicated in each instance of the Dosage datatype -->
+            <xsl:variable name="additionalInstruction" select="aanvullende_instructie"/>
+            <xsl:variable name="route" select="toedieningsweg"/>
+            
+            <xsl:for-each select="doseerinstructie">
+                <xsl:variable name="sequence">
+                    <xsl:for-each select="volgnummer">
+                        <sequence value="./@value"/>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:variable name="boundsDuration">
+                    <xsl:for-each select="doseerduur">
+                        <boundsDuration>
+                            <xsl:call-template name="hoeveelheid-to-Duration"/>
+                        </boundsDuration>
+                    </xsl:for-each>
+                </xsl:variable>
+                
+                <xsl:choose>
+                    <xsl:when test="dosering">
+                        <xsl:for-each select="dosering">
+                            <xsl:copy-of select="$sequence"/>
+                            <xsl:for-each select="$additionalInstruction">
+                                <additionalInstruction>
+                                    <text>
+                                        <xsl:attribute name="value" select="./@value"/>
+                                    </text>
+                                </additionalInstruction>
+                                <!-- TODO: MP Additional instructions -->
+                            </xsl:for-each>
+                            <xsl:variable name="timingRepeat">
+                                <xsl:call-template name="_buildTimingRepeat"/>
+                            </xsl:variable>
+                            <xsl:if test="$timingRepeat">
+                                <timing>
+                                    <repeat>
+                                        <xsl:copy-of select="$timing"/>
+                                    </repeat>
+                                </timing>
+                            </xsl:if>
+                            
+                            <xsl:for-each select="zonodig/criterium">
+                                <asNeededCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept"/>
+                                </asNeededCodeableConcept>
+                            </xsl:for-each>
+                            
+                            <xsl:for-each select="$route">
+                                <route>
+                                    <xsl:call-template name="code-to-CodeableConcept"/>
+                                </route>
+                            </xsl:for-each>
+                            
+                            <xsl:variable name="doseAndRate">
+                                <xsl:for-each select="keerdosis">
+                                    <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
+                                        <doseRange>
+                                            <low value="${minimum_waarde/@value}"/>
+                                            <high value="${maximum_waarde/@value}"/>
+                                        </doseRange>
+                                    </xsl:if>
+                                    <xsl:if test="nominale_waarde[@value]">
+                                        <doseQuantity>
+                                            <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                                        </doseQuantity>
+                                    </xsl:if>
+                                </xsl:for-each>
+                                <xsl:for-each select="toediensnelheid">
+                                    <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
+                                        <rateRange>
+                                            <low value="${minimum_waarde/@value}"/>
+                                            <high value="${maximum_waarde/@value}"/>
+                                        </rateRange>
+                                    </xsl:if>
+                                    <xsl:if test="nominale_waarde[@value]">
+                                        <rateQuantity>
+                                            <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                                        </rateQuantity>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <xsl:if test="$doseAndRate">
+                                <doseAndRate>
+                                    <xsl:copy-of select="$doseAndRate"/>
+                                </doseAndRate>
+                            </xsl:if>
+                            
+                            <xsl:for-each select="maximale_dosering">
+                                <maxDosePerPeriod>
+                                    <xsl:call-template name="hoeveelheid-complex-to-Ratio">
+                                        <xsl:with-param name="numerator" select="./@value"/>
+                                        <xsl:with-param name="denominator" select="./@unit"/>
+                                    </xsl:call-template>
+                                </maxDosePerPeriod>
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:when>
+                    
+                    <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
+                    <xsl:when test="$sequence or $boundsDuration">
+                        <xsl:if test="$sequence">
+                            <xsl:copy-of select="$sequence"/>
+                        </xsl:if>
+                        <xsl:if test="$boundsDuration">
+                            <timing>
+                                <repeat>
+                                    <xsl:copy-of select="$boundsDuration"/>
+                                </repeat>
+                            </timing>
+                        </xsl:if>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Helper template to build the Dosage.timing.repeat content for the current Dosage.</xd:desc>
+    </xd:doc>
     <xsl:template name="_buildTimingRepeat">
-        <xsl:if test="dosering/toedieningsschema/interval[@value]">
+        <xsl:if test="toedieningsschema/interval[@value]">
             <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                 <valueBoolean value="true"/>
             </extension>
@@ -258,17 +287,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </when>
         </xsl:for-each>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateId">
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="[ada_element]" mode="_generateDisplay">
     </xsl:template>
 </xsl:stylesheet>
