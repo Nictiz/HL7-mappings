@@ -467,7 +467,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:variable name="fullUrl">
-            <xsl:value-of select="nf:get-fhir-uuid($in)"/>
+            <xsl:value-of select="nf:get-fhir-uuid($uuidIn)"/>
         </xsl:variable>
         
         <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
@@ -492,7 +492,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:function name="nf:resolveAdaInstance">
         <xsl:param name="in"/>
-        <xsl:param name="context"/>
+        <xsl:param name="context" as="node()"/>
         
         <xsl:choose>
             <xsl:when test="$in[@datatype = 'reference' and @value]">

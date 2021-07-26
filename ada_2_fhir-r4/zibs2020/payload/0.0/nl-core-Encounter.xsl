@@ -105,11 +105,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:for-each>
                         <xsl:for-each select="verrichting">
-                            <xsl:comment>TODO: nl-core-Procedure</xsl:comment>
-                            <!--<xsl:call-template name="makeReference">
+                            <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="profile" select="'nl-core-Procedure'"/>
-                        </xsl:call-template>-->
+                        </xsl:call-template>
                         </xsl:for-each>
                         <xsl:for-each select="afwijkende_uitslag">
                             <xsl:comment>TODO: nl-core-LaboratoryTestResult</xsl:comment>

@@ -168,7 +168,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="upper-case(nf:removeSpecialCharacters(concat(string-join(zorgaanbieder_identificatienummer[1]/(@value | @root), ''),'-',$organizationLocation)))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:next-match/>
+                        <xsl:next-match>
+                            <xsl:with-param name="profile" select="$profile"/>
+                        </xsl:next-match>
                     </xsl:otherwise>   
                 </xsl:choose>
             </xsl:when>
@@ -178,7 +180,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(zorgaanbieder_identificatienummer[1]/(@value | @root), ''))))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:next-match/>
+                        <xsl:next-match>
+                            <xsl:with-param name="profile" select="$profile"/>
+                        </xsl:next-match>
                     </xsl:otherwise>   
                 </xsl:choose>
             </xsl:when>
