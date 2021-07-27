@@ -140,11 +140,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <high value="${maximum_waarde/@value}"/>
                                         </doseRange>
                                     </xsl:if>
-                                    <xsl:if test="nominale_waarde[@value]">
+                                    <xsl:for-each select="nominale_waarde[@value and @unit]">
                                         <doseQuantity>
                                             <xsl:call-template name="hoeveelheid-to-Quantity"/>
                                         </doseQuantity>
-                                    </xsl:if>
+                                    </xsl:for-each>
                                 </xsl:for-each>
                                 <xsl:for-each select="toediensnelheid">
                                     <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
@@ -203,96 +203,98 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="_buildTimingRepeat">
         <xsl:param name="boundsDuration" as="element(f:boundsDuration)?"/>
         
-        <xsl:if test="toedieningsschema/interval[@value]">
-            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                <valueBoolean value="true"/>
-            </extension>
-        </xsl:if>
-        <xsl:copy-of select="$boundsDuration"/>
-        
-        <xsl:if test="not(frequentie//*[@unit != ''])">
-            <xsl:if test="frequentie/nominale_waarde[@value]">
-                <count value="${frequentie/nominale_waarde/@value}"/>
+        <xsl:for-each select="toedieningsschema">
+            <xsl:if test="interval[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                    <valueBoolean value="true"/>
+                </extension>
             </xsl:if>
-            <xsl:if test="frequentie/minimum_waarde[@value]">
-                <count value="${frequentie/minimum_waarde/@value}"/>
+            <xsl:copy-of select="$boundsDuration"/>
+            
+            <xsl:if test="not(frequentie//*[@unit != ''])">
+                <xsl:if test="frequentie/nominale_waarde[@value]">
+                    <count value="${frequentie/nominale_waarde/@value}"/>
+                </xsl:if>
+                <xsl:if test="frequentie/minimum_waarde[@value]">
+                    <count value="${frequentie/minimum_waarde/@value}"/>
+                </xsl:if>
+                <xsl:if test="frequentie/maximum_waarde[@value]">
+                    <countMax value="${frequentie/maximum_waarde/@value}"/>
+                </xsl:if>
             </xsl:if>
-            <xsl:if test="frequentie/maximum_waarde[@value]">
-                <countMax value="${frequentie/maximum_waarde/@value}"/>
+            <xsl:if test="toedieningsduur/tijds_duur[@value]">
+                <duration value="${toedieningsduur/tijds_duur/@value}"/>
+                <xsl:if test="toedingsduur/tijds_duur[@unit]">
+                    <durationUnit>
+                        <unit value="{./@unit}"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="${nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
+                    </durationUnit>
+                    <!-- start_datum_tijd and eind_datum_tijd are not mapped to the profile -->
+                </xsl:if>
             </xsl:if>
-        </xsl:if>
-        <xsl:if test="toedieningsduur/tijds_duur[@value]">
-            <duration value="${toedieningsduur/tijds_duur/@value}"/>
-            <xsl:if test="toedingsduur/tijds_duur[@unit]">
-                <durationUnit>
-                    <unit value="{./@unit}"/>
+            <xsl:if test="frequentie//*[@unit != '']">
+                <xsl:if test="frequentie/nominale_waarde[@value]">
+                    <frequency value="${frequentie/nominale_waarde/@value}"/>
+                </xsl:if>
+                <xsl:if test="frequentie/minimum_waarde[@value]">
+                    <frequency value="${frequentie/minimum_waarde/@value}"/>
+                </xsl:if>
+                <xsl:if test="frequentie/maximum_waarde[@value]">
+                    <frequencyMax value="${frequentie/maximum_waarde/@value}"/>
+                </xsl:if>
+                <period value="1"/>
+                <periodUnit>
+                    <unit value="{frequentie/*[@unit]/@unit[1]}"/>
                     <system value="http://unitsofmeasure.org"/>
-                    <code value="${nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
-                </durationUnit>
-                <!-- start_datum_tijd and eind_datum_tijd are not mapped to the profile -->
+                    <code value="{nf:convert_ADA_unit2UCUM_FHIR(frequentie/*[@unit]/@unit[1])}"/>
+                </periodUnit>
             </xsl:if>
-        </xsl:if>
-        <xsl:if test="frequentie//*[@unit != '']">
-            <xsl:if test="frequentie/nominale_waarde[@value]">
-                <frequency value="${frequentie/nominale_waarde/@value}"/>
+            <xsl:if test="interval[@value and @unit]">
+                <frequency value="1"/>
+                <period value="{interval/@value}"/>
+                <periodUnit>
+                    <unit value="{interval/@unit}"/>
+                    <system value="http://unitsofmeasure.org"/>
+                    <code value="{nf:convert_ADA_unit2UCUM_FHIR(interval/@unit)}"/>
+                </periodUnit>
             </xsl:if>
-            <xsl:if test="frequentie/minimum_waarde[@value]">
-                <frequency value="${frequentie/minimum_waarde/@value}"/>
-            </xsl:if>
-            <xsl:if test="frequentie/maximum_waarde[@value]">
-                <frequencyMax value="${frequentie/maximum_waarde/@value}"/>
-            </xsl:if>
-            <period value="1"/>
-            <periodUnit>
-                <unit value="{./@unit}"/>
-                <system value="http://unitsofmeasure.org"/>
-                <code value="${nf:convert_ADA_unit2UCUM_FHIR(frequentie/*[@unit]/@unit[1])}"/>
-            </periodUnit>
-        </xsl:if>
-        <xsl:if test="interval[@value and @unit]">
-            <frequency value="1"/>
-            <period value="${interval/@value}"/>
-            <periodUnit>
-                <unit value="{./@unit}"/>
-                <system value="http://unitsofmeasure.org"/>
-                <code value="${nf:convert_ADA_unit2UCUM_FHIR(interval/@unit)}"/>
-            </periodUnit>
-        </xsl:if>
-        <xsl:for-each select="weekdag">
-            <dayOfWeek>
-                <xsl:call-template name="code-to-code">
-                    <xsl:with-param name="codeMap" as="element()*">
-                        <map inCode="307145004" inCodeSystem="{$oidSNOMEDCT}" code="mon"/>
-                        <map inCode="307147007" inCodeSystem="{$oidSNOMEDCT}" code="tue"/>
-                        <map inCode="307148002" inCodeSystem="{$oidSNOMEDCT}" code="wed"/>
-                        <map inCode="307149005" inCodeSystem="{$oidSNOMEDCT}" code="thu"/>
-                        <map inCode="307150005" inCodeSystem="{$oidSNOMEDCT}" code="fri"/>
-                        <map inCode="307151009" inCodeSystem="{$oidSNOMEDCT}" code="sat"/>
-                        <map inCode="307146003" inCodeSystem="{$oidSNOMEDCT}" code="sun"/>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </dayOfWeek>
-        </xsl:for-each>
-        <xsl:for-each select="toedientijd">
-            <timeOfDay>
-                <xsl:attribute name="value">
-                    <xsl:call-template name="format2FHIRDate">
-                        <xsl:with-param name="dateTime" select="."/>
+            <xsl:for-each select="weekdag">
+                <dayOfWeek>
+                    <xsl:call-template name="code-to-code">
+                        <xsl:with-param name="codeMap" as="element()*">
+                            <map inCode="307145004" inCodeSystem="{$oidSNOMEDCT}" code="mon"/>
+                            <map inCode="307147007" inCodeSystem="{$oidSNOMEDCT}" code="tue"/>
+                            <map inCode="307148002" inCodeSystem="{$oidSNOMEDCT}" code="wed"/>
+                            <map inCode="307149005" inCodeSystem="{$oidSNOMEDCT}" code="thu"/>
+                            <map inCode="307150005" inCodeSystem="{$oidSNOMEDCT}" code="fri"/>
+                            <map inCode="307151009" inCodeSystem="{$oidSNOMEDCT}" code="sat"/>
+                            <map inCode="307146003" inCodeSystem="{$oidSNOMEDCT}" code="sun"/>
+                        </xsl:with-param>
                     </xsl:call-template>
-                </xsl:attribute>
-            </timeOfDay>
-        </xsl:for-each>
-        <xsl:for-each select="dagdeel">
-            <when>
-                <xsl:call-template name="code-to-code">
-                    <xsl:with-param name="codeMap" as="element()*">
-                        <map inCode="73775008"  inCodeSystem="{$oidSNOMEDCT}" code="MORN"/>
-                        <map inCode="255213009" inCodeSystem="{$oidSNOMEDCT}" code="AFT"/>
-                        <map inCode="3157002"   inCodeSystem="{$oidSNOMEDCT}" code="EVE"/>
-                        <map inCode="2546009"   inCodeSystem="{$oidSNOMEDCT}" code="NIGHT"/>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </when>
+                </dayOfWeek>
+            </xsl:for-each>
+            <xsl:for-each select="toedientijd">
+                <!-- Hack; ADA just knows the datatype dateTime, whereas the result should be of FHIR datatype time.
+                     So we just let the user create a dateTime and discard the date part. --> 
+                <xsl:analyze-string select="./@value" regex='[0-9:]*T([0-9:Z]+)'>
+                    <xsl:matching-substring>
+                        <timeOfDay value="{regex-group(1)}"/>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+            </xsl:for-each>
+            <xsl:for-each select="dagdeel">
+                <when>
+                    <xsl:call-template name="code-to-code">
+                        <xsl:with-param name="codeMap" as="element()*">
+                            <map inCode="73775008"  inCodeSystem="{$oidSNOMEDCT}" code="MORN"/>
+                            <map inCode="255213009" inCodeSystem="{$oidSNOMEDCT}" code="AFT"/>
+                            <map inCode="3157002"   inCodeSystem="{$oidSNOMEDCT}" code="EVE"/>
+                            <map inCode="2546009"   inCodeSystem="{$oidSNOMEDCT}" code="NIGHT"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </when>
+            </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

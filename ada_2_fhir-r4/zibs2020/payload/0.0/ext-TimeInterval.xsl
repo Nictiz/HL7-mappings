@@ -59,54 +59,60 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:otherwise>
                     <!-- Convert input to xs datatypes -->
-                    <xsl:variable name="startDateTime" select="nf:timestamp-to-dateTime(start_datum_tijd/@value)"/>
-                    <xsl:variable name="endDateTime"   select="nf:timestamp-to-dateTime(eind_datum_tijd/@value)"/>
-                    <xsl:variable name="duration"      select="nf:quantity-to-dayTimeDuration(tijds_duur)"/>
-                    
-                    <!-- Get start from input or calculate it from end and duration -->
-                    <xsl:variable name="start">
-                        <xsl:choose>
-                            <xsl:when test="$startDateTime">
-                                <xsl:value-of select="$startDateTime"/>
-                            </xsl:when>
-                            <xsl:when test="$endDateTime and $duration">
-                                <xsl:value-of select="$endDateTime - $duration"/>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:variable>
-                    
-                    <!-- Get end from input or calculate it from start and duration -->
-                    <xsl:variable name="end">
-                        <xsl:choose>
-                            <xsl:when test="$endDateTime">
-                                <xsl:value-of select="$endDateTime"/>
-                            </xsl:when>
-                            <xsl:when test="$startDateTime and $duration">
-                                <xsl:value-of select="$startDateTime + $duration"/>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:variable>
+                    <xsl:variable name="startDateTime" select="if (start_datum_tijd[@value]) then nf:timestamp-to-dateTime(start_datum_tijd/@value) else false()"/>
+                    <xsl:variable name="endDateTime"   select="if (eind_datum_tijd[@value]) then nf:timestamp-to-dateTime(eind_datum_tijd/@value) else false()"/>
+                    <xsl:variable name="duration"      select="if (tijds_duur[@value]) then nf:quantity-to-xsDuration(tijds_duur) else false()"/>
                     
                     <!-- Calculate the "picture" to format the date. Only handle two cases of precisions: dates (year,
                          month, day) and dateTimes (with second precision. -->
                     <xsl:variable name="picture">
                         <xsl:choose>
-                            <xsl:when test="start_datum_tijd/@value castable as xs:dateTime or 
-                                            concat(start_datum_tijd/@value, ':00') castable as xs:dateTime or
-                                            eind_datum_tijd/@value castable as xs:dateTime or
-                                            concat(eind_datum_tijd/@value, ':00') castable as xs:dateTime">[Y0001]-[M01]-[D01]</xsl:when>
+                            <xsl:when test="start_datum_tijd/@value castable as xs:date or 
+                                concat(start_datum_tijd/@value, ':00') castable as xs:date or
+                                eind_datum_tijd/@value castable as xs:date or
+                                concat(eind_datum_tijd/@value, ':00') castable as xs:date">[Y0001]-[M01]-[D01]</xsl:when>
                             <xsl:otherwise>[Y0001]-[M01]-[D01]T[H01]:[m01]:00[Z]</xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
                     
+                    <!-- Get start from input or calculate it from end and duration -->
+                    <xsl:variable name="start" as="xs:string">
+                        <xsl:choose>
+                            <xsl:when test="start_datum_tijd[@value]">
+                                <xsl:value-of select="format-dateTime($startDateTime, $picture)"/>
+                            </xsl:when>
+                            <xsl:when test="eind_datum_tijd[@value] and tijds_duur[@value and @unit]">
+                                <xsl:value-of select="format-dateTime($endDateTime - $duration, $picture)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="''"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    
+                    <!-- Get end from input or calculate it from start and duration -->
+                    <xsl:variable name="end" as="xs:string">
+                        <xsl:choose>
+                            <xsl:when test="eind_datum_tijd[@value]">
+                                <xsl:value-of select="format-dateTime($endDateTime, $picture)"/>
+                            </xsl:when>
+                            <xsl:when test="start_datum_tijd[@value] and tijds_duur[@value and @unit]">
+                                <xsl:value-of select="format-dateTime($startDateTime + $duration, $picture)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="''"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                                        
                     <!-- Write out the element, if we have any input -->
                     <xsl:if test="$start or $end">
                         <xsl:element name="{$wrapIn}">
                             <xsl:if test="$start">
-                                <start value="${format-dateTime($start, $picture)}"/>
+                                <start value="{$start}"/>
                             </xsl:if>
                             <xsl:if test="$end">
-                                <start value="${format-dateTime($end, $picture)}"/>
+                                <end value="{$end}"/>
                             </xsl:if>
                         </xsl:element>
                     </xsl:if>                        
@@ -121,11 +127,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval.Duration extension.</xd:param>
     </xd:doc>
-    <xsl:template name="ext-TimeInterval.Duration" as="element()">
+    <xsl:template name="ext-TimeInterval.Duration" as="element()?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="wrapIn" as="xs:string?"/>
         
-        <xsl:if test="not(start_datum_tijd[@value != ''] and eind_datum_tijd[@value != ''])">
+        <xsl:if test="not(start_datum_tijd[@value != ''] or eind_datum_tijd[@value != ''])">
             <xsl:choose>
                 <!-- If no wrapIn is given, write out the extension element and iteratively call this template. -->
                 <xsl:when test="$wrapIn != ''">

@@ -79,29 +79,30 @@
         <xd:desc>Convert an ADA quantity element to an xs:dayTimeDuration value, if possible. This means that the input unit should be either 'D', 'H', 'M', or 'S'.</xd:desc>
         <xd:param name="quantity">The ADA element of type quantity to convert.</xd:param>
     </xd:doc>
-    <xsl:function name="nf:quantity-to-dayTimeDuration" as="xs:dayTimeDuration?">
+    <xsl:function name="nf:quantity-to-xsDuration">
         <xsl:param name="quantity" as="element()"/>
 
         <xsl:if test="$quantity/@value != ''">
-            <xsl:variable name="initString">
-                <xsl:choose>
-                    <xsl:when test="upper-case($quantity/@unit) = 'D'">
-                        <xsl:value-of select="concat('P', normalize-space($quantity), 'D')"/>                    
-                    </xsl:when>
-                    <xsl:when test="upper-case($quantity/@unit) = 'H'">
-                        <xsl:value-of select="concat('PT', normalize-space($quantity), 'H')"/>                    
-                    </xsl:when>
-                    <xsl:when test="upper-case($quantity/@unit) = 'M'">
-                        <xsl:value-of select="concat('PT', normalize-space($quantity), 'M')"/>                    
-                    </xsl:when>
-                    <xsl:when test="upper-case($quantity/@unit) = 'S'">
-                        <xsl:value-of select="concat('PT', normalize-space($quantity), 'S')"/>                    
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:variable>
-            <xsl:if test="$initString">
-                <xsl:value-of select="xs:dayTimeDuration($initString)"/>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="upper-case($quantity/@unit) = 'Y'">
+                    <xsl:copy-of select="xs:yearMonthDuration(concat('P', normalize-space($quantity/@value), 'Y'))"/>                    
+                </xsl:when>
+                <xsl:when test="$quantity/@unit = 'M'">
+                    <xsl:copy-of select="xs:yearMonthDuration(concat('P', normalize-space($quantity/@value), 'M'))"/>                    
+                </xsl:when>
+                <xsl:when test="upper-case($quantity/@unit) = 'D'">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('P', normalize-space($quantity/@value), 'D'))"/>                    
+                </xsl:when>
+                <xsl:when test="upper-case($quantity/@unit) = 'H'">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'H'))"/>                    
+                </xsl:when>
+                <xsl:when test="$quantity/@unit = 'm'">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'M'))"/>                    
+                </xsl:when>
+                <xsl:when test="upper-case($quantity/@unit) = 'S'">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'S'))"/>                    
+                </xsl:when>
+            </xsl:choose>
         </xsl:if>
     </xsl:function>
     

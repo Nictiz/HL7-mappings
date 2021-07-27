@@ -38,8 +38,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_toediening" as="element(f:MedicationStatement)?">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" select="."/>
-        <xsl:param name="medicationReference" select="gebruiks_product/farmaceutisch_product"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="medicationReference" select="gebruiks_product/farmaceutisch_product" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationStatement>
@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-RenderedDosageInstruction"/>
                 </xsl:for-each>
                 
-                <xsl:for-each select="gebruiks_periode">
+                <xsl:for-each select="gebruiksperiode">
                     <xsl:call-template name="ext-TimeInterval.Duration"/>
                 </xsl:for-each>
                 
@@ -91,10 +91,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status>
                     <xsl:attribute name="value">
                         <xsl:choose>
-                            <xsl:when test="not(medicatie_gebruik_stop_type[@value]) and gebruik_indicator/@value = 'true'">active</xsl:when>
-                            <xsl:when test="medicatie_gebruik_stop_type/@value = '1' and gebruik_indicator/@value = 'false'">on-hold</xsl:when>
-                            <xsl:when test="medicatie_gebruik_stop_type/@value = '2' and gebruik_indicator/@value = 'false'">stopped</xsl:when>
-                            <!-- When GebruikIndicator is false but there's also a stop type, the profile states that
+                            <xsl:when test="not(medicatie_gebruik_stop_type[@code]) and gebruik_indicator/@value = 'true'">active</xsl:when>
+                            <xsl:when test="medicatie_gebruik_stop_type/@code = '113381000146106' and gebruik_indicator/@value = 'false'">on-hold</xsl:when>
+                            <xsl:when test="medicatie_gebruik_stop_type/@code = '113371000146109' and gebruik_indicator/@value = 'false'">stopped</xsl:when>
+                            <!-- When GebruikIndicator is false but there's no stop type, the profile states that
                                  we should use not-taken, completed, intended or entered-in-error. However, we cant't
                                  know which it is so we'll default to unknown. -->
                             <xsl:otherwise>unknown</xsl:otherwise>
@@ -122,12 +122,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </medicationReference>
                 </xsl:for-each>
             
-<!--                <xsl:call-template name="makeReference">
+                <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn">subject</xsl:with-param>
                  </xsl:call-template>
--->            
-                <xsl:for-each select="gebruiks_periode">
+            
+                <xsl:for-each select="gebruiksperiode">
                     <xsl:call-template name="ext-TimeInterval.Period">
                         <xsl:with-param name="wrapIn">effectivePeriod</xsl:with-param>
                     </xsl:call-template>
