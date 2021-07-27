@@ -73,6 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidHL7ActCode">2.16.840.1.113883.5.4</xsl:variable>
     <xsl:variable name="oidHL7ActClass">2.16.840.1.113883.5.6</xsl:variable>
     <xsl:variable name="oidHL7ActStatus">2.16.840.1.113883.5.14</xsl:variable>
+    <xsl:variable name="oidHL7ActReason">2.16.840.1.113883.5.8</xsl:variable>
     <xsl:variable name="oidHL7AddressUse">2.16.840.1.113883.5.1119</xsl:variable>
     <xsl:variable name="oidHL7AdministrativeGender">2.16.840.1.113883.5.1</xsl:variable>
     <xsl:variable name="oidHL7InteractionID">2.16.840.1.113883.1.6</xsl:variable>
@@ -193,7 +194,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <map oid="{$oidChoiceListOrientation}" uri="http://terminology.hl7.org/CodeSystem/choice-list-orientation" displayName="ChoiceListOrientation"/>
                 <map oid="{$oidFHIRObservationCategory}" uri="http://terminology.hl7.org/CodeSystem/observation-category" displayName="ObservationCategory"/>
                 <map oid="{$oidHL7ActCode}" uri="http://terminology.hl7.org/CodeSystem/v3-ActCode" displayName="HL7 ActCode"/>
-                <map oid="{$oidHL7ActStatus}" uri="http://terminology.hl7.org/CodeSystem/v3-ActStatus" displayName="HL7 ActStatus"/>
+                <map oid="{$oidHL7ActStatus}" uri="http://terminology.hl7.org/CodeSystem/v3-ActStatus" displayName="HL7 ActReason"/>
+                <map oid="{$oidHL7ActReason}" uri="http://terminology.hl7.org/CodeSystem/v3-ActReason" displayName="HL7 ActStatus"/>
                 <map oid="{$oidHL7AcknowledgementDetailCode}" uri="http://terminology.hl7.org/CodeSystem/v3-AcknowledgementDetailCode" displayName="HL7 AcknowledgementDetailCode"/>
                 <map oid="{$oidHL7AdministrativeGender}" uri="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender" displayName="HL7 AdministrativeGender"/>
                 <map oid="{$oidHL7LanguageAbilityProficiency}" uri="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency" displayName="HL7 LanguageAbilityProficiency"/>
