@@ -31,7 +31,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p>Converts ADA TimeInterval to FHIR datetype Period or Duration, depending on the situation and conforming to different profiles. See the documentation on the templates.</xd:p>
-            </xd:p>
         </xd:desc>
     </xd:doc>
 
@@ -43,9 +42,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval.Period extension.</xd:param>
     </xd:doc>
-    <xsl:template name="ext-TimeInterval.Period" mode="ext-TimeInterval.Period" as="element(f:*)">
+    <xsl:template name="ext-TimeInterval.Period" as="element()">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="wrapIn" select="" as="xs:string?"/>
+        <xsl:param name="wrapIn" as="xs:string?"/>
         
         <xsl:if test="start_datum_tijd[@value != ''] or eind_datum_tijd[@value != '']">
             <xsl:choose>
@@ -102,7 +101,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- Write out the element, if we have any input -->
                     <xsl:if test="$start or $end">
-                        <xsl:element name="$wrapIn">
+                        <xsl:element name="{$wrapIn}">
                             <xsl:if test="$start">
                                 <start value="${format-dateTime($start, $picture)}"/>
                             </xsl:if>
@@ -122,15 +121,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval.Duration extension.</xd:param>
     </xd:doc>
-    <xsl:template name="ext-TimeInterval.Duration" mode="ext-TimeInterval.Duration" as="element(f:*)">
+    <xsl:template name="ext-TimeInterval.Duration" as="element()">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="wrapIn" select="" as="xs:string?"/>
+        <xsl:param name="wrapIn" as="xs:string?"/>
         
         <xsl:if test="not(start_datum_tijd[@value != ''] and eind_datum_tijd[@value != ''])">
             <xsl:choose>
                 <!-- If no wrapIn is given, write out the extension element and iteratively call this template. -->
                 <xsl:when test="$wrapIn != ''">
-                    <xsl:element name="$wrapIn">
+                    <xsl:element name="{$wrapIn}">
                         <xsl:call-template name="hoeveelheid-to-Duration"/>                        
                     </xsl:element>
                 </xsl:when>

@@ -38,12 +38,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_toediening" as="element(f:MedicationStatement)?">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject"/>
+        <xsl:param name="subject" select="."/>
         <xsl:param name="medicationReference" select="gebruiks_product/farmaceutisch_product"/>
         
         <xsl:for-each select="$in">
             <MedicationStatement>
-                <xsl:call-template name="insertId"/>
+                <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile url="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
                 </meta>
@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="gebruiks_periode">
-                    <xsl:call-template name="nl-core-TimeInterval-Duration"/>
+                    <xsl:call-template name="ext-TimeInterval.Duration"/>
                 </xsl:for-each>
                 
                 <xsl:for-each select="voorschrijver">
@@ -91,21 +91,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status>
                     <xsl:attribute name="value">
                         <xsl:choose>
-                            <xsl:when test="not(medicatie_gebruik_stop_type[@value]) and gebruik_indicator/@value = 'true'">
-                                <xsl:value-of select="active"/>
-                            </xsl:when>
-                            <xsl:when test="medicatie_gebruik_stop_type/@value = '1' and gebruik_indicator/@value = 'false'">
-                                <xsl:value-of select="on-hold"/>
-                            </xsl:when>
-                            <xsl:when test="medicatie_gebruik_stop_type/@value = '2' and gebruik_indicator/@value = 'false'">
-                                <xsl:value-of select="stopped"/>
-                            </xsl:when>
+                            <xsl:when test="not(medicatie_gebruik_stop_type[@value]) and gebruik_indicator/@value = 'true'">active</xsl:when>
+                            <xsl:when test="medicatie_gebruik_stop_type/@value = '1' and gebruik_indicator/@value = 'false'">on-hold</xsl:when>
+                            <xsl:when test="medicatie_gebruik_stop_type/@value = '2' and gebruik_indicator/@value = 'false'">stopped</xsl:when>
                             <!-- When GebruikIndicator is false but there's also a stop type, the profile states that
                                  we should use not-taken, completed, intended or entered-in-error. However, we cant't
                                  know which it is so we'll default to unknown. -->
-                            <xsl:otherwise>
-                                <xsl:copy-of select="'unknown'"/>
-                            </xsl:otherwise>
+                            <xsl:otherwise>unknown</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
                 </status>
@@ -129,50 +121,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>
                 </xsl:for-each>
+            
+<!--                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn">subject</xsl:with-param>
+                 </xsl:call-template>
+-->            
+                <xsl:for-each select="gebruiks_periode">
+                    <xsl:call-template name="ext-TimeInterval.Period">
+                        <xsl:with-param name="wrapIn">effectivePeriod</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                
+                <xsl:for-each select="medicatie_gebruik_datum_tijd">
+                    <dateAsserted>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="./@value"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </dateAsserted>
+                </xsl:for-each>
+                
+                <xsl:for-each select="reden_gebruik">
+                    <reasonCode>
+                        <text>
+                            <xsl:attribute name="value" select="./@value"/>
+                        </text>
+                    </reasonCode>
+                </xsl:for-each>
+                
+                <xsl:for-each select="toelichting">
+                    <note>
+                        <text>
+                            <xsl:attribute name="value" select="./@value"/>
+                        </text>
+                    </note>
+                </xsl:for-each>
+                
+                <xsl:for-each select="gebruiksinstructie">
+                    <dosage>
+                        <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction"/>
+                    </dosage>
+                </xsl:for-each>
             </MedicationStatement>
-            
-            <xsl:call-template name="makeReference">
-                <xsl:with-param name="in" select="$subject"/>
-                <xsl:with-param name="wrapIn">subject</xsl:with-param>
-            </xsl:call-template>
-            
-            <xsl:for-each select="gebruiks_periode">
-                <xsl:call-template name="nl-core-TimeInterval-Period">
-                    <xsl:with-param name="wrapIn">effectivePeriod</xsl:with-param>
-                </xsl:call-template>
-            </xsl:for-each>
-            
-            <xsl:for-each select="medicatie_gebruik_datum_tijd">
-                <dateAsserted>
-                    <xsl:attribute name="value">
-                        <xsl:call-template name="format2FHIRDate">
-                            <xsl:with-param name="dateTime" select="./@value"/>
-                        </xsl:call-template>
-                    </xsl:attribute>
-                </dateAsserted>
-            </xsl:for-each>
-            
-            <xsl:for-each select="reden_gebruik">
-                <reasonCode>
-                    <text>
-                        <xsl:attribute name="value" select="./@value"/>
-                    </text>
-                </reasonCode>
-            </xsl:for-each>
-            
-            <xsl:for-each select="toelichting">
-                <note>
-                    <text>
-                        <xsl:attribute name="value" select="./@value"/>
-                    </text>
-                </note>
-            </xsl:for-each>
-            
-            <xsl:for-each select="gebruiksinstructie">
-                <dosage>
-                    <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction"/>
-                </dosage>
-            </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
     

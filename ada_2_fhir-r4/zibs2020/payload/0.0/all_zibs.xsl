@@ -39,11 +39,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-ContactPerson.xsl"/>
     <xsl:import href="nl-core-HealthProfessional.xsl"/>
     <xsl:import href="nl-core-HealthcareProvider.xsl"/>
+    <xsl:import href="nl-core-InstructionsForUse.xsl"/>
+    <xsl:import href="nl-core-MedicationUse2.xsl"/>
     <xsl:import href="nl-core-NameInformation.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
     <xsl:import href="nl-core-PharmaceuticalProduct.xsl"/>
     
     <xsl:import href="ext-CodeSpecification.xsl"/>
     <xsl:import href="ext-Comment.xsl"/>
+    <xsl:import href="ext-TimeInterval.xsl"/>
     
 </xsl:stylesheet>

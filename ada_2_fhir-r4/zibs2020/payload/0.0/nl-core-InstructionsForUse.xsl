@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
         <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
     </xd:doc>
-    <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiks_instructie" as="element(f:extension)+">
+    <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiks_instructie" as="element(f:extension)?">
         <xsl:param name="in" as="element()?" select="."/>
         
         <xsl:for-each select="$in">
@@ -54,16 +54,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create the ext-InstructionsForUse.RepeatPeriodCyclicalSchedule extension from ADA InstructionsForUse.</xd:desc>
         <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
     </xd:doc>
-    <xsl:template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" mode="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" match="gebruiks_instructie" as="element(f:modifierExtension)+">
+    <xsl:template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" mode="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" match="gebruiks_instructie" as="element(f:modifierExtension)?">
         <xsl:param name="in" as="element()?" select="."/>
         
         <xsl:for-each select="$in">
             <xsl:for-each select="herhaalperiode_cyclisch_schema[@value != '']">
-                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
+                <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
                     <valueDuration>
                         <xsl:call-template name="hoeveelheid-to-Duration"/>
                     </valueDuration>
-                </extension>
+                </modifierExtension>
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
@@ -72,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create the FHIR <xd:i>contents</xd:i> of the nl-core-InstructionsForUse.DosageInstruction datatype profile FHIR instance from ADA InstructionsForUse.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element(f:*)+">
+    <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element()*">
         <xsl:param name="in" as="element()?" select="."/>
         
         <xsl:for-each select="$in">
@@ -81,12 +81,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="route" select="toedieningsweg"/>
             
             <xsl:for-each select="doseerinstructie">
-                <xsl:variable name="sequence">
+                <!-- Although placed on the same level as Dosage, SequenceNumber and DoseDuration are placed within timing and so they are duplicated in each Dosage instance. So lets store them for re-use. -->  
+                <xsl:variable name="sequence" as="element(f:sequence)*">
                     <xsl:for-each select="volgnummer">
                         <sequence value="./@value"/>
                     </xsl:for-each>
                 </xsl:variable>
-                <xsl:variable name="boundsDuration">
+                <xsl:variable name="boundsDuration" as="element(f:boundsDuration)?">
                     <xsl:for-each select="doseerduur">
                         <boundsDuration>
                             <xsl:call-template name="hoeveelheid-to-Duration"/>
@@ -107,12 +108,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <!-- TODO: MP Additional instructions -->
                             </xsl:for-each>
                             <xsl:variable name="timingRepeat">
-                                <xsl:call-template name="_buildTimingRepeat"/>
+                                <xsl:call-template name="_buildTimingRepeat">
+                                    <xsl:with-param name="boundsDuration" select="$boundsDuration"/>
+                                </xsl:call-template>
                             </xsl:variable>
                             <xsl:if test="$timingRepeat">
                                 <timing>
                                     <repeat>
-                                        <xsl:copy-of select="$timing"/>
+                                        <xsl:copy-of select="$timingRepeat"/>
                                     </repeat>
                                 </timing>
                             </xsl:if>
@@ -163,7 +166,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </doseAndRate>
                             </xsl:if>
                             
-                            <xsl:for-each select="maximale_dosering">
+                            <!-- TODO: Mapping from PQ to Ratio is not clear -->
+                        <!--                            <xsl:for-each select="maximale_dosering">
                                 <maxDosePerPeriod>
                                     <xsl:call-template name="hoeveelheid-complex-to-Ratio">
                                         <xsl:with-param name="numerator" select="./@value"/>
@@ -171,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </maxDosePerPeriod>
                             </xsl:for-each>
-                        </xsl:for-each>
+-->                        </xsl:for-each>
                     </xsl:when>
                     
                     <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
@@ -194,8 +198,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Helper template to build the Dosage.timing.repeat content for the current Dosage.</xd:desc>
+        <xd:param name="boundsDuration">An optionally pre-rendered boundsDuration element.</xd:param>
     </xd:doc>
     <xsl:template name="_buildTimingRepeat">
+        <xsl:param name="boundsDuration" as="element(f:boundsDuration)?"/>
+        
         <xsl:if test="toedieningsschema/interval[@value]">
             <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                 <valueBoolean value="true"/>
@@ -219,7 +226,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="toedingsduur/tijds_duur[@unit]">
                 <durationUnit>
                     <unit value="{./@unit}"/>
-                    <system value="{local:getUri($oidUCUM)}"/>
+                    <system value="http://unitsofmeasure.org"/>
                     <code value="${nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
                 </durationUnit>
                 <!-- start_datum_tijd and eind_datum_tijd are not mapped to the profile -->
@@ -238,7 +245,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <period value="1"/>
             <periodUnit>
                 <unit value="{./@unit}"/>
-                <system value="{local:getUri($oidUCUM)}"/>
+                <system value="http://unitsofmeasure.org"/>
                 <code value="${nf:convert_ADA_unit2UCUM_FHIR(frequentie/*[@unit]/@unit[1])}"/>
             </periodUnit>
         </xsl:if>
@@ -247,21 +254,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <period value="${interval/@value}"/>
             <periodUnit>
                 <unit value="{./@unit}"/>
-                <system value="{local:getUri($oidUCUM)}"/>
+                <system value="http://unitsofmeasure.org"/>
                 <code value="${nf:convert_ADA_unit2UCUM_FHIR(interval/@unit)}"/>
             </periodUnit>
         </xsl:if>
         <xsl:for-each select="weekdag">
             <dayOfWeek>
                 <xsl:call-template name="code-to-code">
-                    <xsl:with-param name="codeMap">
-                        <map inCode="307145004" inCodeSystem="$oidSNOMEDCT" code="mon"/>;
-                        <map inCode="307147007" inCodeSystem="$oidSNOMEDCT" code="tue"/>;
-                        <map inCode="307148002" inCodeSystem="$oidSNOMEDCT" code="wed"/>;
-                        <map inCode="307149005" inCodeSystem="$oidSNOMEDCT" code="thu"/>;
-                        <map inCode="307150005" inCodeSystem="$oidSNOMEDCT" code="fri"/>;
-                        <map inCode="307151009" inCodeSystem="$oidSNOMEDCT" code="sat"/>;
-                        <map inCode="307146003" inCodeSystem="$oidSNOMEDCT" code="sun"/>;
+                    <xsl:with-param name="codeMap" as="element()*">
+                        <map inCode="307145004" inCodeSystem="{$oidSNOMEDCT}" code="mon"/>
+                        <map inCode="307147007" inCodeSystem="{$oidSNOMEDCT}" code="tue"/>
+                        <map inCode="307148002" inCodeSystem="{$oidSNOMEDCT}" code="wed"/>
+                        <map inCode="307149005" inCodeSystem="{$oidSNOMEDCT}" code="thu"/>
+                        <map inCode="307150005" inCodeSystem="{$oidSNOMEDCT}" code="fri"/>
+                        <map inCode="307151009" inCodeSystem="{$oidSNOMEDCT}" code="sat"/>
+                        <map inCode="307146003" inCodeSystem="{$oidSNOMEDCT}" code="sun"/>
                     </xsl:with-param>
                 </xsl:call-template>
             </dayOfWeek>
@@ -278,11 +285,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="dagdeel">
             <when>
                 <xsl:call-template name="code-to-code">
-                    <xsl:with-param name="codeMap">
-                        <map inCode="73775008"  inCodeSystem="$oidSNOMEDCT" code="MORN"/>;
-                        <map inCode="255213009" inCodeSystem="$oidSNOMEDCT" code="AFT"/>;
-                        <map inCode="3157002"   inCodeSystem="$oidSNOMEDCT" code="EVE"/>;
-                        <map inCode="2546009"   inCodeSystem="$oidSNOMEDCT" code="NIGHT"/>;
+                    <xsl:with-param name="codeMap" as="element()*">
+                        <map inCode="73775008"  inCodeSystem="{$oidSNOMEDCT}" code="MORN"/>
+                        <map inCode="255213009" inCodeSystem="{$oidSNOMEDCT}" code="AFT"/>
+                        <map inCode="3157002"   inCodeSystem="{$oidSNOMEDCT}" code="EVE"/>
+                        <map inCode="2546009"   inCodeSystem="{$oidSNOMEDCT}" code="NIGHT"/>
                     </xsl:with-param>
                 </xsl:call-template>
             </when>
