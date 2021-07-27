@@ -244,20 +244,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <frequencyMax value="${frequentie/maximum_waarde/@value}"/>
                 </xsl:if>
                 <period value="1"/>
-                <periodUnit>
-                    <unit value="{frequentie/*[@unit]/@unit[1]}"/>
-                    <system value="http://unitsofmeasure.org"/>
-                    <code value="{nf:convert_ADA_unit2UCUM_FHIR(frequentie/*[@unit]/@unit[1])}"/>
-                </periodUnit>
+                <periodUnit value="{nf:convert_ADA_unit2UCUM_FHIR(frequentie/*[@unit]/@unit[1])}"/>
             </xsl:if>
             <xsl:if test="interval[@value and @unit]">
                 <frequency value="1"/>
                 <period value="{interval/@value}"/>
-                <periodUnit>
-                    <unit value="{interval/@unit}"/>
-                    <system value="http://unitsofmeasure.org"/>
-                    <code value="{nf:convert_ADA_unit2UCUM_FHIR(interval/@unit)}"/>
-                </periodUnit>
+                <periodUnit value="{nf:convert_ADA_unit2UCUM_FHIR(interval/@unit)}"/>
             </xsl:if>
             <xsl:for-each select="weekdag">
                 <dayOfWeek>

@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <MedicationStatement>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile url="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
                 </meta>
                 
                 <xsl:for-each select="gebruiksinstructie">
@@ -72,16 +72,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:attribute>
                         </valueBoolean>
                     </extension>                    
-                </xsl:for-each>
-                
-                <xsl:for-each select="gebruik_indicator[@value != '']">
-                    <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.UseIndicator">
-                        <valueBoolean>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="boolean-to-boolean"/>
-                            </xsl:attribute>
-                        </valueBoolean>
-                    </modifierExtension>
                 </xsl:for-each>
                 
                 <xsl:for-each select="gebruiksinstructie">
@@ -160,9 +150,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="gebruiksinstructie">
-                    <dosage>
+                    <xsl:variable name="dosage" as="element()*">
                         <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction"/>
-                    </dosage>
+                    </xsl:variable>
+                    <xsl:if test="count($dosage) &gt; 0">
+                        <dosage>
+                            <xsl:copy-of select="$dosage"/>
+                        </dosage>
+                    </xsl:if>
                 </xsl:for-each>
             </MedicationStatement>
         </xsl:for-each>
