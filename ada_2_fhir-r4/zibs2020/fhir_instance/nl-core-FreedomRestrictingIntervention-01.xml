@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="nl-core-FreedomRestrictingIntervention-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FreedomRestrictingIntervention"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
+      <extension url="legallyCapable">
+         <valueBoolean value="false"/>
+      </extension>
+      <extension url="legallyCapableComment">
+         <valueString value="Wilsonbekwaam t.a.v. geldzaken."/>
+      </extension>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.Assent">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.6.1"/>
+            <code value="2"/>
+            <display value="Instemming patiënt"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="225317005"/>
+         <display value="beperking van bewegingsvrijheid"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="123941000146105"/>
+         <display value="Placing restraint using limb restraint"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <performedPeriod>
+      <start value="2019-05-01"/>
+      <end value="2019-05-05"/>
+   </performedPeriod>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="121491000146107"/>
+         <display value="Diversion of crisis situation"/>
+      </coding>
+   </reasonCode>
+   <reasonReference>
+      <reference value="Condition/048b2536-edf8-11eb-2836-020000000000"/>
+      <type value="Condition"/>
+      <display value="juridische_situatie"/>
+   </reasonReference>
+</Procedure>

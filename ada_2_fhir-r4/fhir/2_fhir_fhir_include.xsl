@@ -63,26 +63,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
+        <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="farmaceutisch_product" resource="Medication" profile="nl-core-PharmaceuticalProduct"/>
+        <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
+        <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
+        <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
+        <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="nl-core-MedicationAgreement"/>
+        <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="nl-core-MedicationContraIndication"/>
         <nm:map ada="medicatie_gebruik" resource="MedicationStatement" profile="nl-core-MedicationUse2"/>
         <nm:map ada="medicatie_toediening" resource="MedicationAdministration" profile="nl-core-MedicationAdministration2"/>
         <nm:map ada="medicatie_verstrekking" resource="MedicationDispense" profile="nl-core-MedicationDispense"/>
+        <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
+        <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
+        <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
+        <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
+        <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport-Observation"/>
+        <nm:map ada="tekst_uitslag" resource="DiagnosticReport" profile="nl-core-TextResult"/>
+
         <nm:map ada="toedieningsafspraak" resource="MedicationDispense" profile="nl-core-AdministrationAgreement"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="nl-core-DispenseRequest"/>
+        <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
+        <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
+        <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
+        <nm:map ada="zorg_team" resource="CareTeam" profile="nl-core-CareTeam"/>
         <nm:map ada="zorgverlener" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
         <nm:map ada="zorgverlener" resource="Practitioner" profile="nl-core-HealthProfessional-Practitioner"/>
     </xsl:variable>
 
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
     <xsl:param name="fhirVersion" select="'R4'"/>
+    
+    <xd:doc>
+        <xd:param name="patientTokensXml">Override optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
+    </xd:doc>
+    <xsl:param name="patientTokensXml" select="document('../../ada_2_fhir/fhir/QualificationTokens.xml')"/>
     
     <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
@@ -243,6 +265,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:apply-templates>
                 </nm:reference-display>
             </nm:resource>
+            
+            <!-- SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
+            <xsl:choose>
+                <xsl:when test="$in/self::soepverslag">
+                    <xsl:for-each-group select="$in/soepregel" group-by="nf:getGroupingKeyDefault(.)">
+                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                    </xsl:for-each-group>
+                </xsl:when>
+                <xsl:when test="$in/self::tekst_uitslag">
+                    <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
+                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                    </xsl:for-each-group>
+                </xsl:when>
+            </xsl:choose>
         </xsl:for-each>
     </xsl:template>
     
@@ -250,7 +286,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Generate a FHIR reference. When there's no input or a reference can't otherwise be constructed, no output is generated.</xd:desc>
         
         <xd:param name="in">The target of the reference as either an ADA instance an ADA reference element. May be omitted if it is the same as the context.</xd:param>
-        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
         <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated as well.</xd:param>
     </xd:doc>
     <!-- Outputs reference if input is ADA, fhirMetadata or ADA reference element -->
@@ -258,6 +294,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="profile" as="xs:string" select="''"/>
         <xsl:param name="wrapIn" as="xs:string?"/>
+        <xsl:param name="contained" as="xs:boolean" tunnel="yes" select="false()"/>
 
         <xsl:if test="count($fhirMetadata) = 0">
             <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
@@ -353,7 +390,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Insert the FHIR resource id element for the specified ADA instance, if an id is required (see the <xd:ref name="populateId" type="parameter"/> and <xd:ref name="referencingStrategy" type="parameter"/> parameters).
         </xd:desc>
         <xd:param name="in">The ADA instance that the FHIR resource is generated for.</xd:param>
-        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
     </xd:doc>
     <xsl:template name="insertLogicalId">
         <xsl:param name="in" select="."/>
@@ -375,7 +412,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Get the FHIR resource id element for the specified ADA instance, if an id is available (see the <xd:ref name="populateId" type="parameter"/> and <xd:ref name="referencingStrategy" type="parameter"/> parameters).
         </xd:desc>
         <xd:param name="in">The ADA instance that the FHIR resource is generated for.</xd:param>
-        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
     </xd:doc>
     <xsl:template name="getLogicalIdFromFhirMetadata">
         <xsl:param name="in" select="."/>
@@ -384,7 +421,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
         
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
-            <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+            <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:message>
         </xsl:if>
         
         <xsl:variable name="logicalId">
@@ -406,7 +443,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Insert the FHIR fullUrl element for the specified instance, if one is available (see the <xd:ref name="referencingStrategy" type="parameter"/> parameter).</xd:desc>
         <xd:param name="in">The ADA instance that the FHIR resource is generated for.</xd:param>
-        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targetted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
     </xd:doc>    
     <xsl:template name="insertFullUrl">
         <xsl:param name="in" select="."/>
@@ -439,6 +476,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Generic template for generating an id for a FHIR resource. Stylesheets for specific zibs can override this with a more specific version.</xd:desc>
         <xd:param name="in">The ADA instance to generate the id for.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
     </xd:doc>
     <xsl:template match="*" mode="_generateId">
         <xsl:param name="in" select="."/>
@@ -453,7 +491,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:variable name="fullUrl">
-            <xsl:value-of select="nf:get-fhir-uuid($in)"/>
+            <xsl:value-of select="nf:get-fhir-uuid($uuidIn)"/>
         </xsl:variable>
         
         <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
@@ -475,4 +513,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Function to resolve internal references in an ADA instance. The output is the contained ADA instance being referenced or the input node if the input node isn't a reference.</xd:desc>
+        <xd:param name="in">The ADA instance to resolve.</xd:param>
+        <xd:param name="context">The complete ADA instance where the contained ADA instance is contained in.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:resolveAdaInstance">
+        <xsl:param name="in"/>
+        <xsl:param name="context" as="node()"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in[@datatype = 'reference' and @value]">
+                <xsl:variable name="adaId" select="$in/@value"/>
+                <xsl:copy-of select="$context//*[@id = $adaId][1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="$in"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
 </xsl:stylesheet>
