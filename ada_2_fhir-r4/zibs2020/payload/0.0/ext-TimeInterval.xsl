@@ -40,17 +40,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Please note: the input precision of the start and/or end date is not strictly adhered to; the start- en end date will be either a full date or a full date with time.</xd:p>
         </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval.Period extension.</xd:param>
+        <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval-Period extension.</xd:param>
     </xd:doc>
-    <xsl:template name="ext-TimeInterval.Period" as="element()">
+    <xsl:template name="ext-TimeInterval.Period" as="element()*">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="wrapIn" as="xs:string?"/>
+        <xsl:param name="wrapIn" as="xs:string" select="''"/>
         
         <xsl:if test="start_datum_tijd[@value != ''] or eind_datum_tijd[@value != '']">
             <xsl:choose>
                 <!-- If no wrapIn is given, write out the extension element and iteratively call this template. -->
                 <xsl:when test="$wrapIn = ''">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                         <xsl:call-template name="ext-TimeInterval.Period">
                             <xsl:with-param name="wrapIn">valuePeriod</xsl:with-param>
                         </xsl:call-template>
@@ -125,22 +125,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>If needed, create the Duration part from ADA TimeInterval input. If the input doesn't contain the Duration concept or if the TimeInterval can be expressed as a Period, output is suppressed. Normally, the output will take the form of the ext-TimeInterval.Duration extension, unless <xd:ref name="wrapIn" type="parameter"/> is given.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval.Duration extension.</xd:param>
+        <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval-Duration extension.</xd:param>
     </xd:doc>
     <xsl:template name="ext-TimeInterval.Duration" as="element()?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="wrapIn" as="xs:string?"/>
         
-        <xsl:if test="not(start_datum_tijd[@value != ''] or eind_datum_tijd[@value != ''])">
+        <xsl:if test="not(start_datum_tijd[@value != ''] or eind_datum_tijd[@value != '']) and tijds_duur[@value and @unit]">
             <xsl:choose>
                 <!-- If no wrapIn is given, write out the extension element and iteratively call this template. -->
                 <xsl:when test="$wrapIn != ''">
                     <xsl:element name="{$wrapIn}">
-                        <xsl:call-template name="hoeveelheid-to-Duration"/>                        
+                        <xsl:call-template name="hoeveelheid-to-Duration">
+                            <xsl:with-param name="in" select="tijds_duur"/>
+                        </xsl:call-template>                        
                     </xsl:element>
                 </xsl:when>
                 <xsl:otherwise>
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
                         <xsl:call-template name="ext-TimeInterval.Duration">
                             <xsl:with-param name="wrapIn">valueDuration</xsl:with-param>
                         </xsl:call-template>

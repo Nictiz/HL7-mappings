@@ -76,7 +76,7 @@
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Convert an ADA quantity element to an xs:dayTimeDuration value, if possible. This means that the input unit should be either 'D', 'H', 'M', or 'S'.</xd:desc>
+        <xd:desc>Convert an ADA quantity element to an xs:yearMonthDuration or xs:dayTimeDuration value, if possible. This means that the input unit should be either 'a'/'ANN' ('y' is also accpeted), 'mo'/'MO', 'wk'/'WK', 'd'/'D', 'h'/'HR', 'min'/'MIN', or 's'/'S'.</xd:desc>
         <xd:param name="quantity">The ADA element of type quantity to convert.</xd:param>
     </xd:doc>
     <xsl:function name="nf:quantity-to-xsDuration">
@@ -84,19 +84,22 @@
 
         <xsl:if test="$quantity/@value != ''">
             <xsl:choose>
-                <xsl:when test="upper-case($quantity/@unit) = 'Y'">
+                <xsl:when test="upper-case($quantity/@unit) = ('Y', 'A', 'ANN')">
                     <xsl:copy-of select="xs:yearMonthDuration(concat('P', normalize-space($quantity/@value), 'Y'))"/>                    
                 </xsl:when>
-                <xsl:when test="$quantity/@unit = 'M'">
+                <xsl:when test="upper-case($quantity/@unit) = 'MO'">
                     <xsl:copy-of select="xs:yearMonthDuration(concat('P', normalize-space($quantity/@value), 'M'))"/>                    
+                </xsl:when>
+                <xsl:when test="upper-case($quantity/@unit) = 'WK'">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('P', number($quantity/@value) * 7, 'D'))"/>                    
                 </xsl:when>
                 <xsl:when test="upper-case($quantity/@unit) = 'D'">
                     <xsl:copy-of select="xs:dayTimeDuration(concat('P', normalize-space($quantity/@value), 'D'))"/>                    
                 </xsl:when>
-                <xsl:when test="upper-case($quantity/@unit) = 'H'">
+                <xsl:when test="$quantity/@unit = ('h', 'HR')">
                     <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'H'))"/>                    
                 </xsl:when>
-                <xsl:when test="$quantity/@unit = 'm'">
+                <xsl:when test="upper-case($quantity/@unit) = 'MIN'">
                     <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'M'))"/>                    
                 </xsl:when>
                 <xsl:when test="upper-case($quantity/@unit) = 'S'">
