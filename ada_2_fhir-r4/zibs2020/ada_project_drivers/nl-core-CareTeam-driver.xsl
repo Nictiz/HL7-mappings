@@ -24,24 +24,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
+    <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
+    
     <xsl:template match="/nm:bundle">
         <xsl:apply-templates mode="_doTransform" select="$bundle/zorg_team"/>
     </xsl:template>
     
     <xsl:template match="//zorg_team_registratie/zorg_team">
         <xsl:apply-templates mode="_doTransform" select="."/>
-    </xsl:template>
-    
-    <xsl:template mode="_doTransform" match="zorg_team">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient">
-                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
-            </xsl:call-template>
-        </xsl:variable>
-        
-        <xsl:call-template name="nl-core-CareTeam">
-            <xsl:with-param name="subject" select="$subject"/>
-        </xsl:call-template>
     </xsl:template>
     
 </xsl:stylesheet>

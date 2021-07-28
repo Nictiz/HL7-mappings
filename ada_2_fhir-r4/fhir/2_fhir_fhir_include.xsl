@@ -55,11 +55,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referencingStrategy" select="'uuid'" as="xs:string"/>
     
     <xd:doc>
-        <xd:desc>Outputs all contained instances as separate files to filesystem.</xd:desc>
-    </xd:doc>
-    <xsl:param name="outputContained" select="false()" as="xs:boolean"/>
-    
-    <xd:doc>
         <xd:desc>The server base URI for creating logical references.</xd:desc>
     </xd:doc>
     <xsl:param name="serverBaseUri" select="'http://example.nictiz.nl/fhir'" as="xs:string"/>
@@ -380,26 +375,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="$populatedReference"/>
                 </xsl:otherwise>
             </xsl:choose>
-            
-            <xsl:if test="$outputContained = true() and ($in[@datatype = 'reference' and @value] or $contained = true())">
-                <xsl:variable name="context">
-                    <xsl:choose>
-                        <xsl:when test="$in[@datatype = 'reference' and @value]">
-                            <xsl:copy-of select="/"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:copy-of select="$in"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:result-document href="./{$element/nm:logical-id}.xml">
-                    <xsl:call-template name="_outputReference">
-                        <xsl:with-param name="in" select="nf:resolveAdaInstance($in, $context)"/>
-                        <xsl:with-param name="profile" select="$profile"/>
-                        <xsl:with-param name="contained" select="true()" tunnel="yes"/>
-                    </xsl:call-template>
-                </xsl:result-document>
-            </xsl:if>
         </xsl:if>
     </xsl:template>
     
@@ -550,94 +525,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    <xd:doc>
-        <xd:desc>Template to output a referenced instance to disc.</xd:desc>
-        <xd:param name="in">The ADA instance to output.</xd:param>
-        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
-    </xd:doc>
-    <xsl:template name="_outputReference">
-        <xsl:param name="in" select="."/>
-        <xsl:param name="profile" required="yes"/>
-        
-        <!-- Quite verbose, but the only way to 'dynamically' apply a mode -->
-        <xsl:choose>
-            <xsl:when test="$profile = 'nl-core-BloodPressure'">
-                <xsl:apply-templates select="$in" mode="nl-core-BloodPressure"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-Encounter'">
-                <xsl:apply-templates select="$in" mode="nl-core-Encounter"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-ContactPerson'">
-                <xsl:apply-templates select="$in" mode="nl-core-ContactPerson"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-HeartRate'">
-                <xsl:apply-templates select="$in" mode="nl-core-HeartRate"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-LegalSituation-LegalStatus'">
-                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-LegalStatus"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-LegalSituation-Representation'">
-                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-Representation"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-BodyTemperature'">
-                <xsl:apply-templates select="$in" mode="nl-core-BodyTemperature"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-MedicationContraIndication'">
-                <xsl:apply-templates select="$in" mode="nl-core-MedicationContraIndication"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-O2Saturation'">
-                <xsl:apply-templates select="$in" mode="nl-core-O2Saturation"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-Patient'">
-                <xsl:apply-templates select="$in" mode="nl-core-Patient"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-Problem'">
-                <xsl:apply-templates select="$in" mode="nl-core-Problem"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-Refraction'">
-                <xsl:apply-templates select="$in" mode="nl-core-Refraction"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-HeadCircumference'">
-                <xsl:apply-templates select="$in" mode="nl-core-HeadCircumference"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-SOAPReport'">
-                <xsl:apply-templates select="$in" mode="nl-core-SOAPReport"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-SOAPReport-Observation'">
-                <xsl:apply-templates select="$in" mode="nl-core-SOAPReport-Observation"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-TextResult'">
-                <xsl:apply-templates select="$in" mode="nl-core-TextResult"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-TextResult-Media'">
-                <xsl:apply-templates select="$in" mode="nl-core-TextResult-Media"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-Procedure'">
-                <xsl:apply-templates select="$in" mode="nl-core-Procedure"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-VisualAcuity'">
-                <xsl:apply-templates select="$in" mode="nl-core-VisualAcuity"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-FreedomRestrictingIntervention'">
-                <xsl:apply-templates select="$in" mode="nl-core-FreedomRestrictingIntervention"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-HealthcareProvider-Organization'">
-                <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider-Organization"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-HealthcareProvider'">
-                <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-CareTeam'">
-                <xsl:apply-templates select="$in" mode="nl-core-CareTeam"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-HealthProfessional-PractitionerRole'">
-                <xsl:apply-templates select="$in" mode="nl-core-HealthProfessional-PractitionerRole"/>
-            </xsl:when>
-            <xsl:when test="$profile = 'nl-core-HealthProfessional-Practitioner'">
-                <xsl:apply-templates select="$in" mode="nl-core-HealthProfessional-Practitioner"/>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
     
 </xsl:stylesheet>
