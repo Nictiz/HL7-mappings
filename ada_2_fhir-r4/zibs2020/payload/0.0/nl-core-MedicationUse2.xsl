@@ -150,14 +150,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="gebruiksinstructie">
-                    <xsl:variable name="dosage" as="element()*">
-                        <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction"/>
-                    </xsl:variable>
-                    <xsl:if test="count($dosage) &gt; 0">
-                        <dosage>
-                            <xsl:copy-of select="$dosage"/>
-                        </dosage>
-                    </xsl:if>
+                    <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction">
+                        <xsl:with-param name="wrapIn">dosage</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
             </MedicationStatement>
         </xsl:for-each>

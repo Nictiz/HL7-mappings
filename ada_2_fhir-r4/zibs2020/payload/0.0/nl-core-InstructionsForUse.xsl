@@ -72,127 +72,142 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create the FHIR <xd:i>contents</xd:i> of the nl-core-InstructionsForUse.DosageInstruction datatype profile FHIR instance from ADA InstructionsForUse.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element()*">
-        <xsl:param name="in" as="element()?" select="."/>
+    <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element()*">        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="wrapIn" as="xs:string" select="''"/>
         
         <xsl:for-each select="$in">
-            <!-- AdditionalInstruction and route are duplicated in each instance of the Dosage datatype -->
-            <xsl:variable name="additionalInstruction" select="aanvullende_instructie"/>
-            <xsl:variable name="route" select="toedieningsweg"/>
-            
-            <xsl:for-each select="doseerinstructie">
-                <!-- Although placed on the same level as Dosage, SequenceNumber and DoseDuration are placed within timing and so they are duplicated in each Dosage instance. So lets store them for re-use. -->  
-                <xsl:variable name="sequence" as="element(f:sequence)*">
-                    <xsl:for-each select="volgnummer">
-                        <sequence value="./@value"/>
-                    </xsl:for-each>
-                </xsl:variable>
-                <xsl:variable name="boundsDuration" as="element(f:boundsDuration)?">
-                    <xsl:for-each select="doseerduur">
-                        <boundsDuration>
-                            <xsl:call-template name="hoeveelheid-to-Duration"/>
-                        </boundsDuration>
-                    </xsl:for-each>
-                </xsl:variable>
+            <xsl:variable name="content" as="element()*">
+                <!-- AdditionalInstruction and route are duplicated in each instance of the Dosage datatype -->
+                <xsl:variable name="additionalInstruction" select="aanvullende_instructie"/>
+                <xsl:variable name="route" select="toedieningsweg"/>
                 
-                <xsl:choose>
-                    <xsl:when test="dosering">
-                        <xsl:for-each select="dosering">
-                            <xsl:copy-of select="$sequence"/>
-                            <xsl:for-each select="$additionalInstruction">
-                                <additionalInstruction>
-                                    <text>
-                                        <xsl:attribute name="value" select="./@value"/>
-                                    </text>
-                                </additionalInstruction>
-                                <!-- TODO: MP Additional instructions -->
-                            </xsl:for-each>
-                            <xsl:variable name="timingRepeat">
-                                <xsl:call-template name="_buildTimingRepeat">
-                                    <xsl:with-param name="boundsDuration" select="$boundsDuration"/>
-                                </xsl:call-template>
-                            </xsl:variable>
-                            <xsl:if test="$timingRepeat">
+                <xsl:for-each select="doseerinstructie">
+                    <!-- Although placed on the same level as Dosage, SequenceNumber and DoseDuration are placed within timing and so they are duplicated in each Dosage instance. So lets store them for re-use. -->  
+                    <xsl:variable name="sequence" as="element(f:sequence)*">
+                        <xsl:for-each select="volgnummer">
+                            <sequence value="./@value"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:variable name="boundsDuration" as="element(f:boundsDuration)?">
+                        <xsl:for-each select="doseerduur">
+                            <boundsDuration>
+                                <xsl:call-template name="hoeveelheid-to-Duration"/>
+                            </boundsDuration>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:choose>
+                        <xsl:when test="dosering">
+                            <xsl:for-each select="dosering">
+                                <xsl:copy-of select="$sequence"/>
+                                <xsl:for-each select="$additionalInstruction">
+                                    <additionalInstruction>
+                                        <text>
+                                            <xsl:attribute name="value" select="./@value"/>
+                                        </text>
+                                    </additionalInstruction>
+                                    <!-- TODO: MP Additional instructions -->
+                                </xsl:for-each>
+                                <xsl:variable name="timingRepeat">
+                                    <xsl:call-template name="_buildTimingRepeat">
+                                        <xsl:with-param name="boundsDuration" select="$boundsDuration"/>
+                                    </xsl:call-template>
+                                </xsl:variable>
+                                <xsl:if test="$timingRepeat">
+                                    <timing>
+                                        <repeat>
+                                            <xsl:copy-of select="$timingRepeat"/>
+                                        </repeat>
+                                    </timing>
+                                </xsl:if>
+                                
+                                <xsl:for-each select="zonodig/criterium">
+                                    <asNeededCodeableConcept>
+                                        <xsl:call-template name="code-to-CodeableConcept"/>
+                                    </asNeededCodeableConcept>
+                                </xsl:for-each>
+                                
+                                <xsl:for-each select="$route">
+                                    <route>
+                                        <xsl:call-template name="code-to-CodeableConcept"/>
+                                    </route>
+                                </xsl:for-each>
+                                
+                                <xsl:variable name="doseAndRate">
+                                    <xsl:for-each select="keerdosis">
+                                        <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
+                                            <doseRange>
+                                                <low value="${minimum_waarde/@value}"/>
+                                                <high value="${maximum_waarde/@value}"/>
+                                            </doseRange>
+                                        </xsl:if>
+                                        <xsl:for-each select="nominale_waarde[@value and @unit]">
+                                            <doseQuantity>
+                                                <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                                            </doseQuantity>
+                                        </xsl:for-each>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="toediensnelheid">
+                                        <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
+                                            <rateRange>
+                                                <low value="${minimum_waarde/@value}"/>
+                                                <high value="${maximum_waarde/@value}"/>
+                                            </rateRange>
+                                        </xsl:if>
+                                        <xsl:if test="nominale_waarde[@value]">
+                                            <rateQuantity>
+                                                <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                                            </rateQuantity>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:variable>
+                                <xsl:if test="$doseAndRate">
+                                    <doseAndRate>
+                                        <xsl:copy-of select="$doseAndRate"/>
+                                    </doseAndRate>
+                                </xsl:if>
+                                
+                                <!-- TODO: Mapping from PQ to Ratio is not clear -->
+                            <!--                            <xsl:for-each select="maximale_dosering">
+                                    <maxDosePerPeriod>
+                                        <xsl:call-template name="hoeveelheid-complex-to-Ratio">
+                                            <xsl:with-param name="numerator" select="./@value"/>
+                                            <xsl:with-param name="denominator" select="./@unit"/>
+                                        </xsl:call-template>
+                                    </maxDosePerPeriod>
+                                </xsl:for-each>
+    -->                        </xsl:for-each>
+                        </xsl:when>
+                        
+                        <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
+                        <xsl:when test="$sequence or $boundsDuration">
+                            <xsl:if test="$sequence">
+                                <xsl:copy-of select="$sequence"/>
+                            </xsl:if>
+                            <xsl:if test="$boundsDuration">
                                 <timing>
                                     <repeat>
-                                        <xsl:copy-of select="$timingRepeat"/>
+                                        <xsl:copy-of select="$boundsDuration"/>
                                     </repeat>
                                 </timing>
                             </xsl:if>
-                            
-                            <xsl:for-each select="zonodig/criterium">
-                                <asNeededCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept"/>
-                                </asNeededCodeableConcept>
-                            </xsl:for-each>
-                            
-                            <xsl:for-each select="$route">
-                                <route>
-                                    <xsl:call-template name="code-to-CodeableConcept"/>
-                                </route>
-                            </xsl:for-each>
-                            
-                            <xsl:variable name="doseAndRate">
-                                <xsl:for-each select="keerdosis">
-                                    <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
-                                        <doseRange>
-                                            <low value="${minimum_waarde/@value}"/>
-                                            <high value="${maximum_waarde/@value}"/>
-                                        </doseRange>
-                                    </xsl:if>
-                                    <xsl:for-each select="nominale_waarde[@value and @unit]">
-                                        <doseQuantity>
-                                            <xsl:call-template name="hoeveelheid-to-Quantity"/>
-                                        </doseQuantity>
-                                    </xsl:for-each>
-                                </xsl:for-each>
-                                <xsl:for-each select="toediensnelheid">
-                                    <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
-                                        <rateRange>
-                                            <low value="${minimum_waarde/@value}"/>
-                                            <high value="${maximum_waarde/@value}"/>
-                                        </rateRange>
-                                    </xsl:if>
-                                    <xsl:if test="nominale_waarde[@value]">
-                                        <rateQuantity>
-                                            <xsl:call-template name="hoeveelheid-to-Quantity"/>
-                                        </rateQuantity>
-                                    </xsl:if>
-                                </xsl:for-each>
-                            </xsl:variable>
-                            <xsl:if test="$doseAndRate">
-                                <doseAndRate>
-                                    <xsl:copy-of select="$doseAndRate"/>
-                                </doseAndRate>
-                            </xsl:if>
-                            
-                            <!-- TODO: Mapping from PQ to Ratio is not clear -->
-                        <!--                            <xsl:for-each select="maximale_dosering">
-                                <maxDosePerPeriod>
-                                    <xsl:call-template name="hoeveelheid-complex-to-Ratio">
-                                        <xsl:with-param name="numerator" select="./@value"/>
-                                        <xsl:with-param name="denominator" select="./@unit"/>
-                                    </xsl:call-template>
-                                </maxDosePerPeriod>
-                            </xsl:for-each>
--->                        </xsl:for-each>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:for-each>
+            </xsl:variable>
+            
+            <xsl:if test="count($content) &gt; 0">
+                <xsl:choose>
+                    <xsl:when test="$wrapIn != ''">
+                        <xsl:element name="{$wrapIn}">
+                            <xsl:copy-of select="$content"/>
+                        </xsl:element>
                     </xsl:when>
-                    
-                    <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
-                    <xsl:when test="$sequence or $boundsDuration">
-                        <xsl:if test="$sequence">
-                            <xsl:copy-of select="$sequence"/>
-                        </xsl:if>
-                        <xsl:if test="$boundsDuration">
-                            <timing>
-                                <repeat>
-                                    <xsl:copy-of select="$boundsDuration"/>
-                                </repeat>
-                            </timing>
-                        </xsl:if>
-                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="$content"/>
+                    </xsl:otherwise>
                 </xsl:choose>
-            </xsl:for-each>
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
     
@@ -241,7 +256,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <frequency value="${frequentie/minimum_waarde/@value}"/>
                 </xsl:if>
                 <xsl:if test="frequentie/maximum_waarde[@value]">
-                    <frequencyMax value="${frequentie/maximum_waarde/@value}"/>
+                    <frequencyMax value="{frequentie/maximum_waarde/@value}"/>
                 </xsl:if>
                 <period value="1"/>
                 <periodUnit value="{nf:convert_ADA_unit2UCUM_FHIR(frequentie/*[@unit]/@unit[1])}"/>
