@@ -74,6 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="toedieningsafspraak" resource="MedicationDispense" profile="nl-core-AdministrationAgreement"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
+        <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="nl-core-DispenseRequest"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
         <nm:map ada="zorgverlener" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
