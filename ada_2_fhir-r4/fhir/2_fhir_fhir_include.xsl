@@ -144,7 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
             </xsl:for-each-group>
         </xsl:for-each-group>
-
+        
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
             concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
             nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
@@ -154,9 +154,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
         
         <!-- General rule for all zib root concepts -->
-        <xsl:for-each-group select="$in[not(self::patient or self::zorgverlener)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="$in[not(self::patient or self::zorgverlener)][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
+        
+        <xsl:for-each select="$in[not(.//(@value | @code | @nullFlavor))][not(ends-with(local-name(),'-start'))]">
+            <xsl:message>Error: no meaningful content found in <xsl:value-of select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/> - <xsl:value-of select="local-name()"/></xsl:message>
+        </xsl:for-each>
         
     </xsl:template>
     
