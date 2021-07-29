@@ -74,37 +74,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
         <xsl:param name="profile" as="xs:string" required="yes"/>
-        <xsl:param name="position" as="xs:integer" select="0" tunnel="yes"/>
         <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
         <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
         <xsl:variable name="localName" select="local-name()"/>
-
-        <xsl:choose>
-            <xsl:when test="parent::*/local-name() = 'referenties'">
-                <!-- This is a contained ada instance, therefor does not have a valid base-uri() -->
-                <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>                
-            </xsl:when>
-            <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
-                <xsl:value-of select="$id"/>
-            </xsl:when>
-            <xsl:when test="$localName = ('soepregel','visueel_resultaat')">
-                <xsl:value-of select="$baseId"/>
-                <xsl:value-of select="substring-after($profile, $baseId)"/>
-                <xsl:text>-</xsl:text>
-                <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = $localName])+1, '00')"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$baseId"/>
-                <xsl:value-of select="substring-after($profile, $baseId)"/>
-                <xsl:value-of select="substring-after($id, $baseId)"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        
+        <xsl:variable name="logicalId">
+            <xsl:choose>
+                <xsl:when test="parent::*/local-name() = 'referenties'">
+                    <!-- This is a contained ada instance, therefor does not have a valid base-uri() -->
+                    <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
+                    <xsl:variable name="position" as="xs:integer" select="count(preceding-sibling::*[local-name() = $localName]) + 1"/>
+                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>                
+                </xsl:when>
+                <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
+                    <xsl:value-of select="$id"/>
+                </xsl:when>
+                <xsl:when test="$localName = ('soepregel','visueel_resultaat')">
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:text>-</xsl:text>
+                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = $localName])+1, '00')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:value-of select="substring-after($id, $baseId)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <!-- Failsafe, id's can get quite long -->
+        <xsl:value-of select="nf:make-fhir-logicalid('',$logicalId)"/>
+        
     </xsl:template>
     
-    <!--<xd:doc>
-        <xd:desc>Outputs all contained instances as separate files to filesystem.</xd:desc>
+    <xd:doc>
+        <xd:desc>Outputs all resources as a FHIR Bundle or as separate resources.</xd:desc>
     </xd:doc>
-    <xsl:param name="outputContained" select="false()" as="xs:boolean"/>-->
     <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
     
     <xsl:template mode="_doTransform" match="*">
@@ -128,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="resources" as="element()*">
             <xsl:copy-of select="$fhirEntries"/>
             <xsl:for-each select="$simpleFhirEntries">
-                <xsl:if test="./f:id/@value != $fhirEntries/f:id/@value">
+                <xsl:if test="not(./f:id/@value = $fhirEntries/f:id/@value)">
                     <xsl:copy-of select="."/>
                 </xsl:if>
             </xsl:for-each>            
