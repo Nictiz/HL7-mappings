@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="businessIdentifierRef">The element containing the business identifier reference, may be absent.</xd:param>
     </xd:doc>
     <xsl:template name="_resolveAdaPatient" as="element()?">
-        <xsl:param name="businessIdentifierRef" as="element()?"/>
+        <xsl:param name="businessIdentifierRef" as="element()?" select="onderwerp/patient-id"/>
         
         <xsl:variable name="patient-id" select="$businessIdentifierRef/@value"/>
         <xsl:variable name="referencedPatient" select="collection('../ada_instance')//patient[identificatienummer/@value = $patient-id]"/>
@@ -78,53 +78,66 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
         <xsl:variable name="localName" select="local-name()"/>
         
-        <xsl:choose>
-            <xsl:when test="parent::*/local-name() = 'referenties'">
-                <!-- This is a contained ada instance, therefor does not have a valid base-uri() -->
-                <xsl:next-match>
-                    <xsl:with-param name="profile" select="$profile"/>
-                </xsl:next-match>
-            </xsl:when>
-            <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
-                <xsl:value-of select="$id"/>
-            </xsl:when>
-            <xsl:when test="$localName = ('soepregel','visueel_resultaat')">
-                <xsl:value-of select="$baseId"/>
-                <xsl:value-of select="substring-after($profile, $baseId)"/>
-                <xsl:text>-</xsl:text>
-                <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = $localName])+1, '00')"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$baseId"/>
-                <xsl:value-of select="substring-after($profile, $baseId)"/>
-                <xsl:value-of select="substring-after($id, $baseId)"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="logicalId">
+            <xsl:choose>
+                <xsl:when test="parent::*/local-name() = 'referenties'">
+                    <!-- This is a contained ada instance, therefor does not have a valid base-uri() -->
+                    <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
+                    <xsl:variable name="position" as="xs:integer" select="count(preceding-sibling::*[local-name() = $localName]) + 1"/>
+                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>                
+                </xsl:when>
+                <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
+                    <xsl:value-of select="$id"/>
+                </xsl:when>
+                <xsl:when test="$localName = ('soepregel','visueel_resultaat')">
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:text>-</xsl:text>
+                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = $localName])+1, '00')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:value-of select="substring-after($id, $baseId)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <!-- Failsafe, id's can get quite long -->
+        <xsl:value-of select="nf:assure-logicalid-length($logicalId)"/>
+        
     </xsl:template>
     
-    <!--<xd:doc>
-        <xd:desc>Outputs all contained instances as separate files to filesystem.</xd:desc>
+    <xd:doc>
+        <xd:desc>Outputs all resources as a FHIR Bundle or as separate resources.</xd:desc>
     </xd:doc>
-    <xsl:param name="outputContained" select="false()" as="xs:boolean"/>-->
     <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
     
     <xsl:template mode="_doTransform" match="*">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient">
-                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
-            </xsl:call-template>
-        </xsl:variable>
+        <xsl:param name="fhirEntries" as="element()*"/>
         
-        <xsl:variable name="resources" as="element()*">
+        <xsl:variable name="subject" as="element()?">
+            <xsl:call-template name="_resolveAdaPatient"/>
+        </xsl:variable>
+
+        <xsl:variable name="simpleFhirEntries" as="element()*">
             <xsl:call-template name="_callMode">
                 <xsl:with-param name="subject" select="$subject"/>
             </xsl:call-template>
-            
             <xsl:for-each select="referenties/*">
                 <xsl:call-template name="_callMode">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:call-template>
             </xsl:for-each>
+        </xsl:variable>
+        
+        <xsl:variable name="resources" as="element()*">
+            <xsl:copy-of select="$fhirEntries"/>
+            <xsl:for-each select="$simpleFhirEntries">
+                <xsl:if test="not(./f:id/@value = $fhirEntries/f:id/@value)">
+                    <xsl:copy-of select="."/>
+                </xsl:if>
+            </xsl:for-each>            
         </xsl:variable>
         
         <xsl:choose>
