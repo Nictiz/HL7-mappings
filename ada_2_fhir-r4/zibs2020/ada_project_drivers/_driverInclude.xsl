@@ -74,16 +74,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
         <xsl:param name="profile" as="xs:string" required="yes"/>
+        <xsl:param name="position" as="xs:integer" select="0" tunnel="yes"/>
         <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
         <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
         <xsl:variable name="localName" select="local-name()"/>
-        
+
         <xsl:choose>
             <xsl:when test="parent::*/local-name() = 'referenties'">
                 <!-- This is a contained ada instance, therefor does not have a valid base-uri() -->
-                <xsl:next-match>
-                    <xsl:with-param name="profile" select="$profile"/>
-                </xsl:next-match>
+                <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>                
             </xsl:when>
             <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
                 <xsl:value-of select="$id"/>
