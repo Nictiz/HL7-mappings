@@ -427,6 +427,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </denominator>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transform ada hoeveelheid element with a combined unit (like km/h) to FHIR Ratio. If no combined unit is used, no output is generated.</xd:desc>
+        <xd:param name="in">The element of datatype hoeveelheid to consider.</xd:param>
+        <xd:param name="wrapIn">If output is generated, wrap the result in the given element (optional).</xd:param>
+    </xd:doc>
+    <xsl:template name="hoeveelheid-to-Ratio" as="element()*">
+        <xsl:param name="in" as="element()" select="."/>
+        <xsl:param name="wrapIn" as="xs:string" select="''"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="units" select="for $unit in tokenize(./@unit, '/') return normalize-space($unit)"/>
+            <xsl:if test="count($units) = 2">
+                <xsl:variable name="content" as="element()*">
+                    <numerator>
+                        <value value="{./@value}"/>
+                        <unit value="{$units[1]}"/>
+                        <system value="{local:getUri($oidUCUM)}"/>
+                        <code value="{nf:convert_ADA_unit2UCUM_FHIR($units[1])}"/>
+                    </numerator>
+                    <denominator>
+                        <value value="1"/>
+                        <unit value="{$units[1]}"/>
+                        <system value="{local:getUri($oidUCUM)}"/>
+                        <code value="{nf:convert_ADA_unit2UCUM_FHIR($units[2])}"/>
+                    </denominator>
+                </xsl:variable>
+                <xsl:choose>
+                    <xsl:when test="$wrapIn != ''">
+                        <xsl:element name="{$wrapIn}">
+                            <xsl:copy-of select="$content"/>
+                        </xsl:element>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="$content"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Transforms ada element of type hoeveelheid to FHIR Quantity</xd:desc>
         <xd:param name="in">ada element may have any name but should have datatype aantal (count)</xd:param>
