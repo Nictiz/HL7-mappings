@@ -147,4 +147,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="soepverslag" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>SOAP report</xsl:text>
+            <xsl:if test="soepverslag_datum_tijd[@value]">
+                <xsl:value-of select="concat('date ', soepverslag_datum_tijd/@value)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="soepregel" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>SOAP line observation</xsl:text>
+            <xsl:value-of select="soepregel_naam/@displayName"/>
+            <xsl:if test="soepregel_code/@displayName">
+                <xsl:value-of select="concat('code ', soepregel_code/@displayName)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+    </xsl:template>
+    
 </xsl:stylesheet>

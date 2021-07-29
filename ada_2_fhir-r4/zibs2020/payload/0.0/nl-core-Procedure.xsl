@@ -146,4 +146,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="verrichting" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Procedure</xsl:text>
+            <xsl:if test="verrichting_type/@displayName">
+                <xsl:value-of select="concat('type: ', verrichting_type/@displayName)"/>
+            </xsl:if>
+            <xsl:if test="verrichting_methode/@displayName">
+                <xsl:value-of select="concat('method: ', verrichting_methode/@displayName)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+    </xsl:template>
+    
 </xsl:stylesheet>

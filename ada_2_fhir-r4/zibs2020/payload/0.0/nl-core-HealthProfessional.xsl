@@ -136,6 +136,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" required="yes" as="xs:string"/>
         
         <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1])"/>
+        <xsl:variable name="personIdentifierDisplay">
+            <xsl:variable name="codesystemDisplay" as="xs:string?">
+                <xsl:choose>
+                    <xsl:when test="string-length($oidMap[@oid = $personIdentifier/@root]/@displayName) gt 0">
+                        <xsl:value-of select="$oidMap[@oid = $personIdentifier/@root]/@displayName"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$personIdentifier/@root"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="idDisplay" as="xs:string*">
+                <xsl:if test="string-length($personIdentifier/@value) gt 0">person identification: <xsl:value-of select="normalize-space($personIdentifier/@value)"/></xsl:if>
+                <xsl:if test="string-length($codesystemDisplay) gt 0"> from system <xsl:value-of select="normalize-space($codesystemDisplay)"/></xsl:if>
+            </xsl:variable>
+            <xsl:value-of select="normalize-space(string-join($idDisplay, ' '))"/>
+        </xsl:variable>
         <xsl:variable name="personName" select=".//naamgegevens[not(naamgegevens)][1]//*[not(name() = 'naamgebruik')]/@value"/>
         
         <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value"/>
@@ -144,44 +161,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:choose>
             <xsl:when test="$profile = 'nl-core-HealthProfessional-PractitionerRole'">
-                <xsl:choose>
-                    <xsl:when test="$personName | $specialty | $organizationName">
-                        <xsl:value-of select="normalize-space(string-join((string-join($personName, ' ')[not(. = '')], $specialty, $organizationName), ' || '))"/>
-                    </xsl:when>
-                    <xsl:when test="$role">
-                        <xsl:value-of select="normalize-space($role)"/>
-                    </xsl:when>
-                    <xsl:when test="$personIdentifier[@value]">
-                        <xsl:variable name="codesystemDisplay" as="xs:string?">
-                            <xsl:choose>
-                                <xsl:when test="string-length($oidMap[@oid = $personIdentifier/@root]/@displayName) gt 0">
-                                    <xsl:value-of select="$oidMap[@oid = $personIdentifier/@root]/@displayName"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="$personIdentifier/@root"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:variable>
-                        <xsl:variable name="idDisplay" as="xs:string*">
-                            <xsl:if test="string-length($personIdentifier/@value) gt 0">Persoonsidentificatie: <xsl:value-of select="normalize-space($personIdentifier/@value)"/></xsl:if>
-                            <xsl:if test="string-length($codesystemDisplay) gt 0">(uit codesysteem <xsl:value-of select="$codesystemDisplay"/>).</xsl:if>
-                        </xsl:variable>
-                        <xsl:value-of select="normalize-space(string-join($idDisplay, ' '))"/>
-                    </xsl:when>
-                </xsl:choose>
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Healthcare professional (role)</xsl:text>
+                    <xsl:value-of select="$personName"/>
+                    <xsl:value-of select="$specialty"/>
+                    <xsl:value-of select="$organizationName"/>
+                    <xsl:if test="not($specialty | $organizationName)">
+                        <xsl:value-of select="$role"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
             <xsl:when test="$profile = 'nl-core-HealthProfessional-Practitioner'">
-                <xsl:choose>
-                    <xsl:when test="$personName">
-                        <xsl:value-of select="normalize-space(string-join($personName, ' '))"/>
-                    </xsl:when>
-                    <xsl:when test="$role">
-                        <xsl:value-of select="normalize-space($role)"/>
-                    </xsl:when>
-                    <xsl:when test="$personIdentifier">
-                        <xsl:value-of select="normalize-space($personIdentifier)"/>
-                    </xsl:when>
-                </xsl:choose>
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Healthcare professional (person)</xsl:text>
+                    <xsl:value-of select="$personName"/>
+                    <xsl:if test="not($personName)">
+                        <xsl:value-of select="$personIdentifierDisplay"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
