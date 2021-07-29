@@ -154,9 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <!-- General rule for all zib root concepts -->
         <xsl:for-each-group select="$in[not(self::patient or self::zorgverlener)]" group-by="nf:getGroupingKeyDefault(.)">
-            <xsl:call-template name="_buildFhirMetadataForAdaEntry">
-                <xsl:with-param name="position" select="position()" tunnel="yes"/>
-            </xsl:call-template>
+            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
         
     </xsl:template>
