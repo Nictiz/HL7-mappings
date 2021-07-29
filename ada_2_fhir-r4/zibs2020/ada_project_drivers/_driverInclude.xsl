@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="businessIdentifierRef">The element containing the business identifier reference, may be absent.</xd:param>
     </xd:doc>
     <xsl:template name="_resolveAdaPatient" as="element()?">
-        <xsl:param name="businessIdentifierRef" as="element()?"/>
+        <xsl:param name="businessIdentifierRef" as="element()?" select="onderwerp/patient-id"/>
         
         <xsl:variable name="patient-id" select="$businessIdentifierRef/@value"/>
         <xsl:variable name="referencedPatient" select="collection('../ada_instance')//patient[identificatienummer/@value = $patient-id]"/>
@@ -109,22 +109,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
     
     <xsl:template mode="_doTransform" match="*">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient">
-                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
-            </xsl:call-template>
-        </xsl:variable>
+        <xsl:param name="fhirEntries" as="element()*"/>
         
-        <xsl:variable name="resources" as="element()*">
+        <xsl:variable name="subject" as="element()?">
+            <xsl:call-template name="_resolveAdaPatient"/>
+        </xsl:variable>
+
+        <xsl:variable name="simpleFhirEntries" as="element()*">
             <xsl:call-template name="_callMode">
                 <xsl:with-param name="subject" select="$subject"/>
             </xsl:call-template>
-            
             <xsl:for-each select="referenties/*">
                 <xsl:call-template name="_callMode">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:call-template>
             </xsl:for-each>
+        </xsl:variable>
+        
+        <xsl:variable name="resources" as="element()*">
+            <xsl:copy-of select="$fhirEntries"/>
+            <xsl:for-each select="$simpleFhirEntries">
+                <xsl:if test="./f:id/@value != $fhirEntries/f:id/@value">
+                    <xsl:copy-of select="."/>
+                </xsl:if>
+            </xsl:for-each>            
         </xsl:variable>
         
         <xsl:choose>
