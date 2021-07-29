@@ -103,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" mode="_generateId">
-        <xsl:value-of select="substring(string-join(//*[@displayName or @value]/(@displayName, @value)[1], '-'), 0, 63)"/>
+        <xsl:value-of select="substring(replace(string-join(//*[@displayName or @value]/(@displayName, @value)[1], '-'), '[^A-Za-z0-9-.]', ''), 0, 63)"/>
     </xsl:template>
     
     <xd:doc>

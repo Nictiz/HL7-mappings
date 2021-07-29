@@ -172,6 +172,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                     <!-- TODO: It's not clear yet how to map zib Range here. Also see https://bits.nictiz.nl/browse/ZIB-815 -->
+                    <xsl:for-each select="toedieningssnelheid">
+                        <xsl:comment>Implemention of this concept is paused until https://bits.nictiz.nl/browse/ZIB-815 is resolved.</xsl:comment>
+                    </xsl:for-each>
                 </xsl:variable>
                 <xsl:if test="$dosage">
                     <dosage>
@@ -186,11 +189,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatie_toediening" mode="_generateId">
+        <xsl:variable name="parts">
+            <xsl:text>administration</xsl:text>
+            <xsl:value-of select="toedienings_datum_tijd/@value"/>
+            <xsl:value-of select="afgesproken_datum_tijd/@value"/>
+            <xsl:value-of select="concat(toegediende_hoeveelheid/@value, toegediende_hoeveelheid/@unit)"/>
+            <xsl:value-of select="toedieningsweg/@displayName"/>
+            <xsl:value-of select="toelichting/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatie_toediening" mode="_generateDisplay">
+        <xsl:variable name="parts">
+            <xsl:text>Medication administration</xsl:text>
+            <xsl:if test="toedienings_datum_tijd/[@value]">
+                <xsl:value-of select="concat('administration date', toedienings_datum_tijd/@value)"/>
+            </xsl:if>
+            <xsl:value-of select="toelichting/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ', ')"/>
     </xsl:template>
 </xsl:stylesheet>

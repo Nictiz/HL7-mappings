@@ -165,11 +165,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatie_toediening" mode="_generateId">
+        <xsl:variable name="parts">
+            <xsl:text>dispense</xsl:text>
+            <xsl:value-of select="medicatie_gebruik_datum_tijd/@value"/>
+            <xsl:value-of select="gebruik_indicator/@displayName"/>
+            <xsl:value-of select="reden_gebruik/@value"/>
+            <xsl:value-of select="concat(medicatie_gebruik_stop_type/@value, medicatie_gebruik_stop_type/@unit)"/>
+            <xsl:value-of select="concat(reden_wijzigen_of_stoppen_gebruik/@value, reden_wijzigen_of_stoppen_gebruik/@unit)"/>
+            <xsl:value-of select="toelichting/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatie_toediening" mode="_generateDisplay">
+        <xsl:variable name="parts">
+            <xsl:text>Medication use</xsl:text>
+            <xsl:if test="medicatie_gebruik_datum_tijd/[@value]">
+                <xsl:value-of select="concat('dispense date', medicatie_gebruik_datum_tijd/@value)"/>
+            </xsl:if>
+            <xsl:value-of select="reden_gebruik/@value"/>
+            <xsl:value-of select="toelichting/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ', ')"/>
     </xsl:template>
 </xsl:stylesheet>

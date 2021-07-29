@@ -182,7 +182,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatieafspraak" mode="_generateId">
-        <!-- TODO -->
+        <xsl:variable name="parts">
+            <xsl:text>agreement</xsl:text>
+            <xsl:value-of select="reden_van_voorschrijven/@displayName"/>
+            <xsl:value-of select="medicatieafspraaks_datum_tijd/@value"/>
+            <xsl:value-of select="toelichting/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
     </xsl:template>
     
     <xd:doc>

@@ -141,13 +141,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="verstrekkingsverzoek" mode="_generateId">
-        <!-- TODO -->
+        <xsl:variable name="parts">
+            <xsl:text>request</xsl:text>
+            <xsl:value-of select="verstrekkingsverzoek_datum/@value"/>
+            <xsl:value-of select="aantal_herhalingen/@value"/>
+            <xsl:value-of select="concat(te_verstrekken_hoeveelheid/@value, te_verstrekken_hoeveelheid/@unit)"/>
+            <xsl:value-of select="afleverlocatie/@value"/>
+            <xsl:value-of select="aanvullende_wensen/@displayName"/>
+        </xsl:variable>
+        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="verstrekkingsverzoek" mode="_generateDisplay">
-        <!-- TODO -->
+        <xsl:text>Dispense request</xsl:text>
+        <xsl:if test="afleverlocatie/@value">
+            <xsl:value-of select="concat(', ', afleverlocatie/@value)"/>
+        </xsl:if>
+        <xsl:if test="verstrekkingsverzoekdatum[@value]">
+            <xsl:value-of select="concat(' (', verstrekkingsverzoekdatum/@value, ')')"/>
+        </xsl:if>
     </xsl:template>
 </xsl:stylesheet>
