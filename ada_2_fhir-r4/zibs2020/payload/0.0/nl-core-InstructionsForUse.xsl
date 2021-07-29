@@ -167,16 +167,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </doseAndRate>
                                 </xsl:if>
                                 
-                                <!-- TODO: Mapping from PQ to Ratio is not clear -->
-                            <!--                            <xsl:for-each select="maximale_dosering">
-                                    <maxDosePerPeriod>
-                                        <xsl:call-template name="hoeveelheid-complex-to-Ratio">
-                                            <xsl:with-param name="numerator" select="./@value"/>
-                                            <xsl:with-param name="denominator" select="./@unit"/>
-                                        </xsl:call-template>
-                                    </maxDosePerPeriod>
+                                <xsl:for-each select="zonodig/maximale_dosering[@value and @unit]">
+                                    <xsl:call-template name="hoeveelheid-to-Ratio">
+                                        <xsl:with-param name="wrapIn">maxDosePerPeriod</xsl:with-param>
+                                    </xsl:call-template>
                                 </xsl:for-each>
-    -->                        </xsl:for-each>
+                            </xsl:for-each>
                         </xsl:when>
                         
                         <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
