@@ -35,8 +35,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
-    <xsl:template mode="_doTransform" match="refractie">
-        <xsl:call-template name="nl-core-Refraction"/>
-    </xsl:template>
     
 </xsl:stylesheet>
