@@ -27,19 +27,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
-    <xsl:template match="//verstrekkingsverzoek_registratie">
-        <xsl:for-each select="verstrekkingsverzoek">
-            <xsl:variable name="subject" as="element()?">
-                <xsl:call-template name="_resolveAdaPatient">
-                    <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
+    <xsl:template match="//medicatieverstrekking_registratie/medicatieverstrekking">
+        <xsl:variable name="subject" as="element()?">
+            <xsl:call-template name="_resolveAdaPatient"/>
+        </xsl:variable>
+        <xsl:apply-templates mode="_doTransform" select=".">
+            <xsl:with-param name="fhirEntries" as="element()">
+                <xsl:call-template name="nl-core-MedicationDispense">
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="medicationReference" select="referenties/farmaceutisch_product"/>
+                    <xsl:with-param name="performer" select="referenties/zorgaanbieder"/>
+                    <xsl:with-param name="authorizingPrescription" select="referenties/verstrekkingsverzoek"/>
                 </xsl:call-template>
-            </xsl:variable>
-            <xsl:call-template name="nl-core-DispenseRequest">
-                <xsl:with-param name="subject" select="$subject"/>
-                <xsl:with-param name="medicationReference" select="referenties/farmaceutisch_product"/>
-                <xsl:with-param name="performer" select="referenties/zorgaanbieder"/>
-            </xsl:call-template>
-        </xsl:for-each>
+            </xsl:with-param>
+        </xsl:apply-templates>
     </xsl:template>
     
 </xsl:stylesheet>

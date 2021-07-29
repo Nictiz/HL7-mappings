@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-AdministrationAgreement instance as a MedicationDispense FHIR instance from ADA toedienings_afspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-AdministrationAgreement" mode="nl-core-AdministrationAgreement" match="toedienings_afspraak" as="element(f:MedicationDispense)">
+    <xsl:template name="nl-core-AdministrationAgreement" mode="nl-core-AdministrationAgreement" match="toedieningsafspraak" as="element(f:MedicationDispense)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="geneesmiddel_bij_toedienings_afspraak" as="element()?"/>
@@ -158,14 +158,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="toedienings_afspraak" mode="_generateId">
+    <xsl:template match="toedieningsafspraak" mode="_generateId">
         <!-- TODO -->
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="toedienings_afspraak" mode="_generateDisplay">
-        <!-- TODO -->
+    <xsl:template match="toedieningsafspraak" mode="_generateDisplay">
+        <xsl:variable name="parts">
+            <xsl:value-of select="'Administration agreement'"/>
+            <xsl:if test="reden_afspraak[@value]">
+                <xsl:value-of select="concat('for ', reden_afspraak/@value)"/>
+            </xsl:if>
+            <xsl:if test="toedieningsafspraak_datum_tijd[@value]">
+                <xsl:value-of select="concat(' (', toedieningsafspraak_datum_tijd/@value, ')')"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ' ')"/>
     </xsl:template>
 </xsl:stylesheet>

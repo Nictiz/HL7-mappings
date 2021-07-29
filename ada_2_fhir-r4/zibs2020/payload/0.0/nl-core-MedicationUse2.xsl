@@ -40,6 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="gebruiks_product/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="prescriber" select="voorschrijver" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationStatement>
@@ -56,10 +57,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-TimeInterval.Duration"/>
                 </xsl:for-each>
                 
-                <xsl:for-each select="voorschrijver">
+                <xsl:for-each select="$prescriber">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Prescriber">
                         <valueReference>
-                            <xsl:call-template name="makeReference"/>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                            </xsl:call-template>
                         </valueReference>
                     </extension>
                 </xsl:for-each>

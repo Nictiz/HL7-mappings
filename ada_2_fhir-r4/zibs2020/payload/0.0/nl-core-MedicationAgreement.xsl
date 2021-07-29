@@ -83,7 +83,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="value">
                         <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
                              so we can perform the required logic using a start and end datetime. -->
-                        <xsl:variable name="period" as="element(f:temp)">
+                        <xsl:variable name="period" as="element(f:temp)?">
                             <xsl:call-template name="ext-TimeInterval.Period">
                                 <xsl:with-param name="in" select="gebruiksperiode"/>
                                 <xsl:with-param name="wrapIn">temp</xsl:with-param>
@@ -189,6 +189,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatieafspraak" mode="_generateDisplay">
-        <!-- TODO -->
+        <xsl:variable name="parts">
+            <xsl:value-of select="afgesprokengeneesmiddel/@display"/>
+            <xsl:value-of select="medicatieafspraak_datum_tijd/@value"/>
+            <xsl:value-of select="medicatieafspraak_stop_type/@display"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, '-')"/>
     </xsl:template>
 </xsl:stylesheet>

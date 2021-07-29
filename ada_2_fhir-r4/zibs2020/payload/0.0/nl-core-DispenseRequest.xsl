@@ -93,13 +93,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </authoredOn>
                 </xsl:for-each>
                 
-                <performer> <!-- There's at most 1 perfomer, so we can write both elements here -->
-                    <actor>
+                <xsl:for-each select="$performer">
+                    <performer>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
                         </xsl:call-template>
-                    </actor>
-                </performer>
+                    </performer>
+                </xsl:for-each>
                 
                 <xsl:for-each select="toelichting">
                     <note>

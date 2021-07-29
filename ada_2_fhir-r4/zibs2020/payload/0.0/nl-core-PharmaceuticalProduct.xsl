@@ -112,7 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="farmaceutisch_product" mode="_generateDisplay">
         <xsl:choose>
             <xsl:when test="product_code[@displayName]">
-                <xsl:value-of select="product_code/@displayNmae"/>
+                <xsl:value-of select="normalize-space(product_code/@displayName)"/>
             </xsl:when>
             <xsl:when test="product_specificatie[product_naam/@value]">
                 <xsl:value-of select="product_specificatie/product_naam/@value"/>
