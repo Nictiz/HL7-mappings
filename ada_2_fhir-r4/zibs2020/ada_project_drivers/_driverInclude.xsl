@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <!-- Failsafe, id's can get quite long -->
-        <xsl:value-of select="nf:make-fhir-logicalid('',$logicalId)"/>
+        <xsl:value-of select="nf:assure-logicalid-length($logicalId)"/>
         
     </xsl:template>
     

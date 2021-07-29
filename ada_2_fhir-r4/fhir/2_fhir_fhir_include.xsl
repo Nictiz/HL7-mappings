@@ -25,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:util="urn:hl7:utilities"
     version="2.0">
     
     <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
@@ -533,6 +534,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="$in"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns a concatenated string based on input param $logicalId. Only returns a string of length max 64. 
+            Because uniqueness is determined more by the latter part of $logicalId than by the start (often some sort of prefix), the last 64 characters are used.</xd:desc>
+        <xd:param name="logicalId">The string to concatenate</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:assure-logicalid-length" as="xs:string">
+        <xsl:param name="logicalId" as="xs:string?"/>
+        
+        <xsl:variable name="lengthLogicalId" select="string-length($logicalId)" as="xs:integer"/>
+        <xsl:variable name="startingLoc" as="xs:integer">
+            <xsl:choose>
+                <xsl:when test="$lengthLogicalId gt 64">
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="msg">We have encountered an id (<xsl:value-of select="$logicalId"/>) longer than 64 characters, we are truncating it, but it should be looked at.</xsl:with-param>
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="terminate" select="false()"/>
+                    </xsl:call-template>
+                    <xsl:value-of select="$lengthLogicalId - 63"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="1"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:value-of select="substring($logicalId, $startingLoc, $lengthLogicalId)"/>
     </xsl:function>
     
 </xsl:stylesheet>
