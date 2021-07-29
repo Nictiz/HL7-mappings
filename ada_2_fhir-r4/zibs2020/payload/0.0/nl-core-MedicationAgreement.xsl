@@ -29,14 +29,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ADA medicatieafspraak to FHIR MedicationRequest conforming to profile nl-core-MedicationAgreement</xd:desc>
     </xd:doc>
     
     <xd:doc>
         <xd:desc>Create a nl-core-MedicationAgreement instance as a MedicationRequest FHIR instance from ADA medicatieafspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">The MedicationRequest.subject as ADA element or reference.</xd:param>
+        <xd:param name="medicationReference">The MedicationRequest.medicationReference as ADA element or reference.</xd:param>
+        <xd:param name="requester">The MedicationRequest.requester as ADA element or reference.</xd:param>
+        <xd:param name="reasonReference">The MedicationRequest.reasonReference as ADA element or reference.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-MedicationAgreement" mode="nl-core-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)">
+    <xsl:template name="nl-core-MedicationAgreement" mode="nl-core-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="afgesprokengeneesmiddel" as="element()?"/>

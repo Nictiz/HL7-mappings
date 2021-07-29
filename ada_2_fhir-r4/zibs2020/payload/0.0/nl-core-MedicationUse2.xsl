@@ -29,12 +29,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ADA medicatie_toediening to FHIR MedicationStatement conforming to profile nl-core-MedicationUse2</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-[zib name] instance as a [resource name] FHIR instance from ADA [ADA instance name].</xd:desc>
+        <xd:desc>Create a nl-core-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_toediening.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">The MedicationStatement.subject as ADA element or reference.</xd:param>
+        <xd:param name="medicationReference">The MedicationStatement.medicationReference as ADA element or reference.</xd:param>
+        <xd:param name="prescriber">The MedicationStatement.prescriber as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_toediening" as="element(f:MedicationStatement)?">
         <xsl:param name="in" as="element()?" select="."/>

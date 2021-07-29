@@ -70,9 +70,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Create the FHIR <xd:i>contents</xd:i> of the nl-core-InstructionsForUse.DosageInstruction datatype profile FHIR instance from ADA InstructionsForUse.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
+        <xd:param name="wrapIn">Calling this template will not always result in output. If output is generated and this parameter is supplied, the result will be wrapped in an element with this name. Optional.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element()*">        <xsl:param name="in" as="element()?" select="."/>
+    <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element()*">
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="wrapIn" as="xs:string" select="''"/>
         
         <xsl:for-each select="$in">
