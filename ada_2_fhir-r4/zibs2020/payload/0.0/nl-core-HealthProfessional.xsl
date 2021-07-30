@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-PractitionerRole" name="nl-core-HealthProfessional-PractitionerRole" as="element(f:PractitionerRole)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="organization" select="zorgaanbieder" as="element()?"/>
+        <xsl:param name="organization" select="zorgaanbieder/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <PractitionerRole>

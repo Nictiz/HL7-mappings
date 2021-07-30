@@ -295,7 +295,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" as="xs:string" select="''"/>
         <xsl:param name="wrapIn" as="xs:string?"/>
         <xsl:param name="contained" as="xs:boolean" tunnel="yes" select="false()"/>
-
+        
+        <!-- Debug -->
         <xsl:if test="count($fhirMetadata) = 0">
             <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
         </xsl:if>
@@ -306,7 +307,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
                     <xsl:if test="string-length($profile) = 0">
-                        <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+                        <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:message>
+                    </xsl:if>
+                    <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
+                        <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:message>
                     </xsl:if>
                     <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
                 </xsl:when>
