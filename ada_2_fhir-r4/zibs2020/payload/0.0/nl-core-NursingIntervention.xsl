@@ -145,12 +145,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <description value="{@value}"/>
                         </xsl:for-each>
                     </detail>
-                    <xsl:for-each select="toelichting">
-                        <note>
-                            <text value="{@value}"/>
-                        </note>
-                    </xsl:for-each>
                 </activity>
+                <xsl:for-each select="toelichting">
+                    <note>
+                        <text value="{@value}"/>
+                    </note>
+                </xsl:for-each>
             </CarePlan>
         </xsl:for-each>
     </xsl:template>
