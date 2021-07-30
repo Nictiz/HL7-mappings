@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:attribute name="value" select="'completed'"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <!-- In any other situation, we cannot know if the status is 'preparation' or 'in-progress' because there is no concept of the time difference between transformation and sending the FHIR resource -->
+                            <!-- In any other situation, we cannot know if the status is 'active' because there is no concept of the time difference between transformation and sending the FHIR resource -->
                             <xsl:attribute name="value" select="'unknown'"/>
                         </xsl:otherwise>
                     </xsl:choose>
