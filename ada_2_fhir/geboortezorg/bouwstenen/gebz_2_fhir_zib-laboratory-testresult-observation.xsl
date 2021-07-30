@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada maternale gegevens to ada labtest</xd:desc>
     </xd:doc>
                             
-    <xsl:template name="convertToADAlabtest" mode="doConvertToADAlabtest" match="(bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb | laboratorium_test_bloedgroep | laboratorium_test_rhesus_d | laboratorium_test_rhesus_c)[not(@datatype='reference')]">
+    <xsl:template name="convertToADAlabtest" mode="doConvertToADAlabtest" match="(bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb | laboratorium_test_bloedgroep | laboratorium_test_rhesus_d | laboratorium_test_rhesus_c | laboratorium_test_hb)[not(@datatype='reference')]">
             <xsl:variable name="code" select="@code | test_uitslag/@code"/>  
             <xsl:variable name="codeSystem" select="@codeSystem  | test_uitslag/@codeSystem"/> 
             <xsl:variable name="display" select="@displayName |  test_uitslag/@displayName"/>
@@ -49,6 +49,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$elementName='hb'">
                         <test_code code="718-7" codeSystem="2.16.840.1.113883.6.1" displayName="Hemoglobin (Bld) [Mass/Vol]"/>
                     </xsl:when>
+                    <xsl:otherwise>
+                        <!-- todo: testen of bovenstaande regels eruit kunnen, onderstaand zou altijd moeten werken (wellicht niet voor 2.3)-->
+                        <test_code code="{test_code/@code}" codeSystem="{test_code/@codeSystem}" displayName="{test_code/@displayName}"/>    
+                    </xsl:otherwise>
                 </xsl:choose>
                 <xsl:if test="$datum!=''">
                     <!-- TODO omzetten naar aanroepen format datetime-->
@@ -58,8 +62,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <test_date_time value="{current-date()-xs:dayTimeDuration(concat('P',$n,$pattern))}"/>
                 </xsl:if>
                 <xsl:choose>
-                    <xsl:when test="$elementName='hb'">
-                        <test_result value="{@value}" unit="{@unit}"/>
+                    <xsl:when test="$elementName=('hb','laboratorium_test_hb')">
+                        <test_result value="{@value | test_uitslag/@value}" unit="{@unit | test_uitslag/@unit}"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <test_result code="{$code}" codeSystem="{$codeSystem}" displayName="{$display}"/>

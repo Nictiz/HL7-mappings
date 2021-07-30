@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="bcConditionReference" match="zwangerschap" mode="doBcConditionReference" as="element()*">
+    <xsl:template name="bcConditionReference" match="zwangerschap | probleem_zwangerschap | probleem_kindspecifieke_maternale_problemen" mode="doBcConditionReference" as="element()*">
         <xsl:variable name="theIdentifier" select="graviditeit"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$conditions[group-key = $theGroupKey]" as="element()?"/>
@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Condition.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcConditionEntry" match="zwangerschap | probleem_zwangerschap" mode="doBcConditionEntry" as="element(f:entry)">
+    <xsl:template name="bcConditionEntry" match="zwangerschap | probleem_zwangerschap | probleem_kindspecifieke_maternale_problemen" mode="doBcConditionEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
@@ -94,7 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of a Condition resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-condition" mode="doBcConditionResource" match="zwangerschap | probleem_zwangerschap" as="element()">
+    <xsl:template name="bc-condition" mode="doBcConditionResource" match="zwangerschap | probleem_zwangerschap | probleem_kindspecifieke_maternale_problemen" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>

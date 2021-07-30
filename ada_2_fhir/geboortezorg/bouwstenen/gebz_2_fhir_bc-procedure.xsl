@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="bcProcedureReference" match="bevalling | baring | verrichting_zwangerschap" mode="doBcProcedureReference" as="element()*">
+    <xsl:template name="bcProcedureReference" match="bevalling | baring | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" mode="doBcProcedureReference" as="element()*">
         <xsl:variable name="theIdentifier" select="."/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <!-- get id from verrichtingen ipv procedures ivm circular references -->
@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Procedure.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcProcedureEntry" match="bevalling | baring | verrichting_zwangerschap" mode="doBcProcedureEntry" as="element(f:entry)">
+    <xsl:template name="bcProcedureEntry" match="bevalling | baring | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" mode="doBcProcedureEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
@@ -97,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of an Observation resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-procedure" mode="doProcedureResource" match="bevalling | baring | verrichting_zwangerschap" as="element()">
+    <xsl:template name="bc-procedure" mode="doProcedureResource" match="bevalling | baring | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
@@ -110,6 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="precision" select="'DAY'"/>
             </xsl:call-template>
         </xsl:variable>
+        <xsl:variable name="indicatieProbleemId" select="indicatie/probleem_kindspecifieke_maternale_problemen/@value"/>
          
         <xsl:for-each select="$in">            
             <Procedure>
@@ -120,6 +121,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
                     <xsl:call-template name="bc-profile"/>
                 </meta>
+                <xsl:for-each select="partusnummer">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </identifier>   
+                </xsl:for-each>
                 <xsl:for-each select="ancestor::bevalling | ancestor::*/bevalling | ancestor::baring |ancestor::postnatale_fase">
                     <xsl:if test="$elementName!='bevalling'">
                         <partOf>
@@ -143,6 +151,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <code value="{verrichting_type/@code}"/>
                                 <display value="{verrichting_type/@displayName}"/>
                             </coding>
+                            <xsl:if test="verrichting_type/@originalText">
+                                <text value="{verrichting_type/@originalText}"/>    
+                            </xsl:if>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="bc-coding"/>
@@ -190,6 +201,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="../zwangerschap | ../../zwangerschap | ../zwangerschapsgegevens/zwangerschap">
                     <reasonReference>
                         <xsl:call-template name="pregnancyReference"/>
+                    </reasonReference>
+                </xsl:for-each>
+                <xsl:for-each select="ancestor::*/*[@id=$indicatieProbleemId]">
+                    <reasonReference>
+                        <xsl:call-template name="bcConditionReference"/>
                     </reasonReference>
                 </xsl:for-each>
             </Procedure>

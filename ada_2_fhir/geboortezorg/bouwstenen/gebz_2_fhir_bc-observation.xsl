@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="bcObservationReference" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht" mode="doBcObservationReference" as="element()*">
+    <xsl:template name="bcObservationReference" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht" mode="doBcObservationReference" as="element()*">
         <xsl:variable name="theIdentifier" select="."/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$observations[group-key = $theGroupKey]" as="element()?"/>
@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcObservationEntry" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" mode="doBcObservationEntry" as="element(f:entry)">
+    <xsl:template name="bcObservationEntry" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht | bloeddruk | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" mode="doBcObservationEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
@@ -98,14 +98,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="adaChild">Optional. ADA child patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | geboortegewicht | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" as="element()">
+    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht | bloeddruk | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>     
+        <xsl:variable name="elementId" select="./@id"/>
         <xsl:variable name="elementName" select="name(.)"/>
+        <xsl:variable name="parentElemId" select="parent::node()/@id"/>
         <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
-                
+  
         <xsl:for-each select="$in">            
             <Observation>
                 <xsl:if test="$referById">
@@ -155,11 +157,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>                 
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:for-each select="ancestor::*/zwangerschap">
-                    <context>
-                        <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
-                    </context>
-                </xsl:for-each> 
+                <xsl:choose>
+                    <!-- als de node rechtstreeks onder een contact hangt dan kan de parent opgehaald worden -->
+                    <xsl:when test="ancestor::node()/name(.)='prenatale_controle' and not(@datatype='reference')">
+                        <xsl:for-each select="ancestor::prenatale_controle">
+                            <context>
+                                <xsl:apply-templates select="." mode="doBcEncounterReference"/>
+                            </context>
+                        </xsl:for-each>                    
+                    </xsl:when>
+                    <!-- voor generieke bouwstenen kan niet naar de parent node gekeken worden, maar moet het pad van bovenaf
+                    doorlopen worden om de referentie naar de bouwsteen in het juiste contact op te zoeken obv het id-->
+                    <xsl:when test="ancestor::*/zwangerschapsgegevens/prenatale_controle[node()/@value=($elementId,$parentElemId)]">
+                        <xsl:for-each select="ancestor::*/zwangerschapsgegevens/prenatale_controle[node()/@value=($elementId,$parentElemId)]">
+                            <context>
+                                <xsl:apply-templates select="." mode="doBcEncounterReference"/>
+                            </context>
+                        </xsl:for-each>                    
+                    </xsl:when>
+                    <!-- indien de observatie niet aan een contact hangt dan zwangerschapsdossier (episode of care) als context nemen -->
+                    <xsl:otherwise>
+                        <xsl:for-each select="ancestor::*/zwangerschap">
+                            <context>
+                                <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
+                            </context>
+                        </xsl:for-each>                         
+                    </xsl:otherwise>
+                </xsl:choose>
                 <xsl:for-each select="../node()[name(.)='datum_bepaling' or substring(name(.),string-length(name(.)) + 1 - string-length('datum_tijd'), string-length(name(.)))='datum_tijd']">
                     <effectiveDateTime value="{@value}">
                         <xsl:attribute name="value">
@@ -170,39 +194,92 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:attribute>
                     </effectiveDateTime>
                 </xsl:for-each>
-                <xsl:for-each select=".">
-                    <xsl:choose>
-                        <xsl:when test="@datatype='datetime'">
-                            <valueDateTime value="{@value}">
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                        <xsl:with-param name="precision" select="'DAY'"/>
+                <!-- voor observaties met componenten value[x] leeglaten -->
+                <xsl:if test="not(name(.)='bloeddruk')">
+                    <xsl:for-each select=".">
+                        <xsl:variable name="test" select="@nullFlavor"/>
+                        <xsl:choose>
+                            <xsl:when test="@datatype='datetime'">
+                                <valueDateTime value="{@value}">
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="precision" select="'DAY'"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </valueDateTime>
+                            </xsl:when>
+                            <xsl:when test="not(@code) and @value castable as xs:integer">
+                                <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">
+                                    <xsl:call-template name="hoeveelheid-to-Quantity">
+                                        <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
-                                </xsl:attribute>
-                            </valueDateTime>
-                        </xsl:when>
-                        <xsl:when test="not(@code) and @value castable as xs:integer">
-                            <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">
-                                <xsl:call-template name="hoeveelheid-to-Quantity">
+                                </xsl:element>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="any-to-value"> 
                                     <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="elemName">value</xsl:with-param>
                                 </xsl:call-template>
-                            </xsl:element>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="any-to-value"> 
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="elemName">value</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:for-each>  
-                <xsl:for-each select="../(bepalings_methode | observatie_methode)">
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each> 
+                </xsl:if>
+                <xsl:for-each select="../interpretatie_frequentie">
+                    <interpretation>
+                        <coding>
+                            <system value="{@codeSystem}"/>
+                            <code value="{@code}"/>
+                            <display value="{@displayName}"/>
+                        </coding>
+                    </interpretation>
+                </xsl:for-each>
+                <xsl:for-each select="../toelichting">
+                    <comment value="{@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="../(bepalings_methode | definitieve_a_terme_methode | observatie_methode)">
                     <method>
-                        <system value="{@codeSystem}"/>
-                        <code value="{@code}"/>
-                        <display value="{@displayName}"/>
+                        <coding>
+                            <system value="{@codeSystem}"/>
+                            <code value="{@code}"/>
+                            <display value="{@displayName}"/>
+                        </coding>
+                        <xsl:if test="./@originalText">
+                            <text value="{./@originalText}"/>    
+                        </xsl:if>
                     </method>
+                </xsl:for-each>
+                <xsl:for-each select="systolische_bloeddruk | diastolische_bloeddruk | ../hartslag_regelmatigheid">
+                    <component>
+                        <code>
+                            <xsl:call-template name="bc-coding"/>
+                        </code>
+                        <xsl:choose>
+                            <xsl:when test="@datatype='datetime'">
+                                <valueDateTime value="{@value}">
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="precision" select="'DAY'"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </valueDateTime>
+                            </xsl:when>
+                            <xsl:when test="not(@code) and @value castable as xs:integer">
+                                <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">
+                                    <xsl:call-template name="hoeveelheid-to-Quantity">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </xsl:element>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="any-to-value"> 
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="elemName">value</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </component>
                 </xsl:for-each>
             </Observation>
         </xsl:for-each>

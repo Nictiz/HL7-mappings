@@ -25,9 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="bcEncounterReference" match="prenatale_controle" mode="doBcEncounterReference" as="element()*">
         <xsl:variable name="theIdentifier" select="."/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <!-- get id from verrichtingen ipv Encounters ivm circular references -->
-        <!-- todo: betere oplossing voor verzinnen, code is te afhankelijk -->
-        <xsl:variable name="theGroupElement" select="$verrichtingen[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupElement" select="$encounters[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
@@ -58,6 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="bcEncounterEntry" match="prenatale_controle" mode="doBcEncounterEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
+        <xsl:param name="adaZorgverlener"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
         <xsl:param name="fhirResourceId">
@@ -81,6 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                     <xsl:with-param name="adaPatient" select="$adaPatient"/>
                     <xsl:with-param name="adaChild" select="$adaChild"/>
+                    <xsl:with-param name="adaZorgverlener" select="$adaZorgverlener"/>
                 </xsl:call-template>
             </resource>
             <xsl:if test="string-length($searchMode) gt 0">
@@ -102,6 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
+        <xsl:param name="adaZorgverlener"/>
                 
         <xsl:for-each select="$in">            
             <Encounter>
@@ -127,11 +128,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:for-each> 
-                <xsl:for-each select="ancestor::*/zorg_episode">
+                <xsl:for-each select="ancestor::*/zorgverlening/zorg_episode">
                     <episodeOfCare>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </episodeOfCare>
                 </xsl:for-each> 
+                <xsl:for-each select="$adaZorgverlener">
+                    <participant>
+                        <individual>
+                            <xsl:call-template name="practitionerReference"/>
+                        </individual>
+                    </participant>
+                </xsl:for-each>
                 <xsl:for-each select="datum_prenatale_controle/begin_datum_tijd">
                     <period>
                         <start value ="{@value}">

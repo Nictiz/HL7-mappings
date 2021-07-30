@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="maternalRecordReference" match="zwangerschap" mode="doMaternalRecordReference" as="element()*">
+    <xsl:template name="maternalRecordReference" match="zwangerschap | zorgverlening/zorg_episode" mode="doMaternalRecordReference" as="element()*">
         <xsl:variable name="theIdentifier" select="graviditeit | a_terme_datum | definitieve_a_terme_datum"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$episodesofcare[group-key = $theGroupKey]" as="element()?"/>
@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.EpisodeOfCare.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="maternalRecordEntry" match="zorgverlening/zorg_episode" mode="doMaternalRecordEntry" as="element(f:entry)">
+    <xsl:template name="maternalRecordEntry" match="zwangerschap | zorgverlening/zorg_episode" mode="doMaternalRecordEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaZorginstelling"/>
         <xsl:param name="adaZorgverlener"/>

@@ -84,7 +84,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <display value="Disorder of fetus or newborn (disorder)"/>
                         </coding>
                     </category>
-                 </xsl:when>           
+                 </xsl:when>  
+                <xsl:otherwise>    
+                    <category>
+                        <coding>
+                            <system value="{@conceptId}"/>
+                            <code value="{name(.)}"/>
+                            <display value="Codering van dit element ontbreekt in ART-DECOR terminology association"/>
+                        </coding>  
+                    </category>
+                </xsl:otherwise>  
             </xsl:choose>
     </xsl:template>
 
