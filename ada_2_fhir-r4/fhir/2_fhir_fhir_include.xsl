@@ -300,43 +300,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
         </xsl:if>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in,/))"/>
         
         <xsl:variable name="element" as="element()?">
             <xsl:choose>
-                <xsl:when test="$in[@datatype = 'reference' and @value]">
-                    <xsl:variable name="adaId">
-                        <xsl:variable name="baseUri" select="replace(tokenize($in/base-uri(), '/')[last()], '.xml', '')"/>
-                        <xsl:if test="string-length($baseUri) gt 0">
-                            <xsl:value-of select="$baseUri"/>
-                            <xsl:text>-</xsl:text>
-                        </xsl:if>
-                        <xsl:value-of select="$in/@value"/>
-                    </xsl:variable>
-                    <xsl:choose>
-                        <xsl:when test="count($fhirMetadata[nm:ada-id = $adaId]) gt 1">
-                            <xsl:if test="string-length($profile) = 0">
-                                <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
-                            </xsl:if>
-                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:ada-id = $adaId]"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:copy-of select="$fhirMetadata[nm:ada-id = $adaId]"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                    <xsl:if test="string-length($profile) = 0">
+                        <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+                    </xsl:if>
+                    <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:choose>
-                        <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
-                            <xsl:if test="string-length($profile) = 0">
-                                <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
-                            </xsl:if>
-                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                    <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -344,7 +319,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <!-- Debug -->
         <xsl:if test="$in and count($element) = 0">
-            <xsl:message terminate="yes">Cannot resolve reference within set of ada-instances</xsl:message>
+            <xsl:message terminate="yes">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:message>
         </xsl:if>
 
         <xsl:variable name="populatedReference" as="element()*">
