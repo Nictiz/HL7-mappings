@@ -110,12 +110,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </additionalInstruction>
                                     <!-- TODO: MP Additional instructions -->
                                 </xsl:for-each>
-                                <xsl:variable name="timingRepeat">
+                                <xsl:variable name="timingRepeat" as="element()*">
                                     <xsl:call-template name="_buildTimingRepeat">
                                         <xsl:with-param name="boundsDuration" select="$boundsDuration"/>
                                     </xsl:call-template>
                                 </xsl:variable>
-                                <xsl:if test="$timingRepeat">
+                                <xsl:if test="count($timingRepeat) &gt; 0">
                                     <timing>
                                         <repeat>
                                             <xsl:copy-of select="$timingRepeat"/>
@@ -139,8 +139,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:for-each select="keerdosis">
                                         <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
                                             <doseRange>
-                                                <low value="${minimum_waarde/@value}"/>
-                                                <high value="${maximum_waarde/@value}"/>
+                                                <xsl:for-each select="minimum_waarde[@value]">
+                                                    <low>
+                                                        <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                                                    </low>
+                                                </xsl:for-each>
+                                                <xsl:for-each select="maximum_waarde[@value]">
+                                                    <high>
+                                                        <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                                                    </high>
+                                                </xsl:for-each>
                                             </doseRange>
                                         </xsl:if>
                                         <xsl:for-each select="nominale_waarde[@value and @unit]">
@@ -152,8 +160,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:for-each select="toediensnelheid">
                                         <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
                                             <rateRange>
-                                                <low value="${minimum_waarde/@value}"/>
-                                                <high value="${maximum_waarde/@value}"/>
+                                                <low value="{minimum_waarde/@value}"/>
+                                                <high value="{maximum_waarde/@value}"/>
                                             </rateRange>
                                         </xsl:if>
                                         <xsl:if test="nominale_waarde[@value]">
@@ -213,7 +221,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Helper template to build the Dosage.timing.repeat content for the current Dosage.</xd:desc>
         <xd:param name="boundsDuration">An optionally pre-rendered boundsDuration element.</xd:param>
     </xd:doc>
-    <xsl:template name="_buildTimingRepeat">
+    <xsl:template name="_buildTimingRepeat" as="element()*">
         <xsl:param name="boundsDuration" as="element(f:boundsDuration)?"/>
         
         <xsl:for-each select="toedieningsschema">
