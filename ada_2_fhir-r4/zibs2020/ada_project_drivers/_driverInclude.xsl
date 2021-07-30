@@ -177,7 +177,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Quite verbose, but the only way to 'dynamically' apply a mode -->
         <xsl:choose>
             <xsl:when test="$localName = 'adaextension'">
-                <!-- Do nothing, but in ada instance -->
+                <!-- Do nothing -->
             </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">

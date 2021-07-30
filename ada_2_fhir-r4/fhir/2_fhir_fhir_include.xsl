@@ -308,7 +308,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
         </xsl:if>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in,/))"/>
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[@datatype = 'reference' and @value]">
+                    <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in,/))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         
         <xsl:variable name="element" as="element()?">
             <xsl:choose>
