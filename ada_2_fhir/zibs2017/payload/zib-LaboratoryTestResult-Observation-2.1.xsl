@@ -300,6 +300,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <coding>
                                     <system value="http://hl7.org/fhir/referencerange-meaning"/>
                                     <code value="normal"/>
+                                    <display value="Normal Range"/>
                                 </coding>
                             </type>
                         </referenceRange>
