@@ -136,6 +136,91 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7NullFlavor="QS" displayName="voldoende hoeveelheid" displayNameEN="quantity sufficient"/>
         <map hl7NullFlavor="TRC" displayName="spoor" displayNameEN="trace"/>
     </xsl:variable>
+    
+    <xsl:variable name="uziRoleCodeMap" as="element()+">
+        <map hl7Code="01.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts"/>
+        <map hl7Code="01.002" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Allergoloog (gesloten register)"/>
+        <map hl7Code="01.003" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Anesthesioloog"/>
+        <map hl7Code="01.004" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apotheekhoudende huisarts"/>
+        <map hl7Code="01.008" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Bedrijfsarts"/>
+        <map hl7Code="01.010" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Cardioloog"/>
+        <map hl7Code="01.011" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Cardiothoracaal chirurg"/>
+        <map hl7Code="01.012" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Dermatoloog"/>
+        <map hl7Code="01.013" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts v. maag-darm-leverziekten"/>
+        <map hl7Code="01.014" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Chirurg"/>
+        <map hl7Code="01.015" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+        <map hl7Code="01.016" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Internist"/>
+        <map hl7Code="01.018" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Keel- neus- en oorarts"/>
+        <map hl7Code="01.019" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kinderarts"/>
+        <map hl7Code="01.020" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts klinische chemie (gesloten register)"/>
+        <map hl7Code="01.021" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch geneticus"/>
+        <map hl7Code="01.022" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch geriater"/>
+        <map hl7Code="01.023" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Longarts"/>
+        <map hl7Code="01.024" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts-microbioloog"/>
+        <map hl7Code="01.025" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Neurochirurg"/>
+        <map hl7Code="01.026" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Neuroloog"/>
+        <map hl7Code="01.030" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Nucleair geneeskundige"/>
+        <map hl7Code="01.031" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Oogarts"/>
+        <map hl7Code="01.032" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthopedisch chirurg"/>
+        <map hl7Code="01.033" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Patholoog"/>
+        <map hl7Code="01.034" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Plastisch chirurg"/>
+        <map hl7Code="01.035" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Psychiater"/>
+        <map hl7Code="01.039" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radioloog"/>
+        <map hl7Code="01.040" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radiotherapeut"/>
+        <map hl7Code="01.041" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Reumatoloog"/>
+        <map hl7Code="01.042" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Revalidatiearts"/>
+        <map hl7Code="01.045" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Uroloog"/>
+        <map hl7Code="01.046" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Gynaecoloog"/>
+        <map hl7Code="01.047" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Specialist ouderengeneeskunde"/>
+        <map hl7Code="01.048" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verzekeringsarts"/>
+        <map hl7Code="01.050" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Zenuwarts (gesloten register)"/>
+        <map hl7Code="01.062" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Internist-Allergoloog (gesloten register)"/>
+        <map hl7Code="01.055" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts maatschappij en gezondheid"/>
+        <map hl7Code="01.056" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts voor verstandelijk gehandicapten"/>
+        <map hl7Code="01.070" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Jeugdarts"/>
+        <map hl7Code="01.071" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Spoedeisende hulp arts"/>
+        <map hl7Code="01.074" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Sportarts"/>
+        <map hl7Code="02.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Tandarts"/>
+        <map hl7Code="02.053" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthodontist"/>
+        <map hl7Code="02.054" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kaakchirurg"/>
+        <map hl7Code="03.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verloskundige"/>
+        <map hl7Code="04.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Fysiotherapeut"/>
+        <map hl7Code="16.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Psychotherapeut"/>
+        <map hl7Code="17.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apotheker"/>
+        <map hl7Code="17.060" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Ziekenhuisapotheker"/>
+        <map hl7Code="17.075" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Openbaar apotheker"/>
+        <map hl7Code="25.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Gezondheidszorgpsycholoog"/>
+        <map hl7Code="25.061" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch psycholoog"/>
+        <map hl7Code="25.063" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch neuropsycholoog"/>
+        <map hl7Code="30.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpleegkundige"/>
+        <map hl7Code="30.065" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. prev. zorg bij som. aandoeningen"/>
+        <map hl7Code="30.066" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. acute zorg bij som. aandoeningen"/>
+        <map hl7Code="30.067" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. intensieve zorg bij som. aandoeningen"/>
+        <map hl7Code="30.068" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. chronische zorg bij som. aandoeningen"/>
+        <map hl7Code="30.069" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. geestelijke gezondheidszorg"/>
+        <map hl7Code="31.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthopedagoog-generalist"/>
+        <map hl7Code="79.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Geregistreerd-mondhygiënist"/>
+        <map hl7Code="80.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Bachelor medisch hulpverlener"/>
+        <map hl7Code="81.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Physician assistant"/>
+        <map hl7Code="82.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kliinisch technoloog"/>
+        <map hl7Code="83.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apothekersassistent"/>
+        <map hl7Code="84.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch fysicus"/>
+        <map hl7Code="85.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Tandprotheticus"/>
+        <map hl7Code="86.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="VIG-er"/>
+        <map hl7Code="87.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Optometrist"/>
+        <map hl7Code="88.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huidtherapeut"/>
+        <map hl7Code="89.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Diëtist"/>
+        <map hl7Code="90.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Ergotherapeut"/>
+        <map hl7Code="91.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Logopedist"/>
+        <map hl7Code="92.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Mondhygiënist"/>
+        <map hl7Code="93.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Oefentherapeut Mensendieck"/>
+        <map hl7Code="94.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Oefentherapeut Cesar"/>
+        <map hl7Code="95.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthoptist"/>
+        <map hl7Code="96.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Podotherapeut"/>
+        <map hl7Code="97.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radiodiagnistisch laborant"/>
+        <map hl7Code="98.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radiotherapeutisch laborant"/>
+        <map hl7Code="99.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Zorgverlener andere zorg"/>
+    </xsl:variable>
 
     <xsl:variable name="oidMap" as="element()+">
         <map oid="{$oidAGB}" uri="http://fhir.nl/fhir/NamingSystem/agb-z" displayName="AGB-Z"/>
