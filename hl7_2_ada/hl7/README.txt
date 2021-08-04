@@ -3,6 +3,8 @@
 This contains resources for generic conversions of HL7v3 messages/CDA to a relatively simple dataset xml format in response type transactions. 
 
 ===Release Notes===
+2021-08-04
+* Add a check for valid booleans based on input where value=0 was sent. Will terminate processing if invalid boolean is found
 2021-06-30
 * MM-2251 Fixed a problem in handling multiple telecom elements of the same type (phone or email) 
 2020-08-15
