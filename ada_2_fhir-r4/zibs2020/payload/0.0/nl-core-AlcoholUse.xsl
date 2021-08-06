@@ -60,19 +60,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </code>
                 
-                <xsl:for-each select="alcohol_gebruik_status">
-                    <code>
-                        <xsl:call-template name="code-to-CodeableConcept"/>
-                    </code>
+                <xsl:for-each select="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="wrapIn" select="'subject'"/>
+                    </xsl:call-template>
                 </xsl:for-each>
                 
-                <!--  
-                <xsl:for-each select="waarneming_gebruik/start_datum">
-                    <code>
+                <!-- Stop_datum zit niet in de example -->
+                <xsl:if test="waarneming_gebruik/start_datum or waarneming_gebruik/stop_datum">
+                    <effectivePeriod>
+                        <xsl:if test="waarneming_gebruik/start_datum">
+                            <start>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(waarneming_gebruik/start_datum/@value)"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </start>
+                        </xsl:if>
+                        <xsl:if test="waarneming_gebruik/stop_datum">
+                            <end>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(waarneming_gebruik/stop_datum/@value)"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </end>
+                        </xsl:if>
+                    </effectivePeriod>
+                </xsl:if>
+                
+                <xsl:for-each select="alcohol_gebruik_status">
+                    <valueCodeableConcept>
+                        <xsl:call-template name="code-to-CodeableConcept"/>
+                    </valueCodeableConcept>
+                </xsl:for-each>
+                             
+               <xsl:for-each select="toelichting">
+                    <note>
                         <text>
                             <xsl:attribute name="value" select="./@value"/>
                         </text>
-                    </code>
+                    </note>
                 </xsl:for-each>
                 
                 <xsl:for-each select="waarneming_gebruik/hoeveelheid">
@@ -81,47 +111,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="http://snomed.info/sct"/>
                                 <code value="160573003"/>
-                                <display value="inname van alcohol/>
-                                
-                                ER STAAT DEPRECETED 
+                                <display value="inname van alcohol"/>
+                                <!-- DEPRECATED CODE -->
                             </coding>
                         </code>
                         <valueCodeableConcept>
-                             <xsl:call-template name="code-to-CodeableConcept"/>
+                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
                         </valueCodeableConcept>
                     </component>
                 </xsl:for-each>
                 
-                -->
-                
-                <xsl:for-each select="toelichting">
-                    <note>
-                        <text>
-                            <xsl:attribute name="value" select="./@value"/>
-                        </text>
-                    </note>
-                </xsl:for-each>
-
             </Observation>
         </xsl:for-each>
-        
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="alcohol_gebruik" mode="_generateId">
-        <xsl:value-of select="substring(replace(string-join(//*[@displayName or @value]/(@displayName, @value)[1], '-'), '[^A-Za-z0-9-.]', ''), 0, 63)"/>
+        <xsl:variable name="parts">
+            <xsl:text>AlcoholUse</xsl:text>
+            <xsl:value-of select="alcohol_gebruik_status/@displayName"/>
+            <xsl:value-of select="waarneming_gebruik/start_datum/@value"/>
+            <xsl:value-of select="concat(waarneming_gebruik/hoeveelheid/@value, waarneming_gebruik/hoeveelheid/@unit)"/>
+            <xsl:value-of select="toelichting/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="alcohol_gebruik" mode="_generateDisplay">
-        <xsl:choose>
-            <xsl:when test="alcohol_gebruik_status[@displayName]">
-                <xsl:value-of select="normalize-space(alcohol_gebruik_status/@displayName)"/>
-            </xsl:when>
-        </xsl:choose>        
+        <xsl:variable name="parts">
+            <xsl:text>AlcoholUse</xsl:text>
+            <xsl:value-of select="alcohol_gebruik_status/@displayName"/>
+            <xsl:value-of select="concat(waarneming_gebruik/hoeveelheid/@value, waarneming_gebruik/hoeveelheid/@unit)"/>
+            <xsl:if test="waarneming_gebruik/start_datum/@value">
+                <xsl:value-of select="concat('start datum', waarneming_gebruik/start_datum/@value)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ', ')"/>     
     </xsl:template>
 </xsl:stylesheet>
