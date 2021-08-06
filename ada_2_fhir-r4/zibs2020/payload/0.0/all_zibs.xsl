@@ -35,14 +35,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
     <xsl:import href="nl-core-AddressInformation.xsl"/>
+    <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
+    <xsl:import href="nl-core-AnatomicalLocation.xsl"/>
+    <xsl:import href="nl-core-BloodPressure.xsl"/>
+    <xsl:import href="nl-core-BodyHeight.xsl"/>
+    <xsl:import href="nl-core-BodyWeight.xsl"/>
+    <xsl:import href="nl-core-BodyTemperature.xsl"/>
+    <xsl:import href="nl-core-CareTeam.xsl"/>
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
+    <xsl:import href="nl-core-DispenseRequest.xsl"/>
+    <xsl:import href="nl-core-Encounter.xsl"/>
+    <xsl:import href="nl-core-FreedomRestrictingIntervention.xsl"/>
+    <xsl:import href="nl-core-HeadCircumference.xsl"/>
     <xsl:import href="nl-core-HealthProfessional.xsl"/>
     <xsl:import href="nl-core-HealthcareProvider.xsl"/>
+    <xsl:import href="nl-core-HeartRate.xsl"/>
+    <xsl:import href="nl-core-InstructionsForUse.xsl"/>
+    <xsl:import href="nl-core-LegalSituation.xsl"/>
+    <xsl:import href="nl-core-MedicationAdministration2.xsl"/>
+    <xsl:import href="nl-core-MedicationAgreement.xsl"/>
+    <xsl:import href="nl-core-MedicationContraIndication.xsl"/>
+    <xsl:import href="nl-core-MedicationDispense.xsl"/>
+    <xsl:import href="nl-core-MedicationUse2.xsl"/>
     <xsl:import href="nl-core-NameInformation.xsl"/>
+    <xsl:import href="nl-core-O2Saturation.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
-    
+    <xsl:import href="nl-core-PharmaceuticalProduct.xsl"/>
+    <xsl:import href="nl-core-Problem.xsl"/>
+    <xsl:import href="nl-core-Procedure.xsl"/>
+    <xsl:import href="nl-core-Refraction.xsl"/>
+    <xsl:import href="nl-core-SOAPReport.xsl"/>
+    <xsl:import href="nl-core-TextResult.xsl"/>
+    <xsl:import href="nl-core-VisualAcuity.xsl"/>
+
     <xsl:import href="ext-CodeSpecification.xsl"/>
     <xsl:import href="ext-Comment.xsl"/>
+    <xsl:import href="ext-TimeInterval.xsl"/>
     
 </xsl:stylesheet>

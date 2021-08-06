@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BodyWeight-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyWeight"/>
+   </meta>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="29463-7"/>
+         <display value="Body weight"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2013-02-06"/>
+   <valueQuantity>
+      <value value="2400"/>
+      <unit value="gram"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="g"/>
+   </valueQuantity>
+   <note>
+      <text value="Luier woog 320 gram"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="248159006"/>
+            <display value="State of dress"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1"/>
+            <code value="DIAPER"/>
+            <display value="Diaper"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-HeadCircumference-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeadCircumference"/>
+   </meta>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="9843-4"/>
+         <display value="Head Occipital-frontal circumference"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2021-06-22"/>
+   <valueQuantity>
+      <value value="41"/>
+      <unit value="cm"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="cm"/>
+   </valueQuantity>
+   <note>
+      <text value="Gemeten bij 3 maanden"/>
+   </note>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="31561000146107"/>
+         <display value="Ultrasound measurement of skull circumference"/>
+      </coding>
+   </method>
+</Observation>
