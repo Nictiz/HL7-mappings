@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 
                 <xsl:for-each select="afgesproken_datum_tijd">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedDateTime">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
                         <valueDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="dubbele_controle_uitgevoerd">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.DoubleCheckPerformed">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DoubleCheckPerformed">
                         <valueBoolean>
                             <xsl:call-template name="boolean-to-boolean"/>
                         </valueBoolean>
@@ -77,7 +77,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:for-each select="afwijkende_toediening">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.DeviatingAdministration">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DeviatingAdministration">
                         <valueBoolean>
                             <xsl:call-template name="boolean-to-boolean"/>
                         </valueBoolean>
@@ -85,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="medicatie_toediening_reden_van_afwijken">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.ReasonForDeviation">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>
                         </valueCodeableConcept>

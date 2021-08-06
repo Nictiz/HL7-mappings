@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="$prescriber">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Prescriber">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                         <valueReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:for-each select="volgens_afspraak_indicator">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.AsAgreedIndicator">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator">
                         <valueBoolean>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="boolean-to-boolean"/>
