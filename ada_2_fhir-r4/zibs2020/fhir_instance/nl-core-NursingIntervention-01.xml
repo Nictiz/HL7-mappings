@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CarePlan xmlns="http://hl7.org/fhir">
+   <id value="nl-core-NursingIntervention-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NursingIntervention"/>
+   </meta>
+   <status value="completed"/>
+   <intent value="plan"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="9632001"/>
+         <display value="verpleegkundige verrichting"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <period>
+      <start value="2015-08-10"/>
+      <end value="2015-08-15"/>
+   </period>
+   <contributor>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-NursingIntervention-ContributorIsRequester">
+         <valueBoolean value="true"/>
+      </extension>
+      <reference value="PractitionerRole/nl-core-NursingIntervention-01-PractitionerRole-01"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), H. Janszens"/>
+   </contributor>
+   <addresses>
+      <reference value="Condition/nl-core-NursingIntervention-01-Condition-01"/>
+      <type value="Condition"/>
+      <display value="Problem"/>
+   </addresses>
+   <!--TO DO: .goal-->
+   <activity>
+      <detail>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CarePlan-MaterialUsed">
+            <valueReference><!--TO DO: medicalDevice--></valueReference>
+         </extension>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="71388002"/>
+               <display value="voorlichten over pijnmanagement"/>
+            </coding>
+         </code>
+         <scheduledTiming>
+            <repeat>
+               <boundsPeriod>
+                  <start value="2015-08-10"/>
+                  <end value="2015-08-15"/>
+               </boundsPeriod>
+               <frequency value="1"/>
+               <period value="10"/>
+               <periodUnit value="min"/>
+            </repeat>
+         </scheduledTiming>
+         <performer>
+            <reference value="PractitionerRole/nl-core-NursingIntervention-01-PractitionerRole-01"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), H. Janszens"/>
+         </performer>
+         <description value="Oefeningen"/>
+      </detail>
+      <note>
+         <text value="Ondersteuning van de wond bij hoesten."/>
+      </note>
+   </activity>
+</CarePlan>
