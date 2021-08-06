@@ -45,13 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AlcoholUse"/>
                 </meta>
-                <!-- 
-                <status>
-                    <xsl:attribute name="value" select="'final'"/>
-                </status>
-                 -->
-                
-                
+                <status value="final"/>
                 <code>
                     <coding>
                         <system value="http://snomed.info/sct"/>
@@ -67,7 +61,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <!-- Stop_datum zit niet in de example -->
                 <xsl:if test="waarneming_gebruik/start_datum or waarneming_gebruik/stop_datum">
                     <effectivePeriod>
                         <xsl:if test="waarneming_gebruik/start_datum">
@@ -110,19 +103,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <coding>
                                 <system value="http://snomed.info/sct"/>
+                                <!-- DEPRECATED CODE in SNOMED -->
                                 <code value="160573003"/>
                                 <display value="inname van alcohol"/>
-                                <!-- DEPRECATED CODE -->
                             </coding>
                         </code>
-                        <valueCodeableConcept>
+                        <valueQuantity>
                             <xsl:call-template name="hoeveelheid-to-Quantity">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </valueCodeableConcept>
+                        </valueQuantity	>
                     </component>
                 </xsl:for-each>
-                
             </Observation>
         </xsl:for-each>
     </xsl:template>
