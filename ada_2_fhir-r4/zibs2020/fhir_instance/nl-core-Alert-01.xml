@@ -10,9 +10,6 @@
          <display value="Problem, type: Klinische bevinding"/>
       </valueReference>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-      <valueString value="test toelichting"/>
-   </extension>
    <status value="inactive"/>
    <category>
       <coding>
@@ -21,11 +18,13 @@
          <display value="condition"/>
       </coding>
    </category>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
-   </subject>
+   <code>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
+         <code value="not-applicable"/>
+         <display value="Not Applicable"/>
+      </coding>
+   </code>
    <period>
       <start value="2012-09-15"/>
       <end value="2012-12-30"/>

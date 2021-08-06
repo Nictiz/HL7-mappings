@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Alert"/>
                 </meta>
                 
-                <xsl:for-each select="referenties/probleem">
+                <xsl:for-each select="conditie/probleem">
                     <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                         <valueReference>
                             <xsl:call-template name="makeReference">
@@ -84,11 +84,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </category>
                 </xsl:for-each>
                 
-                <xsl:for-each select="alert_naam">
-                    <code>
-                        <xsl:call-template name="code-to-CodeableConcept"/>
-                    </code>
-                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="alert_naam">
+                        <xsl:for-each select="alert_naam">
+                            <code>
+                                <xsl:call-template name="code-to-CodeableConcept"/>
+                            </code>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:when test="not(alert_naam) and conditie/probleem">
+                        <code>
+                            <coding>
+                                <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
+                                <code value="not-applicable"/>
+                                <display value="Not Applicable"/>
+                            </coding>
+                        </code>
+                    </xsl:when>
+                    <xsl:when test="(alert_naam and conditie/probleem) or (not(alert_naam) and not(conditie/probleem))">
+                        <xsl:message terminate="no">
+                            Warning: exactly one of the following concept Condition::Concern and AlertName SHALL be present.
+                        </xsl:message>
+                    </xsl:when>
+                </xsl:choose>
                 
                 <xsl:for-each select="$subject">
                     <xsl:call-template name="makeReference">
