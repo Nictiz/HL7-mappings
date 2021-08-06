@@ -186,7 +186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="medicatie_toediening" mode="_generateDisplay">
         <xsl:variable name="parts">
             <xsl:text>Medication use</xsl:text>
-            <xsl:if test="medicatie_gebruik_datum_tijd/[@value]">
+            <xsl:if test="medicatie_gebruik_datum_tijd/@value">
                 <xsl:value-of select="concat('dispense date', medicatie_gebruik_datum_tijd/@value)"/>
             </xsl:if>
             <xsl:value-of select="reden_gebruik/@value"/>
