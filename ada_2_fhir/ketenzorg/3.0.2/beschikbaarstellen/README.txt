@@ -22,8 +22,13 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-08-04
+* Add a check for valid booleans based on input where value=0 was sent. Will terminate processing if invalid boolean is found
+2021-08-03
+* MM-2323 Touchstone : Assert CodeableConcept HA 2020.1. Add display on PractitionerRole.speciality, Observation.category, Observation.referenceRange.type
 2021-05-25
 * MM-1453 Updated population of Encounter.period. In absence of an Encounter.period.end, substitute Encounter.period.start
+* MM-1521 Support EpisodeOfCare in dedicated Resource.extension
 2021-01-19
 * MM-1698 Corrected display for SNOMED CT 64572001 from Condition to aandoening
 * MM-1751 Add Bundle.id

@@ -107,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message terminate="yes">Cannot determine the datatype based on @datatype, or value not supported: <xsl:value-of select="$theDatatype"/></xsl:message>
+                    <xsl:message terminate="yes">FATAL: Cannot determine the datatype based on @datatype, or value not supported: <xsl:value-of select="$theDatatype"/></xsl:message>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
@@ -119,9 +119,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="boolean-to-boolean" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
-
+        
+        
         <xsl:choose>
             <xsl:when test="$in/@value">
+                <xsl:if test="$in/@value[not(. = ('true', 'false'))]">
+                    <xsl:message terminate="yes">FATAL: Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:message>
+                </xsl:if>
+                
                 <xsl:attribute name="value" select="$in/@value"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">

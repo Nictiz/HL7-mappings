@@ -221,6 +221,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <specialty>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="codeMap" as="element()*">
+                                    <xsl:for-each select="$uziRoleCodeMap">
+                                        <map>
+                                            <xsl:attribute name="inCode" select="@hl7Code"/>
+                                            <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
+                                            <xsl:attribute name="code" select="@hl7Code"/>
+                                            <xsl:attribute name="codeSystem" select="@hl7CodeSystem"/>
+                                            <xsl:attribute name="displayName" select="@displayName"/>
+                                        </map>
+                                    </xsl:for-each>
+                                </xsl:with-param>
                             </xsl:call-template>
                         </specialty>
                     </xsl:for-each>

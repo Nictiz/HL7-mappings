@@ -202,6 +202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="49581000146104"/>
+                            <display value="Laboratory test finding"/>
                         </coding>
                     </category>
                     <!--NL-CM:13.1.8	TestCode	1	The name and code of the executed test.		ListTestNameCodelist-->
@@ -300,6 +301,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <coding>
                                     <system value="http://hl7.org/fhir/referencerange-meaning"/>
                                     <code value="normal"/>
+                                    <display value="Normal Range"/>
                                 </coding>
                             </type>
                         </referenceRange>

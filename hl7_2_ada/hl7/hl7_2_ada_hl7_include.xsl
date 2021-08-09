@@ -1380,6 +1380,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:if>
         <xsl:for-each select="$in">
+            <xsl:if test="@value[not(. = ('true', 'false'))]">
+                <xsl:message terminate="yes">FATAL: Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:message>
+            </xsl:if>
+            
             <xsl:element name="{$elemName}">
                 <xsl:if test="string-length($datatype) gt 0">
                     <xsl:attribute name="datatype" select="$datatype"/>
