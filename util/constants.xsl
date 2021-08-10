@@ -202,7 +202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7Code="79.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Geregistreerd-mondhygiënist"/>
         <map hl7Code="80.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Bachelor medisch hulpverlener"/>
         <map hl7Code="81.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Physician assistant"/>
-        <map hl7Code="82.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kliinisch technoloog"/>
+        <map hl7Code="82.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch technoloog"/>
         <map hl7Code="83.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apothekersassistent"/>
         <map hl7Code="84.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch fysicus"/>
         <map hl7Code="85.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Tandprotheticus"/>
@@ -220,6 +220,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7Code="97.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radiodiagnistisch laborant"/>
         <map hl7Code="98.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radiotherapeutisch laborant"/>
         <map hl7Code="99.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Zorgverlener andere zorg"/>
+    </xsl:variable>
+
+    <xsl:variable name="orgRoleCodeMap" as="element()+">
+        <map hl7Code="V4" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Ziekenhuis"/>
+        <map hl7Code="V5" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Universitair Medisch Centrum"/>
+        <map hl7Code="V6" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Algemeen ziekenhuis"/>
+        <map hl7Code="BRA" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Brandwondencentrum"/>
+        <map hl7Code="Z4" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Zelfstandig behandelcentrum"/>
+        <map hl7Code="Z5" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Diagnostisch centrum"/>
+        <map hl7Code="B1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Beeldvormende diagnostiek"/>
+        <map hl7Code="B2" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Echocentrum"/>
+        <map hl7Code="X3" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verplegings- of verzorgingsinstelling"/>
+        <map hl7Code="R5" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verpleeghuis"/>
+        <map hl7Code="M1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verzorgingstehuis"/>
+        <map hl7Code="A1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Apotheekinstelling"/>
+        <map hl7Code="J8" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Openbare apotheek"/>
+        <map hl7Code="K9" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Zelfstandig opererende ziekenhuisapotheek"/>
+        <map hl7Code="H1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartsinstelling"/>
+        <map hl7Code="Z3" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+        <map hl7Code="K3" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Apotheekhoudende huisartspraktijk"/>
+        <map hl7Code="N6" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartsenpost (t.b.v. dienstwaarneming)"/>
+        <map hl7Code="L1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Laboratorium"/>
+        <map hl7Code="P4" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Polikliniek (als onderdeel van een ziekenhuis)"/>
+        <map hl7Code="R8" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Revalidatiecentrum"/>
+        <map hl7Code="P6" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Preventieve gezondheidszorg (waaronder Bevolkingsonderzoek)"/>
+        <map hl7Code="G5" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Geestelijke Gezondheidszorg"/>
+        <map hl7Code="G6" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verstandelijk gehandicaptenzorg"/>
+        <map hl7Code="T2" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Thuiszorg"/>
+        <map hl7Code="K4" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Kraamzorg"/>
+        <map hl7Code="H2" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Hospice"/>
+        <map hl7Code="JGZ" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Jeugdgezondheidszorg"/>
+        <map hl7Code="G3" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verloskundigenpraktijk"/>
+        <map hl7Code="GC" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Geboortecentrum"/>
+        <map hl7Code="DIA" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Dialysecentrum"/>
     </xsl:variable>
 
     <xsl:variable name="oidMap" as="element()+">
