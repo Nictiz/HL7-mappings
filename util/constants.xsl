@@ -209,10 +209,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7Code="86.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="VIG-er"/>
         <map hl7Code="87.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Optometrist"/>
         <map hl7Code="88.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huidtherapeut"/>
-        <map hl7Code="89.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Diëtist"/>
+        <map hl7Code="89.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Diëtist"/>
         <map hl7Code="90.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Ergotherapeut"/>
         <map hl7Code="91.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Logopedist"/>
-        <map hl7Code="92.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Mondhygiënist"/>
+        <map hl7Code="92.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Mondhygiënist"/>
         <map hl7Code="93.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Oefentherapeut Mensendieck"/>
         <map hl7Code="94.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Oefentherapeut Cesar"/>
         <map hl7Code="95.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthoptist"/>
