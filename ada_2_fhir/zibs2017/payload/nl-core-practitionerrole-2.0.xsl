@@ -218,6 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:for-each>-->
                     <xsl:for-each select="specialisme | specialty">
+                        <xsl:variable name="display" select="@displayName[not(. = '')]"/>
                         <specialty>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
@@ -228,7 +229,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
                                             <xsl:attribute name="code" select="@hl7Code"/>
                                             <xsl:attribute name="codeSystem" select="@hl7CodeSystem"/>
-                                            <xsl:attribute name="displayName" select="@displayName"/>
+                                                <!-- reuse original displayName -->
+                                            <xsl:attribute name="displayName" select="($display, @displayName)[1]"/>
                                         </map>
                                     </xsl:for-each>
                                 </xsl:with-param>

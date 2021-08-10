@@ -179,9 +179,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!-- type -->
                     <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
+                        <xsl:variable name="display" select="@displayName[not(. = '')]"/>
                         <type>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="codeMap" as="element()*">
+                                    <xsl:for-each select="$orgRoleCodeMap">
+                                        <map>
+                                            <xsl:attribute name="inCode" select="@hl7Code"/>
+                                            <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
+                                            <xsl:attribute name="code" select="@hl7Code"/>
+                                            <xsl:attribute name="codeSystem" select="@hl7CodeSystem"/>
+                                            <!-- reuse original displayName -->
+                                            <xsl:attribute name="displayName" select="($display, @displayName)[1]"/>
+                                        </map>
+                                    </xsl:for-each>
+                                </xsl:with-param>
                             </xsl:call-template>
                         </type>
                     </xsl:for-each>
