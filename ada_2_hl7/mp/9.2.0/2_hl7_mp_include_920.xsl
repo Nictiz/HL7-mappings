@@ -872,7 +872,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="identificatie[.//(@value | @code)]">
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
-                <code code="TODO" displayName="wisselend doseerschema" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                <code code="395067002" displayName="optimaliseren van dosering van medicatie (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                 <xsl:choose>
                     <xsl:when test="$generateInstructionText">
                         <text mediaType="text/plain">
