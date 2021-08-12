@@ -50,17 +50,17 @@
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_QA1-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_920_QA1-JNK"
+            <identificatie value="MBH_920_QA1"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <toedieningsafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
-               <identificatie value="MBH_920_QA1_TA-JNK"
+               <identificatie value="MBH_920_QA1_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
                <toedieningsafspraak_datum_tijd value="T-20D{09:00:00}"
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
-               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334" comment="">
                   <start_datum_tijd value="T-20D{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
@@ -68,14 +68,14 @@
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
                </gebruiksperiode>
-               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295" comment="">
                   <zorgaanbieder datatype="reference"
-                                 value="uuid_c725ba44-e33e-11eb-8316-020000000000"
+                                 value="Apotheek_De_Gulle_Gaper"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
                </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297" comment="">
                   <farmaceutisch_product datatype="reference"
-                                         value="uuid_c725ba48-e33e-11eb-8316-020000000000"
+                                         value="HPK_ibuprofen_641898"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
@@ -86,7 +86,7 @@
                                   displayName="Oraal"
                                   codeSystemName="G-Standaard Toedieningswegen"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304" comment="">
                      <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
                         <keerdosis comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
                            <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
@@ -113,14 +113,15 @@
                </gebruiksinstructie>
                <relatie_medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
                   <identificatie value="MBH_920_QA1_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="uuid_c725ba48-e33e-11eb-8316-020000000000"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+            <farmaceutisch_product id="HPK_ibuprofen_641898"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment="">
                <product_code code="17469"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="IBUPROFEN TABLET 600MG"
@@ -137,8 +138,9 @@
                              displayName="IBUPROFEN PCH TABLET 600MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="uuid_c725ba44-e33e-11eb-8316-020000000000"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
+                           comment="">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>

@@ -16,22 +16,22 @@
       <xs:sequence>
          <xs:element name="scenario-nr-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
          <xs:element name="scenario-nr"
-                     type="scenario-nr_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_2_1_1"
+                     type="scenario-nr_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_2"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="systeemrol-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.5"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
          <xs:element name="systeemrol"
-                     type="systeemrol_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_6"
+                     type="systeemrol_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_5"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="screenshot-start" minOccurs="0" maxOccurs="1">
@@ -104,16 +104,6 @@
          <xs:documentation>Type for concept group: Patient</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="patient-afko-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.4"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="patient-afko"
-                     type="patient-afko_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_4"
-                     minOccurs="0"
-                     maxOccurs="1"/>
          <xs:element name="naamgegevens-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2"/>
@@ -175,7 +165,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1"/>
-      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="naamgegevens_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_2">
@@ -2831,7 +2820,7 @@
    <xs:annotation>
       <xs:documentation>Type for concept item: Scenario nummer - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="scenario-nr_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_2_1_1">
+   <xs:complexType name="scenario-nr_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_2">
       <xs:sequence>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -2843,7 +2832,7 @@
                      minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
@@ -2851,7 +2840,7 @@
    <xs:annotation>
       <xs:documentation>Type for concept item: Systeemrol - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="systeemrol_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_6">
+   <xs:complexType name="systeemrol_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_5">
       <xs:sequence>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -2863,7 +2852,7 @@
                      minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"/>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.5"/>
       <xs:attribute name="value">
          <xs:simpleType>
             <xs:restriction base="xs:string">
@@ -2882,12 +2871,12 @@
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Raadplegend</xs:documentation>
+                     <xs:documentation>Sturend</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Beschikbaarstellend</xs:documentation>
+                     <xs:documentation>Ontvangend</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -2920,26 +2909,6 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.3"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="text"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Patiënt-afko - 0..1 </xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="patient-afko_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_4">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.4"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -4154,8 +4123,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.76"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -4174,8 +4143,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.78"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -4194,8 +4163,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.77"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -5733,8 +5702,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.548"/>
-      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -5779,8 +5748,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.550"/>
-      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -9309,7 +9278,7 @@
                </xs:enumeration>
                <xs:enumeration value="675">
                   <xs:annotation>
-                     <xs:documentation>Kliinisch technoloog</xs:documentation>
+                     <xs:documentation>Klinisch technoloog</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="676">

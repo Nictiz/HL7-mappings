@@ -392,7 +392,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="theTime" select="$vvAfspraakDatumTijd[1]"/>
                         </xsl:call-template>
                     </author>
-                </xsl:if>           
+                </xsl:if>
 
                 <!-- afleverlocatie -->
                 <xsl:for-each select="afleverlocatie[.//(@value | @code)]">
@@ -826,7 +826,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <!-- patient -->
-            <xsl:for-each select="patient[.//@value]">
+            <xsl:for-each select="patient[not(toediener_is_patient/@value = 'false')][.//@value]">
                 <author>
                     <!-- time is verplicht in xsd, maar medicatietoediening heeft er geen dataset concept voor -->
                     <time nullFlavor="NI"/>
@@ -844,17 +844,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210"/>
                 </author>
             </xsl:for-each>
+
             <!-- mantelzorger -->
             <xsl:for-each select="../../../bouwstenen/contactpersoon[@id = current()/mantelzorger/contactpersoon/@value]">
                 <author>
-                    <xsl:for-each select="rol[@code | @nullFlavor]">
-                        <xsl:call-template name="makeCode">
-                            <xsl:with-param name="elemName">functionCode</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- time is verplicht in xsd, maar medicatietoediening heeft er geen dataset concept voor -->
-                    <time nullFlavor="NI"/>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9383_20210618000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.35_20210701000000"/>
                 </author>
             </xsl:for-each>
         </xsl:for-each>
@@ -1809,7 +1803,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </author>
             </xsl:if>
-                      
+
             <!-- Overige onderdelen van deze MA -->
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9320_20201015130416">
                 <xsl:with-param name="in" select="."/>

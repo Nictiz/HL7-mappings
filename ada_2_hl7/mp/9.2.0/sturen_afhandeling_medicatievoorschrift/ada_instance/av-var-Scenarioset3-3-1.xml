@@ -18,15 +18,15 @@
                                                desc="Stop-toedieningsafspraak, met reden staken&#xA;LET OP: stop medicatieafspraak van scenario 2.1"
                                                id="av-var-Scenarioset3-3-1">
          <scenario-nr value="3.1" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2"/>
-         <!--Patient found in instance with id: mg-Scenarioset2 and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 2-->
+         <!--Patient found in instance with id: mg-Scenarioset2 and title: id: KWALIFICATIE REPO Scenarioset 2 (lijstjes)-->
          <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
                <initialen value="C. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
                   <achternaam value="XXX_Vonker"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
@@ -38,11 +38,11 @@
             <geboortedatum value="1954-02-08"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="2"
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="2"
                       code="M"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Man"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+                      displayName="Man"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_aanvullendeinstructie-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
@@ -56,7 +56,7 @@
                <toedieningsafspraak_datum_tijd value="T-10D{19:00:00}"
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
-               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334" comment="">
                   <start_datum_tijd value="T-4M{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
@@ -64,19 +64,19 @@
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
                </gebruiksperiode>
-               <toedieningsafspraak_stop_type value="2"
-                                              code="2"
-                                              codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
-                                              displayName="Definitief"
-                                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.340"/>
-               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+               <toedieningsafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.340"
+                                              value="4"
+                                              code="113371000146109"
+                                              codeSystem="2.16.840.1.113883.6.96"
+                                              displayName="definitief gestopt met medicatie"/>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295" comment="">
                   <zorgaanbieder datatype="reference"
-                                 value="uuid_c80cc9b7-e33e-11eb-3310-020000000000"
+                                 value="Apotheek_Jansen_en_Co"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
                </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297" comment="">
                   <farmaceutisch_product datatype="reference"
-                                         value="uuid_c80cc9bb-e33e-11eb-3310-020000000000"
+                                         value="HPK_Acetylsalicylzuur_1110837"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
@@ -88,12 +88,12 @@
                                   codeSystemName="G-Standaard Toedieningswegen"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
                   <aanvullende_instructie originalText="Bij het eten innemen"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.300"
                                           value="1"
                                           code="OTH"
                                           codeSystem="2.16.840.1.113883.5.1008"
-                                          displayName="overig"
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.300"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                                          displayName="overig"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304" comment="">
                      <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
                         <keerdosis comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
                            <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
@@ -126,8 +126,9 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="uuid_c80cc9bb-e33e-11eb-3310-020000000000"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+            <farmaceutisch_product id="HPK_Acetylsalicylzuur_1110837"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment="">
                <product_code code="49484"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="Acetylsalicylzuur tabletmsr 100mg"
@@ -140,12 +141,13 @@
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
                <product_code code="1110837"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
                              displayName="ASPIRINE PROTECT EC TABLET MSR 100MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"
+                             codeSystemName="G-Standaard HPK"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="uuid_c80cc9b7-e33e-11eb-3310-020000000000"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+            <zorgaanbieder id="Apotheek_Jansen_en_Co"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
+                           comment="">
                <zorgaanbieder_identificatienummer value="99901111"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>

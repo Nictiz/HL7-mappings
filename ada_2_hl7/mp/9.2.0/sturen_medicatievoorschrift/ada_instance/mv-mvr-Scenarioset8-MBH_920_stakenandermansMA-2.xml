@@ -1,11 +1,11 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_verzoek_uitvoeren_voorschrift.xsd">
-    <meta status="new"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2020-03-21T00:00:00.000+01:00"
          last-update-date="2020-04-09T15:23:57.346+02:00"/>
-    <data>
+   <data>
         <sturen_medicatievoorschrift app="mp-mp920"
                                    shortName="sturen_medicatievoorschrift"
                                    formName="sturen_voorschrift"
@@ -25,46 +25,20 @@
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.5"/>
          <screenshot value="Maak screenshot(s) na het versturen van het voorschrift waarin de samenhang en actualiteit van de bouwstenen/de medicamenteuze behandeling inzichtelijk wordt"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.3"/>
-         <!--Patient found in instance with id: mg-Scenarioset8 and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 8 (andermans MA)-->
-         <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
-            <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
-               <initialen value="H. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
-                            code="NL1"
-                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
-               <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
-                  <voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.8"/>
-                  <achternaam value="XXX_Zutphen"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
-               </geslachtsnaam>
-            </naamgegevens>
-            <identificatienummer value="999910498"
-                                 root="2.16.840.1.113883.2.4.6.3"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
-            <geboortedatum value="1954-06-08"
-                           datatype="datetime"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="2"
-                      code="M"
-                      codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Man"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
-         </patient>
+         <!--Patient found in instance with id:  and title: id: -->
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_stakenandermansMA-->
-         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_920_stakenandermansMA-ZTP"
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_920_stakenandermansMA"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43">
-               <identificatie value="MBH_920_stakenandermansMA_MA2-ZTP"
+               <identificatie value="MBH_920_stakenandermansMA_MA2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
                <medicatieafspraak_datum_tijd value="T+0D{09:05:00}"
                                              datatype="datetime"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
-               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84">
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84" comment="">
                   <start_datum_tijd value="T-5D{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
@@ -72,29 +46,29 @@
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
                </gebruiksperiode>
-               <medicatieafspraak_stop_type value="2"
-                                            code="2"
-                                            codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
-                                            displayName="Definitief"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.88"/>
-               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.195">
+               <medicatieafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.88"
+                                            value="4"
+                                            code="113371000146109"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            displayName="definitief gestopt met medicatie"/>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.195" comment="">
                   <identificatie value="MBH_920_stakenandermansMA_MA1"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.196"/>
                </relatie_medicatieafspraak>
-               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44" comment="">
                   <zorgverlener datatype="reference"
-                                value="uuid_c9f2482d-e33e-11eb-1986-020000000000"
+                                value="Peter_van_Pulver"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
                </voorschrijver>
-               <reden_wijzigen_of_staken code="183966005"
+               <reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.89"
+                                         value="17"
+                                         code="183966005"
                                          codeSystem="2.16.840.1.113883.6.96"
-                                         displayName="Drug treatment not indicated (situation)"
-                                         codeSystemName="SNOMED CT"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.89"/>
-               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
+                                         displayName="Drug treatment not indicated (situation)"/>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48" comment="">
                   <farmaceutisch_product datatype="reference"
-                                         value="uuid_c9f24841-e33e-11eb-1986-020000000000"
+                                         value="PRK_LISINOPRIL_26638"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50">
@@ -105,7 +79,7 @@
                                   displayName="Oraal"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55">
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55" comment="">
                      <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58">
                         <keerdosis comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67">
                            <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547">
@@ -133,8 +107,9 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="uuid_c9f24841-e33e-11eb-1986-020000000000"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+            <farmaceutisch_product id="PRK_LISINOPRIL_26638"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment="">
                <product_code code="26638"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="LISINOPRIL 10MG TABLET"
@@ -146,8 +121,9 @@
                              displayName="LISINOPRIL 10MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <zorgverlener id="uuid_c9f2482d-e33e-11eb-1986-020000000000"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+            <zorgverlener id="Peter_van_Pulver"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92"
+                          comment="">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
@@ -158,20 +134,22 @@
                      <achternaam value="Pulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <specialisme code="0100"
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
+                            value="2"
+                            code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
-                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
-                            codeSystemVersion="2017-12-14T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
-               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168" comment="">
                   <zorgaanbieder datatype="reference"
-                                 value="uuid_c9f24836-e33e-11eb-1986-020000000000"
+                                 value="Huisartsenpraktijk_Pulver_en_Partners"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="uuid_c9f24836-e33e-11eb-1986-020000000000"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
+                           comment="">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
@@ -184,11 +162,11 @@
                   <postcode value="1234AA" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.249"/>
                   <woonplaats value="Ons Dorp"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.250"/>
-                  <adres_soort value="5"
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"
+                               value="5"
                                code="WP"
                                codeSystem="2.16.840.1.113883.5.1119"
-                               displayName="Werkadres"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"/>
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>

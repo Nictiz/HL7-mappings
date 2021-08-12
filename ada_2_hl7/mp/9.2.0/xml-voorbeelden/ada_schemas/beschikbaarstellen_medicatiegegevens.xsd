@@ -104,16 +104,6 @@
          <xs:documentation>Type for concept group: Patient</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="patient-afko-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.4"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="patient-afko"
-                     type="patient-afko_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_4"
-                     minOccurs="0"
-                     maxOccurs="1"/>
          <xs:element name="naamgegevens-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2"/>
@@ -175,7 +165,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1"/>
-      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="naamgegevens_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_2">
@@ -2762,6 +2751,16 @@
                      type="aanvullende_wensen_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_287"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
+         <xs:element name="financiele_indicatiecode-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.592"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="financiele_indicatiecode"
+                     type="financiele_indicatiecode_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_592"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="toelichting-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.288"/>
@@ -3200,7 +3199,7 @@
          </xs:element>
          <xs:element name="relatie_medicatieafspraak"
                      type="relatie_medicatieafspraak_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_338"
-                     minOccurs="1"
+                     minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -6219,7 +6218,7 @@
          <xs:element name="patient"
                      type="patient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_438"
                      minOccurs="0"
-                     maxOccurs="1"/>
+                     maxOccurs="unbounded"/>
          <xs:element name="zorgverlener-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.440"/>
@@ -6258,15 +6257,15 @@
          <xs:documentation>Type for concept group: Patiënt</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="patient-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="toediener_is_patient-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.439"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1357"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="patient"
-                     type="patient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_439"
-                     minOccurs="1"
+         <xs:element name="toediener_is_patient"
+                     type="toediener_is_patient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1357"
+                     minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -7205,26 +7204,6 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.3"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="text"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Patiënt-afko - 0..1 </xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="patient-afko_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_4">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.4"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -8430,8 +8409,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.76"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -8450,8 +8429,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.78"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -8470,8 +8449,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.77"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -10103,8 +10082,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.665"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -10123,8 +10102,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -10143,8 +10122,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.667"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -11406,6 +11385,32 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
+      <xs:documentation>Type for concept item: FinancieleIndicatiecode - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="financiele_indicatiecode_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_592">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.592"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
       <xs:documentation>Type for concept item: Toelichting - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="toelichting_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_288">
@@ -11913,11 +11918,48 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.305"/>
-      <xs:attribute name="value" type="xs:decimal"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="doseerduur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_305 doseerduur_2_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_305 doseerduur_3_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_305 doseerduur_4_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_305 empty_string"/>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit" type="xs:string"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="uur"/>
+               <xs:enumeration value="dag"/>
+               <xs:enumeration value="week"/>
+               <xs:enumeration value="jaar"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Doseerduur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="doseerduur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_305">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Doseerduur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="doseerduur_2_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_305">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Doseerduur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="doseerduur_3_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_305">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Doseerduur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="doseerduur_4_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_305">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Volgnummer - 0..1 R</xs:documentation>
    </xs:annotation>
@@ -12040,8 +12082,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.325"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -12060,8 +12102,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -12080,8 +12122,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.326"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -14005,8 +14047,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.393"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -14025,8 +14067,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.395"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -14045,8 +14087,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.394"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
+      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -15953,9 +15995,9 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Patient - 1..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: ToedienerIsPatient - 0..1 C</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="patient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_439">
+   <xs:complexType name="toediener_is_patient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1357">
       <xs:sequence>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -15967,9 +16009,37 @@
                      minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.439"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1357"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>non-mandatory boolean</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="true">
+                  <xs:annotation>
+                     <xs:documentation>Yes</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="false">
+                  <xs:annotation>
+                     <xs:documentation>No</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="UNK">
+                  <xs:annotation>
+                     <xs:documentation>Unknown</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="boolean"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -16041,75 +16111,80 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Behandeling met geneesmiddel stopgezet (situatie)</xs:documentation>
+                     <xs:documentation>Leveringstekort van medicatie (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Medicatie uitgespuugd door patiënt (situatie)</xs:documentation>
+                     <xs:documentation>Behandeling met geneesmiddel stopgezet (situatie)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Zorgverlener is niet beschikbaar om medicatie toe te dienen (bevinding)</xs:documentation>
+                     <xs:documentation>Medicatie uitgespuugd door patiënt (situatie)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Zorgverlener is vergeten medicatie toe te dienen (bevinding)</xs:documentation>
+                     <xs:documentation>Zorgverlener is niet beschikbaar om medicatie toe te dienen (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Niet in staat om medicatie te gebruiken (bevinding)</xs:documentation>
+                     <xs:documentation>Zorgverlener is vergeten medicatie toe te dienen (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
                   <xs:annotation>
-                     <xs:documentation>Toediening van medicatie geweigerd (situatie)</xs:documentation>
+                     <xs:documentation>Niet in staat om medicatie te gebruiken (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Zorgafnemer is niet beschikbaar om medicatie in ontvangst te nemen (bevinding)</xs:documentation>
+                     <xs:documentation>Toediening van medicatie geweigerd (situatie)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Product niet meer leverbaar</xs:documentation>
+                     <xs:documentation>Zorgafnemer is niet beschikbaar om medicatie in ontvangst te nemen (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
                   <xs:annotation>
-                     <xs:documentation>Patient not available</xs:documentation>
+                     <xs:documentation>Product niet meer leverbaar</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>Patient refuse</xs:documentation>
+                     <xs:documentation>Patient not available</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Unable to use</xs:documentation>
+                     <xs:documentation>Patient refuse</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Order aborted</xs:documentation>
+                     <xs:documentation>Unable to use</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Forgotten to administer</xs:documentation>
+                     <xs:documentation>Order aborted</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
                   <xs:annotation>
-                     <xs:documentation>Administration performer not available</xs:documentation>
+                     <xs:documentation>Forgotten to administer</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="15">
+                  <xs:annotation>
+                     <xs:documentation>Administration performer not available</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="16">
                   <xs:annotation>
                      <xs:documentation>No information</xs:documentation>
                   </xs:annotation>
@@ -16499,8 +16574,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.548"/>
-      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -16545,8 +16620,8 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.550"/>
-      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -20075,7 +20150,7 @@
                </xs:enumeration>
                <xs:enumeration value="675">
                   <xs:annotation>
-                     <xs:documentation>Kliinisch technoloog</xs:documentation>
+                     <xs:documentation>Klinisch technoloog</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="676">

@@ -60,19 +60,19 @@
                <medicatieafspraak_datum_tijd value="T+0D{08:49:00}"
                                              datatype="datetime"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
-               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84">
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84" comment="">
                   <start_datum_tijd value="T+0D{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
                </gebruiksperiode>
-               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44" comment="">
                   <zorgverlener datatype="reference"
-                                value="uuid_c93cc173-e33e-11eb-3662-020000000000"
+                                value="Peter_van_Pulver"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
                </voorschrijver>
-               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48" comment="">
                   <farmaceutisch_product datatype="reference"
-                                         value="uuid_c93cc186-e33e-11eb-3662-020000000000"
+                                         value="PRK_NITROGLYCERINE_44520"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50">
@@ -83,7 +83,7 @@
                                   displayName="transdermaal"
                                   codeSystemName="G-Standaard Toedieningswegen"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55">
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55" comment="">
                      <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58">
                         <keerdosis comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67">
                            <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547">
@@ -105,7 +105,7 @@
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.555"/>
                            </frequentie>
                         </toedieningsschema>
-                        <toedieningsduur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.63">
+                        <toedieningsduur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.63" comment="">
                            <tijds_duur value="16"
                                        unit="uur"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.66"/>
@@ -116,8 +116,9 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="uuid_c93cc186-e33e-11eb-3662-020000000000"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+            <farmaceutisch_product id="PRK_NITROGLYCERINE_44520"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment="">
                <product_code code="44520"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"
@@ -129,8 +130,9 @@
                              displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <zorgverlener id="uuid_c93cc173-e33e-11eb-3662-020000000000"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+            <zorgverlener id="Peter_van_Pulver"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92"
+                          comment="">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
@@ -141,20 +143,22 @@
                      <achternaam value="Pulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <specialisme code="0100"
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
+                            value="2"
+                            code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
-                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
-                            codeSystemVersion="2017-12-14T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
-               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168" comment="">
                   <zorgaanbieder datatype="reference"
-                                 value="uuid_c93cc17c-e33e-11eb-3662-020000000000"
+                                 value="Huisartsenpraktijk_Pulver_en_Partners"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="uuid_c93cc17c-e33e-11eb-3662-020000000000"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
+                           comment="">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
@@ -167,11 +171,11 @@
                   <postcode value="1234AA" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.249"/>
                   <woonplaats value="Ons Dorp"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.250"/>
-                  <adres_soort value="5"
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"
+                               value="5"
                                code="WP"
                                codeSystem="2.16.840.1.113883.5.1119"
-                               displayName="Werkadres"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"/>
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>

@@ -20,15 +20,15 @@
          <scenario-nr value="8.2" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2"/>
          <screenshot value="Maak screenshot(s) na het versturen van het voorschrift waarin de samenhang en actualiteit van de bouwstenen/de medicamenteuze behandeling inzichtelijk wordt"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.3"/>
-         <!--Patient found in instance with id: mg-Scenarioset8 and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 8 (andermans MA)-->
+         <!--Patient found in instance with id: mg-Scenarioset8 and title: id: KWALIFICATIE REPO Scenarioset 8 (andermans MA)-->
          <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
                <initialen value="H. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
                   <voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.8"/>
                   <achternaam value="XXX_Zutphen"
@@ -41,11 +41,11 @@
             <geboortedatum value="1954-06-08"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="2"
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="2"
                       code="M"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Man"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+                      displayName="Man"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_stakenandermansMA-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
@@ -59,7 +59,7 @@
                <toedieningsafspraak_datum_tijd value="T+0D{10:05:00}"
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
-               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334" comment="">
                   <start_datum_tijd value="T-5D{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
@@ -67,19 +67,19 @@
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
                </gebruiksperiode>
-               <toedieningsafspraak_stop_type value="2"
-                                              code="2"
-                                              codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
-                                              displayName="Definitief"
-                                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.340"/>
-               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+               <toedieningsafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.340"
+                                              value="4"
+                                              code="113371000146109"
+                                              codeSystem="2.16.840.1.113883.6.96"
+                                              displayName="definitief gestopt met medicatie"/>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295" comment="">
                   <zorgaanbieder datatype="reference"
-                                 value="uuid_c9f248a6-e33e-11eb-1986-020000000000"
+                                 value="Apotheek_De_Gulle_Gaper"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
                </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297" comment="">
                   <farmaceutisch_product datatype="reference"
-                                         value="uuid_c9f248aa-e33e-11eb-1986-020000000000"
+                                         value="HPK_LISINOPRIL_615560"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
@@ -90,7 +90,7 @@
                                   displayName="Oraal"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304" comment="">
                      <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
                         <keerdosis comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
                            <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
@@ -128,9 +128,9 @@
                <medicatieverstrekkings_datum_tijd value="T-5D{09:45:00}"
                                                   datatype="datetime"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
-               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347">
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347" comment="">
                   <zorgaanbieder datatype="reference"
-                                 value="uuid_c9f248e0-e33e-11eb-1986-020000000000"
+                                 value="Apotheek_De_Gulle_Gaper"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.348"/>
                </verstrekker>
                <verstrekte_hoeveelheid comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358">
@@ -141,9 +141,9 @@
                            displayName="stuk"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.701"/>
                </verstrekte_hoeveelheid>
-               <verstrekt_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351">
+               <verstrekt_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351" comment="">
                   <farmaceutisch_product datatype="reference"
-                                         value="uuid_c9f248e7-e33e-11eb-1986-020000000000"
+                                         value="HPK_LISINOPRIL_615560"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349">
@@ -154,8 +154,9 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="uuid_c9f248aa-e33e-11eb-1986-020000000000"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+            <farmaceutisch_product id="HPK_LISINOPRIL_615560"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment="">
                <product_code code="26638"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="LISINOPRIL 10MG TABLET"
@@ -172,34 +173,9 @@
                              displayName="ZESTRIL TABLET 10MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="uuid_c9f248e7-e33e-11eb-1986-020000000000"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="26638"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="LISINOPRIL 10MG TABLET"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="71587"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="LISINOPRIL 10MG TABLET"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="615560"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard"
-                             displayName="ZESTRIL TABLET 10MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <zorgaanbieder id="uuid_c9f248a6-e33e-11eb-1986-020000000000"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
-               <zorgaanbieder_identificatienummer value="99901111"
-                                                  root="2.16.528.1.1007.3.3"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
-               <organisatie_naam value="Apotheek Jansen en Co"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
-            </zorgaanbieder>
-            <zorgaanbieder id="uuid_c9f248e0-e33e-11eb-1986-020000000000"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
+                           comment="">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>

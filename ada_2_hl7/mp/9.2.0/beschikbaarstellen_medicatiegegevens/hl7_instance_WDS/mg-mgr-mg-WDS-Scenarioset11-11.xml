@@ -31,13 +31,13 @@
    <component typeCode="COMP">
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9380"/>
-         <id extension="MBH_920_QA1_WDS1"
+         <id extension="MBH_920_wdsmtd1_WDS_opstartschema"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 12 dec 2020, tot en met 17 dec 2020, eerst gedurende 3 dagen 1 maal per dag om 20:00:00 2 stuks, dan gedurende 3 dagen 1 maal per dag om 20:00:00 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 12 dec 2020, tot en met 17 dec 2020, eerst gedurende 3 dagen 1 maal per dag om 20:00 2 stuks, dan gedurende 3 dagen 1 maal per dag om 20:00 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20201212000000"/>
             <high value="20201217235959"/>
@@ -144,7 +144,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_920_QA1_MA"
+               <id extension="MBH_920_wdsmtd1_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -157,7 +157,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_920_QA1-JNK"/>
+                   extension="MBH_920_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -168,16 +168,16 @@
    <component typeCode="COMP">
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9380"/>
-         <id extension="MBH_920_QA1_WDS2"
+         <id extension="MBH_920_wdsmtd1_WDS_technischestop"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 17 dec 2020, tot en met 27 dec 2020, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 1 stuk 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal</text>
+         <text mediaType="text/plain">Vanaf 18 dec 2020, tot en met 25 dec 2020, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201217000000"/>
-            <high value="20201227235959"/>
+            <low value="20201218000000"/>
+            <high value="20201225235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -185,33 +185,77 @@
                     codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable xsi:nil="true"/>
          <author>
-            <time value="20201216143000"/>
+            <time value="20201225103000"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
+               <id extension="222221111" root="2.16.528.1.1007.3.1"/>
+               <code code="3400"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
+                     displayName="Trombosediensten"
                      codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                      codeSystemVersion="2020-10-23T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Tanja</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Bakker</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                  <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
-                     <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
+                  <id extension="11112222" nullFlavor="UNC"/>
+                  <name>Trombosedienst Ons Dorp</name>
+                  <addr>
+                     <streetName>Kerkstraat </streetName>
+                     <houseNumber>28</houseNumber>
+                     <buildingNumberSuffix>d</buildingNumberSuffix>
+                     <postalCode>1332 GH</postalCode>
                      <city>Ons Dorp</city>
                   </addr>
+                  <asOrganizationPartOf>
+                     <code code="3400"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Trombosediensten"
+                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                           codeSystemVersion="2020-10-23T00:00:00"/>
+                  </asOrganizationPartOf>
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9372"/>
+               <code code="274512008"
+                     displayName="behandeling met geneesmiddel stopgezet"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="113371000146109"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="definitief gestopt met medicatie"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9370"/>
+               <code code="112241000146101"
+                     displayName="Reason for prescription"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="58848006"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="Gebrek aan geneesmiddeleffect"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ" inversionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">Dosering aangepast i.v.m. te lage INR waarde.</text>
+            </act>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
@@ -226,6 +270,9 @@
                      </valueDuration>
                   </modifierExtension>
                   <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -264,6 +311,9 @@
                      </valueDuration>
                   </modifierExtension>
                   <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -277,8 +327,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
-                     <translation value="1"
+                  <center value="2" unit="1">
+                     <translation value="2"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -302,6 +352,9 @@
                      </valueDuration>
                   </modifierExtension>
                   <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
                      <boundsDuration>
                         <value value="1"/>
                         <unit value="dag"/>
@@ -318,7 +371,7 @@
                   <center value="0" unit="1">
                      <translation value="0"
                                   code="245"
-                                  displayName="stuk"
+                                  displayName="stuks"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
@@ -329,7 +382,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_920_QA1_MA"
+               <id extension="MBH_920_wdsmtd1_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -341,8 +394,8 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_920_QA1_WDS1"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <id extension="MBH_920_wdsmtd1_WDS_trombosedienst"
+                   root="​2.16.840.1.113883.2.4.3.11.999.77.632.12.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                <code code="TODO"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
@@ -354,7 +407,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_920_QA1-JNK"/>
+                   extension="MBH_920_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

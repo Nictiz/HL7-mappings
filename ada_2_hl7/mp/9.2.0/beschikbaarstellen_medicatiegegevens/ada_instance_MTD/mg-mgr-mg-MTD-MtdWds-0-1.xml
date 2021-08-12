@@ -50,7 +50,7 @@
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_MtdWds-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_920_MtdWds-JNK"
+            <identificatie value="MBH_920_MtdWds"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatietoediening conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419">
@@ -162,9 +162,7 @@
                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.430"/>
                <toedieningssnelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1330">
                   <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1334">
-                     <nominale_waarde value="3"
-                                      unit="1"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1336"/>
+                     <nominale_waarde value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1336"/>
                   </waarde>
                   <eenheid code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -200,6 +198,83 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.441"
                                    datatype="reference"/>
                   </zorgverlener>
+               </toediener>
+               <medicatie_toediening_reden_van_afwijken code="DISCONT"
+                                                        codeSystem="2.16.840.1.113883.5.8"
+                                                        displayName="Product niet meer leverbaar"
+                                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.444"/>
+               <toelichting value="toelichting in vrije tekst"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.446"/>
+            </medicatietoediening>
+            <medicatietoediening conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419">
+               <identificatie value="MBH_920_MtdWds_MTD_3"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.420">
+                  <farmaceutisch_product value="PRK-17469-IBUPROFEN-TABLET-600MG"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.421"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="2021-06-30T10:35:23"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.426"/>
+               <afgesproken_datum_tijd value="2021-06-30T16:00:00"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.427"/>
+               <geannuleerd_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1173"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1320"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1321"/>
+               </toegediende_hoeveelheid>
+               <afgesproken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1172">
+                  <aantal value="6" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1323"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1322"/>
+               </afgesproken_hoeveelheid>
+               <volgens_afspraak_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.429"/>
+               <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                               code="9"
+                               displayName="Oraal"
+                               codeSystemName="G-Standaard Toedieningswegen"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.430"/>
+               <toedieningssnelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1330">
+                  <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1334">
+                     <nominale_waarde value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1336"/>
+                  </waarde>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1338"/>
+                  <tijdseenheid value="3"
+                                unit="uur"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1339"/>
+               </toedieningssnelheid>
+               <prik_plak_locatie value="toch maar oraal gegeven"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.702"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_920_MtdWds_MA_1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1168"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1324">
+                  <identificatie value="MBH_920_MtdWds_TA_1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1169"/>
+               </relatie_toedieningsafspraak>
+               <relatie_wisselend_doseerschema>
+                  <identificatie value="MBH_920_MtdWds_WDS_1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.999.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
+               </relatie_wisselend_doseerschema>
+               <toediener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.438">
+                     <toediener_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1357"/>
+                  </patient>
                </toediener>
                <medicatie_toediening_reden_van_afwijken code="DISCONT"
                                                         codeSystem="2.16.840.1.113883.5.8"
