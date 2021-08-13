@@ -63,8 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- There's no mapping from the zib to the status, so we'll default to unknown -->
                 <status value="unknown"/>
                 
-                <!-- TODO: Proposed to use proposal as default, but this is not definite -->
-                <intent value="proposal"/>
+                <intent value="order"/>
                 
                 <category>
                     <coding>

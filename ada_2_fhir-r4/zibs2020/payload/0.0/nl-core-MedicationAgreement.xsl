@@ -112,8 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:attribute>
                 </status>
                 
-                <!-- TODO: Proposed to use proposal, but this isn't definitive yet -->
-                <intent value="proposal"/>
+                <intent value="order"/>
                 
                 <category>
                     <coding>
