@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:Resource/* | f:Patient | f:Practitioner | f:PractitionerRole | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Encounter" mode="doResourceInResultdoc">
         <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile[last()]/@value, './')[last()]"/>
-        <xsl:variable name="code" select="f:code/f:coding/f:code/@value"/>
+        <xsl:variable name="code" select="replace(f:code/f:coding/f:code/@value,':','')"/>
         <xsl:result-document href="../fhir_instance/Gebz-{$usecase}-{$zib-name}{$code}-{f:id/@value}.xml"> 
             <xsl:apply-templates select="." mode="ResultOutput"/>
         </xsl:result-document>

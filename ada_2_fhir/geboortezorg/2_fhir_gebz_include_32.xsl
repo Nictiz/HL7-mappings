@@ -41,6 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="dateT" as="xs:date?"/>
     
     <xsl:param name="vrouwId" select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/vrouw/demografische_gegevens/patient/@value"/><!-- alleen voor 3.2 -->
+    <xsl:param name="kindId" select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/kind/demografische_gegevens/patient/@value"/><!-- alleen voor 3.2 -->
 
     <!-- ada instances -->
     <xsl:param name="patient-ada" as="element()*">
@@ -52,8 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:param>
 
     <xsl:variable name="kind-ada" as="element()*">
-        <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id='Kind2']"></xsl:copy-of><!-- todo: filter op kind -->
-        <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id='Kind3']"></xsl:copy-of><!-- todo: filter op kind -->
+        <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id=$kindId]"></xsl:copy-of>
     </xsl:variable>
 
     <xsl:param name="zorginstelling-ada" as="element()*">
@@ -346,7 +346,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- observations -->
     <xsl:variable name="observations" as="element()*">       
         <!-- maternale labonderzoekgegevens -->
-        <xsl:for-each-group select="//(laboratorium_test_bloedgroep | laboratorium_test_rhesus_d | laboratorium_test_rhesus_c | laboratorium_test_hb)[not(@datatype='reference')]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(laboratorium_test_bloedgroep | laboratorium_test_rhesus_d | laboratorium_test_rhesus_c | laboratorium_test_hb | laboratorium_test_torch)[not(@datatype='reference')]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <xsl:variable name="labtest-ada" as="element()*">
@@ -387,6 +387,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <xsl:variable name="elementName" select="name(.)"/>
+            <xsl:variable name="childId" select="ancestor::kind/demografische_gegevens/patient/@value"/>
             <unieke-bcobservation xmlns="">
               <group-key xmlns="">
                   <xsl:value-of select="current-grouping-key()"/>
@@ -396,7 +397,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
               </reference-display>
               <xsl:call-template name="bcObservationEntry">
                   <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                  <xsl:with-param name="adaChild" select="$kind-ada"/>
+                  <xsl:with-param name="adaChild" select="$kind-ada[@id=$childId]"/><!-- todo filter kind bij meerling -->
               </xsl:call-template>
             </unieke-bcobservation>
         </xsl:for-each-group>
@@ -424,7 +425,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- bevalling, geboorte en obstetrische verrichtingen -->
     <xsl:variable name="procedures" as="element()*">
-        <xsl:for-each select="//bevalling | //baring | //verrichting_zwangerschap | //verrichting_kindspecifieke_maternale_verrichtingen">
+        <xsl:for-each select="//bevalling | //uitdrijvingsfase | //verrichting_zwangerschap | //verrichting_kindspecifieke_maternale_verrichtingen">
             <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
             <xsl:variable name="theGroupElement" select="$verrichtingen[group-key = $theGroupKey]" as="element()?"/>
             <xsl:variable name="resourceId" select="$theGroupElement/f:entry/f:resource/f:Procedure/f:id/@value"/>

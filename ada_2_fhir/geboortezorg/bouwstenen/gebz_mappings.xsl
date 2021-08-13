@@ -103,6 +103,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="bc-coding" mode="doTerminologyMapping" match="/" as="element()">      
         <xsl:variable name="concept" select="key('dataset-concept-lookup', @conceptId, $dataset-doc)"/>   
         <xsl:choose>
+            <!-- todo: nettere oplossing hiervoor vinden -->
+            <xsl:when test="@conceptId='2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1422'">
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="8352-7"/>
+                    <display value="Clothing worn during measure"/>
+                </coding>                   
+            </xsl:when>
             <xsl:when test="$concept">
                 <xsl:for-each select="$concept">
                    <xsl:variable name="terminologies">

@@ -185,13 +185,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- maritalStatus -->
 
                     <!-- multipleBirth -->
-                    <xsl:for-each select="meerling_indicator | multiple_birth_indicator">
-                        <multipleBirthBoolean>
-                            <xsl:call-template name="boolean-to-boolean">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </multipleBirthBoolean>
-                    </xsl:for-each>
+                    <xsl:choose>
+                        <xsl:when test="rangnummer">   
+                            <xsl:for-each select="rangnummer">  
+                                <multipleBirthInteger value = "{./@value}"/>
+                            </xsl:for-each>
+                        </xsl:when> 
+                        <xsl:otherwise>
+                            <xsl:for-each select="meerling_indicator | multiple_birth_indicator">
+                                <multipleBirthBoolean>
+                                    <xsl:call-template name="boolean-to-boolean">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </multipleBirthBoolean>
+                            </xsl:for-each>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <!-- photo -->
 
                     <!-- contact -->

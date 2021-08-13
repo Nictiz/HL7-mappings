@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="bcProcedureReference" match="bevalling | baring | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" mode="doBcProcedureReference" as="element()*">
+    <xsl:template name="bcProcedureReference" match="bevalling | baring | uitdrijvingsfase | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" mode="doBcProcedureReference" as="element()*">
         <xsl:variable name="theIdentifier" select="."/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <!-- get id from verrichtingen ipv procedures ivm circular references -->
@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Procedure.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcProcedureEntry" match="bevalling | baring | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" mode="doBcProcedureEntry" as="element(f:entry)">
+    <xsl:template name="bcProcedureEntry" match="bevalling | baring | uitdrijvingsfase | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" mode="doBcProcedureEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
@@ -97,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of an Observation resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-procedure" mode="doProcedureResource" match="bevalling | baring | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" as="element()">
+    <xsl:template name="bc-procedure" mode="doProcedureResource" match="bevalling | baring | uitdrijvingsfase | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
@@ -128,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </identifier>   
                 </xsl:for-each>
-                <xsl:for-each select="ancestor::bevalling | ancestor::*/bevalling | ancestor::baring |ancestor::postnatale_fase">
+                <xsl:for-each select="ancestor::bevalling | ancestor::*/bevalling | ancestor::baring | ancestor::uitdrijvingsfase |ancestor::postnatale_fase">
                     <xsl:if test="$elementName!='bevalling'">
                         <partOf>
                             <xsl:call-template name="bcProcedureReference"/>
@@ -161,7 +161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </code>
                 <xsl:choose>
-                    <xsl:when test="$elementName='baring'">
+                    <xsl:when test="$elementName=('baring','uitdrijvingsfase')">
                         <xsl:for-each select="$adaChild">
                             <subject>
                                 <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
@@ -203,7 +203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="pregnancyReference"/>
                     </reasonReference>
                 </xsl:for-each>
-                <xsl:for-each select="ancestor::*/*[@id=$indicatieProbleemId]">
+                <xsl:for-each select="ancestor::*/descendant::*[@id=$indicatieProbleemId]">
                     <reasonReference>
                         <xsl:call-template name="bcConditionReference"/>
                     </reasonReference>

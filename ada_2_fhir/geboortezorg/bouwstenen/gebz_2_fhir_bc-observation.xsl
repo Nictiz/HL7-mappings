@@ -122,7 +122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="."/>
                     </xsl:for-each-group>
                 </meta>
-                <xsl:if test="$parentElemName!='lichamelijk_onderzoek_kind'">
+                <xsl:if test="not(ancestor::lichamelijk_onderzoek_kind)"><!-- was: $parentElemName!='lichamelijk_onderzoek_kind -->
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
                         <valueReference>
                             <xsl:for-each select="ancestor::zwangerschap">
@@ -142,7 +142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="bc-coding"/>
                 </code>
                 <xsl:choose>
-                    <xsl:when test="$adaChild and $parentElemName='lichamelijk_onderzoek_kind'">
+                    <xsl:when test="$adaChild and ancestor::lichamelijk_onderzoek_kind"><!-- was: $parentElemName='lichamelijk_onderzoek_kind -->
                         <xsl:for-each select="$adaChild">
                             <subject>
                                 <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
@@ -184,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>                         
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:for-each select="../node()[name(.)='datum_bepaling' or substring(name(.),string-length(name(.)) + 1 - string-length('datum_tijd'), string-length(name(.)))='datum_tijd']">
+                <xsl:for-each select="(node()|../node())[name(.)='datum_bepaling' or substring(name(.),string-length(name(.)) + 1 - string-length('datum_tijd'), string-length(name(.)))='datum_tijd']">
                     <effectiveDateTime value="{@value}">
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
@@ -249,7 +249,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                     </method>
                 </xsl:for-each>
-                <xsl:for-each select="systolische_bloeddruk | diastolische_bloeddruk | ../hartslag_regelmatigheid">
+                <xsl:for-each select="systolische_bloeddruk | diastolische_bloeddruk | ../hartslag_regelmatigheid | ../kleding">
                     <component>
                         <code>
                             <xsl:call-template name="bc-coding"/>
