@@ -10,7 +10,7 @@
    <realmCode code="NL"/>
    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9329"/>
-   <id extension="931a2cf8-fb55-11eb-1126-020000000000"
+   <id extension="66e93988-fc47-11eb-6604-020000000000"
        root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9328.1.2.3.999"/>
    <code code="52981000146104"
          codeSystem="2.16.840.1.113883.6.96"
@@ -84,7 +84,7 @@
                   <substanceAdministration classCode="SBADM" moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9324"/>
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9323"/>
-                     <id extension="MBH_920_interval_MA-JNK"
+                     <id extension="MBH_920_interval_MA"
                          root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                      <code code="33633005"
                            displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -149,6 +149,10 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                            <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
                               <repeat>
+                                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                    <valueBoolean value="true"/>
+                                 </extension>
+                                 <frequency value="1"/>
                                  <period value="8"/>
                                  <periodUnit value="h"/>
                               </repeat>
@@ -169,7 +173,7 @@
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                            <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                               extension="MBH_920_interval-JNK"/>
+                               extension="MBH_920_interval"/>
                            <code code="1"
                                  displayName="Medicamenteuze behandeling"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -180,7 +184,7 @@
                <entry>
                   <supply classCode="SPLY" moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9356"/>
-                     <id extension="MBH_920_interval_VV-JNK"
+                     <id extension="MBH_920_interval_VV"
                          root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                      <code code="52711000146108"
                            displayName="Verstrekkingsverzoek"
@@ -259,7 +263,7 @@
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                            <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                               extension="MBH_920_interval-JNK"/>
+                               extension="MBH_920_interval"/>
                            <code code="1"
                                  displayName="Medicamenteuze behandeling"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

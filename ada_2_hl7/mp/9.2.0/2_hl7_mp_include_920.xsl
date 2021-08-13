@@ -1479,7 +1479,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
 
         <xsl:for-each select="$in">
-            <xsl:for-each select="(stoptype | medicatieafspraak_stoptype)[.//(@value | @code)]">
+            <xsl:for-each select="(stoptype | medicatieafspraak_stop_type)[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9372_20210616133243"/>
                 </entryRelationship>
