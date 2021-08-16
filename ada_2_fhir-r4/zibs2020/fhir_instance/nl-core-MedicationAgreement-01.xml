@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MedicationAgreement-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Van 8-9-2017 tot 18-9-2017 1x per dag 1 stuk. Vanaf 18-9-2017 staken."/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+      <valuePeriod>
+         <start value="2016-09-08"/>
+         <end value="2016-09-18"/>
+      </valuePeriod>
+   </extension>
+   <status value="stopped"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="voorschrijven"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-MedicationAgreement-01-Medication-01"/>
+      <type value="Medication"/>
+      <display value="LISINOPRIL 10MG TABLET"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <authoredOn value="2016-09-08T18:00:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-MedicationAgreement-01-PractitionerRole-01"/>
+      <type value="PractitionerRole"/>
+      <display value="D. Bakker"/>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="58848006"/>
+         <display value="Gebrek aan geneesmiddeleffect"/>
+      </coding>
+   </reasonCode>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="true"/>
+            </extension>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <doseAndRate>
+         <doseQuantity>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="{stuk}"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationRequest>
