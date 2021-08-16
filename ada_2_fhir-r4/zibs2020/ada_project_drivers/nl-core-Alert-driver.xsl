@@ -44,6 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:call-template name="nl-core-Alert">
             <xsl:with-param name="subject" select="$subject"/>
+            <xsl:with-param name="problem" select="conditie/probleem" as="element()?"/>
         </xsl:call-template>
     </xsl:template>
     

@@ -38,6 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="alert" name="nl-core-Alert" mode="nl-core-Alert" as="element(f:Flag)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="problem" select="conditie/probleem/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Flag>
@@ -46,11 +47,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Alert"/>
                 </meta>
                 
-                <xsl:for-each select="conditie/probleem">
+                <xsl:for-each select="$problem">
                     <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                         <valueReference>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="in" select="$problem"/>
                                 <xsl:with-param name="profile" select="'nl-core-Problem'"/>
                             </xsl:call-template>
                         </valueReference>
@@ -67,6 +68,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
+                <!--  Guidance as given by the profile:
+                    * EndDateTime present and in the past: _inactive_
+                    * EndDateTime absent: _active_
+                    * EndDateTime present and in the future - goes against both FHIR and zib definitions, but in a case where this might occur: _active_
+                -->
                 <status>
                     <xsl:choose>
                         <xsl:when test="xs:date(eind_datum_tijd/@value) lt current-date() or xs:dateTime(eind_datum_tijd/@value) lt current-dateTime()">
@@ -92,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </code>
                         </xsl:for-each>
                     </xsl:when>
-                    <xsl:when test="not(alert_naam) and conditie/probleem">
+                    <xsl:when test="not(alert_naam) and $problem">
                         <code>
                             <coding>
                                 <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
@@ -100,11 +106,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <display value="Not Applicable"/>
                             </coding>
                         </code>
-                    </xsl:when>
-                    <xsl:when test="(alert_naam and conditie/probleem) or (not(alert_naam) and not(conditie/probleem))">
-                        <xsl:message terminate="no">
-                            Warning: exactly one of the following concept Condition::Concern and AlertName SHALL be present.
-                        </xsl:message>
                     </xsl:when>
                 </xsl:choose>
                 
@@ -117,24 +118,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:if test="begin_datum_tijd or eind_datum_tijd">
                     <period>
-                        <xsl:if test="begin_datum_tijd">
+                        <xsl:for-each select="begin_datum_tijd">
                             <start>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(begin_datum_tijd/@value)"/>
+                                        <xsl:with-param name="dateTime" select="@value"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </start>
-                        </xsl:if>
-                        <xsl:if test="eind_datum_tijd">
+                        </xsl:for-each>
+                        <xsl:for-each select="eind_datum_tijd">
                             <end>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(eind_datum_tijd/@value)"/>
+                                        <xsl:with-param name="dateTime" select="@value"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </end>
-                        </xsl:if>
+                        </xsl:for-each>
                     </period>
                 </xsl:if>
             </Flag>
@@ -166,14 +167,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="alert" mode="_generateDisplay">
         <xsl:variable name="parts">
             <xsl:text>Alert</xsl:text>
-            <xsl:value-of select="alert_type/@displayName"/>
             <xsl:value-of select="alert_naam/@displayName"/>
-            <xsl:value-of select="concat(waarneming_gebruik/hoeveelheid/@value, waarneming_gebruik/hoeveelheid/@unit)"/>
             <xsl:if test="begin_datum_tijd/@value">
-                <xsl:value-of select="concat('start datum', begin_datum_tijd/@value)"/>
+                <xsl:value-of select="concat('start datum: ', begin_datum_tijd/@value)"/>
             </xsl:if>
             <xsl:if test="eind_datum_tijd/@value">
-                <xsl:value-of select="concat('eind datum', eind_datum_tijd/@value)"/>
+                <xsl:value-of select="concat('eind datum: ', eind_datum_tijd/@value)"/>
             </xsl:if>
         </xsl:variable>
         <xsl:value-of select="string-join($parts, ', ')"/>     
