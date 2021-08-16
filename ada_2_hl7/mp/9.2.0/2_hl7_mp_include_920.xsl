@@ -1144,7 +1144,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
+    <xd:doc>
+        <xd:desc>Reden voor medicatiegebruik</xd:desc>
+        <xd:param name="in">ada element containing text for reason medication use, defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9390_20210816074229">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:for-each select="$in">
+            <observation classCode="OBS" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9114"/>
+                <code code="11611000146100" displayName="Reden medicatiegebruik" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                <xsl:call-template name="makeText"/>
+            </observation>
+        </xsl:for-each>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x but is a temporary backup. Should be deleted after 9349 has been approved.</xd:desc>
@@ -1664,9 +1677,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Reden gebruik -->
-            <xsl:for-each select="reden_gebruik[.//(@value | @code)]">
+            <xsl:for-each select="reden_gebruik[@value | @nullFlavor]">
                 <entryRelationship typeCode="RSON">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9114_20160710170744"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9390_20210816074229"/>
                 </entryRelationship>
             </xsl:for-each>
 
@@ -1678,7 +1691,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Toelichting -->
-            <xsl:for-each select="toelichting[.//(@value | @code)]">
+            <xsl:for-each select="toelichting[@value | @code]">
                 <entryRelationship typeCode="SUBJ" inversionInd="true">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                 </entryRelationship>
@@ -1697,7 +1710,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Kopie-indicator -->
-            <xsl:if test="kopie_indicator[.//(@value | @code)]">
+            <xsl:if test="kopie_indicator[@value | @code | @nullFlavor]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
                         <xsl:with-param name="kopie-ind" select="kopie_indicator"/>

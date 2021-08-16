@@ -1929,16 +1929,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Reden voor medicatiegebruik</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9114_20160710170744">
-        <!--Reden voor medicatiegebruik-->
-        <observation classCode="OBS" moodCode="EVN">
+         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9114"/>
             <code code="6" displayName="Reden medicatiegebruik" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties"/>
-            <text>
-                <xsl:value-of select="./@value"/>
-            </text>
+             <xsl:call-template name="makeText"/>             
         </observation>
     </xsl:template>
 
