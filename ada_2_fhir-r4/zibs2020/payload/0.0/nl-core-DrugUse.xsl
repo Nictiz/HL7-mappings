@@ -60,24 +60,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:if test="waarneming_gebruik/start_datum or waarneming_gebruik/stop_datum">
                     <effectivePeriod>
-                        <xsl:if test="waarneming_gebruik/start_datum">
+                        <xsl:for-each select="waarneming_gebruik/start_datum">
                             <start>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(waarneming_gebruik/start_datum/@value)"/>
+                                        <xsl:with-param name="dateTime" select="@value"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </start>
-                        </xsl:if>
-                        <xsl:if test="waarneming_gebruik/stop_datum">
+                        </xsl:for-each>
+                        <xsl:for-each select="waarneming_gebruik/stop_datum">
                             <end>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(waarneming_gebruik/stop_datum/@value)"/>
+                                        <xsl:with-param name="dateTime" select="@value"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </end>
-                        </xsl:if>
+                        </xsl:for-each>
                     </effectivePeriod>
                 </xsl:if>
                 
@@ -165,14 +165,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="drugs_gebruik" mode="_generateDisplay">
         <xsl:variable name="parts">
-            <xsl:text>DrugUse</xsl:text>
-            <xsl:value-of select="drugs_gebruik_status/@displayName"/>
-            <xsl:value-of select="drugs_of_geneesmiddel_soort/@displayName"/>
+            <xsl:text>DrugUse observartion</xsl:text>
             <xsl:if test="waarneming_gebruik/start_datum/@value">
-                <xsl:value-of select="concat('start datum', waarneming_gebruik/start_datum/@value)"/>
+                <xsl:value-of select="concat('start datum: ', waarneming_gebruik/start_datum/@value)"/>
             </xsl:if>
             <xsl:if test="waarneming_gebruik/stop_datum/@value">
-                <xsl:value-of select="concat('start datum', waarneming_gebruik/stop_datum/@value)"/>
+                <xsl:value-of select="concat('stop datum: ', waarneming_gebruik/stop_datum/@value)"/>
             </xsl:if>
         </xsl:variable>
         <xsl:value-of select="string-join($parts, ', ')"/>     

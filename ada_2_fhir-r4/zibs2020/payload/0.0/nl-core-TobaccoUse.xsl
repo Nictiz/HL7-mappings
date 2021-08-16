@@ -60,24 +60,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:if test="waarneming_gebruik/start_datum or waarneming_gebruik/stop_datum">
                     <effectivePeriod>
-                        <xsl:if test="waarneming_gebruik/start_datum">
+                        <xsl:for-each select="waarneming_gebruik/start_datum">
                             <start>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(waarneming_gebruik/start_datum/@value)"/>
+                                        <xsl:with-param name="dateTime" select="@value"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </start>
-                        </xsl:if>
-                        <xsl:if test="waarneming_gebruik/stop_datum">
+                        </xsl:for-each>
+                        <xsl:for-each select="waarneming_gebruik/stop_datum">
                             <end>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(waarneming_gebruik/stop_datum/@value)"/>
+                                        <xsl:with-param name="dateTime" select="@value"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </end>
-                        </xsl:if>
+                        </xsl:for-each>
                     </effectivePeriod>
                 </xsl:if>
                 
@@ -101,6 +101,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="http://snomed.info/sct"/>
                                 <code value="53661000146106"/>
+                                <!-- There is no NL display in Snomed for this code. -->
                                 <display value="Type of tobacco used"/>
                             </coding>
                         </code>
@@ -116,6 +117,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="http://snomed.info/sct"/>
                                 <code value="266918002"/>
+                                <!-- There is no NL display in Snomed for this code. -->
                                 <display value="Tobacco smoking consumption"/>
                             </coding>
                         </code>
@@ -167,14 +169,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="tabak_gebruik" mode="_generateDisplay">
         <xsl:variable name="parts">
-            <xsl:text>TobaccoUse</xsl:text>
-            <xsl:value-of select="tabak_gebruik_status/@displayName"/>
+            <xsl:text>TobaccoUse observation</xsl:text>
             <xsl:value-of select="soort_tabak_gebruik/@displayName"/>
             <xsl:if test="waarneming_gebruik/start_datum/@value">
-                <xsl:value-of select="concat('start datum', waarneming_gebruik/start_datum/@value)"/>
+                <xsl:value-of select="concat('start datum:', waarneming_gebruik/start_datum/@value)"/>
             </xsl:if>
             <xsl:if test="waarneming_gebruik/stop_datum/@value">
-                <xsl:value-of select="concat('start datum', waarneming_gebruik/stop_datum/@value)"/>
+                <xsl:value-of select="concat('stop datum: ', waarneming_gebruik/stop_datum/@value)"/>
             </xsl:if>
         </xsl:variable>
         <xsl:value-of select="string-join($parts, ', ')"/>     
