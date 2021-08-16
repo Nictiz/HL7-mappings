@@ -1152,7 +1152,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:for-each select="$in">
             <observation classCode="OBS" moodCode="EVN">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9114"/>
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9390"/>
                 <code code="11611000146100" displayName="Reden medicatiegebruik" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                 <xsl:call-template name="makeText"/>
             </observation>
