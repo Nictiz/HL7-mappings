@@ -60,6 +60,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
+                <xsl:for-each select="financiele_indicatiecode">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept"/>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each> 
+                
                 <!-- There's no mapping from the zib to the status, so we'll default to unknown -->
                 <status value="unknown"/>
                 
