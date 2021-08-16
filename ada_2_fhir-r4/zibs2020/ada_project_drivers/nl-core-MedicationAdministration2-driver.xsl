@@ -27,7 +27,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
+    <xsl:template match="/nm:bundle">
+        <xsl:apply-templates mode="_doTransform" select="$bundle/medicatie_toediening"/>
+    </xsl:template>
+    
     <xsl:template match="//medicatie_toediening2_registratie/medicatie_toediening">
+        <xsl:apply-templates mode="_doTransform" select="."/>
+    </xsl:template>
+    
+    <xsl:template mode="_doTransform" match="medicatie_toediening">
+        <xsl:variable name="subject" as="element()?">
+            <xsl:call-template name="_resolveAdaPatient">
+                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
+            </xsl:call-template>
+        </xsl:variable>
+        
+        <xsl:call-template name="nl-core-MedicationAdministration2">
+            <xsl:with-param name="subject" select="$subject"/>
+            <xsl:with-param name="medicationReference" select="referenties/farmaceutisch_product"/>
+            <xsl:with-param name="administrationAgreement" select="gerelateerde_afspraak/toedieningsafspraak" as="element()?" />
+            <xsl:with-param name="request" select="gerelateerde_afspraak/medicatieafspraak" as="element()?"/>
+            <xsl:with-param name="performer" select="toediener/*" as="element()?"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+<!--    <xsl:template match="//medicatie_toediening2_registratie/medicatie_toediening">
         <xsl:variable name="subject" as="element()?">
             <xsl:call-template name="_resolveAdaPatient"/>
         </xsl:variable>
@@ -39,6 +63,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:with-param>
         </xsl:apply-templates>
-    </xsl:template>
+    </xsl:template>-->
     
 </xsl:stylesheet>

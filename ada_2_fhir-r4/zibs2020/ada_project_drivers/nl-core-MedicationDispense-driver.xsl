@@ -27,7 +27,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
+    <xsl:template match="/nm:bundle">
+        <xsl:apply-templates mode="_doTransform" select="$bundle/medicatieverstrekking"/>
+    </xsl:template>
+    
     <xsl:template match="//medicatieverstrekking_registratie/medicatieverstrekking">
+        <xsl:apply-templates mode="_doTransform" select="."/>
+    </xsl:template>
+    
+    <xsl:template mode="_doTransform" match="medicatieverstrekking">
+        <xsl:variable name="subject" as="element()?">
+            <xsl:call-template name="_resolveAdaPatient">
+                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:call-template name="nl-core-MedicationDispense">
+            <xsl:with-param name="subject" select="$subject"/>
+            <xsl:with-param name="medicationReference" select="referenties/farmaceutisch_product"/>
+            <xsl:with-param name="performer" select="referenties/zorgaanbieder"/>
+            <xsl:with-param name="authorizingPrescription" select="referenties/verstrekkingsverzoek"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <!--<xsl:template match="//medicatieverstrekking_registratie/medicatieverstrekking">
         <xsl:variable name="subject" as="element()?">
             <xsl:call-template name="_resolveAdaPatient"/>
         </xsl:variable>
@@ -41,6 +63,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:with-param>
         </xsl:apply-templates>
-    </xsl:template>
+    </xsl:template>-->
     
 </xsl:stylesheet>
