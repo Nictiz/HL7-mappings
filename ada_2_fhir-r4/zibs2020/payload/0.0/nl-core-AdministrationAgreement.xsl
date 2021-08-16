@@ -103,7 +103,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
                 
-                <!-- TODO: Add status. The guidance is not clear how this relates to CancelledIndicator and other zib concepts -->
+                <!-- Proposed way to add a value for the mandatory status element. 
+                     See discussion here: https://github.com/Nictiz/Nictiz-R4-zib2020/issues/135 -->
+                <status>
+                    <xsl:attribute name="value">
+                        <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
+                             so we can perform the required logic using a start and end datetime. -->
+                        <xsl:variable name="period" as="element(f:temp)?">
+                            <xsl:call-template name="ext-TimeInterval.Period">
+                                <xsl:with-param name="in" select="gebruiksperiode"/>
+                                <xsl:with-param name="wrapIn">temp</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="geannuleerd_indicator/@value = 'true'">entered-in-error</xsl:when>
+                            <xsl:when test="
+                                $period/f:start[@value] and 
+                                ($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &lt; current-date()) or
+                                ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &lt; current-dateTime())">completed</xsl:when>
+                            <xsl:when test="
+                                $period/f:start[@value] and $period/f:end[@value] and 
+                                (($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &gt; current-date()) or 
+                                ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &gt; current-dateTime())) and
+                                (($period/f:end[@value]  castable as xs:date     and xs:date($period/f:end/@value)       &lt; current-date()) or
+                                ($period/f:end[@value]  castable as xs:dateTime and xs:dateTime($period/f:end/@value)   &lt; current-dateTime()))">completed</xsl:when>
+                            <xsl:otherwise>unknown</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </status>
     
                 <category>
                     <coding>
