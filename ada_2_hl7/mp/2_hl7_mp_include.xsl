@@ -392,21 +392,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="low" as="element()?"/>
         <xsl:param name="width" as="element()?"/>
         <xsl:param name="high" as="element()?"/>
-        <xsl:if test="$low[1] instance of element()">
+        <xsl:if test="$low[@value][1] instance of element()">
             <xsl:for-each select="$low">
                 <low>
                     <xsl:call-template name="makeTSValueAttr"/>
                 </low>
             </xsl:for-each>
         </xsl:if>
-        <xsl:if test="$width[1] instance of element()">
+        <xsl:if test="$width[@value | @unit][1] instance of element()">
             <xsl:for-each select="$width">
                 <width>
                     <xsl:call-template name="makeTimePQValueAttribs"/>
                 </width>
             </xsl:for-each>
         </xsl:if>
-        <xsl:if test="$high[1] instance of element()">
+        <xsl:if test="$high[@value | @nullFlavor][1] instance of element()">
             <xsl:for-each select="$high">
                 <high>
                     <xsl:call-template name="makeTSValueAttr"/>
@@ -1932,10 +1932,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Reden voor medicatiegebruik</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9114_20160710170744">
-         <observation classCode="OBS" moodCode="EVN">
+        <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9114"/>
             <code code="6" displayName="Reden medicatiegebruik" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties"/>
-             <xsl:call-template name="makeText"/>             
+            <xsl:call-template name="makeText"/>
         </observation>
     </xsl:template>
 
@@ -3048,14 +3048,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </observation>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Creates the response to a proposed dispense request</xd:desc>
         <xd:param name="in">the ada element for antwoord</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9212_20180420174745" match="antwoord" mode="HandleAvvv">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <act classCode="ACT" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9212"/>
@@ -3070,29 +3070,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <xsl:for-each select="antwoord_verstrekkingsverzoek[@code]">
                     <entryRelationship typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9213_20180420181642"/>                        
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9213_20180420181642"/>
                     </entryRelationship>
                 </xsl:for-each>
                 <xsl:for-each select="relatie_voorstel_gegevens/identificatie[@value]">
                     <entryRelationship typeCode="SUBJ">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9214_20180423130606"/>                        
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9214_20180423130606"/>
                     </entryRelationship>
                 </xsl:for-each>
-                
-                
+
+
             </act>
         </xsl:for-each>
-        
-     
+
+
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Observatie met het inhoudelijke antwoord op voorstel verstrekkingsverzoek</xd:desc>
         <xd:param name="in">the ada element for antwoord_verstrekkingsverzoek, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9213_20180420181642">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <observation classCode="OBS" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9213"/>
@@ -3101,26 +3101,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </observation>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Observatie met het inhoudelijke antwoord op voorstel verstrekkingsverzoek</xd:desc>
         <xd:param name="in">the ada element for antwoord_verstrekkingsverzoek, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9214_20180423130606">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <organizer classCode="CLUSTER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9214"/>
                 <xsl:call-template name="makeIIValue">
-                    <xsl:with-param name="elemName">id</xsl:with-param>                    
+                    <xsl:with-param name="elemName">id</xsl:with-param>
                 </xsl:call-template>
                 <code code="104" displayName="Sturen voorstel verstrekkingsverzoek" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
                 <statusCode nullFlavor="NI"/>
-             </organizer>
+            </organizer>
         </xsl:for-each>
     </xsl:template>
-    
+
 
     <xd:doc>
         <xd:desc> Verstrekkingsverzoek vanaf 9.1.0</xd:desc>

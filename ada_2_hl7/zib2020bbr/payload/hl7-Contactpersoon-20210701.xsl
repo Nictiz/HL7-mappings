@@ -35,8 +35,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- shared part 1, role, address, telecom -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.31_20210701000000">
-                    <xsl:with-param name="idMandatory">false</xsl:with-param>
-                    <xsl:with-param name="codeMandatory">true</xsl:with-param>                    
+                    <xsl:with-param name="idMandatory" select="false()"/>
+                    <xsl:with-param name="codeMandatory" select="true()"/>                    
                 </xsl:call-template>
 
                 <xsl:if test="(naamgegevens | relatie)[.//(@value | @code | @nullFlavor)]">
@@ -59,8 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.31_20210701000000" match="contactpersoon" mode="handleContactPersSharedPart1">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="idMandatory" as="xs:boolean">false</xsl:param>
-        <xsl:param name="codeMandatory" as="xs:boolean">false</xsl:param>
+        <xsl:param name="idMandatory" as="xs:boolean" select="false()"/>
+        <xsl:param name="codeMandatory" as="xs:boolean" select="false()"/>
 
         <xsl:for-each select="$in">
 
@@ -101,7 +101,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping of zib nl.zorg.Contactpersoon 3.4 concept in ADA to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.121.10.35</xd:desc>
         <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.35_20210701000000" match="contactpersoon" mode="handleContactPersRelEnt">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.35_20210701000000" match="contactpersoon" mode="handleContactPersAuth">
         <xsl:param name="in" as="element()?" select="."/>
 
 
@@ -113,7 +113,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <assignedAuthor>
 
                 <!-- shared part 1, role, address, telecom -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.31_20210701000000"/>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.31_20210701000000">
+                    <xsl:with-param name="idMandatory" select="true()"/>
+                    <xsl:with-param name="codeMandatory" select="false()"/>                    
+                </xsl:call-template>
 
                 <xsl:if test="(naamgegevens | relatie)[.//(@value | @code | @nullFlavor)]">
                     <assignedPerson>
