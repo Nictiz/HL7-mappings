@@ -92,6 +92,13 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
+        <!-- beschikbaarstellen_medicatiegegevens the repo stuff for testing purposes -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="fileset.dir" value="ada_instance_repo"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance_repo"/>
+        </antcall>
         
          <!-- medicatievoorschrift-->
         <antcall target="setup_sub">
@@ -245,6 +252,12 @@
             <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_repo"/>
+            <param name="xsl.out" value="hl7_instance_repo"/>
         </antcall>
         
         <!-- convert sturen_medicatievoorschrift -->
