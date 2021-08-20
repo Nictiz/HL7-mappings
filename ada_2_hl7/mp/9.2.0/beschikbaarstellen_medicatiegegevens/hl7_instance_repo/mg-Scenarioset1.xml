@@ -2048,7 +2048,11 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">1 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 2 nov 2020, tot en met 11 nov 2020, 1 maal per dag 1 stuk, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20201102000000"/>
+            <high value="20201111235959"/>
+         </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="Oraal"
@@ -2165,10 +2169,10 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 12 nov 2020, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal</text>
+         <text mediaType="text/plain">Vanaf 12 nov 2020, gedurende 18 dagen, 1 maal per dag 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20201112000000"/>
-            <width value="28" unit="d"/>
+            <width value="18" unit="d"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -2213,28 +2217,6 @@
                      codeSystemName="SNOMED CT"/>
                <text>Pantozol niet leverbaar</text>
             </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9175"/>
-               <code code="12"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
-                     displayName="Aanvullende informatie Toedieningsafspraak"/>
-               <value xsi:type="CE"
-                      code="2"
-                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"
-                      displayName="Niet leverbaar"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="SUBJ" inversionInd="true">
-            <act classCode="ACT" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
-               <code code="48767-8"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     codeSystemName="LOINC"
-                     displayName="Annotation comment"/>
-               <text mediaType="text/plain">Preferentie</text>
-            </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
@@ -3128,7 +3110,7 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 22 dec 2020, tot en met 27 dec 2020, gedurende 5 2 maal per 4 dagen 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 22 dec 2020, tot en met 27 dec 2020, 3 maal per dag 2 stuks, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20201222000000"/>
             <high value="20201227235959"/>
@@ -3173,24 +3155,14 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean>
-                           <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                              <valueCode value="NA"/>
-                           </extension>
-                        </valueBoolean>
-                     </extension>
-                     <boundsDuration>
-                        <value value="5"/>
-                     </boundsDuration>
-                     <frequency value="2"/>
-                     <period value="4"/>
+                     <frequency value="3"/>
+                     <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
-                     <translation value="1"
+                  <center value="2" unit="1">
+                     <translation value="2"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -3215,15 +3187,15 @@
    <component typeCode="COMP">
       <supply classCode="SPLY" moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
-         <id extension=" MBH_920_nieuweMBHobvTA_MVE"
+         <id extension="MBH_920_nieuweMBHobvTA_MVE"
              root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
          <code displayName="Verstrekking"
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <effectiveTime value="20201222100000"/>
-         <quantity value="40" unit="1">
-            <translation value="40"
+         <quantity value="50" unit="1">
+            <translation value="50"
                          code="245"
                          displayName="stuk"
                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -3274,13 +3246,21 @@
       <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9322"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9321"/>
-         <id extension="MBH_920_nieuweMBHobvTA_MBG"
+         <id extension="MBH_920_nieuweMBHobvTA_MGB"
              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
          <code code="422979000"
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain"/>
+         <text mediaType="text/plain">Vanaf 22 dec 2020, tot en met 29 dec 2020, 3 maal per dag 2 stuks, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20201222100000"/>
+            <high value="20201229160000"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
@@ -3302,9 +3282,13 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201222100000"/>
+            <time value="20201229160000"/>
             <assignedAuthor>
-               <id nullFlavor="NI"/>
+               <id extension="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+               <code code="ONESELF"
+                     displayName="Self"
+                     codeSystem="2.16.840.1.113883.5.111"
+                     codeSystemName="RoleCode"/>
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="COMP">
@@ -3315,6 +3299,41 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL" value="true"/>
             </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
+               <id extension="MBH_920_nieuweMBHobvTA_TA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <code displayName="Toedieningsafspraak"
+                     code="422037009"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">

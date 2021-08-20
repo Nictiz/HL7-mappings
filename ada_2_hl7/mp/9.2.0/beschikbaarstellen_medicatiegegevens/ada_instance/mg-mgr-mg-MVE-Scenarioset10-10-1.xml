@@ -49,7 +49,78 @@
                       displayName="Man"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
          </patient>
-         <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259"/>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_ZINRvoorschrijven-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_920_ZINRvoorschrijven-KST"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieverstrekking conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346" comment="">
+               <identificatie value="MBH_920_ZINRvoorschrijven_MVE-KST"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="T+0D{14:05:00}"
+                                                  datatype="datetime"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347" comment="">
+                  <zorgaanbieder datatype="reference"
+                                 value="Apotheek_De_Gulle_Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.348"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358" comment="">
+                  <aantal value="150" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.700"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.701"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351" comment="">
+                  <farmaceutisch_product datatype="reference"
+                                         value="ZINR_INDAPAMIDE_14896087"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349" comment="">
+                  <identificatie value="MBH_920_ZINRvoorschrijven_VV-KST"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
+            <farmaceutisch_product id="ZINR_INDAPAMIDE_14896087"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment="">
+               <product_code code="14896087"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard ZI-nr"
+                             displayName="INDAPAMIDE SANDOZ TABLET 2,5MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="685410"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="INDAPAMIDE SANDOZ TABLET 2,5MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="2941"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="INDAPAMIDE 2,5MG TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="83593"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="INDAPAMIDE 2,5MG TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
+                           comment="">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
+            </zorgaanbieder>
+         </bouwstenen>
       </beschikbaarstellen_medicatiegegevens>
    </data>
 </adaxml>

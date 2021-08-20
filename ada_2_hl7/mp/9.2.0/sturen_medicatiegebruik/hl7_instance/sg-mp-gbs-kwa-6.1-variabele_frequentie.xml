@@ -21,8 +21,8 @@
          <id extension="999900602" root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">S.</given>
-               <family qualifier="BR">XXX_Jankie</family>
+               <given qualifier="IN">G.</given>
+               <family qualifier="BR">XXX_Hemsbergen</family>
             </name>
             <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
             <birthTime value="19631102"/>
@@ -39,7 +39,7 @@
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2021, tot en met 17 jan 2021, maal per dag stuks, Oraal</text>
+         <text mediaType="text/plain">Vanaf 1 jan 2021, tot en met 17 jan 2021, maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20210101000000"/>
             <high value="20210117235959"/>
@@ -65,7 +65,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20210117235959"/>
+            <time value="20210117160000"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -132,7 +132,15 @@
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
-               <doseQuantity/>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>

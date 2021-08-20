@@ -39,7 +39,11 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">1 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 2 nov 2020, tot en met 11 nov 2020, 1 maal per dag 1 stuk, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20201102000000"/>
+            <high value="20201111235959"/>
+         </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="Oraal"
@@ -156,10 +160,10 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 12 nov 2020, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal</text>
+         <text mediaType="text/plain">Vanaf 12 nov 2020, gedurende 18 dagen, 1 maal per dag 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20201112000000"/>
-            <width value="28" unit="d"/>
+            <width value="18" unit="d"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -204,28 +208,6 @@
                      codeSystemName="SNOMED CT"/>
                <text>Pantozol niet leverbaar</text>
             </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9175"/>
-               <code code="12"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
-                     displayName="Aanvullende informatie Toedieningsafspraak"/>
-               <value xsi:type="CE"
-                      code="2"
-                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"
-                      displayName="Niet leverbaar"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="SUBJ" inversionInd="true">
-            <act classCode="ACT" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
-               <code code="48767-8"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     codeSystemName="LOINC"
-                     displayName="Annotation comment"/>
-               <text mediaType="text/plain">Preferentie</text>
-            </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
