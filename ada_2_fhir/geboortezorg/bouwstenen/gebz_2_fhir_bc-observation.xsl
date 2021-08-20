@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="bcObservationReference" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht" mode="doBcObservationReference" as="element()*">
+    <xsl:template name="bcObservationReference" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht | alcohol_gebruik_status | drugs_gebruik_status | tabak_gebruik_status" mode="doBcObservationReference" as="element()*">
         <xsl:variable name="theIdentifier" select="."/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$observations[group-key = $theGroupKey]" as="element()?"/>
@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcObservationEntry" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht | bloeddruk | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" mode="doBcObservationEntry" as="element(f:entry)">
+    <xsl:template name="bcObservationEntry" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht | bloeddruk |  alcohol_gebruik_status | drugs_gebruik_status | tabak_gebruik_status | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" mode="doBcObservationEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
@@ -98,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="adaChild">Optional. ADA child patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht | bloeddruk | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" as="element()">
+    <xsl:template name="bc-observation" mode="doObservationResource" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding | tijdstip_actief_meepersen | type_partus | apgarscore_na_5_min | apgar_score_totaal | geboortegewicht | bloeddruk | alcohol_gebruik_status | drugs_gebruik_status | tabak_gebruik_status | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
@@ -125,7 +125,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="not(ancestor::lichamelijk_onderzoek_kind)"><!-- was: $parentElemName!='lichamelijk_onderzoek_kind -->
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
                         <valueReference>
-                            <xsl:for-each select="ancestor::zwangerschap">
+                            <xsl:for-each select="ancestor::zwangerschap | ancestor::zwangerschapsgegevens/zwangerschap">
                                 <xsl:call-template name="pregnancyReference"/>
                             </xsl:for-each>
                             <xsl:for-each select="ancestor::bevalling | ancestor::baring">

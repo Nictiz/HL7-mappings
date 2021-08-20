@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pregnancyId -->
     <!-- TODO: ophalen uit ada transactie (nu nog niet beschikbaar) -->
     <xsl:variable name="pregnancyId">
-        <xsl:for-each select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23 | med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart)/zwangerschap">
+        <xsl:for-each select="//med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/zwangerschap">
             <xsl:value-of select="graviditeit/@value | a_terme_datum/@value | definitieve_a_terme_datum/@value"/>
         </xsl:for-each>
     </xsl:variable>
@@ -326,12 +326,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <xsl:variable name="elementName" select="name(.)"/>
+            <xsl:variable name="encounterDate" select="datum_prenatale_controle/begin_datum_tijd/@value"/>
             <unieke-encounter xmlns="">
                 <group-key xmlns="">
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
                 <reference-display xmlns="">
-                    <xsl:value-of select="concat(replace($elementName, '_', ' '),$vrouwId)"/>
+                    <xsl:value-of select="concat(replace($elementName, '_', ' '),' ',$encounterDate,' ',$vrouwId)"/>
                 </reference-display>
                 <xsl:for-each select=".">
                     <xsl:call-template name="bcEncounterEntry">
@@ -383,7 +384,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-labobservation>
         </xsl:for-each-group>
         <!-- zwangerschaps- en bevallingsgegevens en kindspecifieke uitkomstgegevens -->
-        <xsl:for-each-group select="(//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding) | //(baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht)) | bloeddruk | apgar_score_totaal | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']))[not(@datatype='reference')]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="(//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | aterme_datum | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding) | //(baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht)) | bloeddruk | alcohol_gebruik_status | drugs_gebruik_status | tabak_gebruik_status | apgar_score_totaal | node()[substring(name(.),string-length(name(.)) + 1 - string-length('waarde'), string-length(name(.)))='waarde']))[not(@datatype='reference')]" group-by="nf:getGroupingKeyCustom(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <xsl:variable name="elementName" select="name(.)"/>
@@ -607,5 +608,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>   
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor/ancestor::kind/demografische_gegevens/patient/@value. Last one is added for observations having same value in multiple births. Else return empty</xd:desc>
+        <xd:param name="in"/>
+    </xd:doc>
+    <xsl:function name="nf:getGroupingKeyCustom" as="xs:string?">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:if test="$in">
+            <xsl:value-of select="upper-case(string-join(($in//@value, $in//@root, $in//@unit, $in//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in//@codeSystem[not(. = $oidHL7NullFlavor)],$in//@conceptId,$in//ancestor::kind/demografische_gegevens/patient/@value)/normalize-space(), ''))"/>
+        </xsl:if>
+    </xsl:function>
 
 </xsl:stylesheet>

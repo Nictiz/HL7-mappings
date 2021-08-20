@@ -160,22 +160,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </code>
-                <xsl:choose>
-                    <xsl:when test="$elementName=('baring','uitdrijvingsfase')">
-                        <xsl:for-each select="$adaChild">
-                            <subject>
-                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                            </subject>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:for-each select="$adaPatient">
-                            <subject>
-                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                            </subject>
-                        </xsl:for-each>  
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:for-each select="$adaPatient">
+                    <subject>
+                        <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                    </subject>
+                </xsl:for-each>  
                 <xsl:for-each select="ancestor::*/zwangerschap">
                     <context>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
@@ -198,7 +187,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </start>
                     </performedPeriod>
                 </xsl:for-each>
-                <xsl:for-each select="../zwangerschap | ../../zwangerschap | ../zwangerschapsgegevens/zwangerschap">
+                <xsl:for-each select="../zwangerschap | ../zwangerschapsgegevens/zwangerschap | ../../zwangerschapsgegevens/zwangerschap">
                     <reasonReference>
                         <xsl:call-template name="pregnancyReference"/>
                     </reasonReference>
