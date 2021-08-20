@@ -733,9 +733,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- medicatietoediening_reden_van_afwijken -->
-                <xsl:for-each select="medicatietoediening_reden_van_afwijken[.//(@value | @code)]">
+                <xsl:for-each select="medicatie_toediening_reden_van_afwijken[.//(@value | @code)]">
                     <entryRelationship typeCode="RSON">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9314_20200120115920"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557"/>
                     </entryRelationship>
                 </xsl:for-each>
 
@@ -745,7 +745,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                     </entryRelationship>
                 </xsl:for-each>
-
 
                 <!-- Relatie naar MA -->
                 <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value | @nullFlavor]">
@@ -760,6 +759,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value | @nullFlavor]">
                     <entryRelationship typeCode="REFR">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9101_20160624130316">
+                            <xsl:with-param name="identificatieElement" select="."/>
+                        </xsl:call-template>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!-- Relatie naar WDS -->
+                <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value | @nullFlavor]">
+                    <entryRelationship typeCode="REFR">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9381_20210617181505">
                             <xsl:with-param name="identificatieElement" select="."/>
                         </xsl:call-template>
                     </entryRelationship>
@@ -1647,14 +1655,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Gebruik indicator -->
-            <xsl:for-each select="gebruik_indicator[.//(@value | @code)]">
+            <xsl:for-each select="gebruik_indicator[.//(@value | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9189_20171026161543"/>
                 </entryRelationship>
             </xsl:for-each>
 
             <!-- Volgens afspraak indicator -->
-            <xsl:for-each select="volgens_afspraak_indicator[.//(@value | @code)]">
+            <xsl:for-each select="volgens_afspraak_indicator[.//(@value | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9317_20200120141110"/>
                 </entryRelationship>
@@ -1691,7 +1699,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Toelichting -->
-            <xsl:for-each select="toelichting[@value | @code]">
+            <xsl:for-each select="toelichting[@value | @nullFlavor]">
                 <entryRelationship typeCode="SUBJ" inversionInd="true">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                 </entryRelationship>
