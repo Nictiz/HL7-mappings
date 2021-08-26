@@ -244,21 +244,7 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-        </sequential>        
-        
-        <!-- bouwstenen transactions, we don't want cda for those -->
-        <sequential>
-            
-            <echo/>
-            <echo>${echo.label} ${build.dir}/xml-voorbeelden/bouwstenen_transacties/bouwstenen_transacties_org.xsl input files in ${build.dir}/xml-voorbeelden/ada_instance</echo>
-            <xslt force="true" style="${build.dir}/xml-voorbeelden/bouwstenen_transacties/bouwstenen_transacties_org.xsl" in="${build.dir}/xml-voorbeelden/bouwstenen_transacties/dummy.xml" out="${build.dir}/xml-voorbeelden/bouwstenen_transacties/dummy-out.xml" useimplicitfileset="false">
-                <param name="generateInstructionText" expression="true"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
-
+        </sequential>    
     </target>
 
     <target name="convert_ada_2_hl7_sub">

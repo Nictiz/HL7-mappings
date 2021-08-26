@@ -38,7 +38,11 @@
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">2 stuks, Oraal</text>
+         <text mediaType="text/plain">Vanaf 12 dec 2020, tot en met 10 jan 2021, 2 maal per dag 1 stuk, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20201212000000"/>
+            <high value="20210110235959"/>
+         </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="Oraal"
@@ -47,10 +51,14 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="17469"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="IBUPROFEN TABLET 600MG"
-                        codeSystemName="G-Standaard PRK">
+                  <code code="641898"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="IBUPROFEN PCH TABLET 600MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="17469"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="IBUPROFEN TABLET 600MG"
+                                  codeSystemName="G-Standaard PRK"/>
                      <translation code="42080"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
                                   displayName="IBUPROFEN TABLET 600MG"
@@ -60,42 +68,15 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20210110235959"/>
+            <time value="20210110100423"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
-               <assignedPerson>
-                  <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
-                  </name>
-               </assignedPerson>
-               <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                  <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
-                     <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-               </representedOrganization>
-            </assignedAuthor>
-         </author>
-         <informant>
-            <assignedEntity>
                <id extension="999910437" root="2.16.840.1.113883.2.4.6.3"/>
                <code code="ONESELF"
                      displayName="Self"
                      codeSystem="2.16.840.1.113883.5.111"
                      codeSystemName="RoleCode"/>
-            </assignedEntity>
-         </informant>
+            </assignedAuthor>
+         </author>
          <entryRelationship typeCode="COMP">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9189"/>
@@ -119,9 +100,16 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
-                     <translation value="2"
+                  <center value="1" unit="1">
+                     <translation value="1"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -171,13 +159,13 @@
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_920_QA1_MA"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <code code="33633005"
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
+               <id extension="MBH_920_QA1_TA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <code displayName="Toedieningsafspraak"
+                     code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"
-                     displayName="Medicatieafspraak"/>
+                     codeSystemName="SNOMED CT"/>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>

@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?nictiz status="example"?>
-<?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp92_vma.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
 <!--Generated from ada instance with title: "testbericht conversie ADA" and id: "vma-test1-arianne".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
@@ -39,10 +37,10 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 4 mar 2021, tot en met 2 apr 2021, 1 maal per 2 dagen 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 12 dec 2020, tot en met 10 jan 2021, 1 maal per 2 dagen 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20210304000000"/>
-            <high value="20210402235959"/>
+            <low value="20201212000000"/>
+            <high value="20210110235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -65,7 +63,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20210324115900"/>
+            <time value="20210101115900"/>
             <assignedAuthor>
                <id extension="999910437" root="2.16.840.1.113883.2.4.6.3"/>
                <code code="ONESELF"
@@ -100,13 +98,23 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
+      <act classCode="ACT" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+         <code code="48767-8"
+               codeSystem="2.16.840.1.113883.6.1"
+               codeSystemName="LOINC"
+               displayName="Annotation comment"/>
+         <text mediaType="text/plain">hoge dosis verstoort stoelgang</text>
+      </act>
+   </component>
+   <component typeCode="COMP">
       <observation classCode="OBS" moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
          <code code="8302-2"
                codeSystem="2.16.840.1.113883.6.1"
                codeSystemName="LOINC"
                displayName="Body height"/>
-         <effectiveTime value="20210324070500"/>
+         <effectiveTime value="20210101070500"/>
          <value xsi:type="PQ" value="165" unit="cm"/>
       </observation>
    </component>
@@ -116,7 +124,7 @@
          <code code="29463-7"
                codeSystem="2.16.840.1.113883.6.1"
                displayName="Body Weight"/>
-         <effectiveTime value="20210324070500"/>
+         <effectiveTime value="20210101070500"/>
          <value xsi:type="PQ" value="75" unit="kg"/>
       </observation>
    </component>
