@@ -440,8 +440,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- beoogd verstrekker -->
-                <xsl:for-each select="beoogd_verstrekker/zorgaanbieder[.//(@value | @code)]">
-                    <performer>
+                <xsl:for-each select="../../bouwstenen/zorgaanbieder[@id = current()/beoogd_verstrekker/zorgaanbieder/@value]">
+                      <performer>
                         <assignedEntity>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9088_20160621133312"/>
                         </assignedEntity>
