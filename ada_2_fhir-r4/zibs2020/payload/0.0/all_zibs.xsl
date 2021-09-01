@@ -25,12 +25,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:strip-space elements="*"/>
-    
-    <xd:doc scope="stylesheet"> 
-        <xd:desc>This document import common and zib- and nl-core specific functions and templates to convert zib2020 ada instances to FHIR.</xd:desc>
-    </xd:doc>
     
     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
@@ -61,6 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-NameInformation.xsl"/>
     <xsl:import href="nl-core-O2Saturation.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
+    <xsl:import href="nl-core-Payer.xsl"/>
     <xsl:import href="nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="nl-core-Problem.xsl"/>
     <xsl:import href="nl-core-Procedure.xsl"/>
@@ -68,9 +63,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-SOAPReport.xsl"/>
     <xsl:import href="nl-core-TextResult.xsl"/>
     <xsl:import href="nl-core-VisualAcuity.xsl"/>
-
+    
     <xsl:import href="ext-CodeSpecification.xsl"/>
     <xsl:import href="ext-Comment.xsl"/>
     <xsl:import href="ext-TimeInterval.xsl"/>
+    
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
+    
+    <xd:doc scope="stylesheet"> 
+        <xd:desc>This document import common and zib- and nl-core specific functions and templates to convert zib2020 ada instances to FHIR.</xd:desc>
+    </xd:doc>
+
     
 </xsl:stylesheet>
