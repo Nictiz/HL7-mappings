@@ -72,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="codeMap" as="element()*">
-                                        <map inCode="nullified" inCodeSystem="2.16.840.1.113883.5.14" code="entered-in-error" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Entered in Error"/>
+                                        <map inCode="nullified" inCodeSystem="2.16.840.1.113883.5.14" code="entered-in-error" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Entered in Error"/>
                                     </xsl:with-param>
                                 </xsl:call-template>
                                 <xsl:call-template name="code-to-CodeableConcept">
@@ -173,9 +173,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </substance>
                         </xsl:for-each>
                         <xsl:for-each select="symptoom">
-                            <manifest>
+                            <manifestation>
                                 <xsl:call-template name="code-to-CodeableConcept"/>
-                            </manifest>
+                            </manifestation>
                         </xsl:for-each>
                         <xsl:for-each select="reactie_beschrijving">
                             <description value="{normalize-space(@value)}"/>
