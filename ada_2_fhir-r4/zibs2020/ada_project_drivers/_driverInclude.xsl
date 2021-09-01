@@ -195,6 +195,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'farmaceutisch_product'">
                 <xsl:apply-templates select="$in" mode="nl-core-PharmaceuticalProduct"/>
             </xsl:when>
+            <xsl:when test="$localName = 'functionele_of_mentale_status'">
+                <xsl:apply-templates select="$in" mode="nl-core-FunctionalOrMentalStatus"/>
+            </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
                     <xsl:with-param name="subject" select="$subject"/>
