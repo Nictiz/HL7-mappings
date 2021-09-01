@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="nl-core-AllergyIntolerance-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AllergyIntolerance"/>
+   </meta>
+   <verificationStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"/>
+         <code value="entered-in-error"/>
+         <display value="Entered in Error"/>
+      </coding>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-ActStatus"/>
+         <code value="nullified"/>
+         <display value="Foutief"/>
+      </coding>
+   </verificationStatus>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="Allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24484000"/>
+               <display value="Ernstig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="288328004"/>
+         <display value="Bijengif"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </patient>
+   <onsetDateTime value="2008-11-08"/>
+   <lastOccurrence value="2009-11-15"/>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="288328004"/>
+            <display value="Bijengif"/>
+         </coding>
+      </substance>
+      <manifest>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="16932000"/>
+            <display value="Misselijkheid en braken"/>
+         </coding>
+      </manifest>
+      <description value="sterke misselijkheid en veel braken"/>
+      <onset value="2008-11-15T11:35:00+01:00"/>
+      <severity value="severe"/>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="241820008"/>
+            <display value="bijensteek"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>
