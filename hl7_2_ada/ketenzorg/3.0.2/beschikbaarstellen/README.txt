@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-09-03
+* MM-2385 Fixed issue with Medicamenteuze behandel-id with a nullFlavor in V3
 2021-08-04
 * Add a check for valid booleans based on input where value=0 was sent. Will terminate processing if invalid boolean is found
 2021-06-30
