@@ -224,7 +224,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="productCode" as="element()*"/>
         <xsl:param name="GstandaardLevel" select="$oidGStandaardZInummer"/>
         <xsl:param name="elemName" as="xs:string?">code</xsl:param>
-        <xsl:for-each select="$productCode[@codeSystem eq $GstandaardLevel]">
+        
+        <xsl:if test="count($productCode[@codeSystem eq $GstandaardLevel]) gt 1">
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logWARN"/>
+                <xsl:with-param name="msg">Found more than one productCode for the same G-standaard level. This should not happen. Taking only the first one encountered into account for conversion.</xsl:with-param>
+                <xsl:with-param name="terminate" select="false()"/>
+            </xsl:call-template>
+        </xsl:if>
+        
+        <xsl:for-each select="($productCode[@codeSystem eq $GstandaardLevel])[1]">
             <xsl:element name="{$elemName}">
                 <xsl:call-template name="makeCodeAttribs"/>
                 <xsl:for-each select="$productCode[@codeSystem ne $GstandaardLevel]">
