@@ -52,10 +52,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <status>
                     <xsl:choose>
-                        <xsl:when test="xs:date($endDate) lt current-date() or xs:dateTime($endDate) lt current-dateTime()">
+                        <xsl:when test="xs:date($endDate) &lt; current-date() or xs:dateTime($endDate) &lt;  current-dateTime()">
                             <xsl:attribute name="value" select="'cancelled'"/>
                         </xsl:when>
-                        <xsl:when test="xs:date($endDate) gt current-date() or xs:dateTime($endDate) gt current-dateTime()">
+                        <xsl:when test="xs:date($endDate) &gt; current-date() or xs:dateTime($endDate) &gt; current-dateTime()">
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:when>
                         <xsl:when test="$startDate and not($endDate)">
@@ -105,16 +105,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </period>
                 </xsl:if>
                 
+                <xsl:for-each select="betaler_persoon | verzekeraar">
+                    <xsl:variable name="payor" as="element()*">
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile">
+                                <xsl:choose>
+                                    <xsl:when test="local-name(.) = 'betaler_persoon'">nl-core-Patient</xsl:when>
+                                    <xsl:when test="local-name(.) = 'verzekeraar'">nl-core-Payer-Organization</xsl:when>
+                                </xsl:choose>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:variable>
+                    
+                    <xsl:if test="count($payor) &gt; 0">
+                        <payor>
+                            <xsl:if test="bankgegevens">
+                                <extensietest>asdfsdf</extensietest>
+                            </xsl:if>
+                            <xsl:value-of select="$payor"/>
+                        </payor>
+                      
+                    </xsl:if>                    
+                </xsl:for-each>
+                
                 <!-- TO DO!!! -->
-                <xsl:call-template name="makeReference">
+<!--                <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$payor"/>
                     <xsl:with-param name="wrapIn">payor</xsl:with-param>
-                </xsl:call-template>
+                    <xsl:with-param name="profile">
+                        <xsl:choose>
+                            <xsl:when test="$payor/local-name() = 'organisatie_naam'">nl-core-Payer-Organization</xsl:when>
+                            <xsl:when test="$payor/local-name() = 'betaler_persoon'">nl-core-Patient</xsl:when>
+                        </xsl:choose>
+                    </xsl:with-param>
+                </xsl:call-template>-->
             </Coverage>
-        
         </xsl:for-each>
-        
     </xsl:template>
+    
+    <xsl:template name="nl-core-Payer-Organization" mode="nl-core-Payer-Organization" match="verzekeraar" as="element(f:Organization)">
+        <xsl:param name="in" as="element()?" select="."/>
+
+    </xsl:template> 
     
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>

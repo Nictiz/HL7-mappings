@@ -65,7 +65,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:variable name="ada2resourceType">
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer"/>
-<!--        <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>-->
+        <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
+        <nm:map ada="betaler" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>

@@ -44,7 +44,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:call-template name="nl-core-Payer">
             <xsl:with-param name="subject" select="$subject"/>
+            <xsl:with-param name="payor" select="(betaler_persoon | verzekeraar)"/>       
         </xsl:call-template>
+        
+        <xsl:call-template name="nl-core-Payer-Organization">
+            <xsl:with-param name="in" select="verzekeraar/organisatie_naam"/>
+        </xsl:call-template>
+        
     </xsl:template>
     
 </xsl:stylesheet>
