@@ -32,7 +32,7 @@
       <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9322"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9321"/>
-         <id extension="MBH_920_QA1_MGB"
+         <id extension="MBH_920_QA1_MGB-JNK"
              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
          <code code="422979000"
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
@@ -83,6 +83,16 @@
                <code displayName="Gebruikindicator"
                      code="15"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+               <value xsi:type="BL" value="true"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
+               <code displayName="patient takes medication as prescribed (finding)"
+                     code="112221000146107"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
                <value xsi:type="BL" value="true"/>
             </observation>
          </entryRelationship>
@@ -150,7 +160,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_920_QA1_TA"
+               <id extension="MBH_920_QA1_TA-JNK"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
@@ -162,7 +172,8 @@
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_920_QA1"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_920_QA1-JNK"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
