@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="e754cccb-dfe9-11eb-2283-020000000000"/>
+   <id value="88d4779b-1086-11ec-1323-020000000000"/>
    <type value="searchset"/>
    <total value="7"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:e754dcda-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d487aa-1086-11ec-1323-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -19,8 +19,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: inactief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
+                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: inactief / weerlegd<span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
                      </caption>
                      <tfoot>
                         <tr>
@@ -40,18 +39,18 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>19 mei 2021</td>
+                           <td>20 juli 2021</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>17:45:00, 19 mei 2021</td>
+                           <td>17:45:00, 20 juli 2021</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
                            <td>
                               <ul>
                                  <li>
-                                    <div>17:45:00, 19 mei 2021 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
+                                    <div>17:45:00, 20 juli 2021 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
                                     </div>
                                     <div>
                                        <span title="Toxische epidermale necrolyse (23067006 - SNOMED CT)">Toxische epidermale necrolyse</span>
@@ -80,11 +79,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="refuted"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -115,29 +110,31 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2021-05-19"/>
+            <onsetDateTime value="2021-07-20"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
-               <display value="M. Boot || Allergoloog (gesloten register)"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333343"/>
+               <display value="M. Boot"/>
             </recorder>
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
-               <display value="M. Boot || Allergoloog (gesloten register)"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333343"/>
+               <display value="M. Boot"/>
             </asserter>
-            <lastOccurrence value="2021-05-19T17:45:00+02:00"/>
+            <lastOccurrence value="2021-07-20T17:45:00+02:00"/>
             <note>
                <text value="Geldt alleen voor dit merk."/>
             </note>
@@ -157,7 +154,7 @@
                   </coding>
                </manifestation>
                <description value="Blaren op grote delen van de huid"/>
-               <onset value="2021-05-19T17:45:00+02:00"/>
+               <onset value="2021-07-20T17:45:00+02:00"/>
                <severity value="severe">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                      <valueCodeableConcept>
@@ -177,7 +174,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754df0a-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d489da-1086-11ec-1323-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -187,8 +184,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_02 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
+                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_02 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -203,18 +199,18 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>30 maart 2021</td>
+                           <td>31 mei 2021</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>30 maart 2021</td>
+                           <td>31 mei 2021</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
                            <td>
                               <ul>
                                  <li>
-                                    <div>11:00:00, 30 maart 2021 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
+                                    <div>11:00:00, 31 mei 2021 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
                                     </div>
                                     <div>
                                        <span title="Toxische epidermale necrolyse (23067006 - SNOMED CT)">Toxische epidermale necrolyse</span>
@@ -243,11 +239,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -278,29 +270,31 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2021-03-30"/>
+            <onsetDateTime value="2021-05-31"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
-               <display value="M. Boot || Allergoloog (gesloten register)"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333343"/>
+               <display value="M. Boot"/>
             </recorder>
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
-               <display value="M. Boot || Allergoloog (gesloten register)"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333343"/>
+               <display value="M. Boot"/>
             </asserter>
-            <lastOccurrence value="2021-03-30"/>
+            <lastOccurrence value="2021-05-31"/>
             <reaction>
                <manifestation>
                   <coding>
@@ -310,7 +304,7 @@
                   </coding>
                </manifestation>
                <description value="Blaren op grote delen van de huid"/>
-               <onset value="2021-03-30T11:00:00+02:00"/>
+               <onset value="2021-05-31T11:00:00+02:00"/>
                <severity value="severe">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                      <valueCodeableConcept>
@@ -337,7 +331,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754df44-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48a14-1086-11ec-1323-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -347,8 +341,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
+                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -363,11 +356,11 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>8 februari 2021</td>
+                           <td>11 april 2021</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>8 februari 2021</td>
+                           <td>11 april 2021</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
@@ -404,11 +397,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -439,29 +428,31 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2021-02-08"/>
+            <onsetDateTime value="2021-04-11"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
-               <display value="M. Boot || Allergoloog (gesloten register)"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333343"/>
+               <display value="M. Boot"/>
             </recorder>
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
-               <display value="M. Boot || Allergoloog (gesloten register)"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333343"/>
+               <display value="M. Boot"/>
             </asserter>
-            <lastOccurrence value="2021-02-08"/>
+            <lastOccurrence value="2021-04-11"/>
             <reaction>
                <manifestation>
                   <coding>
@@ -490,7 +481,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754df7a-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48a4a-1086-11ec-1323-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -500,8 +491,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_04 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
+                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_04 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -512,15 +502,15 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>10 maart 2021 - M. Boot || Allergoloog (gesloten register)</td>
+                           <td>11 mei 2021 - M. Boot || Allergoloog (gesloten register)</td>
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>20 december 2020</td>
+                           <td>20 februari 2021</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>16:30:00, 20 december 2020</td>
+                           <td>16:30:00, 20 februari 2021</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
@@ -556,11 +546,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -591,30 +577,32 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2020-12-20"/>
-            <assertedDate value="2021-03-10"/>
+            <onsetDateTime value="2021-02-20"/>
+            <assertedDate value="2021-05-11"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
-               <display value="M. Boot || Allergoloog (gesloten register)"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333343"/>
+               <display value="M. Boot"/>
             </recorder>
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
                      <display value="M. Boot || Allergoloog (gesloten register)"/>
                   </valueReference>
                </extension>
-               <display value="M. Boot || Allergoloog (gesloten register)"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333343"/>
+               <display value="M. Boot"/>
             </asserter>
-            <lastOccurrence value="2020-12-20T16:30:00+01:00"/>
+            <lastOccurrence value="2021-02-20T16:30:00+01:00"/>
             <reaction>
                <manifestation>
                   <coding>
@@ -642,7 +630,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754dfb1-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48a81-1086-11ec-1323-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -652,8 +640,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_05 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</span>
+                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_05 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</span>
                      </caption>
                      <tfoot>
                         <tr>
@@ -673,18 +660,18 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>8 december 2011</td>
+                           <td>8 februari 2012</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>14:30:00, 16 oktober 2020</td>
+                           <td>14:30:00, 17 december 2020</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
                            <td>
                               <ul>
                                  <li>
-                                    <div>14:30:00, 16 oktober 2020 <span title="Matig (6736007 - SNOMED CT)">Matig</span>
+                                    <div>14:30:00, 17 december 2020 <span title="Matig (6736007 - SNOMED CT)">Matig</span>
                                     </div>
                                     <div>
                                        <span title="Jeuk (418363000 - SNOMED CT)">Jeuk</span>
@@ -712,11 +699,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="biologic">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -747,24 +730,25 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2011-12-08"/>
+            <onsetDateTime value="2012-02-08"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e049-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b19-1086-11ec-1323-020000000000"/>
                      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
                   </valueReference>
                </extension>
-               <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.111111121"/>
+               <display value="A.B. Comenius de Vries"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:e754e123-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d48bf3-1086-11ec-1323-020000000000"/>
                <display value="Abraham B.M.H. Bram Pasveer"/>
             </asserter>
-            <lastOccurrence value="2020-10-16T14:30:00+02:00"/>
+            <lastOccurrence value="2020-12-17T14:30:00+01:00"/>
             <note>
                <text value="Dhr. werkt in de zorg en dient latexvrije handschoenen te dragen."/>
             </note>
@@ -776,7 +760,7 @@
                      <display value="Jeuk"/>
                   </coding>
                </manifestation>
-               <onset value="2020-10-16T14:30:00+02:00"/>
+               <onset value="2020-12-17T14:30:00+01:00"/>
                <severity value="moderate">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                      <valueCodeableConcept>
@@ -796,7 +780,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754dfe9-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48ab9-1086-11ec-1323-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -806,8 +790,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_06 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op voedsel (418471000 - SNOMED CT)">neiging tot ongewenste reactie op voedsel</span>, Status: opgelost / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd</span>
+                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_06 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op voedsel (418471000 - SNOMED CT)">neiging tot ongewenste reactie op voedsel</span>, Status: opgelost / bevestigd<span style="display: block;">Ingevoerd door: Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -822,7 +805,7 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>30 oktober 2007</td>
+                           <td>31 december 2007</td>
                         </tr>
                      </tbody>
                   </table>
@@ -843,11 +826,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="food">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -867,21 +846,22 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2007-10-30"/>
+            <onsetDateTime value="2007-12-31"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e07e-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b4e-1086-11ec-1323-020000000000"/>
                      <display value="Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd"/>
                   </valueReference>
                </extension>
-               <display value="Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.222222232"/>
+               <display value="Ottobert O. van Bekhoven"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </asserter>
          </AllergyIntolerance>
@@ -891,7 +871,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754e011-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48ae1-1086-11ec-1323-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -901,8 +881,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_07 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="omgevingsgerelateerde allergie (426232007 - SNOMED CT)">omgevingsgerelateerde allergie</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</span>
+                     <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_07 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="omgevingsgerelateerde allergie (426232007 - SNOMED CT)">omgevingsgerelateerde allergie</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -917,11 +896,11 @@
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>24 februari 2020</td>
+                           <td>26 april 2020</td>
                         </tr>
                         <tr>
                            <th>Meest recente voorkomen</th>
-                           <td>31 maart 2021</td>
+                           <td>1 juni 2021</td>
                         </tr>
                         <tr>
                            <th>Reactie</th>
@@ -958,11 +937,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="environment">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -993,29 +968,31 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
-            <onsetDateTime value="2020-02-24"/>
+            <onsetDateTime value="2020-04-26"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e049-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b19-1086-11ec-1323-020000000000"/>
                      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
                   </valueReference>
                </extension>
-               <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.111111121"/>
+               <display value="A.B. Comenius de Vries"/>
             </recorder>
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:e754e049-dfe9-11eb-2283-020000000000"/>
+                     <reference value="urn:uuid:88d48b19-1086-11ec-1323-020000000000"/>
                      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
                   </valueReference>
                </extension>
-               <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.111111121"/>
+               <display value="A.B. Comenius de Vries"/>
             </asserter>
-            <lastOccurrence value="2021-03-31"/>
+            <lastOccurrence value="2021-06-01"/>
             <reaction>
                <substance>
                   <coding>
@@ -1051,7 +1028,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -1477,7 +1454,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754e049-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48b19-1086-11ec-1323-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1578,7 +1555,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754e07e-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48b4e-1086-11ec-1323-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1674,7 +1651,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754e0bb-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48b8b-1086-11ec-1323-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1718,7 +1695,6 @@
             <specialty>
                <coding>
                   <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-                  <version value="2019-12-01T00:00:00"/>
                   <code value="01.002"/>
                   <display value="Allergoloog (gesloten register)"/>
                </coding>
@@ -1770,7 +1746,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e754e123-dfe9-11eb-2283-020000000000"/>
+      <fullUrl value="urn:uuid:88d48bf3-1086-11ec-1323-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
@@ -1797,7 +1773,7 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:e754cccb-dfe9-11eb-2283-020000000000"/>
+               <reference value="urn:uuid:88d4779b-1086-11ec-1323-020000000000"/>
                <display value="Véronique V. Véronique XXX-TEST-D"/>
             </patient>
             <relationship>

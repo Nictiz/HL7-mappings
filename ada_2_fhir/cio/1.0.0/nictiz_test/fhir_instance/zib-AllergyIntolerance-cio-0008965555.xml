@@ -7,8 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008965555 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-               <span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
+            <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008965555 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
             </caption>
             <tbody>
                <tr>
@@ -40,11 +39,7 @@
          </valueCodeableConcept>
       </extension>
    </clinicalStatus>
-   <verificationStatus>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
-      </extension>
-   </verificationStatus>
+   <verificationStatus value="confirmed"/>
    <category value="medication">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
@@ -74,7 +69,8 @@
             <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
          </valueReference>
       </extension>
-      <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
+      <reference value="Practitioner/nl-core-practitioner-cio-2-16-528-1-1007-3-1-000001111"/>
+      <display value="000001111"/>
    </recorder>
    <asserter>
       <reference value="Patient/DEGROOT"/>
