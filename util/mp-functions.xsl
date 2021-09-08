@@ -58,6 +58,34 @@
     </xsl:function>
 
     <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputDuur"/>
+        <xd:param name="eenheid_UCUM"/>
+    </xd:doc>
+    <xsl:function name="nf:calculate_Duur_In_Dagen">
+        <xsl:param name="inputDuur"/>
+        <xsl:param name="eenheid_UCUM"/>
+        <xsl:choose>
+            <xsl:when test="$eenheid_UCUM = 'h'">
+                <xsl:value-of select="format-number(number($inputDuur) div number(24), '0.####')"/>
+            </xsl:when>
+            <xsl:when test="$eenheid_UCUM = 'wk'">
+                <xsl:value-of select="format-number(number($inputDuur) * number(7), '0.####')"/>
+            </xsl:when>
+            <xsl:when test="$eenheid_UCUM = 'a'">
+                <!-- schrikkeljaren buiten beschouwing gelaten -->
+                <xsl:value-of select="format-number(number($inputDuur) * number(365), '0.####')"/>
+            </xsl:when>
+            <xsl:when test="$eenheid_UCUM = 'd'">
+                <xsl:value-of select="$inputDuur"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('onverwachte tijdseenheid, kan niet omrekenen naar dagen: ', $inputDuur, ' ', $eenheid_UCUM)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>   
+
+    <xd:doc>
         <xd:desc>Outputs a human readable date based on input.</xd:desc>
         <xd:param name="current-bouwsteen">ada bouwsteen of the input ada instance xml</xd:param>
         <xd:param name="current-element">the ada xml element in the current bouwsteen that has a date to be converted</xd:param>

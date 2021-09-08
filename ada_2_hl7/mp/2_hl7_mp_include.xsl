@@ -15,14 +15,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
     <xsl:import href="../zib2020bbr/payload/hl7-Zorgverlener-20210701.xsl"/>
-    <xsl:import href="../../util/mp-functions.xsl"/>
     <!-- only comment the package import below out for development purposed, the calling stylesheet should decide on package version-->
     <!--    <xsl:import href="../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
 
-
     <!-- Uncomment only for development purposes -->
-    <!--<xsl:import href="../../util/mp-functions.xsl"/>
-    -->
+    <!--    <xsl:import href="../../util/mp-functions.xsl"/>-->
+
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -35,8 +33,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     <xsl:output method="xml" indent="yes"/>
-    
-   
+
+
     <xd:doc>
         <xd:desc>Handle ada gebruiksperiode for datasets 907, 9.1.0 and from 9 2.0 onwards</xd:desc>
         <xd:param name="in">The parent of the gebruiksperiode elements, for example: medicatieafspraak, toedieningsafspraak, medicatiegebruik. Defaults to context.</xd:param>
@@ -224,7 +222,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="productCode" as="element()*"/>
         <xsl:param name="GstandaardLevel" select="$oidGStandaardZInummer"/>
         <xsl:param name="elemName" as="xs:string?">code</xsl:param>
-        
+
         <xsl:if test="count($productCode[@codeSystem eq $GstandaardLevel]) gt 1">
             <xsl:call-template name="util:logMessage">
                 <xsl:with-param name="level" select="$logWARN"/>
@@ -232,7 +230,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="terminate" select="false()"/>
             </xsl:call-template>
         </xsl:if>
-        
+
         <xsl:for-each select="($productCode[@codeSystem eq $GstandaardLevel])[1]">
             <xsl:element name="{$elemName}">
                 <xsl:call-template name="makeCodeAttribs"/>
@@ -2141,7 +2139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </rateQuantity>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc>HL7NL PIVL_TS Weekdag. Expected context is ada weekdag element</xd:desc>
         <xd:param name="in">The ada weekdag element, defaults to context.</xd:param>
         <xd:param name="operator">The operator (for example A or I) for the PIVL</xd:param>
@@ -3144,7 +3142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc> MP CDA Medication Code vanaf 9.2 </xd:desc>
         <xd:param name="productCode">ada elements containing product_code</xd:param>
     </xd:doc>
@@ -3402,43 +3400,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="GstdBasiseenheid_code"/>
-    </xd:doc>
-    <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string?">
-        <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
-
-        <xsl:choose>
-            <xsl:when test="$GstdBasiseenheid_code castable as xs:integer">
-                <xsl:choose>
-                    <xsl:when test="$GstdBasiseenheid_code = '205'">cm</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '208'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '211'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '215'">g</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '217'">[iU]</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '219'">kg</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '222'">l</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '229'">mg</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '233'">ml</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '234'">mm</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '245'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '252'">ug</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '254'">ul</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '303'">[drp]</xsl:when>
-                    <!-- 345 is een miljoen IE's, '1' is waarschijnlijk niet helemaal juist -->
-                    <xsl:when test="$GstdBasiseenheid_code = '345'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '490'">1</xsl:when>
-                    <!-- Charrière -->
-                    <xsl:when test="$GstdBasiseenheid_code = '500'">[Ch]</xsl:when>
-                    <xsl:otherwise><!-- no output --></xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- geen integer meegekregen, no output -->
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-    <xd:doc>
-        <xd:desc/>
         <xd:param name="ADAunit"/>
     </xd:doc>
     <xsl:function name="nf:convertUnit_ADA2UCUM" as="xs:string">
@@ -3452,34 +3413,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="lower-case($ADAunit) = $ada-unit-druppel">[drp]</xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$ADAunit"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="inputDuur"/>
-        <xd:param name="eenheid_UCUM"/>
-    </xd:doc>
-    <xsl:function name="nf:calculate_Duur_In_Dagen">
-        <xsl:param name="inputDuur"/>
-        <xsl:param name="eenheid_UCUM"/>
-        <xsl:choose>
-            <xsl:when test="$eenheid_UCUM = 'h'">
-                <xsl:value-of select="format-number(number($inputDuur) div number(24), '0.####')"/>
-            </xsl:when>
-            <xsl:when test="$eenheid_UCUM = 'wk'">
-                <xsl:value-of select="format-number(number($inputDuur) * number(7), '0.####')"/>
-            </xsl:when>
-            <xsl:when test="$eenheid_UCUM = 'a'">
-                <!-- schrikkeljaren buiten beschouwing gelaten -->
-                <xsl:value-of select="format-number(number($inputDuur) * number(365), '0.####')"/>
-            </xsl:when>
-            <xsl:when test="$eenheid_UCUM = 'd'">
-                <xsl:value-of select="$inputDuur"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="concat('onverwachte tijdseenheid, kan niet omrekenen naar dagen: ', $inputDuur, ' ', $eenheid_UCUM)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
