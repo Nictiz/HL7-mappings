@@ -2,13 +2,30 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- this import should be commented out here, as the import must be chosen in the calling xslt -->
     <!-- uncomment only for development purposes -->
-    <!--    <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
+<!--        <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
 
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
 
     <!-- mp constants -->
+    
+    
+    <xsl:variable name="daypartMap" as="element()+">
+        <map xmlns="" dayPart="night" fhirWhen="NIGHT" hl7PIVLPhaseLow="1970010100" hl7PIVLPhaseHigh="1970010106" code="2546009" codeSystem="{$oidSNOMEDCT}" displayName="'s nachts" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="morning" fhirWhen="MORN" hl7PIVLPhaseLow="1970010106" hl7PIVLPhaseHigh="1970010112" code="73775008" codeSystem="{$oidSNOMEDCT}" displayName="'s ochtends" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="afternoon" fhirWhen="AFT" hl7PIVLPhaseLow="1970010112" hl7PIVLPhaseHigh="1970010118" code="255213009" codeSystem="{$oidSNOMEDCT}" displayName="'s middags" codeSystemName="SNOMED CT"/>
+        <map xmlns="" dayPart="evening" fhirWhen="EVE" hl7PIVLPhaseLow="1970010118" hl7PIVLPhaseHigh="1970010200" code="3157002" codeSystem="{$oidSNOMEDCT}" displayName="'s avonds" codeSystemName="SNOMED CT"/>
+    </xsl:variable>
+    
+    <xsl:variable name="stoptypeMap" as="element()+">
+        <map code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt"/>
+        <map code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt"/>
+        <!-- deprecated codes from pre MP 9.2 -->
+        <map hl7Code="1" hl7CodeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
+        <map hl7Code="2" hl7CodeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
+    </xsl:variable>
+    
     <xsl:variable name="weekdayMap" as="element()+">
         <map xmlns="" dayOfWeek="1" weekday="monday" fhirDayOfWeek="mon" hl7PIVLPhaseLow="19700601" code="307145004" codeSystem="{$oidSNOMEDCT}" displayName="maandag" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayOfWeek="2" weekday="tuesday" fhirDayOfWeek="tue" hl7PIVLPhaseLow="19700602" code="307147007" codeSystem="{$oidSNOMEDCT}" displayName="dinsdag" codeSystemName="SNOMED CT"/>
@@ -17,14 +34,7 @@
         <map xmlns="" dayOfWeek="5" weekday="friday" fhirDayOfWeek="fri" hl7PIVLPhaseLow="19700605" code="307150005" codeSystem="{$oidSNOMEDCT}" displayName="vrijdag" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayOfWeek="6" weekday="saturday" fhirDayOfWeek="sat" hl7PIVLPhaseLow="19700606" code="307151009" codeSystem="{$oidSNOMEDCT}" displayName="zaterdag" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayOfWeek="0" weekday="sunday" fhirDayOfWeek="sun" hl7PIVLPhaseLow="19700607" code="307146003" codeSystem="{$oidSNOMEDCT}" displayName="zondag" codeSystemName="SNOMED CT"/>
-    </xsl:variable>
-
-    <xsl:variable name="daypartMap" as="element()+">
-        <map xmlns="" dayPart="night" fhirWhen="NIGHT" hl7PIVLPhaseLow="1970010100" hl7PIVLPhaseHigh="1970010106" code="2546009" codeSystem="{$oidSNOMEDCT}" displayName="'s nachts" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayPart="morning" fhirWhen="MORN" hl7PIVLPhaseLow="1970010106" hl7PIVLPhaseHigh="1970010112" code="73775008" codeSystem="{$oidSNOMEDCT}" displayName="'s ochtends" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayPart="afternoon" fhirWhen="AFT" hl7PIVLPhaseLow="1970010112" hl7PIVLPhaseHigh="1970010118" code="255213009" codeSystem="{$oidSNOMEDCT}" displayName="'s middags" codeSystemName="SNOMED CT"/>
-        <map xmlns="" dayPart="evening" fhirWhen="EVE" hl7PIVLPhaseLow="1970010118" hl7PIVLPhaseHigh="1970010200" code="3157002" codeSystem="{$oidSNOMEDCT}" displayName="'s avonds" codeSystemName="SNOMED CT"/>
-    </xsl:variable>
+    </xsl:variable> 
 
     <xd:doc>
         <xd:desc>Calculates the start date of a dosage instruction</xd:desc>
@@ -413,6 +423,16 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
+                
+                <!-- bij medicatiegebruik kan er ook sprake zijn van NIET gebruiken gedurende de gebruiksperiode, dat hoort ook bij de omschrijving -->
+                <xsl:if test="../gebruik_indicator/@value = 'false'">
+                    <xsl:value-of>geneesmiddel niet in gebruik</xsl:value-of>
+                </xsl:if>
+                
+                <!-- en ten slotte hoort het stoptype ook in de omschrijving -->
+                <xsl:for-each select="../(stoptype | medicatieafspraak_stop_type | toedieningsafspraak_stop_type | medicatiegebruik_stop_type | medicatie_gebruik_stop_type | stop_type | wisselend_doseerschema_stop_type)[@code]">
+                    <xsl:value-of select="$stoptypeMap[@code=current()/@code][@codeSystem=current()/@codeSystem]/@displayName"/>
+                </xsl:for-each>                
             </xsl:variable>
             <xsl:value-of select="string-join($theOmschrijving, ', ')"/>
         </xsl:for-each>
