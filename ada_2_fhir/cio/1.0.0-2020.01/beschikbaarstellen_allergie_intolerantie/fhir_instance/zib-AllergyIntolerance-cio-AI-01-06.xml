@@ -7,8 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_06 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op voedsel (418471000 - SNOMED CT)">neiging tot ongewenste reactie op voedsel</span>, Status: opgelost / <i>onbekend (ontbrekend gegeven)</i>
-               <span style="display: block;">Ingevoerd door: Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd</span>
+            <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_06 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op voedsel (418471000 - SNOMED CT)">neiging tot ongewenste reactie op voedsel</span>, Status: opgelost / bevestigd<span style="display: block;">Ingevoerd door: Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd</span>
             </caption>
             <tbody>
                <tr>
@@ -44,11 +43,7 @@
          </valueCodeableConcept>
       </extension>
    </clinicalStatus>
-   <verificationStatus>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
-      </extension>
-   </verificationStatus>
+   <verificationStatus value="confirmed"/>
    <category value="food">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
@@ -79,7 +74,8 @@
             <display value="Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd"/>
          </valueReference>
       </extension>
-      <display value="Ottobert O. van Bekhoven || Huisartsen, niet nader gespecificeerd"/>
+      <reference value="Practitioner/nl-core-practitioner-cio-2-16-528-1-1007-3-1-222222232"/>
+      <display value="Ottobert O. van Bekhoven"/>
    </recorder>
    <asserter>
       <reference value="Patient/XXX-TEST-D"/>

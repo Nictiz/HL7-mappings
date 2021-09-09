@@ -7,8 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: Maria Christina M. Marieke van XXX_Stalewska. Id: CIO_01_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-               <span style="display: block;">Ingevoerd door: S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum</span>
+            <caption>Allergie/intolerantie. Patiënt: Maria Christina M. Marieke van XXX_Stalewska. Id: CIO_01_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum</span>
             </caption>
             <tfoot>
                <tr>
@@ -49,11 +48,7 @@
          </valueCodeableConcept>
       </extension>
    </clinicalStatus>
-   <verificationStatus>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
-      </extension>
-   </verificationStatus>
+   <verificationStatus value="confirmed"/>
    <category value="medication">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
@@ -85,7 +80,8 @@
             <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
          </valueReference>
       </extension>
-      <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
+      <reference value="Practitioner/nl-core-practitioner-cio-2-16-528-1-1007-3-1-333333334"/>
+      <display value="S. Calpel"/>
    </recorder>
    <asserter>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -94,7 +90,8 @@
             <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
          </valueReference>
       </extension>
-      <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
+      <reference value="Practitioner/nl-core-practitioner-cio-2-16-528-1-1007-3-1-333333334"/>
+      <display value="S. Calpel"/>
    </asserter>
    <note>
       <text value="Allergie leidt tot jeuk. Geconstateerd tijdens operatie"/>

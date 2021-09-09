@@ -7,8 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_05 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-               <span style="display: block;">Ingevoerd door: A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</span>
+            <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_05 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</span>
             </caption>
             <tfoot>
                <tr>
@@ -67,11 +66,7 @@
          </valueCodeableConcept>
       </extension>
    </clinicalStatus>
-   <verificationStatus>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
-      </extension>
-   </verificationStatus>
+   <verificationStatus value="confirmed"/>
    <category value="biologic">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
@@ -113,7 +108,8 @@
             <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
          </valueReference>
       </extension>
-      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+      <reference value="Practitioner/nl-core-practitioner-cio-2-16-528-1-1007-3-1-111111121"/>
+      <display value="A.B. Comenius de Vries"/>
    </recorder>
    <asserter>
       <reference value="RelatedPerson/nl-core-relatedperson-cio-ABRAHAMB-M-H-BRAMPASVEER"/>
