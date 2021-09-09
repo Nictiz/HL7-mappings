@@ -69,7 +69,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each> 
                 
                 <!-- There's no mapping from the zib to the status, so we'll default to unknown -->
-                <status value="unknown"/>
+                <status>
+                    <xsl:attribute name="value">
+                        <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
+                             so we can perform the required logic using a start and end datetime. -->
+                        
+                        <!-- Variable DOES NOT WORK, it is empty... -->
+                        <xsl:variable name="period" as="element(f:temp)?">
+                            <xsl:call-template name="ext-TimeInterval.Period">
+                                <xsl:with-param name="in" select="verbruiksperiode"/>
+                                <xsl:with-param name="wrapIn">temp</xsl:with-param>
+                            </xsl:call-template>
+                            <xsl:call-template name="ext-TimeInterval.Duration">
+                                <xsl:with-param name="in" select="verbruiksperiode"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="
+                                $period/f:start[@value] and not($period/f:end[@value]) and
+                                ((xs:date($period/f:start/@value)     &lt; current-date()) or 
+                                (xs:dateTime($period/f:start/@value) &lt; current-dateTime()))">active</xsl:when>
+                            <xsl:when test="
+                                $period/f:start[@value] and $period/f:end[@value] and
+                                (($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &lt; current-date()) or 
+                                ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &lt; current-dateTime())) and
+                                (($period/f:end[@value]  castable as xs:date     and xs:date($period/f:end/@value)       &gt; current-date()) or
+                                ($period/f:end[@value]  castable as xs:dateTime and xs:dateTime($period/f:end/@value)   &gt; current-dateTime()))">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and 
+                                (($period/f:end[@value]  castable as xs:date     and xs:date($period/f:end/@value)       &lt; current-date()) or
+                                ($period/f:end[@value]  castable as xs:dateTime and xs:dateTime($period/f:end/@value)   &lt; current-dateTime()))">completed</xsl:when>
+                            <xsl:otherwise>unknown</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </status>
                 
                 <intent value="order"/>
                 
