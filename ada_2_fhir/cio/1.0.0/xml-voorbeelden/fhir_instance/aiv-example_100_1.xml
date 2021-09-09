@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="ebec7d53-dfe9-11eb-6285-020000000000"/>
+   <id value="908d1733-1086-11ec-7502-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:ebec8d42-dfe9-11eb-6285-020000000000"/>
+      <fullUrl value="urn:uuid:908d2722-1086-11ec-7502-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -19,8 +19,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Joris Hansman. Id: aiv-example_100_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
+                     <caption>Allergie/intolerantie. Patiënt: Joris Hansman. Id: aiv-example_100_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -31,11 +30,11 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>8 juni 2021 - Joris Hansman</td>
+                           <td>9 augustus 2021 - Joris Hansman</td>
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>19 mei 2021</td>
+                           <td>20 juli 2021</td>
                         </tr>
                      </tbody>
                   </table>
@@ -56,11 +55,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -80,22 +75,23 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:ebec7d5b-dfe9-11eb-6285-020000000000"/>
+               <reference value="urn:uuid:908d173b-1086-11ec-7502-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
-            <onsetDateTime value="2021-05-19"/>
-            <assertedDate value="2021-06-08"/>
+            <onsetDateTime value="2021-07-20"/>
+            <assertedDate value="2021-08-09"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:ebec8d6c-dfe9-11eb-6285-020000000000"/>
+                     <reference value="urn:uuid:908d274c-1086-11ec-7502-020000000000"/>
                      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
-               <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.111111112"/>
+               <display value="I.N. ter Nist"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:ebec7d5b-dfe9-11eb-6285-020000000000"/>
+               <reference value="urn:uuid:908d173b-1086-11ec-7502-020000000000"/>
                <display value="Joris Hansman"/>
             </asserter>
          </AllergyIntolerance>
@@ -105,7 +101,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebec7d5b-dfe9-11eb-6285-020000000000"/>
+      <fullUrl value="urn:uuid:908d173b-1086-11ec-7502-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -297,7 +293,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebec8d6c-dfe9-11eb-6285-020000000000"/>
+      <fullUrl value="urn:uuid:908d274c-1086-11ec-7502-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -349,7 +345,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebec8fa5-dfe9-11eb-6285-020000000000"/>
+      <fullUrl value="urn:uuid:908d2985-1086-11ec-7502-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
@@ -376,7 +372,7 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:ebec7d5b-dfe9-11eb-6285-020000000000"/>
+               <reference value="urn:uuid:908d173b-1086-11ec-7502-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <name>

@@ -3,6 +3,8 @@
 This contains resources for generic conversions of HL7v3 messages/CDA to a relatively simple dataset xml format in response type transactions. 
 
 ===Release Notes===
+2021-09-09
+* When there is no phone/email: don't create empty contact_information element
 2021-08-04
 * Add a check for valid booleans based on input where value=0 was sent. Will terminate processing if invalid boolean is found
 2021-06-30

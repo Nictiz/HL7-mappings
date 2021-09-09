@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="ed795ee3-dfe9-11eb-1399-020000000000"/>
+   <id value="9325ea83-1086-11ec-1695-020000000000"/>
    <type value="searchset"/>
    <total value="3"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:ed796ed4-dfe9-11eb-1399-020000000000"/>
+      <fullUrl value="urn:uuid:9325fa74-1086-11ec-1695-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -19,8 +19,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008967554 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
+                     <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008967554 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -52,11 +51,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -76,18 +71,19 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:ed795eeb-dfe9-11eb-1399-020000000000"/>
+               <reference value="urn:uuid:9325ea8b-1086-11ec-1695-020000000000"/>
                <display value="de Groot"/>
             </patient>
             <onsetDateTime value="2019-01-01"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:ed797124-dfe9-11eb-1399-020000000000"/>
+                     <reference value="urn:uuid:9325fcc4-1086-11ec-1695-020000000000"/>
                      <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
                   </valueReference>
                </extension>
-               <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <display value="000001111"/>
             </recorder>
          </AllergyIntolerance>
       </resource>
@@ -96,7 +92,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed796ef4-dfe9-11eb-1399-020000000000"/>
+      <fullUrl value="urn:uuid:9325fa94-1086-11ec-1695-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -106,8 +102,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008962321 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
+                     <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008962321 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -135,11 +130,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -159,17 +150,18 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:ed795eeb-dfe9-11eb-1399-020000000000"/>
+               <reference value="urn:uuid:9325ea8b-1086-11ec-1695-020000000000"/>
                <display value="de Groot"/>
             </patient>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:ed797124-dfe9-11eb-1399-020000000000"/>
+                     <reference value="urn:uuid:9325fcc4-1086-11ec-1695-020000000000"/>
                      <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
                   </valueReference>
                </extension>
-               <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <display value="000001111"/>
             </recorder>
          </AllergyIntolerance>
       </resource>
@@ -178,7 +170,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed796f12-dfe9-11eb-1399-020000000000"/>
+      <fullUrl value="urn:uuid:9325fab2-1086-11ec-1695-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -188,8 +180,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008965555 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
+                     <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008965555 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -217,11 +208,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -241,17 +228,18 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:ed795eeb-dfe9-11eb-1399-020000000000"/>
+               <reference value="urn:uuid:9325ea8b-1086-11ec-1695-020000000000"/>
                <display value="de Groot"/>
             </patient>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:ed797124-dfe9-11eb-1399-020000000000"/>
+                     <reference value="urn:uuid:9325fcc4-1086-11ec-1695-020000000000"/>
                      <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
                   </valueReference>
                </extension>
-               <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <display value="000001111"/>
             </recorder>
          </AllergyIntolerance>
       </resource>
@@ -260,7 +248,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed795eeb-dfe9-11eb-1399-020000000000"/>
+      <fullUrl value="urn:uuid:9325ea8b-1086-11ec-1695-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -336,7 +324,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed797124-dfe9-11eb-1399-020000000000"/>
+      <fullUrl value="urn:uuid:9325fcc4-1086-11ec-1695-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
