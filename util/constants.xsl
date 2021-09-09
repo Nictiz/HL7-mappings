@@ -106,7 +106,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="urlExtNLPractitionerRoleReference">http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference</xsl:variable>
     <xsl:variable name="urlExtHL7DataAbsentReason">http://hl7.org/fhir/StructureDefinition/data-absent-reason</xsl:variable>
     <xsl:variable name="urlExtHL7NullFlavor">http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor</xsl:variable>
-
+    <xsl:variable name="urlExtRepeatPeriodCyclical">http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule</xsl:variable>
+    <xsl:variable name="urlTimingExact">http://hl7.org/fhir/StructureDefinition/timing-exact</xsl:variable>
+    
+    
     <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
 
     <xsl:variable name="genderMap" as="element()+">

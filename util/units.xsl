@@ -437,6 +437,7 @@
         </xsl:variable>
         <xsl:attribute name="code" select="$gstd-code"/>
         <xsl:attribute name="codeSystem" select="$oidGStandaardBST902THES2"/>
+        <xsl:attribute name="codeSystemName">G-Standaard thesaurus basiseenheden</xsl:attribute>
         <xsl:attribute name="displayName" select="$gstd-displayname"/>
     </xsl:template>
 

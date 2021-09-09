@@ -39,7 +39,7 @@
                             <valueBoolean>
                                 <xsl:choose>
                                     <xsl:when test="@value">
-                                        <xsl:attribute name="value" select="not(@value)"/>
+                                        <xsl:attribute name="value" select="@value = 'false'"/>
                                     </xsl:when>
                                     <xsl:when test="@nullFlavor">
                                         <extension url="{$urlExtHL7NullFlavor}">
@@ -68,7 +68,7 @@
                     </xsl:for-each>
 
                     <!-- toedieningsduur -->
-                    <xsl:for-each select="($inToedieningsduur[@value | @unit] | $inToedieningsduur/tijds_duur[@value|@unit])">
+                    <xsl:for-each select="($inToedieningsduur[@value | @unit] | $inToedieningsduur/tijds_duur[@value | @unit])">
                         <duration value="{@value}"/>
                         <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(@unit)}"/>
                     </xsl:for-each>

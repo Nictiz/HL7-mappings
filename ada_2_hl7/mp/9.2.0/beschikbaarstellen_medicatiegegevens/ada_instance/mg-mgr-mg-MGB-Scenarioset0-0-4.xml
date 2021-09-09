@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2020-04-02T15:31:54.045+02:00"
-         last-update-date="2020-05-13T09:53:05.537+02:00"/>
+         last-update-date="2021-09-09T14:08:37.892+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -14,7 +14,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="MP KWALIFICATIE Medicatiegegevens MGB Scenarioset 0 (filterqueries)"
-                                            desc="Medicatiegebruik met een filter op gebruiksperiode – ingangsdatum (alles vanaf T-21)&#xA;(Antwoord: bericht met 4 medicatieafspraken)"
+                                            desc="Medicatiegebruik met een filter op gebruiksperiode – ingangsdatum (alles vanaf T-21)&#xA;(Antwoord: bericht met 4x medicatiegebruik)"
                                             id="mg-mgr-mg-MGB-Scenarioset0-0-4">
          <scenario-nr value="0.4" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
          <systeemrol value="1"
@@ -22,39 +22,38 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
                      displayName="Beide"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"/>
-         <!--Patient found in instance with id: mg-RepoTestArianne and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 0 (filterqueries)-->
+         <!--Patient found in instance with id: mg-Scenarioset0 and title: id: KWALIFICATIE REPO Scenarioset 0 (filterqueries)-->
          <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
-               <initialen value="S. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
+               <initialen value="B." conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
-                  <achternaam value="XXX_Jankie"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
+                  <achternaam value="XXX_Blik" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999910437"
+            <identificatienummer value="999900389"
                                  root="2.16.840.1.113883.2.4.6.3"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
-            <geboortedatum value="1954-05-08"
+            <geboortedatum value="1963-10-13"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="3"
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="3"
                       code="F"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Vrouw"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+                      displayName="Vrouw"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_QA1-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_920_QA1-JNK"
+            <identificatie value="MBH_920_QA1"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatiegebruik comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.362">
-               <identificatie value="MBH_920_QA1_MGB-JNK"
+               <identificatie value="MBH_920_QA1_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
                <medicatiegebruik_datum_tijd value="T-1D{10:04:23}"
@@ -81,7 +80,7 @@
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"
+                                  displayName="oraal"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.371"/>
                   <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.372" comment="">
                      <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.375">
@@ -109,7 +108,7 @@
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1329" comment="">
-                  <identificatie value="MBH_920_QA1_TA-JNK"
+                  <identificatie value="MBH_920_QA1_TA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.415"/>
                </relatie_toedieningsafspraak>
@@ -125,11 +124,11 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_QA3-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_920_QA3-JNK"
+            <identificatie value="MBH_920_QA3"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatiegebruik comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.362">
-               <identificatie value="MBH_920_QA3_MGB-JNK"
+               <identificatie value="MBH_920_QA3_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
                <medicatiegebruik_datum_tijd value="T-9D{07:59:59}"
@@ -184,12 +183,12 @@
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.413" comment="">
-                  <identificatie value="MBH_920_QA3_MA-JNK"
+                  <identificatie value="MBH_920_QA3_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.414"/>
                </relatie_medicatieafspraak>
                <relatie_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1329" comment="">
-                  <identificatie value="MBH_920_QA3_TA-JNK"
+                  <identificatie value="MBH_920_QA3_TA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.415"/>
                </relatie_toedieningsafspraak>
@@ -199,7 +198,7 @@
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
                </voorschrijver>
                <auteur comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
-                  <auteur_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.626"/>
+                  <auteur_is_patient value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.626"/>
                   <auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627" comment="">
                      <zorgverlener datatype="reference"
                                    value="Peter_van_Pulver"
@@ -210,11 +209,11 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_QA4-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_920_QA4-JNK"
+            <identificatie value="MBH_920_QA4"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatiegebruik comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.362">
-               <identificatie value="MBH_920_QA4_MGB-JNK"
+               <identificatie value="MBH_920_QA4_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
                <medicatiegebruik_datum_tijd value="T-2D{08:12:00}"
@@ -269,7 +268,7 @@
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.413" comment="">
-                  <identificatie value="MBH_920_QA4_MA-JNK"
+                  <identificatie value="MBH_920_QA4_MA"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.414"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
@@ -292,11 +291,11 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_QA6-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_920_QA6-JNK"
+            <identificatie value="MBH_920_QA6"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatiegebruik comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.362">
-               <identificatie value="MBH_920_QA6_MGB-JNK"
+               <identificatie value="MBH_920_QA6_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
                <medicatiegebruik_datum_tijd value="T-2D{08:59:59}"
@@ -351,7 +350,7 @@
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.413" comment="">
-                  <identificatie value="MBH_920_QA6_MA-JNK"
+                  <identificatie value="MBH_920_QA6_MA"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.414"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
