@@ -177,9 +177,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                     <!-- TODO: It's not clear yet how to map zib Range here. Also see https://bits.nictiz.nl/browse/ZIB-815 -->
-                    <xsl:for-each select="toedieningssnelheid">
-                        <xsl:comment>Implemention of this concept is paused until https://bits.nictiz.nl/browse/ZIB-815 is resolved.</xsl:comment>
-                    </xsl:for-each>
+                    
+                    <!-- AT: A proposal for this mapping is below. I am not sure if the <rate> is correct. 
+                        Missing ada instances.
+                        Also related tickets https://github.com/Nictiz/Nictiz-R4-zib2020/issues/118 and https://bits.nictiz.nl/browse/MP-78 -->
+                    
+                    <!--<xsl:for-each select="toedieningssnelheid">
+                        <xsl:if test="nominale_waarde[@value]">
+                            <rateQuantity>
+                                <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                            </rateQuantity>
+                        </xsl:if>
+                        <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
+                            <rate>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministreringSpeedRange">
+                                    <valueRange>
+                                        <low value="{minimum_waarde/@value}"/>
+                                        <high value="{maximum_waarde/@value}"/>
+                                    </valueRange>
+                                </extension>
+                            </rate>                           
+                        </xsl:if>
+                    </xsl:for-each>-->
                 </xsl:variable>
                 <xsl:if test="$dosage">
                     <dosage>
