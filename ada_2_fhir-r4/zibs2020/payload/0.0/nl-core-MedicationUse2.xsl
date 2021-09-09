@@ -84,6 +84,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
                 
+                <xsl:for-each select="medicatie_gebruik_stop_type">
+                    <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept"/>
+                        </valueCodeableConcept>
+                    </modifierExtension>
+                </xsl:for-each>
+                
                 <status>
                     <xsl:attribute name="value">
                         
@@ -97,6 +105,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:variable>-->
                         <xsl:choose>
+                            <xsl:when test="gebruik_indicator/@value = 'false'">not-taken</xsl:when>
                             <xsl:when test="not(medicatie_gebruik_stop_type[@code]) and gebruik_indicator/@value = 'true'">active</xsl:when>
                             <xsl:when test="medicatie_gebruik_stop_type/@code = '113381000146106' and gebruik_indicator/@value = 'false'">on-hold</xsl:when>
                             <xsl:when test="medicatie_gebruik_stop_type/@code = '113371000146109' and gebruik_indicator/@value = 'false'">stopped</xsl:when>
