@@ -87,6 +87,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="value">
                         <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
                              so we can perform the required logic using a start and end datetime. -->
+                        
+                        <!-- I don't believe this variable DOES NOT works, it doesn't contain any info. -->
                         <xsl:variable name="period" as="element(f:temp)?">
                             <xsl:call-template name="ext-TimeInterval.Period">
                                 <xsl:with-param name="in" select="gebruiksperiode"/>
