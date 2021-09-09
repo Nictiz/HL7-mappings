@@ -119,8 +119,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="geannuleerd_indicator/@value = 'true'">entered-in-error</xsl:when>
                             <xsl:when test="
                                 $period/f:start[@value] and not($period/f:end[@value]) and
-                                ((xs:date($period/f:start/@value)     lt current-date()) or 
-                                (xs:dateTime($period/f:start/@value) lt current-dateTime()))">active</xsl:when>
+                                ((xs:date($period/f:start/@value)     &lt; current-date()) or 
+                                (xs:dateTime($period/f:start/@value) &lt; current-dateTime()))">active</xsl:when>
                             <xsl:when test="
                                 $period/f:start[@value] and $period/f:end[@value] and
                                 (($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &lt; current-date()) or 
