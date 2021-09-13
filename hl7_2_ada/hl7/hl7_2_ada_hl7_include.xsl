@@ -18,6 +18,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../util/uuid.xsl"/>
     <xsl:import href="../../util/utilities.xsl"/>
 
+    <!-- ada output language -->
+    <xsl:param name="language">nl-NL</xsl:param>
+
     <xd:doc>
         <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and calculated precision <xd:p>Calculation is done by calling nf:determine_date_precision($dateTime)</xd:p>
             <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value)</xd:p>
@@ -1883,6 +1886,73 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc> contactpersoon as relatedEntity - zib2020 </xd:desc>
+        <xd:param name="in-hl7">hl7 element containing the relatedEntity</xd:param>
+        <xd:param name="generateId">whether or not to output an ada id on the root element, optional, default to false()</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.30_20210701">
+        <xsl:param name="in-hl7" select="."/>
+        <xsl:param name="generateId" as="xs:boolean?" select="false()"/>
+
+        <contactpersoon>
+            <xsl:if test="$generateId = true()">
+                <xsl:attribute name="id" select="generate-id()"/>
+            </xsl:if>
+
+            <!-- naam -->
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.36_naam_20210701">
+                <xsl:with-param name="in-hl7" select="hl7:relatedPerson[hl7:name]"/>
+            </xsl:call-template>
+
+            <!-- adres / contact / rol -->
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.31_20210701">
+                <xsl:with-param name="in-hl7" select="."/>
+            </xsl:call-template>
+
+            <!-- relatie -->
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.36_relatie_20210701">
+                <xsl:with-param name="in-hl7" select="hl7:relatedPerson[sdtc:asPatientRelationship]"/>
+            </xsl:call-template>
+
+        </contactpersoon>
+    </xsl:template>
+
+
+     
+    <xd:doc>
+        <xd:desc> shared part 1 of contactpersoon - zib2020 </xd:desc>
+        <xd:param name="in-hl7">hl7 element containing the contact person code/address/telecom</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.31_20210701">
+        <xsl:param name="in-hl7" select="."/>
+
+        <xsl:for-each select="$in-hl7">
+
+            <!-- contactgegevens -->
+            <xsl:call-template name="handleTELtoContactInformation">
+                <xsl:with-param name="in" select="hl7:telecom"/>
+                <xsl:with-param name="language" select="$language"/>
+            </xsl:call-template>
+
+            <!-- adresgegevens -->
+            <!-- address information -->
+            <xsl:call-template name="handleADtoAddressInformation">
+                <xsl:with-param name="in" select="hl7:addr"/>
+                <xsl:with-param name="language" select="$language"/>
+            </xsl:call-template>
+
+
+            <!-- rol -->
+            <xsl:for-each select="hl7:code">
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="elemName">rol</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+
+
+    <xd:doc>
         <xd:desc> auteur - zib2020 </xd:desc>
         <xd:param name="author-hl7">hl7 element author</xd:param>
         <xd:param name="generateId">whether or not to output an ada id on the root element of zorgverlener and zorgaanbieder, optional, default to false()</xd:param>
@@ -1918,13 +1988,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="hl7:representedOrganization">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701">
                         <xsl:with-param name="hl7-current-organization" select="."/>
-                        <xsl:with-param name="generateId" select="$generateId"/>                        
+                        <xsl:with-param name="generateId" select="$generateId"/>
                     </xsl:call-template>
                 </xsl:for-each>
             </zorgverlener>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>zib2020 zorgaanbieder</xd:desc>
         <xd:param name="hl7-current-organization">input hl7 organization</xd:param>
@@ -1933,7 +2003,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701">
         <xsl:param name="hl7-current-organization"/>
         <xsl:param name="generateId" as="xs:boolean?" select="false()"/>
-        
+
         <xsl:for-each select="$hl7-current-organization">
             <zorgaanbieder>
                 <xsl:if test="$generateId">
@@ -1952,14 +2022,98 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="elemName">organisatie_naam</xsl:with-param>
                     <xsl:with-param name="nullIfMissing">NI</xsl:with-param>
                 </xsl:call-template>
+                <!-- afdeling_specialisme -->
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:asOrganizationPartOf/hl7:code"/>
+                    <xsl:with-param name="elemName">afdeling_specialisme</xsl:with-param>
+                </xsl:call-template>
+                <!-- contactgegevens -->
+                <xsl:call-template name="handleTELtoContactInformation">
+                    <xsl:with-param name="in" select="hl7:telecom"/>                    
+                </xsl:call-template>
+                <!-- adresgegevens -->
                 <xsl:call-template name="handleADtoAddressInformation">
                     <xsl:with-param name="in" select="hl7:addr"/>
                     <xsl:with-param name="language">nl-NL</xsl:with-param>
                 </xsl:call-template>
+                <!-- organisatie_type -->
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:standardIndustryClassCode"/>
+                    <xsl:with-param name="elemName">organisatie_type</xsl:with-param>
+                </xsl:call-template>
             </zorgaanbieder>
         </xsl:for-each>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc> contactpersoon as author - zib2020 </xd:desc>
+        <xd:param name="in-hl7">hl7 element containing the assignedAuthor</xd:param>
+        <xd:param name="generateId">whether or not to output an ada id on the root element, optional, default to false()</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.35_20210701">
+        <xsl:param name="in-hl7" select="."/>
+        <xsl:param name="generateId" as="xs:boolean?" select="false()"/>
+        
+        <contactpersoon>
+            <xsl:if test="$generateId = true()">
+                <xsl:attribute name="id" select="generate-id()"/>
+            </xsl:if>
+            
+            <!-- naam -->
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.36_naam_20210701">
+                <xsl:with-param name="in-hl7" select="hl7:assignedPerson[hl7:name]"/>
+            </xsl:call-template>
+            
+            <!-- adres / contact / rol -->
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.31_20210701">
+                <xsl:with-param name="in-hl7" select="."/>
+            </xsl:call-template>
+            
+            <!-- relatie -->
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.36_relatie_20210701">
+                <xsl:with-param name="in-hl7" select="hl7:assignedPerson[sdtc:asPatientRelationship]"/>
+            </xsl:call-template>
+            
+        </contactpersoon>
+    </xsl:template>
     
+    <xd:doc>
+        <xd:desc> shared part 2 of contactpersoon - zib2020 - only name </xd:desc>
+        <xd:param name="in-hl7">hl7 element containing the contact person name</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.36_naam_20210701">
+        <xsl:param name="in-hl7" select="."/>
+
+        <xsl:for-each select="$in-hl7">
+            <!-- naamgegevens -->
+            <xsl:for-each select="hl7:name">
+                <!-- naamgegevens -->
+                <xsl:call-template name="handleENtoNameInformation">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="language" select="$language"/>
+                    <!-- naamgebruik is not part of the MP transactions for voorschrijver -->
+                    <xsl:with-param name="outputNaamgebruik" select="false()"/>
+                </xsl:call-template>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc> shared part 2 of contactpersoon - zib2020 - only relation</xd:desc>
+        <xd:param name="in-hl7">hl7 element containing the relation to the patient</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.36_relatie_20210701">
+        <xsl:param name="in-hl7" select="."/>
+
+        <!-- relatie -->
+        <xsl:for-each select="$in-hl7/sdtc:asPatientRelationship[sdtc:code]">
+            <xsl:call-template name="handleCV">
+                <xsl:with-param name="in" select="sdtc:code"/>
+                <xsl:with-param name="elemName">relatie</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+
 
 
     <xd:doc>
@@ -2039,4 +2193,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
         </xsl:copy>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@unit/@code/@codeSystem/@nullFlavor. Else return empty</xd:desc>
+        <xd:param name="in">The ada element for which to return a default key to determine uniqueness of the contents of the element</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:getGroupingKeyDefaulthl72ada" as="xs:string?">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:if test="$in">
+            <xsl:value-of select="upper-case(string-join(($in//@value, $in//@root, $in//@unit, $in//@code, $in//@codeSystem, $in//@nullFlavor)/normalize-space(), ''))"/>
+        </xsl:if>
+    </xsl:function>
+
+
 </xsl:stylesheet>

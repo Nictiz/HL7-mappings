@@ -140,6 +140,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7NullFlavor="TRC" displayName="spoor" displayNameEN="trace"/>
     </xsl:variable>
     
+    <xsl:variable name="hl7ActStatusMap" as="element()+">
+        <map hl7Code="active" hl7CodeSystem="2.16.840.1.113883.5.14" displayName="actief" displayNameEN="active"/>
+        <map hl7Code="suspended" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="onderbroken" displayNameEN="suspended"/>
+        <map hl7Code="aborted" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="afgebroken" displayNameEN="aborted"/>
+        <map hl7Code="completed" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="voltooid" displayNameEN="completed"/>
+        <map hl7Code="cancelled" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="niet gestart" displayNameEN="cancelled"/>
+    </xsl:variable>
+    
     <xsl:variable name="uziRoleCodeMap" as="element()+">
         <map hl7Code="01.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts"/>
         <map hl7Code="01.002" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Allergoloog (gesloten register)"/>
