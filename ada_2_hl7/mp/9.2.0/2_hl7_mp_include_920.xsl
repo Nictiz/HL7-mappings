@@ -510,7 +510,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
                 </xsl:for-each>
-                <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+                <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
                 </xsl:for-each>
 
@@ -716,15 +716,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="MBHroot" select=".."/>
                     </xsl:call-template>
                 </entryRelationship>
-
-                <!-- relaties huisartsenzorg -->
-                <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
-                </xsl:for-each>
-                <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
-                </xsl:for-each>
-
+         
             </supply>
         </xsl:for-each>
     </xsl:template>
@@ -906,7 +898,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
                 </xsl:for-each>
-                <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+                <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
                 </xsl:for-each>
 
@@ -1095,7 +1087,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
                 </xsl:for-each>
-                <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+                <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
                 </xsl:for-each>
 
@@ -1960,7 +1952,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
             </xsl:for-each>
-            <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+            <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
             </xsl:for-each>
 
@@ -2042,7 +2034,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
             </xsl:for-each>
-            <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+            <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
             </xsl:for-each>
         </xsl:for-each>
@@ -2227,15 +2219,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="MBHroot" select=".."/>
                 </xsl:call-template>
             </entryRelationship>
-
-            <!-- relaties huisartsenzorg -->
-            <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
-            </xsl:for-each>
-            <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
-            </xsl:for-each>
-
+       
         </xsl:for-each>
     </xsl:template>
 
