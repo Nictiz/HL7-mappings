@@ -71,18 +71,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>       
                 
                 <status>
+                    <!-- Mapping based on mapping guidance given in status. -->
                     <xsl:choose>
-                        <xsl:when test="xs:date($endDate) &lt; current-date() or xs:dateTime($endDate) &lt;  current-dateTime()">
+                        <!-- When StartDate is present  and StartDate in the future: _planned_  -->
+                        <xsl:when test="xs:date($startDate) &gt; current-date() or xs:dateTime($startDate) &gt; current-dateTime()">
+                            <xsl:attribute name="value" select="'planned'"/>
+                        </xsl:when>
+                        
+                        <!-- When StartDate is present and StartDate in the past and EndDate in the future or absent: _active_  -->
+                        <xsl:when test="(xs:date($startDate) &lt; current-date() or xs:dateTime($startDate) &lt;  current-dateTime()) 
+                                         and (xs:date($endDate) &gt; current-date() or xs:dateTime($endDate) &gt;  current-dateTime() 
+                                                or not($endDate))">
+                            <xsl:attribute name="value" select="'active'"/>
+                        </xsl:when>
+ 
+                        <!-- When StartDate is present and StartDate in the past and EndDate in the past: _finished_  -->
+                        <xsl:when test="(xs:date($startDate) &lt; current-date() or xs:dateTime($startDate) &lt;  current-dateTime()) 
+                                        and (xs:date($endDate) &lt; current-date() or xs:dateTime($endDate) &lt;  current-dateTime())">
                             <xsl:attribute name="value" select="'finished'"/>
                         </xsl:when>
-                        <!-- This could also be 'waitlist', 'onhold' or 'cancelled'. Active would be best guess.  -->
-                        <xsl:when test="xs:date($endDate) &gt; current-date() or xs:dateTime($endDate) &gt; current-dateTime()">
+                        
+                        <!-- When StartDate is absent and EnDate in the past: _finished_ -->
+                        <xsl:when test="not($startDate) and (xs:date($endDate) &lt; current-date() or xs:dateTime($endDate) &lt; current-dateTime())">
+                            <xsl:attribute name="value" select="'finished'"/>
+                        </xsl:when>
+                        
+                        <!-- When StartDate is absent and EnDate in the future: _active_ -->
+                        <xsl:when test="not($startDate) and (xs:date($endDate) &gt; current-date() or xs:dateTime($endDate) &gt; current-dateTime())">
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:when>
-                        <!-- This can also be 'planned' or 'waitlist'  -->
-<!--                        <xsl:when test="$startDate and not($endDate)">
-                            <xsl:attribute name="value" select="'active'"/>
-                        </xsl:when>-->
+                        
                         <!-- If no status can be derived from the start and enddate, the EpisodeOfCare is assumed to be active. 
                             A status code must be provided and no unkown code exists.-->
                         <xsl:otherwise>
