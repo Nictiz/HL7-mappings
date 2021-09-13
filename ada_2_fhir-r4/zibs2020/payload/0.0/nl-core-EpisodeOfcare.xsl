@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada zorg_episode to FHIR EpisodeOfCare conforming to profile nl-core-EpisodeOfCare</xd:desc>
-    </xd:doc>
+    </xd:doc>    
     
     <xd:doc>
         <xd:desc>Create a nl-core-EpisodeOfCare instance as a EpisodeOfCare FHIR instance from ADA zorg_episode.</xd:desc>
@@ -71,38 +71,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>       
                 
                 <status>
-                    <!-- Mapping based on mapping guidance given in status. -->
                     <xsl:choose>
-                        <!-- When StartDate is present  and StartDate in the future: _planned_  -->
-                        <xsl:when test="xs:date($startDate) &gt; current-date() or xs:dateTime($startDate) &gt; current-dateTime()">
+                        <!-- When StartDate is present and StartDate in the future: _planned_  -->
+                        <xsl:when test="nf:isFuture($startDate)">
                             <xsl:attribute name="value" select="'planned'"/>
                         </xsl:when>
                         
-                        <!-- When StartDate is present and StartDate in the past and EndDate in the future or absent: _active_  -->
-                        <xsl:when test="(xs:date($startDate) &lt; current-date() or xs:dateTime($startDate) &lt;  current-dateTime()) 
-                                         and (xs:date($endDate) &gt; current-date() or xs:dateTime($endDate) &gt;  current-dateTime() 
-                                                or not($endDate))">
+                         <!--When StartDate is in the past and EndDate in the future or absent: _active_  -->
+                        <xsl:when test="nf:isPast($startDate) and (nf:isFuture($endDate) or not($endDate)) ">
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:when>
- 
-                        <!-- When StartDate is present and StartDate in the past and EndDate in the past: _finished_  -->
-                        <xsl:when test="(xs:date($startDate) &lt; current-date() or xs:dateTime($startDate) &lt;  current-dateTime()) 
-                                        and (xs:date($endDate) &lt; current-date() or xs:dateTime($endDate) &lt;  current-dateTime())">
+                        
+                        <!-- When StartDate is absent or in the past and EndDate in the past: _finished_  -->
+                        <xsl:when test="(not($startDate) or nf:isPast($startDate)) and nf:isPast($endDate)">
                             <xsl:attribute name="value" select="'finished'"/>
                         </xsl:when>
                         
-                        <!-- When StartDate is absent and EnDate in the past: _finished_ -->
-                        <xsl:when test="not($startDate) and (xs:date($endDate) &lt; current-date() or xs:dateTime($endDate) &lt; current-dateTime())">
-                            <xsl:attribute name="value" select="'finished'"/>
-                        </xsl:when>
-                        
-                        <!-- When StartDate is absent and EnDate in the future: _active_ -->
-                        <xsl:when test="not($startDate) and (xs:date($endDate) &gt; current-date() or xs:dateTime($endDate) &gt; current-dateTime())">
+                        <!-- When StartDate is absent and EndDate in the future: _active_ -->
+                        <xsl:when test="not($startDate) and nf:isFuture($endDate)">
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:when>
                         
                         <!-- If no status can be derived from the start and enddate, the EpisodeOfCare is assumed to be active. 
-                            A status code must be provided and no unkown code exists.-->
+                            A status code must be provided and no unkown code exists in the required ValueSet.-->
                         <xsl:otherwise>
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:otherwise>
