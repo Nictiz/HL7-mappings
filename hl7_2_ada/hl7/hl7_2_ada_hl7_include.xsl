@@ -597,16 +597,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'BR'], '')"/>
                                     </xsl:when>
                                     <!-- prefix of type VV and no family with qualifier, assume BR for both -->
-                                    <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)]">
-                                        <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)], '')"/>
+                                    <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(following-sibling::hl7:family/@qualifier)]">
+                                        <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(following-sibling::hl7:family/@qualifier)], '')"/>
                                     </xsl:when>
                                     <!-- prefix of type VV and first following sibling family with qualifier BR, assume BR for both -->
                                     <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']]">
                                         <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], '')"/>
                                     </xsl:when>
                                     <!-- prefix without qualifier and no family with qualifier, assume BR for both -->
-                                    <xsl:when test="hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)]">
-                                        <xsl:value-of select="string-join(hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)], '')"/>
+                                    <xsl:when test="hl7:prefix[not(@qualifier)][not(following-sibling::hl7:family/@qualifier)]">
+                                        <xsl:value-of select="string-join(hl7:prefix[not(@qualifier)][not(following-sibling::hl7:family/@qualifier)], '')"/>
                                     </xsl:when>
                                     <!-- prefix without qualifier and first following sibling family with qualifier BR, assume BR for both -->
                                     <xsl:when test="hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']]">
