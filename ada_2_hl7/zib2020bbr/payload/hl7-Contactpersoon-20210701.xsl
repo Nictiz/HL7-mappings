@@ -159,4 +159,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Mapping of zib nl.zorg.Contactpersoon 3.4 concept in ADA to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.121.10.44</xd:desc>
+        <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.44_20210701000000" match="contactpersoon" mode="handleContactPersAssEntity">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        
+        <xsl:for-each select="$in">
+            
+            <!-- no use case for author/time here yet, but should probably be added later on -->
+            <time nullFlavor="NI"/>
+            
+            <assignedEntity>
+                
+                <!-- shared part 1, role, address, telecom -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.31_20210701000000">
+                    <xsl:with-param name="idMandatory" select="true()"/>
+                    <xsl:with-param name="codeMandatory" select="false()"/>                    
+                </xsl:call-template>
+                
+                <xsl:if test="(naamgegevens | relatie)[.//(@value | @code | @nullFlavor)]">
+                    <assignedPerson>
+                        <!-- shared part 2, name, relation -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.36_20210701000000"/>
+                    </assignedPerson>
+                </xsl:if>
+            </assignedEntity>
+            
+        </xsl:for-each>
+    </xsl:template>
+    
+    
+
 </xsl:stylesheet>

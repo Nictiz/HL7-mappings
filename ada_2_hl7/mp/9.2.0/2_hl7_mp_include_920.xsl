@@ -443,6 +443,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="../../bouwstenen/zorgaanbieder[@id = current()/beoogd_verstrekker/zorgaanbieder/@value]">
                     <performer>
                         <assignedEntity>
+                            <id nullFlavor="NI"/>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
                         </assignedEntity>
                     </performer>
@@ -663,6 +664,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="../../bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]">
                     <performer>
                         <assignedEntity>
+                            <id nullFlavor="NI"/>                            
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
                         </assignedEntity>
                     </performer>
@@ -824,7 +826,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- toediener -->
                 <xsl:for-each select="toediener">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9379_20210617145250"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9392_20210914"/>
                 </xsl:for-each>
 
                 <!-- afgesproken_datum_tijd en/of afgesproken_hoeveelheid -->
@@ -1278,6 +1280,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </observation>
         </xsl:for-each>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Toediener in medicatietoediening</xd:desc>
+        <xd:param name="in">the ada element for toediener, defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9392_20210914" match="toediener" mode="HandleToediener92">
+        <xsl:param name="in" as="element()*" select="."/>
+        
+        <xsl:for-each select="$in">
+            <!-- patient -->
+            <xsl:for-each select="patient[not(toediener_is_patient/@value = 'false')][.//@value]">
+                <performer>
+                    <!-- time is verplicht in xsd, maar medicatietoediening heeft er geen dataset concept voor -->
+                    <time nullFlavor="NI"/>
+                    <assignedEntity>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
+                            <xsl:with-param name="ada_patient_identificatienummer" select="../../../../patient/identificatienummer"/>
+                        </xsl:call-template>
+                    </assignedEntity>
+                </performer>
+            </xsl:for-each>
+            
+            <!-- zorgverlener -->
+            <xsl:for-each select="../../../bouwstenen/zorgverlener[@id = current()//zorgverlener[not(zorgverlener)]/@value]">
+                <performer>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.43_20210701000000"/>
+                </performer>
+            </xsl:for-each>
+            
+            <!-- mantelzorger -->
+            <xsl:for-each select="../../../bouwstenen/contactpersoon[@id = current()/mantelzorger/contactpersoon/@value]">
+                <performer>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.44_20210701000000"/>
+                </performer>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+    
 
     <xd:doc>
         <xd:desc>Voorstel Medicatieafspraak</xd:desc>
@@ -2133,6 +2173,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="inputNullFlavor" select="$theAfspraakdatum/@nullFlavor"/>
                     </xsl:call-template>
                     <assignedAuthor>
+                        <id nullFlavor="NI"/>                        
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
                     </assignedAuthor>
                 </author>
