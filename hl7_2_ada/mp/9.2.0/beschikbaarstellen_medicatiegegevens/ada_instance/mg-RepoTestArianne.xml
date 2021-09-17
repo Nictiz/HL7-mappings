@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--Generated from HL7v3 instance.-->
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-09-09T19:06:21.689+02:00"
-         last-update-date="2021-09-09T19:06:21.689+02:00"/>
+         creation-date="2021-09-17T17:22:37.417+02:00"
+         last-update-date="2021-09-17T17:22:37.417+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -44,6 +43,76 @@
             <identificatie value="MBH_920_TestVVs"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43">
+               <identificatie value="MBH_920_arianne_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd datatype="datetime"
+                                             value="2020-12-12T08:00:00"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84">
+                  <start_datum_tijd datatype="datetime"
+                                    value="2020-12-12T00:00:00"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2021-01-10T23:59:59"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
+               </gebruiksperiode>
+               <relatie_contact conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.199">
+                  <identificatienummer value="contact#arianne1"
+                                       root="2.16.840.1.113883.2.4.3.11.999.66.2709"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.845"/>
+               </relatie_contact>
+               <relatie_zorgepisode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.843">
+                  <identificatienummer value="episode#arianne1"
+                                       root="2.16.840.1.113883.2.4.3.11.999.66.9200"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.844"/>
+               </relatie_zorgepisode>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
+                  <zorgverlener value="d39e78"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
+                  <farmaceutisch_product value="d39e64"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50">
+                  <omschrijving value="Vanaf 12 dec 2020, tot en met 10 jan 2021, 2 maal per dag 1 stuk, oraal"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55">
+                     <volgnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.57"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547">
+                              <nominale_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.70"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.552"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.75">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.554">
+                                 <nominale_waarde value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.78"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.555"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
             <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.274">
                <identificatie value="MBH_920_TestVVs_VV1geannuleerd"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
@@ -52,26 +121,28 @@
                                            value="2021-01-01T08:53:00"
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.279"/>
                <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.290">
-                  <zorgverlener datatype="reference"
-                                value="d17e87"
+                  <zorgverlener value="d39e78"
+                                datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.291"/>
                </auteur>
                <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.277">
-                  <farmaceutisch_product datatype="reference"
-                                         value="d17e57"
+                  <farmaceutisch_product value="d39e64"
+                                         datatype="reference"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.278"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.285">
                   <aantal value="20" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.562"/>
-                  <eenheid code="245"
-                           displayName="stuk"
+                  <eenheid value="20"
+                           code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.563"/>
                </te_verstrekken_hoeveelheid>
+               <geannuleerd_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1167"/>
                <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.275">
-                  <zorgaanbieder datatype="reference"
-                                 value="d17e73"
+                  <zorgaanbieder value="d39e230"
+                                 datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.276"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.292">
@@ -102,8 +173,8 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.403"/>
                </gebruiksperiode>
                <gebruiksproduct conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.365">
-                  <farmaceutisch_product datatype="reference"
-                                         value="d17e193"
+                  <farmaceutisch_product value="d39e64"
+                                         datatype="reference"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.366"/>
                </gebruiksproduct>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
@@ -146,47 +217,41 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.414"/>
                </relatie_medicatieafspraak>
                <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.363">
-                  <zorgverlener datatype="reference"
-                                value="d17e387"
+                  <zorgverlener value="d39e78"
+                                datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
                </voorschrijver>
                <informant conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.593">
                   <persoon conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.594">
-                     <adresgegevens>
-                        <straat value="Prikstraat"/>
-                        <huisnummer value="12"/>
-                        <huisnummerletter value="A"/>
-                        <huisnummertoevoeging value="kamer 2"/>
-                        <postcode value="1234 AA"/>
-                        <woonplaats value="Amsterdam"/>
-                        <gemeente value="Amsterdam"/>
-                        <adres_soort code="HP"
-                                     codeSystem="2.16.840.1.113883.5.1119"
-                                     displayName="Officieel adres"/>
-                     </adresgegevens>
-                     <naamgegevens>
-                        <voornamen value="Bart"/>
-                        <geslachtsnaam>
-                           <achternaam value="Jansen"/>
-                        </geslachtsnaam>
-                     </naamgegevens>
-                     <rol_of_functie code="100001"
-                                     codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1"
-                                     codeSystemName="ExtraRolcodes"
-                                     displayName="Mantelzorger"/>
+                     <contactpersoon value="d39e429"
+                                     datatype="reference"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1340"/>
                   </persoon>
                </informant>
                <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
                   <auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627">
-                     <zorgverlener datatype="reference"
-                                   value="d17e207"
+                     <zorgverlener value="d39e78"
+                                   datatype="reference"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.628"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
          </medicamenteuze_behandeling>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="d17e57" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+            <contactpersoon id="d39e429" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1283">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1284">
+                  <voornamen value="Bart" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1285"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1289">
+                     <achternaam value="Jansen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1291"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <rol code="100001"
+                    codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1"
+                    codeSystemName="ExtraRolcodes"
+                    displayName="Mantelzorger"
+                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1317"/>
+            </contactpersoon>
+            <farmaceutisch_product id="d39e64" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
                <product_code code="17469"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -198,24 +263,15 @@
                              displayName="IBUPROFEN TABLET 600MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d17e193" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="17469"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="IBUPROFEN TABLET 600MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="42080"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="IBUPROFEN TABLET 600MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <zorgverlener id="d17e87" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+            <zorgverlener id="d39e78" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
                   <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
                      <voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
                      <achternaam value="Pulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
@@ -223,63 +279,17 @@
                </naamgegevens>
                <specialisme code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
-                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
-                            codeSystemVersion="2017-12-14T00:00:00"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
                <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
-                  <zorgaanbieder datatype="reference"
-                                 value="d17e108"
+                  <zorgaanbieder value="d39e99"
+                                 datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="d17e387" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
-               <zorgverlener_identificatienummer value="000001111"
-                                                 root="2.16.528.1.1007.3.1"
-                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
-               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
-                  <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
-                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
-                     <voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
-                     <achternaam value="Pulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
-                  </geslachtsnaam>
-               </naamgegevens>
-               <specialisme code="0100"
-                            codeSystem="2.16.840.1.113883.2.4.6.7"
-                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
-                            codeSystemVersion="2017-12-14T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
-               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
-                  <zorgaanbieder datatype="reference"
-                                 value="d17e408"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
-               </zorgaanbieder>
-            </zorgverlener>
-            <zorgverlener id="d17e207" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
-               <zorgverlener_identificatienummer value="000001111"
-                                                 root="2.16.528.1.1007.3.1"
-                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
-               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
-                  <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
-                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
-                     <voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
-                     <achternaam value="Pulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
-                  </geslachtsnaam>
-               </naamgegevens>
-               <specialisme code="0100"
-                            codeSystem="2.16.840.1.113883.2.4.6.7"
-                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
-                            codeSystemVersion="2017-12-14T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
-               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
-                  <zorgaanbieder datatype="reference"
-                                 value="d17e228"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
-               </zorgaanbieder>
-            </zorgverlener>
-            <zorgaanbieder id="d17e108" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+            <zorgaanbieder id="d39e99" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
@@ -298,42 +308,17 @@
                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d17e73" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+            <zorgaanbieder id="d39e230" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
                <organisatie_naam value="Apotheek de Gulle Gaper"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
-            </zorgaanbieder>
-            <zorgaanbieder id="d17e408" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
-               <zorgaanbieder_identificatienummer value="00001111"
-                                                  root="2.16.528.1.1007.3.3"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
-               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243">
                   <straat value="Dorpsstraat"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.244"/>
-                  <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.245"/>
-                  <postcode value="1234 AA" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.249"/>
-                  <woonplaats value="Ons Dorp"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.250"/>
-                  <adres_soort code="WP"
-                               codeSystem="2.16.840.1.113883.5.1119"
-                               displayName="Werkadres"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"/>
-               </adresgegevens>
-            </zorgaanbieder>
-            <zorgaanbieder id="d17e228" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
-               <zorgaanbieder_identificatienummer value="00001111"
-                                                  root="2.16.528.1.1007.3.3"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
-               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
-               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243">
-                  <straat value="Dorpsstraat"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.244"/>
-                  <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.245"/>
+                  <huisnummer value="10" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.245"/>
+                  <huisnummerletter value="A" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.246"/>
                   <postcode value="1234 AA" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.249"/>
                   <woonplaats value="Ons Dorp"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.250"/>
