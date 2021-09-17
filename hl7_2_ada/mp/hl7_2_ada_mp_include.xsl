@@ -6659,7 +6659,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- beoogd_verstrekker -->
                 <xsl:for-each select="hl7:performer/hl7:assignedEntity/hl7:representedOrganization">
-                    <beoogd_verstrekker>                      
+                    <beoogd_verstrekker>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701">
                             <xsl:with-param name="hl7-current-organization" select="."/>
                             <xsl:with-param name="generateId" select="true()"/>
@@ -7045,32 +7045,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="_huisartsenRelaties"/>
 
                 <!-- toediener -->
-                <xsl:for-each select="hl7:author">
+                <xsl:for-each select="hl7:performer">
                     <toediener>
 
                         <!-- toediener_is_zorgverlener -->
-                        <xsl:for-each select=".[not(hl7:assignedAuthor/hl7:code[@codeSystem = '2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem = '2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedAuthor[hl7:code/@code = 'ONESELF'])]">
+                        <xsl:for-each select=".[not(hl7:assignedEntity/hl7:code[@codeSystem = '2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem = '2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code = 'ONESELF'])]">
+                            <!-- double nested zorgverlener in dataset -->
                             <zorgverlener>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
-                                    <xsl:with-param name="author-hl7" select="."/>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.43_20210701">
+                                    <xsl:with-param name="in-hl7" select="."/>
                                     <xsl:with-param name="generateId" select="true()"/>
                                 </xsl:call-template>
                             </zorgverlener>
                         </xsl:for-each>
+                        
                         <!-- toediener_is_patient -->
-                        <xsl:for-each select="hl7:assignedAuthor[hl7:code/@code = 'ONESELF']">
-
+                        <xsl:for-each select="hl7:assignedEntity[hl7:code/@code = 'ONESELF']">
                             <patient>
                                 <toediener_is_patient value="true"/>
                             </patient>
                         </xsl:for-each>
-                       
+
                         <!-- toediener mantelzorger -->
-                        <xsl:for-each select="hl7:assignedAuthor[hl7:code[@codeSystem = '2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem = '2.16.840.1.113883.2.4.3.11.60.40.4.23.1']][not(hl7:code/@code = 'ONESELF')]">
+                        <xsl:for-each select="hl7:assignedEntity[hl7:code[@codeSystem = '2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem = '2.16.840.1.113883.2.4.3.11.60.40.4.23.1']][not(hl7:code/@code = 'ONESELF')]">
                             <mantelzorger>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.35_20210701">
                                     <xsl:with-param name="in-hl7" select="."/>
-                                </xsl:call-template>                               
+                                    <xsl:with-param name="generateId" select="true()"/>
+                                </xsl:call-template>
                             </mantelzorger>
                         </xsl:for-each>
                     </toediener>
@@ -7697,7 +7699,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Do not output bouwstenen (again) in handleBouwstenen, bouwstenen are completely handled in the template that handles medicamenteuze_behandeling</xd:desc>
     </xd:doc>
     <xsl:template match="bouwstenen" mode="deduplicateBouwstenenStep1"/>
-    
+
     <xd:doc>
         <xd:desc>Make a reference to the bouwstenen</xd:desc>
     </xd:doc>
@@ -7722,7 +7724,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Bouwstenen are directly after the last medicamenteuze_behandeling</xd:desc>
     </xd:doc>
     <xsl:template match="medicamenteuze_behandeling[not(following-sibling::medicamenteuze_behandeling)]" mode="deduplicateBouwstenenStep1">
-        
+
         <xsl:copy>
             <xsl:apply-templates select="node() | @*" mode="deduplicateBouwstenenStep1"/>
         </xsl:copy>
@@ -7747,7 +7749,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="contactpersoon/*" mode="deduplicateBouwstenenStep1"/>
                 </contactpersoon>
             </xsl:for-each>
-            
+
             <!-- farmaceutisch_product -->
             <xsl:variable name="farmaceutischeProducten" select="../medicamenteuze_behandeling//farmaceutisch_product"/>
             <xsl:variable name="uniekeProducten" as="element()*">
@@ -7768,7 +7770,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="farmaceutisch_product/*" mode="deduplicateBouwstenenStep1"/>
                 </farmaceutisch_product>
             </xsl:for-each>
-            
+
             <!-- zorgverlener -->
             <xsl:variable name="zorgverleners" select="../medicamenteuze_behandeling//zorgverlener[not(zorgverlener)]"/>
             <xsl:variable name="uniekezorgverleners" as="element()*">
@@ -7789,7 +7791,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="zorgverlener/*" mode="deduplicateBouwstenenStep1"/>
                 </zorgverlener>
             </xsl:for-each>
-            
+
             <!-- zorgaanbieder -->
             <xsl:variable name="zorgaanbieders" select="../medicamenteuze_behandeling//zorgaanbieder"/>
             <xsl:variable name="uniekeZorgaanbieders" as="element()*">
@@ -7810,11 +7812,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="zorgaanbieder/*" mode="deduplicateBouwstenenStep1"/>
                 </zorgaanbieder>
             </xsl:for-each>
-            
+
             <!-- copy existing bouwstenen as well, should only be lichaamsgewicht / lichaamslengte -->
             <xsl:apply-templates select="../bouwstenen/*" mode="deduplicateBouwstenenStep1"/>
         </bouwstenen>
-        
+
     </xsl:template>
 
     <xd:doc>
@@ -7829,7 +7831,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:attribute name="datatype">reference</xsl:attribute>
         </xsl:copy>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>zorgverlener has a bouwstenen reference to zorgaanbieder, some special handling here in deduplication step 2</xd:desc>
     </xd:doc>
@@ -7850,12 +7852,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> get rid of the now (in step 2) obsolete temporary deduplication key, don't want it in the end result ada xml </xd:desc>
     </xd:doc>
     <xsl:template match="bouwstenen/*/key" mode="deduplicateBouwstenenStep2"/>
-    
+
 
     <xd:doc>
         <xd:desc>Default copy template for deduplication the bouwstenen stuff (step 1) in the 9.2 dataset</xd:desc>
