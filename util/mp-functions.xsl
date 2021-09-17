@@ -199,13 +199,13 @@
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:variable>
-                            <xsl:variable name="interval" select="./toedieningsschema/interval[(@value | @unit)]"/>
+                            <xsl:variable name="interval" select="toedieningsschema/interval[(@value | @unit)]"/>
                             <xsl:variable name="interval-string" as="xs:string?">
                                 <xsl:if test="$interval">
-                                    <xsl:value-of select="concat('exact iedere ', $interval/@value, ' ', nwf:unit-string($interval/@value, $interval/@unit))"/>
+                                    <xsl:value-of select="concat('iedere ', $interval/@value, ' ', nwf:unit-string($interval/@value, $interval/@unit))"/>
                                 </xsl:if>
                             </xsl:variable>
-                            <xsl:variable name="toedientijd" select="./toedieningsschema/toedientijd[@value]"/>
+                            <xsl:variable name="toedientijd" select="toedieningsschema/toedientijd[@value]"/>
                             <xsl:variable name="toedientijd-string" as="xs:string*">
                                 <xsl:choose>
                                     <xsl:when test="count($toedientijd) = 1">
@@ -311,7 +311,7 @@
                                 </xsl:if>
                             </xsl:variable>
                             <xsl:variable name="isFlexible" as="xs:string?">
-                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false'">, let op! Tijden exact aanhouden.</xsl:if>
+                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false' or $interval">, let op! Tijden exact aanhouden.</xsl:if>
                             </xsl:variable>
 
                             <xsl:value-of select="normalize-space(concat(string-join($zo-nodig, ' '), ' ', string-join($weekdag-string, ' '), ' ', string-join($frequentie-string, ' '), $interval-string, ' ', string-join($toedientijd-string, ' '), ' ', string-join($keerdosis-string, ' '), ' ', string-join($dagdeel-string, ' '), ' ', $toedieningsduur-string, ' ', string-join($toedieningssnelheid-string, ' '), string-join($maxdose-string, ' '), $isFlexible))"/>
