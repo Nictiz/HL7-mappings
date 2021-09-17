@@ -12,18 +12,41 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xsl:import href="../../../../zibs2020/payload/all-zibs.xsl"/>
     <xsl:import href="../../../../../ada_2_ada/ada/AddConceptIds.xsl"/>
 
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <!-- Dit is een conversie van MP 9.1.0 naar ADA 9.0 voorschrift bericht -->
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="true()"/>
     <xsl:param name="schemaFileString" as="xs:string?">../../hl7_2_ada/mp/9.2.0/sturen_medicatievoorschrift/ada_schemas/sturen_medicatievoorschrift.xsd</xsl:param>
-    <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
-
+    <!-- whether or not this hl7_2_ada conversion should deduplicate bouwstenen, such as products, health providers, health professionals, contact persons -->
+    <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="false()"/>
+    <!--    <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="true()"/>-->
+    <!-- wether or not to add adaconcept id's, this is not really necessary, so out of performance considerations this should be false() -->
+    <!--        <xsl:param name="addAdaConceptId" as="xs:boolean?" select="false()"/>-->
+    <xsl:param name="addAdaConceptId" as="xs:boolean?" select="true()"/>
+    
+    <xsl:variable name="medicatiegegevens-lijst-92" select="//hl7:organizer[@codeSystem='2.16.840.1.113883.2.4.3.11.60.20.77.4'] | //hl7:ClinicalDocument"/>
+    <xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/>
+    <xsl:variable name="extension" select="tokenize($filename, '\.')[last()]"/>
+    <xsl:variable name="idBasedOnFilename" select="replace($filename, concat('.', $extension, '$'), '')"/>
+    <xsl:param name="theId">
+        <xsl:choose>
+            <xsl:when test="string-length($idBasedOnFilename) gt 0">
+                <xsl:value-of select="$idBasedOnFilename"/>
+            </xsl:when>
+            <xsl:when test="string-length($medicatiegegevens-lijst-92/../../../hl7:id/@extension) gt 0">
+                <!-- let's use the extension of the message id -->
+                <xsl:value-of select="$medicatiegegevens-lijst-92/../../../hl7:id/@extension"/>
+            </xsl:when>
+            <xsl:otherwise><xsl:value-of select="generate-id(.)"/></xsl:otherwise>
+        </xsl:choose>
+    </xsl:param>
+    
+    
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -53,7 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="last-update-date" select="current-dateTime()"/>
                 </meta>
                 <data>
-                    <sturen_medicatievoorschrift app="mp-mp9" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-" language="nl-NL" title="testbericht ADA conversie" id="cd1badfb-2076-4c6f-b08e-bddbc7972340">
+                    <sturen_medicatievoorschrift app="mp-mp920" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.271" transactionEffectiveDate="2021-05-05T10:25:34" versionDate="" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
                         <xsl:for-each select="$patient">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20210701">
                                 <xsl:with-param name="in" select="."/>
@@ -109,7 +132,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:variable name="adaXmlWithBouwstenen">
-            <xsl:apply-templates select="$adaXml" mode="handleBouwstenen"/>
+            <xsl:choose>
+                <xsl:when test="$deduplicateAdaBouwstenen = true()">
+                    <xsl:variable name="adaXmlDeduplicated">
+                        <xsl:apply-templates select="$adaXml" mode="deduplicateBouwstenenStep1"/>
+                    </xsl:variable>
+                    <xsl:apply-templates select="$adaXmlDeduplicated" mode="deduplicateBouwstenenStep2"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- don't deduplicate the bouwstenen -->
+                    <xsl:apply-templates select="$adaXml" mode="handleBouwstenen"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
 
         <!-- add conceptIds, not really necessary but for now helpful in comparing roundtrip stuff -->

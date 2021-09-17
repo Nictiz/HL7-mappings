@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Dit is een conversie voor MP 9 2.0 van HL7v3 naar ADA beschikbaarstellen medicatiegegevens</xd:desc>
     </xd:doc>
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="true()"/>
     <xsl:param name="schemaFileString" as="xs:string?">../../hl7_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
@@ -44,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- let's use the extension of the message id -->
                 <xsl:value-of select="$medicatiegegevens-lijst-92/../../../hl7:id/@extension"/>
             </xsl:when>
-            <xsl:otherwise>generated</xsl:otherwise>
+            <xsl:otherwise><xsl:value-of select="generate-id(.)"/></xsl:otherwise>
         </xsl:choose>
     </xsl:param>
 
@@ -173,142 +173,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Bouwstenen are directly after the last medicamenteuze_behandeling</xd:desc>
-    </xd:doc>
-    <xsl:template match="medicamenteuze_behandeling[not(following-sibling::medicamenteuze_behandeling)]" mode="deduplicateBouwstenenStep1">
-
-        <xsl:copy>
-            <xsl:apply-templates select="node() | @*" mode="deduplicateBouwstenenStep1"/>
-        </xsl:copy>
-        <bouwstenen>
-            <!-- contactpersoon -->
-            <xsl:variable name="concactpersonen" select="../medicamenteuze_behandeling//contactpersoon"/>
-            <xsl:variable name="uniekePersonen" as="element()*">
-                <xsl:for-each-group select="$concactpersonen" group-by="nf:getGroupingKeyDefaulthl72ada(.)">
-                    <uniek-persoon xmlns="">
-                        <group-key>
-                            <xsl:value-of select="current-grouping-key()"/>
-                        </group-key>
-                        <xsl:copy-of select="."/>
-                    </uniek-persoon>
-                </xsl:for-each-group>
-            </xsl:variable>
-            <xsl:for-each select="$uniekePersonen">
-                <contactpersoon id="{contactpersoon/@id}">
-                    <key>
-                        <xsl:value-of select="group-key/text()"/>
-                    </key>
-                    <xsl:apply-templates select="contactpersoon/*" mode="deduplicateBouwstenenStep1"/>
-                </contactpersoon>
-            </xsl:for-each>
-
-            <!-- farmaceutisch_product -->
-            <xsl:variable name="farmaceutischeProducten" select="../medicamenteuze_behandeling//farmaceutisch_product"/>
-            <xsl:variable name="uniekeProducten" as="element()*">
-                <xsl:for-each-group select="$farmaceutischeProducten" group-by="nf:getGroupingKeyDefaulthl72ada(.)">
-                    <uniek-product xmlns="">
-                        <group-key>
-                            <xsl:value-of select="current-grouping-key()"/>
-                        </group-key>
-                        <xsl:copy-of select="."/>
-                    </uniek-product>
-                </xsl:for-each-group>
-            </xsl:variable>
-            <xsl:for-each select="$uniekeProducten">
-                <farmaceutisch_product id="{farmaceutisch_product/@id}">
-                    <key>
-                        <xsl:value-of select="group-key/text()"/>
-                    </key>
-                    <xsl:apply-templates select="farmaceutisch_product/*" mode="deduplicateBouwstenenStep1"/>
-                </farmaceutisch_product>
-            </xsl:for-each>
-
-            <!-- zorgverlener -->
-            <xsl:variable name="zorgverleners" select="../medicamenteuze_behandeling//zorgverlener[not(zorgverlener)]"/>
-            <xsl:variable name="uniekezorgverleners" as="element()*">
-                <xsl:for-each-group select="$zorgverleners" group-by="nf:getGroupingKeyDefaulthl72ada(.)">
-                    <uniek-zorgverlener xmlns="">
-                        <group-key>
-                            <xsl:value-of select="current-grouping-key()"/>
-                        </group-key>
-                        <xsl:copy-of select="."/>
-                    </uniek-zorgverlener>
-                </xsl:for-each-group>
-            </xsl:variable>
-            <xsl:for-each select="$uniekezorgverleners">
-                <zorgverlener id="{zorgverlener/@id}">
-                    <key>
-                        <xsl:value-of select="group-key/text()"/>
-                    </key>
-                    <xsl:apply-templates select="zorgverlener/*" mode="deduplicateBouwstenenStep1"/>
-                </zorgverlener>
-            </xsl:for-each>
-
-            <!-- zorgaanbieder -->
-            <xsl:variable name="zorgaanbieders" select="../medicamenteuze_behandeling//zorgaanbieder"/>
-            <xsl:variable name="uniekeZorgaanbieders" as="element()*">
-                <xsl:for-each-group select="$zorgaanbieders" group-by="nf:getGroupingKeyDefaulthl72ada(.)">
-                    <uniek-zorgaanbieder xmlns="">
-                        <group-key>
-                            <xsl:value-of select="current-grouping-key()"/>
-                        </group-key>
-                        <xsl:copy-of select="."/>
-                    </uniek-zorgaanbieder>
-                </xsl:for-each-group>
-            </xsl:variable>
-            <xsl:for-each select="$uniekeZorgaanbieders">
-                <zorgaanbieder id="{zorgaanbieder/@id}">
-                    <key>
-                        <xsl:value-of select="group-key/text()"/>
-                    </key>
-                    <xsl:apply-templates select="zorgaanbieder/*" mode="deduplicateBouwstenenStep1"/>
-                </zorgaanbieder>
-            </xsl:for-each>
-
-            <!-- copy existing bouwstenen as well, should only be lichaamsgewicht / lichaamslengte -->
-            <xsl:apply-templates select="../bouwstenen/*" mode="deduplicateBouwstenenStep1"/>
-        </bouwstenen>
-
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc> find the correct reference in the deduplication mode </xd:desc>
-    </xd:doc>
-    <xsl:template match="medicamenteuze_behandeling//(farmaceutisch_product | contactpersoon | zorgaanbieder | zorgverlener[not(zorgverlener)])" mode="deduplicateBouwstenenStep2">
-        <xsl:copy>
-            <xsl:apply-templates select="@conceptId" mode="deduplicateBouwstenenStep2"/>
-            <xsl:attribute name="value">
-                <xsl:value-of select="ancestor::data/*/bouwstenen/*[key/text() = nf:getGroupingKeyDefaulthl72ada(current())]/@id"/>
-            </xsl:attribute>
-            <xsl:attribute name="datatype">reference</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc> zorgverlener has a bouwstenen reference to zorgaanbieder, some special handling here </xd:desc>
-    </xd:doc>
-    <xsl:template match="bouwstenen/zorgverlener" mode="deduplicateBouwstenenStep2">
-        <xsl:copy>
-            <xsl:apply-templates select="@*" mode="deduplicateBouwstenenStep2"/>
-            <xsl:apply-templates select="*[not(self::zorgaanbieder)]" mode="deduplicateBouwstenenStep2"/>
-            <xsl:for-each select="zorgaanbieder">
-                <xsl:copy>
-                    <!-- double nested in the dataset, unfortunately -->
-                    <zorgaanbieder>
-                        <xsl:attribute name="value">
-                            <xsl:value-of select="ancestor::data/*/bouwstenen/*[key/text() = nf:getGroupingKeyDefaulthl72ada(current())]/@id"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="datatype">reference</xsl:attribute>
-                    </zorgaanbieder>
-                </xsl:copy>
-            </xsl:for-each>
-         </xsl:copy>
-         </xsl:template>
-
-    <xd:doc>
-        <xd:desc> get rid of the now obsolete temporary deduplication key </xd:desc>
-    </xd:doc>
-    <xsl:template match="bouwstenen/*/key" mode="deduplicateBouwstenenStep2"/>
 
 </xsl:stylesheet>
