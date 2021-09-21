@@ -208,7 +208,7 @@ The TouchStone assert-stopTestOnFail extension is added to each assert with a de
 
 ## Running the transformation
 
-The transformation is called by the ANT build in `ant/build.xml`. For more information on the location of the inputs and outputs, see [the readme in the TestScripts repository](https://github.com/Nictiz/Nictiz-STU3-testscripts/blob/master/Generate/README.md).
+The transformation is called by the ANT build in `ant/build.xml`. For more information on the location of the inputs and outputs, see [the readme in the TestScripts repository](https://github.com/Nictiz/Nictiz-STU3-testscripts-src/blob/main/README.md).
 
 ## Building
 
