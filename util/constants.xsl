@@ -20,13 +20,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Contains any constants we might need. Anticipated are OIDs/URIs, ConceptMaps, ...</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:variable name="ada-unit-second" select="('seconde', 's', 'sec', 'second')"/>
-    <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
-    <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>
-    <xsl:variable name="ada-unit-day" select="('dag', 'd', 'day')"/>
-    <xsl:variable name="ada-unit-week" select="('week', 'wk')"/>
-    <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month')"/>
-    <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year')"/>
+    <xsl:variable name="ada-unit-second" select="('seconde', 's', 'sec', 'second', 'seconden', 'secondes', 'seconds')"/>
+    <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute', 'minuten', 'minutes')"/>
+    <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour', 'uren', 'hours')"/>
+    <xsl:variable name="ada-unit-day" select="('dag', 'd', 'day', 'dagen', 'days')"/>
+    <xsl:variable name="ada-unit-week" select="('week', 'wk', 'weken', 'weeks')"/>
+    <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month', 'maanden', 'months')"/>
+    <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year', 'jaren', 'years')"/>
 
     <xsl:variable name="ada-unit-kilo" select="('kilo', 'kg', 'kilogram')"/>
     <xsl:variable name="ada-unit-gram" select="('gram', 'g', 'gr')"/>
@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada-unit-ml" select="('milliliter', 'ml')"/>
     <xsl:variable name="ada-unit-ul" select="('microliter', 'ul')"/>
 
-    <xsl:variable name="ada-unit-druppel" select="('druppel', 'drp', '[drp]')"/>
+    <xsl:variable name="ada-unit-druppel" select="('druppel', 'drp', '[drp]', 'druppels', 'drops')"/>
 
     <xsl:variable name="ada-unit-degrees-celsius" select="('Cel', 'graden Celsius', 'graden celsius', 'degrees Celsius', 'degrees celsius', 'Celsius', 'celsius')"/>
     <xsl:variable name="ada-unit-pH" select="('pH', '[pH]')"/>
