@@ -87,12 +87,12 @@
 
         <xsl:choose>
             <xsl:when test="empty(timezone-from-dateTime($in))">
-                <!-- Since 1996 DST starts last sunday of March 02:00 and ends last sunday of October at 03:00/02:00 (clock is set backwards) -->
+                <!-- Since 1996 DST starts last Sunday of March 02:00 and ends last Sunday of October at 03:00/02:00 (clock is set backwards) -->
                 <!-- There is one hour in october (from 02 - 03) for which we can't be sure if no timezone is provided in the input, 
                     we default to standard time (+01:00), the correct time will be represented if a timezone was in the input, 
                     otherwise we cannot know in which hour it occured (DST or standard time) -->
-                <xsl:variable name="March21" select="xs:date(concat(year-from-dateTime($in), '-03-31'))"/>
-                <xsl:variable name="DateTime-Start-SummerTime" select="xs:dateTime(concat(year-from-dateTime($in), '-03-', (31 - functx:day-of-week($March21)), 'T02:00:00Z'))"/>
+                <xsl:variable name="March31" select="xs:date(concat(year-from-dateTime($in), '-03-31'))"/>
+                <xsl:variable name="DateTime-Start-SummerTime" select="xs:dateTime(concat(year-from-dateTime($in), '-03-', (31 - functx:day-of-week($March31)), 'T02:00:00Z'))"/>
                 <xsl:variable name="October31" select="xs:date(concat(year-from-dateTime($in), '-10-31'))"/>
                 <xsl:variable name="DateTime-End-SummerTime" select="xs:dateTime(concat(year-from-dateTime($in), '-10-', (31 - functx:day-of-week($October31)), 'T02:00:00Z'))"/>
                 <xsl:choose>
@@ -227,9 +227,18 @@
     </xd:doc>
     <xsl:function name="functx:day-of-week" as="xs:integer?">
         <xsl:param name="date" as="xs:date?"/>
-
+        
         <xsl:if test="not(empty($date))">
-            <xsl:value-of select="xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7"/>
+            <!--<xsl:variable name="ancientSunday" select="xs:date('1901-01-06')"/>-->
+            <xsl:variable name="ancientSunday" select="xs:date('0001-01-07')"/>
+            <xsl:choose>
+              <xsl:when test="xs:date($date) ge $ancientSunday">
+                    <xsl:value-of select="xs:integer((xs:date($date) - $ancientSunday) div xs:dayTimeDuration('P1D')) mod 7"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="xs:integer(($ancientSunday - xs:date($date)) div xs:dayTimeDuration('P1D')) mod 7"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:if>
     </xsl:function>
 
