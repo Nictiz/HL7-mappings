@@ -4629,7 +4629,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901019_20161206135430"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./kindspecifieke_uitkomstgegevens[kinderarts_betrokkenq[@value | @nullFlavor] | betrokkenheid_kinderarts[.//(@value | @code | @nullFlavor)]]">
+            <!-- Geen kinderarts betrokken, MdG -->
+            <xsl:if test="./kindspecifieke_uitkomstgegevens/kinderarts_betrokkenq/@value='false'">
+                <outboundRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901020"/>
+                        <code code="KinderartsBetrokken" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Kinderarts betrokken"/>
+                    </observation>
+                </outboundRelationship>
+            </xsl:if>
+            <!-- Geen groep betrokkenheid kinderarts, wel kinderarts betrokken of nullFlavor, MdG -->
+            <xsl:if test="not(./kindspecifieke_uitkomstgegevens/betrokkenheid_kinderarts) and ./kindspecifieke_uitkomstgegevens/kinderarts_betrokkenq[not(@value='false')]">
+                <outboundRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901020"/>
+                        <code code="KinderartsBetrokken" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Kinderarts betrokken"/>
+                    </observation>
+                </outboundRelationship>
+            </xsl:if>
+            <!-- Wel groep betrokkenheid kinderarts, MdG -->
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/betrokkenheid_kinderarts[.//(@value | @code | @nullFlavor)]">
                 <outboundRelationship typeCode="COMP">
                     <!-- Template :: Betrokkenheid kinderarts -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638"/>
@@ -7160,46 +7179,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Betrokkenheid kinderarts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638">
         <!-- context: kindspecifieke_uitkomstgegevens  -->
-        <observation classCode="OBS" moodCode="EVN">
-            <xsl:if test="kinderarts_betrokkenq[@value]">
-                <xsl:call-template name="makeNegationAttr">
-                    <xsl:with-param name="inputValue" select="kinderarts_betrokkenq/@value"/>
-                </xsl:call-template>
-            </xsl:if>
-            <xsl:if test="kinderarts_betrokkenq[@nullFlavor]">
-                <xsl:attribute name="nullFlavor" select="kinderarts_betrokkenq/@nullFlavor"/>
-            </xsl:if>
+        <observation classCode="OBS" moodCode="EVN" netgationInd='false'>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901020"/>
             <code code="KinderartsBetrokken" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Kinderarts betrokken"/>
             <!-- Item(s) :: type_betrokkenheid-->
-            <xsl:for-each select="betrokkenheid_kinderarts/type_betrokkenheid[@code]">
+            <xsl:for-each select="type_betrokkenheid[@code]">
                 <xsl:call-template name="makeCEValue">
                     <xsl:with-param name="elemName">value</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="betrokkenheid_kinderarts[(datum_betrokkenheid | zorginstelling_lvrid)//(@value | @code | @nullFlavor)]">
-                <performer typeCode="SPRF">
-                    <!-- Item(s) :: datum_betrokkenheid-->
-                    <xsl:for-each select="datum_betrokkenheid[@value | @nullflavor]">
-                        <xsl:call-template name="makeTSValue">
-                            <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">time</xsl:with-param>
-                        </xsl:call-template>
+            <performer typeCode="SPRF">
+                <!-- Item(s) :: datum_betrokkenheid-->
+                <xsl:for-each select="datum_betrokkenheid[@value | @nullflavor]">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <assignedEntity classCode="ASSIGNED">
+                    <code code="01.019" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kinderarts"/>
+                    <xsl:for-each select=".[zorginstelling_lvrid]">
+                        <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                            <!-- Item(s) :: zorginstelling_lvrid -->
+                            <xsl:for-each select=".">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901018_20141107145228"/>
+                            </xsl:for-each>
+                        </representedOrganization>
                     </xsl:for-each>
-                    <assignedEntity classCode="ASSIGNED">
-                        <code code="01.019" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kinderarts"/>
-                        <xsl:for-each select=".[zorginstelling_lvrid]">
-                            <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                                <!-- Item(s) :: zorginstelling_lvrid -->
-                                <xsl:for-each select=".">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901018_20141107145228"/>
-                                </xsl:for-each>
-                            </representedOrganization>
-                        </xsl:for-each>
-                    </assignedEntity>
-                </performer>
-            </xsl:for-each>
-            <xsl:for-each select="betrokkenheid_kinderarts/reden_betrokkenheid[@code | @nullFlavor]">
+                </assignedEntity>
+            </performer>
+            <xsl:for-each select="reden_betrokkenheid[@code | @nullFlavor]">
                 <outboundRelationship typeCode="RSON">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901021_20161215161133"/>
                 </outboundRelationship>
