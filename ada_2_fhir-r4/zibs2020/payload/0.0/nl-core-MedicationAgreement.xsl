@@ -97,8 +97,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:variable>
                             
                         <xsl:choose>
-                            <xsl:when test="medicatieafspraak_stop_type/@code = '113381000146106'">stopped</xsl:when>
-                            <xsl:when test="medicatieafspraak_stop_type/@code = '113371000146109'">on-hold</xsl:when>
+                            <xsl:when test="medicatieafspraak_stop_type/@code = '113381000146106'">on-hold</xsl:when>
+                            <xsl:when test="medicatieafspraak_stop_type/@code = '113371000146109'">stopped</xsl:when>
                             <xsl:when test="
                                 $period/f:start[@value] and 
                                 ($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &lt; current-date()) or
