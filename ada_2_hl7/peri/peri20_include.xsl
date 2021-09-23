@@ -6719,12 +6719,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <code code="PijnbestrOverig" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Pijnbestrijding met overig middel"/>
                             <!-- Item(s) :: middel-->
                             <xsl:if test="middel or toediening">
-                                <xsl:for-each select="middel">
+                                <xsl:for-each select="middel[@code]">
                                     <xsl:call-template name="makeCEValue">
                                         <xsl:with-param name="xsiType" select="''"/>
                                         <xsl:with-param name="elemName">methodCode</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
+                                <!-- GZ-484 methodCode is 1..1 R in templates, valueSet only has nullFlavor OTH so this is a bit of an ugly workaround -->
+                                <xsl:if test="not(middel[@code])">
+                                    <methodCode nullFlavor="OTH">
+                                        <originalText>geen informatie</originalText>
+                                    </methodCode>
+                                </xsl:if>
                                 <xsl:for-each select="toediening">
                                     <outboundRelationship typeCode="COMP">
                                         <procedure classCode="PROC" moodCode="EVN">
@@ -6819,6 +6825,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </id>
                             </xsl:for-each>
+                            <!-- GZ-485, unfortunately the current 2.3.5 template has a requirement for an id with yet another oid -->
+                            <!-- workaround to prevent schematron from raising unnecessary error -->
+                            <id extension="{generate-id(ancestor::data/*)}" root="2.16.840.1.113883.2.4.3.11.999.60.77.4.84194.1"/>
                         </serviceProviderOrganization>
                     </healthCareFacility>
                 </location>
@@ -6826,6 +6835,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </observation>
     </xsl:template>
+  
     <!-- Vaginale kunstverlossing PRN Kernset -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900999_20161206134830">
         <procedure classCode="PROC" moodCode="EVN" negationInd="false">
@@ -6833,7 +6843,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <id nullFlavor="NI"/>
             <code code="3311000146109" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="Vaginale kunstverlossing"/>
             <!-- Item(s) :: vaginale_kunstverlossing-->
-            <xsl:for-each select="vaginale_kunstverlossing">
+            <xsl:for-each select="vaginale_kunstverlossing[@code]">
                 <xsl:call-template name="makeCEValue">
                     <xsl:with-param name="xsiType" select="''"/>
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
@@ -7179,7 +7189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Betrokkenheid kinderarts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638">
         <!-- context: kindspecifieke_uitkomstgegevens  -->
-        <observation classCode="OBS" moodCode="EVN" netgationInd='false'>
+        <observation classCode="OBS" moodCode="EVN" negationInd='false'>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901020"/>
             <code code="KinderartsBetrokken" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Kinderarts betrokken"/>
             <!-- Item(s) :: type_betrokkenheid-->
