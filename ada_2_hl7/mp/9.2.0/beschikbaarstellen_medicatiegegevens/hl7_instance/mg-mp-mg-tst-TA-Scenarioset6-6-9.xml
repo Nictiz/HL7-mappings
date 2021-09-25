@@ -28,4 +28,98 @@
          </patient>
       </patientRole>
    </recordTarget>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9332"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9326"/>
+         <id extension="MBH_920_dagdeel_TA"
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <code code="422037009"
+               displayName="Toedieningsafspraak"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 1 jan 2021, 1 stuk 's avonds, oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20210101000000"/>
+            <high nullFlavor="NI"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="oraal"
+                    codeSystemName="G-Standaard Toedieningswegen"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="1719785"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="INEGY TABLET 10/20MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="77038"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="EZETIMIB/SIMVASTATINE 10/20"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="123129"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="EZETIMIB/SIMVASTATINE 10/20"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20210101092700"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek de Gulle Gaper</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <when value="EVE"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_920_dagdeel_MA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_920_dagdeel"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
 </organizer>
