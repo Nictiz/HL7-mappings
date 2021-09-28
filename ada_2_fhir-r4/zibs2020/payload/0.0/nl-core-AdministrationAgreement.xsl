@@ -103,8 +103,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
                 
-                <!-- Proposed way to add a value for the mandatory status element. 
-                     See discussion here: https://github.com/Nictiz/Nictiz-R4-zib2020/issues/135 -->
                 <status>
                     <xsl:attribute name="value">
                         <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
@@ -117,23 +115,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:variable>
                         <xsl:choose>
                             <xsl:when test="geannuleerd_indicator/@value = 'true'">entered-in-error</xsl:when>
-                            <xsl:when test="
-                                $period/f:start[@value] and not($period/f:end[@value]) and
-                                ((xs:date($period/f:start/@value)     &lt; current-date()) or 
-                                (xs:dateTime($period/f:start/@value) &lt; current-dateTime()))">active</xsl:when>
-                            <xsl:when test="
-                                $period/f:start[@value] and $period/f:end[@value] and
-                                (($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &lt; current-date()) or 
-                                ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &lt; current-dateTime())) and
-                                (($period/f:end[@value]  castable as xs:date     and xs:date($period/f:end/@value)       &gt; current-date()) or
-                                ($period/f:end[@value]  castable as xs:dateTime and xs:dateTime($period/f:end/@value)   &gt; current-dateTime()))">active</xsl:when>
-                            
-                            
-                            <!-- TO DO: Something goes wrong in the castable check for the end data over here -->
-                            
-                            <xsl:when test="$period/f:end[@value] and 
-                                (($period/f:end[@value]  castable as xs:date     and xs:date($period/f:end/@value)       &lt; current-date()) or
-                                ($period/f:end[@value]  castable as xs:dateTime and xs:dateTime($period/f:end/@value)   &lt; current-dateTime()))">completed</xsl:when>
+                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
                             <xsl:otherwise>unknown</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>

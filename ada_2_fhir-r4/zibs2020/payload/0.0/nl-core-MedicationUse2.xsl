@@ -93,35 +93,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <status>
-                    <xsl:attribute name="value">
-                        
-                        
-<!--                       TODO: status value can be derived from PeriodOfUse. This should be added in the mapping. Currently, a faulty proposed logic is added in comments. WIP.
-                            
+                    <xsl:attribute name="value">                            
                             <xsl:variable name="period" as="element(f:temp)?">
                             <xsl:call-template name="ext-TimeInterval.Period">
                                 <xsl:with-param name="in" select="gebruiksperiode"/>
                                 <xsl:with-param name="wrapIn">temp</xsl:with-param>
                             </xsl:call-template>
-                        </xsl:variable>-->
+                        </xsl:variable>
                         <xsl:choose>
                             <xsl:when test="gebruik_indicator/@value = 'false'">not-taken</xsl:when>
                             <xsl:when test="not(medicatie_gebruik_stop_type[@code]) and gebruik_indicator/@value = 'true'">active</xsl:when>
                             <xsl:when test="medicatie_gebruik_stop_type/@code = '113381000146106' and gebruik_indicator/@value = 'false'">on-hold</xsl:when>
                             <xsl:when test="medicatie_gebruik_stop_type/@code = '113371000146109' and gebruik_indicator/@value = 'false'">stopped</xsl:when>
-                         <!--   
-                             <xsl:when test="
-                                $period/f:end[@value] and 
-                                ($period/f:end[@value]  castable as xs:date     and xs:date($period/f:end/@value)       &lt; current-date()) or
-                                ($period/f:end[@value]  castable as xs:dateTime and xs:dateTime($period/f:end/@value)   &lt; current-dateTime())">completed</xsl:when>
-                            <xsl:when test="
-                                $period/f:start[@value] and not($period/f:end[@value]) and
-                                ($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &lt; current-date()) or
-                                ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &lt; current-dateTime())">active</xsl:when>-->
-                            
-                            <!-- When GebruikIndicator is false but there's no stop type, the profile states that
-                                 we should use not-taken, completed, intended or entered-in-error. However, we cant't
-                                 know which it is so we'll default to unknown. -->
+                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
                             <xsl:otherwise>unknown</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
