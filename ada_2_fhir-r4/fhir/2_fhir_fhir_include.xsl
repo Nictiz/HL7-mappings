@@ -559,7 +559,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input must be a value that is castable to a date or dateTime.</xd:desc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
         <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
     </xd:doc>    
     <xsl:function name="nf:isFuture" as="xs:boolean">
@@ -578,8 +578,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input must be a value that is castable to a date or dateTime.</xd:desc>
-        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
     </xd:doc>    
     <xsl:function name="nf:isPast" as="xs:boolean">
         <xsl:param name="dateOrDt"/>
