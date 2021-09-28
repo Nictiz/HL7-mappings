@@ -85,4 +85,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </CareTeam>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="zorg_team" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Care team</xsl:text>
+            <xsl:value-of select="zorg_team_naam/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+    </xsl:template>
+    
 </xsl:stylesheet>

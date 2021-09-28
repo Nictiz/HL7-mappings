@@ -166,4 +166,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="juridische_situatie" mode="_generateDisplay">
+        <xsl:param name="profile" required="yes" as="xs:string"/>
+        
+        <xsl:choose>
+            <xsl:when test="$profile = 'nl-core-LegalSituation-LegalStatus'">
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Legal situation</xsl:text>
+                    <xsl:if test="juridische_status/@displayName">
+                        <xsl:value-of select="concat('legal status: ',juridische_status/@displayName)"/>
+                    </xsl:if>
+                    <xsl:if test="datum_aanvang[@value]">
+                        <xsl:value-of select="concat('from ', datum_aanvang/@value)"/>
+                    </xsl:if>
+                    <xsl:if test="datum_einde[@value]">
+                        <xsl:value-of select="concat('until ', datum_einde/@value)"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+            </xsl:when>
+            <xsl:when test="$profile = 'nl-core-LegalSituation-Representation'">
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Legal situation</xsl:text>
+                    <xsl:if test="vertegenwoordiging/@displayName">
+                        <xsl:value-of select="concat('representation: ',vertegenwoordiging/@displayName)"/>
+                    </xsl:if>
+                    <xsl:if test="datum_aanvang[@value]">
+                        <xsl:value-of select="concat('from ', datum_aanvang/@value)"/>
+                    </xsl:if>
+                    <xsl:if test="datum_einde[@value]">
+                        <xsl:value-of select="concat('until ', datum_einde/@value)"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+            </xsl:when>
+        </xsl:choose>
+        
+    </xsl:template>
+    
 </xsl:stylesheet>

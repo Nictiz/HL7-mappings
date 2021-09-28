@@ -35,37 +35,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
-    <xsl:template mode="_doTransform" match="juridische_situatie">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient">
-                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
-            </xsl:call-template>
-        </xsl:variable>
-        
-        <xsl:if test="juridische_status">
-            <xsl:variable name="logicalId">
-                <xsl:call-template name="getLogicalIdFromFhirMetadata">
-                    <xsl:with-param name="profile" select="'nl-core-LegalSituation-Representation'"/>
-                </xsl:call-template>
-            </xsl:variable>
-            <xsl:result-document href="./{$logicalId}.xml">
-                <xsl:call-template name="nl-core-LegalSituation-Representation">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:call-template>
-            </xsl:result-document>
-        </xsl:if>
-        <xsl:if test="vertegenwoordiging">
-            <xsl:variable name="logicalId">
-                <xsl:call-template name="getLogicalIdFromFhirMetadata">
-                    <xsl:with-param name="profile" select="'nl-core-LegalSituation-LegalStatus'"/>
-                </xsl:call-template>
-            </xsl:variable>
-            <xsl:result-document href="./{$logicalId}.xml">
-                <xsl:call-template name="nl-core-LegalSituation-LegalStatus">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:call-template>
-            </xsl:result-document>
-        </xsl:if>
-    </xsl:template>
+    
     
 </xsl:stylesheet>

@@ -176,27 +176,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <!-- Quite verbose, but the only way to 'dynamically' apply a mode -->
         <xsl:choose>
+            <xsl:when test="$localName = 'adaextension'">
+                <!-- Do nothing -->
+            </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
-                <xsl:apply-templates select="$in" mode="nl-core-BloodPressure"/>
+                <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'contact'">
                 <xsl:apply-templates select="$in" mode="nl-core-Encounter"/>
             </xsl:when>
             <xsl:when test="$localName = 'contactpersoon'">
-                <xsl:apply-templates select="$in" mode="nl-core-ContactPerson"/>
+                <xsl:apply-templates select="$in" mode="nl-core-ContactPerson">
+                    <xsl:with-param name="patient" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'farmaceutisch_product'">
                 <xsl:apply-templates select="$in" mode="nl-core-PharmaceuticalProduct"/>
             </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
-                <xsl:apply-templates select="$in" mode="nl-core-HeartRate"/>
+                <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'juridische_situatie'">
-                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-LegalStatus"/>
-                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-Representation"/>
+                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-LegalStatus">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-Representation">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'lichaamslengte'">
+                <xsl:apply-templates select="$in" mode="nl-core-BodyHeight">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'lichaamstemperatuur'">
-                <xsl:apply-templates select="$in" mode="nl-core-BodyTemperature"/>
+                <xsl:apply-templates select="$in" mode="nl-core-BodyTemperature">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'lichaamsgewicht'">
+                <xsl:apply-templates select="$in" mode="nl-core-BodyWeight">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'medicatieafspraak'">
                 <xsl:apply-templates select="$in" mode="nl-core-MedicationAgreement">
@@ -209,7 +234,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'medicatie_contra_indicatie'">
-                <xsl:apply-templates select="$in" mode="nl-core-MedicationContraIndication"/>
+                <xsl:apply-templates select="$in" mode="nl-core-MedicationContraIndication">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'medicatie_gebruik'">
                 <xsl:apply-templates select="$in" mode="nl-core-MedicationUse2">
@@ -222,7 +249,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'o2saturatie'">
-                <xsl:apply-templates select="$in" mode="nl-core-O2Saturation"/>
+                <xsl:apply-templates select="$in" mode="nl-core-O2Saturation">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'patient'">
                 <xsl:apply-templates select="$in" mode="nl-core-Patient"/>
@@ -236,20 +265,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-Refraction"/>
             </xsl:when>
             <xsl:when test="$localName = 'schedelomvang'">
-                <xsl:apply-templates select="$in" mode="nl-core-HeadCircumference"/>
+                <xsl:apply-templates select="$in" mode="nl-core-HeadCircumference">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'soepverslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-SOAPReport"/>
-            </xsl:when>
-            <xsl:when test="$localName = 'soepregel'">
-                <xsl:apply-templates select="$in" mode="nl-core-SOAPReport-Observation"/>
+                <xsl:for-each select="soepregel">
+                    <xsl:call-template name="nl-core-SOAPReport-Observation"/>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'tekst_uitslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-TextResult"/>
+                <xsl:for-each select="visueel_resultaat">
+                    <xsl:call-template name="nl-core-TextResult-Media"/>
+                </xsl:for-each>
+                <!--<xsl:for-each select="verrichting">
+                    <xsl:apply-templates select="nf:ada-resolve-reference(verrichting)" mode="nl-core-Procedure">
+                        <xsl:with-param name="subject" select="$subject"/>
+                        <xsl:with-param name="report" select="ancestor::tekst_uitslag"/>
+                    </xsl:apply-templates>
+                </xsl:for-each>-->
             </xsl:when>
             <xsl:when test="$localName = 'toedieningsafspraak'">
                 <xsl:apply-templates select="$in" mode="nl-core-AdministrationAgreement">
                     <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'verrichting'">
+                <xsl:apply-templates select="$in" mode="nl-core-Procedure">
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'verstrekkingsverzoek'">
@@ -257,21 +303,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
-            <xsl:when test="$localName = 'visueel_resultaat'">
-                <xsl:apply-templates select="$in" mode="nl-core-TextResult-Media"/>
-            </xsl:when>
-            <xsl:when test="$localName = 'verrichting'">
-                <xsl:apply-templates select="$in" mode="nl-core-Procedure"/>
-            </xsl:when>
             <xsl:when test="$localName = 'visus'">
                 <xsl:apply-templates select="$in" mode="nl-core-VisualAcuity"/>
             </xsl:when>
             <xsl:when test="$localName = 'vrijheidsbeperkende_interventie'">
-                <xsl:apply-templates select="$in" mode="nl-core-FreedomRestrictingIntervention"/>
+                <xsl:apply-templates select="$in" mode="nl-core-FreedomRestrictingIntervention">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'zorgaanbieder'">
                 <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider"/>
                 <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider-Organization"/>
+            </xsl:when>
+            <xsl:when test="$localName = 'zorg_episode'">
+                <xsl:apply-templates select="$in" mode="nl-core-EpisodeOfCare">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'zorg_team'">
                 <xsl:apply-templates select="$in" mode="nl-core-CareTeam">
@@ -285,7 +332,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message terminate="yes" select="concat('Unknown ada localName: ', $localName)"/>
+                <xsl:message>Unknown ada localName: '<xsl:value-of select="$localName"/>'</xsl:message>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
