@@ -54,7 +54,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </location>
                 </xsl:for-each>-->
-                <status value="completed"/>
+                
+                
+
+                
+                <status>
+                    <!--  
+                    * When the ProcedureStartDate is in the future, `.status` will usually be set to _preparation_.
+                    * When ProcedureStartDate is in the past and ProcedureEndDate is in the future, `.status` will usually be set to _in-progress_.
+                    * When ProcedureEndDate is in the past, `.status` will usually be set to _completed_.
+                    * When ProcedureStartDate is in the past and ProcedureEndDate is missing, it may be assumed that the Procedure was recorded as a point in time and `.status` will usually be set to _completed_.
+                    -->
+                    <xsl:attribute name="value">
+                        <xsl:choose>
+                            <xsl:when test="verrichting_start_datum and nf:isFuture(verrichting_start_datum/@value)">preparation</xsl:when>
+                            <xsl:when test="verrichting_start_datum and verrichting_eind_datum and nf:isPast(verrichting_start_datum/@value) and nf:isFuture(verrichting_eind_datum/@value)">in-progress</xsl:when>
+                            <xsl:when test="verrichting_eind_datum and nf:isPast(verrichting_eind_datum@value)">completed</xsl:when>
+                            <xsl:when test="verrichting_start_datum and nf:isPast(verrichting_start_datum@value) and not(verrichting_eind_datum)">completed</xsl:when>
+                            <xsl:otherwise>unknown</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </status>
                 <xsl:for-each select="verrichting_type">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
