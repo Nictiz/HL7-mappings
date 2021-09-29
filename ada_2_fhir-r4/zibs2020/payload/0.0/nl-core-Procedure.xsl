@@ -44,6 +44,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="report" as="element(tekst_uitslag)?"/>
         <xsl:for-each select="$in">
             <Procedure>
+                <xsl:variable name="startDate" select="verrichting_start_datum"/>
+                <xsl:variable name="endDate" select="verrichting_eind_datum"/>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure"/>
@@ -76,10 +78,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     -->
                     <xsl:attribute name="value">
                         <xsl:choose>
-                            <xsl:when test="verrichting_start_datum and nf:isFuture(verrichting_start_datum/@value)">preparation</xsl:when>
-                            <xsl:when test="verrichting_start_datum and verrichting_eind_datum and nf:isPast(verrichting_start_datum/@value) and nf:isFuture(verrichting_eind_datum/@value)">in-progress</xsl:when>
-                            <xsl:when test="verrichting_eind_datum and nf:isPast(verrichting_eind_datum@value)">completed</xsl:when>
-                            <xsl:when test="verrichting_start_datum and nf:isPast(verrichting_start_datum@value) and not(verrichting_eind_datum)">completed</xsl:when>
+                            <xsl:when test="$startDate and nf:isFuture($startDate/@value)">preparation</xsl:when>
+                            <xsl:when test="$startDate and $endDate and nf:isPast($startDate/@value) and nf:isFuture($endDate/@value)">in-progress</xsl:when>
+                            <xsl:when test="$endDate and nf:isPast($endDate/@value)">completed</xsl:when>
+                            <xsl:when test="$startDate and nf:isPast($startDate/@value) and not($endDate)">completed</xsl:when>
                             <xsl:otherwise>unknown</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
@@ -105,15 +107,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
                 <xsl:choose>
-                    <xsl:when test="verrichting_start_datum and verrichting_eind_datum">
+                    <xsl:when test="$startDate and $endDate">
                         <performedPeriod>
                             <xsl:call-template name="startend-to-Period">
                                 <xsl:with-param name="start" select="verrichting_start_datum"/>
-                                <xsl:with-param name="end" select="verrichting_eind_datum"/>
+                                <xsl:with-param name="end" select="$endDate"/>
                             </xsl:call-template>
                         </performedPeriod>
                     </xsl:when>
-                    <xsl:when test="verrichting_start_datum">
+                    <xsl:when test="$startDate">
                         <performedDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
@@ -193,6 +195,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
     <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="verrichting" mode="_generateDisplay">
