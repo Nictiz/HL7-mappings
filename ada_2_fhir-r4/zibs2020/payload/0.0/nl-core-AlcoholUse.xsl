@@ -103,9 +103,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <coding>
                                 <system value="http://snomed.info/sct"/>
-                                <!-- DEPRECATED CODE in SNOMED -->
-                                <code value="160573003"/>
-                                <display value="inname van alcohol"/>
+                                <code value="897148007"/>
+                                <display value="inname van alcoholische drank"/>
                             </coding>
                         </code>
                         <valueQuantity>
