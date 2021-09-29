@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MedicationUse2-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="In de maand mei heb ik regelmatig paracetamol gebruikt."/>
+   </extension>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422979000"/>
+         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-MedicationUse2-01-Medication-01"/>
+      <type value="Medication"/>
+      <display value="PARACETAMOL 500MG TABLET"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="2014-05-01"/>
+   </effectivePeriod>
+   <dateAsserted value="2014-06-03T16:19:07+02:00"/>
+   <reasonCode>
+      <text value="Pijn"/>
+   </reasonCode>
+</MedicationStatement>

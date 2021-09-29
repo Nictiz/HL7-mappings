@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composition xmlns="http://hl7.org/fhir">
+   <id value="nl-core-SOAPReport-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport"/>
+   </meta>
+   <status value="final"/>
+   <type>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="67781-5"/>
+         <display value="Summarization of encounter note Narrative"/>
+      </coding>
+   </type>
+   <date value="2019-07-21"/>
+   <author>
+      <reference value="PractitionerRole/nl-core-SOAPReport-01-PractitionerRole-01"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), H.A Janszens"/>
+   </author>
+   <title value="Geneesmiddelbijwerking"/>
+   <section>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+               <code value="R05"/>
+               <display value="Hoesten"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="255362007"/>
+            <display value="Subjective"/>
+         </coding>
+      </code>
+      <entry>
+         <reference value="Observation/nl-core-SOAPReport-Observation-01"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Subjective, code Hoesten"/>
+      </entry>
+   </section>
+   <section>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="260224007"/>
+            <display value="Objective"/>
+         </coding>
+      </code>
+      <entry>
+         <reference value="Observation/nl-core-SOAPReport-Observation-02"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Objective"/>
+      </entry>
+   </section>
+   <section>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+               <code value="A85"/>
+               <display value="Geneesmiddelbijwerking"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129265001"/>
+            <display value="Evaluatie"/>
+         </coding>
+      </code>
+      <entry>
+         <reference value="Observation/nl-core-SOAPReport-Observation-03"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Evaluatie, code Geneesmiddelbijwerking"/>
+      </entry>
+   </section>
+   <section>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129271007"/>
+            <display value="Beleid"/>
+         </coding>
+      </code>
+      <entry>
+         <reference value="Observation/nl-core-SOAPReport-Observation-04"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Beleid"/>
+      </entry>
+   </section>
+</Composition>
