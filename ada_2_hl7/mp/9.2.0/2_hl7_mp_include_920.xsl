@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="_handleDoseerinstructie">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <!-- make the HL7 stuff -->
             <xsl:choose>
@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:attribute name="value" select="1"/>
                             </sequenceNumber>
                         </xsl:if>
-                        
+
                         <!-- pauze periode -->
                         <xsl:if test="doseerduur[.//(@value | @unit)]">
                             <substanceAdministration classCode="SBADM" moodCode="RQO">
@@ -87,9 +87,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
-        
+
     </xsl:template>
-    
+
 
     <xd:doc>
         <xd:desc>HL7NL PIVL_TS Dagdeel. The HL7 templates are 9351 - 9354, but we make one xslt template here, because handling is mostly the same.</xd:desc>
@@ -440,10 +440,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- beoogd verstrekker -->
-                <xsl:for-each select="beoogd_verstrekker/zorgaanbieder[.//(@value | @code)]">
+                <xsl:for-each select="../../bouwstenen/zorgaanbieder[@id = current()/beoogd_verstrekker/zorgaanbieder/@value]">
                     <performer>
                         <assignedEntity>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9088_20160621133312"/>
+                            <id nullFlavor="NI"/>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
                         </assignedEntity>
                     </performer>
                 </xsl:for-each>
@@ -458,7 +459,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="theTime" select="$vvAfspraakDatumTijd[1]"/>
                         </xsl:call-template>
                     </author>
-                </xsl:if>           
+                </xsl:if>
 
                 <!-- afleverlocatie -->
                 <xsl:for-each select="afleverlocatie[.//(@value | @code)]">
@@ -510,7 +511,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
                 </xsl:for-each>
-                <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+                <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
                 </xsl:for-each>
 
@@ -535,7 +536,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </xsl:for-each>
     </xsl:template>
-        
+
     <xd:doc>
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version FHIR. Override of version in 2_hl7_mp_include_9x.xsl</xd:desc>
         <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
@@ -559,12 +560,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- MP CDA Dosering -->
         <substanceAdministration classCode="SBADM" moodCode="RQO">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-            
+
             <xsl:for-each select=".">
                 <xsl:for-each select="toedieningsschema[.//(@value | @code)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9358_20210517124213"/>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="keerdosis[.//(@value | @code)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
                 </xsl:for-each>
@@ -579,7 +580,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <!-- Altijd verplicht op deze manier aanwezig in de HL7 substanceAdministration -->
             <consumable xsi:nil="true"/>
-            
+
             <xsl:for-each select="zo_nodig/criterium[.//(@value | @code)]">
                 <precondition>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9182_20170601000000">
@@ -592,7 +593,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </substanceAdministration>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>MP CDA Medication Information vanaf 9.2</xd:desc>
         <xd:param name="product"/>
@@ -663,7 +664,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="../../bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]">
                     <performer>
                         <assignedEntity>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9088_20160621133312"/>
+                            <id nullFlavor="NI"/>                            
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
                         </assignedEntity>
                     </performer>
                 </xsl:for-each>
@@ -717,19 +719,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </entryRelationship>
 
-                <!-- relaties huisartsenzorg -->
-                <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
-                </xsl:for-each>
-                <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
-                </xsl:for-each>
-
             </supply>
         </xsl:for-each>
     </xsl:template>
-
-
 
     <xd:doc>
         <xd:desc>Template for Medicatieafspraak resuable parts 1 for MP 9 2.0. SNOMED code update</xd:desc>
@@ -834,7 +826,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- toediener -->
                 <xsl:for-each select="toediener">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9379_20210617145250"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9392_20210914"/>
                 </xsl:for-each>
 
                 <!-- afgesproken_datum_tijd en/of afgesproken_hoeveelheid -->
@@ -855,9 +847,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- medicatietoediening_reden_van_afwijken -->
-                <xsl:for-each select="medicatietoediening_reden_van_afwijken[.//(@value | @code)]">
+                <xsl:for-each select="medicatie_toediening_reden_van_afwijken[.//(@value | @code)]">
                     <entryRelationship typeCode="RSON">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9314_20200120115920"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557"/>
                     </entryRelationship>
                 </xsl:for-each>
 
@@ -867,7 +859,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                     </entryRelationship>
                 </xsl:for-each>
-
 
                 <!-- Relatie naar MA -->
                 <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value | @nullFlavor]">
@@ -887,6 +878,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </entryRelationship>
                 </xsl:for-each>
 
+                <!-- Relatie naar WDS -->
+                <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value | @nullFlavor]">
+                    <entryRelationship typeCode="REFR">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9381_20210617181505">
+                            <xsl:with-param name="identificatieElement" select="."/>
+                        </xsl:call-template>
+                    </entryRelationship>
+                </xsl:for-each>
+
                 <!--Relatie naar medicamenteuze behandeling-->
                 <entryRelationship typeCode="COMP" inversionInd="true">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9084_20160621103838">
@@ -898,7 +898,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
                 </xsl:for-each>
-                <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+                <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
                 </xsl:for-each>
 
@@ -948,7 +948,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <!-- patient -->
-            <xsl:for-each select="patient[.//@value]">
+            <xsl:for-each select="patient[not(toediener_is_patient/@value = 'false')][.//@value]">
                 <author>
                     <!-- time is verplicht in xsd, maar medicatietoediening heeft er geen dataset concept voor -->
                     <time nullFlavor="NI"/>
@@ -966,17 +966,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210"/>
                 </author>
             </xsl:for-each>
+
             <!-- mantelzorger -->
             <xsl:for-each select="../../../bouwstenen/contactpersoon[@id = current()/mantelzorger/contactpersoon/@value]">
                 <author>
-                    <xsl:for-each select="rol[@code | @nullFlavor]">
-                        <xsl:call-template name="makeCode">
-                            <xsl:with-param name="elemName">functionCode</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- time is verplicht in xsd, maar medicatietoediening heeft er geen dataset concept voor -->
-                    <time nullFlavor="NI"/>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9383_20210618000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.35_20210701000000"/>
                 </author>
             </xsl:for-each>
         </xsl:for-each>
@@ -994,7 +988,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="identificatie[.//(@value | @code)]">
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
-                <code code="TODO" displayName="wisselend doseerschema" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                <code code="395067002" displayName="optimaliseren van dosering van medicatie (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                 <xsl:choose>
                     <xsl:when test="$generateInstructionText">
                         <text mediaType="text/plain">
@@ -1093,7 +1087,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
                 </xsl:for-each>
-                <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+                <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
                 </xsl:for-each>
 
@@ -1113,7 +1107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$identificatieElement">
                 <xsl:call-template name="makeIIid"/>
             </xsl:for-each>
-            <code code="TODO" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="wisselend doseerschema"/>
+            <code code="395067002" displayName="optimaliseren van dosering van medicatie (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <consumable xsi:nil="true"/>
         </substanceAdministration>
     </xsl:template>
@@ -1273,12 +1267,65 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Reden voor medicatiegebruik</xd:desc>
+        <xd:param name="in">ada element containing text for reason medication use, defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9390_20210816074229">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:for-each select="$in">
+            <observation classCode="OBS" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9390"/>
+                <code code="11611000146100" displayName="Reden medicatiegebruik" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                <xsl:call-template name="makeText"/>
+            </observation>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Toediener in medicatietoediening</xd:desc>
+        <xd:param name="in">the ada element for toediener, defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9392_20210914" match="toediener" mode="HandleToediener92">
+        <xsl:param name="in" as="element()*" select="."/>
+        
+        <xsl:for-each select="$in">
+            <!-- patient -->
+            <xsl:for-each select="patient[not(toediener_is_patient/@value = 'false')][.//@value]">
+                <performer>
+                    <!-- time is verplicht in xsd, maar medicatietoediening heeft er geen dataset concept voor -->
+                    <time nullFlavor="NI"/>
+                    <assignedEntity>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
+                            <xsl:with-param name="ada_patient_identificatienummer" select="../../../../patient/identificatienummer"/>
+                        </xsl:call-template>
+                    </assignedEntity>
+                </performer>
+            </xsl:for-each>
+            
+            <!-- zorgverlener -->
+            <xsl:for-each select="../../../bouwstenen/zorgverlener[@id = current()//zorgverlener[not(zorgverlener)]/@value]">
+                <performer>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.43_20210701000000"/>
+                </performer>
+            </xsl:for-each>
+            
+            <!-- mantelzorger -->
+            <xsl:for-each select="../../../bouwstenen/contactpersoon[@id = current()/mantelzorger/contactpersoon/@value]">
+                <performer>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.44_20210701000000"/>
+                </performer>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+    
+
+    <xd:doc>
         <xd:desc>Voorstel Medicatieafspraak</xd:desc>
         <xd:param name="in">The proposed medication agreement</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9153_20160726162345" match="medicatieafspraak | medication_agreement" mode="HandleMAProposal91">
         <xsl:param name="in" select="."/>
-        
+
         <xsl:for-each select="$in">
             <substanceAdministration classCode="SBADM" moodCode="PRP">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9153"/>
@@ -1299,16 +1346,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </xsl:otherwise>
                 </xsl:choose>
-                
+
                 <!-- Gebruiksperiode -->
                 <xsl:call-template name="_handleGebruiksperiode"/>
-                
+
                 <xsl:for-each select="gebruiksinstructie/toedieningsweg[.//(@value | @code)]">
                     <routeCode>
                         <xsl:call-template name="makeCodeAttribs"/>
                     </routeCode>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="afgesproken_geneesmiddel/product[not(@value)][.//(@value | @code)] | ../../bouwstenen/farmaceutisch_product[@id = current()/afgesproken_geneesmiddel/farmaceutisch_product/@value]">
                     <consumable>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9363_20210602155855">
@@ -1316,7 +1363,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </consumable>
                 </xsl:for-each>
-                
+
                 <!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
                 <xsl:if test="ancestor::adaxml/data/*/(voorstelgegevens | voorstel_gegevens)/voorstel/(auteur[.//(@value | @code | @nullFlavor)] | (voorsteldatum | voorstel_datum)[@value])">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20181205180828">
@@ -1324,12 +1371,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="authorTime" select="ancestor::adaxml/data/*/(voorstelgegevens | voorstel_gegevens)/voorstel/(voorsteldatum | voorstel_datum)"/>
                     </xsl:call-template>
                 </xsl:if>
-                
+
                 <!-- Overige onderdelen van deze MA -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9320_20201015130416">
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
-                
+
                 <!--Relatie naar medicamenteuze behandeling-->
                 <xsl:if test="../identificatie[@value | @root]">
                     <entryRelationship typeCode="COMP" inversionInd="true">
@@ -1341,7 +1388,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </substanceAdministration>
         </xsl:for-each>
     </xsl:template>
-  
+
     <xd:doc>
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version 9.x but is a temporary backup. Should be deleted after 9349 has been approved.</xd:desc>
         <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
@@ -1675,7 +1722,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
 
         <xsl:for-each select="$in">
-            <xsl:for-each select="(stoptype | medicatieafspraak_stoptype)[.//(@value | @code)]">
+            <xsl:for-each select="(stoptype | medicatieafspraak_stop_type)[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9372_20210616133243"/>
                 </entryRelationship>
@@ -1830,21 +1877,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Gebruik indicator -->
-            <xsl:for-each select="gebruik_indicator[.//(@value | @code)]">
+            <xsl:for-each select="gebruik_indicator[.//(@value | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9189_20171026161543"/>
                 </entryRelationship>
             </xsl:for-each>
 
             <!-- Volgens afspraak indicator -->
-            <xsl:for-each select="volgens_afspraak_indicator[.//(@value | @code)]">
+            <xsl:for-each select="volgens_afspraak_indicator[.//(@value | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9317_20200120141110"/>
                 </entryRelationship>
             </xsl:for-each>
 
             <!-- Stoptype -->
-            <xsl:for-each select="stoptype[.//(@value | @code)]">
+            <xsl:for-each select="(medicatie_gebruik_stop_type | stoptype)[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9372_20210616133243"/>
                 </entryRelationship>
@@ -1860,9 +1907,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Reden gebruik -->
-            <xsl:for-each select="reden_gebruik[.//(@value | @code)]">
+            <xsl:for-each select="reden_gebruik[@value | @nullFlavor]">
                 <entryRelationship typeCode="RSON">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9114_20160710170744"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9390_20210816074229"/>
                 </entryRelationship>
             </xsl:for-each>
 
@@ -1874,7 +1921,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Toelichting -->
-            <xsl:for-each select="toelichting[.//(@value | @code)]">
+            <xsl:for-each select="toelichting[@value | @nullFlavor]">
                 <entryRelationship typeCode="SUBJ" inversionInd="true">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                 </entryRelationship>
@@ -1893,7 +1940,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Kopie-indicator -->
-            <xsl:if test="kopie_indicator[.//(@value | @code)]">
+            <xsl:if test="kopie_indicator[@value | @code | @nullFlavor]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
                         <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
@@ -1943,7 +1990,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
             </xsl:for-each>
-            <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+            <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
             </xsl:for-each>
 
@@ -1999,7 +2046,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </author>
             </xsl:if>
-                      
+
             <!-- Overige onderdelen van deze MA -->
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9320_20201015130416">
                 <xsl:with-param name="in" select="."/>
@@ -2025,7 +2072,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
             </xsl:for-each>
-            <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
+            <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
             </xsl:for-each>
         </xsl:for-each>
@@ -2120,31 +2167,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="theAfspraakdatum" select="(afspraak_datum_tijd | afspraakdatum | toedieningsafspraak_datum_tijd)[@value | @nullFlavor]"/>
             <xsl:for-each select="../../bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]">
                 <author>
-                    <time>
-                        <xsl:choose>
-                            <xsl:when test="$theAfspraakdatum[not(@nullFlavor)]">
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2HL7Date">
-                                        <xsl:with-param name="dateTime" select="$theAfspraakdatum/@value"/>
-                                    </xsl:call-template>
-                                </xsl:attribute>
-                            </xsl:when>
-                            <xsl:when test="$theAfspraakdatum[@nullFlavor]">
-                                <xsl:attribute name="nullFlavor" select="$theAfspraakdatum/@nullFalvor"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:attribute name="nullFlavor">NI</xsl:attribute>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </time>
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                        <xsl:with-param name="inputValue" select="$theAfspraakdatum/@value"/>
+                        <xsl:with-param name="inputNullFlavor" select="$theAfspraakdatum/@nullFlavor"/>
+                    </xsl:call-template>
                     <assignedAuthor>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9088_20160621133312"/>
+                        <id nullFlavor="NI"/>                        
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
                     </assignedAuthor>
                 </author>
             </xsl:for-each>
 
             <!-- stoptype -->
-            <xsl:for-each select="stoptype[@code]">
+            <xsl:for-each select="(toedieningsafspraak_stop_type | stoptype)[@code]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9372_20210616133243"/>
                 </entryRelationship>
@@ -2210,14 +2246,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="MBHroot" select=".."/>
                 </xsl:call-template>
             </entryRelationship>
-
-            <!-- relaties huisartsenzorg -->
-            <xsl:for-each select="relatie_contact/identificatienummer[@value | @nullFlavor]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947"/>
-            </xsl:for-each>
-            <xsl:for-each select="relatie_episode/identificatienummer[@value | @nullFlavor]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
-            </xsl:for-each>
 
         </xsl:for-each>
     </xsl:template>

@@ -106,7 +106,7 @@
                      codeSystem="2.16.840.1.113883.6.1"
                      codeSystemName="LOINC"
                      displayName="Annotation comment"/>
-               <text>Pijn</text>
+               <text mediaType="text/plain">Pijn</text>
             </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -209,7 +209,7 @@
                      codeSystem="2.16.840.1.113883.6.1"
                      codeSystemName="LOINC"
                      displayName="Annotation comment"/>
-               <text>Eczeem oogleden</text>
+               <text mediaType="text/plain">Eczeem oogleden</text>
             </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -370,7 +370,7 @@
                      codeSystem="2.16.840.1.113883.6.1"
                      codeSystemName="LOINC"
                      displayName="Annotation comment"/>
-               <text>Exact 4 weken</text>
+               <text mediaType="text/plain">Exact 4 weken</text>
             </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -924,7 +924,7 @@
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Gestopt.</text>
+         <text mediaType="text/plain">Gestopt., geneesmiddel niet in gebruik, </text>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
@@ -975,6 +975,19 @@
                <value xsi:type="BL" value="false"/>
             </observation>
          </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9372"/>
+               <code code="274512008"
+                     displayName="behandeling met geneesmiddel stopgezet"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="2"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                      displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="SPRT">
             <act classCode="ACT" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
@@ -1004,7 +1017,7 @@
                      codeSystem="2.16.840.1.113883.6.1"
                      codeSystemName="LOINC"
                      displayName="Annotation comment"/>
-               <text>Gestopt vanwege bijwerkingen</text>
+               <text mediaType="text/plain">Gestopt vanwege bijwerkingen</text>
             </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1332,7 +1345,7 @@
                      codeSystem="2.16.840.1.113883.6.1"
                      codeSystemName="LOINC"
                      displayName="Annotation comment"/>
-               <text>Patiënt gebruikt niet volgens voorschrift</text>
+               <text mediaType="text/plain">Patiënt gebruikt niet volgens voorschrift</text>
             </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1448,7 +1461,7 @@
                      codeSystem="2.16.840.1.113883.6.1"
                      codeSystemName="LOINC"
                      displayName="Annotation comment"/>
-               <text>Veel last van jeuk</text>
+               <text mediaType="text/plain">Veel last van jeuk</text>
             </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1621,7 +1634,7 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 17 nov 2020, tot en met 3 dec 2020, 1 maal per dag 2 stuks 's avonds, oraal</text>
+         <text mediaType="text/plain">Vanaf 17 nov 2020, tot en met 3 dec 2020, 1 maal per dag 2 stuks 's avonds, oraal, </text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20201117000000"/>
             <high value="20201203235900"/>
@@ -1660,6 +1673,19 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9372"/>
+               <code code="274512008"
+                     displayName="behandeling met geneesmiddel stopgezet"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="1"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                      displayName="Tijdelijk"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="RSON">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9315"/>
@@ -1737,7 +1763,7 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">exact iedere 8 uur 1 stuk, oraal</text>
+         <text mediaType="text/plain">iedere 8 uur 1 stuk , let op! Tijden exact aanhouden., oraal</text>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="oraal"
@@ -1792,6 +1818,10 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
                   <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="true"/>
+                     </extension>
+                     <frequency value="1"/>
                      <period value="8"/>
                      <periodUnit value="h"/>
                   </repeat>
@@ -1839,7 +1869,7 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 6 nov 2020, tot en met 25 nov 2020, 1 maal per dag 1 stuk 's ochtends, oraal</text>
+         <text mediaType="text/plain">Vanaf 6 nov 2020, tot en met 25 nov 2020, 1 maal per dag 1 stuk 's ochtends, oraal, </text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20201106000000"/>
             <high value="20201125235900"/>
@@ -1878,6 +1908,19 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9372"/>
+               <code code="274512008"
+                     displayName="behandeling met geneesmiddel stopgezet"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="2"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                      displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="RSON">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9315"/>

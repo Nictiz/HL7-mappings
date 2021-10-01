@@ -8,7 +8,7 @@
         <xsl:param name="in" as="element()?" select="."/>
         <!-- herhaalperiode cyclisch schema -->
         <xsl:for-each select="$in">
-            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+            <modifierExtension url="{$urlExtRepeatPeriodCyclical}">
                 <valueDuration>
                     <xsl:call-template name="hoeveelheid-to-Duration">
                         <xsl:with-param name="in" select="."/>

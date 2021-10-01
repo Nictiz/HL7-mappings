@@ -39,7 +39,7 @@
                             <valueBoolean>
                                 <xsl:choose>
                                     <xsl:when test="@value">
-                                        <xsl:attribute name="value" select="not(@value)"/>
+                                        <xsl:attribute name="value" select="@value = 'false'"/>
                                     </xsl:when>
                                     <xsl:when test="@nullFlavor">
                                         <extension url="{$urlExtHL7NullFlavor}">
@@ -51,6 +51,13 @@
                         </extension>
                     </xsl:for-each>
 
+                    <xsl:if test="not(is_flexibel[@value | @nullFlavor]) and interval[@value | @unit]">
+                        <!-- interval is not flexible -->
+                        <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                            <valueBoolean value="true"/>
+                        </extension>
+                    </xsl:if>
+
                     <!-- doseerduur -->
                     <xsl:for-each select="$inDoseerduur[@value]">
                         <boundsDuration>
@@ -61,7 +68,7 @@
                     </xsl:for-each>
 
                     <!-- toedieningsduur -->
-                    <xsl:for-each select="$inToedieningsduur[@value]">
+                    <xsl:for-each select="($inToedieningsduur[@value | @unit] | $inToedieningsduur/tijds_duur[@value | @unit])">
                         <duration value="{@value}"/>
                         <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(@unit)}"/>
                     </xsl:for-each>
@@ -70,7 +77,7 @@
                     <xsl:for-each select="frequentie/aantal/(vaste_waarde | min | nominale_waarde | minimum_waarde)[@value]">
                         <frequency value="{@value}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="frequentie/aantal/(max | maximale_waarde)[@value]">
+                    <xsl:for-each select="frequentie/aantal/(max | maximum_waarde)[@value]">
                         <frequencyMax value="{@value}"/>
                     </xsl:for-each>
 
@@ -82,6 +89,9 @@
 
                     <!-- interval -->
                     <xsl:for-each select="interval">
+                        <!-- FHIR states: If no frequency is stated, the assumption is that the event occurs once per period, but systems SHOULD always be specific about this -->
+                        <!-- so let's be specific -->
+                        <frequency value="1"/>
                         <period value="{@value}"/>
                         <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(@unit)}"/>
                     </xsl:for-each>
@@ -138,15 +148,15 @@
             but you still need it for a pause period in a cyclic schedule, so for elements herhaalperiode_cyclisch_schema and doseerduur. 
             Possibly there is a toedieningsduur without a schedule, which is strange, but oh well, sometimes people do strange things. Who are we to judge?</xd:desc>
         <xd:param name="in">ada element doseerinstructie to be handled, optional but no output if empty, defaults to context</xd:param>
-          <xd:param name="inHerhaalperiodeCyclischschema">the ada element for Herhaalperiode Cyclisch schema. Optional. 
+        <xd:param name="inHerhaalperiodeCyclischschema">the ada element for Herhaalperiode Cyclisch schema. Optional. 
             Does not default, because the extension is not on timing level in normal FHIR resources, but it is on timing level when used in CDA.
             Only fill this parameter here when you need the extension on timing level.
         </xd:param>
     </xd:doc>
     <xsl:template name="adaDoseerinstructie2FhirTimingContents" match="doseerinstructie" mode="adaDoseerinstructie2FhirTimingContents">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="inHerhaalperiodeCyclischschema" as="element()?" />        
-  
+        <xsl:param name="inHerhaalperiodeCyclischschema" as="element()?"/>
+
         <xsl:for-each select="$in">
             <xsl:variable name="theToedienschema" as="element()?">
                 <xsl:choose>
@@ -163,7 +173,7 @@
                 <xsl:with-param name="in" select="$theToedienschema"/>
                 <xsl:with-param name="inHerhaalperiodeCyclischschema" select="$inHerhaalperiodeCyclischschema"/>
                 <xsl:with-param name="inDoseerduur" select="$in/doseerduur"/>
-                <xsl:with-param name="inToedieningsduur" select="$in/dosering/toedieningsduur"></xsl:with-param>
+                <xsl:with-param name="inToedieningsduur" select="$in/dosering/toedieningsduur"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>

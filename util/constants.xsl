@@ -20,13 +20,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Contains any constants we might need. Anticipated are OIDs/URIs, ConceptMaps, ...</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:variable name="ada-unit-second" select="('seconde', 's', 'sec', 'second')"/>
-    <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
-    <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>
-    <xsl:variable name="ada-unit-day" select="('dag', 'd', 'day')"/>
-    <xsl:variable name="ada-unit-week" select="('week', 'wk')"/>
-    <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month')"/>
-    <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year')"/>
+    <xsl:variable name="ada-unit-second" select="('seconde', 's', 'sec', 'second', 'seconden', 'secondes', 'seconds')"/>
+    <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute', 'minuten', 'minutes')"/>
+    <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour', 'uren', 'hours')"/>
+    <xsl:variable name="ada-unit-day" select="('dag', 'd', 'day', 'dagen', 'days')"/>
+    <xsl:variable name="ada-unit-week" select="('week', 'wk', 'weken', 'weeks')"/>
+    <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month', 'maanden', 'months')"/>
+    <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year', 'jaren', 'years')"/>
 
     <xsl:variable name="ada-unit-kilo" select="('kilo', 'kg', 'kilogram')"/>
     <xsl:variable name="ada-unit-gram" select="('gram', 'g', 'gr')"/>
@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada-unit-ml" select="('milliliter', 'ml')"/>
     <xsl:variable name="ada-unit-ul" select="('microliter', 'ul')"/>
 
-    <xsl:variable name="ada-unit-druppel" select="('druppel', 'drp', '[drp]')"/>
+    <xsl:variable name="ada-unit-druppel" select="('druppel', 'drp', '[drp]', 'druppels', 'drops')"/>
 
     <xsl:variable name="ada-unit-degrees-celsius" select="('Cel', 'graden Celsius', 'graden celsius', 'degrees Celsius', 'degrees celsius', 'Celsius', 'celsius')"/>
     <xsl:variable name="ada-unit-pH" select="('pH', '[pH]')"/>
@@ -106,7 +106,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="urlExtNLPractitionerRoleReference">http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference</xsl:variable>
     <xsl:variable name="urlExtHL7DataAbsentReason">http://hl7.org/fhir/StructureDefinition/data-absent-reason</xsl:variable>
     <xsl:variable name="urlExtHL7NullFlavor">http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor</xsl:variable>
-
+    <xsl:variable name="urlExtRepeatPeriodCyclical">http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule</xsl:variable>
+    <xsl:variable name="urlTimingExact">http://hl7.org/fhir/StructureDefinition/timing-exact</xsl:variable>
+    
+    
     <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
 
     <xsl:variable name="genderMap" as="element()+">
@@ -135,6 +138,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- QS wordt gebruikt bij magistrale bereidingen: ingrediënten voor geneesmiddelen, betekent dan eigenlijk 'aanvullen tot' -->
         <map hl7NullFlavor="QS" displayName="voldoende hoeveelheid" displayNameEN="quantity sufficient"/>
         <map hl7NullFlavor="TRC" displayName="spoor" displayNameEN="trace"/>
+    </xsl:variable>
+    
+    <xsl:variable name="hl7ActStatusMap" as="element()+">
+        <map hl7Code="active" hl7CodeSystem="2.16.840.1.113883.5.14" displayName="actief" displayNameEN="active"/>
+        <map hl7Code="suspended" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="onderbroken" displayNameEN="suspended"/>
+        <map hl7Code="aborted" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="afgebroken" displayNameEN="aborted"/>
+        <map hl7Code="completed" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="voltooid" displayNameEN="completed"/>
+        <map hl7Code="cancelled" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="niet gestart" displayNameEN="cancelled"/>
     </xsl:variable>
     
     <xsl:variable name="uziRoleCodeMap" as="element()+">

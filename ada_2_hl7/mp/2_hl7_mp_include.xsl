@@ -15,14 +15,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
     <xsl:import href="../zib2020bbr/payload/hl7-Zorgverlener-20210701.xsl"/>
-    <xsl:import href="../../util/mp-functions.xsl"/>
     <!-- only comment the package import below out for development purposed, the calling stylesheet should decide on package version-->
     <!--    <xsl:import href="../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
 
-
     <!-- Uncomment only for development purposes -->
-    <!--<xsl:import href="../../util/mp-functions.xsl"/>
-    -->
+    <!--    <xsl:import href="../../util/mp-functions.xsl"/>-->
+
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -35,8 +33,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     <xsl:output method="xml" indent="yes"/>
-    
-   
+
+
     <xd:doc>
         <xd:desc>Handle ada gebruiksperiode for datasets 907, 9.1.0 and from 9 2.0 onwards</xd:desc>
         <xd:param name="in">The parent of the gebruiksperiode elements, for example: medicatieafspraak, toedieningsafspraak, medicatiegebruik. Defaults to context.</xd:param>
@@ -224,7 +222,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="productCode" as="element()*"/>
         <xsl:param name="GstandaardLevel" select="$oidGStandaardZInummer"/>
         <xsl:param name="elemName" as="xs:string?">code</xsl:param>
-        <xsl:for-each select="$productCode[@codeSystem eq $GstandaardLevel]">
+
+        <xsl:if test="count($productCode[@codeSystem eq $GstandaardLevel]) gt 1">
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logWARN"/>
+                <xsl:with-param name="msg">Found more than one productCode for the same G-standaard level. This should not happen. Taking only the first one encountered into account for conversion.</xsl:with-param>
+                <xsl:with-param name="terminate" select="false()"/>
+            </xsl:call-template>
+        </xsl:if>
+
+        <xsl:for-each select="($productCode[@codeSystem eq $GstandaardLevel])[1]">
             <xsl:element name="{$elemName}">
                 <xsl:call-template name="makeCodeAttribs"/>
                 <xsl:for-each select="$productCode[@codeSystem ne $GstandaardLevel]">
@@ -327,21 +334,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="low" as="element()?"/>
         <xsl:param name="width" as="element()?"/>
         <xsl:param name="high" as="element()?"/>
-        <xsl:if test="$low[1] instance of element()">
+        <xsl:if test="$low[@value][1] instance of element()">
             <xsl:for-each select="$low">
                 <low>
                     <xsl:call-template name="makeTSValueAttr"/>
                 </low>
             </xsl:for-each>
         </xsl:if>
-        <xsl:if test="$width[1] instance of element()">
+        <xsl:if test="$width[@value | @unit][1] instance of element()">
             <xsl:for-each select="$width">
                 <width>
                     <xsl:call-template name="makeTimePQValueAttribs"/>
                 </width>
             </xsl:for-each>
         </xsl:if>
-        <xsl:if test="$high[1] instance of element()">
+        <xsl:if test="$high[@value | @nullFlavor][1] instance of element()">
             <xsl:for-each select="$high">
                 <high>
                     <xsl:call-template name="makeTSValueAttr"/>
@@ -431,7 +438,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </low>
             </xsl:for-each>
-            <xsl:for-each select="aantal/(max | maxiumum_waarde)[.//@value]">
+            <xsl:for-each select="aantal/(max | maximum_waarde)[.//@value]">
                 <high>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
                         <xsl:with-param name="Gstd_value" select="@value"/>
@@ -1864,16 +1871,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Reden voor medicatiegebruik</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9114_20160710170744">
-        <!--Reden voor medicatiegebruik-->
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9114"/>
             <code code="6" displayName="Reden medicatiegebruik" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties"/>
-            <text>
-                <xsl:value-of select="./@value"/>
-            </text>
+            <xsl:call-template name="makeText"/>
         </observation>
     </xsl:template>
 
@@ -2135,7 +2139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </rateQuantity>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc>HL7NL PIVL_TS Weekdag. Expected context is ada weekdag element</xd:desc>
         <xd:param name="in">The ada weekdag element, defaults to context.</xd:param>
         <xd:param name="operator">The operator (for example A or I) for the PIVL</xd:param>
@@ -2916,14 +2920,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </observation>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Creates the response to a proposed dispense request</xd:desc>
         <xd:param name="in">the ada element for antwoord</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9212_20180420174745" match="antwoord" mode="HandleAvvv">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <act classCode="ACT" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9212"/>
@@ -2938,29 +2942,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <xsl:for-each select="antwoord_verstrekkingsverzoek[@code]">
                     <entryRelationship typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9213_20180420181642"/>                        
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9213_20180420181642"/>
                     </entryRelationship>
                 </xsl:for-each>
                 <xsl:for-each select="relatie_voorstel_gegevens/identificatie[@value]">
                     <entryRelationship typeCode="SUBJ">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9214_20180423130606"/>                        
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9214_20180423130606"/>
                     </entryRelationship>
                 </xsl:for-each>
-                
-                
+
+
             </act>
         </xsl:for-each>
-        
-     
+
+
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Observatie met het inhoudelijke antwoord op voorstel verstrekkingsverzoek</xd:desc>
         <xd:param name="in">the ada element for antwoord_verstrekkingsverzoek, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9213_20180420181642">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <observation classCode="OBS" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9213"/>
@@ -2969,26 +2973,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </observation>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Observatie met het inhoudelijke antwoord op voorstel verstrekkingsverzoek</xd:desc>
         <xd:param name="in">the ada element for antwoord_verstrekkingsverzoek, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9214_20180423130606">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <organizer classCode="CLUSTER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9214"/>
                 <xsl:call-template name="makeIIValue">
-                    <xsl:with-param name="elemName">id</xsl:with-param>                    
+                    <xsl:with-param name="elemName">id</xsl:with-param>
                 </xsl:call-template>
                 <code code="104" displayName="Sturen voorstel verstrekkingsverzoek" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
                 <statusCode nullFlavor="NI"/>
-             </organizer>
+            </organizer>
         </xsl:for-each>
     </xsl:template>
-    
+
 
     <xd:doc>
         <xd:desc> Verstrekkingsverzoek vanaf 9.1.0</xd:desc>
@@ -3138,7 +3142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc> MP CDA Medication Code vanaf 9.2 </xd:desc>
         <xd:param name="productCode">ada elements containing product_code</xd:param>
     </xd:doc>
@@ -3396,43 +3400,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="GstdBasiseenheid_code"/>
-    </xd:doc>
-    <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string?">
-        <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
-
-        <xsl:choose>
-            <xsl:when test="$GstdBasiseenheid_code castable as xs:integer">
-                <xsl:choose>
-                    <xsl:when test="$GstdBasiseenheid_code = '205'">cm</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '208'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '211'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '215'">g</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '217'">[iU]</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '219'">kg</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '222'">l</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '229'">mg</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '233'">ml</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '234'">mm</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '245'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '252'">ug</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '254'">ul</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '303'">[drp]</xsl:when>
-                    <!-- 345 is een miljoen IE's, '1' is waarschijnlijk niet helemaal juist -->
-                    <xsl:when test="$GstdBasiseenheid_code = '345'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '490'">1</xsl:when>
-                    <!-- Charrière -->
-                    <xsl:when test="$GstdBasiseenheid_code = '500'">[Ch]</xsl:when>
-                    <xsl:otherwise><!-- no output --></xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- geen integer meegekregen, no output -->
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-    <xd:doc>
-        <xd:desc/>
         <xd:param name="ADAunit"/>
     </xd:doc>
     <xsl:function name="nf:convertUnit_ADA2UCUM" as="xs:string">
@@ -3446,34 +3413,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="lower-case($ADAunit) = $ada-unit-druppel">[drp]</xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$ADAunit"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="inputDuur"/>
-        <xd:param name="eenheid_UCUM"/>
-    </xd:doc>
-    <xsl:function name="nf:calculate_Duur_In_Dagen">
-        <xsl:param name="inputDuur"/>
-        <xsl:param name="eenheid_UCUM"/>
-        <xsl:choose>
-            <xsl:when test="$eenheid_UCUM = 'h'">
-                <xsl:value-of select="format-number(number($inputDuur) div number(24), '0.####')"/>
-            </xsl:when>
-            <xsl:when test="$eenheid_UCUM = 'wk'">
-                <xsl:value-of select="format-number(number($inputDuur) * number(7), '0.####')"/>
-            </xsl:when>
-            <xsl:when test="$eenheid_UCUM = 'a'">
-                <!-- schrikkeljaren buiten beschouwing gelaten -->
-                <xsl:value-of select="format-number(number($inputDuur) * number(365), '0.####')"/>
-            </xsl:when>
-            <xsl:when test="$eenheid_UCUM = 'd'">
-                <xsl:value-of select="$inputDuur"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="concat('onverwachte tijdseenheid, kan niet omrekenen naar dagen: ', $inputDuur, ' ', $eenheid_UCUM)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>

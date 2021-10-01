@@ -124,5 +124,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc> MP CDA Zorgverlener as assigned Entity </xd:desc>
+        <xd:param name="in">The input ada zorgverlener, defaults to context</xd:param>
+        <xd:param name="theTime">The ada element which had the author time</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.43_20210701000000" match="zorgverlener" mode="handleZorgverlenerAssEntity">
+        <xsl:param name="in" as="element()*" select="."/>
+        <xsl:param name="theTime" as="element()?"/>
+        
+        <xsl:call-template name="makeTSValue">
+            <xsl:with-param name="elemName">time</xsl:with-param>
+            <xsl:with-param name="inputValue" select="$theTime/@value"/>
+        </xsl:call-template>
+        
+        <xsl:for-each select="$in">
+            
+            <assignedEntity>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.37_20210701000000"/>
+            </assignedEntity>
+            
+        </xsl:for-each>
+    </xsl:template>
 
 </xsl:stylesheet>
