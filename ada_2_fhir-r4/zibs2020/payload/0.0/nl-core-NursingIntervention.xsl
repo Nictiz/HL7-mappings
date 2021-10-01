@@ -50,15 +50,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NursingIntervention"/>
                 </meta>
                 <status>
-                    <xsl:choose>
+                    <!-- https://github.com/Nictiz/Nictiz-R4-zib2020/issues/161 -->
+                    <xsl:attribute name="value" select="'active'"/>
+                    <!--<xsl:choose>
                         <xsl:when test="xs:date(actie_eind_datum_tijd/@value) lt current-date()">
                             <xsl:attribute name="value" select="'completed'"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <!-- In any other situation, we cannot know if the status is 'active' because there is no concept of the time difference between transformation and sending the FHIR resource -->
+                            <!-\- In any other situation, we cannot know if the status is 'active' because there is no concept of the time difference between transformation and sending the FHIR resource -\->
                             <xsl:attribute name="value" select="'unknown'"/>
                         </xsl:otherwise>
-                    </xsl:choose>
+                    </xsl:choose>-->
                 </status>
                 <intent value="plan"/>
                 <category>
