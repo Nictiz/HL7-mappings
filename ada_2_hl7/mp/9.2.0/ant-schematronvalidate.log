@@ -15,7 +15,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 95ms :: artifacts dl 13ms
+[ivy:resolve] :: resolution report :: resolve 77ms :: artifacts dl 15ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -24,7 +24,38 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/51ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/31ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronvalidate_hl7_920:
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 71ms :: artifacts dl 13ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/27ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -46,7 +77,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 58ms :: artifacts dl 8ms
+[ivy:resolve] :: resolution report :: resolve 59ms :: artifacts dl 9ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -55,16 +86,15 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/26ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/25ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
 validate_hl7_sub:
      [echo] Deleting previous results, if any
-    [mkdir] Created dir: C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\validate_hl7_instance_repo
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_mgb.xsl input dir ../../beschikbaarstellen_medicatiegegevens/hl7_instance_repo
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92_mgb.xsl input dir ../../beschikbaarstellen_medicatiegegevens/hl7_instance_repo
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_repo\mg-RepoMtdWds.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\validate_hl7_instance_repo\mg-RepoMtdWds.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_mgb.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\hl7_instance_repo\mg-RepoTestArianne.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatiegegevens\validate_hl7_instance_repo\mg-RepoTestArianne.xml
@@ -103,7 +133,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 83ms :: artifacts dl 18ms
+[ivy:resolve] :: resolution report :: resolve 47ms :: artifacts dl 8ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -112,7 +142,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/32ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/24ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -120,7 +150,7 @@ fetch-imports:
 validate_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_mob.xsl input dir ../../beschikbaarstellen_medicatieoverzicht/hl7_instance
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92_mob.xsl input dir ../../beschikbaarstellen_medicatieoverzicht/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatieoverzicht\hl7_instance\mo-mp-mo-tst-12.1-setjeAIS.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatieoverzicht\validate_hl7_instance\mo-mp-mo-tst-12.1-setjeAIS.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_mob.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatieoverzicht\hl7_instance\mo-mp-mo-tst-12.2-setjeEVS.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\beschikbaarstellen_medicatieoverzicht\validate_hl7_instance\mo-mp-mo-tst-12.2-setjeEVS.xml
@@ -140,7 +170,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 66ms :: artifacts dl 10ms
+[ivy:resolve] :: resolution report :: resolve 71ms :: artifacts dl 13ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -149,7 +179,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/25ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/27ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -157,7 +187,7 @@ fetch-imports:
 validate_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92-av.xsl input dir ../../sturen_afhandeling_medicatievoorschrift/hl7_instance
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92-av.xsl input dir ../../sturen_afhandeling_medicatievoorschrift/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_afhandeling_medicatievoorschrift\hl7_instance\av-mp-va-tst-1.1-ingangsdatum_einddatum.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_afhandeling_medicatievoorschrift\validate_hl7_instance\av-mp-va-tst-1.1-ingangsdatum_einddatum.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92-av.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_afhandeling_medicatievoorschrift\hl7_instance\av-mp-va-tst-1.2a-ingangsdatum_duur_weken.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_afhandeling_medicatievoorschrift\validate_hl7_instance\av-mp-va-tst-1.2a-ingangsdatum_duur_weken.xml
@@ -221,7 +251,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 58ms :: artifacts dl 9ms
+[ivy:resolve] :: resolution report :: resolve 50ms :: artifacts dl 8ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -238,7 +268,7 @@ fetch-imports:
 validate_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_avvv.xsl input dir ../../sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92_avvv.xsl input dir ../../sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_antwoord_voorstel_verstrekkingsverzoek\hl7_instance\mp-av-tst-apotheker_is_aanvrager.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_antwoord_voorstel_verstrekkingsverzoek\validate_hl7_instance\mp-av-tst-apotheker_is_aanvrager.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_avvv.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_antwoord_voorstel_verstrekkingsverzoek\hl7_instance\mp-av-tst-patient_is_aanvrager.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_antwoord_voorstel_verstrekkingsverzoek\validate_hl7_instance\mp-av-tst-patient_is_aanvrager.xml
@@ -259,7 +289,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 49ms :: artifacts dl 8ms
+[ivy:resolve] :: resolution report :: resolve 60ms :: artifacts dl 9ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -268,7 +298,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/35ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/26ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -276,7 +306,7 @@ fetch-imports:
 validate_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_mgbs.xsl input dir ../../sturen_medicatiegebruik/hl7_instance
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92_mgbs.xsl input dir ../../sturen_medicatiegebruik/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatiegebruik\hl7_instance\sg-arianne-test-999.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatiegebruik\validate_hl7_instance\sg-arianne-test-999.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_mgbs.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatiegebruik\hl7_instance\sg-mp-gb-tst-2.2-toelichting.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatiegebruik\validate_hl7_instance\sg-mp-gb-tst-2.2-toelichting.xml
@@ -313,7 +343,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 88ms :: artifacts dl 15ms
+[ivy:resolve] :: resolution report :: resolve 50ms :: artifacts dl 8ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -322,7 +352,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/35ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/27ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -330,7 +360,7 @@ fetch-imports:
 validate_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vos.xsl input dir ../../sturen_medicatievoorschrift/hl7_instance
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92_vos.xsl input dir ../../sturen_medicatievoorschrift/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\hl7_instance\mv-example-920-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\validate_hl7_instance\mv-example-920-1.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vos.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\hl7_instance\mv-mp-vo-tst-1.1-ingangsdatum_einddatum.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\validate_hl7_instance\mv-mp-vo-tst-1.1-ingangsdatum_einddatum.xml
@@ -399,7 +429,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 69ms :: artifacts dl 9ms
+[ivy:resolve] :: resolution report :: resolve 59ms :: artifacts dl 11ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -408,7 +438,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/25ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/27ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -416,7 +446,7 @@ fetch-imports:
 validate_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vos.xsl input dir ../../sturen_medicatievoorschrift/cda_instance
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92_vos.xsl input dir ../../sturen_medicatievoorschrift/cda_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\cda_instance\mv-example-920-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\validate_cda_instance\mv-example-920-1.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vos.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\cda_instance\mv-mp-vo-tst-1.1-ingangsdatum_einddatum.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_medicatievoorschrift\validate_cda_instance\mv-mp-vo-tst-1.1-ingangsdatum_einddatum.xml
@@ -485,7 +515,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 56ms :: artifacts dl 10ms
+[ivy:resolve] :: resolution report :: resolve 51ms :: artifacts dl 10ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -494,7 +524,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/28ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/25ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -502,7 +532,7 @@ fetch-imports:
 validate_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vma.xsl input dir ../../sturen_voorstel_medicatieafspraak/hl7_instance
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92_vma.xsl input dir ../../sturen_voorstel_medicatieafspraak/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_voorstel_medicatieafspraak\hl7_instance\mp-vm-tst-andere_voorschrijver.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_voorstel_medicatieafspraak\validate_hl7_instance\mp-vm-tst-andere_voorschrijver.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vma.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_voorstel_medicatieafspraak\hl7_instance\mp-vm-tst-lengte_gewicht.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_voorstel_medicatieafspraak\validate_hl7_instance\mp-vm-tst-lengte_gewicht.xml
@@ -524,7 +554,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 42ms :: artifacts dl 7ms
+[ivy:resolve] :: resolution report :: resolve 50ms :: artifacts dl 8ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -533,7 +563,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/27ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/26ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -541,7 +571,7 @@ fetch-imports:
 validate_hl7_sub:
      [echo] Deleting previous results, if any
      [echo] 
-     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vvv.xsl input dir ../../sturen_voorstel_verstrekkingsverzoek/hl7_instance
+     [echo] ADA to HL7 C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings/mp-mp92_vvv.xsl input dir ../../sturen_voorstel_verstrekkingsverzoek/hl7_instance
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_voorstel_verstrekkingsverzoek\hl7_instance\mp-vv-tst-apotheker_is_auteur.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_voorstel_verstrekkingsverzoek\validate_hl7_instance\mp-vv-tst-apotheker_is_auteur.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vvv.xsl
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_voorstel_verstrekkingsverzoek\hl7_instance\mp-vv-tst-patient_is_auteur.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\sturen_voorstel_verstrekkingsverzoek\validate_hl7_instance\mp-vv-tst-patient_is_auteur.xml
@@ -565,5 +595,321 @@ validate_hl7_sub:
      [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\xml-voorbeelden\hl7_instance\vvv-example-920-1.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\xml-voorbeelden\validate_hl7_instance\vvv-example-920-1.xml
      [xslt] Loading stylesheet C:\SVN\AORTA\branches\Onderhoud_Mp_v90\Publicaties\20210921\mp-xml-20210921T194523\schematron_closed_warnings\mp-mp92_vvv.xsl
 
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 41ms :: artifacts dl 5ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/25ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_beschikbaarstellen_medicatiegegevens.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\hl7_beschikbaarstellen_medicatiegegevens.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 45ms :: artifacts dl 7ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/38ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_beschikbaarstellen_medicatieoverzicht.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\hl7_beschikbaarstellen_medicatieoverzicht.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 50ms :: artifacts dl 10ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/26ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_sturen_afhandeling_medicatievoorschrift.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\hl7_sturen_afhandeling_medicatievoorschrift.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 53ms :: artifacts dl 9ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/25ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_sturen_antwoord_voorstel_verstrekkingsverzoek.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\hl7_sturen_antwoord_voorstel_verstrekkingsverzoek.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 55ms :: artifacts dl 8ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/26ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_sturen_medicatiegebruik.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\hl7_sturen_medicatiegebruik.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 60ms :: artifacts dl 9ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/24ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_sturen_medicatievoorschrift.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\hl7_sturen_medicatievoorschrift.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+     [xslt] ERROR: Not all instances validated correctly in input directory: ../sturen_medicatievoorschrift/validate_hl7_instance
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 52ms :: artifacts dl 10ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/25ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/cda_sturen_medicatievoorschrift.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\cda_sturen_medicatievoorschrift.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 59ms :: artifacts dl 12ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/37ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_sturen_voorstel_medicatieafspraak.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\hl7_sturen_voorstel_medicatieafspraak.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 63ms :: artifacts dl 11ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/30ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+
+schematronresults_hl7_920_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../validate/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_sturen_voorstel_verstrekkingsverzoek.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\default_input.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\hl7_sturen_voorstel_verstrekkingsverzoek.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\mp\9.2.0\validate\validate-svrl-output.xsl
+
 BUILD SUCCESSFUL
-Total time: 3 minutes 46 seconds
+Total time: 3 minutes 29 seconds
