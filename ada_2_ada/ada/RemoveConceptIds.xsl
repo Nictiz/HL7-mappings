@@ -7,6 +7,12 @@
         
     </xsl:template>-->
     
+    <xsl:template match="/">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="removeConceptId"/>
+        </xsl:copy>        
+    </xsl:template>
+    
     <xsl:template match="@conceptId" mode="removeConceptId"/>      
     
 
