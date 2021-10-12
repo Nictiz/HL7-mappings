@@ -195,7 +195,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </meta>
                     <xsl:if test="$practitionerRef">
                         <practitioner>
-                            <xsl:copy-of select="$organizationRef[self::f:extension]"/>
+                            <xsl:copy-of select="$practitionerRef[self::f:extension]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:reference]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:identifier]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:display]"/>
