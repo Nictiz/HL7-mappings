@@ -295,6 +295,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'vermogen_tot_eten'">
+                <xsl:apply-templates select="$in" mode="nl-core-AbilityToEat">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'verrichting'">
                 <xsl:apply-templates select="$in" mode="nl-core-Procedure">
                     <xsl:with-param name="subject" select="$subject"/>
