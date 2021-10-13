@@ -283,12 +283,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="visueel_resultaat">
                     <xsl:call-template name="nl-core-TextResult-Media"/>
                 </xsl:for-each>
-                <!--<xsl:for-each select="verrichting">
-                    <xsl:apply-templates select="nf:ada-resolve-reference(verrichting)" mode="nl-core-Procedure">
-                        <xsl:with-param name="subject" select="$subject"/>
-                        <xsl:with-param name="report" select="ancestor::tekst_uitslag"/>
-                    </xsl:apply-templates>
-                </xsl:for-each>-->
             </xsl:when>
             <xsl:when test="$localName = 'toedieningsafspraak'">
                 <xsl:apply-templates select="$in" mode="nl-core-AdministrationAgreement">
@@ -296,10 +290,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'verrichting'">
-                <xsl:apply-templates select="$in" mode="nl-core-Procedure">
+                <xsl:apply-templates select="$in" mode="nl-core-Procedure-event">
                     <xsl:with-param name="subject" select="$subject"/>
                     <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
                 </xsl:apply-templates>
+                <xsl:if test="aanvrager">
+                    <xsl:apply-templates select="$in" mode="nl-core-Procedure-request">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:apply-templates>
+                </xsl:if>
+
             </xsl:when>
             <xsl:when test="$localName = 'verstrekkingsverzoek'">
                 <xsl:apply-templates select="$in" mode="nl-core-DispenseRequest">

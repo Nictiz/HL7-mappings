@@ -39,9 +39,66 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:variable>
         
-        <xsl:call-template name="nl-core-Procedure">
+        <xsl:call-template name="nl-core-Procedure-event">
             <xsl:with-param name="subject" select="$subject"/>
         </xsl:call-template>
+    </xsl:template>
+
+
+    <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
+    
+    <xd:doc>
+        <xd:desc>
+            Process ADA instances to create resources that conform to the nl-core-Procedure-event and nl-core-Procedure-request profile.
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="/">
+        <xsl:choose>
+            <xsl:when test="$createBundle">
+                <Bundle>            
+                    <xsl:for-each select=".//verrichting">
+                        <xsl:if test="nf:isPast(verrichting_start_datum/@value)">
+                            <entry>
+                                <resource>
+                                    <xsl:call-template name="nl-core-Procedure-event"/>
+                                </resource>
+                            </entry>
+                        </xsl:if>
+                        <xsl:if test="aanvrager or nf:isFuture(verrichting_start_datum/@value)">
+                            <entry>
+                                <resource>
+                                    <xsl:call-template name="nl-core-Procedure-request"/>
+                                </resource>
+                            </entry>
+                        </xsl:if>
+                    </xsl:for-each>
+                </Bundle>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select=".//verrichting">
+                    <xsl:if test="nf:isPast(verrichting_start_datum/@value)">
+                        <xsl:variable name="logicalId">
+                            <xsl:call-template name="getLogicalIdFromFhirMetadata">
+                                <xsl:with-param name="profile" select="'nl-core-Procedure-event'"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:result-document href="./{$logicalId}.xml">
+                            <xsl:call-template name="nl-core-Procedure-event"/>
+                        </xsl:result-document>
+                    </xsl:if>
+                    <xsl:if test="aanvrager or nf:isFuture(verrichting_start_datum/@value)">
+                        <xsl:variable name="logicalId">
+                            <xsl:call-template name="getLogicalIdFromFhirMetadata">
+                                <xsl:with-param name="profile" select="'nl-core-Procedure-request'"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:result-document href="./{$logicalId}.xml">
+                            <xsl:call-template name="nl-core-Procedure-request"/>
+                        </xsl:result-document>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>
