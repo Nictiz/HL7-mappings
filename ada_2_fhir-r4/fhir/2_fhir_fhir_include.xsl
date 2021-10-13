@@ -92,6 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="nl-core-DispenseRequest"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
+        <nm:map ada="vochtbalans" resource="Observation" profile="nl-core-FluidBalance"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>

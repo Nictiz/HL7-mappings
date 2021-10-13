@@ -309,6 +309,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'visus'">
                 <xsl:apply-templates select="$in" mode="nl-core-VisualAcuity"/>
             </xsl:when>
+            <xsl:when test="$localName = 'vochtbalans'">
+                <xsl:apply-templates select="$in" mode="nl-core-FluidBalance">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'vrijheidsbeperkende_interventie'">
                 <xsl:apply-templates select="$in" mode="nl-core-FreedomRestrictingIntervention">
                     <xsl:with-param name="subject" select="$subject"/>
