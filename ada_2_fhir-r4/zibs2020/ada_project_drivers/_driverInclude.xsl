@@ -65,6 +65,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$bundle[self::patient]">
                 <xsl:copy-of select="$bundle[self::patient][1]"/>
             </xsl:when>
+            <xsl:when test="$patient-id and not($referencedPatient)">
+                <xsl:message>Could not find Patient instance with patient-id '<xsl:value-of select="$patient-id"/>'</xsl:message>
+            </xsl:when>
         </xsl:choose>
     </xsl:template>
     
