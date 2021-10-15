@@ -111,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                         </xsl:for-each>
                         <xsl:for-each select="afwijkende_uitslag">
-                            <xsl:comment>TODO: nl-core-LaboratoryTestResult</xsl:comment>
+                            <xsl:comment>TODO: nl-core-LaboratoryTestResult, nl-core-Problem and nl-core-Procedure</xsl:comment>
                             <!--<xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult'"/>
@@ -149,6 +149,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </Encounter>
         </xsl:for-each>
-    </xsl:template>    
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="contact" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Encounter</xsl:text>
+            <xsl:if test="contact_type[@displayName]">
+                <xsl:value-of select="concat('type ', contact_type/@displayName)"/>
+            </xsl:if>
+            <xsl:if test="begin_datum_tijd[@value]">
+                <xsl:value-of select="concat('from ', begin_datum_tijd/@value)"/>
+            </xsl:if>
+            <xsl:if test="eind_datum_tijd[@value]">
+                <xsl:value-of select="concat('until ', eind_datum_tijd/@value)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+    </xsl:template>
     
 </xsl:stylesheet>

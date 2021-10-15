@@ -71,11 +71,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
+        <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
-        <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="nl-core-MedicationAgreement"/>
+        <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
         <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="nl-core-MedicationContraIndication"/>
         <nm:map ada="medicatie_gebruik" resource="MedicationStatement" profile="nl-core-MedicationUse2"/>
         <nm:map ada="medicatie_toediening" resource="MedicationAdministration" profile="nl-core-MedicationAdministration2"/>
+        <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="nl-core-MedicationAgreement"/>
         <nm:map ada="medicatieverstrekking" resource="MedicationDispense" profile="nl-core-MedicationDispense"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
@@ -85,7 +87,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport-Observation"/>
         <nm:map ada="tekst_uitslag" resource="DiagnosticReport" profile="nl-core-TextResult"/>
-
         <nm:map ada="toedieningsafspraak" resource="MedicationDispense" profile="nl-core-AdministrationAgreement"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="nl-core-DispenseRequest"/>
@@ -94,6 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
+        <nm:map ada="zorg_episode" resource="EpisodeOfCare" profile="nl-core-EpisodeOfCare"/>
         <nm:map ada="zorg_team" resource="CareTeam" profile="nl-core-CareTeam"/>
         <nm:map ada="zorgverlener" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
         <nm:map ada="zorgverlener" resource="Practitioner" profile="nl-core-HealthProfessional-Practitioner"/>
@@ -301,48 +303,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" as="xs:string" select="''"/>
         <xsl:param name="wrapIn" as="xs:string?"/>
         <xsl:param name="contained" as="xs:boolean" tunnel="yes" select="false()"/>
-
+        
+        <!-- Debug -->
         <xsl:if test="count($fhirMetadata) = 0">
             <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
         </xsl:if>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[@datatype = 'reference' and @value]">
+                    <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in,/))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         
         <xsl:variable name="element" as="element()?">
             <xsl:choose>
-                <xsl:when test="$in[@datatype = 'reference' and @value]">
-                    <xsl:variable name="adaId">
-                        <xsl:variable name="baseUri" select="replace(tokenize($in/base-uri(), '/')[last()], '.xml', '')"/>
-                        <xsl:if test="string-length($baseUri) gt 0">
-                            <xsl:value-of select="$baseUri"/>
-                            <xsl:text>-</xsl:text>
-                        </xsl:if>
-                        <xsl:value-of select="$in/@value"/>
-                    </xsl:variable>
-                    <xsl:choose>
-                        <xsl:when test="count($fhirMetadata[nm:ada-id = $adaId]) gt 1">
-                            <xsl:if test="string-length($profile) = 0">
-                                <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
-                            </xsl:if>
-                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:ada-id = $adaId]"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:copy-of select="$fhirMetadata[nm:ada-id = $adaId]"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                    <xsl:if test="string-length($profile) = 0">
+                        <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:message>
+                    </xsl:if>
+                    <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
+                        <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:message>
+                    </xsl:if>
+                    <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:choose>
-                        <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
-                            <xsl:if test="string-length($profile) = 0">
-                                <xsl:message terminate="yes">makeReference: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
-                            </xsl:if>
-                            <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                    <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -350,7 +340,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <!-- Debug -->
         <xsl:if test="$in and count($element) = 0">
-            <xsl:message terminate="yes">Cannot resolve reference within set of ada-instances</xsl:message>
+            <xsl:message terminate="yes">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:message>
         </xsl:if>
 
         <xsl:variable name="populatedReference" as="element()*">
@@ -566,6 +556,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:value-of select="substring($logicalId, $startingLoc, $lengthLogicalId)"/>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
+    </xd:doc>    
+    <xsl:function name="nf:isFuture" as="xs:boolean">
+        <xsl:param name="dateOrDt"/>
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:value-of select="$dateOrDt &gt; current-date()"/>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+    </xd:doc>    
+    <xsl:function name="nf:isPast" as="xs:boolean">
+        <xsl:param name="dateOrDt"/>
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:function>
     
 </xsl:stylesheet>

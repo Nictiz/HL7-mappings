@@ -128,5 +128,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Condition>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="probleem" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Problem</xsl:text>
+            <xsl:value-of select="probleem/@value"/>
+            <xsl:if test="probleem_type/@displayName">
+                <xsl:value-of select="concat('type: ', probleem_type/@displayName)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+    </xsl:template>
 
 </xsl:stylesheet>

@@ -90,8 +90,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="value">
                         <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
                              so we can perform the required logic using a start and end datetime. -->
-                        
-                        <!-- I don't believe this variable DOES NOT works, it doesn't contain any info. -->
                         <xsl:variable name="period" as="element(f:temp)?">
                             <xsl:call-template name="ext-TimeInterval.Period">
                                 <xsl:with-param name="in" select="gebruiksperiode"/>
@@ -102,16 +100,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="medicatieafspraak_stop_type/@code = '113381000146106'">on-hold</xsl:when>
                             <xsl:when test="medicatieafspraak_stop_type/@code = '113371000146109'">stopped</xsl:when>
-                            <xsl:when test="
-                                $period/f:start[@value] and 
-                                ($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &lt; current-date()) or
-                                ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &lt; current-dateTime())">active</xsl:when>
-                            <xsl:when test="
-                                $period/f:start[@value] and $period/f:end[@value] and 
-                                (($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &gt; current-date()) or 
-                                 ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &gt; current-dateTime())) and
-                                (($period/f:end[@value]  castable as xs:date     and xs:date($period/f:end/@value)       &lt; current-date()) or
-                                 ($period/f:end[@value]  castable as xs:dateTime and xs:dateTime($period/f:end/@value)   &lt; current-dateTime()))">active</xsl:when>
+                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
                             <xsl:otherwise>unknown</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
@@ -193,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="parts">
             <xsl:text>agreement</xsl:text>
             <xsl:value-of select="reden_van_voorschrijven/@displayName"/>
-            <xsl:value-of select="medicatieafspraaks_datum_tijd/@value"/>
+            <xsl:value-of select="medicatieafspraak_datum_tijd/@value"/>
             <xsl:value-of select="toelichting/@value"/>
         </xsl:variable>
         <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
