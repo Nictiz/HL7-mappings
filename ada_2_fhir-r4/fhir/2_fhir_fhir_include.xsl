@@ -293,7 +293,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xd:param name="in">The target of the reference as either an ADA instance an ADA reference element. May be omitted if it is the same as the context.</xd:param>
         <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
-        <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated as well.</xd:param>
+        <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated either.</xd:param>
     </xd:doc>
     <!-- Outputs reference if input is ADA, fhirMetadata or ADA reference element -->
     <xsl:template name="makeReference">

@@ -25,6 +25,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
+    <!-- uncomment for development purposes only -->
+<!--    <xsl:import href="all_zibs.xsl"/>-->
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
