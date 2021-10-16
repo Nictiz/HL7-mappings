@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-MedicationAgreement" mode="nl-core-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="afgesprokengeneesmiddel" as="element()?"/>
+        <xsl:param name="medicationReference" select="(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product" as="element()?"/>
         <xsl:param name="requester" select="voorschrijver" as="element()?"/>
         <xsl:param name="reasonReference" select="reden_van_voorschrijven" as="element()?"/>
         
@@ -110,6 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <intent value="order"/>
                 
+                <!-- Issue MP-489: code should be updated to 33633005, but update also needed in FHIR profile -->
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
