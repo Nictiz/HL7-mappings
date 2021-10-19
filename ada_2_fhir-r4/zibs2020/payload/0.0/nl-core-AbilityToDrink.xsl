@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="288852001"/>
-                        <display value="vermogen tot drinken"/>
+                        <display value="vermogen om te drinken"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="http://snomed.info/sct"/>
                                 <code value="288851008"/>
-                                <display value="vaardigheid betreffende drinken"/>
+                                <display value="vermogen tot drinken"/>
                             </coding>
                         </code>
                         <valueCodeableConcept>
