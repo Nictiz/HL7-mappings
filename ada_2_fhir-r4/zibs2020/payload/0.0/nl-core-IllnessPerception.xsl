@@ -58,14 +58,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
-                <xsl:for-each select="ziekte_inzicht_van_patiënt">
+                <xsl:for-each select="ziekte_inzicht_van_patient">
                     <valueString>
                         <xsl:call-template name="string-to-string">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </valueString>
                 </xsl:for-each>
-                <xsl:for-each select="omgaan_met_ziekteproces_door_patiënt">
+                <xsl:for-each select="omgaan_met_ziekteproces_door_patient">
                     <component>
                         <code>
                             <coding>
