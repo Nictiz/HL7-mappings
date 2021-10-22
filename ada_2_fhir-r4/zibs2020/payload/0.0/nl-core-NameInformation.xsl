@@ -43,6 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in">
 
+            <!-- Create a list of normalized initials from the provided initials string, that is, the initial followed
+                 by a dot. There are no formal requirements to the input string, but it is assumed that each initials 
+                 is delimited by a dot and seperated by zero or more whitespace characters. -->
             <xsl:variable name="normalizedInitials" as="xs:string*">
                 <xsl:for-each select="tokenize(initialen/@value, '\.')">
                     <xsl:if test="string-length(.) &gt; 0">
@@ -51,6 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:variable>
             
+            <!-- Create the main .name instance containing all official names -->
             <name>
                 <xsl:if test="naamgebruik">
                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -108,6 +112,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </family>
                 </xsl:if>
 
+                <!-- If first names are provided, write them out here as separate .given elements. Of first names are
+                     not provided but initials are, write out the initials. If both are provided and they don't match,
+                     a second .name instance will be created at a later stage. -->
                 <xsl:choose>
                     <xsl:when test="voornamen[@value]">
                         <xsl:for-each select="tokenize(normalize-space(voornamen/@value), ' ')">
@@ -127,6 +134,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </name>
             
+            <!-- If both first names and initials are provided, check if they match. If not, write out a second .name
+                 instance containing just the initials. -->
             <xsl:variable name="generatedInitialsString" as="xs:string">
                 <xsl:variable name="initials" as="xs:string*">
                     <xsl:for-each select="tokenize(normalize-space(voornamen/@value), ' ')">
@@ -149,6 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </name>
             </xsl:if>
 
+            <!-- If the given name is provided, write out an additional .name element with use=casual. -->
             <xsl:if test="roepnaam[@value]">
                 <name>
                     <use value="casual"/>
@@ -159,6 +169,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Helper function to write out part of the family name using the provided extensions.</xd:desc>
+        <xd:param name="in">The element containing the value to write in the extension</xd:param>
+        <xd:param name="extensionId">The leaf of the canonical URL of the extension</xd:param>
+    </xd:doc>
     <xsl:function name="nf:_writeFamilyExtension">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="extensionId" as="xs:string"/>
@@ -172,6 +187,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </extension>
     </xsl:function>
     
+    <xd:doc>
+        <xd:desc>Helper function to write a .given element augmented with the iso21090-EN-qualifier extension.</xd:desc>
+        <xd:param name="value">The value of the .given element</xd:param>
+        <xd:param name="iso21090Qualifier">The code that should be used for the iso21090-EN-qualifier extension</xd:param>
+    </xd:doc>
     <xsl:function name="nf:_writeGiven">
         <xsl:param name="value" as="xs:string"/>
         <xsl:param name="iso21090Qualifier" as="xs:string"/>
