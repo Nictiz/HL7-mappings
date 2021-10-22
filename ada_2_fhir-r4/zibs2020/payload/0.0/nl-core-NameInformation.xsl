@@ -9,11 +9,16 @@ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions"
-    xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all"
+    xmlns="http://hl7.org/fhir"
+    xmlns:util="urn:hl7:utilities" 
+    xmlns:f="http://hl7.org/fhir" 
+    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+    xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:uuid="http://www.uuid.org"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
    <!-- <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
@@ -37,7 +42,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="naamgegevens" mode="nl-core-NameInformation" name="nl-core-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
-        <xsl:for-each select="$in[.//@value]">
+        <xsl:for-each select="$in">
+            
             <name>
                 <xsl:if test="naamgebruik">
                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -48,6 +54,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCode>
                     </extension>
                 </xsl:if>
+                
+                <use value="official"/>
+                
                 <xsl:if test="geslachtsnaam | geslachtsnaam_partner">
                     <xsl:variable name="lastName" select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ./geslachtsnaam/achternaam/@value), ' '))[not(. = '')]"/>
                     <xsl:variable name="lastNamePartner" select="normalize-space(string-join((./voorvoegsels_partner/@value, ./achternaam_partner/@value), ' '))[not(. = '')]"/>
@@ -76,71 +85,85 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </xsl:attribute>                
+                        </xsl:attribute>
                         <xsl:for-each select="geslachtsnaam/voorvoegsels">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
+                            <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-own-prefix')"/>
                         </xsl:for-each>
-                        <xsl:for-each select=".//geslachtsnaam/achternaam">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
+                        <xsl:for-each select="geslachtsnaam/achternaam">
+                            <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-own-name')"/>
                         </xsl:for-each>
-                        <xsl:for-each select=".//voorvoegsels_partner">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
+                        <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner">
+                            <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-partner-prefix')"/>
                         </xsl:for-each>
-                        <xsl:for-each select=".//achternaam_partner">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
+                        <xsl:for-each select="geslachtsnaam_partner/achternaam_partner">
+                            <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-partner-name')"/>
                         </xsl:for-each>
                     </family>
                 </xsl:if>
-                <xsl:if test="voornamen">
-                    <given value="{voornamen/@value}">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                            <valueCode value="BR"/>
-                        </extension>
-                    </given>
-                </xsl:if> 
-                <xsl:if test="initialen">
-                    <given value="{initialen/@value}">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                            <valueCode value="IN" />
-                        </extension>
-                    </given>
-                </xsl:if>
-                <xsl:if test="roepnaam">
-                    <given value="{roepnaam/@value}">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                            <valueCode value="CL" />
-                        </extension>
-                    </given>
-                </xsl:if>
+
+                <xsl:choose>
+                    <xsl:when test="voornamen[@value]">
+                        <xsl:for-each select="tokenize(normalize-space(voornamen/@value), ' ')">
+                            <xsl:copy-of select="nf:_writeGiven(., 'BR')"/>
+                        </xsl:for-each>                        
+                    </xsl:when>
+                    <xsl:when test="initialen[@value]">
+                        <xsl:for-each select="tokenize(normalize-space(initialen/@value), ' ')">
+                            <xsl:copy-of select="nf:_writeGiven(concat(., '.'), 'IN')"/>
+                        </xsl:for-each>                        
+                    </xsl:when>
+                </xsl:choose>
+                
                 <xsl:if test="titels/@value">
                     <!-- 'titels' can be mapped both to prefix and suffix, but we cannot determine the type of 'titel' more specifically -->
                     <prefix value="{normalize-space(titels/@value)}"/>
                 </xsl:if>
             </name>
+            
+            <xsl:variable name="generatedInitials" select="normalize-space(string-join(tokenize(voornamen/@value, ' '), '. '))"/>
+            <xsl:variable name="providedInitials" select="normalize-space(initialen/@value)"/>
+            <xsl:if test="string-length($generatedInitials) &gt; 0 and 
+                string-length($providedInitials) &gt; 0 and
+                $generatedInitials != $providedInitials">
+                <name>
+                    <use value="official"/>
+                    <xsl:for-each select="tokenize(normalize-space(initialen/@value), ' ')">
+                        <xsl:copy-of select="nf:_writeGiven(concat(., '.'), 'IN')"/>
+                    </xsl:for-each>
+                </name>
+            </xsl:if>
+
+            <xsl:if test="roepnaam[@value]">
+                <name>
+                    <use value="casual"/>
+                    <given value="{roepnaam/@value}"/>
+                </name>
+            </xsl:if>
+            
         </xsl:for-each>
     </xsl:template>
+    
+    <xsl:function name="nf:_writeFamilyExtension">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="extensionId" as="xs:string"/>
+        
+        <extension url="http://hl7.org/fhir/StructureDefinition/{$extensionId}">
+            <valueString>
+                <xsl:call-template name="string-to-string">
+                    <xsl:with-param name="in" select="$in"/>
+                </xsl:call-template>
+            </valueString>
+        </extension>
+    </xsl:function>
+    
+    <xsl:function name="nf:_writeGiven">
+        <xsl:param name="value" as="xs:string"/>
+        <xsl:param name="iso21090Qualifier" as="xs:string"/>
+        
+        <given value="{$value}">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                <valueCode value="{$iso21090Qualifier}"/>
+            </extension>
+        </given>
+    </xsl:function>
 </xsl:stylesheet>
