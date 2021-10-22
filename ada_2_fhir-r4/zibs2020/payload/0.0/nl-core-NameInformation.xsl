@@ -42,6 +42,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="naamgegevens" mode="nl-core-NameInformation" name="nl-core-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in">
+
+            <xsl:variable name="normalizedInitials" as="xs:string*">
+                <xsl:for-each select="tokenize(initialen/@value, '\.')">
+                    <xsl:if test="string-length(.) &gt; 0">
+                        <xsl:value-of select="concat(normalize-space(.), '.')"/>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:variable>
             
             <name>
                 <xsl:if test="naamgebruik">
@@ -107,8 +115,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>                        
                     </xsl:when>
                     <xsl:when test="initialen[@value]">
-                        <xsl:for-each select="tokenize(normalize-space(initialen/@value), ' ')">
-                            <xsl:copy-of select="nf:_writeGiven(concat(., '.'), 'IN')"/>
+                        <xsl:for-each select="$normalizedInitials">
+                            <xsl:copy-of select="nf:_writeGiven(., 'IN')"/>
                         </xsl:for-each>                        
                     </xsl:when>
                 </xsl:choose>
@@ -119,15 +127,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </name>
             
-            <xsl:variable name="generatedInitials" select="normalize-space(string-join(tokenize(voornamen/@value, ' '), '. '))"/>
-            <xsl:variable name="providedInitials" select="normalize-space(initialen/@value)"/>
-            <xsl:if test="string-length($generatedInitials) &gt; 0 and 
-                string-length($providedInitials) &gt; 0 and
-                $generatedInitials != $providedInitials">
+            <xsl:variable name="generatedInitialsString" as="xs:string">
+                <xsl:variable name="initials" as="xs:string*">
+                    <xsl:for-each select="tokenize(normalize-space(voornamen/@value), ' ')">
+                        <xsl:if test="string-length(.) &gt; 0">
+                            <xsl:value-of select="concat(upper-case(substring(., 1, 1)), '.')"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:value-of select="string-join($initials, ' ')"/>
+            </xsl:variable>
+            <xsl:variable name="providedInitialsString" select="normalize-space(string-join($normalizedInitials, ' '))"/>
+            <xsl:if test="string-length($generatedInitialsString) &gt; 0 and 
+                string-length($providedInitialsString) &gt; 0 and
+                $generatedInitialsString != $providedInitialsString">
                 <name>
                     <use value="official"/>
-                    <xsl:for-each select="tokenize(normalize-space(initialen/@value), ' ')">
-                        <xsl:copy-of select="nf:_writeGiven(concat(., '.'), 'IN')"/>
+                    <xsl:for-each select="$normalizedInitials">
+                        <xsl:copy-of select="nf:_writeGiven(., 'IN')"/>
                     </xsl:for-each>
                 </name>
             </xsl:if>
