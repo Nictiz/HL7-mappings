@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Procedure-request-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request"/>
+   </meta>
+   <status value="completed"/>
+   <intent value="order"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="609588000"/>
+         <display value="implantatie van totale knieprothese"/>
+      </coding>
+   </code>
+   <orderDetail>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129284003"/>
+         <display value="chirurgische handeling"/>
+      </coding>
+   </orderDetail>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="2020-06-05"/>
+      <end value="2020-06-06"/>
+   </occurrencePeriod>
+   <requester>
+      <reference value="PractitionerRole/nl-core-Procedure-01-PractitionerRole-01"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Orthoptisten"/>
+   </requester>
+   <performer>
+      <reference value="PractitionerRole/nl-core-Procedure-01-PractitionerRole-01"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Orthoptisten"/>
+   </performer>
+   <locationReference>
+      <reference value="Location/nl-core-Procedure-01-Location-01"/>
+      <type value="Location"/>
+      <display value="Healthcare provider (location), UMCG"/>
+   </locationReference>
+   <reasonReference>
+      <reference value="Condition/nl-core-Procedure-01-Condition-01"/>
+      <type value="Condition"/>
+      <display value="Problem"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="72696002"/>
+         <display value="structuur van knieregio"/>
+      </coding>
+   </bodySite>
+</ServiceRequest>
