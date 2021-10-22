@@ -13,14 +13,17 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:util="urn:hl7:utilities"
+    version="2.0">
     <!-- import because we want to be able to override the param for macAddress -->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:import href="../../util/uuid.xsl"/>
-    <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/units.xsl"/>
+    <xsl:import href="../../util/constants.xsl"/>
+    <!--    <xsl:import href="../../util/utilities.xsl"/>-->
     <xsl:import href="NarrativeGenerator.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
 
@@ -30,6 +33,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <xsl:param name="dateT" as="xs:date?"/>
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?"/>
+    
+    <xd:doc>
+        <xd:param name="patientTokensXml">Optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
+    </xd:doc>
+    <xsl:param name="patientTokensXml" select="document('../../fhir/QualificationTokens.xml')"/>
     
     <xd:doc>
         <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
@@ -68,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:when>
                 <!-- Observation//value does not do valueDecimal, hence quantity without unit -->
-                <xsl:when test="$theDatatype = ('quantity', 'duration', 'currency', 'decimal','integer') or @unit">
+                <xsl:when test="$theDatatype = ('quantity', 'duration', 'currency', 'decimal', 'integer') or @unit">
                     <xsl:element name="{concat($elemName, 'Quantity')}" namespace="http://hl7.org/fhir">
                         <xsl:call-template name="hoeveelheid-to-Quantity">
                             <xsl:with-param name="in" select="."/>
@@ -137,7 +147,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="inAttributeName" as="xs:string">value</xsl:param>
         
-        <xsl:variable name="inNoLeadTrailSpace" select="replace($in/@*[local-name()=$inAttributeName], '(^\s+)|(\s+$)', '')"/>
+        <xsl:variable name="inNoLeadTrailSpace" select="replace($in/@*[local-name() = $inAttributeName], '(^\s+)|(\s+$)', '')"/>
 
         <xsl:choose>
             <xsl:when test="string-length($inNoLeadTrailSpace) gt 0">
@@ -259,7 +269,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="elementName" as="xs:string?">coding</xsl:param>
         <xsl:param name="userSelected" as="xs:boolean?"/>
         <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
@@ -376,7 +386,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">the ada 'hoeveelheid' element, may have any name but should have ada datatype hoeveelheid (quantity)</xd:param>
     </xd:doc>
     <xsl:template name="hoeveelheid-to-Duration" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:variable name="unit-UCUM" select="$in/nf:convertTime_ADA_unit2UCUM_FHIR(@unit)"/>
         <xsl:choose>
             <xsl:when test="$in[@value]">
@@ -420,12 +430,53 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </denominator>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transform ada hoeveelheid element with a combined unit (like km/h) to FHIR Ratio. If no combined unit is used, no output is generated.</xd:desc>
+        <xd:param name="in">The element of datatype hoeveelheid to consider.</xd:param>
+        <xd:param name="wrapIn">If output is generated, wrap the result in the given element (optional).</xd:param>
+    </xd:doc>
+    <xsl:template name="hoeveelheid-to-Ratio" as="element()*">
+        <xsl:param name="in" as="element()" select="."/>
+        <xsl:param name="wrapIn" as="xs:string" select="''"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="units" select="for $unit in tokenize(./@unit, '/') return normalize-space($unit)"/>
+            <xsl:if test="count($units) = 2">
+                <xsl:variable name="content" as="element()*">
+                    <numerator>
+                        <value value="{./@value}"/>
+                        <unit value="{$units[1]}"/>
+                        <system value="{local:getUri($oidUCUM)}"/>
+                        <code value="{nf:convert_ADA_unit2UCUM_FHIR($units[1])}"/>
+                    </numerator>
+                    <denominator>
+                        <value value="1"/>
+                        <unit value="{$units[1]}"/>
+                        <system value="{local:getUri($oidUCUM)}"/>
+                        <code value="{nf:convert_ADA_unit2UCUM_FHIR($units[2])}"/>
+                    </denominator>
+                </xsl:variable>
+                <xsl:choose>
+                    <xsl:when test="$wrapIn != ''">
+                        <xsl:element name="{$wrapIn}">
+                            <xsl:copy-of select="$content"/>
+                        </xsl:element>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="$content"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Transforms ada element of type hoeveelheid to FHIR Quantity</xd:desc>
         <xd:param name="in">ada element may have any name but should have datatype aantal (count)</xd:param>
     </xd:doc>
     <xsl:template name="hoeveelheid-to-Quantity" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:choose>
             <xsl:when test="$in[not(@value) or @nullFlavor]">
                 <extension url="{$urlExtHL7NullFlavor}">
@@ -485,14 +536,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ada element with datatype identifier</xd:param>
     </xd:doc>
     <xsl:template name="id-to-Identifier" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:choose>
-            <xsl:when test="$in[@nullFlavor and not(string-length(@root) gt 0 and @nullFlavor='MSK')]">
+            <xsl:when test="$in[@nullFlavor and not(string-length(@root) gt 0 and @nullFlavor = 'MSK')]">
                 <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
-            <xsl:when test="$in[string-length(@root) gt 0][@root = $mask-ids-var] or $in[@nullFlavor='MSK' and string-length(@root) gt 0]">
+            <xsl:when test="$in[string-length(@root) gt 0][@root = $mask-ids-var] or $in[@nullFlavor = 'MSK' and string-length(@root) gt 0]">
                 <system value="{local:getUri($in/@root)}"/>
                 <value>
                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
@@ -660,6 +711,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-mmHg">mm[Hg]</xsl:when>
                 <xsl:when test="nf:isValidUCUMUnit($ADAunit)">
                     <xsl:value-of select="$ADAunit"/>
                 </xsl:when>
@@ -961,6 +1013,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
+        <xd:desc>Returns a concatenated string based on input params: $prefix,$joinString,$uniqueString. Only returns a string of length max 64. 
+            Because uniqueness is determined more by uniqueString than by prefix, which is probably profileName, the last 64 characters are used.</xd:desc>
+        <xd:param name="prefix">The string to start with</xd:param>
+        <xd:param name="uniqueString">The string to concatenate</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:make-fhir-logicalid" as="xs:string">
+        <xsl:param name="prefix" as="xs:string?"/>
+        <xsl:param name="uniqueString" as="xs:string?"/>
+
+        <xsl:variable name="joinedString" select="string-join(($prefix, $usecase, $uniqueString), '-')"/>
+        <xsl:variable name="lengthJoinedString" select="string-length($joinedString)" as="xs:integer"/>
+        <xsl:variable name="startingLoc" as="xs:integer">
+            <xsl:choose>
+                <xsl:when test="$lengthJoinedString gt 64">
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="msg">We have encountered an id (<xsl:value-of select="$joinedString"/>) longer than 64 characters, we are truncating it, but it should be looked at.</xsl:with-param>
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="terminate" select="false()"/>
+                    </xsl:call-template>
+                    <xsl:value-of select="$lengthJoinedString - 63"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="1"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:value-of select="substring($joinedString, $startingLoc, $lengthJoinedString)"/>
+    </xsl:function>
+
+    <xd:doc>
         <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor. Else return empty</xd:desc>
         <xd:param name="in"/>
     </xd:doc>
@@ -989,7 +1072,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getGroupingKeyPatient" as="xs:string?">
         <xsl:param name="patient" as="element()?"/>
         <xsl:if test="$patient">
-            <xsl:value-of select="concat(nf:getGroupingKeyDefault($patient/(identificatienummer | patient_identificatie_nummer | patient_identification_number)[not(@root = $oidBurgerservicenummer)]), nf:getGroupingKeyDefault($patient/(patient_naam | .//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)])), nf:getGroupingKeyDefault($patient/(adres | .//adresgegevens[not(adresgegevens)] | .//address_information[not(address_information)])), nf:getGroupingKeyDefault($patient/(telefoon_email | .//contactgegevens[not(contactgegevens)] | .//contact_information[not(contact_information)])))"/>
+        <!-- use all fields of patient except bsn -->
+            <xsl:variable name="patientKey" as="xs:string*">
+                <xsl:for-each select="$patient/*[not(@root = $oidBurgerservicenummer)]">
+                    <xsl:value-of select="nf:getGroupingKeyDefault(.)"/>
+                </xsl:for-each>
+            </xsl:variable>
+            <xsl:value-of select="string-join($patientKey, '')"/>
         </xsl:if>
     </xsl:function>
 
@@ -1067,6 +1156,82 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:sequence select="$currentAdaTransaction//*[@id = $adaElement/@value]"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Searches for resourceid using the input ada patient in global param patientTokensXml (configuration document) and returns it when found. 
+            First attempt on bsn. Second attempt on exact match familyName. Third attempt on contains familyName. Then gives up.</xd:desc>
+        <xd:param name="adaPatient">Input ada patient</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-resourceid-from-token" as="xs:string?">
+        <xsl:param name="adaPatient" as="element(patient)?"/>
+        
+        <xsl:variable name="adaBsn" select="normalize-space($adaPatient/(identificatienummer | patient_identificatienummer | patient_identification_number)[@root = $oidBurgerservicenummer]/@value)"/>
+        <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[bsn/normalize-space(text()) = $adaBsn]/resourceId"/>
+        
+        <xsl:choose>
+            <xsl:when test="count($tokenResourceId) = 1">
+                <xsl:value-of select="$tokenResourceId"/>
+            </xsl:when>
+            <xsl:when test="count($tokenResourceId) gt 1">
+                <!-- more than one token on same BSN, something is really bogus in the QualificationTokens file let's report and quit here -->
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logDEBUG"/>
+                    <xsl:with-param name="msg">
+                        <xsl:text>Found more then one token in QualificationTokens for bsn </xsl:text>
+                        <xsl:value-of select="$adaBsn"/>
+                        <xsl:text>. So we will not use either of those.</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- not found using bsn, let's try exact match on family name -->
+                <xsl:variable name="adaEigenAchternaam" select="upper-case(normalize-space($adaPatient//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])/geslachtsnaam/achternaam/@value))"/>
+                <xsl:variable name="tokenResourceId" select="($patientTokensXml//*[familyName/upper-case(normalize-space(text())) = $adaEigenAchternaam]/resourceId)"/>
+                
+                <xsl:choose>
+                    <xsl:when test="count($tokenResourceId) = 1">
+                        <xsl:value-of select="$tokenResourceId"/>
+                    </xsl:when>
+                    <xsl:when test="count($tokenResourceId) gt 1">
+                        <!-- more than one token on same last name, this is really not how it should be, let's report and quit here -->
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logDEBUG"/>
+                            <xsl:with-param name="msg">
+                                <xsl:text>Found more then one token in QualificationTokens for exact match on last name </xsl:text>
+                                <xsl:value-of select="$adaEigenAchternaam"/>
+                                <xsl:text>. So we will not use any of those.</xsl:text>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- not found using exact, let's try contains on family name -->
+                        <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[contains(familyName/upper-case(normalize-space(text())), $adaEigenAchternaam)]/resourceId"/>
+                        
+                        <xsl:choose>
+                            <xsl:when test="count($tokenResourceId) = 1">
+                                <xsl:value-of select="$tokenResourceId"/>
+                            </xsl:when>
+                            <xsl:when test="count($tokenResourceId) gt 1">
+                                <!-- more than one token on containing last name, this can happen, but is a shame, let's report -->
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logDEBUG"/>
+                                    <xsl:with-param name="msg">
+                                        <xsl:text>Found more then one token in QualificationTokens for contains of last name </xsl:text>
+                                        <xsl:value-of select="$adaEigenAchternaam"/>
+                                        <xsl:text>. So we will not use any of those.</xsl:text>
+                                    </xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- return nothing -->
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:otherwise>
+        </xsl:choose>
+        
     </xsl:function>
 
     <xd:doc>
