@@ -46,7 +46,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Procedure>
                 <xsl:variable name="startDate" select="verrichting_start_datum"/>
                 <xsl:variable name="endDate" select="verrichting_eind_datum"/>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="'nl-core-Procedure-event'"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event"/>
                 </meta>
@@ -99,7 +101,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$startDate and $endDate">
                         <performedPeriod>
                             <xsl:call-template name="startend-to-Period">
-                                <xsl:with-param name="start" select="verrichting_start_datum"/>
+                                <xsl:with-param name="start" select="$startDate"/>
                                 <xsl:with-param name="end" select="$endDate"/>
                             </xsl:call-template>
                         </performedPeriod>
@@ -182,7 +184,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <ServiceRequest>
                 <xsl:variable name="startDate" select="verrichting_start_datum"/>
                 <xsl:variable name="endDate" select="verrichting_eind_datum"/>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="'nl-core-Procedure-request'"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request"/>
                 </meta>
