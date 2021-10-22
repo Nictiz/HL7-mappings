@@ -191,16 +191,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request"/>
                 </meta>
                 <status>
-                    <!--  
-                    * When the ProcedureStartDate is in the future, `.status` will usually be set to _preparation_.
-                    * When ProcedureStartDate is in the past and ProcedureEndDate is in the future, `.status` will usually be set to _in-progress_.
+                    <!--    
+                    * When the ProcedureStartDate is in the future, `.status` will usually be set to _active_.
+                    * When the ProcedureStartDate is in the past, `.status` will usually be set to _completed_.
                     * When ProcedureEndDate is in the past, `.status` will usually be set to _completed_.
-                    * When ProcedureStartDate is in the past and ProcedureEndDate is missing, it may be assumed that the Procedure was recorded as a point in time and `.status` will usually be set to _completed_.
                     -->
                     <xsl:attribute name="value">
                         <xsl:choose>
-                            <xsl:when test="$startDate and nf:isFuture($startDate/@value)">preparation</xsl:when>
-                            <xsl:when test="$startDate and $endDate and nf:isPast($startDate/@value) and nf:isFuture($endDate/@value)">in-progress</xsl:when>
+                            <xsl:when test="$startDate and nf:isFuture($startDate/@value)">active</xsl:when>
                             <xsl:when test="$endDate and nf:isPast($endDate/@value)">completed</xsl:when>
                             <xsl:when test="$startDate and nf:isPast($startDate/@value) and not($endDate)">completed</xsl:when>
                             <xsl:otherwise>unknown</xsl:otherwise>
@@ -252,13 +250,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
                 
                 <xsl:for-each select="aanvrager">
+                    <requester>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="zorgverlener"/>
+                            <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        </xsl:call-template>
+                    </requester>
+                </xsl:for-each>
+                <xsl:for-each select="uitvoerder">
+                    <!--
+                        Does not support the comment in the profile yet.
+                        "If multiple performers are present, it is interpreted as a list of *alternative* performers without any preference regardless of order. This deviates from the zib definition where multiple references to the zib Healthprofessional should be interperted as all the performers of the procedure. If order of preference is needed use the [request-performerOrder extension](extension-request-performerorder.html).  Use CareTeam to represent a group of performers (for example, Practitioner A *and* Practitioner B)." -->
                     <performer>
-                        <actor>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="zorgverlener"/>
                                 <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
                             </xsl:call-template>
-                        </actor>
                     </performer>
                 </xsl:for-each>
                 <xsl:for-each select="locatie">
