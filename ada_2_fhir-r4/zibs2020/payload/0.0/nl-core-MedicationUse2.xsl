@@ -29,21 +29,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA medicatie_toediening to FHIR MedicationStatement conforming to profile nl-core-MedicationUse2</xd:desc>
+        <xd:desc>Converts ADA medicatie_gebruik to FHIR MedicationStatement conforming to profile nl-core-MedicationUse2</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_toediening.</xd:desc>
+        <xd:desc>Create a nl-core-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_gebruik.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationStatement.subject as ADA element or reference.</xd:param>
         <xd:param name="medicationReference">The MedicationStatement.medicationReference as ADA element or reference.</xd:param>
         <xd:param name="prescriber">The MedicationStatement.prescriber as ADA element or reference.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_toediening" as="element(f:MedicationStatement)?">
+    <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_gebruik" as="element(f:MedicationStatement)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="gebruiks_product/farmaceutisch_product" as="element()?"/>
-        <xsl:param name="prescriber" select="voorschrijver" as="element()?"/>
+        <xsl:param name="medicationReference" select="gebruiksproduct/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="prescriber" select="voorschrijver/zorgverlener" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationStatement>
@@ -182,7 +182,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="medicatie_toediening" mode="_generateId">
+    <xsl:template match="medicatie_gebruik" mode="_generateId">
         <xsl:variable name="parts">
             <xsl:text>dispense</xsl:text>
             <xsl:value-of select="medicatie_gebruik_datum_tijd/@value"/>
@@ -198,7 +198,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="medicatie_toediening" mode="_generateDisplay">
+    <xsl:template match="medicatie_gebruik" mode="_generateDisplay">
         <xsl:variable name="parts">
             <xsl:text>Medication use</xsl:text>
             <xsl:if test="medicatie_gebruik_datum_tijd/@value">

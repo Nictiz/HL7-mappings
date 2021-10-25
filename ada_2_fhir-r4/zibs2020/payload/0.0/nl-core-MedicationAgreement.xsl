@@ -43,9 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-MedicationAgreement" mode="nl-core-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="afgesprokengeneesmiddel" as="element()?"/>
-        <xsl:param name="requester" select="voorschrijver" as="element()?"/>
-        <xsl:param name="reasonReference" select="reden_van_voorschrijven" as="element()?"/>
+        <xsl:param name="medicationReference" select="afgesprokengeneesmiddel/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="requester" select="voorschrijver/zorgverlener" as="element()?"/>
+        <xsl:param name="reasonReference" select="reden_van_voorschrijven/probleem" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationRequest>
@@ -192,6 +192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="medicatieafspraak" mode="_generateDisplay">
         <xsl:variable name="parts">
+            <xsl:value-of select="'Medication agreement'"/>
             <xsl:value-of select="afgesprokengeneesmiddel/@display"/>
             <xsl:value-of select="medicatieafspraak_datum_tijd/@value"/>
             <xsl:value-of select="medicatieafspraak_stop_type/@display"/>

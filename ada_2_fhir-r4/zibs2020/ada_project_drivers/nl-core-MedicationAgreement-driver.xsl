@@ -36,34 +36,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
-    <xsl:template mode="_doTransform" match="medicatieafspraak">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient">
-                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
-            </xsl:call-template>
-        </xsl:variable>
-        <xsl:call-template name="nl-core-MedicationAgreement">
-            <xsl:with-param name="subject" select="$subject"/>
-            <xsl:with-param name="medicationReference" select="referenties/farmaceutisch_product"/>
-            <xsl:with-param name="requester" select="referenties/zorgverlener"/>
-            <xsl:with-param name="reasonReference" select="referenties/probleem"/>
-        </xsl:call-template>
-    </xsl:template>
-    
-<!--    <xsl:template match="//medicatieafspraak_registratie/medicatieafspraak">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient"/>
-        </xsl:variable>
-        <xsl:apply-templates mode="_doTransform" select=".">
-            <xsl:with-param name="fhirEntries" as="element()">
-                <xsl:call-template name="nl-core-MedicationAgreement">
-                    <xsl:with-param name="subject" select="$subject"/>
-                    <xsl:with-param name="medicationReference" select="referenties/farmaceutisch_product"/>
-                    <xsl:with-param name="requester" select="referenties/zorgverlener"/>
-                    <xsl:with-param name="reasonReference" select="referenties/probleem"/>
-                </xsl:call-template>
-            </xsl:with-param>
-        </xsl:apply-templates>
-    </xsl:template>-->
-    
 </xsl:stylesheet>

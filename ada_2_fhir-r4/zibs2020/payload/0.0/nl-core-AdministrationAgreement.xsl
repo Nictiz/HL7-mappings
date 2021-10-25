@@ -43,9 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-AdministrationAgreement" mode="nl-core-AdministrationAgreement" match="toedieningsafspraak" as="element(f:MedicationDispense)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="geneesmiddel_bij_toedienings_afspraak" as="element()?"/>
-        <xsl:param name="performer" select="verstrekker" as="element()?"/>
-        <xsl:param name="authorizingPrescription" select="medicatieafspraak" as="element()?"/>
+        <xsl:param name="medicationReference" select="geneesmiddel_bij_toedienings_afspraak/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="performer" select="verstrekker/zorgaanbieder" as="element()?"/>
+        <xsl:param name="authorizingPrescription" select="medicatieafspraak/medicatieafspraak" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationDispense>
