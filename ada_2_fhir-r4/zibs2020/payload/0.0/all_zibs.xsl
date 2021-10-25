@@ -62,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-SOAPReport.xsl"/>
     <xsl:import href="nl-core-TextResult.xsl"/>
     <xsl:import href="nl-core-VisualAcuity.xsl"/>
-
+    
     <xsl:import href="ext-CodeSpecification.xsl"/>
     <xsl:import href="ext-Comment.xsl"/>
     <xsl:import href="ext-TimeInterval.xsl"/>
@@ -73,5 +73,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet"> 
         <xd:desc>This document import common and zib- and nl-core specific functions and templates to convert zib2020 ada instances to FHIR.</xd:desc>
     </xd:doc>
-    
+
 </xsl:stylesheet>

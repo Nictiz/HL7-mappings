@@ -6,13 +6,19 @@
             <patient-id value="999911120" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
         </onderwerp>
         <referenties conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.3">
-            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1">
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1" id="za1">
                 <organisatie_naam value="Poli-apotheek Het Ziekenhuis" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.3"/>
             </zorgaanbieder>
-            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926">
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926" id="fp1">
                 <product_code code="23817" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="PREDNISON 5MG TABLET" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19927"/>
             </farmaceutisch_product>
         </referenties>
+        <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.8.22097">
+            <zorgaanbieder value="za1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.359"/>
+        </verstrekker>
+        <geneesmiddel_bij_toedienings_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.8.20237">
+            <farmaceutisch_product value="fp1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.360"/>
+        </geneesmiddel_bij_toedienings_afspraak>
         <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.8.22098">
             <omschrijving value="Van 1-8-2013 tot 30-8-2013 volgens afbouwschema. Per 30-8-2013 onderbreken." conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.362"/>
             <herhaalperiode_cyclisch_schema value="1" unit="d" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.363"/>
@@ -23,6 +29,6 @@
             <start_datum_tijd value="2013-08-01" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.393"/>
             <eind_datum_tijd value="2013-08-30" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.394"/>
         </gebruiksperiode>
-        <toedieningsafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.8.22498" value="2" code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Definitief"/>
+        <toedieningsafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.8.22498" value="4" code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="Drug therapy definitively stopped (finding)"/>
     </toedieningsafspraak>
 </toedieningsafspraak_registratie>
