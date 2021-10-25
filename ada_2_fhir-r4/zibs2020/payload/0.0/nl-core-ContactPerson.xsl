@@ -144,7 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="contactpersoon" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
             <xsl:text>Contact person</xsl:text>
-            <xsl:value-of select="current-group()[1]/normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
+            <xsl:value-of select="nf:renderName(naamgegevens)"/>
 
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>

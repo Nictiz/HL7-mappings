@@ -23,7 +23,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
 
     <!-- Can be uncommented for debug purposes. Please comment before committing! -->
-   <!-- <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -43,17 +42,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in">
 
-            <!-- Create a list of normalized initials from the provided initials string, that is, the initial followed
-                 by a dot. There are no formal requirements to the input string, but it is assumed that each initials 
-                 is delimited by a dot and seperated by zero or more whitespace characters. -->
-            <xsl:variable name="normalizedInitials" as="xs:string*">
-                <xsl:for-each select="tokenize(initialen/@value, '\.')">
-                    <xsl:if test="string-length(.) &gt; 0">
-                        <xsl:value-of select="concat(normalize-space(.), '.')"/>
-                    </xsl:if>
-                </xsl:for-each>
-            </xsl:variable>
-            
+            <!-- Break the first names and initials string into parts and normalize them. -->
+            <xsl:variable name="normalizedFirstNames" select="nf:_normalizeFirstNames(voornamen)" as="xs:string*"/>
+            <xsl:variable name="normalizedInitials" select="nf:_normalizeInitials(initialen)" as="xs:string*"/>
+
+            <!-- Construct the full given name string and family string -->
+            <xsl:variable name="given" as="xs:string?" select="nf:_renderGivenNames($normalizedFirstNames, $normalizedInitials)"/>
+            <xsl:variable name="family" as="xs:string?" select="nf:_renderFamilyName(.)"/>
+                        
             <!-- Create the main .name instance containing all official names -->
             <name>
                 <xsl:if test="naamgebruik">
@@ -67,36 +63,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 <use value="official"/>
+                <xsl:if test="$given or $family">
+                    <text value="{nf:_renderNameFromParts($given, $family, roepnaam)}"/>
+                </xsl:if>
                 
-                <xsl:if test="geslachtsnaam | geslachtsnaam_partner">
-                    <xsl:variable name="lastName" select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ./geslachtsnaam/achternaam/@value), ' '))[not(. = '')]"/>
-                    <xsl:variable name="lastNamePartner" select="normalize-space(string-join((./voorvoegsels_partner/@value, ./achternaam_partner/@value), ' '))[not(. = '')]"/>
-                    <xsl:variable name="nameUsage" select="naamgebruik/@code"/>
-                    <family>                    
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <!-- Eigen geslachtsnaam -->
-                                <xsl:when test="$nameUsage = 'NL1'">
-                                    <xsl:value-of select="$lastName"/>
-                                </xsl:when>
-                                <!--     Geslachtsnaam partner -->
-                                <xsl:when test="$nameUsage = 'NL2'">
-                                    <xsl:value-of select="$lastNamePartner"/>
-                                </xsl:when>
-                                <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
-                                <xsl:when test="$nameUsage = 'NL3'">
-                                    <xsl:value-of select="string-join(($lastNamePartner, $lastName), '-')"/>
-                                </xsl:when>
-                                <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
-                                <xsl:when test="$nameUsage = 'NL4'">
-                                    <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
-                                </xsl:when>
-                                <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
-                                <xsl:otherwise>
-                                    <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
+                <xsl:if test="$family">
+                    <family value="{$family}">
                         <xsl:for-each select="geslachtsnaam/voorvoegsels">
                             <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-own-prefix')"/>
                         </xsl:for-each>
@@ -112,19 +84,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </family>
                 </xsl:if>
 
-                <!-- If first names are provided, write them out here as separate .given elements. Of first names are
+                <!-- If first names are provided, write them out here as separate .given elements. If first names are
                      not provided but initials are, write out the initials. If both are provided and they don't match,
                      a second .name instance will be created at a later stage. -->
                 <xsl:choose>
-                    <xsl:when test="voornamen[@value]">
-                        <xsl:for-each select="tokenize(normalize-space(voornamen/@value), ' ')">
+                    <xsl:when test="count($normalizedFirstNames) &gt; 0">
+                        <xsl:for-each select="$normalizedFirstNames">
                             <xsl:copy-of select="nf:_writeGiven(., 'BR')"/>
                         </xsl:for-each>                        
                     </xsl:when>
-                    <xsl:when test="initialen[@value]">
+                    <xsl:when test="count($normalizedInitials) &gt; 0">
                         <xsl:for-each select="$normalizedInitials">
                             <xsl:copy-of select="nf:_writeGiven(., 'IN')"/>
-                        </xsl:for-each>                        
+                        </xsl:for-each>
                     </xsl:when>
                 </xsl:choose>
                 
@@ -136,20 +108,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- If both first names and initials are provided, check if they match. If not, write out a second .name
                  instance containing just the initials. -->
-            <xsl:variable name="generatedInitialsString" as="xs:string">
-                <xsl:variable name="initials" as="xs:string*">
-                    <xsl:for-each select="tokenize(normalize-space(voornamen/@value), ' ')">
-                        <xsl:if test="string-length(.) &gt; 0">
-                            <xsl:value-of select="concat(upper-case(substring(., 1, 1)), '.')"/>
-                        </xsl:if>
-                    </xsl:for-each>
-                </xsl:variable>
-                <xsl:value-of select="string-join($initials, ' ')"/>
+            <xsl:variable name="generatedInitials" as="xs:string*">
+                <xsl:for-each select="tokenize(normalize-space(voornamen/@value), ' ')">
+                    <xsl:if test="string-length(.) &gt; 0">
+                        <xsl:value-of select="concat(upper-case(substring(., 1, 1)), '.')"/>
+                    </xsl:if>
+                </xsl:for-each>
             </xsl:variable>
-            <xsl:variable name="providedInitialsString" select="normalize-space(string-join($normalizedInitials, ' '))"/>
-            <xsl:if test="string-length($generatedInitialsString) &gt; 0 and 
-                string-length($providedInitialsString) &gt; 0 and
-                $generatedInitialsString != $providedInitialsString">
+            <xsl:if test="count($generatedInitials) &gt; 0 and count($normalizedInitials) &gt; 0 and
+                not(deep-equal($generatedInitials, $normalizedInitials))">
                 <name>
                     <use value="official"/>
                     <xsl:for-each select="$normalizedInitials">
@@ -158,16 +125,141 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </name>
             </xsl:if>
 
-            <!-- If the given name is provided, write out an additional .name element with use=casual. -->
+            <!-- If the GivenName (roepnaam) is provided, write out an additional .name element with .use 
+                 set to "usual". -->
             <xsl:if test="roepnaam[@value]">
                 <name>
-                    <use value="casual"/>
+                    <use value="usual"/>
                     <given value="{roepnaam/@value}"/>
                 </name>
             </xsl:if>
-            
         </xsl:for-each>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Render the name of the person.</xd:desc>
+        <xd:param name="in">The ADA naamgegevens element.</xd:param>
+        <xd:return>The rendered name of the person in the format [given names] [(roepnaam)] [family name]</xd:return>
+    </xd:doc>
+    <xsl:function name="nf:renderName" as="xs:string">
+        <xsl:param name="in" as="element(naamgegevens)?"/>
+        <xsl:variable name="firstNames" select="nf:_normalizeFirstNames($in/voornamen)" as="xs:string*"/>
+        <xsl:variable name="initials" select="nf:_normalizeInitials($in/initialen)" as="xs:string*"/>
+        <xsl:variable name="given" select="nf:_renderGivenNames($firstNames, $initials)" as="xs:string?"/>
+        <xsl:value-of select="nf:_renderNameFromParts($given, nf:_renderFamilyName($in), $in/roepnaam)"/>        
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Helper function to render the name of the person from pre-rendered parts.</xd:desc>
+        <xd:param name="given">The rendered given names of the person</xd:param>
+        <xd:param name="family">The rendered family name of the person</xd:param>
+        <xd:param name="roepnaam">The ADA roepnaam element</xd:param>
+        <xd:return>The rendered name of the person in the format [given names] [(roepnaam)] [family name]</xd:return>
+    </xd:doc>
+    <xsl:function name="nf:_renderNameFromParts" as="xs:string?">
+        <xsl:param name="given" as="xs:string?"/>
+        <xsl:param name="family" as="xs:string?"/>
+        <xsl:param name="roepnaam" as="element(roepnaam)?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$given or $family">
+                <xsl:variable name="usual" as="xs:string?">
+                    <xsl:if test="$roepnaam[@value]">
+                        <xsl:value-of select="concat('(', normalize-space($roepnaam/@value), ')')"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join(($given, $usual, $family), ' ')"/>
+            </xsl:when>
+            <xsl:when test="$roepnaam[@value]">
+                <xsl:value-of select="$roepnaam/@value"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Helper function to parse the first names (voornamen) string.</xd:desc>
+        <xd:param name="voornamen">The ADA voornamen element</xd:param>
+        <xd:return>A list of individual first names with all spaces removed.</xd:return>
+    </xd:doc>
+    <xsl:function name="nf:_normalizeFirstNames" as="xs:string*">
+        <xsl:param name="voornamen" as="element(voornamen)?"/>
+        <xsl:for-each select="tokenize($voornamen/@value, ' ')">
+            <xsl:if test="string-length(.) &gt; 0">
+                <xsl:value-of select="normalize-space(.)"/>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Helper function to parse the initials (initialen) string into individual initials. There are no formal requirements to the input strings, but it is assumed that initial is is delimited by a dot, possibly followed by one or more whitespace characters.</xd:desc>
+        <xd:param name="initialen">The ADA initialen element</xd:param>
+        <xd:return>A list of individual initials, delimited with a dot and with all spaces removed.</xd:return>
+    </xd:doc>
+    <xsl:function name="nf:_normalizeInitials" as="xs:string*">
+        <xsl:param name="initialen" as="element(initialen)?"/>
+        <xsl:for-each select="tokenize(normalize-space($initialen/@value), '\.')">
+            <xsl:if test="string-length(.) &gt; 0">
+                <xsl:value-of select="concat(normalize-space(.), '.')"/>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Build the given name string, that is the complete collection of known official given names, based on the input. Note: not the "GivenName" according to the zib, which is used for the nickname, not the official name of the person.</xd:desc>
+        <xd:param name="normalizedFirstNames">The list of normalized first names (as returned by <xd:ref name="nf:_normalizeFirstNames()"/></xd:param>
+        <xd:param name="normalizedInitials">The list of normalized initials (as returned by <xd:ref name="nf:_normalizeInitials()"/></xd:param>
+        <xd:return>A string with all the first names of a person, separated by a space. This string will contain the full names if known or the initials otherwise (or nothing is nothing is known).</xd:return>
+    </xd:doc>
+    <xsl:function name="nf:_renderGivenNames" as="xs:string?">
+        <xsl:param name="normalizedFirstNames" as="xs:string*"/>
+        <xsl:param name="normalizedInitials" as="xs:string*"/>
+        <xsl:choose>
+            <xsl:when test="count($normalizedFirstNames) &gt; 0">
+                <xsl:value-of select="string-join($normalizedFirstNames, ' ')"/>
+            </xsl:when>
+            <xsl:when test="count($normalizedInitials) &gt; 0">
+                <xsl:value-of select="string-join($normalizedInitials, ' ')"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Helper function to build the familiy name from the name parts as specified by the zib.</xd:desc>
+        <xd:param name="in">The ADA naamgegevens element</xd:param>
+        <xd:return>A string containing the constructed family name of the person.</xd:return>
+    </xd:doc>
+    <xsl:function name="nf:_renderFamilyName" as="xs:string?">
+        <xsl:param name="in" as="element(naamgegevens)?"/>
+        <xsl:for-each select="$in">
+            <xsl:if test="geslachtsnaam | geslachtsnaam_partner">
+                <xsl:variable name="lastName" select="normalize-space(string-join((geslachtsnaam/voorvoegsels/@value, geslachtsnaam/achternaam/@value), ' '))[not(. = '')]"/>
+                <xsl:variable name="lastNamePartner" select="normalize-space(string-join((geslachtsnaam_partner/voorvoegsels_partner/@value, geslachtsnaam_partner/achternaam_partner/@value), ' '))[not(. = '')]"/>
+                <xsl:variable name="nameUsage" select="naamgebruik/@code"/>
+                <xsl:choose>
+                    <!-- Eigen geslachtsnaam -->
+                    <xsl:when test="$nameUsage = 'NL1'">
+                        <xsl:value-of select="$lastName"/>
+                    </xsl:when>
+                    <!--     Geslachtsnaam partner -->
+                    <xsl:when test="$nameUsage = 'NL2'">
+                        <xsl:value-of select="$lastNamePartner"/>
+                    </xsl:when>
+                    <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
+                    <xsl:when test="$nameUsage = 'NL3'">
+                        <xsl:value-of select="string-join(($lastNamePartner, $lastName), '-')"/>
+                    </xsl:when>
+                    <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
+                    <xsl:when test="$nameUsage = 'NL4'">
+                        <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
+                    </xsl:when>
+                    <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
+                    <xsl:otherwise>
+                        <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:function>
     
     <xd:doc>
         <xd:desc>Helper function to write out part of the family name using the provided extensions.</xd:desc>
