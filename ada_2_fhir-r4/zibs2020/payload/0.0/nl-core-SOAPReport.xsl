@@ -48,6 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport"/>
                 </meta>
+                <!--Unless the status is explicitly recorded it is expected that only _final_ reports are exchanged.-->
                 <status value="final"/>
                 <type>
                     <coding>
