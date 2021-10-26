@@ -315,6 +315,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'wilsverklaring'">
+                <xsl:apply-templates select="$in" mode="nl-core-AdvanceDirective">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'zorgaanbieder'">
                 <!-- Ideally, we would only create HealthcareProviders based on the following logic, but because there is no way to know if the Location or Organization is being referenced, we always output both: -->
                 <!--<xsl:if test="organisatie_locatie/locatie_naam[@value] | contactgegevens | adresgegevens">-->
