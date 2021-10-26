@@ -42,8 +42,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-DispenseRequest" mode="nl-core-DispenseRequest" match="verstrekkingsverzoek" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="te_verstrekken_geneesmiddel" as="element()?"/>
-        <xsl:param name="performer" select="beoogd_verstrekker" as="element()?"/>
+        <xsl:param name="medicationReference" select="te_verstrekken_geneesmiddel/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="performer" select="beoogd_verstrekker/zorgaanbieder" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationRequest>

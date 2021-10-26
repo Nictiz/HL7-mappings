@@ -6,13 +6,19 @@
             <patient-id value="111222333" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
         </onderwerp>
         <referenties conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.3">
-            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1">
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1" id="za1">
                 <organisatie_naam value="Apotheek De Gulle Gaper" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.3"/>
             </zorgaanbieder>
-            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926">
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926" id="fp1">
                 <product_code code="104280" codeSystem="2.16.840.1.113883.2.4.4.1" displayName=" PANTOPRAZOL 40MG INJPDR" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19927"/>
             </farmaceutisch_product>
         </referenties>
+        <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.8.22097">
+            <zorgaanbieder value="za1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.359"/>
+        </verstrekker>
+        <geneesmiddel_bij_toedienings_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.8.20237">
+            <farmaceutisch_product value="fp1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.360"/>
+        </geneesmiddel_bij_toedienings_afspraak>
         <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.8.22098">
             <omschrijving value="Gedurende 5 dagen 1x/dag (8u) 40 mg (=1 st)" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.362"/>
             <toedieningsweg code="iv" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.364"/>

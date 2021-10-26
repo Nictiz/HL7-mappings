@@ -196,6 +196,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="medicatieafspraak" mode="_generateDisplay">
         <xsl:variable name="parts">
+            <xsl:value-of select="'Medication agreement'"/>
             <xsl:value-of select="afgesprokengeneesmiddel/@display"/>
             <xsl:value-of select="medicatieafspraak_datum_tijd/@value"/>
             <xsl:value-of select="medicatieafspraak_stop_type/@display"/>
