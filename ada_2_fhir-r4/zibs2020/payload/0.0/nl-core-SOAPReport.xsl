@@ -89,21 +89,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </title>
                 <xsl:for-each select="soepregel">
                     <section>
-                        <xsl:for-each select="soepregel_code">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
-                        </xsl:for-each>
                         <xsl:for-each select="soepregel_naam">
                             <code>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </code>
+                        </xsl:for-each>
+                        <xsl:for-each select="soepregel_tekst">
+                            <xsl:variable name="parts" as="item()*">
+                                <xsl:text>SOAPLineText:</xsl:text>
+                                <xsl:value-of select="@value"/>
+                                <xsl:if test="preceding-sibling::soepregel_code[@displayName]">
+                                    <xsl:value-of select="concat('(SOAPLineCode: ', preceding-sibling::soepregel_code/@displayName)"/>
+                                </xsl:if>
+                            </xsl:variable>
+                            <text>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="string-join($parts[. != ''], ' ')"/>
+                                </xsl:attribute>
+                            </text>                         
                         </xsl:for-each>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
@@ -115,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="soepregel" name="nl-core-SOAPReport.SOAPLine" mode="nl-core-SOAPReport-Observation" as="element(f:Observation)?">
+    <xsl:template match="soepregel" name="nl-core-SOAPReport.SOAPLine" mode="nl-core-SOAPReport.SOAPLine" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         
         <xsl:for-each select="$in">
@@ -141,7 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </code>
                 </xsl:for-each>
-                <xsl:for-each select="soepverslag_tekst">
+                <xsl:for-each select="soepregel_tekst">
                     <valueString value="{@value}"/>
                 </xsl:for-each>
             </Observation>
