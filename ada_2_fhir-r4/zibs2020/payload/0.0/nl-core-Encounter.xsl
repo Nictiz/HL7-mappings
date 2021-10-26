@@ -42,12 +42,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Encounter>
+                <xsl:variable name="startDate" select="begin_datum_tijd"/>
+                <xsl:variable name="endDate" select="eind_datum_tijd"/>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
                 </meta>
-                <xsl:comment>.status: Dependent on outcome of https://github.com/Nictiz/Nictiz-R4-zib2020/issues/45</xsl:comment>
-                <status value="unknown"/>
+                <!-- Guidance for Encounter.status from the profile:
+                This element is implictly mapped to the zib concepts NL-CM:15.1.3 (StartDateTime) and NL-CM:15.1.4 (EndDateTime). Unless the status is explicitly recorded, the following guidance applies:
+
+                * When StartDateTime is in the future, `.status` will usually be set to _planned_.
+                * When StartDateTime is in the past and EndDateTime is present and in the future, `.status` will usually be set to _in-progress_.
+                * When EndDateTime is present and in the past, `.status` will usually be set to _finished_.
+                * When EndDateTime is not present, this means it was a point-in-time encounter and `.status` will usually be set to _finished_.
+                * When a system is unable to infer the status from the StartDateTime and EndDateTime, `.status` will be set to _unknown_.
+                -->
+                <status>
+                    <xsl:attribute name="value">
+                        <xsl:choose>
+                            <xsl:when test="$startDate and nf:isFuture($startDate/@value)">planned</xsl:when>
+                            <xsl:when test="$startDate and nf:isPast($startDate/@value) and $endDate and nf:isFuture($endDate/@value)">in-progress</xsl:when>
+                            <xsl:when test="$endDate and nf:isPast($endDate/@value)">finished</xsl:when>
+                            <xsl:when test="$startDate and not($endDate)">finished</xsl:when>
+                            <xsl:otherwise>unknown</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </status>
                 <xsl:for-each select="contact_type[@code]">
                     <class>
                         <xsl:call-template name="code-to-Coding">
@@ -65,22 +85,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </individual>
                     </participant>
                 </xsl:for-each>
-                <xsl:if test="begin_datum_tijd or eind_datum_tijd">
+                <xsl:if test="$startDate or $endDate">
                     <period>
-                        <xsl:if test="begin_datum_tijd">
+                        <xsl:if test="$startDate">
                             <start>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(begin_datum_tijd/@value)"/>
+                                        <xsl:with-param name="dateTime" select="xs:string($startDate/@value)"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </start>
                         </xsl:if>
-                        <xsl:if test="eind_datum_tijd">
+                        <xsl:if test="$endDate">
                             <end>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(eind_datum_tijd/@value)"/>
+                                        <xsl:with-param name="dateTime" select="xs:string($endDate/@value)"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </end>
@@ -107,11 +127,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="verrichting">
                             <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="'nl-core-Procedure'"/>
+                            <xsl:with-param name="profile" select="'nl-core-Procedure-event'"/>
                         </xsl:call-template>
                         </xsl:for-each>
                         <xsl:for-each select="afwijkende_uitslag">
-                            <xsl:comment>TODO: nl-core-LaboratoryTestResult, nl-core-Problem and nl-core-Procedure</xsl:comment>
+                            <xsl:comment>TODO: nl-core-LaboratoryTestResult</xsl:comment>
                             <!--<xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult'"/>
