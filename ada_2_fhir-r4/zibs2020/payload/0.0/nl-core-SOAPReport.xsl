@@ -51,9 +51,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <type>
                     <coding>
-                        <system value="http://loinc.org"/>
-                        <code value="67781-5"/>
-                        <display value="Summarization of encounter note Narrative"/>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="11591000146107"/>
+                        <display value="patiëntcontactverslag"/>
                     </coding>
                 </type>
                 <xsl:for-each select="soepverslag_datum_tijd">
