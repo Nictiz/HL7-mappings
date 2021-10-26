@@ -115,14 +115,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="soepregel" name="nl-core-SOAPReport-Observation" mode="nl-core-SOAPReport-Observation" as="element(f:Observation)?">
+    <xsl:template match="soepregel" name="nl-core-SOAPReport.SOAPLine" mode="nl-core-SOAPReport-Observation" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport-Observation"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport.SOAPLine"/>
                 </meta>
                 <xsl:for-each select="soepregel_code">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
