@@ -199,6 +199,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'farmaceutisch_product'">
                 <xsl:apply-templates select="$in" mode="nl-core-PharmaceuticalProduct"/>
             </xsl:when>
+            <xsl:when test="$localName = 'functie_horen'">
+                <xsl:apply-templates select="$in" mode="nl-core-HearingFunction">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'functie_zien'">
+                <xsl:apply-templates select="$in" mode="nl-core-VisualFunction">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -249,6 +259,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'medicatie_toediening'">
                 <xsl:apply-templates select="$in" mode="nl-core-MedicationAdministration2">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'medisch_hulpmiddel'">
+                <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
