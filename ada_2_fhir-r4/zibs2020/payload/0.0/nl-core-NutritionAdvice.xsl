@@ -28,11 +28,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada voedingsadvies to FHIR Observation conforming to profile nl-core-NutritionAdvice</xd:desc>
+        <xd:desc>Converts ada voedingsadvies to FHIR NutritionOrder conforming to profile nl-core-NutritionAdvice</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-NutritionAdvice instance as an Observation FHIR instance from ada voedingsadvies element.</xd:desc>
+        <xd:desc>Create an nl-core-NutritionAdvice instance as a NutritionOrder FHIR instance from ada voedingsadvies element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
