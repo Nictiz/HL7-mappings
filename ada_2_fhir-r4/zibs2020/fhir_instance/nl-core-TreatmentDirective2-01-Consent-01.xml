@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="nl-core-TreatmentDirective2-01-Consent-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="volmacht aan echtgenote"/>
+   </extension>
+   <status value="active"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="adr"/>
+         <display value="Advanced Care Directive"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentcategorycodes"/>
+         <code value="acd"/>
+         <display value="Advance Directive"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </patient>
+   <dateTime value="2010-05-06"/>
+   <sourceAttachment>
+      <contentType value="application/octet-stream"/>
+      <data value="volmacht"/>
+   </sourceAttachment>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <code>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.14.1"/>
+            <code value="VOL"/>
+            <display value="Volmacht"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>

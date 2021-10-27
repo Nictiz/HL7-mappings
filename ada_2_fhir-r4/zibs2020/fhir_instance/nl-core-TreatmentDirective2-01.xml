@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="nl-core-TreatmentDirective2-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <status value="inactive"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </patient>
+   <dateTime value="2012-09-11"/>
+   <sourceReference>
+      <reference value="Consent/nl-core-TreatmentDirective2-01-Consent-01"/>
+      <type value="Consent"/>
+      <display value="Wilsverklaring, Volmacht, 2010-05-06"/>
+   </sourceReference>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <type value="permit">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
+            <valueString value="eerst overleg met echtgenote"/>
+         </extension>
+      </type>
+      <period>
+         <end value="2012-10-15"/>
+      </period>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="Patient/nl-core-Patient-01"/>
+            <type value="Patient"/>
+            <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="RelatedPerson/nl-core-TreatmentDirective2-01-RelatedPerson-01"/>
+            <type value="RelatedPerson"/>
+            <display value="Contact person, Jan Pieter Mark van Putten"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="PractitionerRole/nl-core-TreatmentDirective2-01-PractitionerRole-01"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), J.H.R. Peters Dr., Arts"/>
+         </reference>
+      </actor>
+      <code>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.25.1"/>
+            <code value="0"/>
+            <display value="Wel uitvoeren"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>

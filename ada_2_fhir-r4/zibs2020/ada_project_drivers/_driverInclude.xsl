@@ -183,6 +183,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'adaextension'">
                 <!-- Do nothing -->
             </xsl:when>
+            <xsl:when test="$localName = 'behandel_aanwijzing'">
+                <xsl:apply-templates select="$in" mode="nl-core-TreatmentDirective2">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -368,5 +373,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <fullUrl value="{$fullUrl}"/>
         </xsl:if>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Zib2020 overrule of the function present in 2_fhir_fhir_include to allow for our way of referencing the patient.</xd:desc>
+        <xd:param name="in">The ADA instance to resolve.</xd:param>
+        <xd:param name="context">The complete ADA instance where the contained ADA instance is contained in.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:resolveAdaInstance">
+        <xsl:param name="in"/>
+        <xsl:param name="context" as="node()"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in[@datatype = 'reference' and @value]">
+                <xsl:variable name="adaId" select="$in/@value"/>
+                <xsl:choose>
+                    <xsl:when test="$context//*[@id = $adaId][1][self::patient-id]">
+                        <xsl:call-template name="_resolveAdaPatient">
+                            <xsl:with-param name="businessIdentifierRef" select="$context//*[@id = $adaId][1][self::patient-id]"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="$context//*[@id = $adaId][1]"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="$in"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     
 </xsl:stylesheet>
