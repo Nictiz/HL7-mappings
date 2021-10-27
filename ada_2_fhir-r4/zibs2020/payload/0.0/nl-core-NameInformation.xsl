@@ -218,7 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="string-join($normalizedFirstNames, ' ')"/>
             </xsl:when>
             <xsl:when test="count($normalizedInitials) &gt; 0">
-                <xsl:value-of select="string-join($normalizedInitials, ' ')"/>
+                <xsl:value-of select="string-join($normalizedInitials, '')"/>
             </xsl:when>
         </xsl:choose>
     </xsl:function>
