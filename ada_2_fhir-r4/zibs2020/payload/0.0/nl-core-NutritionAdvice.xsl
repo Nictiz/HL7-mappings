@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NutritionAdvice"/>
                 </meta>
-                <xsl:for-each select="probleem">
+                <xsl:for-each select="indicatie">
                     <extension url="http://hl7.org/fhir/StructureDefinition/workflow-reasonReference">
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="probleem"/>
