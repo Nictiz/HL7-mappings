@@ -109,9 +109,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </relationship>
                 </xsl:for-each>
                 
-                <xsl:for-each select="naamgegevens">
-                    <xsl:call-template name="nl-core-NameInformation"/>
-                </xsl:for-each>
+                <!-- We can't add the full name information here, just the name information needed to address the 
+                     contact person -->
+                <xsl:variable name="nameInformation" as="element(f:name)*">
+                    <xsl:for-each select="naamgegevens">
+                        <xsl:call-template name="nl-core-NameInformation"/>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:if test="count($nameInformation) &gt; 0">
+                    <xsl:copy-of select="$nameInformation[1]"/>
+                </xsl:if>
                 
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
