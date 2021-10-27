@@ -282,7 +282,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'tekst_uitslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-TextResult"/>
                 <xsl:for-each select="visueel_resultaat">
-                    <xsl:call-template name="nl-core-TextResult-Media"/>
+                    <xsl:call-template name="nl-core-TextResult.VisualResult"/>
                 </xsl:for-each>
                 <!--<xsl:for-each select="verrichting">
                     <xsl:apply-templates select="nf:ada-resolve-reference(verrichting)" mode="nl-core-Procedure">

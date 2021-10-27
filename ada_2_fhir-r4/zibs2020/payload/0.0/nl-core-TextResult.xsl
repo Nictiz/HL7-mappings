@@ -89,7 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <media>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="'nl-core-TextResult-Media'"/>
+                            <xsl:with-param name="profile" select="'nl-core-TextResult.VisualResult'"/>
                             <xsl:with-param name="wrapIn" select="'link'"/>
                         </xsl:call-template>
                     </media>
@@ -101,14 +101,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="visueel_resultaat" name="nl-core-TextResult-Media" mode="nl-core-TextResult-Media" as="element(f:Media)?">
+    <xsl:template match="visueel_resultaat" name="nl-core-TextResult.VisualResult" mode="nl-core-TextResult.VisualResult" as="element(f:Media)?">
         <xsl:param name="in" select="." as="element()?"/>
         
         <xsl:for-each select="$in">
             <Media>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult-Media"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult"/>
                 </meta>
                 <status value="unknown"/>
                 <content>
