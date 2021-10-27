@@ -280,9 +280,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'tekst_uitslag'">
-                <xsl:apply-templates select="$in" mode="nl-core-TextResult"/>
+                <xsl:apply-templates select="$in" mode="nl-core-TextResult">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
                 <xsl:for-each select="visueel_resultaat">
-                    <xsl:call-template name="nl-core-TextResult.VisualResult"/>
+                    <xsl:call-template name="nl-core-TextResult.VisualResult">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>
                 </xsl:for-each>
                 <!--<xsl:for-each select="verrichting">
                     <xsl:apply-templates select="nf:ada-resolve-reference(verrichting)" mode="nl-core-Procedure">
