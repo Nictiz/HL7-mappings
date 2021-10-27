@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="nl-core-ContactPerson-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
+   </meta>
+   <patient>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+         <code value="01"/>
+         <display value="Eerste relatie/contactpersoon"/>
+      </coding>
+   </relationship>
+   <relationship>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+         <code value="07"/>
+         <display value="Hulpverlener"/>
+      </coding>
+   </relationship>
+   <name><!--Processing zib-NameInformation is paused until https://github.com/Nictiz/Nictiz-R4-zib2020/issues/82 is resolved.-->
+      <text value="TODO"/>
+   </name>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobile Phone"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="+31611234567"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="giesput@myweb.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="HP"/>
+               <display value="Primary Home"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="both"/>
+      <line value="1e Jacob van Campenstr 15">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="1e Jacob van Campenstr"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="15"/>
+         </extension>
+      </line>
+      <city value="Hoogmade"/>
+      <district value="Kaag en Braassem"/>
+      <postalCode value="1012 NX"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2020-04-01T00:00:00"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</RelatedPerson>

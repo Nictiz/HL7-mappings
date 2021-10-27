@@ -126,28 +126,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorgaanbieder" mode="_generateDisplay">
         <xsl:param name="profile" required="yes" as="xs:string"/>
         
-        <xsl:variable name="organizationName" select="organisatie_naam/@value[not(. = '')]"/>
-        <xsl:variable name="organizationLocation" select="organisatie_locatie/locatie_naam/@value[not(. = '')]"/>
-        <xsl:variable name="organizationIdentifier" select="zorgaanbieder_identificatienummer[@value[not(. = '')]]"/>
-        
         <xsl:choose>
             <xsl:when test="$profile = 'nl-core-HealthcareProvider'">
-                <xsl:choose>
-                    <xsl:when test="$organizationName or $organizationLocation">
-                        <xsl:value-of select="string-join($organizationLocation[1] | $organizationName[1], ' - ')"/>
-                    </xsl:when>
-                    <xsl:when test="$organizationIdentifier">Locatie met Organisatie-id '<xsl:value-of select="$organizationIdentifier/@value"/>' in identificerend systeem '<xsl:value-of select="$organizationIdentifier/@root"/>'.</xsl:when>
-                    <xsl:otherwise>Locatie-informatie: <xsl:value-of select="string-join(.//(@value | @code | @root | @codeSystem), ' - ')"/></xsl:otherwise>
-                </xsl:choose>
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Healthcare provider (location)</xsl:text>
+                    <xsl:value-of select="organisatie_naam/@value"/>
+                    <xsl:value-of select="organisatie_locatie/locatie_naam/@value"/>
+                    <xsl:if test="not(organisatie_naam/@value | organisatie_locatie/locatie_naam/@value)">
+                        <xsl:value-of select="concat('organisation-id ',zorgaanbieder_identificatienummer/@value,' in system ',zorgaanbieder_identificatienummer/@root)"/>
+                    </xsl:if>
+                    <xsl:value-of select="toelichting/@value"/>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
             <xsl:when test="$profile = 'nl-core-HealthcareProvider-Organization'">
-                <xsl:choose>
-                    <xsl:when test="$organizationName">
-                        <xsl:value-of select="$organizationName[1]"/>
-                    </xsl:when>
-                    <xsl:when test="$organizationIdentifier">Organisatie met id '<xsl:value-of select="$organizationIdentifier/@value"/>' in identificerend systeem '<xsl:value-of select="$organizationIdentifier/@root"/>'.</xsl:when>
-                    <xsl:otherwise>Organisatie-informatie: <xsl:value-of select="string-join(.//(@value | @code | @root | @codeSystem), ' - ')"/></xsl:otherwise>
-                </xsl:choose>
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Healthcare provider (organization)</xsl:text>
+                    <xsl:value-of select="organisatie_naam/@value"/>
+                    <xsl:if test="not(organisatie_naam/@value)">
+                        <xsl:value-of select="concat('organisation-id ',zorgaanbieder_identificatienummer/@value,' in system ',zorgaanbieder_identificatienummer/@root)"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
@@ -168,7 +168,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="upper-case(nf:removeSpecialCharacters(concat(string-join(zorgaanbieder_identificatienummer[1]/(@value | @root), ''),'-',$organizationLocation)))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:next-match/>
+                        <xsl:next-match>
+                            <xsl:with-param name="profile" select="$profile"/>
+                        </xsl:next-match>
                     </xsl:otherwise>   
                 </xsl:choose>
             </xsl:when>
@@ -178,7 +180,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(zorgaanbieder_identificatienummer[1]/(@value | @root), ''))))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:next-match/>
+                        <xsl:next-match>
+                            <xsl:with-param name="profile" select="$profile"/>
+                        </xsl:next-match>
                     </xsl:otherwise>   
                 </xsl:choose>
             </xsl:when>

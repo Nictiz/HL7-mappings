@@ -139,10 +139,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing a ContactPerson</xd:desc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="contactpersoon" mode="_generateDisplay">
-        <xsl:value-of select="current-group()[1]/normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Contact person</xsl:text>
+            <xsl:value-of select="current-group()[1]/normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
+
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
         
 </xsl:stylesheet>
