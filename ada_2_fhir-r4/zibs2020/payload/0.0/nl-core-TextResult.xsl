@@ -106,7 +106,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Media>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile">nl-core-TextResult.VisualResult</xsl:with-param>
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult"/>
                 </meta>
