@@ -311,6 +311,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'woonsituatie'">
+                <xsl:apply-templates select="$in" mode="nl-core-LivingSituation">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'zorgaanbieder'">
                 <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider"/>
                 <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider-Organization"/>
