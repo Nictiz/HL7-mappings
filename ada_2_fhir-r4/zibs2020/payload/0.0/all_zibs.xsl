@@ -47,6 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-HeartRate.xsl"/>
     <xsl:import href="nl-core-InstructionsForUse.xsl"/>
     <xsl:import href="nl-core-LegalSituation.xsl"/>
+    <xsl:import href="nl-core-LivingSituation.xsl"/>
     <xsl:import href="nl-core-MedicationAdministration2.xsl"/>
     <xsl:import href="nl-core-MedicationAgreement.xsl"/>
     <xsl:import href="nl-core-MedicationContraIndication.xsl"/>
