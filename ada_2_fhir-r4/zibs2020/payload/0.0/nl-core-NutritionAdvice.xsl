@@ -48,22 +48,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 <xsl:for-each select="indicatie">
                     <extension url="http://hl7.org/fhir/StructureDefinition/workflow-reasonReference">
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="probleem"/>
-                            <xsl:with-param name="profile" select="'nl-core-Problem'"/>
-                        </xsl:call-template>
+                        <valueReference>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="probleem"/>
+                                <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                            </xsl:call-template>
+                        </valueReference>
                     </extension>
                 </xsl:for-each>
-                <status value="final"/>
+                <status value="active"/>
                 <intent value="order"/>
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$patient"/>
                     <xsl:with-param name="wrapIn" select="'patient'"/>
                 </xsl:call-template>
                 <!--No suitable field to map to dateTime is present in the ada instance, hence current-dateTime is used instead. See https://github.com/Nictiz/Nictiz-R4-zib2020/issues/179.-->
-               <dateTime>
-                   <xsl:value-of select="current-dateTime()"/>
-               </dateTime>
+                <dateTime>
+                    <xsl:attribute name="value">
+                        <xsl:value-of select="current-dateTime()"/>
+                    </xsl:attribute>
+                </dateTime>
                 <oralDiet>
                     <xsl:for-each select="dieet_type">
                         <type>
