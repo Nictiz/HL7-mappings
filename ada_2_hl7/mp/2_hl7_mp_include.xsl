@@ -18,9 +18,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- only comment the package import below out for development purposed, the calling stylesheet should decide on package version-->
     <!--    <xsl:import href="../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
 
-    <!-- Uncomment only for development purposes -->
-    <!--    <xsl:import href="../../util/mp-functions.xsl"/>-->
-
+    <!-- Needed for use cases that do not import fhir package, such as the mp 907 use cases, do not comment out this import even though it may cause double import warnings -->
+    <xsl:import href="../../util/mp-functions.xsl"/>
 
     <xd:doc scope="stylesheet">
         <xd:desc>
