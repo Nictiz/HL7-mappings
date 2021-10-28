@@ -404,7 +404,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
-                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:TS'">
+                <!-- Handle IVL_TS with @value or @nullFlavor the same as TS -->
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:TS' or ($xsiTypeURIName = '{urn:hl7-org:v3}:IVL_TS' and (@value | @nullFlavor))">
                     <xsl:call-template name="handleTS">
                         <xsl:with-param name="in" select="."/>
 
@@ -415,7 +416,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message terminate="yes">Cannot determine the datatype based on @xsi:type, or value not supported: <xsl:value-of select="$xsiType"/></xsl:message>
+                    <xsl:message terminate="yes">Cannot determine the datatype based on @xsi:type, or value not supported: <xsl:value-of select="$xsiType"/>. Calculated QName <xsl:value-of select="$xsiTypeURIName"/></xsl:message>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>

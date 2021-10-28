@@ -3,6 +3,8 @@
 This contains resources for generic conversions of HL7v3 messages/CDA to a relatively simple dataset xml format in response type transactions. 
 
 ===Release Notes===
+2021-11-28
+* Handle datatype IVL_TS with @value or @nullFlavor the same as TS
 2021-09-09
 * When there is no phone/email: don't create empty contact_information element
 2021-08-04

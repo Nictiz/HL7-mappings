@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-11-28
+* MM-2475 XSLT error: Cannot determine the datatype based. Handle datatype IVL_TS with @value or @nullFlavor the same as TS
 2021-09-03
 * MM-2385 Fixed issue with Medicamenteuze behandel-id with a nullFlavor in V3
 2021-08-04
