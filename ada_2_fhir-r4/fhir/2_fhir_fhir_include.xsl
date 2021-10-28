@@ -94,8 +94,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
+        <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
+        <nm:map ada="zorg_episode" resource="EpisodeOfCare" profile="nl-core-EpisodeOfCare"/>
         <nm:map ada="zorg_team" resource="CareTeam" profile="nl-core-CareTeam"/>
         <nm:map ada="zorgverlener" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
         <nm:map ada="zorgverlener" resource="Practitioner" profile="nl-core-HealthProfessional-Practitioner"/>
@@ -141,19 +143,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         
         <xsl:for-each-group select="$in[self::patient[.//(@value | @code | @nullFlavor)]]" group-by="concat((identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/@root, (identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/normalize-space(@value))">
-            <!-- Experiment: why don't we just use nf:getGroupingKeyDefault()? Less hardly-used functions, and nobody is going to see the result anyways. -->
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                <!-- Experiment: why don't we just use nf:getGroupingKeyDefault()? Less hardly-used functions, and nobody is going to see the result anyways. -->
+                <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
             </xsl:for-each-group>
-        </xsl:for-each-group>
         
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
             concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
             nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
             </xsl:for-each-group>
-        </xsl:for-each-group>
         
         <!-- General rule for all zib root concepts -->
         <xsl:for-each-group select="$in[not(self::patient or self::zorgverlener)][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
@@ -303,25 +305,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" as="xs:string" select="''"/>
         <xsl:param name="wrapIn" as="xs:string?"/>
         <xsl:param name="contained" as="xs:boolean" tunnel="yes" select="false()"/>
-        
+
         <!-- Debug -->
         <xsl:if test="count($fhirMetadata) = 0">
             <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
         </xsl:if>
 
         <xsl:variable name="groupKey">
-            <xsl:choose>
-                <xsl:when test="$in[@datatype = 'reference' and @value]">
+                    <xsl:choose>
+                        <xsl:when test="$in[@datatype = 'reference' and @value]">
                     <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in,/))"/>
-                </xsl:when>
-                <xsl:otherwise>
+                        </xsl:when>
+                        <xsl:otherwise>
                     <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
-                </xsl:otherwise>
-            </xsl:choose>
+                        </xsl:otherwise>
+                    </xsl:choose>
         </xsl:variable>
         
         <xsl:variable name="element" as="element()?">
-            <xsl:choose>
+                    <xsl:choose>
                 <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
                     <xsl:if test="string-length($profile) = 0">
                         <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:message>
@@ -330,9 +332,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:message>
                     </xsl:if>
                     <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -556,6 +558,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:value-of select="substring($logicalId, $startingLoc, $lengthLogicalId)"/>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
+    </xd:doc>    
+    <xsl:function name="nf:isFuture" as="xs:boolean">
+        <xsl:param name="dateOrDt"/>
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:value-of select="$dateOrDt &gt; current-date()"/>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+    </xd:doc>    
+    <xsl:function name="nf:isPast" as="xs:boolean">
+        <xsl:param name="dateOrDt"/>
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:function>
     
 </xsl:stylesheet>
