@@ -1,0 +1,608 @@
+<MCCI_IN200101 xmlns='urn:hl7-org:v3' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+	<id extension='4307999' root='2.16.840.1.113883.2.4.6.6'/>
+	<creationTime value='20210802154400'/>
+	<versionCode code='NICTIZEd2005-Okt'/>
+	<interactionId extension='MCCI_IN200101' root='2.16.840.1.113883.1.6'/>
+	<profileId extension='810' root='2.16.840.1.113883.2.4.3.11.1'/>
+	<transmissionQuantity value='2'/>
+	<acknowledgement typeCode='AA'>
+		<targetTransmission>
+			<id extension='6ECC9B35-EAD8-4DD5-BE53-56B0219A1542' root='2.16.528.1.1007.3.3.4005.1'/>
+		</targetTransmission>
+	</acknowledgement>
+	<receiver>
+		<device>
+			<id extension='4005' root='2.16.840.1.113883.2.4.6.6'/>
+		</device>
+	</receiver>
+	<sender>
+		<device>
+			<id extension='1' root='2.16.840.1.113883.2.4.6.6'/>
+		</device>
+	</sender>
+	<POOB_IN990003NL xsi:schemaLocation='urn:hl7-org:v3 file:/C:/Publicaties/VZVZ/Ketenzorg/1.0.2/schemas_codeGen_flat/POOB_IN990003NL.xsd' xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+		<id extension='Parasoft-7460-9814-4379' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+		<creationTime value='20210802154359'/>
+		<versionCode code='NICTIZEd2005-Okt'/>
+		<interactionId extension='POOB_IN990003NL' root='2.16.840.1.113883.1.6'/>
+		<profileId root='2.16.840.1.113883.2.4.3.11.1' extension='810'/>
+		<processingCode code='P'/>
+		<processingModeCode code='T'/>
+		<acceptAckCode code='NE'/>
+		<acknowledgement typeCode='AA'>
+			<targetMessage>
+				<id extension='4307998' root='2.16.840.1.113883.2.4.6.6'/>
+			</targetMessage>
+		</acknowledgement>
+		<receiver>
+			<device classCode='DEV' determinerCode='INSTANCE'>
+				<id extension='1' root='2.16.840.1.113883.2.4.6.6'/>
+			</device>
+		</receiver>
+		<sender>
+			<device classCode='DEV' determinerCode='INSTANCE'>
+				<id root='2.16.840.1.113883.2.4.6.6' extension='70001001'/>
+			</device>
+		</sender>
+		<ControlActProcess moodCode='EVN'>
+			<authorOrPerformer typeCode='AUT'>
+				<participant>
+					<AssignedDevice>
+						<id extension='900017439' root='2.16.528.1.1007.3.2'/>
+						<id extension='70001001' root='2.16.840.1.113883.2.4.6.6'/>
+						<Organization>
+							<id extension='00002727' root='2.16.528.1.1007.3.3'/>
+							<name>VZVZ Simulator</name>
+						</Organization>
+					</AssignedDevice>
+				</participant>
+			</authorOrPerformer>
+			<subject>
+				<organizer classCode='CLUSTER' moodCode='EVN'>
+					<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.8'/>
+					<code code='27899-4' displayName='Diagnostic studies.non lab' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC'/>
+					<statusCode code='completed'/>
+					<recordTarget typeCode='RCT' contextControlCode='OP'>
+						<patientRole>
+							<id extension='900184590' root='2.16.840.1.113883.2.4.6.3'/>
+							<addr>
+								<streetName>Knolweg</streetName>
+								<houseNumber>1003</houseNumber>
+								<postalCode>9999 ZA</postalCode>
+								<city>STITSWERD</city>
+								<country>Nederland</country>
+							</addr>
+							<patient classCode='PSN' determinerCode='INSTANCE'>
+								<name>
+									<given qualifier='IN'>J.</given>
+									<family qualifier='BR'>XXX_Cevat</family>
+								</name>
+								<administrativeGenderCode codeSystem='2.16.840.1.113883.5.1' code='M'/>
+								<birthTime value='19851230'/>
+							</patient>
+						</patientRole>
+					</recordTarget>
+					<participant typeCode='CST'>
+						<participantRole classCode='ASSIGNED'>
+							<id root='2.16.528.1.1007.3.1' extension='900016431'/>
+							<code code='01.015' codeSystem='2.16.840.1.113883.2.4.15.111'/>
+							<playingEntity classCode='PSN' determinerCode='INSTANCE'>
+								<name>
+									<family qualifier='BR'>Huisarts 1</family>
+								</name>
+							</playingEntity>
+							<scopingEntity classCode='ORG' determinerCode='INSTANCE'>
+								<id root='2.16.528.1.1007.3.3' extension='00002727'/>
+								<desc>Gezondheidscentrum Aesculaap</desc>
+							</scopingEntity>
+						</participantRole>
+					</participant>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C12_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1915' displayName='Temperatuur (oraal gemeten)' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20210613154359'/>
+							<value xsi:type='PQ' value='37.4' unit='Cel'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment12'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_R21.01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C16_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='2283' displayName='CT-onderrug/lumbale wervelkolom' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20210608154359'/>
+							<value xsi:type='ST'>Duidelijke uitstulping L02</value>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment16'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_L86.01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C11_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1915' displayName='Temperatuur (oraal gemeten)' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20210504154359'/>
+							<value xsi:type='PQ' value='37.7' unit='Cel'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment11'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_R21.01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C10_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1915' displayName='Temperatuur (oraal gemeten)' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20210504154359'/>
+							<value xsi:type='PQ' value='37.3' unit='Cel'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment10'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_R21.01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C06_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1915' displayName='Temperatuur (oraal gemeten)' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20210305154359'/>
+							<value xsi:type='PQ' value='37.4' unit='Cel'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment06'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_R21.01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C03_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1744' displayName='Systolische bloeddruk' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200807154359'/>
+							<value xsi:type='PQ' value='188' unit='mm[Hg]'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment03'/>
+								</encounter>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C03_02' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1740' displayName='Diastolische bloeddruk' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200807154359'/>
+							<value xsi:type='PQ' value='96' unit='mm[Hg]'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment03'/>
+								</encounter>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C03_03' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1875' displayName='Polsfrequentie' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200807154359'/>
+							<value xsi:type='PQ' value='104' unit='/min'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment03'/>
+								</encounter>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C02_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1744' displayName='Systolische bloeddruk' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200718154359'/>
+							<value xsi:type='PQ' value='172' unit='mm[Hg]'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment02'/>
+								</encounter>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C02_02' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1740' displayName='Diastolische bloeddruk' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200718154359'/>
+							<value xsi:type='PQ' value='87' unit='mm[Hg]'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment02'/>
+								</encounter>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C02_03' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1875' displayName='Polsfrequentie' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200718154359'/>
+							<value xsi:type='PQ' value='84' unit='/min'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment02'/>
+								</encounter>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C01_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1744' displayName='Systolische bloeddruk' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200628154359'/>
+							<value xsi:type='PQ' value='184' unit='mm[Hg]'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment01'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_K78' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C01_02' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1740' displayName='Diastolische bloeddruk' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200628154359'/>
+							<value xsi:type='PQ' value='93' unit='mm[Hg]'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment01'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_K78' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C01_03' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1875' displayName='Polsfrequentie' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200628154359'/>
+							<value xsi:type='PQ' value='120' unit='/min'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment01'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_K78' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C01_04' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='2102' displayName='Polsritme' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200628154359'/>
+							<value xsi:type='CE' code='202' displayName='irregulair' codeSystem='2.16.840.1.113883.2.4.4.30.1045'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment01'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_K78' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='MedMijHG_AlgBep_C01_05' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='2126' displayName='Pols opmerkingen' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Diagnostische Bepalingen' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20200628154359'/>
+							<value xsi:type='ST'>linker pols</value>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id root='2.16.840.1.113883.2.4.3.111.19.1' extension='MedMijHG_contactmoment01'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_K78' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+					<component contextControlCode='OP' typeCode='COMP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='897883' root='2.16.840.1.113883.2.4.6.6.10010068.4.7'/>
+							<code code='2003' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='Codes diagnostische bepalingen' codeSystemVersion='v37' displayName='gestopt met roken sinds'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20201021'/>
+							<value value='20201021' xsi:type='IVL_TS'/>
+							<participant typeCode='RESP'>
+								<participantRole classCode='ASSIGNED'>
+									<id extension='53530225' root='2.16.840.1.113883.2.4.6.1'/>
+								</participantRole>
+							</participant>
+						</observation>
+					</component>
+					<component contextControlCode='OP' typeCode='COMP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='897892' root='2.16.840.1.113883.2.4.6.6.10010068.4.7'/>
+							<code code='2137' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='Codes diagnostische bepalingen' codeSystemVersion='v37' displayName='advies gezonde voeding gegeven'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20201021'/>
+							<value value='true' xsi:type='BL'/>
+							<participant typeCode='RESP'>
+								<participantRole classCode='ASSIGNED'>
+									<id extension='53530225' root='2.16.840.1.113883.2.4.6.1'/>
+								</participantRole>
+							</participant>
+						</observation>
+					</component>
+					<component contextControlCode='OP' typeCode='COMP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.202'/>
+							<id extension='897907' root='2.16.840.1.113883.2.4.6.6.10010068.4.7'/>
+							<code code='1744' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='Codes diagnostische bepalingen' codeSystemVersion='v37' displayName='systolische bloeddruk'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20201021'/>
+							<value unit='mm[Hg]' value='110' xsi:type='PQ'/>
+							<interpretationCode code='N' codeSystem='2.16.840.1.113883.5.83' codeSystemName='HL7 ObservationInterpretation' displayName='Normal'/>
+							<participant typeCode='RESP'>
+								<participantRole classCode='ASSIGNED'>
+									<id extension='53530225' root='2.16.840.1.113883.2.4.6.1'/>
+								</participantRole>
+							</participant>
+							<referenceRange typeCode='REFV'>
+								<observationRange classCode='OBS' moodCode='EVN.CRT'>
+									<value xsi:type='IVL_PQ'>
+										<low nullFlavor='NINF'/>
+										<high unit='mm[Hg]' value='140'/>
+									</value>
+									<interpretationCode code='N' codeSystem='2.16.840.1.113883.5.83' codeSystemName='HL7 ObservationInterpretation' displayName='Normal'/>
+								</observationRange>
+							</referenceRange>
+						</observation>
+					</component>
+				</organizer>
+			</subject>
+			<queryAck>
+				<queryId extension='2860B61A-9791-41CC-B544-C63C434B4659' root='2.16.528.1.1007.3.3.4005.2'/>
+				<queryResponseCode code='OK'/>
+				<resultTotalQuantity value='1'/>
+				<resultCurrentQuantity value='1'/>
+				<resultRemainingQuantity value='0'/>
+			</queryAck>
+		</ControlActProcess>
+	</POOB_IN990003NL>
+	<POLB_IN364001NL03 xsi:schemaLocation='urn:hl7-org:v3 file:/C:/Publicaties/VZVZ/Ketenzorg/1.0.2/schemas_codeGen_flat/POLB_IN364001NL03.xsd' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+		<id extension='Parasoft-0534-7987-1559' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+		<creationTime value='20210802154400'/>
+		<versionCode code='NICTIZEd2005-Okt'/>
+		<interactionId extension='POLB_IN364001NL03' root='2.16.840.1.113883.1.6'/>
+		<profileId root='2.16.840.1.113883.2.4.3.11.1' extension='810'/>
+		<processingCode code='P'/>
+		<processingModeCode code='T'/>
+		<acceptAckCode code='NE'/>
+		<acknowledgement typeCode='AA'>
+			<targetMessage>
+				<id extension='4307997' root='2.16.840.1.113883.2.4.6.6'/>
+			</targetMessage>
+		</acknowledgement>
+		<receiver>
+			<device classCode='DEV' determinerCode='INSTANCE'>
+				<id extension='1' root='2.16.840.1.113883.2.4.6.6'/>
+			</device>
+		</receiver>
+		<sender>
+			<device classCode='DEV' determinerCode='INSTANCE'>
+				<id root='2.16.840.1.113883.2.4.6.6' extension='70001001'/>
+			</device>
+		</sender>
+		<ControlActProcess moodCode='EVN'>
+			<authorOrPerformer typeCode='AUT'>
+				<participant>
+					<AssignedDevice>
+						<id extension='900017439' root='2.16.528.1.1007.3.2'/>
+						<id extension='70001001' root='2.16.840.1.113883.2.4.6.6'/>
+						<Organization>
+							<id extension='00002727' root='2.16.528.1.1007.3.3'/>
+							<name>VZVZ Simulator</name>
+						</Organization>
+					</AssignedDevice>
+				</participant>
+			</authorOrPerformer>
+			<subject>
+				<organizer classCode='CLUSTER' moodCode='EVN'>
+					<templateId root='2.16.840.1.113883.2.4.3.11.60.66.10.77'/>
+					<code code='26436-6' displayName='Laboratory studies' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC'/>
+					<statusCode code='completed'/>
+					<recordTarget typeCode='RCT' contextControlCode='OP'>
+						<patientRole>
+							<id extension='900184590' root='2.16.840.1.113883.2.4.6.3'/>
+							<addr>
+								<streetName>Knolweg</streetName>
+								<houseNumber>1003</houseNumber>
+								<postalCode>9999 ZA</postalCode>
+								<city>STITSWERD</city>
+								<country>Nederland</country>
+							</addr>
+							<patient classCode='PSN' determinerCode='INSTANCE'>
+								<name>
+									<given qualifier='IN'>J.</given>
+									<family qualifier='BR'>XXX_Cevat</family>
+								</name>
+								<administrativeGenderCode codeSystem='2.16.840.1.113883.5.1' code='M'/>
+								<birthTime value='19851230'/>
+							</patient>
+						</patientRole>
+					</recordTarget>
+					<participant typeCode='CST'>
+						<participantRole classCode='ASSIGNED'>
+							<id root='2.16.528.1.1007.3.1' extension='900016431'/>
+							<code code='01.015' codeSystem='2.16.840.1.113883.2.4.15.111'/>
+							<playingEntity classCode='PSN' determinerCode='INSTANCE'>
+								<name>
+									<family qualifier='BR'>Huisarts 1</family>
+								</name>
+							</playingEntity>
+							<scopingEntity classCode='ORG' determinerCode='INSTANCE'>
+								<id root='2.16.528.1.1007.3.3' extension='00002727'/>
+								<desc>Gezondheidscentrum Aesculaap</desc>
+							</scopingEntity>
+						</participantRole>
+					</participant>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.7.10.31'/>
+							<templateId root='1.3.6.1.4.1.19376.1.3.1.6'/>
+							<id extension='MedMijHG_LabBep_C14_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='3208' displayName='Glucose nuchter, art/cap' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Labcodes' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20210514154400'/>
+							<value value='5.4' unit='mmol/L' xsi:type='PQ'/>
+							<interpretationCode code='N' displayName='Normal' codeSystem='2.16.840.1.113883.5.83' codeSystemName='HL7 ObservationInterpretation'/>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id extension='MedMijHG_contactmoment14' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_L86.01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+							<referenceRange typeCode='REFV'>
+								<observationRange classCode='OBS' moodCode='EVN.CRT'>
+									<value xsi:type='IVL_PQ'>
+										<low value='3.5' unit='mmol/L'/>
+										<high value='5.6' unit='mmol/L'/>
+									</value>
+									<interpretationCode code='N' displayName='Normal' codeSystem='2.16.840.1.113883.5.83' codeSystemName='HL7 ObservationInterpretation'/>
+								</observationRange>
+							</referenceRange>
+						</observation>
+					</component>
+					<component typeCode='COMP' contextControlCode='OP'>
+						<observation classCode='OBS' moodCode='EVN'>
+							<templateId root='2.16.840.1.113883.2.4.3.11.60.7.10.31'/>
+							<templateId root='1.3.6.1.4.1.19376.1.3.1.6'/>
+							<id extension='MedMijHG_LabBep_C11_01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+							<code code='1334' displayName='Kweek keel' codeSystem='2.16.840.1.113883.2.4.4.30.45' codeSystemName='NHG Labcodes' codeSystemVersion='20'/>
+							<statusCode code='completed'/>
+							<effectiveTime value='20210504154400'/>
+							<value xsi:type='ST'>Positief</value>
+							<entryRelationship typeCode='REFR'>
+								<encounter classCode='ENC' moodCode='EVN'>
+									<id extension='MedMijHG_contactmoment11' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+								</encounter>
+							</entryRelationship>
+							<entryRelationship typeCode='REFR'>
+								<act classCode='ACT' moodCode='EVN'>
+									<id extension='MedMijHG_concern_R21.01' root='2.16.840.1.113883.2.4.3.111.19.1'/>
+									<code code='CONC' codeSystem='2.16.840.1.113883.5.6' codeSystemName='HL7ActClass' displayName='Concern'/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</component>
+				</organizer>
+			</subject>
+			<queryAck>
+				<queryId extension='2860B61A-9791-41CC-B544-C63C434B4659' root='2.16.528.1.1007.3.3.4005.2'/>
+				<queryResponseCode code='OK'/>
+				<resultTotalQuantity value='1'/>
+				<resultCurrentQuantity value='1'/>
+				<resultRemainingQuantity value='0'/>
+			</queryAck>
+		</ControlActProcess>
+	</POLB_IN364001NL03>
+</MCCI_IN200101>
