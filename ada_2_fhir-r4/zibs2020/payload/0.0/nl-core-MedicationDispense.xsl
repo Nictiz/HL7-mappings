@@ -43,9 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-MedicationDispense" mode="nl-core-MedicationDispense" match="medicatieverstrekking" as="element(f:MedicationDispense)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="verstrekt_geneesmiddel" as="element()?"/>
-        <xsl:param name="performer" select="verstrekker" as="element()?"/>
-        <xsl:param name="authorizingPrescription" select="verstrekkingsverzoek" as="element()?"/>
+        <xsl:param name="medicationReference" select="verstrekt_geneesmiddel/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="performer" select="verstrekker/zorgaanbieder" as="element()?"/>
+        <xsl:param name="authorizingPrescription" select="verstrekkingsverzoek/verstrekkingsverzoek" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationDispense>
@@ -82,7 +82,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>    
                 </xsl:for-each>
                 
-                <!-- TODO: Status should be added, but is unclear. See https://github.com/Nictiz/Nictiz-R4-zib2020/issues/122 -->
+                <!-- It is expected that in most use cases only actual, executed, medication dispenses are exchanged which result in a _completed_ value. We use completed as a default value. 
+                    See https://github.com/Nictiz/Nictiz-R4-zib2020/issues/122 -->
+                <status value="completed"/>
                 
                 <category>
                     <coding>

@@ -4,10 +4,19 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.AsAgreedIndicator">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator">
       <valueBoolean value="false"/>
    </extension>
-   <status value="stopped"/>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="113371000146109"/>
+            <display value="definitief gestopt met medicatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <status value="not-taken"/>
    <statusReason>
       <coding>
          <system value="http://snomed.info/sct"/>
