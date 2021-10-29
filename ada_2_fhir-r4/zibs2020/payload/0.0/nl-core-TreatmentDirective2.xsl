@@ -68,6 +68,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>
                 </xsl:if>
+                <xsl:for-each select="specificatie_anders">
+                    <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
+                        <valueString>
+                            <xsl:call-template name="string-to-string"/>
+                        </valueString>
+                    </modifierExtension>
+                </xsl:for-each>
                 <status>
                     <xsl:variable name="startDate" select="meest_recente_bespreekdatum/@value"/>
                     <xsl:variable name="endDate" select="datum_beeindigd/@value"/>
@@ -135,24 +142,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </valueString>
                             </extension>
                         </xsl:for-each>
-                        <xsl:if test="behandel_besluit or specificatie_anders">
+                        <xsl:if test="behandel_besluit[@code = ('0', '2')]">
                             <type>
                                 <xsl:for-each select="behandel_besluit">
                                     <xsl:call-template name="code-to-code">
                                         <xsl:with-param name="codeMap" as="element()*">
                                             <map inCode="0" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1" code="permit"/>
                                             <!-- code '1' is unmatched, 'specificatie_anders' should be present -->
-                                            <!--<map inCode="1" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"/>-->
                                             <map inCode="2" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1" code="deny"/>
                                         </xsl:with-param>
                                     </xsl:call-template>
-                                </xsl:for-each>
-                                <xsl:for-each select="specificatie_anders">
-                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
-                                        <valueString>
-                                            <xsl:call-template name="string-to-string"/>
-                                        </valueString>
-                                    </extension>
                                 </xsl:for-each>
                             </type>
                         </xsl:if>
