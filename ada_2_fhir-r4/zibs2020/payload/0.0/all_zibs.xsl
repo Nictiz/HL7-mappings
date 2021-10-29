@@ -29,6 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
+    <xsl:import href="nl-core-AlcoholUse.xsl"/>
     <xsl:import href="nl-core-AnatomicalLocation.xsl"/>
     <xsl:import href="nl-core-BloodPressure.xsl"/>
     <xsl:import href="nl-core-BodyHeight.xsl"/>

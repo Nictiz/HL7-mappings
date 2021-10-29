@@ -183,6 +183,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'adaextension'">
                 <!-- Do nothing -->
             </xsl:when>
+            <xsl:when test="$localName = 'alcohol_gebruik'">
+                <xsl:apply-templates select="$in" mode="nl-core-AlcoholUse">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">
                     <xsl:with-param name="subject" select="$subject"/>
