@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RelatedPerson xmlns="http://hl7.org/fhir">
-   <id value="nl-core-TreatmentDirective2-01-RelatedPerson-01"/>
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="nl-core-TreatmentDirective2-02-Patient-01"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
    </meta>
-   <patient>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
-   </patient>
-   <relationship>
-      <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
-         <code value="01"/>
-         <display value="Eerste relatie/contactpersoon"/>
-      </coding>
-   </relationship>
-   <relationship>
-      <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
-         <code value="HUSB"/>
-         <display value="Husband"/>
-      </coding>
-   </relationship>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999911120"/>
+   </identifier>
    <name><!--Processing zib-NameInformation is paused until https://github.com/Nictiz/Nictiz-R4-zib2020/issues/82 is resolved.-->
       <text value="TODO"/>
    </name>
    <telecom>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-         <valueString value="test toelichting"/>
+         <valueString value="Tussen 9 en 17"/>
       </extension>
       <system value="phone">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
@@ -42,13 +27,26 @@
          </extension>
       </system>
       <value value="+31611234567"/>
-      <use value="home"/>
+      <use value="work"/>
    </telecom>
    <telecom>
       <system value="email"/>
       <value value="giesput@myweb.nl"/>
       <use value="home"/>
    </telecom>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Female"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1998-12-03"/>
+   <deceasedBoolean value="false"/>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
          <valueCodeableConcept>
@@ -75,7 +73,7 @@
             <valueString value="to"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
-            <valueString value="test info"/>
+            <valueString value="Testadres"/>
          </extension>
       </line>
       <city value="Hoogmade"/>
@@ -94,4 +92,5 @@
          </extension>
       </country>
    </address>
-</RelatedPerson>
+   <multipleBirthBoolean value="false"/>
+</Patient>

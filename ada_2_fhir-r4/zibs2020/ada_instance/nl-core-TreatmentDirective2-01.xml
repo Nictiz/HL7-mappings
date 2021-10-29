@@ -1,7 +1,8 @@
-<behandel_aanwijzing2_registratie app="zib2020-nl" shortName="behandel_aanwijzing2_registratie" formName="behandel_aanwijzing2" transactionRef="2.16.840.1.113883.2.4.3.11.60.121.4.2.2.2" transactionEffectiveDate="2020-09-01T00:00:00" versionDate="" prefix="zib2017-" language="nl-NL" title="BehandelAanwijzing2-complete-edit" desc="" id="f270df53-57fd-440d-b0df-5357fd640dac">
+<?xml-stylesheet type="text/xsl" href="../ada_project_drivers/nl-core-TreatmentDirective2-driver.xsl"?>
+<behandel_aanwijzing2_registratie app="zib2020-nl" shortName="behandel_aanwijzing2_registratie" formName="behandel_aanwijzing2" transactionRef="2.16.840.1.113883.2.4.3.11.60.121.4.2.2.2" transactionEffectiveDate="2020-09-01T00:00:00" versionDate="" prefix="zib2017-" language="nl-NL" title="nl-core-TreatmentDirective2-01" desc="" id="cba534ad-3cdb-425f-a534-ad3cdbc25fe7">
     <behandel_aanwijzing conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.1">
         <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.1">
-            <patient-id value="111222333" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.2" id="pat1"/>
+            <patient-id value="111222333" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
         </onderwerp>
         <referenties conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.3">
             <wilsverklaring conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.15.1" id="wv1">
@@ -10,14 +11,48 @@
                 <wilsverklaring_document value="volmacht" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.15.5"/>
                 <toelichting value="volmacht aan echtgenote" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.15.6"/>
             </wilsverklaring>
+            
             <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.1" id="cp1">
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.4">
                     <voornamen value="Jan Pieter Mark" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.69"/>
+                    <initialen value="J.P.M." conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.70"/>
+                    <roepnaam value="Piet" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.71"/>
+                    <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.72" value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
                     <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.73">
                         <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.74"/>
                         <achternaam value="Putten" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.75"/>
                     </geslachtsnaam>
+                    <geslachtsnaam_partner conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.76">
+                        <voorvoegsels_partner value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.77"/>
+                        <achternaam_partner value="Kleeff" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.78"/>
+                    </geslachtsnaam_partner>
+                    <titels value="Dr." conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.79"/>
                 </naamgegevens>
+                <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.6">
+                    <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.80">
+                        <telefoonnummer value="+31611234567" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.81"/>
+                        <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.82" value="3" code="MC" codeSystem="2.16.840.1.113883.5.1119" displayName="Mobile Phone"/>
+                        <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.83" value="1" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Primary Home"/>
+                        <toelichting value="test toelichting" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.84"/>
+                    </telefoonnummers>
+                    <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.85">
+                        <email_adres value="giesput@myweb.nl" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.86"/>
+                        <email_soort conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.87" value="1" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Primary Home"/>
+                    </email_adressen>
+                </contactgegevens>
+                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.5">
+                    <straat value="1e Jacob van Campenstr" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.88"/>
+                    <huisnummer value="15" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.89"/>
+                    <huisnummerletter value="A" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.90"/>
+                    <huisnummertoevoeging value="2e" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.91"/>
+                    <aanduiding_bij_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.92" value="1" code="to" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.3" displayName="Tegenover"/>
+                    <postcode value="1012 NX" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.93"/>
+                    <woonplaats value="Hoogmade" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.94"/>
+                    <gemeente value="Kaag en Braassem" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.95"/>
+                    <land conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.96" value="548" code="NL" codeSystem="1.0.3166.1.2.2" codeSystemName="ISO 3166-1 (alpha-2)" codeSystemVersion="2020-10-26T00:00:00" displayName="Nederland"/>
+                    <additionele_informatie value="test info" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.97"/>
+                    <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.98" value="2" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Primary Home"/>
+                </adresgegevens>
                 <rol conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.2" value="1" code="01" codeSystem="2.16.840.1.113883.2.4.3.11.22.472" displayName="Eerste relatie/contactpersoon"/>
                 <relatie conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.3" value="22" code="HUSB" codeSystem="2.16.840.1.113883.5.111" displayName="Husband"/>
             </contactpersoon>
@@ -31,22 +66,36 @@
                     <titels value="Dr." conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.506"/>
                 </naamgegevens>
                 <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.4" value="3" code="01.000" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (personen)" codeSystemVersion="2020-04-01T00:00:00" displayName="Arts"/>
+                <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.9" value="3" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Female"/>
+                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.7">
+                    <straat value="Simon Smitweg" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.507"/>
+                    <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.508"/>
+                    <postcode value="2353 GA" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.512"/>
+                    <woonplaats value="Leiderdorp" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.513"/>
+                    <land conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.515" value="548" code="NL" codeSystem="1.0.3166.1.2.2" codeSystemName="ISO 3166-1 (alpha-2)" codeSystemVersion="2020-10-26T00:00:00" displayName="Nederland"/>
+                </adresgegevens>
+                <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.8">
+                    <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.518">
+                        <telefoonnummer value="+3715828282 " conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.519"/>
+                        <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.520" value="1" code="LL" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1" displayName="Land Line"/>
+                        <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.521" value="3" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Work Place"/>
+                    </telefoonnummers>
+                    <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.523">
+                        <email_adres value="j.peters@hospital.nl" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.524"/>
+                        <email_soort conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.525" value="2" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Work Place"/>
+                    </email_adressen>
+                </contactgegevens>
+                <zorgverlener_rol conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.5" value="3" code="PRF" codeSystem="2.16.840.1.113883.5.90" displayName="Performer"/>
             </zorgverlener>
         </referenties>
         <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.2" value="1" code="0" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1" displayName="Wel uitvoeren"/>
         <behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.3" value="1" code="305351004" codeSystem="2.16.840.1.113883.6.96" displayName="Opname op intensive care"/>
-        <specificatie_anders value="eerst overleg met echtgenote" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.4"/>
         <meest_recente_bespreekdatum value="2012-09-11" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.5"/>
         <datum_beeindigd value="2012-10-15" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.6"/>
         <reden_beeindigd value="hersteld en ontslagen" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.7"/>
         <wilsverklaring conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.8">
             <wilsverklaring value="wv1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.19"/>
         </wilsverklaring>
-        <afspraak_partij conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.9">
-            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.10">
-                <patient value="pat1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.20"/>
-            </patient>
-        </afspraak_partij>
         <afspraak_partij conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.9">
             <vertegenwoordiger conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.2.11">
                 <contactpersoon value="cp1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.21"/>
@@ -58,4 +107,5 @@
             </zorgverlener>
         </afspraak_partij>
     </behandel_aanwijzing>
+    
 </behandel_aanwijzing2_registratie>
