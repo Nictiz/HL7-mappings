@@ -43,9 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-AdministrationAgreement" mode="nl-core-AdministrationAgreement" match="toedieningsafspraak" as="element(f:MedicationDispense)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="geneesmiddel_bij_toedienings_afspraak" as="element()?"/>
-        <xsl:param name="performer" select="verstrekker" as="element()?"/>
-        <xsl:param name="authorizingPrescription" select="medicatieafspraak" as="element()?"/>
+        <xsl:param name="medicationReference" select="geneesmiddel_bij_toedienings_afspraak/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="performer" select="verstrekker/zorgaanbieder" as="element()?"/>
+        <xsl:param name="authorizingPrescription" select="medicatieafspraak/medicatieafspraak" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationDispense>
@@ -103,7 +103,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
                 
-                <!-- TODO: Add status. The guidance is not clear how this relates to CancelledIndicator and other zib concepts -->
+                <status>
+                    <xsl:attribute name="value">
+                        <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
+                             so we can perform the required logic using a start and end datetime. -->
+                        <xsl:variable name="period" as="element(f:temp)?">
+                            <xsl:call-template name="ext-TimeInterval.Period">
+                                <xsl:with-param name="in" select="gebruiksperiode"/>
+                                <xsl:with-param name="wrapIn">temp</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="geannuleerd_indicator/@value = 'true'">entered-in-error</xsl:when>
+                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
+                            <xsl:otherwise>unknown</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </status>
     
                 <category>
                     <coding>

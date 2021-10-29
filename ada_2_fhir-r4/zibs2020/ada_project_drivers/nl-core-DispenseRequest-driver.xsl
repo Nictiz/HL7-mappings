@@ -27,19 +27,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
+    <xsl:template match="/nm:bundle">
+        <xsl:apply-templates mode="_doTransform" select="$bundle/verstrekkingsverzoek"/>
+    </xsl:template>
+    
     <xsl:template match="//verstrekkingsverzoek_registratie/verstrekkingsverzoek">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient"/>
-        </xsl:variable>
-        <xsl:apply-templates mode="_doTransform" select=".">
-            <xsl:with-param name="fhirEntries" as="element()">
-                <xsl:call-template name="nl-core-DispenseRequest">
-                    <xsl:with-param name="subject" select="$subject"/>
-                    <xsl:with-param name="medicationReference" select="referenties/farmaceutisch_product"/>
-                    <xsl:with-param name="performer" select="referenties/zorgaanbieder"/>
-                </xsl:call-template>
-            </xsl:with-param>
-        </xsl:apply-templates>
+        <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
 </xsl:stylesheet>
