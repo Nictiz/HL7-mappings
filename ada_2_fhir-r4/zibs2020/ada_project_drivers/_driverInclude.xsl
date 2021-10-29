@@ -201,6 +201,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="patient" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'drugs_gebruik'">
+                <xsl:apply-templates select="$in" mode="nl-core-DrugUse"/>
+                <xsl:for-each select="drugs_gebruik">
+                    <xsl:call-template name="nl-core-DrugUse"/>
+                </xsl:for-each>
+            </xsl:when>
             <xsl:when test="$localName = 'farmaceutisch_product'">
                 <xsl:apply-templates select="$in" mode="nl-core-PharmaceuticalProduct"/>
             </xsl:when>
@@ -282,6 +288,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-SOAPReport"/>
                 <xsl:for-each select="soepregel">
                     <xsl:call-template name="nl-core-SOAPReport-Observation"/>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:when test="$localName = 'tabak_gebruik'">
+                <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse"/>
+                <xsl:for-each select="tabak_gebruik">
+                    <xsl:call-template name="nl-core-TobaccoUse"/>
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'tekst_uitslag'">
