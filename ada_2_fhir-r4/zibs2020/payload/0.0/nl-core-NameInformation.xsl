@@ -22,20 +22,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
 
-    <!-- Can be uncommented for debug purposes. Please comment before committing! -->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada naamgegevens to FHIR resource conforming to profile nl-core-NameInformation</xd:desc>
+        <xd:desc>Converts ada naamgegevens to FHIR .name elements conforming to profile nl-core-NameInformation and nl-core-NameInformation.GivenName</xd:desc>
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Unwrap naamgegevens_registratie element</xd:desc>
-    </xd:doc>
-
-    <xd:doc>
-        <xd:desc>Produces FHIR HumanName datatypes with name elements.</xd:desc>
+        <xd:desc>Produces FHIR .name elements (HumanName datatype).</xd:desc>
         <xd:param name="in">Ada 'naamgegevens' element containing the zib data</xd:param>
     </xd:doc>
     <xsl:template match="naamgegevens" mode="nl-core-NameInformation" name="nl-core-NameInformation" as="element(f:name)*">
@@ -191,13 +186,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Helper function to parse the initials (initialen) string into individual initials. There are no formal requirements to the input strings, but it is assumed that initial is is delimited by a dot, possibly followed by one or more whitespace characters.</xd:desc>
+        <xd:desc>Helper function to parse the initials (initialen) string into individual initials. There are no formal requirements to the input strings, but it is assumed that initial is is delimited by a dot or whitespace character, possibly followed by one or more whitespace characters.</xd:desc>
         <xd:param name="initialen">The ADA initialen element</xd:param>
         <xd:return>A list of individual initials, delimited with a dot and with all spaces removed.</xd:return>
     </xd:doc>
     <xsl:function name="nf:_normalizeInitials" as="xs:string*">
         <xsl:param name="initialen" as="element(initialen)?"/>
-        <xsl:for-each select="tokenize(normalize-space($initialen/@value), '\.')">
+        <xsl:for-each select="tokenize(normalize-space($initialen/@value), '[\.\s]')">
             <xsl:if test="string-length(.) &gt; 0">
                 <xsl:value-of select="concat(normalize-space(.), '.')"/>
             </xsl:if>
