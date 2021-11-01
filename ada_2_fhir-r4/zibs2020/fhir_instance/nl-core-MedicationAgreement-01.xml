@@ -13,8 +13,17 @@
          <end value="2016-09-18"/>
       </valuePeriod>
    </extension>
-   <status value="stopped"/>
-   <intent value="proposal"/>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="113381000146106"/>
+            <display value="Drug therapy definitively stopped (finding)"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <status value="on-hold"/>
+   <intent value="order"/>
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -30,13 +39,13 @@
    <subject>
       <reference value="Patient/nl-core-Patient-01"/>
       <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
    </subject>
    <authoredOn value="2016-09-08T18:00:00+02:00"/>
    <requester>
       <reference value="PractitionerRole/nl-core-MedicationAgreement-01-PractitionerRole-01"/>
       <type value="PractitionerRole"/>
-      <display value="Healthcare professional (role), D.  Bakker"/>
+      <display value="Healthcare professional (role), D. Bakker"/>
    </requester>
    <reasonCode>
       <coding>

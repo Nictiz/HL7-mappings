@@ -19,9 +19,9 @@
    <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
       <valueCodeableConcept>
          <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
-            <code value="2"/>
-            <display value="Definitief"/>
+            <system value="http://snomed.info/sct"/>
+            <code value="113381000146106"/>
+            <display value="Drug therapy definitively stopped (finding)"/>
          </coding>
       </valueCodeableConcept>
    </modifierExtension>
@@ -33,6 +33,7 @@
          <code value="d"/>
       </valueDuration>
    </modifierExtension>
+   <status value="completed"/>
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -45,6 +46,11 @@
       <type value="Medication"/>
       <display value="PREDNISON 5MG TABLET"/>
    </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
    <performer>
       <actor>
          <reference value="Organization/nl-core-AdministrationAgreement-03-Organization-01"/>
