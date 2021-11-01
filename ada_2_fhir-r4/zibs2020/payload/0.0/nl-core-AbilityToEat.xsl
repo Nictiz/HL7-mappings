@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-AbilityToEat as a Observation FHIR instance from ada vermogen_tot_eten element.</xd:desc>
+        <xd:desc>Create an nl-core-AbilityToEat instance as an Observation FHIR instance from ada vermogen_tot_eten element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
