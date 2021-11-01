@@ -257,7 +257,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'participatie_in_maatschappij'">
-                <xsl:apply-templates select="$in" mode="nl-core-ParticipationInSociety"/>
+                <xsl:apply-templates select="$in" mode="nl-core-ParticipationInSociety">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'patient'">
                 <xsl:apply-templates select="$in" mode="nl-core-Patient"/>
