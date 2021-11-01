@@ -28,11 +28,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada vermogen_tot_eten to FHIR Observation conforming to profile nl-core-FluidBalance</xd:desc>
+        <xd:desc>Converts ada vochtbalans to FHIR Observation conforming to profile nl-core-FluidBalance</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-FluidBalance as a Observation FHIR instance from ada vochtbalans element.</xd:desc>
+        <xd:desc>Create an nl-core-FluidBalance instance as an Observation FHIR instance from ada vochtbalans element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
