@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>      
                 <status value="final"/>
                 
-                <!-- HOW TO CHOOSE THE RIGHT CATEGORY code? -->
+                <!-- HOW TO CHOOSE THE RIGHT CATEGORY code? For now, both codes will be added.-->
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
@@ -90,23 +90,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="functionele_of_mentale_status" mode="_generateId">
-        <xsl:variable name="parts">
-            <xsl:text>FunctionalOrMentalStatus</xsl:text>
-            <xsl:value-of select="status_naam/@displayName"/>
-            <xsl:value-of select="status_waarde/@displayName"/>
-            <xsl:if test="status_datum/@value">
-                <xsl:value-of select="concat('measurement date ', status_datum/@value)"/>
-            </xsl:if>
-            <xsl:value-of select="toelichting/@value"/>
-        </xsl:variable>
-        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
-    </xsl:template>
-    
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
