@@ -265,7 +265,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'medisch_hulpmiddel'">
                 <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
+                    <xsl:with-param name="device" select="product"/>
+                </xsl:apply-templates>  
+                <xsl:for-each select="product">
+                    <xsl:call-template name="nl-core-MedicalDevice.Product">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'o2saturatie'">
                 <xsl:apply-templates select="$in" mode="nl-core-O2Saturation">

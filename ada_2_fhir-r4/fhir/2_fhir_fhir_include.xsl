@@ -85,6 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
+        <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
@@ -277,8 +278,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </nm:reference-display>
             </nm:resource>
             
-            <!-- SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
+            <!-- MedicalDevice::Product, SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
             <xsl:choose>
+                <xsl:when test="$in/self::medisch_hulpmiddel">
+                    <xsl:for-each-group select="$in/product" group-by="nf:getGroupingKeyDefault(.)">
+                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                    </xsl:for-each-group>
+                </xsl:when>
                 <xsl:when test="$in/self::soepverslag">
                     <xsl:for-each-group select="$in/soepregel" group-by="nf:getGroupingKeyDefault(.)">
                         <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>

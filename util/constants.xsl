@@ -70,6 +70,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidGStandaardBST902THES2">2.16.840.1.113883.2.4.4.1.900.2</xsl:variable>
     <xsl:variable name="oidGStandaardTH040ContraIndicaties">2.16.840.1.113883.2.4.4.1.902.40</xsl:variable>
     <xsl:variable name="oidGStandaardFarmaceutischeVormen">2.16.840.1.113883.2.4.4.11</xsl:variable>
+    <xsl:variable name="oidGTIN">1.3.160</xsl:variable>
+    <xsl:variable name="oidHIBC">2.16.840.1.113883.6.40</xsl:variable>
     <xsl:variable name="oidHL7AcknowledgementDetailCode">2.16.840.1.113883.5.1100</xsl:variable>
     <xsl:variable name="oidHL7ActCode">2.16.840.1.113883.5.4</xsl:variable>
     <xsl:variable name="oidHL7ActClass">2.16.840.1.113883.5.6</xsl:variable>
