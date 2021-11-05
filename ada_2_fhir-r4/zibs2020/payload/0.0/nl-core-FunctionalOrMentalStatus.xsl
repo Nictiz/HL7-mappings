@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>      
                 <status value="final"/>
                 
-                <!-- HOW TO CHOOSE THE RIGHT CATEGORY code? For now, both codes will be added.-->
+                <!-- It is not possible to derive one of the two category codes for Function or Mental statusses based on information by the zib. This is acknowledged by the zib centre: https://bits.nictiz.nl/browse/ZIB-1549. The profile only allows for one of the two codes. Therefore, for now, only one fixed code wil be used.-->
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
@@ -47,13 +47,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="bevinding betreffende functioneren"/>
                     </coding>
                 </category>
+                <!--
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="384821006"/>
                         <display value="bevinding betreffende mentale toestand, gedrag en/of psychosociaal functioneren"/>
                     </coding>
-                </category>               
+                </category>      
+                -->        
               
                  <xsl:for-each select="status_naam">
                      <code>
