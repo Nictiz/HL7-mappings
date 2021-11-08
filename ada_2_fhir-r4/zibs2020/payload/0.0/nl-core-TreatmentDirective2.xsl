@@ -79,20 +79,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="startDate" select="meest_recente_bespreekdatum/@value"/>
                     <xsl:variable name="endDate" select="datum_beeindigd/@value"/>
                     <xsl:choose>
-                        <!--When StartDate is in the past and EndDate in the future or absent: _active_  -->
+                        <!--When startDate is in the past and endDate is in the future or absent: _active_  -->
                         <xsl:when test="nf:isPast($startDate) and (nf:isFuture($endDate) or not($endDate)) ">
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:when>
-                        <!-- When EndDate in the past: _inactive_  -->
+                        <!-- When endDate is in the past: _inactive_  -->
                         <xsl:when test="nf:isPast($endDate)">
                             <xsl:attribute name="value" select="'inactive'"/>
                         </xsl:when>
-                        <!-- When StartDate is absent or in the future (not possible according to zib): _draft_ -->
+                        <!-- When startDate is absent or in the future (not possible according to zib): _draft_ -->
                         <xsl:when test="not($startDate) or nf:isFuture($startDate)">
                             <xsl:attribute name="value" select="'draft'"/>
                         </xsl:when>
-                        <!-- If no status can be derived from the start and enddate, the Consent is assumed to be active. 
-                            A status code must be provided and no unkown code exists in the required ValueSet.-->
+                        <!-- If no status can be derived from the startDate and endDate, the Consent is assumed to be active. 
+                            A status code must be provided and no unknown code exists in the required ValueSet.-->
                         <xsl:otherwise>
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:otherwise>
@@ -133,9 +133,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <policy>
                     <uri value="https://wetten.overheid.nl/"/>
                 </policy>
-                <xsl:if test="reden_beindigd or behandel_besluit or specificatie_anders or datum_beeindigd or behandeling">
+                <xsl:if test="reden_beeindigd or behandel_besluit or specificatie_anders or datum_beeindigd or behandeling">
                     <provision>
-                        <xsl:for-each select="reden_beindigd">
+                        <xsl:for-each select="reden_beeindigd">
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding">
                                 <valueString>
                                     <xsl:call-template name="string-to-string"/>
