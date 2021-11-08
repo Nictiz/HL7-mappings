@@ -208,6 +208,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-VisualFunction">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="zien_hulpmiddel">
+                    <xsl:for-each select="medisch_hulpmiddel">
+                        <xsl:call-template name="nl-core-VisualFunction.VisualAid">
+                            <xsl:with-param name="subject" select="$subject"/>
+                            <xsl:with-param name="device" select="product"/>
+                            <xsl:with-param name="observation" select="functie_zien"/>
+                        </xsl:call-template>
+                        <xsl:for-each select="product">
+                            <xsl:call-template name="nl-core-VisualFunction.VisualAid.Product">
+                                <xsl:with-param name="subject" select="$subject"/>
+                            </xsl:call-template>    
+                        </xsl:for-each>
+                    </xsl:for-each>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">

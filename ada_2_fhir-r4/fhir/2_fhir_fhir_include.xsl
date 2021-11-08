@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="serverBaseUri" select="'http://example.nictiz.nl/fhir'" as="xs:string"/>
 
     <xd:doc>
-        <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
+        <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile ids. Note that multiple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
@@ -82,10 +82,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="nl-core-MedicationAgreement"/>
         <nm:map ada="medicatieverstrekking" resource="MedicationDispense" profile="nl-core-MedicationDispense"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-MedicalDevice"/>
+        <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
+        <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
+        <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
@@ -295,6 +299,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                     </xsl:for-each-group>
                 </xsl:when>
+                <xsl:when test="$in/self::zien_hulpmiddel">
+                    <xsl:for-each-group select="$in/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
+                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                    </xsl:for-each-group>
+                </xsl:when>
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
@@ -302,8 +311,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Generate a FHIR reference. When there's no input or a reference can't otherwise be constructed, no output is generated.</xd:desc>
         
-        <xd:param name="in">The target of the reference as either an ADA instance an ADA reference element. May be omitted if it is the same as the context.</xd:param>
-        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="in">The target of the reference as either an ADA instance or an ADA reference element. May be omitted if it is the same as the context.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
         <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated as well.</xd:param>
     </xd:doc>
     <!-- Outputs reference if input is ADA, fhirMetadata or ADA reference element -->
