@@ -8,8 +8,40 @@
       <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
       <value value="999911120"/>
    </identifier>
-   <name><!--Processing zib-NameInformation is paused until https://github.com/Nictiz/Nictiz-R4-zib2020/issues/82 is resolved.-->
-      <text value="TODO"/>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <use value="official"/>
+      <text value="Jan Pieter Mark (Piet) Pietersen"/>
+      <family value="Pietersen">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Pietersen"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="Janssen"/>
+         </extension>
+      </family>
+      <given value="Jan">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="Pieter">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="Mark">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <prefix value="Mr."/>
+   </name>
+   <name>
+      <use value="usual"/>
+      <given value="Piet"/>
    </name>
    <telecom>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
