@@ -117,7 +117,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
                 </meta>
                 <xsl:choose>
-                    <xsl:when test="ancestor::prio1_vorige_zwangerschap">
+                    <xsl:when test="ancestor::prio1_vorige_zwangerschap | eind_datum">
                         <status value="finished"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -131,7 +131,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="Pregnancy observable (observable entity)"/>
                     </coding>
                 </type>
-                <xsl:for-each select=".">
+                <!-- voor 2.3 wordt eoc vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->
+                <xsl:for-each select="../zwangerschap | ../../zwangerschapsgegevens/zwangerschap">
                     <diagnosis>
                         <condition>
                             <xsl:apply-templates select="." mode="doPregnancyReference"/>

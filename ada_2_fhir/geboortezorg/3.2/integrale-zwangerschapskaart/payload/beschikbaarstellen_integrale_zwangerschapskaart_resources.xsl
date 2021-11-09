@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/xpath-functions" version="2.0">
     <xsl:import href="../../../2_fhir_gebz_include_32.xsl"/>
    
     <xsl:output method="xml" indent="yes"/>
@@ -46,9 +46,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:Resource/* | f:Patient | f:Practitioner | f:PractitionerRole | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Encounter" mode="doResourceInResultdoc">
         <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile[last()]/@value, './')[last()]"/>
         <xsl:variable name="code" select="replace(f:code/f:coding/f:code/@value,':','')"/>
-        <xsl:result-document href="../fhir_instance/Gebz-{$usecase}-{$zib-name}{$code}-{f:id/@value}.xml"> 
+        <xsl:result-document href="../fhir_instance/Gebz-{$usecase}-{$zib-name}{$code}-{f:id/@value}.xml">
             <xsl:apply-templates select="." mode="ResultOutput"/>
         </xsl:result-document>
-    </xsl:template>   
-          
+    </xsl:template> 
+       
 </xsl:stylesheet>

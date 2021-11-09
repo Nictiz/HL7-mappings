@@ -109,8 +109,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy"/>
                 </meta>
+                <xsl:variable name="test" select="ancestor::med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zorgverlening/zorg_episode/eind_datum/@value"/>
                 <xsl:choose>
-                    <xsl:when test="$parentElemName='prio1_vorige_zwangerschap'">
+                    <xsl:when test="($parentElemName='prio1_vorige_zwangerschap') or ancestor::med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zorgverlening/zorg_episode/eind_datum">
                         <clinicalStatus value="inactive"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -129,7 +130,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:for-each>
-                <xsl:for-each select=".">
+                <!-- voor 2.3 wordt dossier vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->
+                <xsl:for-each select="(/*/zorgverlening/zorg_episode | .)[1]">
                     <context>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>

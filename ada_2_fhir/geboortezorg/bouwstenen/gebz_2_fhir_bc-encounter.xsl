@@ -110,7 +110,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
                     <xsl:call-template name="bc-profile"/>
                 </meta>                    
                 <status value="finished"/>  
@@ -128,7 +127,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:for-each> 
-                <xsl:for-each select="ancestor::*/zorgverlening/zorg_episode">
+                <xsl:for-each select="/*/zorgverlening/zorg_episode">
                     <episodeOfCare>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </episodeOfCare>

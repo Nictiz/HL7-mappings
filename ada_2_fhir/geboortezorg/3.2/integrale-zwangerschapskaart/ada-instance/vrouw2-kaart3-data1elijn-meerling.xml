@@ -1,4 +1,4 @@
-<med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart app="perinatologie-32" shortName="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart" formName="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart" transactionRef="2.16.840.1.113883.2.4.3.11.60.90.77.4.2575" transactionEffectiveDate="2021-04-06T15:01:01" versionDate="" prefix="peri20-" language="nl-NL" title="Vrouw 2, Kaart 3 - data 1e lijn (meerling)" desc="&lt;div&gt;Vrouw 2 (XXX_Kwee) net bevallen van een meerling. De integrale zwangerschapskaart bestaat uit berichten vanuit meerdere bronnen. Dit bericht bevat de gegevens van de zorgepisode bij de verloskundigenpraktijk.&lt;/div&gt;" id="gz-izb-kwa-3-V2_meerling_1elijn">
+<med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart app="perinatologie-32" shortName="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart" formName="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart" transactionRef="2.16.840.1.113883.2.4.3.11.60.90.77.4.2575" transactionEffectiveDate="2021-04-06T15:01:01" versionDate="" prefix="peri20-" language="nl-NL" title="Vrouw 2, Kaart 3 - data 1e lijn (meerling)" desc="&lt;div&gt;Vrouw 2 (XXX_Kwee) net bevallen van een meerling. De integrale zwangerschapskaart wordt samengesteld uit berichten vanuit meerdere bronnen. Dit bericht bevat de gegevens van de zorgepisode bij de verloskundigenpraktijk.&lt;/div&gt;" id="gz-izb-kwa-3A-V2_meerling_1elijn">
     <administratief conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1313">
         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.675" id="Vrouw2">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3197">
@@ -32,9 +32,9 @@
             </adresgegevens>
             <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.965" value="30" code="G3" codeSystem="2.16.840.1.113883.2.4.15.1060" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)" codeSystemVersion="2020-11-11T00:00:00" displayName="Verloskundigenpraktijk"/>
         </zorgaanbieder>
-        <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.978">
+        <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.978" id="ZV1">
             <zorgverlener_identificatienummer root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.979" value="12340001"/>
-            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3248" id="ZV1">
+            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3248">
                 <roepnaam value="Gemma" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3251"/>
                 <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3252" value="4" code="NL4" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
                 <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3253">
@@ -67,9 +67,7 @@
     </vrouw>
     <zwangerschapsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.25">
         <casemanager conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1699">
-            <zorgverleners_rol conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1700" value="7" code="768832004" codeSystem="2.16.840.1.113883.6.96" displayName="Case manager"/>
-            <zorgverlener_identificatienummer root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1701" value="12340001"/>
-            <naamgegevens value="ZA1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7787"/>
+            <zorgverlener value="ZV1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9662"/>
         </casemanager>
         <zwangerschap conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3341">
             <pariteit value="0" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3343"/>
@@ -80,9 +78,14 @@
                 <datum_bepaling value="T+10D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3349"/>
             </aterme_datum_items>
         </zwangerschap>
+        <aantal_foetussen_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1837" id="AantalFoetussen">
+            <aantal_foetussen_datum_tijd value="T-205D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1838"/>
+            <aantal_foetussen_waarde value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1840"/>
+            <observatie_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1841" value="7" code="241491007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="echografie van foetus (verrichting)"/>
+        </aantal_foetussen_observatie>
         <meerling_zwangerschap_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1711">
             <meerling_zwangerschap_datum_tijd value="T-205D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1825"/>
-            <aantal_foetussen_observatie value="aantalF" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1845"/>
+            <aantal_foetussen_observatie value="AantalFoetussen" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1845"/>
             <observatie_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1833" value="7" code="241491007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="echografie van foetus (verrichting)"/>
         </meerling_zwangerschap_observatie>
         <foliumzuurgebruik_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1742">
@@ -94,8 +97,7 @@
                 <begin_datum_tijd value="T-205D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1814"/>
             </datum_prenatale_controle>
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.176">
-                <naamgegevens value="ZA1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7788"/>
-                <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2233" value="98" code="158999002" codeSystem="2.16.840.1.113883.6.96" displayName="eerstelijnsverloskundige (beroep)"/>
+                <zorgverlener value="ZV1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9681"/>
             </zorgverlener>
             <lichaamsgewicht value="Gew-205D" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1078"/>
             <bloeddruk value="BP-205D" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1072"/>
@@ -114,7 +116,7 @@
                 </waarneming_gebruik>
             </tabak_gebruik>
         </prenatale_controle>
-        <probleem_zwangerschap conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1180">
+        <probleem_zwangerschap conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1180" id="Probleem1">
             <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1184" value="36" code="16356006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="meerlingzwangerschap (aandoening)"/>
             <probleem_begin_datum value="T-205D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1185"/>
             <toelichting value="mw.door verwijzen naar Sophia" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1189"/>
@@ -168,14 +170,5 @@
                 <kleding conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1077" value="2" code="MINIMAL" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.8.1" displayName="Lichte kleding/ondergoed"/>
             </lichaamsgewicht>
         </metingen>
-        <cims_geboortezorg conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8952">
-            <kandidaat_zib_observaties conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9075">
-                <aantal_foetussen_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9044" id="aantalF">
-                    <aantal_foetussen_datum_tijd value="T-205D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9049"/>
-                    <aantal_foetussen_waarde value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9050"/>
-                    <observatie_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9051" value="7" code="241491007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="echografie van foetus (verrichting)"/>
-                </aantal_foetussen_observatie>
-            </kandidaat_zib_observaties>
-        </cims_geboortezorg>
     </bouwstenen>
 </med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart>

@@ -87,7 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <search>
                     <mode value="{$searchMode}"/>
                 </search>
-            </xsl:if>
+            </xsl:if>Vr
         </entry>
     </xsl:template>
  
@@ -122,7 +122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="."/>
                     </xsl:for-each-group>
                 </meta>
-                <xsl:if test="not(ancestor::lichamelijk_onderzoek_kind)"><!-- was: $parentElemName!='lichamelijk_onderzoek_kind -->
+                <xsl:if test="ancestor::zwangerschap or ancestor::zwangerschapsgegevens/zwangerschap or ancestor::bevalling or ancestor::baring or ancestor::foetusspecifieke_onderzoeksgegevens"><!-- was: not(ancestor::lichamelijk_onderzoek_kind) -->
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
                         <valueReference>
                             <xsl:for-each select="ancestor::zwangerschap | ancestor::zwangerschapsgegevens/zwangerschap">
@@ -177,7 +177,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <!-- indien de observatie niet aan een contact hangt dan zwangerschapsdossier (episode of care) als context nemen -->
                     <xsl:otherwise>
-                        <xsl:for-each select="ancestor::*/zwangerschap">
+                        <!-- voor 2.3 wordt dossier vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->
+                        <xsl:for-each select="(/*/zorgverlening/zorg_episode | ancestor::*/zwangerschap)[1]">
                             <context>
                                 <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                             </context>

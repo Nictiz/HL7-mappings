@@ -104,11 +104,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="concept" select="key('dataset-concept-lookup', @conceptId, $dataset-doc)"/>   
         <xsl:choose>
             <!-- todo: nettere oplossing hiervoor vinden -->
-            <xsl:when test="@conceptId='2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1422'">
+            <xsl:when test="@conceptId=('2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1077','2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1422')">
                 <coding>
                     <system value="http://loinc.org"/>
                     <code value="8352-7"/>
                     <display value="Clothing worn during measure"/>
+                </coding>                   
+            </xsl:when>
+            <xsl:when test="@conceptId='2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4099'">
+                <coding>
+                    <system value="2.16.840.1.113883.6.96"/>
+                    <code value="249120008"/>
+                    <display value="begin van eerste fase van partus (waarneembare entiteit)"/>
                 </coding>                   
             </xsl:when>
             <xsl:when test="$concept">

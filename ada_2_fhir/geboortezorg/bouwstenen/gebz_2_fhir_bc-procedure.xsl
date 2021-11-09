@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="bcProcedureReference" match="bevalling | baring | uitdrijvingsfase | verrichting_zwangerschap | verrichting_kindspecifieke_maternale_verrichtingen" mode="doBcProcedureReference" as="element()*">
         <xsl:variable name="theIdentifier" select="."/>
-        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:variable name="theGroupKey" select="concat(nf:getGroupingKeyDefault(.),preceding-sibling::patient/@value)"/>
         <!-- get id from verrichtingen ipv procedures ivm circular references -->
         <!-- todo: betere oplossing voor verzinnen, code is te afhankelijk -->
         <xsl:variable name="theGroupElement" select="$verrichtingen[group-key = $theGroupKey]" as="element()?"/>
@@ -160,12 +160,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </code>
-                <xsl:for-each select="$adaPatient">
-                    <subject>
-                        <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                    </subject>
-                </xsl:for-each>  
-                <xsl:for-each select="ancestor::*/zwangerschap">
+                <xsl:choose>
+                    <xsl:when test="$adaChild and name(.)='uitdrijvingsfase'">
+                        <xsl:variable name="kindId" select="patient/@value"/>
+                        <xsl:for-each select="$adaChild[@id=$kindId]">
+                            <subject>
+                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                            </subject>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="$adaPatient">
+                            <subject>
+                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                            </subject>
+                        </xsl:for-each>                 
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- voor 2.3 wordt dossier vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->
+                <xsl:for-each select="(/*/zorgverlening/zorg_episode | ancestor::*/zwangerschap)[1]">
                     <context>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>
@@ -186,6 +199,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:attribute>
                         </start>
                     </performedPeriod>
+                </xsl:for-each>
+                <xsl:variable name="performerId" select="ziekenhuis_baring/zorgaanbieder/@value"/>
+                <xsl:for-each select="ancestor::*/administratief/zorgaanbieder[@id=$performerId]">
+                    <performer>
+                        <actor>                       
+                            <xsl:call-template name="organizationReference"/>
+                        </actor>
+                    </performer>
                 </xsl:for-each>
                 <xsl:for-each select="../zwangerschap | ../zwangerschapsgegevens/zwangerschap | ../../zwangerschapsgegevens/zwangerschap">
                     <reasonReference>

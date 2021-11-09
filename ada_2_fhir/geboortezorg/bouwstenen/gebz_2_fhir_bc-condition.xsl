@@ -122,9 +122,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:for-each select="ancestor::zwangerschap | ancestor::zwangerschapsgegevens/zwangerschap">
                                 <xsl:call-template name="pregnancyReference"/>
                             </xsl:for-each>
-                            <xsl:for-each select="ancestor::bevalling | ancestor::baring | ancestor::postnatale_fase">
-                                <xsl:call-template name="bcProcedureReference"/>
-                            </xsl:for-each>
+                            <!-- indien onder uitdrijvingsfase (geboorte) dan niet ook referentie naar de bevalling -->
+                            <xsl:choose>
+                                <xsl:when test="ancestor::uitdrijvingsfase | ancestor::baring">
+                                    <xsl:for-each select="ancestor::uitdrijvingsfase | ancestor::baring">
+                                        <xsl:call-template name="bcProcedureReference"/>
+                                    </xsl:for-each>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:for-each select="ancestor::bevalling | ancestor::postnatale_fase">
+                                        <xsl:call-template name="bcProcedureReference"/>
+                                    </xsl:for-each>      
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </valueReference>
                     </extension>
                 </xsl:if>
@@ -171,7 +181,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>                 
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:for-each select="ancestor::*/zwangerschap">
+                <!-- voor 2.3 wordt dossier vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->
+                <xsl:for-each select="(/*/zorgverlening/zorg_episode | ancestor::*/zwangerschap)[1]">
                     <context>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>

@@ -356,7 +356,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="elementName" select="name(.)"/>
             <!-- need this later to create context element (ada context will be lost at that time) -->
             <xsl:variable name="context">
-                <xsl:for-each select="(ancestor::med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart)/zwangerschapsgegevens/zwangerschap">
+                <xsl:for-each select="(ancestor::med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart)/zorgverlening/zorg_episode">
                     <context xmlns="http://hl7.org/fhir">
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>  
                     </context>
@@ -407,7 +407,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- bevalling, geboorte en obstetrische verrichtingen -->
     <!-- moet in 2 stappen ivm circular dependencies met zichzelf -->
     <xsl:variable name="verrichtingen" as="element()*">
-        <xsl:for-each-group select="//bevalling | //baring | //verrichting_zwangerschap | //verrichting_kindspecifieke_maternale_verrichtingen" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="(//bevalling | //baring | //uitdrijvingsfase  | //verrichting_zwangerschap | //verrichting_maternaal | //verrichting_kindspecifieke_maternale_verrichtingen)[not(@datatype = 'reference')]" group-by="concat(nf:getGroupingKeyDefault(.),preceding-sibling::patient/@value)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-procedure xmlns="">
@@ -426,8 +426,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- bevalling, geboorte en obstetrische verrichtingen -->
     <xsl:variable name="procedures" as="element()*">
-        <xsl:for-each select="//bevalling | //uitdrijvingsfase | //verrichting_zwangerschap | //verrichting_kindspecifieke_maternale_verrichtingen">
-            <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:for-each select="(//bevalling | //baring | //uitdrijvingsfase | //verrichting_zwangerschap | //verrichting_maternaal | //verrichting_kindspecifieke_maternale_verrichtingen)[not(@datatype = 'reference')]">
+            <xsl:variable name="theGroupKey" select="concat(nf:getGroupingKeyDefault(.),preceding-sibling::patient/@value)"/>
             <xsl:variable name="theGroupElement" select="$verrichtingen[group-key = $theGroupKey]" as="element()?"/>
             <xsl:variable name="resourceId" select="$theGroupElement/f:entry/f:resource/f:Procedure/f:id/@value"/>
             <unieke-procedure xmlns="">
