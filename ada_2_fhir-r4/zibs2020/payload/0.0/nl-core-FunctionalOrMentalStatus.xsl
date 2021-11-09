@@ -25,7 +25,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-FunctionalOrMentalStatus instance as a Observation FHIR instance from ADA functionele_of_mentale_status.</xd:desc>
+        <xd:desc>
+            <xd:p>Create a nl-core-FunctionalOrMentalStatus instance as a Observation FHIR instance from ADA functionele_of_mentale_status.</xd:p>
+            <xd:p>The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket zib-1549). Therefore SNOMED code 118228005 is hard coded which may not be they right category for the information that is transformed.</xd:p>
+            </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="functionele_of_mentale_status" name="nl-core-FunctionalOrMentalStatus" mode="nl-core-FunctionalOrMentalStatus" as="element(f:Observation)">
@@ -38,25 +41,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FunctionalOrMentalStatus"/>
                 </meta>      
                 <status value="final"/>
-                
-                <!-- It is not possible to derive one of the two category codes for Function or Mental statusses based on information by the zib. This is acknowledged by the zib centre: https://bits.nictiz.nl/browse/ZIB-1549. The profile only allows for one of the two codes. Therefore, for now, only one fixed code wil be used.-->
+
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="msg">The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket ZIB-1549). Therefore SNOMED code 118228005 is hard coded which may not be they right category for the information that is transformed.</xsl:with-param>
+                    <xsl:with-param name="level">WARN</xsl:with-param>
+                    <xsl:with-param name="terminate">false</xsl:with-param>
+                </xsl:call-template>
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="http://snomed.info/sct"/> 
                         <code value="118228005"/>
                         <display value="bevinding betreffende functioneren"/>
                     </coding>
                 </category>
-                <!--
-                <category>
-                    <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="384821006"/>
-                        <display value="bevinding betreffende mentale toestand, gedrag en/of psychosociaal functioneren"/>
-                    </coding>
-                </category>      
-                -->        
-              
+                
                  <xsl:for-each select="status_naam">
                      <code>
                          <xsl:call-template name="code-to-CodeableConcept"/>
