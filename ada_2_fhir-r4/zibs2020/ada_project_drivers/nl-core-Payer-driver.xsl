@@ -34,23 +34,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="//betaler_registratie/betaler">
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
-    
-    <xsl:template mode="_doTransform" match="betaler">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient">
-                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
-            </xsl:call-template>
-        </xsl:variable>
-        
-        <xsl:call-template name="nl-core-Payer">
+            
+       <!-- <xsl:call-template name="nl-core-Payer">
             <xsl:with-param name="subject" select="$subject"/>
             <xsl:with-param name="payor" select="(betaler_persoon | verzekeraar)"/>       
         </xsl:call-template>
         
         <xsl:call-template name="nl-core-Payer-Organization">
             <xsl:with-param name="in" select="verzekeraar/organisatie_naam"/>
-        </xsl:call-template>
+        </xsl:call-template>-->
         
-    </xsl:template>
     
 </xsl:stylesheet>
