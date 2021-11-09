@@ -159,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each select="$resources">
-                    <xsl:result-document href="{./f:id/@value}.xml">
+                    <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
                         <xsl:copy-of select="."/>
                     </xsl:result-document>
                 </xsl:for-each>
@@ -208,18 +208,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-VisualFunction">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
-                <xsl:for-each select="zien_hulpmiddel">
-                    <xsl:for-each select="medisch_hulpmiddel">
-                        <xsl:call-template name="nl-core-VisualFunction.VisualAid">
+                <xsl:for-each select="zien_hulpmiddel/medisch_hulpmiddel">
+                    <xsl:call-template name="nl-core-VisualFunction.VisualAid">
+                        <xsl:with-param name="subject" select="$subject"/>
+                        <xsl:with-param name="reasonReference" select="../.."/>
+                    </xsl:call-template>
+                    <xsl:for-each select="product">
+                        <xsl:call-template name="nl-core-VisualFunction.VisualAid.Product">
                             <xsl:with-param name="subject" select="$subject"/>
-                            <xsl:with-param name="device" select="product"/>
-                            <xsl:with-param name="observation" select="functie_zien"/>
-                        </xsl:call-template>
-                        <xsl:for-each select="product">
-                            <xsl:call-template name="nl-core-VisualFunction.VisualAid.Product">
-                                <xsl:with-param name="subject" select="$subject"/>
-                            </xsl:call-template>    
-                        </xsl:for-each>
+                        </xsl:call-template>    
                     </xsl:for-each>
                 </xsl:for-each>
             </xsl:when>

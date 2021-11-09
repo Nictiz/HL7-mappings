@@ -86,11 +86,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="medisch_hulpmiddel" name="nl-core-VisualFunction.VisualAid" mode="nl-core-VisualFunction.VisualAid" as="element(f:DeviceUseStatement)?">
+    <xsl:template match="zien_hulpmiddel/medisch_hulpmiddel" name="nl-core-VisualFunction.VisualAid" mode="nl-core-VisualFunction.VisualAid" as="element(f:DeviceUseStatement)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="device" select="product/*" as="element()?"/>
-        <xsl:param name="observation" select="functie_zien/*" as="element()?"/>
+        <xsl:param name="reasonReference"/>
         
         <xsl:for-each select="$in">
             <DeviceUseStatement>
@@ -175,11 +174,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </timingPeriod>
                 </xsl:if>
                 
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$device"/>
-                    <xsl:with-param name="wrapIn" select="'device'"/>
-                </xsl:call-template>
+                <xsl:for-each select="product">
+                    <device>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile">nl-core-VisualFunction.VisualAid.Product</xsl:with-param>
+                        </xsl:call-template>
+                    </device>
+                </xsl:for-each>
                     
+                <xsl:for-each select="anatomische_locatie">
+                    <bodySite>
+                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                    </bodySite>
+                </xsl:for-each>
+                
                 <xsl:for-each select="indicatie">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="probleem"/>
@@ -187,16 +195,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <xsl:for-each select="anatomische_locatie">
-                    <bodySite>
-                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
-                    </bodySite>
+                <xsl:for-each select="$reasonReference">
+                    <reasonReference>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile" select="'nl-core-VisualFunction'"/>
+                        </xsl:call-template>
+                    </reasonReference>
                 </xsl:for-each>
-                
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$observation"/>
-                    <xsl:with-param name="wrapIn" select="'reasonReference'"/>
-                </xsl:call-template>
                 
                 <xsl:for-each select="toelichting">
                     <note>

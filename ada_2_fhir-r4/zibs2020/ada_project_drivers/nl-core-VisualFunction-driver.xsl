@@ -34,5 +34,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="//functie_zien_registratie/functie_zien">
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
-    
 </xsl:stylesheet>
