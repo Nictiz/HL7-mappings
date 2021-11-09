@@ -43,9 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-MedicationAgreement" mode="nl-core-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="afgesprokengeneesmiddel" as="element()?"/>
-        <xsl:param name="requester" select="voorschrijver" as="element()?"/>
-        <xsl:param name="reasonReference" select="reden_van_voorschrijven" as="element()?"/>
+        <xsl:param name="medicationReference" select="afgesprokengeneesmiddel/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="requester" select="voorschrijver/zorgverlener" as="element()?"/>
+        <xsl:param name="reasonReference" select="reden_van_voorschrijven/probleem" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationRequest>
@@ -95,25 +95,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:variable>
                             
                         <xsl:choose>
-                            <xsl:when test="medicatieafspraak_stop_type/@code = '113381000146106'">stopped</xsl:when>
-                            <xsl:when test="medicatieafspraak_stop_type/@code = '113371000146109'">on-hold</xsl:when>
-                            <xsl:when test="
-                                $period/f:start[@value] and 
-                                ($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &lt; current-date()) or
-                                ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &lt; current-dateTime())">active</xsl:when>
-                            <xsl:when test="
-                                $period/f:start[@value] and $period/f:end[@value] and 
-                                (($period/f:start/@value castable as xs:date     and xs:date($period/f:start/@value)     &gt; current-date()) or 
-                                 ($period/f:start/@value castable as xs:dateTime and xs:dateTime($period/f:start/@value) &gt; current-dateTime())) and
-                                (($period/f:end[@value]  castable as xs:date     and xs:date($period/f:end/@value)       &lt; current-date()) or
-                                 ($period/f:end[@value]  castable as xs:dateTime and xs:dateTime($period/f:end/@value)   &lt; current-dateTime()))">active</xsl:when>
+                            <xsl:when test="medicatieafspraak_stop_type/@code = '113381000146106'">on-hold</xsl:when>
+                            <xsl:when test="medicatieafspraak_stop_type/@code = '113371000146109'">stopped</xsl:when>
+                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
                             <xsl:otherwise>unknown</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
                 </status>
                 
-                <!-- TODO: Proposed to use proposal, but this isn't definitive yet -->
-                <intent value="proposal"/>
+                <intent value="order"/>
                 
                 <category>
                     <coding>
@@ -200,6 +192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="medicatieafspraak" mode="_generateDisplay">
         <xsl:variable name="parts">
+            <xsl:value-of select="'Medication agreement'"/>
             <xsl:value-of select="afgesprokengeneesmiddel/@display"/>
             <xsl:value-of select="medicatieafspraak_datum_tijd/@value"/>
             <xsl:value-of select="medicatieafspraak_stop_type/@display"/>
