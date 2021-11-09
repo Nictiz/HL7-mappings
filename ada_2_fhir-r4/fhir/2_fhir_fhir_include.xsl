@@ -283,8 +283,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </nm:resource>
         </xsl:for-each>
         
-        <!-- MedicalDevice::Product, SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
+        <!-- HearingFunction.HearingAid::MedicalDevice, VisualFunction.VisualAid::MedicalDevice, MedicalDevice::Product, SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
         <xsl:choose>
+            <xsl:when test="$in/self::functie_horen">
+                <xsl:for-each-group select="$in/horen_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+            <xsl:when test="$in/self::functie_zien">
+                <xsl:for-each-group select="$in/zien_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
             <xsl:when test="$in/self::medisch_hulpmiddel">
                 <xsl:for-each-group select="$in/product" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
@@ -297,16 +307,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$in/self::tekst_uitslag">
                 <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-            </xsl:when>
-            <xsl:when test="$in/self::functie_zien">
-                <xsl:for-each-group select="$in/zien_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-            </xsl:when>
-            <xsl:when test="$in/self::functie_horen">
-                <xsl:for-each-group select="$in/horen_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
             </xsl:when>

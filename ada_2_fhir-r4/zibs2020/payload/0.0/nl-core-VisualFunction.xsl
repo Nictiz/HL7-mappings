@@ -82,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-VisualFunction.VisualAid instance as a DeviceUseStatement FHIR instance from ada functie_zien element.</xd:desc>
+        <xd:desc>Create an nl-core-VisualFunction.VisualAid instance as a DeviceUseStatement FHIR instance from ada zien_hulpmiddel/medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -127,22 +127,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                               
                 <status>
                     <xsl:choose>
-                        <!-- When StartDate is in the future: _intended_  -->
+                        <!-- When startDate is in the future: _intended_  -->
                         <xsl:when test="nf:isFuture($startDate)">
                             <xsl:attribute name="value" select="'intended'"/>
                         </xsl:when>
                         
-                        <!--When StartDate is in the past or absent and EndDate is in the future or absent: _active_  -->
+                        <!--When startDate is in the past or absent and endDate is in the future or absent: _active_  -->
                         <xsl:when test="(not($startDate) or nf:isPast($startDate)) and (not($endDate) or nf:isFuture($endDate))">
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:when>
                         
-                        <!-- When StartDate is absent or in the past and EndDate is in the past: _completed_  -->
+                        <!-- When startDate is absent or in the past and endDate is in the past: _completed_  -->
                         <xsl:when test="(not($startDate) or nf:isPast($startDate)) and nf:isPast($endDate)">
                             <xsl:attribute name="value" select="'completed'"/>
                         </xsl:when>
                         
-                        <!-- If no status can be derived from the StartDate and EndDate, the MedicalDevice is assumed to be active. 
+                        <!-- If no status can be derived from the startDate and endDate, the MedicalDevice is assumed to be active. 
                             A status code must be provided and no unknown code exists in the required ValueSet.-->
                         <xsl:otherwise>
                             <xsl:attribute name="value" select="'active'"/>
@@ -177,15 +177,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="product">
                     <device>
                         <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile">nl-core-VisualFunction.VisualAid.Product</xsl:with-param>
+                            <xsl:with-param name="profile" select="'nl-core-VisualFunction.VisualAid.Product'"/>
                         </xsl:call-template>
                     </device>
-                </xsl:for-each>
-                    
-                <xsl:for-each select="anatomische_locatie">
-                    <bodySite>
-                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
-                    </bodySite>
                 </xsl:for-each>
                 
                 <xsl:for-each select="indicatie">
@@ -201,6 +195,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="profile" select="'nl-core-VisualFunction'"/>
                         </xsl:call-template>
                     </reasonReference>
+                </xsl:for-each>
+                    
+                <xsl:for-each select="anatomische_locatie">
+                    <bodySite>
+                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                    </bodySite>
                 </xsl:for-each>
                 
                 <xsl:for-each select="toelichting">
@@ -218,7 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-VisualFunction.VisualAid.Product instance as a Device FHIR instance from ada functie_zien element.</xd:desc>
+        <xd:desc>Create an nl-core-VisualFunction.VisualAid.Product instance as a Device FHIR instance from ada product element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

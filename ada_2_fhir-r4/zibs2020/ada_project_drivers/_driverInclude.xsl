@@ -203,6 +203,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-HearingFunction">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="horen_hulpmiddel/medisch_hulpmiddel">
+                    <xsl:call-template name="nl-core-HearingFunction.HearingAid">
+                        <xsl:with-param name="subject" select="$subject"/>
+                        <xsl:with-param name="reasonReference" select="../.."/>
+                    </xsl:call-template>
+                    <xsl:for-each select="product">
+                        <xsl:call-template name="nl-core-HearingFunction.HearingAid.Product">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:call-template>    
+                    </xsl:for-each>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'functie_zien'">
                 <xsl:apply-templates select="$in" mode="nl-core-VisualFunction">

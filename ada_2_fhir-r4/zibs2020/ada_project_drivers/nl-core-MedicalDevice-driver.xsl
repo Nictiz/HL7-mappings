@@ -34,5 +34,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="//medisch_hulpmiddel_registratie/medisch_hulpmiddel">
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
-    
 </xsl:stylesheet>
