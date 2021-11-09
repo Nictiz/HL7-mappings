@@ -196,13 +196,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </reasonReference>
                 </xsl:for-each>
-                    
+                
                 <xsl:for-each select="anatomische_locatie">
                     <bodySite>
-                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                        <xsl:call-template name="nl-core-AnatomicalLocation">
+                            <xsl:with-param name="profile" select="'nl-core-HearingFunction.HearingAid'"/>
+                        </xsl:call-template>
                     </bodySite>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
