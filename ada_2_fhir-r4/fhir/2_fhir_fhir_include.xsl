@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada2resourceType">
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer"/>
-        <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
+        <nm:map ada="verzekeraar" resource="Organization" profile="nl-core-Payer-Organization"/>
         <nm:map ada="betaler" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
@@ -290,6 +290,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$in/self::tekst_uitslag">
                     <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
+                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                    </xsl:for-each-group>
+                </xsl:when>
+                <xsl:when test="$in/self::betaler">
+                    <xsl:for-each-group select="$in/verzekeraar" group-by="nf:getGroupingKeyDefault(.)">
                         <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                     </xsl:for-each-group>
                 </xsl:when>

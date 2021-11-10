@@ -55,18 +55,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <status>
                     <xsl:choose>
-                        <xsl:when test="xs:date($endDate) &lt; current-date() or xs:dateTime($endDate) &lt;  current-dateTime()">
+                        <!-- When EndDate is present and EndDate in the future: _active_  -->
+                        <xsl:when test="nf:isFuture($endDate)">
+                            <xsl:attribute name="value" select="'active'"/>
+                        </xsl:when>
+                        
+                        <!-- When EndDate is present and EndDate in the past: _cancelled_  -->
+                        <xsl:when test="nf:isPast($endDate)">
                             <xsl:attribute name="value" select="'cancelled'"/>
                         </xsl:when>
-                        <xsl:when test="xs:date($endDate) &gt; current-date() or xs:dateTime($endDate) &gt; current-dateTime()">
+                        
+                        <!-- If no status can be derived from the start and enddate, the Coverage is assumed to be active. 
+                        A status code must be provided and no unkown code exists in the required ValueSet.-->
+                        <xsl:otherwise>
                             <xsl:attribute name="value" select="'active'"/>
-                        </xsl:when>
-                        <xsl:when test="$startDate and not($endDate)">
-                            <xsl:attribute name="value" select="'active'"/>
-                        </xsl:when>
-                        <xsl:when test="not($startDate) and not($endDate)">
-                            <xsl:attribute name="value" select="'draft'"/>
-                        </xsl:when>
+                        </xsl:otherwise>
                     </xsl:choose>
                 </status>
                 
@@ -109,45 +112,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 
-                <xsl:for-each select="verzekeraar/identificatie_nummer | verzekeraar/organisatie_naam ">
+<!--                <xsl:for-each select="verzekeraar/identificatie_nummer | verzekeraar/organisatie_naam ">
                     <xsl:call-template name="makeReference">
-                        <<xsl:with-param name="in" select="."/>
+    <!-\-                    <xsl:with-param name="in" select="betaler"/>-\->
                         <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>
                     </xsl:call-template>
-                </xsl:for-each>
+                </xsl:for-each>-->
                 
                 
-                
+           <!--     
                 <xsl:for-each select="betaler_persoon/betaler_naam">
                     <xsl:call-template name="makeReference">
-                        <!--<xsl:with-param name="in" select="betaler_persoon/betaler_naam"/>-->
+                        <!-\-<xsl:with-param name="in" select="betaler_persoon/betaler_naam"/>-\->
                         <xsl:with-param name="profile" select="'nl-core-Patient'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>                        
                     </xsl:call-template>
-                    
-                    
-                   <!-- <xsl:variable name="payor" as="element()*">
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile">
-                                <xsl:choose>
-                                    <xsl:when test="local-name(.) = 'betaler_persoon/betaler_naam'">nl-core-Patient</xsl:when>
-                                    <xsl:when test="local-name(.) = 'verzekeraar'">nl-core-Payer-Organization</xsl:when>
-                                </xsl:choose>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:variable>-->
-                    
-                <!--    <xsl:if test="count($payor) &gt; 0">
-                        <payor>
-                            <xsl:if test="bankgegevens">
-                                <extensietest>asdfsdf</extensietest>
-                            </xsl:if>
-                            <xsl:value-of select="$payor"/>
-                        </payor>-->
-                      
-                    <!--</xsl:if>-->                    
-                </xsl:for-each>
+                </xsl:for-each>-->
                 
                
             </Coverage>
