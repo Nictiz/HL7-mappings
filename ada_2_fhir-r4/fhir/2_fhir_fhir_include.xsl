@@ -93,6 +93,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="tekst_uitslag" resource="DiagnosticReport" profile="nl-core-TextResult"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult.VisualResult"/>
         <nm:map ada="toedieningsafspraak" resource="MedicationDispense" profile="nl-core-AdministrationAgreement"/>
+        <nm:map ada="vaccinatie" resource="Immunization" profile="nl-core-Vaccination-event"/>
+        <nm:map ada="vaccinatie" resource="ImmunizationRecommendation" profile="nl-core-Vaccination-request"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="nl-core-DispenseRequest"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
