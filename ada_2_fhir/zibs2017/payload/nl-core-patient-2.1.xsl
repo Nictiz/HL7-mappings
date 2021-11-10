@@ -69,20 +69,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="patientEntry" match="patient" mode="doPatientEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
-        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="entryFullUrl">
+            <xsl:choose>
+                <xsl:when test="$uuid or empty(identificatienummer | patient_identificatienummer | patient_identification_number)">
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getUriFromAdaId(identificatienummer | patient_identificatienummer | patient_identification_number, 'Patient', false())"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:choose>
-                    <xsl:when test="not($uuid) and string-length(nf:get-resourceid-from-token(.)) gt 0">
-                        <xsl:value-of select="nf:get-resourceid-from-token(.)"/>
-                    </xsl:when>
-                    <xsl:when test="not($uuid) and (naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value)">
-                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+            <xsl:if test="$referById and matches($entryFullUrl, '^https?:')">
+                <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>

@@ -99,35 +99,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
-                <xsl:when test="not($uuid) and (zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)">
-                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number))"/>
+                <xsl:when test="$uuid or empty(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)">
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                    <xsl:value-of select="nf:getUriFromAdaId(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number, 'Organization', false())"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:variable name="zaIdentification" as="element()*" select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]"/>
-                <xsl:choose>
-                    <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:when>
-                    <xsl:when test="$zaIdentification">
-                        <!--                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join($zaIdentification[1]/(@root | @value), ''))))"/>-->
-                        <!-- string-join follows order of @value / @root in XML, but we want a predictable order -->
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(concat($zaIdentification[1]/@root, '-', $zaIdentification[1]/@value))))"/>
-                    </xsl:when>
-                    <!-- AWE, in some rare cases this does not give a unique resource id -->
-                    <!--<xsl:otherwise>
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
-                    </xsl:otherwise>-->
-                    <!-- so fall back on entryFullUrl instead -->
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+            <xsl:if test="$referById and matches($entryFullUrl, '^https?:')">
+                <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
@@ -164,8 +146,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <Organization>
-                    <xsl:if test="$referById">
-                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    <xsl:if test="$referById and string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
                     </xsl:if>
                     <meta>
                         <profile value="{$profileValue}"/>

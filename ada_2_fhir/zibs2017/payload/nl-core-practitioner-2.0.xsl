@@ -84,35 +84,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
-                <xsl:when test="not($uuid) and (zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)">
-                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number))"/>
+                <xsl:when test="$uuid or empty(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)">
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <!-- let's use the practitioner node without specialty and organization to determine uuid, 
-                        this way the practitionerrole uuid generation can use the whole zorgverlener element for it's uuid and not conflict with the one for practitioner -->
-                    <xsl:variable name="healthProNoOrganization" as="element()?">
-                        <xsl:apply-templates select="." mode="copy4PractitionerKey"/>
-                    </xsl:variable>
-                    <xsl:value-of select="nf:get-fhir-uuid($healthProNoOrganization)"/>
+                    <xsl:value-of select="nf:getUriFromAdaId(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number, 'Practitioner', false())"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:variable name="zvlIdentification" as="element()*" select="(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)[@value | @root]"/>
-                <xsl:choose>
-                    <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:when>
-                    <xsl:when test="$zvlIdentification">
-<!--                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)[1]/(@root | @value), ''))))"/>-->
-                        <!-- string-join follows order of @value / @root in XML, but we want a predictable order -->                        
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(concat($zvlIdentification[1]/@root, '-', $zvlIdentification[1]/@value))))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+            <xsl:if test="$referById and matches($entryFullUrl, '^https?:')">
+                <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
@@ -145,9 +127,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner</xsl:variable>
                 <Practitioner>
-                    <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    <xsl:if test="$referById and string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>

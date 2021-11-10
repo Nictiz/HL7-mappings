@@ -35,11 +35,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
+                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)[@code][not(@codeSystem = $oidHL7NullFlavor)]" as="element(product_code)?"/>
+                <xsl:variable name="productCodeAsId" as="element()?">
+                    <product_code value="{$most-specific-product-code/@code}" root="{$most-specific-product-code/@codeSystem}"/>
+                </xsl:variable>
                 <xsl:variable name="entryFullUrl">
                     <xsl:choose>
                         <xsl:when test="not($uuid) and $most-specific-product-code">
-                            <xsl:value-of select="nf:getUriFromAdaCode($most-specific-product-code)"/>
+                            <xsl:value-of select="nf:getUriFromAdaId($productCodeAsId, 'Medication', false())"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="nf:get-fhir-uuid(.)"/>
@@ -1235,8 +1238,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue" select="$profile-uri"/>
                 <Medication xmlns="http://hl7.org/fhir">
-                    <xsl:if test="string-length($medication-id) gt 0">
-                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $medication-id)}"/>
+                    <xsl:if test="$referById and string-length($medication-id) gt 0">
+                        <id value="{$medication-id}"/>
                     </xsl:if>
                     <meta>
                         <profile value="{$profileValue}"/>
