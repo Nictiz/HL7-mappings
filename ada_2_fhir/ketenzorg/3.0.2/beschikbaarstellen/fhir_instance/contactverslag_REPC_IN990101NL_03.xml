@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="f0e3566a-3d41-11ec-5333-020000000000"/>
+   <id value="5533db38-4235-11ec-9227-020000000000"/>
    <type value="searchset"/>
    <total value="18"/>
    <link>
@@ -9,9 +9,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:f0e37739-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag09"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag09"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -20,7 +21,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Tinea Pedis</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag09 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -35,16 +36,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment09 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment09 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment09 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment09 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_S74.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_S74.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag09"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -54,19 +59,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment09"/>
+                  <value value="MedMijHG-contactmoment09"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment09 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment09 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-10-08T15:41:54+02:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Tinea Pedis"/>
@@ -74,9 +79,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_S74.01"/>
+                     <value value="MedMijHG-concern_S74.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -101,15 +106,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Mycose</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e37749-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Mycose"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_S74.01"/>
+                     <value value="MedMijHG-concern_S74.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -125,15 +130,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Heeft nog canesten via drogist; 2x daags gebruiken.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e37753-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Heeft nog canesten via drogist; 2x daags gebruiken."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_S74.01"/>
+                     <value value="MedMijHG-concern_S74.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -143,9 +148,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e37758-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag16"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag16"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -154,7 +160,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>HNP (thoracaal/lumbaal)</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag16 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -169,16 +175,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment16 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment16 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment16 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment16 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag16"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -188,19 +198,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment16"/>
+                  <value value="MedMijHG-contactmoment16"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment16 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment16 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2020-01-31T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="HNP (thoracaal/lumbaal)"/>
@@ -208,9 +218,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -235,15 +245,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">HNP</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e37768-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - HNP"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -259,15 +269,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Patiënt geïnformeerd, ziet het nog even aan.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e37772-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Patiënt geïnformeerd, ziet het nog even aan."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -277,9 +287,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e37777-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactverslag13"/>
       <resource>
          <Composition>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactverslag13"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -288,7 +299,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Keelpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag13 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -303,16 +314,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment13 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment13 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment13 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment13 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
+               <value value="MedMijHG-contactverslag13"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -322,19 +337,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment13"/>
+                  <value value="MedMijHG-contactmoment13"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment13 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment13 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2020-03-16T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Keelpijn"/>
@@ -342,9 +357,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -369,15 +384,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Keelpijn eci.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35eeb-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Keelpijn eci."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -387,9 +402,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35ef8-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag17"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag17"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -398,7 +414,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>HNP (thoracaal/lumbaal)</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag17 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -413,16 +429,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment17 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment17 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment17 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment17 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag17"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -432,19 +452,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment17"/>
+                  <value value="MedMijHG-contactmoment17"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment17 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment17 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2020-03-11T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="HNP (thoracaal/lumbaal)"/>
@@ -452,9 +472,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -479,15 +499,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">HNP</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f08-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - HNP"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -503,15 +523,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Nogmaals verwijzing Cesar</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f12-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Nogmaals verwijzing Cesar"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -521,9 +541,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f17-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag12"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag12"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -532,7 +553,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Keelpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag12 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -547,16 +568,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment12 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment12 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment12 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment12 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag12"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -566,19 +591,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment12"/>
+                  <value value="MedMijHG-contactmoment12"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment12 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment12 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2020-02-05T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Keelpijn"/>
@@ -586,9 +611,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -613,15 +638,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Keelpijn eci.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f27-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Keelpijn eci."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -637,15 +662,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Bezoek brengen aan de tandarts, wellicht zit er daar iets.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f31-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Bezoek brengen aan de tandarts, wellicht zit er daar iets."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -655,9 +680,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f36-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag15"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag15"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -666,7 +692,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>HNP (thoracaal/lumbaal)</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag15 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -681,16 +707,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment15 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment15 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment15 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment15 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag15"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -700,19 +730,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment15"/>
+                  <value value="MedMijHG-contactmoment15"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment15 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment15 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2020-01-26T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="HNP (thoracaal/lumbaal)"/>
@@ -720,9 +750,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -747,15 +777,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">HNP</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f46-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - HNP"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -771,15 +801,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Scan laten maken, afspraak gepland.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f50-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Scan laten maken, afspraak gepland."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -789,9 +819,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f55-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag14"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag14"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -800,7 +831,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>lage rugpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag14 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -815,16 +846,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment14 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment14 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment14 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment14 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag14"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -834,19 +869,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment14"/>
+                  <value value="MedMijHG-contactmoment14"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment14 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment14 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2020-01-06T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="lage rugpijn"/>
@@ -854,9 +889,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -881,15 +916,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Lage rugpijn</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f65-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Lage rugpijn"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -905,15 +940,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Cesar of Mensendieck. Verwijzing aangemaakt</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f6f-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Cesar of Mensendieck. Verwijzing aangemaakt"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -923,9 +958,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f74-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag07"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag07"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -934,7 +970,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Maagpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag07 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -949,16 +985,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment07 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment07 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment07 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment07 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_D02 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_D02 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_D02 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_D02 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag07"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -968,19 +1008,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment07"/>
+                  <value value="MedMijHG-contactmoment07"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment07 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment07 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-12-22T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Maagpijn"/>
@@ -988,9 +1028,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_D02"/>
+                     <value value="MedMijHG-concern_D02"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_D02 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_D02 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -1015,15 +1055,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Maag/duodenum problemen?</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35f84-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Maag/duodenum problemen?"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_D02"/>
+                     <value value="MedMijHG-concern_D02"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_D02 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_D02 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -1033,9 +1073,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f91-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag10"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag10"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1044,7 +1085,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Keelpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag10 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1059,16 +1100,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment10 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment10 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment10 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment10 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag10"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -1078,19 +1123,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment10"/>
+                  <value value="MedMijHG-contactmoment10"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment10 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment10 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-12-02T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Keelpijn"/>
@@ -1098,9 +1143,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -1125,15 +1170,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Keelpijn eci.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35fa1-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Keelpijn eci."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -1149,15 +1194,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Afwachten, zn. Medicatie is nog beschikbaar</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35fab-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Afwachten, zn. Medicatie is nog beschikbaar"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -1167,9 +1212,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35fb0-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag04"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag04"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1178,7 +1224,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>lage rugpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag04 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1193,16 +1239,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment04 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment04 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment04 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment04 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag04"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -1212,19 +1262,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment04"/>
+                  <value value="MedMijHG-contactmoment04"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment04 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment04 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-11-27T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="lage rugpijn"/>
@@ -1232,9 +1282,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -1259,15 +1309,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">lage rugpijn</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35fc0-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - lage rugpijn"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -1277,9 +1327,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35fcd-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag06"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag06"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1288,7 +1339,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Keelpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag06 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1303,16 +1354,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment06 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment06 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment06 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment06 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag06"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -1322,19 +1377,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment06"/>
+                  <value value="MedMijHG-contactmoment06"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment06 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment06 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-10-28T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Keelpijn"/>
@@ -1342,9 +1397,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -1369,15 +1424,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Keelpijn eci.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35fdd-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Keelpijn eci."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -1393,15 +1448,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Afwachten, zn. Pcm, tijdens feest paracod.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35fe7-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Afwachten, zn. Pcm, tijdens feest paracod."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -1411,9 +1466,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35fec-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslagMMK"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslagMMK"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1422,7 +1478,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Astma</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslagMMK (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1437,16 +1493,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmomentMMK (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmomentMMK (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_R96 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_R96 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_R96 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_R96 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslagMMK"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -1456,19 +1516,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmomentMMK"/>
+                  <value value="MedMijHG-contactmomentMMK"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-10-18T15:41:54+02:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Astma"/>
@@ -1476,9 +1536,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R96"/>
+                     <value value="MedMijHG-concern_R96"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R96 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R96 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -1503,15 +1563,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">astma</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e35ffc-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - astma"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R96"/>
+                     <value value="MedMijHG-concern_R96"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R96 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R96 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -1527,15 +1587,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Salbutamol half uur voor het sporten.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e36006-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Salbutamol half uur voor het sporten."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R96"/>
+                     <value value="MedMijHG-concern_R96"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R96 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R96 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -1545,9 +1605,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e3600b-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag08"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag08"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1556,7 +1617,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Contactverslag H. XXX_Mulders</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag08 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1571,16 +1632,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment08 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment08 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment08 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment08 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_S04 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_S04 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_S04 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_S04 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag08"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -1590,19 +1655,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment08"/>
+                  <value value="MedMijHG-contactmoment08"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment08 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment08 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-10-03T15:41:54+02:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Contactverslag H. XXX_Mulders"/>
@@ -1610,9 +1675,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_S04"/>
+                     <value value="MedMijHG-concern_S04"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_S04 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_S04 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -1628,15 +1693,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Onder mandibula re. glad weinig mobile zwelling, lijkt speekselkl.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e3601b-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Onder mandibula re. glad weinig mobile zwelling, lijkt speekselkl."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_S04"/>
+                     <value value="MedMijHG-concern_S04"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_S04 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_S04 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -1652,15 +1717,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Echo</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e3601e-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Echo"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_S04"/>
+                     <value value="MedMijHG-concern_S04"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_S04 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_S04 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -1670,9 +1735,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36023-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag03"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag03"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1681,7 +1747,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Contactverslag H. XXX_Mulders</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag03 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1696,12 +1762,16 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment03 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment03 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment03 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment03 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag03"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -1711,19 +1781,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment03"/>
+                  <value value="MedMijHG-contactmoment03"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment03 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment03 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-04-01T15:41:54+02:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Contactverslag H. XXX_Mulders"/>
@@ -1740,7 +1810,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Over paar weken RR thuis.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e36032-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Over paar weken RR thuis."/>
                </entry>
             </section>
@@ -1751,9 +1821,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36037-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag02"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag02"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1762,7 +1833,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Contactverslag H. XXX_Mulders</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag02 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1777,12 +1848,16 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment02 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment02 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment02 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment02 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag02"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -1792,19 +1867,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment02"/>
+                  <value value="MedMijHG-contactmoment02"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment02 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment02 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-03-12T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Contactverslag H. XXX_Mulders"/>
@@ -1821,7 +1896,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Na vakantie nogmaals.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e36046-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Na vakantie nogmaals."/>
                </entry>
             </section>
@@ -1832,9 +1907,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e3604b-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag01"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag01"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1843,7 +1919,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Boezemfibrilleren/-fladderen</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag01 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1858,16 +1934,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_K78 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_K78 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_K78 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_K78 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag01"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -1877,19 +1957,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment01"/>
+                  <value value="MedMijHG-contactmoment01"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-02-20T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Boezemfibrilleren/-fladderen"/>
@@ -1897,9 +1977,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_K78"/>
+                     <value value="MedMijHG-concern_K78"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_K78 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_K78 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -1924,15 +2004,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Ritmestoornis</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e3605b-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Ritmestoornis"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_K78"/>
+                     <value value="MedMijHG-concern_K78"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_K78 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_K78 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -1948,15 +2028,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Naar SEH.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e36065-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Naar SEH."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_K78"/>
+                     <value value="MedMijHG-concern_K78"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_K78 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_K78 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -1966,9 +2046,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e3606a-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag11"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag11"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -1977,7 +2058,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Keelpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag11 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -1992,16 +2073,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment11 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment11 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment11 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment11 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_R21.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag11"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -2011,19 +2096,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment11"/>
+                  <value value="MedMijHG-contactmoment11"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment11 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment11 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-12-27T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="Keelpijn"/>
@@ -2031,9 +2116,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -2058,15 +2143,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Keelpijn eci.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e3607a-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Keelpijn eci."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -2082,15 +2167,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Kweek van aanslag keel</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e36084-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Kweek van aanslag keel"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_R21.01"/>
+                     <value value="MedMijHG-concern_R21.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -2100,9 +2185,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36089-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag05"/>
       <resource>
          <Composition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-MedMijHG-contactverslag05"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -2111,7 +2197,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>lage rugpijn</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
+                     <caption>Samengestelde informatie. Subject: H. XXX_Mulders. Id: MedMijHG-contactverslag05 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: definitief<span style="display: block;">Auteur: Huisarts 1</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -2126,16 +2212,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: MedMijHG_contactmoment05 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment05 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment05 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment05 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
-                           <td>Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_L86.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="MedMijHG-contactverslag05"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -2145,19 +2235,19 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <encounter>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment05"/>
+                  <value value="MedMijHG-contactmoment05"/>
                </identifier>
-               <display value="Contactmoment: MedMijHG_contactmoment05 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment05 2.16.840.1.113883.2.4.3.111.19.1"/>
             </encounter>
             <date value="2019-12-17T14:41:54+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </author>
             <title value="lage rugpijn"/>
@@ -2165,9 +2255,9 @@
                <detail>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </detail>
             </event>
             <section>
@@ -2192,15 +2282,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Maag/duodenum problemen?</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e36099-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - Maag/duodenum problemen?"/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
             <section>
@@ -2216,15 +2306,15 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Cesar of Mensendieck.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f0e360a3-3d41-11ec-5333-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Cesar of Mensendieck."/>
                </entry>
                <entry>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG_concern_L86.01"/>
+                     <value value="MedMijHG-concern_L86.01"/>
                   </identifier>
-                  <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode: MedMijHG-concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
                </entry>
             </section>
          </Composition>
@@ -2234,7 +2324,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533ecd0-4235-11ec-9227-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -2302,9 +2392,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-900016431"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
@@ -2335,9 +2426,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-00002727"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -2367,7 +2459,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e3773b-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533ecd7-4235-11ec-9227-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2397,11 +2489,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </practitioner>
             <organization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </organization>
             <specialty>
@@ -2418,7 +2510,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e37749-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533ece5-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2432,7 +2524,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment09 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment09 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment09 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment09 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2465,15 +2557,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment09"/>
+                  <value value="MedMijHG-contactmoment09"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment09 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment09 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Mycose"/>
             <component>
@@ -2499,7 +2591,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e37753-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533ecef-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2513,7 +2605,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment09 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment09 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment09 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment09 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2538,15 +2630,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment09"/>
+                  <value value="MedMijHG-contactmoment09"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment09 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment09 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Heeft nog canesten via drogist; 2x daags gebruiken."/>
          </Observation>
@@ -2556,7 +2648,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e37768-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533ed04-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2570,7 +2662,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment16 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment16 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment16 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment16 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2603,15 +2695,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment16"/>
+                  <value value="MedMijHG-contactmoment16"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment16 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment16 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="HNP"/>
             <component>
@@ -2637,7 +2729,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e37772-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533ed0e-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2651,7 +2743,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment16 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment16 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment16 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment16 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2676,15 +2768,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment16"/>
+                  <value value="MedMijHG-contactmoment16"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment16 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment16 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Patiënt geïnformeerd, ziet het nog even aan."/>
          </Observation>
@@ -2694,7 +2786,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35eeb-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d8d3-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2708,7 +2800,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment13 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment13 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment13 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment13 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2741,15 +2833,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment13"/>
+                  <value value="MedMijHG-contactmoment13"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment13 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment13 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Keelpijn eci."/>
             <component>
@@ -2775,7 +2867,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f08-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d8f0-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2789,7 +2881,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment17 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment17 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment17 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment17 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2822,15 +2914,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment17"/>
+                  <value value="MedMijHG-contactmoment17"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment17 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment17 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="HNP"/>
             <component>
@@ -2856,7 +2948,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f12-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d8fa-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2870,7 +2962,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment17 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment17 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment17 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment17 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2895,15 +2987,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment17"/>
+                  <value value="MedMijHG-contactmoment17"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment17 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment17 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Nogmaals verwijzing Cesar"/>
          </Observation>
@@ -2913,7 +3005,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f27-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d90f-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2927,7 +3019,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment12 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment12 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment12 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment12 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2960,15 +3052,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment12"/>
+                  <value value="MedMijHG-contactmoment12"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment12 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment12 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Keelpijn eci."/>
             <component>
@@ -2994,7 +3086,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f31-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d919-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3008,7 +3100,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment12 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment12 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment12 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment12 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3033,15 +3125,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment12"/>
+                  <value value="MedMijHG-contactmoment12"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment12 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment12 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Bezoek brengen aan de tandarts, wellicht zit er daar iets."/>
          </Observation>
@@ -3051,7 +3143,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f46-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d92e-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3065,7 +3157,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment15 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment15 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment15 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment15 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3098,15 +3190,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment15"/>
+                  <value value="MedMijHG-contactmoment15"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment15 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment15 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="HNP"/>
             <component>
@@ -3132,7 +3224,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f50-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d938-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3146,7 +3238,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment15 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment15 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment15 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment15 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3171,15 +3263,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment15"/>
+                  <value value="MedMijHG-contactmoment15"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment15 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment15 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Scan laten maken, afspraak gepland."/>
          </Observation>
@@ -3189,7 +3281,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f65-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d94d-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3203,7 +3295,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment14 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment14 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment14 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment14 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3236,15 +3328,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment14"/>
+                  <value value="MedMijHG-contactmoment14"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment14 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment14 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Lage rugpijn"/>
             <component>
@@ -3270,7 +3362,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f6f-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d957-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3284,7 +3376,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment14 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment14 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment14 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment14 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3309,15 +3401,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment14"/>
+                  <value value="MedMijHG-contactmoment14"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment14 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment14 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Cesar of Mensendieck. Verwijzing aangemaakt"/>
          </Observation>
@@ -3327,7 +3419,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35f84-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d96c-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3341,7 +3433,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment07 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment07 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment07 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment07 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3374,15 +3466,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment07"/>
+                  <value value="MedMijHG-contactmoment07"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment07 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment07 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Maag/duodenum problemen?"/>
             <component>
@@ -3408,7 +3500,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35fa1-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d989-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3422,7 +3514,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment10 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment10 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment10 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment10 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3455,15 +3547,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment10"/>
+                  <value value="MedMijHG-contactmoment10"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment10 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment10 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Keelpijn eci."/>
             <component>
@@ -3489,7 +3581,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35fab-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d993-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3503,7 +3595,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment10 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment10 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment10 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment10 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3528,15 +3620,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment10"/>
+                  <value value="MedMijHG-contactmoment10"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment10 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment10 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Afwachten, zn. Medicatie is nog beschikbaar"/>
          </Observation>
@@ -3546,7 +3638,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35fc0-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d9a8-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3560,7 +3652,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment04 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment04 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment04 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment04 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3593,15 +3685,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment04"/>
+                  <value value="MedMijHG-contactmoment04"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment04 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment04 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="lage rugpijn"/>
             <component>
@@ -3627,7 +3719,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35fdd-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d9c5-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3641,7 +3733,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment06 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment06 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment06 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment06 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3674,15 +3766,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment06"/>
+                  <value value="MedMijHG-contactmoment06"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment06 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment06 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Keelpijn eci."/>
             <component>
@@ -3708,7 +3800,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35fe7-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d9cf-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3722,7 +3814,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment06 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment06 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment06 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment06 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3747,15 +3839,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment06"/>
+                  <value value="MedMijHG-contactmoment06"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment06 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment06 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Afwachten, zn. Pcm, tijdens feest paracod."/>
          </Observation>
@@ -3765,7 +3857,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e35ffc-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d9e4-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3779,7 +3871,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmomentMMK (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmomentMMK (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3812,15 +3904,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmomentMMK"/>
+                  <value value="MedMijHG-contactmomentMMK"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="astma"/>
             <component>
@@ -3846,7 +3938,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36006-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533d9ee-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3860,7 +3952,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmomentMMK (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmomentMMK (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3885,15 +3977,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmomentMMK"/>
+                  <value value="MedMijHG-contactmomentMMK"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmomentMMK 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Salbutamol half uur voor het sporten."/>
          </Observation>
@@ -3903,7 +3995,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e3601b-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da03-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3917,7 +4009,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment08 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment08 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment08 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment08 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3942,15 +4034,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment08"/>
+                  <value value="MedMijHG-contactmoment08"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment08 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment08 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Onder mandibula re. glad weinig mobile zwelling, lijkt speekselkl."/>
          </Observation>
@@ -3960,7 +4052,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e3601e-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da06-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -3974,7 +4066,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment08 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment08 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment08 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment08 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -3999,15 +4091,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment08"/>
+                  <value value="MedMijHG-contactmoment08"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment08 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment08 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Echo"/>
          </Observation>
@@ -4017,7 +4109,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36032-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da1a-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -4031,7 +4123,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment03 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment03 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment03 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment03 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -4056,15 +4148,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment03"/>
+                  <value value="MedMijHG-contactmoment03"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment03 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment03 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Over paar weken RR thuis."/>
          </Observation>
@@ -4074,7 +4166,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36046-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da2e-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -4088,7 +4180,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment02 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment02 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment02 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment02 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -4113,15 +4205,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment02"/>
+                  <value value="MedMijHG-contactmoment02"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment02 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment02 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Na vakantie nogmaals."/>
          </Observation>
@@ -4131,7 +4223,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e3605b-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da43-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -4145,7 +4237,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -4178,15 +4270,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment01"/>
+                  <value value="MedMijHG-contactmoment01"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Ritmestoornis"/>
             <component>
@@ -4212,7 +4304,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36065-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da4d-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -4226,7 +4318,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment01 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -4251,15 +4343,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment01"/>
+                  <value value="MedMijHG-contactmoment01"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Naar SEH."/>
          </Observation>
@@ -4269,7 +4361,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e3607a-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da62-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -4283,7 +4375,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment11 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment11 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment11 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment11 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -4316,15 +4408,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment11"/>
+                  <value value="MedMijHG-contactmoment11"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment11 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment11 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Keelpijn eci."/>
             <component>
@@ -4350,7 +4442,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36084-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da6c-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -4364,7 +4456,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment11 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment11 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment11 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment11 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -4389,15 +4481,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment11"/>
+                  <value value="MedMijHG-contactmoment11"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment11 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment11 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Kweek van aanslag keel"/>
          </Observation>
@@ -4407,7 +4499,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e36099-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da81-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -4421,7 +4513,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment05 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment05 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment05 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment05 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -4454,15 +4546,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment05"/>
+                  <value value="MedMijHG-contactmoment05"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment05 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment05 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Maag/duodenum problemen?"/>
             <component>
@@ -4488,7 +4580,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f0e360a3-3d41-11ec-5333-020000000000"/>
+      <fullUrl value="urn:uuid:5533da8b-4235-11ec-9227-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -4502,7 +4594,7 @@
                      <tbody>
                         <tr>
                            <th>Context</th>
-                           <td>Contact ID: MedMijHG_contactmoment05 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG_contactmoment05 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
+                           <td>Contact ID: MedMijHG-contactmoment05 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment05 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -4527,15 +4619,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f0e37728-3d41-11ec-5333-020000000000"/>
+               <reference value="Patient/"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_contactmoment05"/>
+                  <value value="MedMijHG-contactmoment05"/>
                </identifier>
-               <display value="Contact ID: MedMijHG_contactmoment05 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Contact ID: MedMijHG-contactmoment05 2.16.840.1.113883.2.4.3.111.19.1"/>
             </context>
             <valueString value="Cesar of Mensendieck."/>
          </Observation>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="f1145f1c-3d41-11ec-1780-020000000000"/>
+   <id value="55757b6a-4235-11ec-1800-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <link>
@@ -9,9 +9,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1.996625"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.840.1.113883.2.4.6.6.90000258.4.1-996625"/>
       <resource>
          <Composition>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.1-996625"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -20,7 +21,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Emfyseem/COPD</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: E. XXX_Zegers. Status: definitief<span style="display: block;">Auteur: XIS test</span>
+                     <caption>Samengestelde informatie. Subject: E. XXX_Zegers. Id: 996625 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1), Status: definitief<span style="display: block;">Auteur: XIS test</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -35,7 +36,7 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: 996625 consult 2019-02-03T16:45:00+01:00</td>
+                           <td>Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
@@ -45,6 +46,10 @@
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+               <value value="996625"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -54,16 +59,16 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <encounter>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996625"/>
-               <display value="Contactmoment: 996625 consult 2019-02-03T16:45:00+01:00"/>
+               <reference value=""/>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </encounter>
             <date value="2019-01-30T16:45:00+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="XIS test"/>
             </author>
             <title value="Emfyseem/COPD"/>
@@ -89,7 +94,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f1144941-3d41-11ec-1780-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="S: Subjectief - Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB."/>
                </entry>
                <entry>
@@ -113,7 +118,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f1144944-3d41-11ec-1780-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="O: Objectief - Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb."/>
                </entry>
                <entry>
@@ -146,7 +151,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">COPD, beterend</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f1144947-3d41-11ec-1780-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - COPD, beterend"/>
                </entry>
                <entry>
@@ -170,7 +175,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f1144951-3d41-11ec-1780-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin."/>
                </entry>
                <entry>
@@ -188,9 +193,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1.996626"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.840.1.113883.2.4.6.6.90000258.4.1-996626"/>
       <resource>
          <Composition>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.1-996626"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -199,7 +205,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Emfyseem/COPD</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: E. XXX_Zegers. Status: definitief<span style="display: block;">Auteur: XIS test</span>
+                     <caption>Samengestelde informatie. Subject: E. XXX_Zegers. Id: 996626 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1), Status: definitief<span style="display: block;">Auteur: XIS test</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -214,7 +220,7 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: 996626 consult 2019-02-06T17:03:00+01:00</td>
+                           <td>Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10</td>
                         </tr>
                         <tr>
                            <th>Gebeurtenis</th>
@@ -224,6 +230,10 @@
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+               <value value="996626"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -233,16 +243,16 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <encounter>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996626"/>
-               <display value="Contactmoment: 996626 consult 2019-02-06T17:03:00+01:00"/>
+               <reference value=""/>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </encounter>
             <date value="2019-02-02T17:03:00+01:00"/>
             <author>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="XIS test"/>
             </author>
             <title value="Emfyseem/COPD"/>
@@ -268,7 +278,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f1144965-3d41-11ec-1780-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="S: Subjectief - Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel."/>
                </entry>
                <entry>
@@ -292,7 +302,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Longen VAG crep+, piep iets, rhonchi+.  Percussie gb.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f1144968-3d41-11ec-1780-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="O: Objectief - Longen VAG crep+, piep iets, rhonchi+. Percussie gb."/>
                </entry>
                <entry>
@@ -325,7 +335,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">COPD, exacerbatie</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f114496b-3d41-11ec-1780-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="E: Evaluatie - COPD, exacerbatie"/>
                </entry>
                <entry>
@@ -349,7 +359,7 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">AB starten, ventolin 3-4 dgs.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:f1144975-3d41-11ec-1780-020000000000"/>
+                  <reference value="Observation/"/>
                   <display value="P: Plan - AB starten, ventolin 3-4 dgs."/>
                </entry>
                <entry>
@@ -367,9 +377,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996625"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.6.6.90000258.4.10-996625"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.10-996625"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -436,7 +447,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <episodeOfCare>
@@ -457,11 +468,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:f11457a6-3d41-11ec-1780-020000000000"/>
+                        <reference value="PractitionerRole/"/>
                         <display value="XIS test || Huisarts || Tést Zorginstelling 02"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+                  <reference value="Practitioner/2.16.528.1.1007.3.1-900014718"/>
                   <display value="XIS test"/>
                </individual>
             </participant>
@@ -470,7 +481,7 @@
                <end value="2019-02-03T16:51:00+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:uuid:f114493a-3d41-11ec-1780-020000000000"/>
+               <reference value="Organization/"/>
                <display value="Tést Zorginstelling 02"/>
             </serviceProvider>
          </Encounter>
@@ -480,9 +491,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996626"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.6.6.90000258.4.10-996626"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.10-996626"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -549,7 +561,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <episodeOfCare>
@@ -570,11 +582,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:f11457a6-3d41-11ec-1780-020000000000"/>
+                        <reference value="PractitionerRole/"/>
                         <display value="XIS test || Huisarts || Tést Zorginstelling 02"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+                  <reference value="Practitioner/2.16.528.1.1007.3.1-900014718"/>
                   <display value="XIS test"/>
                </individual>
             </participant>
@@ -583,7 +595,7 @@
                <end value="2019-02-06T17:08:00+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:uuid:f114493a-3d41-11ec-1780-020000000000"/>
+               <reference value="Organization/"/>
                <display value="Tést Zorginstelling 02"/>
             </serviceProvider>
          </Encounter>
@@ -593,7 +605,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:5575666b-4235-11ec-1800-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -678,9 +690,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-900014718"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
@@ -711,9 +724,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-90000381"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-90000381"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -743,7 +757,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f114493a-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:55756678-4235-11ec-1800-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -775,7 +789,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144934-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:55756672-4235-11ec-1800-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -799,11 +813,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="XIS test"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:f114493a-3d41-11ec-1780-020000000000"/>
+               <reference value="Organization/"/>
                <display value="Tést Zorginstelling 02"/>
             </organization>
          </PractitionerRole>
@@ -813,7 +827,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f11457a6-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:55755734-4235-11ec-1800-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -843,11 +857,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="XIS test"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:f114493a-3d41-11ec-1780-020000000000"/>
+               <reference value="Organization/"/>
                <display value="Tést Zorginstelling 02"/>
             </organization>
             <specialty>
@@ -864,7 +878,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144941-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:5575667f-4235-11ec-1800-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -903,11 +917,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996625"/>
+               <reference value=""/>
                <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </context>
             <valueString value="Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB."/>
@@ -918,7 +932,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144944-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:55756682-4235-11ec-1800-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -957,11 +971,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996625"/>
+               <reference value=""/>
                <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </context>
             <valueString value="Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb."/>
@@ -972,7 +986,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144947-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:55756685-4235-11ec-1800-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -1019,11 +1033,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996625"/>
+               <reference value=""/>
                <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </context>
             <valueString value="COPD, beterend"/>
@@ -1050,7 +1064,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144951-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:5575668f-4235-11ec-1800-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -1089,11 +1103,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996625"/>
+               <reference value=""/>
                <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </context>
             <valueString value="Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin."/>
@@ -1104,7 +1118,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144965-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:557566a3-4235-11ec-1800-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -1143,11 +1157,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996626"/>
+               <reference value=""/>
                <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </context>
             <valueString value="Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel."/>
@@ -1158,7 +1172,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144968-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:557566a6-4235-11ec-1800-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -1197,11 +1211,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996626"/>
+               <reference value=""/>
                <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </context>
             <valueString value="Longen VAG crep+, piep iets, rhonchi+.  Percussie gb."/>
@@ -1212,7 +1226,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f114496b-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:557566a9-4235-11ec-1800-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -1259,11 +1273,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996626"/>
+               <reference value=""/>
                <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </context>
             <valueString value="COPD, exacerbatie"/>
@@ -1290,7 +1304,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1144975-3d41-11ec-1780-020000000000"/>
+      <fullUrl value="urn:uuid:557566b3-4235-11ec-1800-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -1329,11 +1343,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1144920-3d41-11ec-1780-020000000000"/>
+               <reference value="Patient/"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996626"/>
+               <reference value=""/>
                <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </context>
             <valueString value="AB starten, ventolin 3-4 dgs."/>
