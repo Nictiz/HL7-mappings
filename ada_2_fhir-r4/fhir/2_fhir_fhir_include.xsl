@@ -66,8 +66,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada2resourceType">
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer"/>
-        <nm:map ada="verzekeraar" resource="Organization" profile="nl-core-Payer-Organization"/>
-        <nm:map ada="betaler" resource="Patient" profile="nl-core-Patient"/>
+        <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
+        <nm:map ada="betaler" resource="Patient" profile="nl-core-Payer-Patient"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
@@ -295,7 +295,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:when>
             <xsl:when test="$in/self::betaler">
-                <xsl:for-each-group select="$in/verzekeraar" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="$in/verzekeraar[identificatie_nummer or organisatie_naam]" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+                <xsl:for-each-group select="$in/betaler_persoon/betaler_naam" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
             </xsl:when>

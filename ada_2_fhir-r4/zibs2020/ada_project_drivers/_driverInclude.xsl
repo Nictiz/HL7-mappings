@@ -191,19 +191,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
              <xsl:when test="$localName = 'betaler'">
                 <xsl:apply-templates select="$in" mode="nl-core-Payer">
                     <xsl:with-param name="subject" select="$subject"/>
-                    <xsl:with-param name="payerOrganization" select="verzekeraar"/>
-                </xsl:apply-templates>
-<!--                 <xsl:for-each select="betaler_persoon/betaler_naam">
-                     <xsl:apply-templates  mode="nl-core-Patient">
-                         <!-\-<xsl:with-param name="payerName" select="betaler_persoon/betaler_naam"/>-\->
-                     </xsl:apply-templates>
-                 </xsl:for-each>-->
-                 <xsl:for-each select="verzekeraar">
-                     <xsl:apply-templates mode="nl-core-Payer-Organization" select=".">
-                         <xsl:with-param name="addressInformation" select="ancestor::adresgegevens"/>
-                         <xsl:with-param name="contactInformation" select="ancestor::contactgegevens"/>
-                     </xsl:apply-templates>
-                 </xsl:for-each>
+                </xsl:apply-templates>                
+                 <xsl:if test="verzekeraar/identificatie_nummer | verzekeraar/organisatie_naam">
+                     <xsl:apply-templates select="$in" mode="nl-core-Payer-Organization"/>
+                 </xsl:if>
+                 <xsl:if test="betaler_persoon/betaler_naam">
+                     <xsl:apply-templates select="$in" mode="nl-core-Payer-Patient"/>
+                 </xsl:if>
             </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">

@@ -51,7 +51,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="maritalStatus">Optional ada instance of zib MaritalStatus</xd:param>
         <xd:param name="languageProficiency">Optional ada instances of zib LanguageProficiency</xd:param>
         <xd:param name="contactPersons">Optional ada instances of zib ContactPerson that need to be mapped to Patient.contact in FHIR (this is not always the case).</xd:param>
-        <xd:param name="payerPerson">Optional ada instance of zib Payer</xd:param>
     </xd:doc>
     <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient" as="element(f:Patient)">
         <xsl:param name="in" as="element()?" select="."/>
@@ -59,11 +58,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?" select="$in/burgerlijke_staat_rc"/>
         <xsl:param name="languageProficiency" as="element(taalvaardigheid)*" select="$in/taalvaardigheid"/>
         <xsl:param name="contactPersons" as="element(contactpersoon)*"  select="$in/contactpersoon"/>
-        <xsl:param name="payerName" as="element(betaler_naam)*"  select="$in/betaler_naam"/>
         
         <xsl:for-each select="$in">
             <Patient>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="'nl-core-Patient'"/>
+
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
                 </meta>
@@ -90,16 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="naamgegevens">
                     <xsl:call-template name="nl-core-NameInformation"/>
                 </xsl:for-each>
-                
-                <!-- Payer name information from the nl-core-Payer profile. -->
-                <xsl:for-each select="$payerName">
-                    <name>
-                        <text>
-                            <xsl:attribute name="value" select="$payerName"/>
-                        </text>
-                    </name>
-                </xsl:for-each>
-                
+               
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
                 </xsl:for-each>

@@ -38,7 +38,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-Payer" mode="nl-core-Payer" match="betaler" as="element(f:Coverage)">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" as="element()?"/>
-        <xsl:param name="payerOrganization" as="element(verzekeraar)?"/>
         
         <xsl:for-each select="$in">
             <Coverage>
@@ -111,24 +110,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </period>
                 </xsl:if>
                 
-                
-                <xsl:for-each select="verzekeraar[identificatie_nummer or organisatie_naam]">
+<!--                <xsl:for-each select="verzekeraar[identificatie_nummer or organisatie_naam]">
                     <xsl:call-template name="makeReference">
-    <!--                    <xsl:with-param name="in" select="betaler"/>-->
                         <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
+                -->
+
                 
                 
-           <!--     
                 <xsl:for-each select="betaler_persoon/betaler_naam">
                     <xsl:call-template name="makeReference">
-                        <!-\-<xsl:with-param name="in" select="betaler_persoon/betaler_naam"/>-\->
-                        <xsl:with-param name="profile" select="'nl-core-Patient'"/>
+                        <xsl:with-param name="profile" select="'nl-core-Payer-Patient'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>                        
                     </xsl:call-template>
-                </xsl:for-each>-->
+                </xsl:for-each>
                 
                
             </Coverage>
@@ -138,13 +135,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-Payer-Organization instance as a Orgarnization FHIR instance from ADA betaler.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="addressInformation">ADA instance of adresgegevens within betaler.</xd:param>
-        <xd:param name="contactInformation">ADA instance of contactgegevens within betaler.</xd:param>
     </xd:doc>
-    <xsl:template match="verzekeraar" name="nl-core-Payer-Organization" mode="nl-core-Payer-Organization" as="element(f:Organization)">
+    <xsl:template match="betaler" name="nl-core-Payer-Organization" mode="nl-core-Payer-Organization" as="element(f:Organization)">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="addressInformation" as="element()?"/>
-        <xsl:param name="contactInformation" as="element()?"/>
         <xsl:for-each select="$in">
             <Organization>
                 <xsl:call-template name="insertLogicalId">
@@ -153,7 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer-Organization"/>
                 </meta>
-                <xsl:for-each select="identificatie_nummer">
+                <xsl:for-each select="verzekeraar/identificatie_nummer">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier">
                             <xsl:with-param name="in" select="."/>
@@ -161,20 +154,60 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
-                <xsl:for-each select="organisatie_naam">
+                <xsl:for-each select="verzekeraar/organisatie_naam">
                     <name value="{@value}"/>
                 </xsl:for-each>
                 
                 <xsl:call-template name="nl-core-ContactInformation">
-                    <xsl:with-param name="in" select="$contactInformation"/>
+                    <xsl:with-param name="in" select="contactgegevens"/>
                 </xsl:call-template>
                 
                 <xsl:call-template name="nl-core-AddressInformation">
-                    <xsl:with-param name="in" select="$addressInformation"/>
+                    <xsl:with-param name="in" select="adresgegevens"/>
                 </xsl:call-template>
             </Organization>
         </xsl:for-each>
     </xsl:template> 
+    
+    
+    
+    <xd:doc>
+        <xd:desc>Create an nl-core-Patient FHIR instance from the following ada parts:
+            <xd:ul>
+                <xd:li>zib Payer</xd:li>
+            </xd:ul>
+        </xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+    </xd:doc>
+    <xsl:template match="betaler" mode="nl-core-Payer-Patient" name="nl-core-Payer-Patient" as="element(f:Patient)">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:for-each select="$in">
+            <Patient>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="'nl-core-Payer-Patient'"/>
+                </xsl:call-template>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+                </meta>
+                
+                <!-- Payer name information from the nl-core-Payer profile. -->
+                <xsl:for-each select="betaler_persoon/betaler_naam">
+                    <name>
+                        <text value="{normalize-space(@value)}"/>
+                    </name>
+                </xsl:for-each>
+                
+                <xsl:for-each select="contactgegevens">
+                    <xsl:call-template name="nl-core-ContactInformation"/>
+                </xsl:for-each>
+                
+                <xsl:for-each select="adresgegevens">
+                    <xsl:call-template name="nl-core-AddressInformation"/>
+                </xsl:for-each>
+            </Patient>
+        </xsl:for-each>
+    </xsl:template>
+    
     
 
     <xd:doc>
