@@ -280,26 +280,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:apply-templates>
                 </nm:reference-display>
             </nm:resource>
+        </xsl:for-each>
             
             <!-- SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
-            <xsl:choose>
-                <xsl:when test="$in/self::soepverslag">
-                    <xsl:for-each-group select="$in/soepregel" group-by="nf:getGroupingKeyDefault(.)">
-                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                    </xsl:for-each-group>
-                </xsl:when>
-                <xsl:when test="$in/self::tekst_uitslag">
-                    <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
-                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                    </xsl:for-each-group>
-                </xsl:when>
-                <xsl:when test="$in/self::betaler">
-                    <xsl:for-each-group select="$in/verzekeraar" group-by="nf:getGroupingKeyDefault(.)">
-                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                    </xsl:for-each-group>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:for-each>
+        <xsl:choose>
+            <xsl:when test="$in/self::soepverslag">
+                <xsl:for-each-group select="$in/soepregel" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+            <xsl:when test="$in/self::tekst_uitslag">
+                <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+            <xsl:when test="$in/self::betaler">
+                <xsl:for-each-group select="$in/verzekeraar" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+        </xsl:choose>
+
     </xsl:template>
     
     <xd:doc>

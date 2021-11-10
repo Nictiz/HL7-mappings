@@ -112,13 +112,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 
-<!--                <xsl:for-each select="verzekeraar/identificatie_nummer | verzekeraar/organisatie_naam ">
+                <xsl:for-each select="verzekeraar[identificatie_nummer or organisatie_naam]">
                     <xsl:call-template name="makeReference">
-    <!-\-                    <xsl:with-param name="in" select="betaler"/>-\->
+    <!--                    <xsl:with-param name="in" select="betaler"/>-->
                         <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>
                     </xsl:call-template>
-                </xsl:for-each>-->
+                </xsl:for-each>
                 
                 
            <!--     
@@ -141,7 +141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="addressInformation">ADA instance of adresgegevens within betaler.</xd:param>
         <xd:param name="contactInformation">ADA instance of contactgegevens within betaler.</xd:param>
     </xd:doc>
-    <xsl:template match="verzekeraar" name="nl-core-Payer-Organization" mode="nl-core-Payer-Organization"  as="element(f:Organization)">
+    <xsl:template match="verzekeraar" name="nl-core-Payer-Organization" mode="nl-core-Payer-Organization" as="element(f:Organization)">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="addressInformation" as="element()?"/>
         <xsl:param name="contactInformation" as="element()?"/>

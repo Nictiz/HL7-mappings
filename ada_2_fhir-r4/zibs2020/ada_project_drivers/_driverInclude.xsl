@@ -199,7 +199,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                      </xsl:apply-templates>
                  </xsl:for-each>-->
                  <xsl:for-each select="verzekeraar">
-                     <xsl:apply-templates mode="nl-core-Payer-Organization">
+                     <xsl:apply-templates mode="nl-core-Payer-Organization" select=".">
                          <xsl:with-param name="addressInformation" select="ancestor::adresgegevens"/>
                          <xsl:with-param name="contactInformation" select="ancestor::contactgegevens"/>
                      </xsl:apply-templates>
