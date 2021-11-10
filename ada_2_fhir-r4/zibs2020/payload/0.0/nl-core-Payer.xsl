@@ -115,17 +115,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>
                     </xsl:call-template>
-                </xsl:for-each>
-                -->
+                </xsl:for-each>-->
+                
 
                 
-                
+            <!--    
                 <xsl:for-each select="betaler_persoon/betaler_naam">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="profile" select="'nl-core-Payer-Patient'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>                        
                     </xsl:call-template>
-                </xsl:for-each>
+                </xsl:for-each>-->
                 
                
             </Coverage>
@@ -172,11 +172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Patient FHIR instance from the following ada parts:
-            <xd:ul>
-                <xd:li>zib Payer</xd:li>
-            </xd:ul>
-        </xd:desc>
+        <xd:desc>Create an nl-core-Patient FHIR instance from the ada parts Payer.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="betaler" mode="nl-core-Payer-Patient" name="nl-core-Payer-Patient" as="element(f:Patient)">

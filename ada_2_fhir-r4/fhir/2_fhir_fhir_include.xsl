@@ -295,10 +295,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:when>
             <xsl:when test="$in/self::betaler">
-                <xsl:for-each-group select="$in/verzekeraar[identificatie_nummer or organisatie_naam]" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="$in/betaler[verzekeraar/identificatie_nummer or verzekeraar/organisatie_naam]" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
-                <xsl:for-each-group select="$in/betaler_persoon/betaler_naam" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="$in/betaler[betaler_persoon/betaler_naam]" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
             </xsl:when>
