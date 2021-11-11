@@ -26,8 +26,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>
-            <xd:p>Create a nl-core-FunctionalOrMentalStatus instance as a Observation FHIR instance from ADA functionele_of_mentale_status.</xd:p>
-            <xd:p>The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket zib-1549). Therefore SNOMED code 118228005 is hard coded which may not be they right category for the information that is transformed.</xd:p>
+            <xd:p>Create an nl-core-FunctionalOrMentalStatus instance as an Observation FHIR instance from ADA functionele_of_mentale_status.</xd:p>
+            <xd:p>The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket zib-1549). Therefore SNOMED code 118228005 is hard coded which may not be the right category for the information that is transformed.</xd:p>
             </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
 
                 <xsl:call-template name="util:logMessage">
-                    <xsl:with-param name="msg">The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket ZIB-1549). Therefore SNOMED code 118228005 is hard coded which may not be they right category for the information that is transformed.</xsl:with-param>
+                    <xsl:with-param name="msg">The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket ZIB-1549). Therefore SNOMED code 118228005 is hard coded which may not be the right category for the information that is transformed.</xsl:with-param>
                     <xsl:with-param name="level">WARN</xsl:with-param>
                     <xsl:with-param name="terminate">false</xsl:with-param>
                 </xsl:call-template>
