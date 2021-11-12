@@ -39,7 +39,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="medisch_hulpmiddel" name="nl-core-MedicalDevice" mode="nl-core-MedicalDevice" as="element(f:DeviceUseStatement)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="device" select="product/*" as="element()?"/>
+        <xsl:param name="profile" select="'nl-core-MedicalDevice'" as="xs:string"/>
+        <xsl:param name="reasonReference" as="element()?"/>
+        <xsl:param name="reasonReferenceProfile" select="''" as="xs:string"/>
         
         <xsl:for-each select="$in">
             <DeviceUseStatement>
@@ -47,10 +49,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="endDate" select="eind_datum/@value"/>
                 
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-MedicalDevice'"/>
+                    <xsl:with-param name="profile" select="$profile"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/{$profile}"/>
                 </meta>
                 
                 <xsl:for-each select="zorgverlener">
@@ -123,11 +125,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </timingPeriod>
                 </xsl:if>
-                
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$device"/>
-                    <xsl:with-param name="wrapIn" select="'device'"/>
-                </xsl:call-template>
+
+                <xsl:for-each select="product">
+                    <device>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile" select="concat($profile,'.Product')"/>
+                        </xsl:call-template>
+                    </device>
+                </xsl:for-each>
                     
                 <xsl:for-each select="indicatie">
                     <xsl:call-template name="makeReference">
@@ -136,9 +141,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
+                <!--The element reasonReference is present to support Observations that refer to a MedicalDevice, such as HearingFunction and VisualFunction. -->
+                <xsl:if test="$reasonReference">
+                    <xsl:for-each select="../..">
+                        <reasonReference>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="profile" select="$reasonReferenceProfile"/>
+                            </xsl:call-template>
+                        </reasonReference>
+                    </xsl:for-each>
+                </xsl:if>            
+                
                 <xsl:for-each select="anatomische_locatie">
                     <bodySite>
-                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                        <xsl:call-template name="nl-core-AnatomicalLocation">
+                            <xsl:with-param name="profile" select="$profile"/>
+                        </xsl:call-template>
                     </bodySite>
                 </xsl:for-each>
                 
@@ -164,14 +182,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="product" name="nl-core-MedicalDevice.Product" mode="nl-core-MedicalDevice.Product" as="element(f:Device)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="profile" select="'nl-core-MedicalDevice.Product'" as="xs:string"/>
         
         <xsl:for-each select="$in">
             <Device>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-MedicalDevice.Product'"/>
+                    <xsl:with-param name="profile" select="$profile"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/{$profile}"/>
                 </meta>
                         
                 <xsl:for-each select="product_id">

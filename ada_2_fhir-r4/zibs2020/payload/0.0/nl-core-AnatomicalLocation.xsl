@@ -26,7 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada freedomrestrictingjntervention to FHIR valueCodableConcept element conforming to profile nl-core-AnatomicalLocation</xd:desc>
+        <xd:desc>Converts ada anatomische_locatie to FHIR valueCodableConcept element conforming to profile nl-core-AnatomicalLocation</xd:desc>
     </xd:doc>
     
     <xd:doc>
