@@ -27,10 +27,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
-    <xsl:template match="/farmaceutisch_product_registratie">
-        <xsl:for-each select="farmaceutisch_product">
-            <xsl:call-template name="nl-core-PharmaceuticalProduct"/>
-        </xsl:for-each>
+    <xsl:template match="/nm:bundle">
+        <xsl:apply-templates mode="_doTransform" select="$bundle/farmaceutisch_product"/>
+    </xsl:template>
+    
+    <xsl:template match="//farmaceutisch_product_registratie/farmaceutisch_product">
+        <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
 </xsl:stylesheet>
