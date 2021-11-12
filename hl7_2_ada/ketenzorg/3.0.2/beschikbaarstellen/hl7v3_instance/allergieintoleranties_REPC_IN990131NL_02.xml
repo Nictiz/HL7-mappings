@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REPC_IN990131NL xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <id root="2.16.840.1.113883.2.4.3.39.6101.90000381.90000012.1" extension="77038"/>
+    <creationTime value="20210825201426.7100+0200"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId root="2.16.840.1.113883.1.6" extension="REPC_IN990131NL"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="NE"/>
+    <acknowledgement typeCode="AA">
+        <targetMessage>
+            <id root="2.16.840.1.113883.2.4.6.6" extension="4479474"/>
+        </targetMessage>
+    </acknowledgement>
+    <receiver>
+        <device>
+            <id root="2.16.840.1.113883.2.4.6.6" extension="1"/>
+        </device>
+    </receiver>
+    <sender>
+        <device>
+            <id root="2.16.840.1.113883.2.4.6.6" extension="90000012"/>
+            <softwareName>Mira</softwareName>
+            <agencyFor>
+                <representedOrganization>
+                    <id root="2.16.528.1.1007.3.3" extension="90000381"/>
+                    <name>CGM praktijk op ststect6</name>
+                    <telecom value="x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.90000012"/>
+                </representedOrganization>
+            </agencyFor>
+        </device>
+    </sender>
+    <ControlActProcess moodCode="EVN">
+        <effectiveTime value="20210825201425.2282+0200"/>
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedDevice>
+                    <id root="2.16.528.1.1007.3.2" extension="900012264"/>
+                    <id root="2.16.840.1.113883.2.4.6.6" extension="90000012"/>
+                    <assignedPrincipalChoiceList>
+                        <assignedDevice>
+                            <softwareName>Mira 6.21.702</softwareName>
+                        </assignedDevice>
+                    </assignedPrincipalChoiceList>
+                    <Organization>
+                        <id root="2.16.528.1.1007.3.3" extension="90000381"/>
+                        <code code="K3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Apotheekhoudende huisartspraktijk"/>
+                        <name>CGM praktijk op ststect6</name>
+                        <telecom value="x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.90000012"/>
+                        <addr>
+                            <city>LSP</city>
+                        </addr>
+                    </Organization>
+                </AssignedDevice>
+            </participant>
+        </authorOrPerformer>
+        <subject>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.20"/>
+                <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies and/or adverse reactions"/>
+                <statusCode code="completed"/>
+                <recordTarget typeCode="RCT" contextControlCode="OP">
+                    <patientRole>
+                        <id root="2.16.840.1.113883.2.4.6.3" extension="999901163"/>
+                        <addr use="HP">
+                            <streetName>Knolweg</streetName>
+                            <houseNumber>2</houseNumber>
+                            <postalCode>9999 ZZ</postalCode>
+                            <city>Stitswerd</city>
+                        </addr>
+                        <patient>
+                            <name>
+                                <given qualifier="CL">Victoria</given>
+                                <family qualifier="BR">Ketenzorg-Acceptatie</family>
+                            </name>
+                            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Female"/>
+                            <birthTime value="19830605"/>
+                        </patient>
+                    </patientRole>
+                </recordTarget>
+                <participant typeCode="CST">
+                    <participantRole classCode="ASSIGNED">
+                        <id root="2.16.528.1.1007.3.1" extension="900021032"/>
+                        <id root="2.16.840.1.113883.2.4.6.1" extension="01990124"/>
+                        <addr use="WP">
+                            <streetName>Ettensebaan</streetName>
+                            <houseNumber>15</houseNumber>
+                            <postalCode>4812 XA</postalCode>
+                            <city>Breda</city>
+                            <country>Nederland</country>
+                        </addr>
+                        <telecom value="tel:+31434074766"/>
+                        <playingEntity classCode="PSN" determinerCode="INSTANCE">
+                            <code code="01.004" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="ApotheekhoudendeHuisarts"/>
+                            <name>Waarnemend Huisarts 2</name>
+                        </playingEntity>
+                        <scopingEntity classCode="ORG" determinerCode="INSTANCE">
+                            <id root="2.16.528.1.1007.3.3" extension="90000381"/>
+                            <desc>CGM praktijk op ststect6</desc>
+                        </scopingEntity>
+                    </participantRole>
+                </participant>
+                <component typeCode="COMP">
+                    <act classCode="ACT" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.215"/>
+                        <id root="2.16.840.1.113883.2.4.3.39.6101.90000381.90000012.24" extension="292"/>
+                        <code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+                        <statusCode code="active"/>
+                        <entryRelationship typeCode="SUBJ">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.216"/>
+                                <id root="2.16.840.1.113883.2.4.3.39.6101.90000381.90000012.17" extension="0000029204000000573"/>
+                                <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                                <statusCode code="completed"/>
+                                <effectiveTime>
+                                    <low value="20170820"/>
+                                </effectiveTime>
+                                <value xsi:type="CD" code="419511003" codeSystem="2.16.840.1.113883.6.96" displayName="Propensity to adverse reactions to drug"/>
+                                <author>
+                                    <time value="201908200000"/>
+                                    <assignedAuthor>
+                                        <id root="2.16.528.1.1007.3.1" extension="900021032"/>
+                                        <code code="01.004" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="ApotheekhoudendeHuisarts"/>
+                                        <assignedPerson>
+                                            <name>Waarnemend Huisarts 2</name>
+                                        </assignedPerson>
+                                        <representedOrganization>
+                                            <id root="2.16.528.1.1007.3.3" extension="90000381"/>
+                                            <name>CGM praktijk op ststect6</name>
+                                            <telecom value="x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.90000012"/>
+                                            <addr>
+                                                <city>Maastricht</city>
+                                            </addr>
+                                        </representedOrganization>
+                                    </assignedAuthor>
+                                </author>
+                                <participant typeCode="CSM">
+                                    <participantRole classCode="MANU">
+                                        <playingEntity classCode="MMAT" determinerCode="INSTANCE">
+                                            <code code="57" codeSystem="2.16.840.1.113883.2.4.4.1.902.122" displayName="AMOXICILLINE/AMPICILLINE"/>
+                                        </playingEntity>
+                                    </participantRole>
+                                </participant>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="SUBJ">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.216"/>
+                                <id root="2.16.840.1.113883.2.4.3.39.6101.90000381.90000012.9" extension="0000029207000000073"/>
+                                <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                                <statusCode code="completed"/>
+                                <effectiveTime>
+                                    <low value="20060501"/>
+                                    <high value="20181231"/>
+                                </effectiveTime>
+                                <value xsi:type="CD" code="419511003" codeSystem="2.16.840.1.113883.6.96" displayName="Propensity to adverse reactions to drug"/>
+                                <author>
+                                    <time value="201911200000"/>
+                                    <assignedAuthor>
+                                        <id root="2.16.528.1.1007.3.1" extension="900021032"/>
+                                        <code code="01.004" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="ApotheekhoudendeHuisarts"/>
+                                        <assignedPerson>
+                                            <name>Waarnemend Huisarts 2</name>
+                                        </assignedPerson>
+                                        <representedOrganization>
+                                            <id root="2.16.528.1.1007.3.3" extension="90000381"/>
+                                            <name>CGM praktijk op ststect6</name>
+                                            <telecom value="x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.90000012"/>
+                                            <addr>
+                                                <city>Maastricht</city>
+                                            </addr>
+                                        </representedOrganization>
+                                    </assignedAuthor>
+                                </author>
+                                <participant typeCode="CSM">
+                                    <participantRole classCode="MANU">
+                                        <playingEntity classCode="MMAT" determinerCode="INSTANCE">
+                                            <code code="7" codeSystem="2.16.840.1.113883.2.4.4.1.902.122" displayName="BENZODIAZEPINEAGONISTEN"/>
+                                        </playingEntity>
+                                    </participantRole>
+                                </participant>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="SUBJ">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.216"/>
+                                <id root="2.16.840.1.113883.2.4.3.39.6101.90000381.90000012.17" extension="0000029209000080522"/>
+                                <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                                <statusCode code="completed"/>
+                                <effectiveTime>
+                                    <low value="20210430"/>
+                                </effectiveTime>
+                                <value xsi:type="CD" code="419511003" codeSystem="2.16.840.1.113883.6.96" displayName="Propensity to adverse reactions to drug"/>
+                                <author>
+                                    <time value="202104300000"/>
+                                    <assignedAuthor>
+                                        <id root="2.16.528.1.1007.3.1" extension="900021032"/>
+                                        <code code="01.004" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="ApotheekhoudendeHuisarts"/>
+                                        <assignedPerson>
+                                            <name>LSP apotheek 3</name>
+                                        </assignedPerson>
+                                        <representedOrganization>
+                                            <id root="2.16.528.1.1007.3.3" extension="90000381"/>
+                                            <name>CGM praktijk op ststect6</name>
+                                            <telecom value="x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.90000012"/>
+                                            <addr>
+                                                <city>LSP</city>
+                                            </addr>
+                                        </representedOrganization>
+                                    </assignedAuthor>
+                                </author>
+                                <participant typeCode="CSM">
+                                    <participantRole classCode="MANU">
+                                        <playingEntity classCode="MMAT" determinerCode="INSTANCE">
+                                            <code code="90000001" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
+                                        </playingEntity>
+                                    </participantRole>
+                                </participant>
+                            </observation>
+                        </entryRelationship>
+                    </act>
+                </component>
+            </organizer>
+        </subject>
+        <queryAck>
+            <queryId root="2.16.840.1.113883.2.4.3.111.19.1" extension="QueryId_20210825201416-36478"/>
+            <queryResponseCode code="OK"/>
+            <resultTotalQuantity value="1"/>
+            <resultCurrentQuantity value="1"/>
+            <resultRemainingQuantity value="0"/>
+        </queryAck>
+    </ControlActProcess>
+</REPC_IN990131NL>
