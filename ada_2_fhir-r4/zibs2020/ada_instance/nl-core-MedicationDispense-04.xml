@@ -3,16 +3,22 @@
 <medicatieverstrekking_registratie app="zib2020-nl" shortName="medicatieverstrekking_registratie" formName="medicatieverstrekking" transactionRef="2.16.840.1.113883.2.4.3.11.60.121.4.2.9.9" transactionEffectiveDate="2020-09-01T00:00:00" versionDate="" prefix="zib2017-" language="nl-NL" title="Medicatieverstrekking-eoi" desc="" id="Medicatieverstrekking-eoi">
     <medicatieverstrekking conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.9.20270">
         <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.1">
-            <patient-id value="999911120" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
+            <patient-id value="111222333" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
         </onderwerp>
         <referenties conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.3">
-            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1">
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1" id="za1">
                 <organisatie_naam value="Poli-apotheek Het Ziekenhuis" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.3"/>
             </zorgaanbieder>
-            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926">
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926" id="fp1">
                 <product_code code="23817" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="GPK" displayName=" PREDNISON 5MG TABLET" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19927"/>
             </farmaceutisch_product>
         </referenties>
+        <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.9.20858">
+            <zorgaanbieder value="za1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.266"/>
+        </verstrekker>
+        <verstrekt_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.9.22259">
+            <farmaceutisch_product value="fp1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.268"/>
+        </verstrekt_geneesmiddel>
         <medicatieverstrekkings_datum_tijd value="2013-09-01T13:12:09" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.9.20272"/>
         <aanschrijf_datum value="2013-08-30T00:25:00" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.9.22500"/>
         <distributievorm conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.9.20927" value="1" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8" displayName="GDS"/>

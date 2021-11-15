@@ -4,10 +4,10 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAdministration2"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.DeviatingAdministration">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DeviatingAdministration">
       <valueBoolean value="true"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.ReasonForDeviation">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
       <valueCodeableConcept>
          <coding>
             <system value="http://terminology.hl7.org/CodeSystem/v3-ActReason"/>
@@ -32,8 +32,14 @@
    <subject>
       <reference value="Patient/nl-core-Patient-01"/>
       <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
    </subject>
+   <supportingInformation>
+      <reference value="MedicationDispense/nl-core-MedicationAdministration2-02-MedicationDispense-01"/>
+      <type value="MedicationDispense"/>
+      <display value="Administration agreement"/>
+   </supportingInformation>
+   <effectiveDateTime value="2013-07-03T16:19:07+02:00"/>
    <dosage>
       <route>
          <coding>

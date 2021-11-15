@@ -275,11 +275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a display that can be shown when referencing a patient</xd:desc>
     </xd:doc>
     <xsl:template match="patient" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Patient</xsl:text>
-            <xsl:value-of select="normalize-space(string-join(.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+        <xsl:value-of select="string-join(('Patient', nf:renderName(naamgegevens)), ', ')"/>
     </xsl:template>
    
 </xsl:stylesheet>
