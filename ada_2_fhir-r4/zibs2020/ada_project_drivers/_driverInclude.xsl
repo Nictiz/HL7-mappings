@@ -195,9 +195,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                  <xsl:if test="verzekeraar/identificatie_nummer | verzekeraar/organisatie_naam">
                      <xsl:apply-templates select="$in" mode="nl-core-Payer-Organization"/>
                  </xsl:if>
-                 <xsl:if test="betaler_persoon/betaler_naam">
+                 <!--<xsl:if test="betaler_persoon/betaler_naam">
                      <xsl:apply-templates select="$in" mode="nl-core-Payer-Patient"/>
-                 </xsl:if>
+                 </xsl:if>-->
             </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">

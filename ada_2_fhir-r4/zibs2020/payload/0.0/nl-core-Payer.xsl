@@ -110,23 +110,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </period>
                 </xsl:if>
                 
-<!--                <xsl:for-each select="verzekeraar[identificatie_nummer or organisatie_naam]">
+                <xsl:if test="verzekeraar[identificatie_nummer or organisatie_naam]">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>
                     </xsl:call-template>
-                </xsl:for-each>-->
+                </xsl:if>
                 
-
+                <xsl:for-each select="betaler_persoon">
+                  <!--    
+                    <xsl:for-each select="betaler_persoon/betaler_naam">
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile" select="'nl-core-Payer-Patient'"/>
+                            <xsl:with-param name="wrapIn">payor</xsl:with-param>                        
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    -->   
+                    
+                    <xsl:for-each select="bankgegevens">
+                        <payor>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation">
+                            <xsl:for-each select="bank_naam">
+                                <extension url="bankName">
+                                    <valueString value="{normalize-space(@value)}"/>
+                                </extension>    
+                            </xsl:for-each>
+                            <xsl:for-each select="bankcode">
+                                <extension url="bankcode">
+                                    <valueString value="{normalize-space(@value)}"/>
+                                </extension>
+                            </xsl:for-each>
+                            <xsl:for-each select="rekeningnummer">
+                                <extension url="accountNumber">
+                                    <valueString value="{normalize-space(@value)}"/>
+                                </extension>
+                            </xsl:for-each>
+                         </extension>
+                        </payor>
+                    </xsl:for-each>
+                </xsl:for-each>
                 
-            <!--    
-                <xsl:for-each select="betaler_persoon/betaler_naam">
-                    <xsl:call-template name="makeReference">
-                        <xsl:with-param name="profile" select="'nl-core-Payer-Patient'"/>
-                        <xsl:with-param name="wrapIn">payor</xsl:with-param>                        
-                    </xsl:call-template>
-                </xsl:for-each>-->
-                
+ 
                
             </Coverage>
         </xsl:for-each>
@@ -171,7 +195,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     
     
-    <xd:doc>
+  <!--  <xd:doc>
         <xd:desc>Create an nl-core-Patient FHIR instance from the ada parts Payer.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
@@ -186,7 +210,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
                 </meta>
                 
-                <!-- Payer name information from the nl-core-Payer profile. -->
+                <!-\- Payer name information from the nl-core-Payer profile. -\->
                 <xsl:for-each select="betaler_persoon/betaler_naam">
                     <name>
                         <text value="{normalize-space(@value)}"/>
@@ -202,7 +226,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </Patient>
         </xsl:for-each>
-    </xsl:template>
+    </xsl:template>-->
     
     
 
@@ -211,12 +235,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="betaler" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Payer </xsl:text>
-            <xsl:if test="betaler_persoon[@value]">
-                <xsl:value-of select="concat('person ', betaler_persoon/betaler_persoon/@value)"/>
+            <xsl:text>Payer</xsl:text>
+            <xsl:if test="betaler_persoon/betaler_naam">
+                <xsl:value-of select="concat('person ', betaler_persoon/betaler_naam/@value)"/>
             </xsl:if>
-            <xsl:if test="verzekeraar[@value]">
+            <xsl:if test="verzekeraar/organisatie_naam">
                 <xsl:value-of select="concat('organization ', verzekeraar/organisatie_naam/@value)"/>
+            </xsl:if>
+            <xsl:if test="verzekeraar/identificatie_nummer">
+                <xsl:value-of select="concat('UZOVI nummer ', verzekeraar/identificatie_nummer/@value)"/>
             </xsl:if>
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
