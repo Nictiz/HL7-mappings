@@ -62,7 +62,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <map inCode="completed" inCodeSystem="2.16.840.1.113883.5.14" code="resolved" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Resolved"/>
                                     </xsl:with-param>
                                 </xsl:call-template>
-                                <xsl:call-template name="code-to-CodeableConcept"/>
                             </clinicalStatus>
                         </xsl:when>             
                         <xsl:when test="./@code = 'nullified'">
@@ -73,7 +72,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <map inCode="nullified" inCodeSystem="2.16.840.1.113883.5.14" code="entered-in-error" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Entered in Error"/>
                                     </xsl:with-param>
                                 </xsl:call-template>
-                                <xsl:call-template name="code-to-CodeableConcept"/>
                             </verificationStatus>
                         </xsl:when>
                     </xsl:choose>
