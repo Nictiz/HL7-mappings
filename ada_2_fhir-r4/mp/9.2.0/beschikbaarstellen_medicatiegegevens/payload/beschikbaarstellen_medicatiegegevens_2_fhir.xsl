@@ -103,12 +103,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <xsl:for-each select="/adaxml/data/*/bouwstenen/zorgaanbieder">
-            <!-- entry for practitionerrole -->
+            <!-- entry for organization -->
             <xsl:variable name="zabKey" select="nf:getGroupingKeyDefault(.)"/>
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Organization'][nm:group-key/text() = $zabKey]/nm:full-url/text()}"/>
                 <resource>
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+        <xsl:for-each select="/adaxml/data/*/bouwstenen/farmaceutisch_product">
+            <!-- entry for product -->
+            <xsl:variable name="prdKey" select="nf:getGroupingKeyDefault(.)"/>
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Medication'][nm:group-key/text() = $prdKey]/nm:full-url/text()}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-PharmaceuticalProduct">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </resource>
@@ -152,7 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:copy-of select="$bouwstenen-920"/>
-            <!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
+            <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
             <xsl:copy-of select="$commonEntries"/>
         </Bundle>
     </xsl:template>

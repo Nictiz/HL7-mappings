@@ -24,6 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:param name="fhirVersion" select="'STU3'"/>
     
+    <xsl:variable name="maxLengthFHIRLogicalId" as="xs:integer">64</xsl:variable>
+    
     <xsl:variable name="ada-unit-second" select="('seconde', 's', 'sec', 'second')"/>
     <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
     <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>

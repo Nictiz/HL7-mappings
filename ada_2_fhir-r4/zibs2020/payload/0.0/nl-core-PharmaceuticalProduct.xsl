@@ -13,39 +13,29 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    xmlns:nm="http://www.nictiz.nl/mapping"
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mapping" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA farmaceutisch_product to FHIR Medication conforming to profile nl-core-PharmaceuticalProduct.</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Create a nl-core-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" name="nl-core-PharmaceuticalProduct" mode="nl-core-PharmaceuticalProduct" as="element(f:Medication)">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <Medication>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
                 </meta>
-                
+
                 <xsl:for-each select="omschrijving">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalProduct.Description">
                         <valueString>
@@ -53,26 +43,57 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueString>
                     </extension>
                 </xsl:for-each>
-                
-                <xsl:for-each select="product_code">
-                    <code>
-                        <xsl:call-template name="code-to-CodeableConcept"/>
-                    </code>
-                </xsl:for-each>
-                <xsl:for-each select="product_naam">
-                    <code>
-                        <text>
-                            <xsl:attribute name="value" select="./@value"/>
-                        </text>
-                    </code>
-                </xsl:for-each>
-                
+
+                <!-- more then one product_code is allowed as 'translations' of the main code, even though there is conceptually one main code (as the zib may state) -->
+                <!-- FHIR only allows one code element, however within code, coding may be repeated -->
+                <!-- the most specific coding will get userselected true, so a receiver can easily recognise the 'main' code -->
+                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
+                <xsl:choose>
+                    <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)][@code]">
+                        <code>
+                            <xsl:for-each select="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
+                                <xsl:choose>
+                                    <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                            <xsl:with-param name="userSelected">true</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:for-each>
+                            <xsl:for-each select="$most-specific-product-code[@displayName]">
+                                <text value="{@displayName}"/>
+                            </xsl:for-each>
+                        </code>
+                    </xsl:when>
+                    <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor]">
+                        <code>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="product_code"/>
+                            </xsl:call-template>
+                            <xsl:if test="not(product_code[@originalText]) and product_specificatie/product_naam/@value">
+                                <text value="{product_specificatie/product_naam/@value}"/>
+                            </xsl:if>
+                        </code>
+                    </xsl:when>
+                    <xsl:when test="product_specificatie/product_naam[@value]">
+                        <code>
+                            <text value="{product_specificatie/product_naam/@value}"/>
+                        </code>
+                    </xsl:when>
+                </xsl:choose>
+
                 <xsl:for-each select="product_specificatie/farmaceutische_vorm">
                     <form>
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </form>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="ingredient">
                     <xsl:variable name="ingredientContent">
                         <xsl:for-each select="ingredient_code">
@@ -98,29 +119,79 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Medication>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" mode="_generateId">
-        <xsl:value-of select="substring(replace(string-join(//*[@displayName or @value]/(@displayName, @value)[1], '-'), '[^A-Za-z0-9-.]', ''), 0, 63)"/>
+
+        <xsl:choose>
+            <xsl:when test="product_code[@codeSystem = ($oidGStandaardZInummer, $oidGStandaardHPK, $oidGStandaardPRK, $oidGStandaardGPK, $oidGStandaardSNK, $oidGStandaardSSK)][@code]">
+                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
+                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat($most-specific-product-code/@codeSystem, '-',$most-specific-product-code/@code)))"/>
+            </xsl:when>
+            <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)][string-length(concat(@code, '-', @codeSystem)) le $maxLengthFHIRLogicalId]">
+                <!-- own 90-million product-code which will fit in a logicalId -->
+                <xsl:variable name="productCode" select="(product_code[string-length(concat(@code, '-', @codeSystem)) le $maxLengthFHIRLogicalId])[1]" as="element(product_code)?"/>
+                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat($productCode/@codeSystem, '-',$productCode/@code)))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                <xsl:value-of select="uuid:get-uuid(.)"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" mode="_generateDisplay">
+        <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
         <xsl:choose>
+            <xsl:when test="$most-specific-product-code[@displayName]">
+                <xsl:value-of select="normalize-space($most-specific-product-code/@displayName)"/>
+            </xsl:when>
             <xsl:when test="product_code[@displayName]">
-                <!-- TODO FIXME: This should be the most specific product_code instead of the first in the xml sequence -->
-                <xsl:value-of select="normalize-space(product_code[1]/@displayName)"/>
+                <xsl:value-of select="normalize-space((product_code/@displayName)[1])"/>
             </xsl:when>
             <xsl:when test="product_specificatie[product_naam/@value]">
                 <xsl:value-of select="product_specificatie/product_naam/@value"/>
             </xsl:when>
             <xsl:when test="product_specificatie[ingredient/ingredient_code/@displayName]">
-                <xsl:value-of select="string-join(product_specificatie/ingredient/ingredient_code/@displayName, ',')"/>
+                <xsl:value-of select="string-join(product_specificatie/ingredient/ingredient_code/@displayName, ', ')"/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Takes a collection of product_codes as input and returns the most specific one according to G-std, otherwise just the first one</xd:desc>
+        <xd:param name="ada-product-code">Collection of ada product codes to select the most specific one from</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-specific-productcode" as="element()?">
+        <xsl:param name="ada-product-code" as="element()*"/>
+        <xsl:choose>
+            <xsl:when test="$ada-product-code[@codeSystem = $oidGStandaardZInummer]">
+                <xsl:copy-of select="($ada-product-code[@codeSystem = $oidGStandaardZInummer])[1]"/>
+            </xsl:when>
+            <xsl:when test="$ada-product-code[@codeSystem = $oidGStandaardHPK]">
+                <xsl:copy-of select="($ada-product-code[@codeSystem = $oidGStandaardHPK])[1]"/>
+            </xsl:when>
+            <xsl:when test="$ada-product-code[@codeSystem = $oidGStandaardPRK]">
+                <xsl:copy-of select="($ada-product-code[@codeSystem = $oidGStandaardPRK])[1]"/>
+            </xsl:when>
+            <xsl:when test="$ada-product-code[@codeSystem = $oidGStandaardGPK]">
+                <xsl:copy-of select="($ada-product-code[@codeSystem = $oidGStandaardGPK])[1]"/>
+            </xsl:when>
+            <xsl:when test="$ada-product-code[@codeSystem = $oidGStandaardSSK]">
+                <xsl:copy-of select="($ada-product-code[@codeSystem = $oidGStandaardSSK])[1]"/>
+            </xsl:when>
+            <xsl:when test="$ada-product-code[@codeSystem = $oidGStandaardSNK]">
+                <xsl:copy-of select="($ada-product-code[@codeSystem = $oidGStandaardSNK])[1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- simply return the first product_code element in the xml -->
+                <xsl:copy-of select="$ada-product-code[1]"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
 </xsl:stylesheet>

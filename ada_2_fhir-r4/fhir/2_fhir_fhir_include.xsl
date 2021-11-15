@@ -531,7 +531,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Returns a concatenated string based on input param $logicalId. Only returns a string of length max 64. 
+        <xd:desc>Returns a string based on requirements for FHIR logicalId (https://www.hl7.org/fhir/datatypes.html#id). 
+            An underscore is translated to '-'. Any other char that is not allowed is simply removed.</xd:desc>
+        <xd:param name="logicalId">The string to handle</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:assure-logicalid-chars" as="xs:string">
+        <xsl:param name="logicalId" as="xs:string?"/>        
+           
+        <xsl:value-of select="replace(translate($logicalId, '_', '-'), '[^A-Za-z0-9\-\.]', '')"/>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns a concatenated string based on input param $logicalId. Only returns a string of length max length for FHIR logicalId (64). 
             Because uniqueness is determined more by the latter part of $logicalId than by the start (often some sort of prefix), the last 64 characters are used.</xd:desc>
         <xd:param name="logicalId">The string to concatenate</xd:param>
     </xd:doc>
@@ -541,13 +552,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="lengthLogicalId" select="string-length($logicalId)" as="xs:integer"/>
         <xsl:variable name="startingLoc" as="xs:integer">
             <xsl:choose>
-                <xsl:when test="$lengthLogicalId gt 64">
+                <xsl:when test="$lengthLogicalId gt $maxLengthFHIRLogicalId">
                     <xsl:call-template name="util:logMessage">
                         <xsl:with-param name="msg">We have encountered an id (<xsl:value-of select="$logicalId"/>) longer than 64 characters, we are truncating it, but it should be looked at.</xsl:with-param>
                         <xsl:with-param name="level" select="$logWARN"/>
                         <xsl:with-param name="terminate" select="false()"/>
                     </xsl:call-template>
-                    <xsl:value-of select="$lengthLogicalId - 63"/>
+                    <xsl:value-of select="$lengthLogicalId - ($maxLengthFHIRLogicalId - 1)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="1"/>

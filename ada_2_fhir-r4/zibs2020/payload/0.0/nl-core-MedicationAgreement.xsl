@@ -24,6 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
+    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
     <!-- uncomment for development purposes only -->
 <!--    <xsl:import href="all_zibs.xsl"/>-->
@@ -56,6 +57,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
                 </meta>
+                
+                <!-- pharmaceuticalTreatmentIdentifier -->
+                <xsl:for-each select="../identificatie">
+                    <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>                  
+                </xsl:for-each>
                 
                 <xsl:for-each select="medicatieafspraak_aanvullende_informatie">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation">

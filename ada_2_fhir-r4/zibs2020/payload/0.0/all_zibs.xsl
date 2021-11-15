@@ -65,6 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="ext-CodeSpecification.xsl"/>
     <xsl:import href="ext-Comment.xsl"/>
+    <xsl:import href="ext-PharmaceuticalTreatmentIdentifier.xsl"/>
     <xsl:import href="ext-TimeInterval.xsl"/>
     
     <xsl:output method="xml" indent="yes"/>
