@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../zibs2020/payload/zib_latest_package.xsl"/>
-<!--    <xsl:import href="../../../util/mp-functions-fhir.xsl"/>-->
+    <xsl:import href="../../../util/mp-functions.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -22,6 +22,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
 
     <xsl:variable name="gstd-coderingen">
         <code rootoid="{$oidGStandaardGPK}"/>
@@ -156,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- verstrekkingsverzoeken -->
-       <!-- <xsl:for-each select="//verstrekkingsverzoek">
+        <!-- <xsl:for-each select="//verstrekkingsverzoek">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -172,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>-->
         <!-- toedieningsafspraken -->
-    <!--    <xsl:for-each select="//toedieningsafspraak">
+        <!--    <xsl:for-each select="//toedieningsafspraak">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -214,7 +217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- medicatie_gebruik -->
-      <!--  <xsl:for-each select="//medicatie_gebruik">
+        <!--  <xsl:for-each select="//medicatie_gebruik">
             <!-\- entry for MedicationRequest -\->
             <xsl:call-template name="MedicationUseEntry-3.0">
                 <xsl:with-param name="searchMode" select="$searchMode"/>
@@ -227,6 +230,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in"/>
     </xd:doc>
     <!--    <xsl:template name="mbh-id-2-reference">-->
+
+    <xd:doc>
+        <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
+        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from, override for default function in nl-core-InstructionsForUse</xd:param>
+    </xd:doc>
+    <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiksinstructie" as="element(f:extension)?">
+        <xsl:param name="in" as="element()?" select="."/>
+
+        <xsl:for-each select="$in">
+            <xsl:for-each select="omschrijving[@value != '']">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="$generateInstructionText">
+                                    <xsl:value-of select="nf:gebruiksintructie-string(..)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="@value"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </valueString>
+                </extension>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Template for medication treatment extension</xd:desc>
+        <xd:param name="in">ada identifier element to be handled</xd:param>
+    </xd:doc>
     <xsl:template name="ext-zib-medication-medication-treatment-2.0">
         <xsl:param name="in" as="element()?"/>
         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -285,7 +320,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Helper template for patient payload independent of version (6.12 or nl-core).</xd:desc>
     </xd:doc>
-  <!--  <xsl:template name="patient-payload">
+    <!--  <xsl:template name="patient-payload">
         <!-\- patient_identificatienummer  -\->
         <xsl:for-each select="(patient_identificatienummer | identificatienummer)[.//(@value | @nullFlavor)]">
             <identifier>
@@ -381,7 +416,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="verstrekkingsverzoek">ada element for dispense request</xd:param>
         <xd:param name="medicationrequest-id">the (optional) technical id for the resource</xd:param>
     </xd:doc>
- <!--   <xsl:template name="VV-in-MedicationRequest-2.2">
+    <!--   <xsl:template name="VV-in-MedicationRequest-2.2">
         <xsl:param name="verstrekkingsverzoek" as="element()?"/>
         <xsl:param name="medicationrequest-id" as="xs:string?"/>
 
@@ -555,7 +590,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Optional, defaults to context element. Input ada element which had toedieningsafspraak.</xd:param>
         <xd:param name="resource-id">Optional, the resource logical id</xd:param>
     </xd:doc>
- <!--   <xsl:template name="zib-AdministrationAgreement-3.0">
+    <!--   <xsl:template name="zib-AdministrationAgreement-3.0">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="resource-id" as="xs:string?"/>
 
@@ -686,7 +721,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 -->
-  
+
     <xd:doc>
         <xd:desc>Creates the FHIR element for TA afspraakdatum, context should be ada afspraakdatum</xd:desc>
     </xd:doc>
@@ -838,7 +873,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="verstrekking">ada verstrekking</xd:param>
         <xd:param name="medicationdispense-id">optional technical FHIR resource id</xd:param>
     </xd:doc>
-   <!-- <xsl:template name="mp612dispensetofhirconversiondispense-1.0.0">
+    <!-- <xsl:template name="mp612dispensetofhirconversiondispense-1.0.0">
         <xsl:param name="verstrekking" as="element()?"/>
         <xsl:param name="medicationdispense-id" as="xs:string?"/>
 
@@ -946,7 +981,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
-   --> <xd:doc>
+   -->
+    <xd:doc>
         <xd:desc/>
         <xd:param name="ada-locatie"/>
         <xd:param name="location-id"/>
@@ -972,7 +1008,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="verstrekkingsverzoek">ada element for dispenserequest</xd:param>
         <xd:param name="searchMode"/>
     </xd:doc>
-   <!-- <xsl:template name="zib-DispenseRequest-2.2">
+    <!-- <xsl:template name="zib-DispenseRequest-2.2">
         <xsl:param name="verstrekkingsverzoek" as="element()?"/>
         <xsl:param name="searchMode" as="xs:string">include</xsl:param>
 

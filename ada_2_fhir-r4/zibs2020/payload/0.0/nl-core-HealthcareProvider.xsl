@@ -165,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$profile = 'nl-core-HealthcareProvider'">
                 <xsl:choose>
                     <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
-                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(concat(string-join(zorgaanbieder_identificatienummer[1]/(@value | @root), ''),'-',$organizationLocation)))"/>
+                        <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/concat(@root, '-', @value)))"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:next-match>
@@ -177,7 +177,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$profile = 'nl-core-HealthcareProvider-Organization'">
                 <xsl:choose>
                     <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(zorgaanbieder_identificatienummer[1]/(@value | @root), ''))))"/>
+                        <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/concat(@root, '-', @value)))"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:next-match>
@@ -188,5 +188,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Selects the most appropriate health provider identification. For example to do deduplication of organizations or to base a logicalId on.</xd:desc>
+        <xd:param name="healthcareProviderIdentification">ADA element containing the healthcare provider organization identification</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:ada-healthprovider-id" as="element()?">
+        <xsl:param name="healthcareProviderIdentification" as="element()*"/>
+        <xsl:choose>
+            <xsl:when test="$healthcareProviderIdentification[@root = $oidURAOrganizations]">
+                <xsl:copy-of select="$healthcareProviderIdentification[@root = $oidURAOrganizations][1]"/>
+            </xsl:when>
+            <xsl:when test="$healthcareProviderIdentification[@root = $oidAGB]">
+                <xsl:copy-of select="$healthcareProviderIdentification[@root = $oidAGB][1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="$healthcareProviderIdentification[1]"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
     
 </xsl:stylesheet>

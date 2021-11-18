@@ -61,8 +61,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
-    <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
-    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+        <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
+<!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
 
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <!--        <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>-->

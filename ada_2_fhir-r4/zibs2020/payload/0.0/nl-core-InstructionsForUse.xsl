@@ -13,35 +13,25 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions"
-    xmlns:nm="http://www.nictiz.nl/mappings"
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
     <!-- uncomment only for development purposes -->
-    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
-    
+    <!--    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA InstructionsForUse to the various FHIR parts representing this zib.</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
         <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
     </xd:doc>
     <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiksinstructie" as="element(f:extension)?">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <xsl:for-each select="omschrijving[@value != '']">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
@@ -52,14 +42,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Create the ext-InstructionsForUse.RepeatPeriodCyclicalSchedule extension from ADA InstructionsForUse.</xd:desc>
         <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
     </xd:doc>
     <xsl:template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" mode="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" match="gebruiks_instructie" as="element(f:modifierExtension)?">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$in">
             <xsl:for-each select="herhaalperiode_cyclisch_schema[@value != '']">
                 <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
@@ -70,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Create the FHIR <xd:i>contents</xd:i> of the nl-core-InstructionsForUse.DosageInstruction datatype profile FHIR instance from ADA InstructionsForUse.</xd:desc>
         <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
@@ -79,15 +69,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-InstructionsForUse.DosageInstruction" mode="nl-core-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element()*">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="wrapIn" as="xs:string" select="''"/>
-        
+
         <xsl:for-each select="$in">
             <xsl:variable name="content" as="element()*">
                 <!-- AdditionalInstruction and route are duplicated in each instance of the Dosage datatype -->
                 <xsl:variable name="additionalInstruction" select="aanvullende_instructie"/>
                 <xsl:variable name="route" select="toedieningsweg"/>
-                
+
                 <xsl:for-each select="doseerinstructie">
-                    <!-- Although placed on the same level as Dosage, SequenceNumber and DoseDuration are placed within timing and so they are duplicated in each Dosage instance. So lets store them for re-use. -->  
+                    <!-- Although placed on the same level as Dosage, SequenceNumber and DoseDuration are placed within timing and so they are duplicated in each Dosage instance. So lets store them for re-use. -->
                     <xsl:variable name="sequence" as="element(f:sequence)*">
                         <xsl:for-each select="volgnummer">
                             <sequence value="./@value"/>
@@ -100,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </boundsDuration>
                         </xsl:for-each>
                     </xsl:variable>
-                    
+
                     <xsl:choose>
                         <xsl:when test="dosering">
                             <xsl:for-each select="dosering">
@@ -125,62 +115,78 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </repeat>
                                     </timing>
                                 </xsl:if>
-                                
+
                                 <xsl:for-each select="zonodig/criterium">
                                     <asNeededCodeableConcept>
                                         <xsl:call-template name="code-to-CodeableConcept"/>
                                     </asNeededCodeableConcept>
                                 </xsl:for-each>
-                                
+
                                 <xsl:for-each select="$route">
                                     <route>
                                         <xsl:call-template name="code-to-CodeableConcept"/>
                                     </route>
                                 </xsl:for-each>
-                                
-                                <xsl:variable name="doseAndRate">
+
+                                <xsl:variable name="doseAndRate" as="element()?">
                                     <xsl:for-each select="keerdosis">
-                                        <xsl:if test="((minimum_waarde, maximum_waarde) | aantal/(minimum_waarde, maximum_waarde))[@value]">
+                                        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                                        <!-- this is zib ada dataset -->
+                                        <xsl:for-each select="nominale_waarde[@value and @unit]">
+                                            <doseQuantity>
+                                                <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                                            </doseQuantity>
+                                        </xsl:for-each>
+                                        <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
                                             <doseRange>
-                                                <xsl:for-each select="(minimum_waarde | aantal/minimum_waarde)[@value]">
+                                                <xsl:for-each select="(minimum_waarde)[@value]">
                                                     <low>
                                                         <xsl:call-template name="hoeveelheid-to-Quantity"/>
                                                     </low>
                                                 </xsl:for-each>
-                                                <xsl:for-each select="(maximum_waarde | aantal/maximum_waarde)[@value]">
+                                                <xsl:for-each select="(maximum_waarde)[@value]">
                                                     <high>
                                                         <xsl:call-template name="hoeveelheid-to-Quantity"/>
                                                     </high>
                                                 </xsl:for-each>
                                             </doseRange>
                                         </xsl:if>
-                                        <!-- this is zib dataset -->
-                                        <xsl:for-each select="nominale_waarde[@value and @unit]">
-                                            <doseQuantity>
-                                                <xsl:call-template name="hoeveelheid-to-Quantity"/>
-                                            </doseQuantity>
-                                        </xsl:for-each>
-                                        <!-- this is MP dataset -->
+                                        <!-- end of zib ada dataset -->
+                                        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+                                        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                                        <!-- this is MP9 ada dataset -->
                                         <xsl:for-each select="aantal/nominale_waarde[@value]">
-                                            <!-- G-Standaard SimpleQuantity -->
                                             <doseQuantity>
-                                                <xsl:for-each select="../../eenheid[@codeSystem=$oidGStandaardBST902THES2]">
-                                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                                                        <valueQuantity>
-                                                           <value value="{../aantal/nominale_waarde/@value}"/>
-                                                            <unit value="{@displayName}"/>
-                                                            <system value="{concat('urn:oid:', $oidGStandaardBST902THES2)}"/>
-                                                            <code value="{@code}"/>
-                                                        </valueQuantity>
-                                                    </extension>
-                                                </xsl:for-each>
-                                                <!-- UCUM -->
-                                                <value value="{@value}"/>
-                                                <unit value="{../../eenheid[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
-                                                <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
-                                                <code value="{nf:convertGstdBasiseenheid2UCUM(../../eenheid[@codeSystem=$oidGStandaardBST902THES2]/@code)}"/>
+                                                <xsl:call-template name="_buildMedicationQuantity">
+                                                    <xsl:with-param name="adaValue" select="."/>
+                                                    <xsl:with-param name="adaUnit" select="../../eenheid[@codeSystem = $oidGStandaardBST902THES2]"/>
+                                                </xsl:call-template>
                                             </doseQuantity>
                                         </xsl:for-each>
+                                        <xsl:if test="aantal/(minimum_waarde, maximum_waarde)[@value]">
+                                            <doseRange>
+                                                <xsl:for-each select="aantal/minimum_waarde[@value]">
+                                                    <low>
+                                                        <xsl:call-template name="_buildMedicationQuantity">
+                                                            <xsl:with-param name="adaValue" select="."/>
+                                                            <xsl:with-param name="adaUnit" select="../../eenheid[@codeSystem = $oidGStandaardBST902THES2]"/>
+                                                        </xsl:call-template>
+                                                    </low>
+                                                </xsl:for-each>
+                                                <xsl:for-each select="aantal/maximum_waarde[@value]">
+                                                    <high>
+                                                        <xsl:call-template name="_buildMedicationQuantity">
+                                                            <xsl:with-param name="adaValue" select="."/>
+                                                            <xsl:with-param name="adaUnit" select="../../eenheid[@codeSystem = $oidGStandaardBST902THES2]"/>
+                                                        </xsl:call-template>
+                                                    </high>
+                                                </xsl:for-each>
+                                            </doseRange>
+                                        </xsl:if>
+
+                                        <!-- end of MP ada dataset -->
+                                        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                                     </xsl:for-each>
                                     <xsl:for-each select="toediensnelheid">
                                         <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
@@ -201,7 +207,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:copy-of select="$doseAndRate"/>
                                     </doseAndRate>
                                 </xsl:if>
-                                
+
                                 <xsl:for-each select="zonodig/maximale_dosering[@value and @unit]">
                                     <xsl:call-template name="hoeveelheid-to-Ratio">
                                         <xsl:with-param name="wrapIn">maxDosePerPeriod</xsl:with-param>
@@ -209,7 +215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                             </xsl:for-each>
                         </xsl:when>
-                        
+
                         <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
                         <xsl:when test="$sequence or $boundsDuration">
                             <xsl:if test="$sequence">
@@ -226,7 +232,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:for-each>
             </xsl:variable>
-            
+
             <xsl:if test="count($content) &gt; 0">
                 <xsl:choose>
                     <xsl:when test="$wrapIn != ''">
@@ -241,14 +247,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Helper template to build the Dosage.timing.repeat content for the current Dosage.</xd:desc>
         <xd:param name="boundsDuration">An optionally pre-rendered boundsDuration element.</xd:param>
     </xd:doc>
     <xsl:template name="_buildTimingRepeat" as="element()*">
         <xsl:param name="boundsDuration" as="element(f:boundsDuration)?"/>
-        
+
         <xsl:for-each select="toedieningsschema">
             <xsl:if test="interval[@value]">
                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
@@ -256,7 +262,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </xsl:if>
             <xsl:copy-of select="$boundsDuration"/>
-            
+
             <xsl:if test="not(frequentie//*[@unit != ''])">
                 <xsl:if test="frequentie/nominale_waarde[@value]">
                     <count value="${frequentie/nominale_waarde/@value}"/>
@@ -280,17 +286,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </xsl:if>
             <xsl:if test="frequentie//*[@unit != '']">
-                <xsl:if test="frequentie/nominale_waarde[@value]">
-                    <frequency value="${frequentie/nominale_waarde/@value}"/>
+                <!-- the MP dataset has added a level to the zib definition, so that Gstd units can be defined -->
+                <!-- we make these variables so that there is support for zib ada and MP9 ada -->
+                <xsl:variable name="nominaleWaarde" select="frequentie/(nominale_waarde | */nominale_waarde)" as="element()*"/>
+                <xsl:variable name="minWaarde" select="frequentie/(minimum_waarde | */minimum_waarde)" as="element()*"/>
+                <xsl:variable name="maxWaarde" select="frequentie/(maximum_waarde | */maximum_waarde)" as="element()*"/>
+
+
+                <xsl:if test="$nominaleWaarde[@value]">
+                    <frequency value="{$nominaleWaarde/@value}"/>
                 </xsl:if>
-                <xsl:if test="frequentie/minimum_waarde[@value]">
-                    <frequency value="${frequentie/minimum_waarde/@value}"/>
+                <xsl:if test="$minWaarde[@value]">
+                    <frequency value="{$minWaarde/@value}"/>
                 </xsl:if>
-                <xsl:if test="frequentie/maximum_waarde[@value]">
-                    <frequencyMax value="{frequentie/maximum_waarde/@value}"/>
+                <xsl:if test="$maxWaarde[@value]">
+                    <frequencyMax value="{$maxWaarde/@value}"/>
                 </xsl:if>
                 <period value="1"/>
-                <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(frequentie/*[@unit]/@unit[1])}"/>
+                <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR((frequentie/*[@unit]/@unit)[1])}"/>
             </xsl:if>
             <xsl:if test="interval[@value and @unit]">
                 <frequency value="1"/>
@@ -298,24 +311,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(interval/@unit)}"/>
             </xsl:if>
             <xsl:for-each select="weekdag">
-                <dayOfWeek value="{$weekdayMap[@code = current()/@code][@codeSystem=current()/@codeSystem]/@fhirDayOfWeek}">
-                    <!--<xsl:call-template name="code-to-code">
-                        <xsl:with-param name="codeMap" as="element()*">
-                            <map inCode="307145004" inCodeSystem="{$oidSNOMEDCT}" code="mon"/>
-                            <map inCode="307147007" inCodeSystem="{$oidSNOMEDCT}" code="tue"/>
-                            <map inCode="307148002" inCodeSystem="{$oidSNOMEDCT}" code="wed"/>
-                            <map inCode="307149005" inCodeSystem="{$oidSNOMEDCT}" code="thu"/>
-                            <map inCode="307150005" inCodeSystem="{$oidSNOMEDCT}" code="fri"/>
-                            <map inCode="307151009" inCodeSystem="{$oidSNOMEDCT}" code="sat"/>
-                            <map inCode="307146003" inCodeSystem="{$oidSNOMEDCT}" code="sun"/>
-                        </xsl:with-param>
-                    </xsl:call-template>-->
-                </dayOfWeek>
+                <dayOfWeek value="{$weekdayMap[@code = current()/@code][@codeSystem=current()/@codeSystem]/@fhirDayOfWeek}"/>
+
+
             </xsl:for-each>
             <xsl:for-each select="toedientijd">
                 <!-- Hack; ADA just knows the datatype dateTime, whereas the result should be of FHIR datatype time.
-                     So we just let the user create a dateTime and discard the date part. --> 
-                <xsl:analyze-string select="./@value" regex='[0-9:]*T([0-9:Z]+)'>
+                     So we just let the user create a dateTime and discard the date part. -->
+                <xsl:analyze-string select="./@value" regex="[0-9:]*T([0-9:Z]+)">
                     <xsl:matching-substring>
                         <timeOfDay value="{regex-group(1)}"/>
                     </xsl:matching-substring>
@@ -325,14 +328,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <when>
                     <xsl:call-template name="code-to-code">
                         <xsl:with-param name="codeMap" as="element()*">
-                            <map inCode="73775008"  inCodeSystem="{$oidSNOMEDCT}" code="MORN"/>
+                            <map inCode="73775008" inCodeSystem="{$oidSNOMEDCT}" code="MORN"/>
                             <map inCode="255213009" inCodeSystem="{$oidSNOMEDCT}" code="AFT"/>
-                            <map inCode="3157002"   inCodeSystem="{$oidSNOMEDCT}" code="EVE"/>
-                            <map inCode="2546009"   inCodeSystem="{$oidSNOMEDCT}" code="NIGHT"/>
+                            <map inCode="3157002" inCodeSystem="{$oidSNOMEDCT}" code="EVE"/>
+                            <map inCode="2546009" inCodeSystem="{$oidSNOMEDCT}" code="NIGHT"/>
                         </xsl:with-param>
                     </xsl:call-template>
                 </when>
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Helper template to build the a quantity for medicaiton.</xd:desc>
+        <xd:param name="adaValue">The ada element containing the value of quantity</xd:param>
+        <xd:param name="adaUnit">The ada alement containing the code/codeSystem in Gstd eenheden</xd:param>
+    </xd:doc>
+    <xsl:template name="_buildMedicationQuantity">
+        <xsl:param name="adaValue" as="element()"/>
+        <xsl:param name="adaUnit" as="element()"/>
+
+        <!-- G-Standaard SimpleQuantity -->
+        <xsl:for-each select="$adaUnit[@codeSystem = $oidGStandaardBST902THES2]">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                <valueQuantity>
+                    <value value="{$adaValue/@value}"/>
+                    <unit value="{@displayName}"/>
+                    <system value="{concat('urn:oid:', $oidGStandaardBST902THES2)}"/>
+                    <code value="{@code}"/>
+                </valueQuantity>
+            </extension>
+        </xsl:for-each>
+        <!-- UCUM -->
+        <value value="{@value}"/>
+        <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
+        <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
+        <code value="{nf:convertGstdBasiseenheid2UCUM($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@code)}"/>
+
+    </xsl:template>
+
+
 </xsl:stylesheet>
