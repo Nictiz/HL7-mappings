@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright © Nictiz
+Copyright (c) Nictiz
 
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
@@ -29,6 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
+    <xsl:import href="nl-core-AlcoholUse.xsl"/>
     <xsl:import href="nl-core-AnatomicalLocation.xsl"/>
     <xsl:import href="nl-core-BloodPressure.xsl"/>
     <xsl:import href="nl-core-BodyHeight.xsl"/>
@@ -38,6 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
     <xsl:import href="nl-core-DispenseRequest.xsl"/>
+    <xsl:import href="nl-core-DrugUse.xsl"/>
     <xsl:import href="nl-core-Encounter.xsl"/>
     <xsl:import href="nl-core-EpisodeOfcare.xsl"/>
     <xsl:import href="nl-core-FreedomRestrictingIntervention.xsl"/>
@@ -47,6 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-HeartRate.xsl"/>
     <xsl:import href="nl-core-InstructionsForUse.xsl"/>
     <xsl:import href="nl-core-LegalSituation.xsl"/>
+    <xsl:import href="nl-core-LivingSituation.xsl"/>
     <xsl:import href="nl-core-MedicationAdministration2.xsl"/>
     <xsl:import href="nl-core-MedicationAgreement.xsl"/>
     <xsl:import href="nl-core-MedicationContraIndication.xsl"/>
@@ -60,6 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-Procedure.xsl"/>
     <xsl:import href="nl-core-Refraction.xsl"/>
     <xsl:import href="nl-core-SOAPReport.xsl"/>
+    <xsl:import href="nl-core-TobaccoUse.xsl"/>
     <xsl:import href="nl-core-TextResult.xsl"/>
     <xsl:import href="nl-core-VisualAcuity.xsl"/>
     

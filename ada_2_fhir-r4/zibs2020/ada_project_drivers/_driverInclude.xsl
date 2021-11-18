@@ -65,6 +65,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$bundle[self::patient]">
                 <xsl:copy-of select="$bundle[self::patient][1]"/>
             </xsl:when>
+            <xsl:when test="$patient-id and not($referencedPatient)">
+                <xsl:message>Could not find Patient instance with patient-id '<xsl:value-of select="$patient-id"/>'</xsl:message>
+            </xsl:when>
         </xsl:choose>
     </xsl:template>
     
@@ -180,6 +183,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'adaextension'">
                 <!-- Do nothing -->
             </xsl:when>
+            <xsl:when test="$localName = 'alcohol_gebruik'">
+                <xsl:apply-templates select="$in" mode="nl-core-AlcoholUse">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -192,6 +200,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-ContactPerson">
                     <xsl:with-param name="patient" select="$subject"/>
                 </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'drugs_gebruik'">
+                <xsl:apply-templates select="$in" mode="nl-core-DrugUse"/>
+                <xsl:for-each select="drugs_gebruik">
+                    <xsl:call-template name="nl-core-DrugUse"/>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'farmaceutisch_product'">
                 <xsl:apply-templates select="$in" mode="nl-core-PharmaceuticalProduct"/>
@@ -276,6 +290,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-SOAPReport-Observation"/>
                 </xsl:for-each>
             </xsl:when>
+            <xsl:when test="$localName = 'tabak_gebruik'">
+                <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse"/>
+                <xsl:for-each select="tabak_gebruik">
+                    <xsl:call-template name="nl-core-TobaccoUse"/>
+                </xsl:for-each>
+            </xsl:when>
             <xsl:when test="$localName = 'tekst_uitslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-TextResult"/>
                 <xsl:for-each select="visueel_resultaat">
@@ -312,9 +332,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'woonsituatie'">
+                <xsl:apply-templates select="$in" mode="nl-core-LivingSituation">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'zorgaanbieder'">
-                <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider"/>
-                <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider-Organization"/>
+                <!-- Ideally, we would only create HealthcareProviders based on the following logic, but because there is no way to know if the Location or Organization is being referenced, we always output both: -->
+                <!--<xsl:if test="organisatie_locatie/locatie_naam[@value] | contactgegevens | adresgegevens">-->
+                    <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider"/>
+                <!--</xsl:if>-->
+                <!--<xsl:if test="zorgaanbieder_identificatienummer | afdeling_specialisme | organisatie_type | organisatie_naam">-->
+                    <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider-Organization"/>
+                <!--</xsl:if>-->
             </xsl:when>
             <xsl:when test="$localName = 'zorg_episode'">
                 <xsl:apply-templates select="$in" mode="nl-core-EpisodeOfCare">

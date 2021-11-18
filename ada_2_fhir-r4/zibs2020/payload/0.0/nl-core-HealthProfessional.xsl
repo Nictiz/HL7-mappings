@@ -144,7 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <xsl:value-of select="normalize-space(string-join($idDisplay, ' '))"/>
         </xsl:variable>
-        <xsl:variable name="personName" select=".//naamgegevens[not(naamgegevens)][1]//*[not(name() = 'naamgebruik')]/@value"/>
+        <xsl:variable name="personName" select="nf:renderName(naamgegevens)"/>
 
         <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value"/>
         <xsl:variable name="specialty" select=".//specialisme[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
