@@ -13,29 +13,38 @@ if not exist "%jarPath%" (
     pause
 )
 
-if exist "%outputDir%" (
-    echo.
-    echo Removing output dir
-    rmdir "%outputDir%" /s /q
+if "%1"=="" (
+	for /f %%f in ('dir /b "%inputDir%"') do (
+		set id=%%~nf
+		if "!id:~0,8!" == "nl-core-" (
+			if not exist "%inputDir%\!id!-bundled.xml" (			
+				call :doTransformation !id!
+			)
+		)
+	)
+) else (
+		set input=%1
+		call :doTransformation !input!
 )
 
-for /f %%f in ('dir /b "%inputDir%"') do (
- set id=%%~nf
- if "!id:~0,8!" == "nl-core-" (
-  if not exist "%inputDir%\!id!-bundled.xml" (
-   echo Converting !id!
-   set noDriverId=!id:-bundled=!
-   set baseId=!noDriverId:~0, -3!
-   
-   if exist "!baseId!-driver.xsl" (
+exit /b
+
+:doTransformation
+set input=%1
+
+echo Converting !input!
+set noDriverId=!input:-bundled=!
+set baseId=!noDriverId:~0, -3!
+
+echo Removing previous output
+if exist "%outputDir%\!noDriverId!*.xml" (
+	del "%outputDir%\!noDriverId!*.xml" /Q
+)
+
+if exist "!baseId!-driver.xsl" (
 	set xslPath=!baseId!-driver.xsl
-   ) else (
+) else (
 	set xslPath=nl-core-driver.xsl
-   )
-
-   java -jar "%jarPath%" -s:"%inputDir%/!id!.xml" -xsl:!xslPath! -o:"%outputDir%/!noDriverId!.xml
-  )
- )
 )
 
-pause
+java -jar "%jarPath%" -s:"%inputDir%/!input!.xml" -xsl:!xslPath! -o:"%outputDir%/!noDriverId!.xml
