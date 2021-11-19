@@ -284,6 +284,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'snaq65score'">
+                <xsl:apply-templates select="$in" mode="nl-core-SNAQ65plusScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'snaqrc_score'">
+                <xsl:apply-templates select="$in" mode="nl-core-SNAQrcScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'snaqscore'">
+                <xsl:apply-templates select="$in" mode="nl-core-SNAQScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'soepverslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-SOAPReport"/>
                 <xsl:for-each select="soepregel">

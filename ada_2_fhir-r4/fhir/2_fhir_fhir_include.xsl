@@ -86,6 +86,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
+        <nm:map ada="snaq65score" resource="Observation" profile="nl-core-SNAQ65+Score"/>
+        <nm:map ada="snaqrc_score" resource="Observation" profile="nl-core-SNAQrcScore"/>
+        <nm:map ada="snaqscore" resource="Observation" profile="nl-core-SNAQScore"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport-Observation"/>
         <nm:map ada="tabak_gebruik" resource="Observation" profile="nl-core-TobaccoUse"/>

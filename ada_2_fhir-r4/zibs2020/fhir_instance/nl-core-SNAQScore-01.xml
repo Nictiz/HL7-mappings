@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-SNAQScore-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SNAQScore"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="8881000146104"/>
+         <display value="SNAQ"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2013-01-27"/>
+   <valueInteger value="4"/>
+   <note>
+      <text value="Grotere mate van ondervoeding t.o.v. vorig meetmoment"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+            <code value="4006003"/>
+            <display value="SNAQScore GewichtsverliesScore"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.5.1"/>
+            <code value="G2"/>
+            <display value="LossHigh"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+            <code value="4006004"/>
+            <display value="SNAQScore EetlustScore"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.5.2"/>
+            <code value="B1"/>
+            <display value="GeenEetlust"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+            <code value="4006005"/>
+            <display value="SNAQScore VoedingsScore"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.5.3"/>
+            <code value="Z0"/>
+            <display value="GeenVoeding"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>
