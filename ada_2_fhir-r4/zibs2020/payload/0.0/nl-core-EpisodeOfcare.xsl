@@ -36,9 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorg_episode" name="nl-core-EpisodeOfCare" mode="nl-core-EpisodeOfCare" as="element(f:EpisodeOfCare)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <!-- Gaat dit goed? Zou dit niet 'focus_zorg_episode' moeten zijn?  -->
-        <xsl:param name="problem" select="referenties/probleem" as="element()?"/>
+        <xsl:param name="problem" select="focus_zorg_episode/probleem" as="element()?"/>
         
         <xsl:for-each select="$in">
             <EpisodeOfCare>
