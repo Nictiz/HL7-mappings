@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="vaccinatie" name="nl-core-Vaccination-event" mode="nl-core-Vaccination-event" as="element(f:Immunization)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="patient" select="patient" as="element()?"/>
+        <xsl:param name="patient" select="patient/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Immunization>
@@ -110,7 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="vaccinatie" name="nl-core-Vaccination-request" mode="nl-core-Vaccination-request" as="element(f:ImmunizationRecommendation)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="patient" select="patient" as="element()?"/>
+        <xsl:param name="patient" select="patient/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <ImmunizationRecommendation>
@@ -139,7 +139,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </vaccineCode>
                         </xsl:for-each>
                         <!--Based on the zib it's not possible to deduce the value of forecastStatus with full certainty. The value _due_ seems to be the most suited default.-->
-                        <forecastStatus value="due"/>
+                        <forecastStatus>
+                            <coding>
+                                <system value="http://terminology.hl7.org/CodeSystem/immunization-recommendation-status"/>
+                                <code value="due"/>
+                                <display value="Due"/>
+                            </coding>
+                        </forecastStatus>
                         <xsl:for-each select="vaccinatie_datum">
                             <dateCriterion>
                                 <code>
