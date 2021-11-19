@@ -28,10 +28,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="_driverInclude.xsl"/>
     
     <xsl:template match="/nm:bundle">
-        <xsl:apply-templates mode="_doTransform" select="$bundle/alcohol_gebruik"/>
+        <xsl:apply-templates mode="_doTransform" select="$bundle/*[1]"/>
     </xsl:template>
     
-    <xsl:template match="//alcohol_gebruik_registratie/alcohol_gebruik">
+    <xsl:template match="//*[ends-with(local-name(), '_registratie')]/*">
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     

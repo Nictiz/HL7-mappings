@@ -159,9 +159,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each select="$resources">
-                    <xsl:result-document href="{./f:id/@value}.xml">
-                        <xsl:copy-of select="."/>
-                    </xsl:result-document>
+                        <xsl:result-document href="{./f:id/@value}.xml">
+                            <xsl:copy-of select="."/>
+                        </xsl:result-document>
                 </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
@@ -273,12 +273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'patient'">
-                <xsl:apply-templates select="$in" mode="nl-core-Patient">
-                    <xsl:with-param name="nationality" select="$bundle/nationaliteit_rc"/>
-                    <xsl:with-param name="maritalStatus" select="$bundle/burgerlijke_staat_rc"/>
-                    <xsl:with-param name="languageProficiency" select="$bundle/taalvaardigheid"/>
-                    <xsl:with-param name="contactPersons" select="$bundle/contactpersoon"/>
-                </xsl:apply-templates>
+                <xsl:apply-templates select="$in" mode="nl-core-Patient"/>
             </xsl:when>
             <xsl:when test="$localName = 'probleem'">
                 <xsl:apply-templates select="$in" mode="nl-core-Problem">

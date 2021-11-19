@@ -26,8 +26,14 @@ for /f %%f in ('dir /b "%inputDir%"') do (
    echo Converting !id!
    set noDriverId=!id:-bundled=!
    set baseId=!noDriverId:~0, -3!
+   
+   if exist "!baseId!-driver.xsl" (
+	set xslPath=!baseId!-driver.xsl
+   ) else (
+	set xslPath=nl-core-driver.xsl
+   )
 
-   java -jar "%jarPath%" -s:"%inputDir%/!id!.xml" -xsl:!baseId!-driver.xsl -o:"%outputDir%/!noDriverId!.xml
+   java -jar "%jarPath%" -s:"%inputDir%/!id!.xml" -xsl:!xslPath! -o:"%outputDir%/!noDriverId!.xml
   )
  )
 )
