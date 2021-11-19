@@ -159,9 +159,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each select="$resources">
-                        <xsl:result-document href="{./f:id/@value}.xml">
+                    <xsl:choose>
+                        <xsl:when test="string-length(f:id/@value) gt 0">
+                            <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
+                                <xsl:copy-of select="."/>
+                            </xsl:result-document>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- This happens when transforming a non-saved document in Oxygen -->
+                            <xsl:message>Could not output to result-document without Resource.id. Outputting to console instead.</xsl:message>
                             <xsl:copy-of select="."/>
-                        </xsl:result-document>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
