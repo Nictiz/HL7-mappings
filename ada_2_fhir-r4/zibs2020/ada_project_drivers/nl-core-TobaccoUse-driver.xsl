@@ -28,22 +28,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="_driverInclude.xsl"/>
     
     <xsl:template match="/nm:bundle">
-        <xsl:apply-templates mode="_doTransform" select="$bundle/drugs_gebruik"/>
+        <xsl:apply-templates mode="_doTransform" select="$bundle/tabak_gebruik"/>
     </xsl:template>
     
     <xsl:template match="//tabak_gebruik_registratie/tabak_gebruik">
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
-    <xsl:template mode="_doTransform" match="tabak_gebruik">
-        <xsl:variable name="subject" as="element()?">
-            <xsl:call-template name="_resolveAdaPatient">
-                <xsl:with-param name="businessIdentifierRef" select="onderwerp/patient-id"/>
-            </xsl:call-template>
-        </xsl:variable>
-        
-        <xsl:call-template name="nl-core-TobaccoUse">
-            <xsl:with-param name="subject" select="$subject"/>
-        </xsl:call-template>
-    </xsl:template>
 </xsl:stylesheet>

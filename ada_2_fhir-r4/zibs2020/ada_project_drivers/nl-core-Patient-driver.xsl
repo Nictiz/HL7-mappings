@@ -19,6 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -38,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:ul>
         </xd:desc>
     </xd:doc>
-    <xsl:template match="/">
+    <xsl:template match="/nm:bundle">
         <xsl:for-each select="$bundle/patient">
             <xsl:call-template name="nl-core-Patient">
                 <xsl:with-param name="nationality" select="$bundle/nationaliteit_rc"/>
@@ -48,4 +49,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
+    
+    <xsl:template match="//patient_registratie/patient">
+        <xsl:apply-templates mode="_doTransform" select="."/>
+    </xsl:template>
+    
 </xsl:stylesheet>
