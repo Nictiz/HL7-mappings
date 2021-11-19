@@ -64,10 +64,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
+        <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
+        <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
         <nm:map ada="farmaceutisch_product" resource="Medication" profile="nl-core-PharmaceuticalProduct"/>
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
@@ -87,6 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport-Observation"/>
+        <nm:map ada="tabak_gebruik" resource="Observation" profile="nl-core-TobaccoUse"/>
         <nm:map ada="tekst_uitslag" resource="DiagnosticReport" profile="nl-core-TextResult"/>
         <nm:map ada="toedieningsafspraak" resource="MedicationDispense" profile="nl-core-AdministrationAgreement"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>

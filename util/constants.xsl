@@ -24,13 +24,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:param name="fhirVersion" select="'STU3'"/>
     
-    <xsl:variable name="ada-unit-second" select="('seconde', 's', 'sec', 'second')"/>
-    <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
-    <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>
-    <xsl:variable name="ada-unit-day" select="('dag', 'd', 'day')"/>
-    <xsl:variable name="ada-unit-week" select="('week', 'wk')"/>
-    <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month')"/>
-    <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year')"/>
+    <xsl:variable name="ada-unit-second" select="('seconde', 's', 'sec', 'second', 'seconden', 'secondes', 'seconds')"/>
+    <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute', 'minuten', 'minutes')"/>
+    <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour', 'uren', 'hours')"/>
+    <xsl:variable name="ada-unit-day" select="('dag', 'd', 'day', 'dagen', 'days')"/>
+    <xsl:variable name="ada-unit-week" select="('week', 'wk', 'weken', 'weeks')"/>
+    <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month', 'maanden', 'months')"/>
+    <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year', 'jaren', 'years')"/>
 
     <xsl:variable name="ada-unit-kilo" select="('kilo', 'kg', 'kilogram')"/>
     <xsl:variable name="ada-unit-gram" select="('gram', 'g', 'gr')"/>
@@ -42,9 +42,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada-unit-cl" select="('centiliter', 'cl')"/>
     <xsl:variable name="ada-unit-ml" select="('milliliter', 'ml')"/>
     <xsl:variable name="ada-unit-ul" select="('microliter', 'ul')"/>
-    
-    <xsl:variable name="ada-unit-druppel" select="('druppel', 'drp','[drp]')"/>
-    
+
+    <xsl:variable name="ada-unit-druppel" select="('druppel', 'drp', '[drp]', 'druppels', 'drops')"/>
+
     <xsl:variable name="ada-unit-degrees-celsius" select="('Cel', 'graden Celsius', 'graden celsius', 'degrees Celsius', 'degrees celsius', 'Celsius', 'celsius')"/>
     <xsl:variable name="ada-unit-pH" select="('pH', '[pH]')"/>
     <xsl:variable name="ada-unit-mmol-l" select="('mmol/L', 'mmol/l', 'mmol per liter')"/>
@@ -97,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidQuestionnaireItemUIControlCodes">2.16.840.1.113883.4.642.1.849</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemType">2.16.840.1.113883.4.642.1.438</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemUsageMode">2.16.840.1.113883.4.642.1.855</xsl:variable>
-    <xsl:variable name="oidQuestionnaireResponseStatus">2.16.840.1.113883.4.642.1.441</xsl:variable>    
+    <xsl:variable name="oidQuestionnaireResponseStatus">2.16.840.1.113883.4.642.1.441</xsl:variable>
     <xsl:variable name="oidQuestionnaireTextCategories">2.16.840.1.113883.4.642.1.853</xsl:variable>
     <xsl:variable name="oidRoleCodeNLOrganizations">2.16.840.1.113883.2.4.15.1060</xsl:variable>
     <xsl:variable name="oidSNOMEDCT">2.16.840.1.113883.6.96</xsl:variable>
@@ -109,14 +109,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
     <xsl:variable name="oidZIBLaboratoriumUitslagTestUitslagStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
- 
+
     <xsl:variable name="urlExtNLCodeSpecification">http://nictiz.nl/fhir/StructureDefinition/code-specification</xsl:variable>
     <xsl:variable name="urlExtNLMissingTypeReference">http://nictiz.nl/fhir/StructureDefinition/missing-type-reference</xsl:variable>
     <xsl:variable name="urlExtNLPractitionerRoleReference">http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference</xsl:variable>
     <xsl:variable name="urlExtHL7DataAbsentReason">http://hl7.org/fhir/StructureDefinition/data-absent-reason</xsl:variable>
     <xsl:variable name="urlExtHL7NullFlavor">http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor</xsl:variable>
+    <xsl:variable name="urlExtRepeatPeriodCyclical">http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule</xsl:variable>
+    <xsl:variable name="urlTimingExact">http://hl7.org/fhir/StructureDefinition/timing-exact</xsl:variable>
+    
     
     <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
+
+    <xsl:variable name="genderMap" as="element()+">
+        <map hl7Code="M" hl7CodeSystem="2.16.840.1.113883.5.1" fhirCode="male" displayName="man" displayNameEN="male"/>
+        <map hl7Code="F" hl7CodeSystem="2.16.840.1.113883.5.1" fhirCode="female" displayName="vrouw" displayNameEN="female"/>
+        <map hl7Code="UN" hl7CodeSystem="2.16.840.1.113883.5.1" fhirCode="other" displayName="ongedifferentieerd" displayNameEN="undifferentatiated"/>
+        <map hl7Code="UNK" hl7CodeSystem="2.16.840.1.113883.5.1008" fhirCode="unknown" displayName="onbekend" displayNameEN="unknown"/>
+    </xsl:variable>
 
     <xsl:variable name="hl7NullFlavorMap" as="element()+">
         <!-- bron: https://www.hl7.nl/wiki/index.php/Vocabulaire.NullFlavor -->
@@ -138,6 +148,133 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7NullFlavor="QS" displayName="voldoende hoeveelheid" displayNameEN="quantity sufficient"/>
         <map hl7NullFlavor="TRC" displayName="spoor" displayNameEN="trace"/>
     </xsl:variable>
+    
+    <xsl:variable name="hl7ActStatusMap" as="element()+">
+        <map hl7Code="active" hl7CodeSystem="2.16.840.1.113883.5.14" displayName="actief" displayNameEN="active"/>
+        <map hl7Code="suspended" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="onderbroken" displayNameEN="suspended"/>
+        <map hl7Code="aborted" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="afgebroken" displayNameEN="aborted"/>
+        <map hl7Code="completed" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="voltooid" displayNameEN="completed"/>
+        <map hl7Code="cancelled" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="niet gestart" displayNameEN="cancelled"/>
+    </xsl:variable>
+    
+    <xsl:variable name="uziRoleCodeMap" as="element()+">
+        <map hl7Code="01.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts"/>
+        <map hl7Code="01.002" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Allergoloog (gesloten register)"/>
+        <map hl7Code="01.003" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Anesthesioloog"/>
+        <map hl7Code="01.004" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apotheekhoudende huisarts"/>
+        <map hl7Code="01.008" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Bedrijfsarts"/>
+        <map hl7Code="01.010" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Cardioloog"/>
+        <map hl7Code="01.011" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Cardiothoracaal chirurg"/>
+        <map hl7Code="01.012" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Dermatoloog"/>
+        <map hl7Code="01.013" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts v. maag-darm-leverziekten"/>
+        <map hl7Code="01.014" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Chirurg"/>
+        <map hl7Code="01.015" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+        <map hl7Code="01.016" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Internist"/>
+        <map hl7Code="01.018" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Keel- neus- en oorarts"/>
+        <map hl7Code="01.019" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kinderarts"/>
+        <map hl7Code="01.020" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts klinische chemie (gesloten register)"/>
+        <map hl7Code="01.021" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch geneticus"/>
+        <map hl7Code="01.022" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch geriater"/>
+        <map hl7Code="01.023" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Longarts"/>
+        <map hl7Code="01.024" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts-microbioloog"/>
+        <map hl7Code="01.025" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Neurochirurg"/>
+        <map hl7Code="01.026" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Neuroloog"/>
+        <map hl7Code="01.030" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Nucleair geneeskundige"/>
+        <map hl7Code="01.031" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Oogarts"/>
+        <map hl7Code="01.032" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthopedisch chirurg"/>
+        <map hl7Code="01.033" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Patholoog"/>
+        <map hl7Code="01.034" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Plastisch chirurg"/>
+        <map hl7Code="01.035" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Psychiater"/>
+        <map hl7Code="01.039" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radioloog"/>
+        <map hl7Code="01.040" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radiotherapeut"/>
+        <map hl7Code="01.041" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Reumatoloog"/>
+        <map hl7Code="01.042" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Revalidatiearts"/>
+        <map hl7Code="01.045" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Uroloog"/>
+        <map hl7Code="01.046" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Gynaecoloog"/>
+        <map hl7Code="01.047" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Specialist ouderengeneeskunde"/>
+        <map hl7Code="01.048" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verzekeringsarts"/>
+        <map hl7Code="01.050" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Zenuwarts (gesloten register)"/>
+        <map hl7Code="01.062" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Internist-Allergoloog (gesloten register)"/>
+        <map hl7Code="01.055" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts maatschappij en gezondheid"/>
+        <map hl7Code="01.056" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts voor verstandelijk gehandicapten"/>
+        <map hl7Code="01.070" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Jeugdarts"/>
+        <map hl7Code="01.071" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Spoedeisende hulp arts"/>
+        <map hl7Code="01.074" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Sportarts"/>
+        <map hl7Code="02.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Tandarts"/>
+        <map hl7Code="02.053" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthodontist"/>
+        <map hl7Code="02.054" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kaakchirurg"/>
+        <map hl7Code="03.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verloskundige"/>
+        <map hl7Code="04.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Fysiotherapeut"/>
+        <map hl7Code="16.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Psychotherapeut"/>
+        <map hl7Code="17.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apotheker"/>
+        <map hl7Code="17.060" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Ziekenhuisapotheker"/>
+        <map hl7Code="17.075" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Openbaar apotheker"/>
+        <map hl7Code="25.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Gezondheidszorgpsycholoog"/>
+        <map hl7Code="25.061" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch psycholoog"/>
+        <map hl7Code="25.063" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch neuropsycholoog"/>
+        <map hl7Code="30.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpleegkundige"/>
+        <map hl7Code="30.065" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. prev. zorg bij som. aandoeningen"/>
+        <map hl7Code="30.066" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. acute zorg bij som. aandoeningen"/>
+        <map hl7Code="30.067" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. intensieve zorg bij som. aandoeningen"/>
+        <map hl7Code="30.068" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. chronische zorg bij som. aandoeningen"/>
+        <map hl7Code="30.069" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Verpl. spec. geestelijke gezondheidszorg"/>
+        <map hl7Code="31.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthopedagoog-generalist"/>
+        <map hl7Code="79.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Geregistreerd-mondhygiënist"/>
+        <map hl7Code="80.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Bachelor medisch hulpverlener"/>
+        <map hl7Code="81.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Physician assistant"/>
+        <map hl7Code="82.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch technoloog"/>
+        <map hl7Code="83.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apothekersassistent"/>
+        <map hl7Code="84.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Klinisch fysicus"/>
+        <map hl7Code="85.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Tandprotheticus"/>
+        <map hl7Code="86.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="VIG-er"/>
+        <map hl7Code="87.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Optometrist"/>
+        <map hl7Code="88.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huidtherapeut"/>
+        <map hl7Code="89.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Diëtist"/>
+        <map hl7Code="90.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Ergotherapeut"/>
+        <map hl7Code="91.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Logopedist"/>
+        <map hl7Code="92.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Mondhygiënist"/>
+        <map hl7Code="93.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Oefentherapeut Mensendieck"/>
+        <map hl7Code="94.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Oefentherapeut Cesar"/>
+        <map hl7Code="95.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Orthoptist"/>
+        <map hl7Code="96.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Podotherapeut"/>
+        <map hl7Code="97.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radiodiagnistisch laborant"/>
+        <map hl7Code="98.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Radiotherapeutisch laborant"/>
+        <map hl7Code="99.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Zorgverlener andere zorg"/>
+    </xsl:variable>
+
+    <xsl:variable name="orgRoleCodeMap" as="element()+">
+        <map hl7Code="V4" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Ziekenhuis"/>
+        <map hl7Code="V5" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Universitair Medisch Centrum"/>
+        <map hl7Code="V6" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Algemeen ziekenhuis"/>
+        <map hl7Code="BRA" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Brandwondencentrum"/>
+        <map hl7Code="Z4" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Zelfstandig behandelcentrum"/>
+        <map hl7Code="Z5" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Diagnostisch centrum"/>
+        <map hl7Code="B1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Beeldvormende diagnostiek"/>
+        <map hl7Code="B2" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Echocentrum"/>
+        <map hl7Code="X3" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verplegings- of verzorgingsinstelling"/>
+        <map hl7Code="R5" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verpleeghuis"/>
+        <map hl7Code="M1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verzorgingstehuis"/>
+        <map hl7Code="A1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Apotheekinstelling"/>
+        <map hl7Code="J8" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Openbare apotheek"/>
+        <map hl7Code="K9" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Zelfstandig opererende ziekenhuisapotheek"/>
+        <map hl7Code="H1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartsinstelling"/>
+        <map hl7Code="Z3" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+        <map hl7Code="K3" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Apotheekhoudende huisartspraktijk"/>
+        <map hl7Code="N6" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartsenpost (t.b.v. dienstwaarneming)"/>
+        <map hl7Code="L1" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Laboratorium"/>
+        <map hl7Code="P4" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Polikliniek (als onderdeel van een ziekenhuis)"/>
+        <map hl7Code="R8" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Revalidatiecentrum"/>
+        <map hl7Code="P6" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Preventieve gezondheidszorg (waaronder Bevolkingsonderzoek)"/>
+        <map hl7Code="G5" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Geestelijke Gezondheidszorg"/>
+        <map hl7Code="G6" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verstandelijk gehandicaptenzorg"/>
+        <map hl7Code="T2" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Thuiszorg"/>
+        <map hl7Code="K4" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Kraamzorg"/>
+        <map hl7Code="H2" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Hospice"/>
+        <map hl7Code="JGZ" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Jeugdgezondheidszorg"/>
+        <map hl7Code="G3" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Verloskundigenpraktijk"/>
+        <map hl7Code="GC" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Geboortecentrum"/>
+        <map hl7Code="DIA" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Dialysecentrum"/>
+    </xsl:variable>
 
     <xsl:variable name="oidMap" as="element()+">
         <map oid="{$oidAGB}" uri="http://fhir.nl/fhir/NamingSystem/agb-z" displayName="AGB-Z"/>
@@ -155,6 +292,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidGStandaardBST361}" displayName="G-Standaard Bestand 361 a-tabel (eenheid gebruiksadvies)"/>
         <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard Bestand 902 Thesaurus 2"/>
         <map oid="{$oidGStandaardFarmaceutischeVormen}" displayName="G-Standaard Farmaceutische vormen (tabel 6)"/>
+        <map oid="{$oidICPC1NL}" uri="http://hl7.org/fhir/sid/icpc-1-nl" displayName="ICPC-1NL"/>
         <map oid="{$oidISO3166}" uri="urn:iso:std:iso:3166" displayName="ISO 3166-1 (alpha-2)"/>
         <map oid="{$oidJournaalregeltypen}" uri="http://fhir.nl/fhir/NamingSystem/journaalregeltypen" displayName="Journaalregeltypen"/>
         <map oid="{$oidLOINC}" uri="http://loinc.org" displayName="LOINC"/>
@@ -164,6 +302,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidNHGTabel45DiagnBepal}" uri="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen" displayName="NHG Tabel 45 Diagnostische bepalingen"/>
         <map oid="{$oidNHGTabel45DiagnBepalResultaat}" uri="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen#resultaten" displayName="NHG Labcodetabel 45 resultaten"/>
         <map oid="{$oidNHGTabel56Profylaxe}" uri="https://referentiemodel.nhg.org/tabellen/nhg-tabel-56-profylaxe-en-voorzorg" displayName="NHG Tabel 56 Profylaxe en voorzorg"/>
+        <map oid="{$oidQuestionnaireItemUIControlCodes}" uri="http://hl7.org/fhir/questionnaire-item-control" displayName="Questionnaire Item UI Control Codes"/>
+        <map oid="{$oidQuestionnaireItemType}" uri="http://hl7.org/fhir/item-type" displayName="QuestionnaireItemType"/>
+        <map oid="{$oidQuestionnaireResponseStatus}" uri="http://hl7.org/fhir/questionnaire-answers-status" displayName="QuestionnaireResponseStatus"/>
+        <map oid="{$oidQuestionnaireTextCategories}" uri="http://hl7.org/fhir/questionnaire-display-category" displayName="Questionnaire Text Categories"/>
         <map oid="{$oidRoleCodeNLOrganizations}" uri="http://nictiz.nl/fhir/NamingSystem/organization-type" displayName="HL7 RoleCodeNL Care provider type (organizations)"/>
         <map oid="{$oidSNOMEDCT}" uri="http://snomed.info/sct" displayName="SNOMED CT"/>
         <map oid="{$oidUCUM}" uri="http://unitsofmeasure.org" displayName="UCUM"/>
@@ -171,10 +313,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidUZIPersons}" uri="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers" displayName="UZI Personen"/>
         <map oid="{$oidUZIRoleCode}" uri="http://fhir.nl/fhir/NamingSystem/uzi-rolcode" displayName="UZI Rolcodes"/>
         <map oid="{$oidUZISystems}" uri="http://fhir.nl/fhir/NamingSystem/uzi-nr-sys" displayName="UZI Systemen"/>
-        <map oid="{$oidICPC1NL}" uri="http://hl7.org/fhir/sid/icpc-1-nl" displayName="ICPC-1NL"/>
-        <map oid="{$oidQuestionnaireItemUIControlCodes}" uri="http://hl7.org/fhir/questionnaire-item-control" displayName="Questionnaire Item UI Control Codes"/>            <map oid="{$oidQuestionnaireItemType}" uri="http://hl7.org/fhir/item-type" displayName="QuestionnaireItemType"/>
-        <map oid="{$oidQuestionnaireResponseStatus}" uri="http://hl7.org/fhir/questionnaire-answers-status" displayName="QuestionnaireResponseStatus"/>
-        <map oid="{$oidQuestionnaireTextCategories}" uri="http://hl7.org/fhir/questionnaire-display-category" displayName="Questionnaire Text Categories"/>
         <xsl:choose>
             <xsl:when test="$fhirVersion='STU3'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://hl7.org/fhir/choice-list-orientation" displayName="ChoiceListOrientation"/>
@@ -219,7 +357,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="OIDpattern" select="'^[0-2](\.(0|[1-9]\d*))*$'"/>
     <!-- official UUID pattern -->
     <xsl:variable name="UUIDpattern" select="'^[A-Fa-f\d]{8}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{12}$'"/>
-    
+
     <!-- http://hl7.org/fhir/v3/ObservationInterpretation/cs.html -->
     <!-- https://zibs.nl/wiki/LaboratoryTestResult-v4.1(2017EN)#ResultFlagsCodelist -->
     <xsl:variable name="hl7v3ObservationInterpretation_to_zibInterpretatieVlaggen" as="element(map)">
@@ -288,7 +426,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <map inCode="WR" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>-->
         </map>
     </xsl:variable>
-    
+
     <!-- https://zibs.nl/wiki/LaboratoryTestResult-v4.1(2017EN)#ResultFlagsCodelist -->
     <!-- http://hl7.org/fhir/v2/0078/index.html -->
     <xsl:variable name="zibInterpretatieVlaggen_to_hl7v2Table0078AbnormalFlags" as="element(map)">
