@@ -107,4 +107,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="lichaamsgewicht" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Body weight observation</xsl:text>
+            <xsl:if test="gewicht_datum_tijd[@value]">
+                <xsl:value-of select="concat('measurement date ', gewicht_datum_tijd/@value)"/>
+            </xsl:if>
+            <xsl:value-of select="toelichting/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+    </xsl:template>
+    
 </xsl:stylesheet>
