@@ -26,13 +26,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada freedomrestrictingjntervention to FHIR valueCodableConcept element conforming to profile nl-core-AnatomicalLocation</xd:desc>
+        <xd:desc>Converts ada anatomische_locatie to FHIR valueCodeableConcept element conforming to profile nl-core-AnatomicalLocation</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Produces FHIR valueCodableConcept element conforming to profile nl-core-AnatomicalLocation</xd:desc>
+        <xd:desc>Produces FHIR valueCodeableConcept element conforming to profile nl-core-AnatomicalLocation</xd:desc>
         <xd:param name="in">Ada 'anatomische_locatie' element containing the zib data</xd:param>
-        <xd:param name="wrap">Optional boolean to wrap the resulting element in an 'valueCodeableConcept' element.</xd:param>
+        <xd:param name="wrap">Optional boolean to wrap the resulting element in a 'valueCodeableConcept' element.</xd:param>
     </xd:doc>
     <xsl:template match="anatomische_locatie" mode="nl-core-AnatomicalLocation" name="nl-core-AnatomicalLocation" as="element()*">
         <xsl:param name="in" select="." as="element()?"/>
