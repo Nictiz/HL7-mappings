@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="bc4660fc-e3c1-11eb-1096-020000000000"/>
+   <id value="151f317e-4d3d-11ec-7405-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:bc465d22-e3c1-11eb-1096-020000000000"/>
+      <fullUrl value="urn:uuid:151f3721-4d3d-11ec-7405-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -88,7 +88,7 @@
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:bc465d06-e3c1-11eb-1096-020000000000"/>
+               <reference value="urn:uuid:151f3712-4d3d-11ec-7405-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -13}T08:05:00+02:00"/>
@@ -96,7 +96,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:bc465d2e-e3c1-11eb-1096-020000000000"/>
+                        <reference value="urn:uuid:151f3724-4d3d-11ec-7405-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -105,7 +105,7 @@
                </agent>
             </requester>
             <reasonReference>
-               <reference value="urn:uuid:bc465c30-e3c1-11eb-1096-020000000000"/>
+               <reference value="urn:uuid:151f3737-4d3d-11ec-7405-020000000000"/>
                <display value="Reumatoide artritis overig"/>
             </reasonReference>
             <dosageInstruction>
@@ -138,7 +138,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bc465d06-e3c1-11eb-1096-020000000000"/>
+      <fullUrl value="urn:uuid:151f3712-4d3d-11ec-7405-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -288,7 +288,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bc465d2e-e3c1-11eb-1096-020000000000"/>
+      <fullUrl value="urn:uuid:151f3724-4d3d-11ec-7405-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -343,6 +343,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.141631"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-141631"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -382,7 +383,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bc465c30-e3c1-11eb-1096-020000000000"/>
+      <fullUrl value="urn:uuid:151f3737-4d3d-11ec-7405-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -392,8 +393,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Aandoening. Subject: C. XXX_Vonker. Status: <i>onbekend (ontbrekend gegeven)</i>
-                     </caption>
+                     <caption>Aandoening. Subject: C. XXX_Vonker. Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Code</th>
@@ -403,11 +403,7 @@
                   </table>
                </div>
             </text>
-            <clinicalStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </clinicalStatus>
+            <clinicalStatus value="active"/>
             <code>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                   <valueCode value="OTH"/>
@@ -415,7 +411,7 @@
                <text value="Reumatoide artritis"/>
             </code>
             <subject>
-               <reference value="urn:uuid:bc465d06-e3c1-11eb-1096-020000000000"/>
+               <reference value="urn:uuid:151f3712-4d3d-11ec-7405-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
          </Condition>
