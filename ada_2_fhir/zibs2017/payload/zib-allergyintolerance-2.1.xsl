@@ -56,11 +56,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <!--<xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>-->
+        <xsl:param name="entryFullUrl">
+            <xsl:choose>
+                <xsl:when test="$uuid or empty(zibroot/identificatienummer | hcimroot/identification_number)">
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getUriFromAdaId(zibroot/identificatienummer | hcimroot/identification_number, 'AllergyIntolerance', false())"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById and matches($entryFullUrl, '^https?:')">
-                <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="$referById">
+                    <xsl:choose>
+                        <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
+                            <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="matches($entryFullUrl, '^https?:')">
+                    <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
+                </xsl:when>
+            </xsl:choose>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
 
@@ -106,8 +128,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance</xsl:variable>
                 <AllergyIntolerance>
-                    <xsl:if test="$referById and string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{$logicalId}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <meta>
                         <profile value="{$profileValue}"/>

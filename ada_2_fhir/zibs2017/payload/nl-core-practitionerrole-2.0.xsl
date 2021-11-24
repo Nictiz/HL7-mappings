@@ -127,9 +127,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(./..)"/>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById and matches($entryFullUrl, '^https?:')">
-               <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="$referById">
+                    <xsl:choose>
+                        <xsl:when test="$uuid">
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:when>
+                        <xsl:when test="nf:getValueAttrPractitionerRole(.)">
+                            <xsl:value-of select="nf:removeSpecialCharacters(nf:getValueAttrPractitionerRole(.))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="matches($entryFullUrl, '^https?:')">
+                    <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
+                </xsl:when>
+            </xsl:choose>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
@@ -177,10 +192,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole</xsl:variable>
                 <PractitionerRole>
-                    <xsl:if test="$referById and string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{$logicalId}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
-                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>

@@ -231,11 +231,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$episodeofcare">
             <xsl:variable name="resource">
                 <EpisodeOfCare xmlns="http://hl7.org/fhir">
-                    <xsl:if test="$referById">
-                        <xsl:call-template name="id-to-id">
-                            <xsl:with-param name="in" select="identifier"/>
-                        </xsl:call-template>
-                    </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="$referById">
+                            <id value="{nf:removeSpecialCharacters(identifier/@value)}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="id-to-id">
+                                <xsl:with-param name="in" select="identifier"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     
                     <meta>
                         <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
@@ -339,11 +344,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="zib-Alert" as="element()">
         <xsl:variable name="resource">
             <Flag xmlns="http://hl7.org/fhir">
-                <xsl:if test="$referById">
-                    <xsl:call-template name="id-to-id">
-                        <xsl:with-param name="in" select="hcimroot/identification_number"/>
-                    </xsl:call-template>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$referById">
+                        <id value="{nf:removeSpecialCharacters(hcimroot/identification_number/@value)}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="id-to-id">
+                            <xsl:with-param name="in" select="hcimroot/identification_number"/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
                 
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
@@ -467,11 +477,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="encounterGroup" as="element()+"/>
         <xsl:variable name="resource">
             <Encounter xmlns="http://hl7.org/fhir">
-                <xsl:if test="$referById">
-                    <xsl:call-template name="id-to-id">
-                        <xsl:with-param name="in" select="hcimroot/identification_number"/>
-                    </xsl:call-template>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$referById">
+                        <id value="{nf:removeSpecialCharacters(hcimroot/identification_number/@value)}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="id-to-id">
+                            <xsl:with-param name="in" select="hcimroot/identification_number"/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
                 
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
@@ -736,11 +751,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!--NL-CM:13.1.3	LaboratoryTest	0..*	Container of the LaboratoryTest concept. This container contains all data elements of the LaboratoryTest concept.-->
             <xsl:variable name="resource">
                 <Observation xmlns="http://hl7.org/fhir">
-                    <xsl:if test="$referById">
-                        <xsl:call-template name="id-to-id">
-                            <xsl:with-param name="in" select="hcimroot/identification_number"/>
-                        </xsl:call-template>
-                    </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="$referById">
+                            <id value="{nf:removeSpecialCharacters(hcimroot/identification_number/@value)}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="id-to-id">
+                                <xsl:with-param name="in" select="hcimroot/identification_number"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     
                     <meta>
                         <xsl:if test="test_code[@codeSystem = $oidNHGTabel45DiagnBepal]">
@@ -926,11 +946,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--NL-CM:13.3.1 	GeneralMeasurement 		Root concept of the GeneralMeasurement information model. This root concept contains all data elements of the GeneralMeasurement information model.-->
         <xsl:variable name="resource">
             <Observation xmlns="http://hl7.org/fhir">
-                <xsl:if test="$referById">
-                    <xsl:call-template name="id-to-id">
-                        <xsl:with-param name="in" select="hcimroot/identification_number"/>
-                    </xsl:call-template>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$referById">
+                        <id value="{nf:removeSpecialCharacters(hcimroot/identification_number/@value)}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="id-to-id">
+                            <xsl:with-param name="in" select="hcimroot/identification_number"/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
                 
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
@@ -1120,11 +1145,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="subject" as="element()*"/>
         <xsl:variable name="resource">
             <Observation xmlns="http://hl7.org/fhir">
-                <xsl:if test="$referById">
-                    <xsl:call-template name="id-to-id">
-                        <xsl:with-param name="in" select="identifier"/>
-                    </xsl:call-template>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$referById">
+                        <id value="{nf:removeSpecialCharacters(identifier/@value)}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="id-to-id">
+                            <xsl:with-param name="in" select="identifier"/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
                 
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
@@ -1250,11 +1280,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="episodeofcare" select="episode" as="element()*"/>
         <xsl:variable name="resource">
             <Composition xmlns="http://hl7.org/fhir">
-                <xsl:if test="$referById">
-                    <xsl:call-template name="id-to-id">
-                        <xsl:with-param name="in" select="hcimroot/identification_number"/>
-                    </xsl:call-template>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$referById">
+                        <id value="{nf:removeSpecialCharacters(hcimroot/identification_number/@value)}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="id-to-id">
+                            <xsl:with-param name="in" select="hcimroot/identification_number"/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
                 </meta>

@@ -25,20 +25,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:variable name="labObservations" as="element()*">
         <xsl:for-each-group select="//laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <unieke-lab-observatie xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <reference-display xmlns="">
-                    <xsl:value-of select="(test_code | test_result)/(@displayName|@originalText)"/>
-                </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doLaboratoryResultObservationEntry-2.1">
-                    <xsl:with-param name="uuid" select="$uuid"/>
-                    <xsl:with-param name="searchMode">match</xsl:with-param>
-                </xsl:apply-templates>
-            </unieke-lab-observatie>
+            <xsl:for-each select="current-group()">
+                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <unieke-lab-observatie xmlns="">
+                    <group-key xmlns="">
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <reference-display xmlns="">
+                        <xsl:value-of select="(test_code | test_result)/(@displayName | @originalText)"/>
+                    </reference-display>
+                    <xsl:apply-templates select="." mode="doLaboratoryResultObservationEntry-2.1">
+                        <xsl:with-param name="uuid" select="$uuid"/>
+                        <xsl:with-param name="searchMode">match</xsl:with-param>
+                    </xsl:apply-templates>
+                </unieke-lab-observatie>
+            </xsl:for-each>
         </xsl:for-each-group>
     </xsl:variable>
     
@@ -80,27 +82,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
+        
         <xsl:param name="entryFullUrl">
             <xsl:choose>
-                <xsl:when test="not($uuid) and (zibroot/identificatienummer | hcimroot/identification_number)/@value">
-                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id((zibroot/identificatienummer | hcimroot/identification_number)[1]))"/>
+                <xsl:when test="$uuid or empty((zibroot/identificatienummer | hcimroot/identification_number)/@value)">
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                    <xsl:value-of select="nf:getUriFromAdaId(zibroot/identificatienummer | hcimroot/identification_number, 'Observation', false())"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:choose>
-                    <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
-                        <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="$referById">
+                    <xsl:choose>
+                        <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
+                            <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="matches($entryFullUrl, '^https?:')">
+                    <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
+                </xsl:when>
+            </xsl:choose>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         
@@ -148,8 +156,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation</xsl:variable>
                 
                 <Observation>
-                    <xsl:if test="$referById">
-                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{$logicalId}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <meta>
                         <xsl:if test="test_code[@codeSystem = $oidNHGTabel45DiagnBepal]">
