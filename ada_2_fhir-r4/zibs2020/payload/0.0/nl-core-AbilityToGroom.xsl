@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-AbilityToGroom instance as an Observation FHIR instance from ada vermogen_tot_uiterlijke_verzorging element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="vermogen_tot_uiterlijke_verzorging" name="nl-core-AbilityToGroom" mode="nl-core-AbilityToGroom" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
