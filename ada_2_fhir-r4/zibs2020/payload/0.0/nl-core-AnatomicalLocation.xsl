@@ -32,6 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Produces FHIR valueCodableConcept element conforming to profile nl-core-AnatomicalLocation</xd:desc>
         <xd:param name="in">Ada 'anatomische_locatie' element containing the zib data</xd:param>
+        <xd:param name="wrap">Optional boolean to wrap the resulting element in an 'valueCodeableConcept' element.</xd:param>
     </xd:doc>
     <xsl:template match="anatomische_locatie" mode="nl-core-AnatomicalLocation" name="nl-core-AnatomicalLocation" as="element()*">
         <xsl:param name="in" select="." as="element()?"/>

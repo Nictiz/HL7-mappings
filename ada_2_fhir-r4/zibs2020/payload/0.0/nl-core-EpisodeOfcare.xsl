@@ -32,6 +32,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-EpisodeOfCare instance as a EpisodeOfCare FHIR instance from ADA zorg_episode.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">The subject as ADA element or reference.</xd:param>
+        <xd:param name="problem">The FocusEpisodeOfCare concept as ADA element or reference to a zib Problem instance.</xd:param>
     </xd:doc>
     <xsl:template match="zorg_episode" name="nl-core-EpisodeOfCare" mode="nl-core-EpisodeOfCare" as="element(f:EpisodeOfCare)">
         <xsl:param name="in" as="element()?" select="."/>

@@ -130,7 +130,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing a HealthProfessional, both to a PractitionerRole and a Practitioner resource</xd:desc>
-        <xd:param name="profile"></xd:param>
+        <xd:param name="profile">Parameter to indicate for which target profile a display is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="_generateDisplay">
         <xsl:param name="profile" required="yes" as="xs:string"/>
@@ -187,12 +187,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify a HealthProfessional present in a (set of) ada-instance(s)</xd:desc>
-        <xd:param name="profile">If the patient is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
-        <xd:param name="fullUrl">If the patient is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
+        <xd:param name="profile">Parameter to indicate for which target profile an id is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
-        <xsl:param name="fullUrl" tunnel="yes"/>
         
         <xsl:choose>
             <xsl:when test="$profile = 'nl-core-HealthProfessional-PractitionerRole'">
