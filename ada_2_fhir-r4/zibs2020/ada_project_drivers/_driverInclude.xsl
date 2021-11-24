@@ -28,8 +28,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../payload/zib_latest_package.xsl"/>
 
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
-    <xsl:param name="outputContained" select="true()" as="xs:boolean"/>
 
+    <xd:doc>
+        <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
+    </xd:doc>
+    <xsl:param name="writeOutputToDisk" select="true()" as="xs:boolean"/>
+    
     <!-- When the input is specified as a bundle, collect all input into the $bundle parameter -->
     <xsl:param name="bundle" as="element()*">
         <xsl:for-each select="/nm:bundle">
@@ -113,10 +117,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Outputs all resources as a FHIR Bundle or as separate resources.</xd:desc>
+        <xd:desc>Perform the transformation on the ADA input and write out or return the result, depending on the writeOutputToDisk parameter.</xd:desc>
+        <xd:param name="fhirEntries">An optional list of FHIR entries to include in the result.</xd:param>
     </xd:doc>
-    <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
-    
     <xsl:template mode="_doTransform" match="*">
         <xsl:param name="fhirEntries" as="element()*"/>
         
@@ -125,11 +128,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:variable name="simpleFhirEntries" as="element()*">
-            <xsl:call-template name="_callMode">
+            <xsl:call-template name="_applyNlCoreTemplate">
                 <xsl:with-param name="subject" select="$subject"/>
             </xsl:call-template>
             <xsl:for-each select="referenties/*">
-                <xsl:call-template name="_callMode">
+                <xsl:call-template name="_applyNlCoreTemplate">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -145,19 +148,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test="$createBundle">
-                <Bundle>
-                    <xsl:for-each select="$resources">
-                        <entry>
-                            <xsl:call-template name="insertFullUrlById"/>
-                            <resource>
-                                <xsl:copy-of select="."/>
-                            </resource>
-                        </entry>
-                    </xsl:for-each>
-                </Bundle>
-            </xsl:when>
-            <xsl:otherwise>
+            <xsl:when test="$writeOutputToDisk">
                 <xsl:for-each select="$resources">
                     <xsl:choose>
                         <xsl:when test="string-length(f:id/@value) gt 0">
@@ -172,22 +163,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <Bundle>
+                    <xsl:for-each select="$resources">
+                        <entry>
+                            <xsl:call-template name="_insertFullUrlById"/>
+                            <resource>
+                                <xsl:copy-of select="."/>
+                            </resource>
+                        </entry>
+                    </xsl:for-each>
+                </Bundle>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to output a referenced instance to disc.</xd:desc>
+        <xd:desc>The -- quite verbose -- template to dynamically call the proper nl-core template on the ADA input.</xd:desc>
         <xd:param name="in">The ADA instance to output.</xd:param>
-        <!--<xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>-->
+        <xd:param name="subject">The 'subject' parameter to pass to the nl-core template</xd:param>
     </xd:doc>
-    <xsl:template name="_callMode">
+    <xsl:template name="_applyNlCoreTemplate">
         <xsl:param name="in" select="."/>
         <xsl:param name="subject"/>
-        <xsl:param name="localName" select="$in/local-name()"/>
-        <!--<xsl:param name="profile" required="yes"/>-->
-        
+
         <!-- Quite verbose, but the only way to 'dynamically' apply a mode -->
+        <xsl:variable name="localName" select="$in/local-name()"/>
         <xsl:choose>
             <xsl:when test="$localName = 'adaextension'">
                 <!-- Do nothing -->
@@ -384,13 +386,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template name="insertFullUrlById">
-        <xsl:param name="in" select="."/>
-        
+    <xsl:template name="_insertFullUrlById">
+        <xsl:param name="in" select="."/>   
         <xsl:param name="fhirId" select="$in/f:id/@value"/>
        
         <xsl:if test="count($fhirMetadata[nm:logical-id = $fhirId]) = 0 ">
-            <xsl:message terminate="yes">insertFullUrlById: Nothing found.</xsl:message>
+            <xsl:message terminate="yes">_insertFullUrlById: Nothing found.</xsl:message>
         </xsl:if>
         
         <xsl:variable name="fullUrl">
