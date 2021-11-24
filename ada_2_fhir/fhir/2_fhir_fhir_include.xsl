@@ -740,15 +740,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="reference" as="xs:boolean?"/>
         
         <xsl:variable name="resourceId" as="element(f:id)?">
-            <xsl:if test="$referById">
-                <xsl:call-template name="id-to-id">
-                    <xsl:with-param name="in" select="$adaIdentification"/>
-                </xsl:call-template>
-            </xsl:if>
+            <xsl:call-template name="id-to-id">
+                <xsl:with-param name="in" select="$adaIdentification"/>
+            </xsl:call-template>
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test="$referById and (string-length($baseUrl) gt 0 or $reference) and string-length($resourceType) gt 0 and string-length($resourceId/@value) gt 0">
+            <xsl:when test="not($referById) and (string-length($baseUrl) gt 0 or $reference) and string-length($resourceType) gt 0 and string-length($resourceId/@value) gt 0">
                 <xsl:value-of select="if ($reference) then () else (replace($baseUrl, '/+$', '/') || '/') || $resourceType || '/' || $resourceId/@value"/>
             </xsl:when>
             <!-- root = oid and extension = numeric -->
