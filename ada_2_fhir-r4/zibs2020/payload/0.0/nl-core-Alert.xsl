@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="alert" name="nl-core-Alert" mode="nl-core-Alert" as="element(f:Flag)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="problem" select="conditie/probleem/*" as="element()?"/>
+        <xsl:param name="problem" select="conditie/probleem" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Flag>
