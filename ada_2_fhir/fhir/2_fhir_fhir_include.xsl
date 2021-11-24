@@ -781,7 +781,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
-        <xsl:value-of select="replace(translate($in, '_.', '--'), '[^a-zA-Z0-9-]', '')"/>
+        <xsl:value-of select="replace(translate(normalize-space($in),' _àáãäåèéêëìíîïòóôõöùúûüýÿç€ßñ?','--aaaaaeeeeiiiiooooouuuuyycEsnq'), '[^A-Za-z0-9\.-]', '')"/>
     </xsl:function>
 
     <xd:doc>
