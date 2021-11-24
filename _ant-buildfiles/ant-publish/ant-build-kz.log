@@ -1,21 +1,21 @@
-Buildfile: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\build-ketenzorg-3.0.2.xml
+Buildfile: C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\build-ketenzorg-3.0.2.xml
 
 download-ivy:
      [echo] installing ivy...
       [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
-      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-include\ivy\ivy.jar
       [get] Not modified - so not downloaded
 
 install-ivy:
 
 fetch-imports:
 [ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
-[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-include\ivysettings.xml
 [ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
 [ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 99ms :: artifacts dl 15ms
+[ivy:resolve] :: resolution report :: resolve 87ms :: artifacts dl 13ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -24,7 +24,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/11ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/29ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -34,19 +34,19 @@ setup:
 download-ivy:
      [echo] installing ivy...
       [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
-      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-include\ivy\ivy.jar
       [get] Not modified - so not downloaded
 
 install-ivy:
 
 fetch-imports:
 [ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
-[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-include\ivysettings.xml
 [ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
 [ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 71ms :: artifacts dl 14ms
+[ivy:resolve] :: resolution report :: resolve 61ms :: artifacts dl 10ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -55,88 +55,85 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/25ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
 convert_hl7v3_2_ada:
      [echo] Deleting previous results, if any
-   [delete] Deleting directory C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance
+   [delete] Deleting directory C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_allergieintoleranties_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\allergieintoleranties_REPC_EX990131NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_REPC_EX990131NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_allergieintoleranties_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\allergieintoleranties_REPC_IN990131NL_02.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_REPC_IN990131NL_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\allergieintoleranties_REPC_EX990131NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_REPC_EX990131NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_allergieintoleranties_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\allergieintoleranties_REPC_IN990131NL_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_REPC_IN990131NL_02.xml
      [xslt] WARN   : Encountered a telecom value in HL7 which could not be translated into a telephone number or email address, the value that could not be translated: x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.90000012.
      [xslt] WARN   : Encountered a telecom value in HL7 which could not be translated into a telephone number or email address, the value that could not be translated: x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.90000012.
      [xslt] WARN   : Encountered a telecom value in HL7 which could not be translated into a telephone number or email address, the value that could not be translated: x-hl7-applicatie:2.16.840.1.113883.2.4.6.6.90000012.
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\allergieintoleranties_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_bundle_01.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\allergieintoleranties_bundle_02.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_bundle_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\allergieintoleranties_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_bundle_01.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\allergieintoleranties_bundle_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_bundle_02.xml
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_episodes_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\episodes_REPC_EX990111NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_REPC_EX990111NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_episodes_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\episodes_REPC_EX990111NL_02.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_REPC_EX990111NL_02.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\episodes_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_bundle_01.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\episodes_REPC_EX990111NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_REPC_EX990111NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_episodes_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\episodes_REPC_EX990111NL_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_REPC_EX990111NL_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\episodes_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_bundle_01.xml
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_contactverslagen_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_REPC_IN990101NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_contactverslagen_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_REPC_IN990101NL_02.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_02.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_REPC_IN990101NL_03.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_03.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_bundle_01_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_01_met_contacten.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_bundle_02_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_02_met_contacten.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_bundle_03_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_03_met_contacten.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_REPC_IN990101NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_contactverslagen_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_REPC_IN990101NL_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_REPC_IN990101NL_03.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_03.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_bundle_01_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_01_met_contacten.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_bundle_02_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_02_met_contacten.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactverslag_bundle_03_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_03_met_contacten.xml
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_diagnostische_bepalingen_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\diagnostische_bepalingen_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\diagnostische_bepalingen_bundle_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_diagnostische_bepalingen_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\diagnostische_bepalingen_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\diagnostische_bepalingen_bundle_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_diagnostische_bepalingen_2_ada.xsl
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_labbepalingen_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\labbepalingen_POLB_IN364001NL03_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\labbepalingen_POLB_IN364001NL03_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_labbepalingen_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\labbepalingen_POLB_IN364001NL03_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\labbepalingen_POLB_IN364001NL03_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_labbepalingen_2_ada.xsl
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_algemene_bepalingen_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\algemene_bepalingen_POOB_IN990003NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\algemene_bepalingen_POOB_IN990003NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_algemene_bepalingen_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\algemene_bepalingen_POOB_IN990003NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\algemene_bepalingen_POOB_IN990003NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_algemene_bepalingen_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\algemene_bepalingen_bundle_POOB_IN990003NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\algemene_bepalingen_bundle_POOB_IN990003NL_01.xml
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_alerts_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\alerts_REPC_IN990121NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\alerts_REPC_IN990121NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_alerts_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\alerts_REPC_IN990121NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\alerts_REPC_IN990121NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_alerts_2_ada.xsl
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_contactmomenten_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactmomenten_PRPA_IN900350NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactmomenten_PRPA_IN900350NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_contactmomenten_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactmomenten_PRPA_IN900350NL_02_HACONTMOM.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactmomenten_PRPA_IN900350NL_02_HACONTMOM.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactmomenten_PRPA_IN900350NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactmomenten_PRPA_IN900350NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_contactmomenten_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\contactmomenten_PRPA_IN900350NL_02_HACONTMOM.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactmomenten_PRPA_IN900350NL_02_HACONTMOM.xml
      [echo] 
      [echo] HL7v3 to ADA beschikbaarstellen/payload/beschikbaarstellen_medicatieafspraken907_2_ada.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\medicatieafspraken_Kwalificatie.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_Kwalificatie.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_medicatieafspraken907_2_ada.xsl
-     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\constants.xsl:15:203: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
-     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\utilities.xsl:9:19: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/utilities.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
-     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\units.xsl:1:296: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/units.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
-     [xslt] C:\SourceTree\GitHub\HL7-mappings\util\datetime.xsl:2:279: Warning! Stylesheet module file:/C:/SourceTree/GitHub/HL7-mappings/util/datetime.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\medicatieafspraken_QUMA_IN991203NL02_01.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_QUMA_IN991203NL02_01.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\medicatieafspraken_QUMA_IN991203NL02_02.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_QUMA_IN991203NL02_02.xml
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\medicatieafspraken_XXX_Amaya-907.xml to C:\SourceTree\GitHub\HL7-mappings\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_XXX_Amaya-907.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\medicatieafspraken_Kwalificatie.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_Kwalificatie.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_medicatieafspraken907_2_ada.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\medicatieafspraken_QUMA_IN991203NL02_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_QUMA_IN991203NL02_01.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\medicatieafspraken_QUMA_IN991203NL02_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_QUMA_IN991203NL02_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\hl7v3_instance\medicatieafspraken_XXX_Amaya-907.xml to C:\SourceTree\GitHub\HL7-mappings-gz\hl7_2_ada\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_XXX_Amaya-907.xml
 
 download-ivy:
      [echo] installing ivy...
       [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
-      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-include\ivy\ivy.jar
       [get] Not modified - so not downloaded
 
 install-ivy:
 
 fetch-imports:
 [ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
-[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-include\ivysettings.xml
 [ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
 [ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 68ms :: artifacts dl 12ms
+[ivy:resolve] :: resolution report :: resolve 185ms :: artifacts dl 27ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -145,7 +142,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/35ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -155,19 +152,19 @@ setup:
 download-ivy:
      [echo] installing ivy...
       [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
-      [get] To: C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivy\ivy.jar
+      [get] To: C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-include\ivy\ivy.jar
       [get] Not modified - so not downloaded
 
 install-ivy:
 
 fetch-imports:
 [ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
-[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-include\ivysettings.xml
+[ivy:resolve] :: loading settings :: file = C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-include\ivysettings.xml
 [ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@NICT1-NB144087 [not transitive]
 [ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in local-chain
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 57ms :: artifacts dl 11ms
+[ivy:resolve] :: resolution report :: resolve 162ms :: artifacts dl 19ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -176,49 +173,49 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/6ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/55ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
 convert_ada_2_fhir:
      [echo] Copying ADA result files from beschikbaarstellen/../../../../hl7_2_ada/ketenzorg/3.0.2/beschikbaarstellen
-     [copy] Copying 23 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance
+     [copy] Copying 24 files to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance
      [echo] Deleting previous results, if any
-   [delete] Deleting directory C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance
+   [delete] Deleting directory C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_allergieintoleranties_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_REPC_EX990131NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\allergieintoleranties_REPC_EX990131NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_allergieintoleranties_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_REPC_EX990131NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\allergieintoleranties_REPC_EX990131NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_allergieintoleranties_2_fhir.xsl
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_REPC_IN990131NL_02.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\allergieintoleranties_REPC_IN990131NL_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_REPC_IN990131NL_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\allergieintoleranties_REPC_IN990131NL_02.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.39.6101.90000381.90000012.17
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.39.6101.90000381.90000012.9
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.39.6101.90000381.90000012.17
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\allergieintoleranties_bundle_01.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\allergieintoleranties_bundle_01.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_bundle_02.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\allergieintoleranties_bundle_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\allergieintoleranties_bundle_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\allergieintoleranties_bundle_02.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_episodes_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_REPC_EX990111NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\episodes_REPC_EX990111NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_episodes_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_REPC_EX990111NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\episodes_REPC_EX990111NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_episodes_2_fhir.xsl
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_REPC_EX990111NL_02.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\episodes_REPC_EX990111NL_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_REPC_EX990111NL_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\episodes_REPC_EX990111NL_02.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\episodes_bundle_01.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\episodes_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\episodes_bundle_01.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_contactverslagen_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_REPC_IN990101NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_contactverslagen_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_REPC_IN990101NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_contactverslagen_2_fhir.xsl
      [xslt] DEBUG  : Parameter dojournalentries: SOEP
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10
@@ -232,7 +229,7 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_02.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_REPC_IN990101NL_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_REPC_IN990101NL_02.xml
      [xslt] DEBUG  : Parameter dojournalentries: SOEP
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
@@ -299,7 +296,7 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_03.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_REPC_IN990101NL_03.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_REPC_IN990101NL_03.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_REPC_IN990101NL_03.xml
      [xslt] DEBUG  : Parameter dojournalentries: SOEP
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
@@ -366,15 +363,15 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_01_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_bundle_01_met_contacten.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_01_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_bundle_01_met_contacten.xml
      [xslt] DEBUG  : Parameter dojournalentries: SOEP
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_02_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_bundle_02_met_contacten.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_02_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_bundle_02_met_contacten.xml
      [xslt] DEBUG  : Parameter dojournalentries: SOEP
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_03_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_bundle_03_met_contacten.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactverslag_bundle_03_met_contacten.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactverslag_bundle_03_met_contacten.xml
      [xslt] DEBUG  : Parameter dojournalentries: SOEP
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
@@ -443,8 +440,8 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_diagnostische_bepalingen_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\diagnostische_bepalingen_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\diagnostische_bepalingen_bundle_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_diagnostische_bepalingen_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\diagnostische_bepalingen_bundle_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\diagnostische_bepalingen_bundle_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_diagnostische_bepalingen_2_fhir.xsl
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
@@ -478,8 +475,8 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_labbepalingen_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\labbepalingen_POLB_IN364001NL03_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\labbepalingen_POLB_IN364001NL03_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_labbepalingen_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\labbepalingen_POLB_IN364001NL03_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\labbepalingen_POLB_IN364001NL03_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_labbepalingen_2_fhir.xsl
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
@@ -490,8 +487,8 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_algemene_bepalingen_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\algemene_bepalingen_POOB_IN990003NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\algemene_bepalingen_POOB_IN990003NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_algemene_bepalingen_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\algemene_bepalingen_POOB_IN990003NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\algemene_bepalingen_POOB_IN990003NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_algemene_bepalingen_2_fhir.xsl
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1
@@ -518,17 +515,63 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\algemene_bepalingen_bundle_POOB_IN990003NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\algemene_bepalingen_bundle_POOB_IN990003NL_01.xml
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.10010068.4.7
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.10010068.4.7
+     [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.10010068.4.7
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_alerts_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\alerts_REPC_IN990121NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\alerts_REPC_IN990121NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_alerts_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\alerts_REPC_IN990121NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\alerts_REPC_IN990121NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_alerts_2_fhir.xsl
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_contactmomenten_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactmomenten_PRPA_IN900350NL_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactmomenten_PRPA_IN900350NL_01.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_contactmomenten_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactmomenten_PRPA_IN900350NL_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactmomenten_PRPA_IN900350NL_01.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_contactmomenten_2_fhir.xsl
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactmomenten_PRPA_IN900350NL_02_HACONTMOM.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactmomenten_PRPA_IN900350NL_02_HACONTMOM.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\contactmomenten_PRPA_IN900350NL_02_HACONTMOM.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\contactmomenten_PRPA_IN900350NL_02_HACONTMOM.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
@@ -550,8 +593,8 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [echo] 
      [echo] ADA to FHIR beschikbaarstellen/payload/beschikbaarstellen_medicatieafspraken907_2_fhir.xsl
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_Kwalificatie.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\medicatieafspraken_Kwalificatie.xml
-     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_medicatieafspraken907_2_fhir.xsl
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_Kwalificatie.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\medicatieafspraken_Kwalificatie.xml
+     [xslt] Loading stylesheet C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\payload\beschikbaarstellen_medicatieafspraken907_2_fhir.xsl
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008363
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.528.1.1007.3.3.765332.1.12
@@ -574,15 +617,15 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008368
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_QUMA_IN991203NL02_01.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\medicatieafspraken_QUMA_IN991203NL02_01.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_QUMA_IN991203NL02_01.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\medicatieafspraken_QUMA_IN991203NL02_01.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:1.2.3.4
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_QUMA_IN991203NL02_02.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\medicatieafspraken_QUMA_IN991203NL02_02.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_QUMA_IN991203NL02_02.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\medicatieafspraken_QUMA_IN991203NL02_02.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.111.19.1
-     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_XXX_Amaya-907.xml to C:\SourceTree\GitHub\HL7-mappings\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\medicatieafspraken_XXX_Amaya-907.xml
+     [xslt] Processing C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\ada_instance\medicatieafspraken_XXX_Amaya-907.xml to C:\SourceTree\GitHub\HL7-mappings-gz\ada_2_fhir\ketenzorg\3.0.2\beschikbaarstellen\fhir_instance\medicatieafspraken_XXX_Amaya-907.xml
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1
      [xslt] DEBUG  : util:getLocalizedString Key not found: urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1
@@ -598,17 +641,17 @@ convert_ada_2_fhir:
      [xslt] DEBUG  : util:getLocalizedString Key not found: 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050
 
 ketenzorg-3.0.2:
-   [delete] Deleting directory C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR
-     [copy] Copying 12 files to C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\util
-     [copy] Copying 2 files to C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\hl7_2_ada\hl7
-     [copy] Copying 101 files to C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\hl7_2_ada\ketenzorg
-     [copy] Copying 1 file to C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\hl7_2_ada\mp
-     [copy] Copying 4 files to C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\ada_2_fhir\fhir
-     [copy] Copying 101 files to C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\ada_2_fhir\ketenzorg
-     [copy] Copying 2 files to C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\ada_2_fhir\mp
-     [copy] Copying 37 files to C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\ada_2_fhir\zibs2017
-      [zip] Building zip: C:\SourceTree\GitHub\HL7-mappings\_tags\ketenzorg-3.0.2-hl7v3_2_fhir-1.4.17-20210925.zip
-   [delete] Deleting directory C:\SourceTree\GitHub\HL7-mappings\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR
+   [delete] Deleting directory C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR
+     [copy] Copying 12 files to C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\util
+     [copy] Copying 2 files to C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\hl7_2_ada\hl7
+     [copy] Copying 103 files to C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\hl7_2_ada\ketenzorg
+     [copy] Copying 1 file to C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\hl7_2_ada\mp
+     [copy] Copying 4 files to C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\ada_2_fhir\fhir
+     [copy] Copying 103 files to C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\ada_2_fhir\ketenzorg
+     [copy] Copying 2 files to C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\ada_2_fhir\mp
+     [copy] Copying 37 files to C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR\ada_2_fhir\zibs2017
+      [zip] Building zip: C:\SourceTree\GitHub\HL7-mappings-gz\_tags\ketenzorg-3.0.2-hl7v3_2_fhir-1.4.19-20211118.zip
+   [delete] Deleting directory C:\SourceTree\GitHub\HL7-mappings-gz\_ant-buildfiles\ant-publish\Ketenzorg 3.0.2 HL7v3 to ADA to FHIR
 
 BUILD SUCCESSFUL
-Total time: 19 seconds
+Total time: 29 seconds

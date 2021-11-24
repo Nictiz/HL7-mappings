@@ -287,7 +287,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:variable name="theCodeSystem">
             <xsl:choose>
-                <xsl:when test="$in/@code">
+                <xsl:when test="$in/@codeSystem">
                     <xsl:value-of select="$in/@codeSystem"/>
                 </xsl:when>
                 <xsl:otherwise>
