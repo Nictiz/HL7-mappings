@@ -2,13 +2,15 @@
 setlocal enabledelayedexpansion
 
 :: CHECK BEFORE RUNNING ####
-SET jarPath=C:\SaxonHE9-9-1-7J\saxon9he.jar
+if "%saxonPath%"=="" (
+  SET saxonPath=C:\SaxonHE9-9-1-7J\saxon9he.jar
+)
 SET inputDir=..\ada_instance
 SET outputDir=..\fhir_instance
 
-if not exist "%jarPath%" (
+if not exist "%saxonPath%" (
     echo.
-    echo.Did not find Saxon JAR here '%jarPath%'. Either add it here, or change the script to supply a different path...
+    echo.Did not find Saxon JAR here '%saxonPath%'. Either add it here or set the 'saxonPath' environment variable to supply a different path...
     echo.http://saxon.sourceforge.net
     pause
 )
@@ -47,4 +49,4 @@ if exist "!baseId!-driver.xsl" (
 	set xslPath=nl-core-driver.xsl
 )
 
-java -jar "%jarPath%" -s:"%inputDir%/!input!.xml" -xsl:!xslPath! -o:"%outputDir%/!noDriverId!.xml
+java -jar "%saxonPath%" -s:"%inputDir%/!input!.xml" -xsl:!xslPath! -o:"%outputDir%/!noDriverId!.xml
