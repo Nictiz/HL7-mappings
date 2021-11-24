@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="e6b0664e-4235-11ec-3200-020000000000"/>
+   <id value="1e8f4320-4d38-11ec-1863-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,9 +9,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:e6b0635b-4235-11ec-3200-020000000000"/>
+      <fullUrl value="https://example.org/fhir/MedicationAgreement/2.16.840.1.113883.2.4.3.11.999.77.16076005.1-MB.01h-MA.01"/>
       <resource>
          <MedicationRequest>
+            <id value="2.16.840.1.113883.2.4.3.11.999.77.16076005.1-MB.01h-MA.01"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
@@ -19,17 +20,19 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: Joris Hansman. Id: #MB_01h#MA_01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: Joris Hansman. Id: MB.01h-MA.01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Dr Jansen || Internist || Ziekenhuis zus en zo</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>#MB_01h (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MB.01h (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>Metoclopramide zetpil 20mg</td>
+                           <td>
+                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-6939">Metoclopramide zetpil 20mg</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
@@ -65,12 +68,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="#MB_01h"/>
+                  <value value="MB.01h"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="#MB_01h#MA_01"/>
+               <value value="MB.01h-MA.01"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -82,11 +85,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="Medication/2-16-840-1-113883-2-4-4-10-6939"/>
+               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-6939"/>
                <display value="Metoclopramide zetpil 20mg"/>
             </medicationReference>
             <subject>
-               <reference value="Patient/"/>
+               <reference value="urn:uuid:1e8f4324-4d38-11ec-1863-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <authoredOn value="2016-06-23T16:54:23+02:00"/>
@@ -94,11 +97,11 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="PractitionerRole/"/>
+                        <reference value="urn:uuid:1e8f3d63-4d38-11ec-1863-020000000000"/>
                         <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
                      </valueReference>
                   </extension>
-                  <reference value="Practitioner/2.16.528.1.1007.3.1-012345678"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-012345678"/>
                   <display value="Dr Jansen"/>
                </agent>
             </requester>
@@ -140,7 +143,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e6b06356-4235-11ec-3200-020000000000"/>
+      <fullUrl value="urn:uuid:1e8f4324-4d38-11ec-1863-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -280,7 +283,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e6b06361-4235-11ec-3200-020000000000"/>
+      <fullUrl value="urn:uuid:1e8f3d63-4d38-11ec-1863-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -295,8 +298,12 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>Dr Jansen</div>
-                              <div>Ziekenhuis zus en zo</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-012345678">Dr Jansen</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/1.2.3.4-URAnummer">Ziekenhuis zus en zo</a>
+                              </div>
                            </td>
                         </tr>
                         <tr>
@@ -310,11 +317,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="Practitioner/2.16.528.1.1007.3.1-012345678"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-012345678"/>
                <display value="Dr Jansen"/>
             </practitioner>
             <organization>
-               <reference value="Organization/1.2.3.4-URAnummer"/>
+               <reference value="https://example.org/fhir/Organization/1.2.3.4-URAnummer"/>
                <display value="Ziekenhuis zus en zo"/>
             </organization>
             <specialty>
@@ -334,7 +341,7 @@
       <fullUrl value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-6939"/>
       <resource>
          <Medication>
-            <id value="2-16-840-1-113883-2-4-4-10-6939"/>
+            <id value="2.16.840.1.113883.2.4.4.10-6939"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>

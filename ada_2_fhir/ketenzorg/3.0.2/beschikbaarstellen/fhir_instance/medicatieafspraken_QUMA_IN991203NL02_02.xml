@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="e6b491b0-4235-11ec-1357-020000000000"/>
+   <id value="1e92d670-4d38-11ec-1846-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,9 +9,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:e6b48a63-4235-11ec-1357-020000000000"/>
+      <fullUrl value="https://example.org/fhir/MedicationAgreement/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-Medicatieafspraak1.2.1"/>
       <resource>
          <MedicationRequest>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-Medicatieafspraak1.2.1"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
@@ -27,14 +28,16 @@
                            <th>Context</th>
                            <td>
                               <ul>
-                                 <li>Episode ID: MedMijHG-concern_DM 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern_DM (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</li>
+                                 <li>Episode ID: MedMijHG-concern-DM 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern-DM (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</li>
                                  <li>Contact ID: MedMijHG-contactmoment1.2 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment1.2 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</li>
                               </ul>
                            </td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>METFORMINE TABLET 1000MG</td>
+                           <td>
+                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-60674">METFORMINE TABLET 1000MG</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
@@ -73,9 +76,9 @@
                <valueReference>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                     <value value="MedMijHG-concern_DM"/>
+                     <value value="MedMijHG-concern-DM"/>
                   </identifier>
-                  <display value="Episode ID: MedMijHG-concern_DM 2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <display value="Episode ID: MedMijHG-concern-DM 2.16.840.1.113883.2.4.3.111.19.1"/>
                </valueReference>
             </extension>
             <identifier>
@@ -92,11 +95,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="Medication/2-16-840-1-113883-2-4-4-10-60674"/>
+               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-60674"/>
                <display value="METFORMINE TABLET 1000MG"/>
             </medicationReference>
             <subject>
-               <reference value="Patient/"/>
+               <reference value="urn:uuid:1e92d674-4d38-11ec-1846-020000000000"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
@@ -111,16 +114,16 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="PractitionerRole/"/>
+                        <reference value="urn:uuid:1e92cc5b-4d38-11ec-1846-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </agent>
             </requester>
             <reasonReference>
-               <reference value="Condition/zib-Problem-mp-redenvoorschrijvenT90-02"/>
+               <reference value="urn:uuid:1e92cc6a-4d38-11ec-1846-020000000000"/>
                <display value="Diabetes Mellitus type 2"/>
             </reasonReference>
             <dosageInstruction>
@@ -154,7 +157,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e6b48a5e-4235-11ec-1357-020000000000"/>
+      <fullUrl value="urn:uuid:1e92d674-4d38-11ec-1846-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -306,7 +309,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e6b48a6b-4235-11ec-1357-020000000000"/>
+      <fullUrl value="urn:uuid:1e92cc5b-4d38-11ec-1846-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -321,8 +324,12 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>Huisarts 1</div>
-                              <div>Gezondheidscentrum Aesculaap</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431">Huisarts 1</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                              </div>
                            </td>
                         </tr>
                         <tr>
@@ -336,11 +343,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </practitioner>
             <organization>
-               <reference value="Organization/2.16.528.1.1007.3.3-00002727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </organization>
             <specialty>
@@ -360,7 +367,7 @@
       <fullUrl value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-60674"/>
       <resource>
          <Medication>
-            <id value="2-16-840-1-113883-2-4-4-10-60674"/>
+            <id value="2.16.840.1.113883.2.4.4.10-60674"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -400,10 +407,9 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e6b48a7a-4235-11ec-1357-020000000000"/>
+      <fullUrl value="urn:uuid:1e92cc6a-4d38-11ec-1846-020000000000"/>
       <resource>
          <Condition>
-            <id value="zib-Problem-mp-redenvoorschrijvenT90-02"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
             </meta>
@@ -411,8 +417,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Aandoening. Subject: H. XXX_Mulders. Status: <i>onbekend (ontbrekend gegeven)</i>
-                     </caption>
+                     <caption>Aandoening. Subject: H. XXX_Mulders. Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Code</th>
@@ -424,11 +429,7 @@
                   </table>
                </div>
             </text>
-            <clinicalStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </clinicalStatus>
+            <clinicalStatus value="active"/>
             <code>
                <coding>
                   <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
@@ -437,7 +438,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/"/>
+               <reference value="urn:uuid:1e92d674-4d38-11ec-1846-020000000000"/>
                <display value="H. XXX_Mulders"/>
             </subject>
          </Condition>
