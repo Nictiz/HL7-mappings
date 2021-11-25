@@ -195,37 +195,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         
                 <xsl:for-each select="product_id">
                     <identifier>
-                        <type>
-                            <coding>
-                                <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
-                                <code value="SNO" />
-                            </coding>
-                        </type>
+                        <system>
+                            <xsl:choose>
+                                <xsl:when test="./@codeSystem = $oidGTIN">
+                                    <xsl:attribute name="value" select="'https://www.gs1.org/gtin'"/>
+                                </xsl:when>
+                                <xsl:when test="./@codeSystem = $oidHIBC">
+                                    <xsl:attribute name="value" select="'urn:oid:2.16.840.1.113883.6.40'"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </system>
                         <value>
                             <xsl:attribute name="value" select="./@code"/>
                         </value>
                     </identifier>
                                   
                     <udiCarrier>
-                        <deviceIdentifier>
-                            <xsl:choose>
-                                <xsl:when test="./@codeSystem = $oidGTIN">
-                                    <xsl:variable name="AI_GTIN_Candidate" select="substring-after(./@code,'(01)')" as="xs:string?"/>
-                                    <xsl:attribute name="value" select="if (contains($AI_GTIN_Candidate,'(')) then substring-before($AI_GTIN_Candidate,'(') else $AI_GTIN_Candidate"/>
-                                </xsl:when>
-                                <xsl:when test="./@codeSystem = $oidHIBC">
-                                    <xsl:attribute name="value" select="substring-before(./@code,'/')"/>
-                                </xsl:when>
-                            </xsl:choose>   
-                        </deviceIdentifier>
-                        
                         <issuer>
                             <xsl:choose>
                                 <xsl:when test="./@codeSystem = $oidGTIN">
                                     <xsl:attribute name="value" select="'https://www.gs1.org/gtin'"/>
                                 </xsl:when>
                                 <xsl:when test="./@codeSystem = $oidHIBC">
-                                    <xsl:attribute name="value" select="'http://hl7.org/fhir/NamingSystem/hibcc'"/>
+                                    <xsl:attribute name="value" select="'urn:oid:2.16.840.1.113883.6.40'"/>
                                 </xsl:when>
                             </xsl:choose>
                         </issuer>
@@ -234,103 +226,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:attribute name="value" select="./@code"/>
                         </carrierHRF>
                     </udiCarrier>
-                    
-                    <xsl:choose>
-                        <xsl:when test="./@codeSystem = $oidGTIN">
-                            <xsl:variable name="AI_manufactureDate_Candidate" select="substring-after(./@code,'(11)')" as="xs:string?"/>
-                            <xsl:if test="$AI_manufactureDate_Candidate">
-                                <manufactureDate>
-                                    <xsl:variable name="AI_manufactureDate" select="if (contains($AI_manufactureDate_Candidate,'(')) then substring-before($AI_manufactureDate_Candidate,'(') else $AI_manufactureDate_Candidate"/>
-                                    <!--Add specific logic to convert a date of format YYMMDD to a FHIR date; not complete yet-->
-                                    <xsl:variable name="convertedManufactureDate" select="replace(normalize-space($AI_manufactureDate), '^(\d{2})(\d{2})(\d{2})', '$1-$2-$3')"/>
-                                    <xsl:if test="$convertedManufactureDate castable as xs:date">
-                                        <xsl:value-of select="format-date(xs:date($convertedManufactureDate), '[Y0001]-[M01]-[D01]')"/>
-                                    </xsl:if>  
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string($convertedManufactureDate)"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </manufactureDate>
-                            </xsl:if>
-                        </xsl:when>
-                        <xsl:when test="./@codeSystem = $oidHIBC">
-                            <xsl:variable name="AI_manufactureDate" select="substring(substring-after(./@code,'/16D'),1,8)" as="xs:string?"/>
-                            <xsl:if test="$AI_manufactureDate">
-                                <manufactureDate>
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string($AI_manufactureDate)"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </manufactureDate>
-                            </xsl:if>
-                        </xsl:when>
-                    </xsl:choose>
-                    
-                    <xsl:choose>
-                        <xsl:when test="./@codeSystem = $oidGTIN">
-                            <xsl:variable name="AI_expirationDate_Candidate" select="substring-after(./@code,'(17)')" as="xs:string?"/>
-                            <xsl:if test="$AI_expirationDate_Candidate">
-                                <expirationDate>
-                                    <xsl:variable name="AI_expirationDate" select="if (contains($AI_expirationDate_Candidate,'(')) then substring-before($AI_expirationDate_Candidate,'(') else $AI_expirationDate_Candidate"/>
-                                    <!--Add specific logic to convert a date of format YYMMDD to a FHIR date; not complete yet-->
-                                    <xsl:variable name="convertedExpirationDate" select="replace(normalize-space($AI_expirationDate), '^(\d{2})(\d{2})(\d{2})', '$1-$2-$3')"/>
-                                    <xsl:if test="$convertedExpirationDate castable as xs:date">
-                                        <xsl:value-of select="format-date(xs:date($convertedExpirationDate), '[Y0001]-[M01]-[D01]')"/>
-                                    </xsl:if> 
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string($convertedExpirationDate)"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </expirationDate>
-                            </xsl:if>
-                        </xsl:when>
-                        <xsl:when test="./@codeSystem = $oidHIBC">
-                            <!--Logic is not complete yet, since expirationDate can also be part of other secondary data structure-->
-                            <xsl:variable name="AI_expirationDate" select="substring(substring-after(./@code,'/14D'),1,8)" as="xs:string?"/>
-                            <xsl:if test="$AI_expirationDate">
-                                <expirationDate>
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string($AI_expirationDate)"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </expirationDate>
-                            </xsl:if>
-                        </xsl:when>
-                    </xsl:choose>
-                    
-                    <xsl:choose>
-                        <xsl:when test="./@codeSystem = $oidGTIN">
-                            <xsl:variable name="AI_lotNumber_Candidate" select="substring-after(./@code,'(10)')" as="xs:string?"/>
-                            <xsl:if test="$AI_lotNumber_Candidate">
-                                <lotNumber>
-                                    <xsl:attribute name="value" select="if (contains($AI_lotNumber_Candidate,'(')) then substring-before($AI_lotNumber_Candidate,'(') else $AI_lotNumber_Candidate"/>
-                                </lotNumber>
-                            </xsl:if>
-                        </xsl:when>
-                        <xsl:when test="./@codeSystem = $oidHIBC">
-                            
-                        </xsl:when>
-                    </xsl:choose>
-                    
-                    <xsl:choose>
-                        <xsl:when test="./@codeSystem = $oidGTIN">
-                            <xsl:variable name="AI_serialNumber_Candidate" select="substring-after(./@code,'(21)')" as="xs:string?"/>
-                            <xsl:if test="$AI_serialNumber_Candidate">
-                                <serialNumber>
-                                    <xsl:attribute name="value" select="if (contains($AI_serialNumber_Candidate,'(')) then substring-before($AI_serialNumber_Candidate,'(') else $AI_serialNumber_Candidate"/>
-                                </serialNumber>
-                            </xsl:if>
-                        </xsl:when>
-                        <xsl:when test="./@codeSystem = $oidHIBC">
-                            
-                        </xsl:when>
-                    </xsl:choose>
-                        
                 </xsl:for-each>
+                
                 <xsl:for-each select="product_type">
                     <type>
                         <xsl:call-template name="code-to-CodeableConcept">
