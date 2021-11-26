@@ -57,12 +57,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="MUST"/>
                     </coding>
                 </code>
-                
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
-                
                 <xsl:for-each select="mustscore_datum_tijd">
                     <effectiveDateTime>
                         <xsl:call-template name="date-to-datetime">
