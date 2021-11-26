@@ -87,6 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidHL7RoleCode">2.16.840.1.113883.5.111</xsl:variable>
     <xsl:variable name="oidISO3166">1.0.3166.1.2.2</xsl:variable>
     <xsl:variable name="oidHL7V3MaritalStatus">2.16.840.1.113883.5.2</xsl:variable>
+    <xsl:variable name="oidICD10NL">2.16.840.1.113883.6.3.2</xsl:variable>
     <xsl:variable name="oidICPC1NL">2.16.840.1.113883.2.4.4.31.1</xsl:variable>
     <xsl:variable name="oidJournaalregeltypen">2.16.840.1.113883.2.4.4.32.2</xsl:variable>
     <xsl:variable name="oidLOINC">2.16.840.1.113883.6.1</xsl:variable>
@@ -157,6 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidGStandaardBST361}" displayName="G-Standaard Bestand 361 a-tabel (eenheid gebruiksadvies)"/>
         <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard Bestand 902 Thesaurus 2"/>
         <map oid="{$oidGStandaardFarmaceutischeVormen}" displayName="G-Standaard Farmaceutische vormen (tabel 6)"/>
+        <map oid="{$oidICD10NL}" uri="http://hl7.org/fhir/sid/icd-10-nl" displayName="ICD-10 NL"/>
         <map oid="{$oidISO3166}" uri="urn:iso:std:iso:3166" displayName="ISO 3166-1 (alpha-2)"/>
         <map oid="{$oidJournaalregeltypen}" uri="http://fhir.nl/fhir/NamingSystem/journaalregeltypen" displayName="Journaalregeltypen"/>
         <map oid="{$oidLOINC}" uri="http://loinc.org" displayName="LOINC"/>
