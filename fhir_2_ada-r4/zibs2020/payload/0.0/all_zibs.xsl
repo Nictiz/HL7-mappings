@@ -26,6 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <xsl:import href="../../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="nl-core-MedicationAgreement.xsl"/>
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
