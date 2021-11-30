@@ -14,23 +14,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
-<!--    <xsl:import href="all-zibs.xsl"/>-->
+    <!--    <xsl:import href="all-zibs.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-
+    
     <xsl:variable name="practitioners" as="element()*">
         <xsl:variable name="healthProfessional" select="//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])"/>
         <!-- Zorgverleners in Practitioners -->
         <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
         <!-- This causes two or more entries with an identical grouping-key, causing problems with identical practitioners with same fullUrl in a Bundle... -->
-       <!-- <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+        <!-- <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
                 string-join(for $att in nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/(@root, @value)
                 return
                     $att, '')">-->
-            <xsl:for-each-group select="$healthProfessional[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
-                concat(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
-                nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/normalize-space(@value))">
-                <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
+        <xsl:for-each-group select="$healthProfessional[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+            concat(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
+            nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/normalize-space(@value))">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <unieke-zorgverlener xmlns="">
@@ -47,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
-
+    
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
@@ -67,12 +67,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </identifier>
             </xsl:when>
         </xsl:choose>
-
+        
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
-
+    
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a Practitioner resource</xd:desc>
         <xd:param name="uuid">If false and (zorgverlener_identificatie_nummer | health_professional_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
@@ -84,36 +84,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
-                <xsl:when test="not($uuid) and (zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)">
-                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number))"/>
-                </xsl:when>
-                <xsl:otherwise>
+                <xsl:when test="$uuid or empty(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)">
                     <!-- let's use the practitioner node without specialty and organization to determine uuid, 
                         this way the practitionerrole uuid generation can use the whole zorgverlener element for it's uuid and not conflict with the one for practitioner -->
                     <xsl:variable name="healthProNoOrganization" as="element()?">
                         <xsl:apply-templates select="." mode="copy4PractitionerKey"/>
                     </xsl:variable>
                     <xsl:value-of select="nf:get-fhir-uuid($healthProNoOrganization)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number), 'Practitioner', false())"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:variable name="zvlIdentification" as="element()*" select="(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)[@value | @root]"/>
-                <xsl:choose>
-                    <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:when>
-                    <xsl:when test="$zvlIdentification">
-<!--                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)[1]/(@root | @value), ''))))"/>-->
-                        <!-- string-join follows order of @value / @root in XML, but we want a predictable order -->                        
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(concat($zvlIdentification[1]/@root, '-', $zvlIdentification[1]/@value))))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="$referById">
+                    <xsl:variable name="zvlIdentification" as="element()*" select="(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)[@value | @root]"/>
+                    <xsl:choose>
+                        <xsl:when test="$uuid">
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:when>
+                        <xsl:when test="$zvlIdentification">
+                            <!--                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)[1]/(@root | @value), ''))))"/>-->
+                            <!-- string-join follows order of @value / @root in XML, but we want a predictable order -->
+                            <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(concat($zvlIdentification[1]/@root, '-', $zvlIdentification[1]/@value))))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="matches($entryFullUrl, '^https?:')">
+                    <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
+                </xsl:when>
+            </xsl:choose>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
@@ -131,7 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </entry>
     </xsl:template>
-
+    
     <xd:doc>
         <xd:desc/>
         <xd:param name="logicalId">Practitioner.id value</xd:param>
@@ -146,7 +151,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner</xsl:variable>
                 <Practitioner>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{$logicalId}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <meta>
                         <profile value="{$profileValue}"/>
@@ -196,10 +208,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="zorgaanbieder | healthcare_provider | specialisme | specialty | zorgverlener_rol | health_professional_role" mode="copy4PractitionerKey"/>
     
-
+    
     <xd:doc>
         <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty.
-        There is a specific function for determining uniqueness of healthProfessional, because it also may hold information about the organization, which should not be taken into account for determining uniqueness (that information is in FHIR resource practitionerRole)</xd:desc>
+            There is a specific function for determining uniqueness of healthProfessional, because it also may hold information about the organization, which should not be taken into account for determining uniqueness (that information is in FHIR resource practitionerRole)</xd:desc>
         <xd:param name="healthProfessional"/>
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyPractitioner" as="xs:string?">
@@ -213,7 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:value-of select="nf:getGroupingKeyDefault($healthPro4Key)"/>
         </xsl:if>
     </xsl:function>
-
+    
     <xd:doc>
         <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/last_name_information. Else return empty</xd:desc>
         <xd:param name="healthProfessional"/>
@@ -223,11 +235,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="$healthProfessional">
             <xsl:variable name="personIdentifier" select="nf:getValueAttrDefault($healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number)"/>
             <xsl:variable name="personName" select="nf:getValueAttrDefault($healthProfessional/zorgverlener_naam | $healthProfessional/naamgegevens/geslachtsnaam/achternaam | $healthProfessional/name_information/last_name/last_name)"/>
-
+            
             <xsl:value-of select="concat($personIdentifier, $personName)"/>
         </xsl:if>
     </xsl:function>
-
+    
     <xd:doc>
         <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty</xd:desc>
         <xd:param name="healthProfessional"/>
@@ -239,13 +251,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="personName" select="nf:getValueAttrDefault($healthProfessional/zorgverlener_naam | $healthProfessional/naamgegevens | $healthProfessional/name_information)"/>
             <xsl:variable name="personAddress" select="nf:getValueAttrDefault($healthProfessional/adres | $healthProfessional/adresgegevens | $healthProfessional/address_information)"/>
             <xsl:variable name="contactInformation" select="nf:getValueAttrDefault($healthProfessional/telefoon_email | $healthProfessional/contactgegevens | $healthProfessional/contact_information)"/>
-
+            
             <xsl:value-of select="concat($personIdentifier, $personName, $personAddress, $contactInformation)"/>
         </xsl:if>
     </xsl:function>
-
-
-
+    
+    
+    
     <xd:doc>
         <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return a human readable string of health_professional_identification_number/name_information/organization_name/specialty/health_professional_role. Else return empty</xd:desc>
         <xd:param name="healthProfessional"/>
@@ -258,7 +270,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
             <xsl:variable name="specialty" select=".//(specialisme | specialty)[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
             <xsl:variable name="role" select=".//zorgverleners_rol/(@displayName, @code)[1] | .//health_professional_role/(@displayName, @code)[1]"/>
-
+            
             <xsl:choose>
                 <xsl:when test="$personName">
                     <xsl:value-of select="normalize-space(string-join($personName, ' '))"/>
@@ -272,6 +284,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:function>
-
-
+    
+    
 </xsl:stylesheet>

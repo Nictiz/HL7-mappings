@@ -27,6 +27,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- This is a required parameter and matches the [base] of a FHIR server. Expects *not* to end in / so we can make fullUrls like ${baseUrl}/Observation/[id] -->
+    <xsl:param name="baseUrl" as="xs:string?"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
@@ -489,6 +491,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <xd:doc>
+        <xd:desc>Transforms ada element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#id">id contents</xd:a> ([A-Za-z0-9\-\.]{1,64}). Masks ids, e.g. Burgerservicenummers, if their @root occurs in <xd:ref name="mask-ids" type="parameter"/></xd:desc>
+        <xd:param name="in">ada element with datatype identifier</xd:param>
+    </xd:doc>
+    <xsl:template name="id-to-id" as="element()?">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:variable name="theID" select="if ($in[@root = $mask-ids-var] | $in[@nullFlavor]) then () else (string-join(($in/@root, $in/@value), '-'))"/>
+        <xsl:if test="matches($theID, '^[A-Za-z\d\.-]{1,64}$')">
+            <id value="{$theID}"/>
+        </xsl:if>
+    </xsl:template>
+    <xd:doc>
         <xd:desc>Transforms ada element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Identifier">Identifier contents</xd:a>. Masks ids, e.g. Burgerservicenummers, if their @root occurs in <xd:ref name="mask-ids" type="parameter"/></xd:desc>
         <xd:param name="in">ada element with datatype identifier</xd:param>
     </xd:doc>
@@ -713,25 +726,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:getUriFromAdaId" as="xs:string">
         <xsl:param name="adaIdentification" as="element()"/>
-
+        <xsl:value-of select="nf:getUriFromAdaId($adaIdentification, (), ())"/>
+    </xsl:function>
+    <xd:doc>
+        <xd:desc>Requires param adaIdentification or resourceId. If possible generates a uri based on oid or uuid from input. If not possible generates an uri based on gerenated uuid making use of input element</xd:desc>
+        <xd:param name="adaIdentification">input element for which uri is needed</xd:param>
+        <xd:param name="resourceType">if a resourceId was created before we should reuse that, but for that we need a baseUrl + resource type like https://myserver/fhir/Observation to create [base]/resourceId</xd:param>
+        <xd:param name="reference">If true creates a fullUrl otherwise a relative reference</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:getUriFromAdaId" as="xs:string">
+        <xsl:param name="adaIdentification" as="element()?"/>
+        <xsl:param name="resourceType" as="xs:string?"/>
+        <xsl:param name="reference" as="xs:boolean?"/>
+        
+        <xsl:variable name="resourceId" as="element(f:id)?">
+            <xsl:call-template name="id-to-id">
+                <xsl:with-param name="in" select="$adaIdentification"/>
+            </xsl:call-template>
+        </xsl:variable>
+        
         <xsl:choose>
+            <xsl:when test="not($referById) and (string-length($baseUrl) gt 0 or $reference) and string-length($resourceType) gt 0 and string-length($resourceId/@value) gt 0">
+                <xsl:value-of select="if ($reference) then () else (replace($baseUrl, '/+$', '/') || '/') || $resourceType || '/' || $resourceId/@value"/>
+            </xsl:when>
             <!-- root = oid and extension = numeric -->
-            <xsl:when test="$adaIdentification[matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
+            <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@root, $OIDpattern)][matches(@value, '^\d+$')][1]"/>
                 <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]), '.'))"/>
             </xsl:when>
             <!-- root = oid and no extension -->
-            <xsl:when test="$adaIdentification[matches(@root, $OIDpattern)][not(@value)]">
+            <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@root, $OIDpattern)][not(@value)]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@root, $OIDpattern)][not(@value)][1]"/>
                 <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]), '.'))"/>
             </xsl:when>
             <!-- root = 'not important' and extension = uuid -->
-            <xsl:when test="$adaIdentification[matches(@value, $UUIDpattern)]">
+            <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@value, $UUIDpattern)]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@value, $UUIDpattern)][1]"/>
                 <xsl:value-of select="concat('urn:uuid:', $ii/@value)"/>
             </xsl:when>
             <!-- root = uuid and extension = 'not important' -->
-            <xsl:when test="$adaIdentification[matches(@root, $UUIDpattern)]">
+            <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@root, $UUIDpattern)]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@root, $UUIDpattern)][1]"/>
                 <xsl:value-of select="concat('urn:uuid:', $ii/@root)"/>
             </xsl:when>
@@ -747,7 +781,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
-        <xsl:value-of select="replace(translate($in, '_.', '--'), '[^a-zA-Z0-9-]', '')"/>
+        <xsl:value-of select="replace(translate(normalize-space($in),' _àáãäåèéêëìíîïòóôõöùúûüýÿç€ßñ?','--aaaaaeeeeiiiiooooouuuuyycEsnq'), '[^A-Za-z0-9\.-]', '')"/>
     </xsl:function>
 
     <xd:doc>

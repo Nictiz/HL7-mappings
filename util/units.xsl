@@ -6,11 +6,7 @@
     </xd:doc>
 
     <xsl:variable name="strUcumEssence">ucum-essence.xml</xsl:variable>
-    <xsl:variable name="docUcumEssence" select="
-            if (doc-available($strUcumEssence)) then
-                doc($strUcumEssence)/ucum:root
-            else
-                ()" as="element(ucum:root)?"/>
+    <xsl:variable name="docUcumEssence" select="doc($strUcumEssence)/ucum:root" as="element(ucum:root)?"/>
     <!--
     <base-unit Code="m" CODE="M" dim="L">
       <name>meter</name>
