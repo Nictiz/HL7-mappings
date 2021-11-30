@@ -22,8 +22,15 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-11-30
+* MM-2606 Enhance mapping Huisartsgegevens <> Ketenzorg with resource.id. Keeps fullURL, Resource.id and references to them in sync
+  * NOTE: GP Data/Ketenzorg **now requires new parameter baseId** that allows creation of fullURL [baseId]/[type]/[id] where [id] matches Resource.id. Its value SHALL be the generic fhir endpoint and SHALL NOT end with a forward slash. Example: https://example.org/fhir 
+  * Fixed nf:removeSpecialCharacters() function. Now keeps the dot instead replacing it because it is perfectly valid. Smarter handling of diacriticals
+* MM-2559 Fixed Condition.clinicalStatus so it defaults to 'active' instead an illegal extension dataAbsentReason
+* Fixed Laboratory results where the second and latter groups of results would always get uuid. This should have been second or latter instance within a group
+* Fixed narrative block when separator is br. This should have lead to but came out textual 'br'
 2021-08-16
-* MM-2235 Revised mapping for AllergyIntolernace.verificationStatus to always produce a valid @value
+* MM-2235 Revised mapping for AllergyIntolerance.verificationStatus to always produce a valid @value
 2021-08-04
 * Add a check for valid booleans based on input where value=0 was sent. Will terminate processing if invalid boolean is found
 2021-08-03
