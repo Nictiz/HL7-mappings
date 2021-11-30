@@ -836,7 +836,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:attribute>
                                     </xsl:element>
                                 </xsl:when>
-                                <xsl:when test="$theUse = 'WP'">
+                                <xsl:when test=". = 'WP'">
                                     <xsl:element name="{$elmAddressType}">
                                         <xsl:attribute name="code">WP</xsl:attribute>
                                         <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
