@@ -57,7 +57,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theGroupElement" select="$practitioners[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                <reference value="{if (contains($fullUrl, '/Practitioner/')) then replace($fullUrl, '^.*/(Practitioner/.*)', '$1') else $fullUrl}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>
@@ -183,8 +184,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- telecom is mapped on the resource PractitionerRole -->
                     
                     <!-- address -->
+                    <!-- MM-2693 Filter private addresses -->
+                    <!-- <address_type code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Primary Home"/> -->
                     <xsl:call-template name="nl-core-address-2.0">
-                        <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
+                        <xsl:with-param name="in" select="adresgegevens[not(adres_soort/tokenize(@code, '\s') ='HP')] | address_information[not(address_type/tokenize(@code, '\s') ='HP')]" as="element()*"/>
                     </xsl:call-template> 
                     
                 </Practitioner>

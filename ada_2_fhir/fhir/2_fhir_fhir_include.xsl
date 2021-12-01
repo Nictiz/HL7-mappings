@@ -747,7 +747,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:choose>
             <xsl:when test="not($referById) and (string-length($baseUrl) gt 0 or $reference) and string-length($resourceType) gt 0 and string-length($resourceId/@value) gt 0">
-                <xsl:value-of select="if ($reference) then () else (replace($baseUrl, '/+$', '/') || '/') || $resourceType || '/' || $resourceId/@value"/>
+                <xsl:value-of select="concat(if ($reference) then () else concat(replace($baseUrl, '/+$', '/'), '/'), $resourceType, '/', $resourceId/@value)"/>
             </xsl:when>
             <!-- root = oid and extension = numeric -->
             <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">

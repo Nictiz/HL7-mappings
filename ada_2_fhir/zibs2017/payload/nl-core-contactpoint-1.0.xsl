@@ -4,6 +4,10 @@
     </xd:doc>
     <xsl:template name="nl-core-contactpoint-1.0" match="contactgegevens | contact_information" mode="doContactInformation" as="element(f:telecom)*">
         <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="filterprivate" select="false()" as="xs:boolean"/>
+        
+        <xsl:variable name="filterValues" select="('HP', 'EC')" as="xs:string*"/>
+        
         <xsl:for-each select="$in[.//@value | .//@code]">
             <xsl:for-each select="telefoonnummers[telefoonnummer/@value] | telephone_numbers[telephone_number/@value]">
                 <xsl:variable name="telecomType" select="telecom_type/@code"/>
@@ -27,30 +31,33 @@
                         <xsl:when test="$numberType = 'TMP'">temp</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
-                <telecom>
-                    <!-- MM-2563 ContactPoint.system SHALL have a value -->
-                    <system value="{$telecomTypeValue}">
-                        <xsl:if test="$telecomType[not(../@codeSystem = $oidHL7NullFlavor)]">
-                            <xsl:call-template name="ext-code-specification-1.0">
-                                <xsl:with-param name="in" select="$telecomType/parent::*"/>
-                            </xsl:call-template>
+                <xsl:variable name="doContactDetails" select="if ($filterprivate) then not($numberType[. = $filterValues]) else true()" as="xs:boolean"/>
+                <xsl:if test="$doContactDetails">
+                    <telecom>
+                        <!-- MM-2563 ContactPoint.system SHALL have a value -->
+                        <system value="{$telecomTypeValue}">
+                            <xsl:if test="$telecomType[not(../@codeSystem = $oidHL7NullFlavor)]">
+                                <xsl:call-template name="ext-code-specification-1.0">
+                                    <xsl:with-param name="in" select="$telecomType/parent::*"/>
+                                </xsl:call-template>
+                            </xsl:if>
+                        </system>
+                        <xsl:for-each select="telefoonnummer/@value | telephone_number/@value">
+                            <value value="{normalize-space(.)}"/>
+                        </xsl:for-each>
+                        <xsl:if test="$numberTypeValue">
+                            <use value="{$numberTypeValue}">
+                                <xsl:choose>
+                                    <xsl:when test="$numberType[not(../@codeSystem = $oidHL7NullFlavor)]">
+                                        <xsl:call-template name="ext-code-specification-1.0">
+                                            <xsl:with-param name="in" select="$numberType/parent::*"/>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </use>
                         </xsl:if>
-                    </system>
-                    <xsl:for-each select="telefoonnummer/@value | telephone_number/@value">
-                        <value value="{normalize-space(.)}"/>
-                    </xsl:for-each>
-                    <xsl:if test="$numberTypeValue">
-                        <use value="{$numberTypeValue}">
-                            <xsl:choose>
-                                <xsl:when test="$numberType[not(../@codeSystem = $oidHL7NullFlavor)]">
-                                    <xsl:call-template name="ext-code-specification-1.0">
-                                        <xsl:with-param name="in" select="$numberType/parent::*"/>
-                                    </xsl:call-template>
-                                </xsl:when>
-                            </xsl:choose>
-                        </use>
-                    </xsl:if>
-                </telecom>
+                    </telecom>
+                </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="email_adressen[email_adres/@value] | email_addresses[email_address/@value]">
                 <xsl:variable name="emailType" select="email_soort/@code | email_address_type/@code"/>
@@ -60,23 +67,26 @@
                         <xsl:when test="$emailType = 'HP'">home</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
-                <telecom>
-                    <system value="email"/>
-                    <xsl:for-each select="email_adres/@value | email_address/@value">
-                        <value value="{normalize-space(.)}"/>
-                    </xsl:for-each>
-                    <xsl:if test="$emailTypeValue">
-                        <use value="{$emailTypeValue}">
-                            <xsl:choose>
-                                <xsl:when test="$emailType[not(../@codeSystem = $oidHL7NullFlavor)]">
-                                    <xsl:call-template name="ext-code-specification-1.0">
-                                        <xsl:with-param name="in" select="$emailType/parent::*"/>
-                                    </xsl:call-template>
-                                </xsl:when>
-                            </xsl:choose>
-                        </use>
-                    </xsl:if>
-                </telecom>
+                <xsl:variable name="doContactDetails" select="if ($filterprivate) then not($emailType[. = $filterValues]) else true()" as="xs:boolean"/>
+                <xsl:if test="$doContactDetails">
+                    <telecom>
+                        <system value="email"/>
+                        <xsl:for-each select="email_adres/@value | email_address/@value">
+                            <value value="{normalize-space(.)}"/>
+                        </xsl:for-each>
+                        <xsl:if test="$emailTypeValue">
+                            <use value="{$emailTypeValue}">
+                                <xsl:choose>
+                                    <xsl:when test="$emailType[not(../@codeSystem = $oidHL7NullFlavor)]">
+                                        <xsl:call-template name="ext-code-specification-1.0">
+                                            <xsl:with-param name="in" select="$emailType/parent::*"/>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </use>
+                        </xsl:if>
+                    </telecom>
+                </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>

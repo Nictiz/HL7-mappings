@@ -68,7 +68,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId(($theGroupElement/f:entry)[1])}"/>
+                <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                <reference value="{if (contains($fullUrl, '/Organization/')) then replace($fullUrl, '^.*/(Organization/.*)', '$1') else $fullUrl}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>
@@ -218,12 +219,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
                     </xsl:if>
                     <!-- contactgegevens -->
+                    <!-- MM-2693 Filter private contact details -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
                         <xsl:with-param name="in" select="contactgegevens | contact_information"/>
+                        <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
                     </xsl:call-template>
                     <!-- address -->
+                    <!-- MM-2693 Filter private addresses -->
                     <xsl:call-template name="nl-core-address-2.0">
-                        <xsl:with-param name="in" select="adresgegevens | address_information"/>
+                        <xsl:with-param name="in" select="adresgegevens[not(adres_soort/tokenize(@code, '\s') ='HP')] | address_information[not(address_type/tokenize(@code, '\s') ='HP')]" as="element()*"/>
                     </xsl:call-template>
                 </Organization>
             </xsl:variable>

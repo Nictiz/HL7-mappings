@@ -22,6 +22,10 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-12-01
+* MM-2651 Fix for XPath 2 compatibility. Replaced || syntax with concat()
+* MM-2606 Improved references by making them relative instead of absolute
+* MM-2693 AVG: Filter address/contactinformation marked private from Practitioner(Role) and Organization. Contact information marked "Emergency Number" is also filtered (V3: EC)
 2021-11-30
 * MM-2606 Enhance mapping Huisartsgegevens <> Ketenzorg with resource.id. Keeps fullURL, Resource.id and references to them in sync
   * NOTE: GP Data/Ketenzorg **now requires new parameter baseId** that allows creation of fullURL [baseId]/[type]/[id] where [id] matches Resource.id. Its value SHALL be the generic fhir endpoint and SHALL NOT end with a forward slash. Example: https://example.org/fhir 

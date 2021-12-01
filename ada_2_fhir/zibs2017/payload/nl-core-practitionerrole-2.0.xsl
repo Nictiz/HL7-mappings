@@ -78,7 +78,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="referenceOrIdentifier" as="element()*">
             <xsl:choose>
                 <xsl:when test="$theGroupElement">
-                    <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                    <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                    <reference value="{if (contains($fullUrl, '/PractitionerRole/')) then replace($fullUrl, '^.*/(PractitionerRole/.*)', '$1') else $fullUrl}"/>
                 </xsl:when>
                 <xsl:when test="$theIdentifier">
                     <identifier>
@@ -250,8 +251,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </specialty>
                     </xsl:for-each>
                     <!-- telecom -->
+                    <!-- MM-2693 Filter private contact details -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
                         <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
+                        <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
                     </xsl:call-template>
                 </PractitionerRole>
             </xsl:variable>

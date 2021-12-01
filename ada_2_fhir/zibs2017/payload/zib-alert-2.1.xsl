@@ -27,7 +27,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theGroupElement" select="$alerts[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                <reference value="{if (contains($fullUrl, '/Flag/')) then replace($fullUrl, '^.*/(Flag/.*)', '$1') else $fullUrl}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>
