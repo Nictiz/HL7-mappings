@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="385fc9d0-51c2-11ec-9633-020000000000"/>
+   <id value="e9147b32-52d4-11ec-2089-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -35,9 +35,7 @@
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>
-                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-60674">METFORMINE TABLET 1000MG</a>
-                           </td>
+                           <td>METFORMINE TABLET 1000MG</td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
@@ -95,11 +93,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-60674"/>
+               <reference value="Medication/2.16.840.1.113883.2.4.4.10-60674"/>
                <display value="METFORMINE TABLET 1000MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:385fc9d4-51c2-11ec-9633-020000000000"/>
+               <reference value="urn:uuid:e9147b36-52d4-11ec-2089-020000000000"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <context>
@@ -114,16 +112,16 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:385fbfbb-51c2-11ec-9633-020000000000"/>
+                        <reference value="urn:uuid:e914711d-52d4-11ec-2089-020000000000"/>
                         <display value="Huisarts 1 || Huisarts || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
+                  <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </agent>
             </requester>
             <reasonReference>
-               <reference value="urn:uuid:385fbfca-51c2-11ec-9633-020000000000"/>
+               <reference value="urn:uuid:e914712c-52d4-11ec-2089-020000000000"/>
                <display value="Diabetes Mellitus type 2"/>
             </reasonReference>
             <dosageInstruction>
@@ -157,7 +155,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:385fc9d4-51c2-11ec-9633-020000000000"/>
+      <fullUrl value="urn:uuid:e9147b36-52d4-11ec-2089-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -309,7 +307,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:385fbfbb-51c2-11ec-9633-020000000000"/>
+      <fullUrl value="urn:uuid:e914711d-52d4-11ec-2089-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -324,12 +322,8 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>
-                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431">Huisarts 1</a>
-                              </div>
-                              <div>
-                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
-                              </div>
+                              <div>Huisarts 1</div>
+                              <div>Gezondheidscentrum Aesculaap</div>
                            </td>
                         </tr>
                         <tr>
@@ -343,11 +337,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
+               <reference value="Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </practitioner>
             <organization>
-               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
+               <reference value="Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </organization>
             <specialty>
@@ -407,7 +401,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:385fbfca-51c2-11ec-9633-020000000000"/>
+      <fullUrl value="urn:uuid:e914712c-52d4-11ec-2089-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -438,7 +432,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:385fc9d4-51c2-11ec-9633-020000000000"/>
+               <reference value="urn:uuid:e9147b36-52d4-11ec-2089-020000000000"/>
                <display value="H. XXX_Mulders"/>
             </subject>
          </Condition>
