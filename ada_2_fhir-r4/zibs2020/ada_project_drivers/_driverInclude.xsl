@@ -159,8 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each select="$resources">
-                    <!--<xsl:result-document href="../fhir_instance/{concat(./f:id/@value,generate-id())}.xml">-->
-                    <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">    
+                    <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
                         <xsl:copy-of select="."/>
                     </xsl:result-document>
                 </xsl:for-each>
@@ -299,6 +298,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'medisch_hulpmiddel'">
                 <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="reasonReference" select="if (ancestor::mobiliteit) then ancestor::mobiliteit else ()"/>
                 </xsl:apply-templates>  
                 <xsl:for-each select="product">
                     <xsl:call-template name="nl-core-MedicalDevice.Product">
@@ -310,18 +310,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-Mobility">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
-                <!--<xsl:for-each select="medisch_hulpmiddel/medisch_hulpmiddel">
-                    <xsl:call-template name="nl-core-MedicalDevice">
-                        <xsl:with-param name="subject" select="$subject"/>
-                        <xsl:with-param name="reasonReference" select="../.."/>
-                        <!-\-<xsl:with-param name="reasonReferenceProfile" select="'nl-core-Mobility'"/>-\->
-                    </xsl:call-template>
-                    <!-\-<xsl:for-each select="product">
-                        <xsl:call-template name="nl-core-MedicalDevice.Product">
-                            <xsl:with-param name="subject" select="$subject"/>
-                        </xsl:call-template>    
-                    </xsl:for-each>-\->
-                </xsl:for-each>-->
             </xsl:when>
             <xsl:when test="$localName = 'o2saturatie'">
                 <xsl:apply-templates select="$in" mode="nl-core-O2Saturation">
