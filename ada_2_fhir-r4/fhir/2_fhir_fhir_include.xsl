@@ -288,7 +288,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </nm:resource>
         </xsl:for-each>
         
-        <!-- HearingFunction.HearingAid::MedicalDevice, VisualFunction.VisualAid::MedicalDevice, MedicalDevice::Product, Mobility.MedicalDevice, SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
+        <!-- HearingFunction.HearingAid::MedicalDevice, VisualFunction.VisualAid::MedicalDevice, MedicalDevice::Product, SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
         <xsl:choose>
             <xsl:when test="$in/self::functie_horen">
                 <xsl:for-each-group select="$in/horen_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
@@ -302,11 +302,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$in/self::medisch_hulpmiddel">
                 <xsl:for-each-group select="$in/product" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-            </xsl:when>
-            <xsl:when test="$in/self::mobiliteit">
-                <xsl:for-each-group select="$in/medisch_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
             </xsl:when>
