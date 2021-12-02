@@ -83,10 +83,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:variable name="logicalId">
             <xsl:choose>
-                <xsl:when test="parent::*/local-name() = 'referenties'">
+                <xsl:when test="ancestor::*/local-name() = 'referenties'">
                     <!-- This is a contained ada instance, therefore does not have a valid base-uri() -->
                     <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
-                    <xsl:variable name="position" as="xs:integer" select="count(preceding-sibling::*[local-name() = $localName]) + 1"/>
+                    <xsl:variable name="position" as="xs:integer" select="count(preceding::*[local-name() = $localName][ancestor::*/local-name() = 'referenties']) + 1"/>
                     <!-- This leads to a contained zib AdministrationAgreement being referenced as 'nl-core-MedicationAdministration2-02-MedicationDispense-01'. Could be more clear. On the other hand, do we need to put more effort into contained ADA instances? -->
                     <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>                
                 </xsl:when>
@@ -107,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
         
-        <!-- Failsafe, id's can get quite long -->
+        <!-- Failsafe, ids can get quite long -->
         <xsl:value-of select="nf:assure-logicalid-length($logicalId)"/>
         
     </xsl:template>
@@ -159,7 +159,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each select="$resources">
-                    <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
+                    <!--<xsl:result-document href="../fhir_instance/{concat(./f:id/@value,generate-id())}.xml">-->
+                    <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">    
                         <xsl:copy-of select="."/>
                     </xsl:result-document>
                 </xsl:for-each>
@@ -173,7 +174,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--<xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>-->
     </xd:doc>
     <xsl:template name="_callMode">
-        <xsl:param name="in" select="."/>
+        <xsl:param name="in" select="nf:ada-resolve-reference(.)"/>
         <xsl:param name="subject"/>
         <xsl:param name="localName" select="$in/local-name()"/>
         <!--<xsl:param name="profile" required="yes"/>-->
@@ -302,8 +303,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="product">
                     <xsl:call-template name="nl-core-MedicalDevice.Product">
                         <xsl:with-param name="subject" select="$subject"/>
-                    </xsl:call-template>    
+                    </xsl:call-template>
                 </xsl:for-each>
+            </xsl:when>
+            <xsl:when test="$localName = 'mobiliteit'">
+                <xsl:apply-templates select="$in" mode="nl-core-Mobility">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <!--<xsl:for-each select="medisch_hulpmiddel/medisch_hulpmiddel">
+                    <xsl:call-template name="nl-core-MedicalDevice">
+                        <xsl:with-param name="subject" select="$subject"/>
+                        <xsl:with-param name="reasonReference" select="../.."/>
+                        <!-\-<xsl:with-param name="reasonReferenceProfile" select="'nl-core-Mobility'"/>-\->
+                    </xsl:call-template>
+                    <!-\-<xsl:for-each select="product">
+                        <xsl:call-template name="nl-core-MedicalDevice.Product">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:call-template>    
+                    </xsl:for-each>-\->
+                </xsl:for-each>-->
             </xsl:when>
             <xsl:when test="$localName = 'o2saturatie'">
                 <xsl:apply-templates select="$in" mode="nl-core-O2Saturation">
