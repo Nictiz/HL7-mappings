@@ -32,13 +32,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="participantIndividual">Optional ADA instance or ADA reference element for a HealthProfessional-PractitionerRole instance to participant.individual</xd:param>
-        <xd:param name="location">Optional ADA instance or ADA reference element for a HealthcareProvider instance to location.location.</xd:param>
     </xd:doc>
     <xsl:template match="contact" name="nl-core-Encounter" mode="nl-core-Encounter" as="element(f:Encounter)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="participantIndividual" select="contact_met/zorgverlener"/>
-        <xsl:param name="location" select="locatie/zorgaanbieder"/>
         
         <xsl:for-each select="$in">
             <Encounter>
@@ -59,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <participant>
                         <individual>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="$participantIndividual"/>
+                                <xsl:with-param name="in" select="zorgverlener"/>
                                 <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
                             </xsl:call-template>
                         </individual>
@@ -141,7 +137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <location>
                         <location>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="$location"/>
+                                <xsl:with-param name="in" select="zorgaanbieder"/>
                                 <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                             </xsl:call-template>
                         </location>

@@ -38,7 +38,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-PractitionerRole" name="nl-core-HealthProfessional-PractitionerRole" as="element(f:PractitionerRole)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="organization" select="zorgaanbieder/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <PractitionerRole>
@@ -56,11 +55,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </practitioner>
                 </xsl:if>
                 
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$organization"></xsl:with-param>
-                    <xsl:with-param name="profile">nl-core-HealthcareProvider</xsl:with-param>
-                    <xsl:with-param name="wrapIn" select="'organization'"/>
-                </xsl:call-template>
+                <xsl:for-each select="zorgaanbieder">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="zorgaanbieder"/>
+                        <xsl:with-param name="profile">nl-core-HealthcareProvider</xsl:with-param>
+                        <xsl:with-param name="wrapIn" select="'organization'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 
                 <xsl:for-each select="specialisme">
                     <specialty>
