@@ -13,10 +13,12 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/utilities.xsl"/>
+    <xsl:import href="../../util/units.xsl"/>
+    
     <!-- only give dateT a value if you want conversion of relative T dates -->
     <xsl:param name="dateT" as="xs:date?"/>
     <xd:doc scope="stylesheet">
@@ -41,6 +43,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
                 <xsl:when test="upper-case($precision) = ('HOUR', 'UUR', 'HOURS', 'UREN', 'HR', 'HH', 'H', 'U')">[Y0001][M01][D01][H01]</xsl:when>
+                <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDE', 'SECONDES', 'SECONDEN', 'SEC', 'S')">[Y0001][M01][D01][H01][m01][s01]</xsl:when>
+                <xsl:when test="upper-case($precision) = ('MILLISECOND', 'MILLISECONDE', 'MILLISECONDES', 'MILLISECONDEN', 'MILLISEC', 'MS', 'MSEC')">[Y0001][M01][D01][H01][m01][s01].[f001]</xsl:when>
                 <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -1133,6 +1137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="xsiType">The xsi type to be included. Defaults to BL.</xd:param>
         <xd:param name="elemName">The hl7 element name to be outputted. Defaults to value.</xd:param>
         <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
+        <xd:param name="inputNullFlavor">nullFlavor string if applicable</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValue" match="element()" mode="MakeBLValue">
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
@@ -1141,7 +1146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
         <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
-        <xsl:variable name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
+        <xsl:param name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
         <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
@@ -1156,16 +1161,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Makes HL7 TS value attribute, based on input ada possible vague date/time string</xd:desc>
         <xd:param name="inputValue">The input ada value string</xd:param>
-        <xd:param name="inputNullFlavor"/>
+        <xd:param name="inputNullFlavor">The input ada nullFlavor</xd:param>
+        <xd:param name="precision">Determines the picture of the date(time) format. Seconds is the default.</xd:param>
+        <xd:param name="inputDateT">The input variable date T as xs:date. Optional, default to global param $dateT</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValueAttr" match="element()" mode="MakeTSValueAttr">
+        <xsl:param name="inputDateT" as="xs:date?" select="$dateT"/>
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
         <xsl:param name="inputNullFlavor" as="xs:string?" select="@nullFlavor"/>
+        <xsl:param name="precision" as="xs:string?">second</xsl:param>
         <xsl:choose>
             <xsl:when test="$inputValue">
                 <xsl:attribute name="value">
                     <xsl:call-template name="format2HL7Date">
                         <xsl:with-param name="dateTime" select="$inputValue"/>
+                        <xsl:with-param name="inputDateT" select="$inputDateT"/>
+                        <xsl:with-param name="precision" select="$precision"/>
                     </xsl:call-template>
                 </xsl:attribute>
             </xsl:when>
@@ -1217,62 +1228,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="concat($baseString, $endString)"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Converts ADA time unit 2 UCUM</xd:desc>
-        <xd:param name="ADAtime"/>
-    </xd:doc>
-    <xsl:function name="nf:convertTime_ADA_unit2UCUM" as="xs:string?">
-        <xsl:param name="ADAtime" as="xs:string?"/>
-        <xsl:if test="$ADAtime">
-            <xsl:choose>
-                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="concat('onbekende tijdseenheid: ', $ADAtime)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
-        <xd:param name="ADAunit"/>
-    </xd:doc>
-    <xsl:function name="nf:convert_ADA_unit2UCUM" as="xs:string?">
-        <xsl:param name="ADAunit" as="xs:string?"/>
-        <xsl:if test="$ADAunit">
-            <xsl:choose>
-                <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-gram">g</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-liter">l</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-dl">dl</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-cl">cl</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-ml">ml</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-ul">ul</xsl:when>
-
-                <xsl:when test="$ADAunit = $ada-unit-druppel">[drp]</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-degrees-celsius">Cel</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-pH">[pH]</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-mmol-l">mmol/L</xsl:when>
-
-                <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))">
-                    <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- let's assume it is a valid UCUM code -->
-                    <xsl:value-of select="$ADAunit"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
     </xsl:function>
 
 </xsl:stylesheet>

@@ -91,12 +91,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="dateT" as="xs:date?" select="$dateT"/>
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement</xsl:variable>
                 <MedicationRequest xsl:exclude-result-prefixes="#all">
-                    <xsl:for-each select="$logicalId[string-length(.) gt 0]">
-                        <id value="{$logicalId}"/>
-                    </xsl:for-each>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <!-- gebruiksperiode_start /eind -->
                     <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
@@ -152,6 +153,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="stoptype[@code]">
                         <xsl:call-template name="ext-zib-Medication-StopType-2.0"/>
                     </xsl:for-each>
+                    <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                    <xsl:for-each select="relaties_ketenzorg/identificatie_episode[@value]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+                            <valueReference>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                                <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>
                     <!-- MA id -->
                     <xsl:for-each select="identificatie[@value]">
                         <identifier>
@@ -181,33 +195,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     <!-- relaties_ketenzorg -->
-                    <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we could opt to only support Encounter here. -->
-                    <xsl:choose>
-                        <xsl:when test="relaties_ketenzorg/identificatie_episode[@value]">
-                            <xsl:for-each select="(relaties_ketenzorg/identificatie_episode[@value])[1]">
-                                <context>
-                                    <identifier>
-                                        <xsl:call-template name="id-to-Identifier">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </identifier>
-                                    <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
-                                </context>
-                            </xsl:for-each>
-                        </xsl:when>
-                        <xsl:when test="relaties_ketenzorg/identificatie_contactmoment[@value]">
-                            <xsl:for-each select="(relaties_ketenzorg/identificatie_contactmoment[@value])[1]">
-                                <context>
-                                    <identifier>
-                                        <xsl:call-template name="id-to-Identifier">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </identifier>
-                                    <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
-                                </context>
-                            </xsl:for-each>
-                        </xsl:when>
-                    </xsl:choose>
+                    <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we opt to only support Encounter here and move EpisodeOfCare to an extension. -->
+                    <xsl:for-each select="(relaties_ketenzorg/identificatie_contactmoment[@value])[1]">
+                        <context>
+                            <identifier>
+                                <xsl:call-template name="id-to-Identifier">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </identifier>
+                            <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
+                        </context>
+                    </xsl:for-each>
                     <!-- lichaamslengte -->
                     <xsl:for-each select="lichaamslengte[.//@value]">
                         <supportingInformation>
