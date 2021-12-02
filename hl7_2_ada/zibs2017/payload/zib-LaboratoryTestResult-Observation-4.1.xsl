@@ -145,8 +145,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- referentie_ondergrens -->
                     <!-- zie ook https://bits.nictiz.nl/browse/ZIB-981, unclear which datatypes to support... -->
                     <!-- however, IVL_PQ must be supported -->
-                    <xsl:if test="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[@xsi:type = 'IVL_PQ']">
-                        <xsl:for-each select="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[@xsi:type = 'IVL_PQ']/hl7:high">
+                    <xsl:if test="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_PQ']">
+                        <xsl:for-each select="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_PQ']/hl7:high">
                             <xsl:variable name="elemName">
                                 <xsl:choose>
                                     <xsl:when test="$language = 'nl-NL'">referentie_bovengrens</xsl:when>
@@ -158,7 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="datatype">quantity</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <xsl:for-each select="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[@xsi:type = 'IVL_PQ']/hl7:low">
+                        <xsl:for-each select="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_PQ']/hl7:low">
                             <xsl:variable name="elemName">
                                 <xsl:choose>
                                     <xsl:when test="$language = 'nl-NL'">referentie_ondergrens</xsl:when>

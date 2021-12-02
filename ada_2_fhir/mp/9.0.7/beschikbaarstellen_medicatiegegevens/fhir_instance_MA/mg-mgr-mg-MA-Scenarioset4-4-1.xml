@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e6ab196-5992-11eb-1683-020000000000"/>
+   <id value="bc60f3c2-e3c1-11eb-1764-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e6ab39d-5992-11eb-1683-020000000000"/>
+      <fullUrl value="urn:uuid:bc60fdee-e3c1-11eb-1764-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -49,7 +49,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T-1Y{00:00:00}, 1 maal per dag 1 stuk, Oraal</div>
+                              <div>Tekst: Vanaf T - 1 jaar, 1 maal per dag 1 stuk, Oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -90,15 +90,15 @@
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e6ab19d-5992-11eb-1683-020000000000"/>
+               <reference value="urn:uuid:bc60fdd2-e3c1-11eb-1764-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <supportingInformation>
-               <reference value="urn:uuid:4e6ab3c6-5992-11eb-1683-020000000000"/>
+               <reference value="urn:uuid:bc60ed22-e3c1-11eb-1764-020000000000"/>
                <display value="Lengte: 155 cm. Datum/tijd gemeten: T-1Y{07:05:00}"/>
             </supportingInformation>
             <supportingInformation>
-               <reference value="urn:uuid:4e6ab3c9-5992-11eb-1683-020000000000"/>
+               <reference value="urn:uuid:bc60ed29-e3c1-11eb-1764-020000000000"/>
                <display value="Gewicht: 54 kg. Datum/tijd gemeten: T-1Y{07:05:00}"/>
             </supportingInformation>
             <authoredOn value="${DATE, T, Y, -1}T07:05:00+02:00"/>
@@ -106,7 +106,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e6ab3a2-5992-11eb-1683-020000000000"/>
+                        <reference value="urn:uuid:bc60fdf8-e3c1-11eb-1764-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -115,7 +115,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T-1Y{00:00:00}, 1 maal per dag 1 stuk, Oraal"/>
+               <text value="Vanaf T - 1 jaar, 1 maal per dag 1 stuk, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -144,7 +144,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e6ab19d-5992-11eb-1683-020000000000"/>
+      <fullUrl value="urn:uuid:bc60fdd2-e3c1-11eb-1764-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -179,7 +179,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-06-08"/>
          </Patient>
       </resource>
@@ -284,7 +294,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e6ab3a2-5992-11eb-1683-020000000000"/>
+      <fullUrl value="urn:uuid:bc60fdf8-e3c1-11eb-1764-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -378,7 +388,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e6ab3c6-5992-11eb-1683-020000000000"/>
+      <fullUrl value="urn:uuid:bc60ed22-e3c1-11eb-1764-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -425,7 +435,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:4e6ab19d-5992-11eb-1683-020000000000"/>
+               <reference value="urn:uuid:bc60fdd2-e3c1-11eb-1764-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <effectiveDateTime value="${DATE, T, Y, -1}T07:05:00+02:00"/>
@@ -448,7 +458,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e6ab3c9-5992-11eb-1683-020000000000"/>
+      <fullUrl value="urn:uuid:bc60ed29-e3c1-11eb-1764-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -495,7 +505,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:4e6ab19d-5992-11eb-1683-020000000000"/>
+               <reference value="urn:uuid:bc60fdd2-e3c1-11eb-1764-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <effectiveDateTime value="${DATE, T, Y, -1}T07:05:00+02:00"/>
