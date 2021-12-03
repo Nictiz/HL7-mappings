@@ -1,0 +1,939 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<QURX_IN990113NL xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3">
+    <id extension="012345672" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+    <creationTime value="20090401090530"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="QURX_IN990113NL" root="2.16.840.1.113883.1.6"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="NE"/>
+    <acknowledgement typeCode="AA">
+        <targetMessage>
+            <id extension="012345672" root="2.16.528.1.1007.3.3.1234567.1"/>
+        </targetMessage>
+    </acknowledgement>
+    <receiver>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.6.6" extension="1"/>
+        </device>
+    </receiver>
+    <sender>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.6.6" extension="31"/>
+            <name>Reagerende Simulator</name>
+            <agencyFor classCode="AGNT">
+                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                    <id root="2.16.528.1.1007.3.3" extension="00000509"/>
+                    <name>Reagerende Simulator</name>
+                </representedOrganization>
+            </agencyFor>
+        </device>
+    </sender>
+
+    <ControlActProcess moodCode="EVN">
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedDevice>
+                    <id extension="009876543" root="2.16.528.1.1007.3.2"/>
+                    <id extension="31" root="2.16.840.1.113883.2.4.6.6"/>
+                    <Organization>
+                        <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                        <code code="J8" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Openbare apotheek"/>
+                        <name>Apotheek De Gulle Gaper</name>
+                    </Organization>
+                </AssignedDevice>
+            </participant>
+        </authorOrPerformer>
+
+        <subject>
+            <MedicationDispenseList>
+                <code codeSystem="2.16.840.1.113883.5.4" code="MEDLIST"/>
+                <subject>
+                    <Patient>
+                        <id extension="999999060" root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                            <streetName>Cremstraat</streetName>
+                            <houseNumber>6</houseNumber>
+                            <buildingNumberSuffix>F III</buildingNumberSuffix>
+                            <postalCode>1239 AB</postalCode>
+                            <city>Grijpskerk</city>
+                        </addr>
+                        <statusCode code="active"/>
+                        <Person>
+                            <name use="L">
+                                <given>Carel</given>
+                                <family qualifier="BR">Creiens</family>
+                            </name>
+                            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                            <birthTime value="19500601"/>
+                        </Person>
+                    </Patient>
+                </subject>
+
+                <!-- __VERAPAMIL______________________________________________________________________________ -->
+
+                <component>
+                    <!-- Zonder logistieke verbruiksperiode Met therapeutische gebruiksperiode -->
+                    <medicationDispenseEvent>
+                        <id extension="1f5eebe0-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20060629"/>
+                        <quantity value="30">
+                            <translation value="30" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="14303841" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="VERAPAMIL HCL CF TABLET 40MG"/>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007823" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20060629"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Gedurende 7 dagen, 4 maal per dag 1 tablet</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <width value="7" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="0.25" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="1">
+                                                <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                                                <translation value="1" code="100" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="Tablet"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- __ORS______________________________________________________________________________ -->
+
+                <component>
+                    <!-- Met logistieke verbruiksperiode Zonder therapeutische gebruiksperiode -->
+                    <medicationDispenseEvent>
+                        <id extension="47f39010-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20060214"/>
+                        <quantity value="30">
+                            <translation value="30" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+                        <!-- logistieke verbruiksperiode -->
+                        <expectedUseTime>
+                            <width value="10" unit="d"/>
+                        </expectedUseTime>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="14565277" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="ORS POEDER SACHET 5,4G SAN">
+                                        <translation code="1417762" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007824" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20060214"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">3 maal per dag 1 zakje</text>
+                                        <statusCode code="active"/>
+                                        <!-- Er is geen therapeutische gebruiksperiode bekend -->
+                                        <effectiveTime xsi:type="PIVL_TS" operator="A">
+                                            <period value="0.3333" unit="d"/>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="1">
+                                                <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                                                <translation value="1" code="121" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="Zakje"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- __PROLIA______________________________________________________________________________ -->
+
+                <component>
+                    <!-- Met logistieke verbruiksperiode  Met therapeutische gebruiksperiode -->
+                    <medicationDispenseEvent>
+                        <id extension="4d5128b0-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20070105"/>
+                        <quantity value="10">
+                            <translation value="10" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+                        <!-- logistieke verbruiksperiode -->
+                        <expectedUseTime>
+                            <width value="5" unit="a"/>
+                        </expectedUseTime>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="15654486" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="PROLIA 60 INJVLST 60MG/ML WWSP 1ML"/>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007827" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20070105"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Gedurende 5 jaar, 2 maal per jaar 1 injectie</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <width value="1826" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="0.5" unit="a"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="1">
+                                                <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                                                <translation value="1" code="38" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="injectie"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- ___IBUPROFEN_____________________________________________________________________________ -->
+
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="52c41e10-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20070520"/>
+                        <quantity value="6">
+                            <translation value="6" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+                        <expectedUseTime>
+                            <width value="24" unit="d"/>
+                        </expectedUseTime>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="14765233" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="IBUPROFEN PCH TABLET 200MG CLICKER">
+                                        <translation code="719374" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                        <translation code="50997" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007829" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20070520"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Gedurende 60 dagen, 1 maal per dag een kwart tablet</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <width value="60" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="1" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="0.25">
+                                                <translation value="0.25" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                                                <translation value="0.25" code="100" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="Tablet"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- ___KENACORT_____________________________________________________________________________ -->
+
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="59df4530-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20070620"/>
+                        <quantity value="10">
+                            <translation value="10" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="12128198" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="KENACORT A 40 INJECTIESUSPENSIE 40MG/ML FLACON 5ML">
+                                        <translation code="219584" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                        <translation code="120219" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007830" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20070610"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Gedurende 3 weken, 1 maal per week 15 ml</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <width value="21" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="1" unit="wk"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="15" unit="ml">
+                                                <translation value="15" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+                                                <translation value="15" code="56" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="Milliliter"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- ______TRUSOPT__________________________________________________________________________ -->
+
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="5ed2f870-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20060128"/>
+                        <quantity value="1">
+                            <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="13906550" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="TRUSOPT OOGDRUPPELS 20MG/ML FLACON 5ML">
+                                        <translation code="850144" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                        <translation code="95575" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007834" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20060128"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Vanaf T-650, gedurende 7 dagen, 2 maal per dag 1 druppel</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="20060130"/>
+                                                <width value="7" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="0.5" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="1" unit="[drp]">
+                                                <translation value="1" code="303" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Druppel"/>
+                                                <translation value="1" code="20" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="Druppel"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- ____RESONIUM____________________________________________________________________________ -->
+
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="63c23ee0-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20070128"/>
+                        <quantity value="10" unit="g">
+                            <translation value="10" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </quantity>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="13650203" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="RESONIUM A POEDER">
+                                        <translation code="15261" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                        <translation code="121363" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007839" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20070128"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Vanaf T-287D, 2 maal per dag 5 gram</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="20070128"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="0.5" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="5" unit="g">
+                                                <translation value="5" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                                                <translation value="5" code="34" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="Gram"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- ____SEREVENT____________________________________________________________________________ -->
+
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="6898f440-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20070901"/>
+                        <quantity value="10">
+                            <translation value="10" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="14039303" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="SEREVENT DISKUS INHPDR 50MCG 60DO">
+                                        <translation code="1029746" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                        <translation code="87424" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007840" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20070901"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Vanaf T-287D tot en met T+149D 23:59, 2 maal per dag 2 inhalaties</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="200709010000"/>
+                                                <high value="200801282359"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="0.5" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="2">
+                                                <translation value="2" code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Dosis"/>
+                                                <translation value="2" code="36" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="Inhalatie"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- ___DUROGESIC_____________________________________________________________________________ -->
+
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="6da7a990-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20071101"/>
+                        <quantity value="12">
+                            <translation value="12" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="13878956" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="DUROGESIC 100 MATRIXPLEISTER 16,8MG">
+                                        <translation code="836982" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                        <translation code="122033" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007843" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20071101"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Gedurende 18 dagen, 1 maal per 3 dagen 2 pleisters</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <width value="18" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="3" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="2">
+                                                <translation value="2" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                                                <translation value="2" code="77" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="Pleister"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- ___Carvedilol_____________________________________________________________________________ -->
+
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="721def70-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20071101"/>
+                        <quantity value="60" unit="1">
+                            <translation value="60" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="14933349" codeSystem="2.16.840.1.113883.2.4.4.8" displayName="Carvedilol CF tablet 6,25mg" codeSystemName="G-Standaard Artikel">
+                                        <translation code="101451" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="CARVEDILOL TABLET 6,25MG" codeSystemName="G-Standaard GPK"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007843" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20071101"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text>Gedurende 30 dagen, gebruik volgens afspraak</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="IVL_TS">
+                                            <width value="30" unit="d"/>
+                                        </effectiveTime>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+
+                <!-- ___Diazepam_____________________________________________________________________________ -->
+
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="78074d50-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20071101"/>
+                        <quantity value="180" unit="1">
+                            <translation value="180" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                        </quantity>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="13908790" codeSystem="2.16.840.1.113883.2.4.4.8" displayName="Diazepam PCH tablet 5mg" codeSystemName="G-Standaard Artikel">
+                                        <translation code="20664" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="Diazepam tablet 5mg" codeSystemName="G-Standaard GPK"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007843" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20071101"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text>vanaf $T$ 1 week 6 stuks per dag</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="20140106"/>
+                                                <width value="7" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="1" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="6" unit="1">
+                                                <translation value="6" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text>vanaf $T + 1wk$ 1 week 5 stuks per dag</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="20140106"/>
+                                                <width value="7" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="1" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="5" unit="1">
+                                                <translation value="5" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text>vanaf $T + 2wk$ 1 week 4 stuks per dag</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="20140106"/>
+                                                <width value="7" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="1" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="4" unit="1">
+                                                <translation value="4" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text>vanaf $T + 3wk$ 1 week 3 stuks per dag</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="20140106"/>
+                                                <width value="7" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="1" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="3" unit="1">
+                                                <translation value="3" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text>vanaf $T + 4wk$ 1 week 2 stuks per dag</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="20140106"/>
+                                                <width value="7" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="1" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+
+                                        <doseQuantity>
+                                            <center value="2" unit="1">
+                                                <translation value="2" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text>vanaf $T + 5wk$} 1 week 1 stuks per dag</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="SXPR_TS">
+                                            <comp xsi:type="IVL_TS">
+                                                <low value="20140106"/>
+                                                <width value="7" unit="d"/>
+                                            </comp>
+                                            <comp xsi:type="PIVL_TS" operator="A">
+                                                <period value="1" unit="d"/>
+                                            </comp>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="1" unit="1">
+                                                <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+            </MedicationDispenseList>
+        </subject>
+        <queryAck>
+            <queryId extension="0123456789" root="2.16.528.1.1007.3.3.1234567.2"/>
+            <queryResponseCode code="OK"/>
+            <resultTotalQuantity value="1"/>
+            <resultCurrentQuantity value="1"/>
+            <resultRemainingQuantity value="0"/>
+        </queryAck>
+    </ControlActProcess>
+</QURX_IN990113NL>
