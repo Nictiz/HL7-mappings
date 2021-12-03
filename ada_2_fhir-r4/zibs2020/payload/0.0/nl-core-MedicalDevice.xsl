@@ -22,6 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:local="urn:fhir:stu3:functions" 
     version="2.0">
     
     <xsl:output method="xml" indent="yes"/>
@@ -192,38 +193,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                         
                 <xsl:for-each select="product_id">
-                    <identifier>
-                        <system>
-                            <xsl:choose>
-                                <xsl:when test="./@codeSystem = $oidGTIN">
-                                    <xsl:attribute name="value" select="'https://www.gs1.org/gtin'"/>
-                                </xsl:when>
-                                <xsl:when test="./@codeSystem = $oidHIBC">
-                                    <xsl:attribute name="value" select="'urn:oid:2.16.840.1.113883.6.40'"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </system>
-                        <value>
-                            <xsl:attribute name="value" select="./@code"/>
-                        </value>
-                    </identifier>
-                                  
-                    <udiCarrier>
-                        <issuer>
-                            <xsl:choose>
-                                <xsl:when test="./@codeSystem = $oidGTIN">
-                                    <xsl:attribute name="value" select="'https://www.gs1.org/gtin'"/>
-                                </xsl:when>
-                                <xsl:when test="./@codeSystem = $oidHIBC">
-                                    <xsl:attribute name="value" select="'urn:oid:2.16.840.1.113883.6.40'"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </issuer>
-                        
-                        <carrierHRF>
-                            <xsl:attribute name="value" select="./@code"/>
-                        </carrierHRF>
-                    </udiCarrier>
+                    <xsl:choose>
+                        <xsl:when test="@codeSystem = ($oidGTIN, $oidHIBC)">
+                            <xsl:variable name="system" select="local:getUri(@codeSystem)"/>
+                            <identifier>
+                                <system value="{$system}"/>
+                                <value value="{@code}"/>
+                            </identifier>
+                            <udiCarrier>
+                                <issuer value="{$system}"/>
+                                <carrierHRF value="{@code}"/>
+                            </udiCarrier>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- Let's hope for the best -->
+                            <identifier>
+                                <system value="{local:getUri(@codeSystem)}"/>
+                                <value value="{@code}"/>
+                            </identifier>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>
                 
                 <xsl:for-each select="product_type">

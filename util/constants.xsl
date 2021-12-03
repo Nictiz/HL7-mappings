@@ -336,6 +336,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$fhirVersion='R4'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://terminology.hl7.org/CodeSystem/choice-list-orientation" displayName="ChoiceListOrientation"/>
                 <map oid="{$oidFHIRObservationCategory}" uri="http://terminology.hl7.org/CodeSystem/observation-category" displayName="ObservationCategory"/>
+                <map oid="{$oidGTIN}" uri="https://www.gs1.org/gtin" displayName="GTIN (GS1)"/>
                 <map oid="{$oidHL7ActCode}" uri="http://terminology.hl7.org/CodeSystem/v3-ActCode" displayName="HL7 ActCode"/>
                 <map oid="{$oidHL7ActStatus}" uri="http://terminology.hl7.org/CodeSystem/v3-ActStatus" displayName="HL7 ActReason"/>
                 <map oid="{$oidHL7ActReason}" uri="http://terminology.hl7.org/CodeSystem/v3-ActReason" displayName="HL7 ActStatus"/>
