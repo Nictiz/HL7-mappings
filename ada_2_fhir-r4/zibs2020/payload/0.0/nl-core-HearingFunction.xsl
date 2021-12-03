@@ -95,7 +95,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="subject" select="$subject"/>
             <xsl:with-param name="profile" select="'nl-core-HearingFunction.HearingAid'"/>
             <xsl:with-param name="reasonReference" select="$reasonReference"/>
-            <xsl:with-param name="reasonReferenceProfile" select="'nl-core-HearingFunction'"/>
         </xsl:call-template>
     </xsl:template>
 

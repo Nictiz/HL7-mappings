@@ -37,14 +37,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice'.</xd:param>
         <xd:param name="reasonReference">Optional ADA instance used to populate the reasonReference element. Used for zib HearingFunction and VisualFunction, which are mapped to FHIR Observation resources and that contain a reference to MedicalDevice, which is mapped via this reasonReference.</xd:param>
-        <xd:param name="reasonReferenceProfile">The optional profile used to create the reasonReference reference.</xd:param>
     </xd:doc>
     <xsl:template match="medisch_hulpmiddel" name="nl-core-MedicalDevice" mode="nl-core-MedicalDevice" as="element(f:DeviceUseStatement)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="profile" select="'nl-core-MedicalDevice'" as="xs:string"/>
         <xsl:param name="reasonReference" as="element()?"/>
-        <xsl:param name="reasonReferenceProfile" select="''" as="xs:string"/>
         
         <xsl:for-each select="$in">
             <DeviceUseStatement>
@@ -147,9 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!--The element reasonReference is present to support Observations that refer to a MedicalDevice, such as HearingFunction and VisualFunction. -->
                 <xsl:for-each select="$reasonReference">
                     <reasonReference>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile" select="$reasonReferenceProfile"/>
-                        </xsl:call-template>
+                        <xsl:call-template name="makeReference"/>
                     </reasonReference>
                 </xsl:for-each>
                 
