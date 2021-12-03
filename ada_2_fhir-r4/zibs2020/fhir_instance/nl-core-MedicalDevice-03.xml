@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MedicalDevice-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.HealthProfessional">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-MedicalDevice-03-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Karel Janssen, Medisch specialisten, cardiologie"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location">
+      <valueReference>
+         <reference value="Location/nl-core-MedicalDevice-03-HealthcareProvider-01"/>
+         <type value="Location"/>
+         <display value="Healthcare provider (location), Academisch Medisch Centrum"/>
+      </valueReference>
+   </extension>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <timingPeriod>
+      <start value="2004-02-10"/>
+   </timingPeriod>
+   <device>
+      <reference value="Device/nl-core-MedicalDevice.Product-03"/>
+      <type value="Device"/>
+   </device>
+   <reasonReference>
+      <reference value="Condition/nl-core-MedicalDevice-03-Problem-01"/>
+      <type value="Condition"/>
+      <display value="Problem"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="9454009"/>
+         <display value="subclavian pouch"/>
+      </coding>
+   </bodySite>
+   <note>
+      <text value="Laatst doorgemeten in 2011"/>
+   </note>
+</DeviceUseStatement>
