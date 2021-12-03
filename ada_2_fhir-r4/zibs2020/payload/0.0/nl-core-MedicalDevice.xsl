@@ -142,15 +142,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <!--The element reasonReference is present to support Observations that refer to a MedicalDevice, such as HearingFunction and VisualFunction. -->
-                <xsl:if test="$reasonReference">
-                    <xsl:for-each select="../..">
+                <xsl:for-each select="$reasonReference">
                         <reasonReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="profile" select="$reasonReferenceProfile"/>
                             </xsl:call-template>
                         </reasonReference>
                     </xsl:for-each>
-                </xsl:if>            
                 
                 <xsl:for-each select="anatomische_locatie">
                     <bodySite>
