@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
-    <xsl:param name="referById" as="xs:boolean" select="true()"/>
+    <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- if false produces a Bundle. if true produces separate resources -->
     <xsl:param name="separateResources" as="xs:boolean" select="false()"/>
     

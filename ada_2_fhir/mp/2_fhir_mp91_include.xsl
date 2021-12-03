@@ -1615,7 +1615,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <medicationReference>
             <xsl:variable name="fullUrl" select="nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.), false())"/>
-            <reference value="{if (contains($fullUrl, '/Medication/')) then replace($fullUrl, '^.*/(Medication/.*)', '$1') else $fullUrl}"/>
+            <reference value="{$fullUrl}"/>
             <display>
                 <xsl:variable name="displayValue" as="element()">
                     <reference>

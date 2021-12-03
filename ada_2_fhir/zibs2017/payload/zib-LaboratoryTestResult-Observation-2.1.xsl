@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
-                <reference value="{if (contains($fullUrl, '/Observation/')) then replace($fullUrl, '^.*/(Observation/.*)', '$1') else $fullUrl}"/>
+                <reference value="{$fullUrl}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>

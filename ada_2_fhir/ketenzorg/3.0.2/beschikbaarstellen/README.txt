@@ -22,6 +22,9 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-12-03
+* MM-2606 Reset references to fullUrl instead of making those relative. Reset referById parameter from default true() to default false()
+* Added missing display on Observation.referenceRange.type "Normal display"
 2021-12-01
 * MM-2651 Fix for XPath 2 compatibility. Replaced || syntax with concat()
 * MM-2606 Improved references by making them relative instead of absolute
