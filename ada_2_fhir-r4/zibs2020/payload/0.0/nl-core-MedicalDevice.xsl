@@ -34,7 +34,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-MedicalDevice instance as a DeviceUseStatement FHIR instance from ada medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice'.</xd:param>
+        <xd:param name="reasonReference">Optional ADA instance used to populate the reasonReference element. Used for zib HearingFunction and VisualFunction, which are mapped to FHIR Observation resources and that contain a reference to MedicalDevice, which is mapped via this reasonReference.</xd:param>
+        <xd:param name="reasonReferenceProfile">The optional profile used to create the reasonReference reference.</xd:param>
     </xd:doc>
     <xsl:template match="medisch_hulpmiddel" name="nl-core-MedicalDevice" mode="nl-core-MedicalDevice" as="element(f:DeviceUseStatement)?">
         <xsl:param name="in" select="." as="element()?"/>
@@ -143,12 +146,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <!--The element reasonReference is present to support Observations that refer to a MedicalDevice, such as HearingFunction and VisualFunction. -->
                 <xsl:for-each select="$reasonReference">
-                        <reasonReference>
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile" select="$reasonReferenceProfile"/>
-                            </xsl:call-template>
-                        </reasonReference>
-                    </xsl:for-each>
+                    <reasonReference>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile" select="$reasonReferenceProfile"/>
+                        </xsl:call-template>
+                    </reasonReference>
+                </xsl:for-each>
                 
                 <xsl:for-each select="anatomische_locatie">
                     <bodySite>
@@ -175,7 +178,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-MedicalDevice.Product instance as a Device FHIR instance from ada medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice.Product'. Other uses are 'nl-core-HearingFunction.HearingAid' and 'nl-core-VisualFunction.Product'.</xd:param>
     </xd:doc>
     <xsl:template match="product" name="nl-core-MedicalDevice.Product" mode="nl-core-MedicalDevice.Product" as="element(f:Device)?">
         <xsl:param name="in" select="." as="element()?"/>
