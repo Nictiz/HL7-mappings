@@ -939,7 +939,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="format-dateTime(xs:dateTime($newDateTime), $picture)"/>
                     </xsl:when>
                     <xsl:when test="$newDate castable as xs:date">
-                        <xsl:value-of select="format-date(xs:date($newDateTime), '[Y0001]-[M01]-[D01]')"/>
+                        <xsl:value-of select="format-date(xs:date($newDate), '[Y0001]-[M01]-[D01]')"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="$dateTime"/>
