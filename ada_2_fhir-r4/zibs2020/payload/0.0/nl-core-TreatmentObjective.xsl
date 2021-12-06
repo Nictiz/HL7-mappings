@@ -148,7 +148,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="functionalOrMentalStatus">Optional ADA instance or ADA reference element for
+        <xd:param name="functionalOrMentalStatus">Optional ADA instance or ADA reference element for FunctionalOrMentalStatus </xd:param>
     </xd:doc>
     <xsl:template match="behandeldoel" mode="_generateDisplay">
         <xsl:param name="in" as="element()?" select="."/>
