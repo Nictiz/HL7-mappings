@@ -76,7 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="concat('per ', $FoMStatus/status_datum/@value)"/>
                                 </xsl:if>
                             </xsl:variable>
-                            <xsl:attribute name="value" select="string-join($parts[. != ''], ' ')"/>
+                            <xsl:attribute name="value" select="string-join($parts[. != ''], ', ')"/>
                         </text>
                     </description>
                 </xsl:for-each>
