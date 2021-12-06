@@ -34,16 +34,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-behandeldoel instance as a Goal FHIR instance from ADA behandeldoel.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient</xd:param>
+        <xd:param name="problem">Optional ADA instance or ADA reference element for Problem</xd:param>
+        <xd:param name="functionalOrMentalStatus">Optional ADA instance or ADA reference element for FunctionalOrMentalStatus </xd:param>
     </xd:doc>
     <xsl:template match="behandeldoel" name="nl-core-TreatmentObjective" mode="nl-core-TreatmentObjective" as="element(f:Goal)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="problem" select="probleem/*" as="element()?"/>
-        <xsl:param name="medicalDevice" select="medisch_hulpmiddel/*" as="element()?"/>
+        <xsl:param name="functionalOrMentalStatus" select="nf:resolveAdaInstance(gewenste_gezondheidstoestand/functionele_of_mentale_status, $in)" as="element()?"/>
+        
         <xsl:for-each select="$in">
             <Goal>
-
-                
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective"/>
@@ -61,19 +63,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </text>
                     </description>
                 </xsl:for-each>
-                <xsl:for-each select="gewenste_gezondheidstoestand">
-                    <xsl:variable name="FoMStatus" select="nf:resolveAdaInstance(functionele_of_mentale_status, $in)" as="element()?"/>
+                <xsl:for-each select="$functionalOrMentalStatus">
                     <description>
                         <text>
                             <xsl:variable name="parts" as="item()*">
-                                <xsl:if test="$FoMStatus/status_naam/@displayName">
-                                    <xsl:value-of select="concat('Gewenste gezondheidstoestand: ', $FoMStatus/status_naam/@displayName)"/>
+                                <xsl:if test="status_naam/@displayName">
+                                    <xsl:value-of select="concat('Gewenste gezondheidstoestand: ', status_naam/@displayName)"/>
                                 </xsl:if>
-                                <xsl:if test="$FoMStatus/status_waarde/@displayName">
-                                    <xsl:value-of select="concat('specifiek doel: ', $FoMStatus/status_waarde/@displayName)"/>
+                                <xsl:if test="status_waarde/@displayName">
+                                    <xsl:value-of select="concat('specifiek doel: ', status_waarde/@displayName)"/>
                                 </xsl:if>
-                                <xsl:if test="$FoMStatus/status_datum/@value">
-                                    <xsl:value-of select="concat('per ', $FoMStatus/status_datum/@value)"/>
+                                <xsl:if test="status_datum/@value">
+                                    <xsl:value-of select="concat('per ', status_datum/@value)"/>
                                 </xsl:if>
                             </xsl:variable>
                             <xsl:attribute name="value" select="string-join($parts[. != ''], ', ')"/>
@@ -88,39 +89,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <xsl:for-each select="gewenste_gezondheidstoestand">
-                    <xsl:variable name="FoMStatus" select="nf:resolveAdaInstance(functionele_of_mentale_status, $in)" as="element()?"/>
+                <xsl:for-each select="$functionalOrMentalStatus">
                     <target>
-                        
-<!--                    This part is dependent on MedicalDevice profile... 
-                            
-                            <xsl:for-each select="$FoMStatus/hulpmiddel">
-                     
+                        <xsl:for-each select="nf:resolveAdaInstance(hulpmiddel/medisch_hulpmiddel, $in)">
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentObjective.MedicalDevice">
                                 <valueReference>
                                     <xsl:call-template name="makeReference">
-                                        <xsl:with-param name="in" select="$medicalDevice"/>
+                                        <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="profile" select="'nl-core-MedicalDevice'"/>
                                     </xsl:call-template>
                                 </valueReference>
                             </extension>
-                        </xsl:for-each>-->
+                        </xsl:for-each>
                         
-                        <xsl:for-each select="$FoMStatus/status_naam">
+                        <xsl:for-each select="status_naam">
                             <measure>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </measure>
                         </xsl:for-each>
-                        <xsl:for-each select="$FoMStatus/status_waarde">
+                        <xsl:for-each select="status_waarde">
                             <detailCodeableConcept>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </detailCodeableConcept>
                         </xsl:for-each>
-                        <xsl:for-each select="$FoMStatus/status_datum">
+                        <xsl:for-each select="status_datum">
                             <dueDate>
                                 <xsl:call-template name="date-to-datetime">
                                     <xsl:with-param name="in" select="."/>
@@ -138,9 +134,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <xsl:for-each select="gewenste_gezondheidstoestand">
-                    <xsl:variable name="FoMStatus" select="nf:resolveAdaInstance(functionele_of_mentale_status, $in)" as="element()?"/>
-                    <xsl:for-each select="$FoMStatus/toelichting">
+                <xsl:for-each select="$functionalOrMentalStatus">
+                    <xsl:for-each select="toelichting">
                         <note>
                             <text value="{normalize-space(@value)}"/>
                         </note>
@@ -150,37 +145,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
-    <!-- DOES NOT YET WORK WITH THE VARIABLE -->
-    
-  <!--  <xd:doc>
+    <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="functionalOrMentalStatus">Optional ADA instance or ADA reference element for
     </xd:doc>
     <xsl:template match="behandeldoel" mode="_generateDisplay">
-        
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="functionalOrMentalStatus" select="nf:resolveAdaInstance(gewenste_gezondheidstoestand/functionele_of_mentale_status, $in)" as="element()?"/>
         <xsl:variable name="parts">
-            
             <xsl:text>Behandeldoel</xsl:text>
-            <xsl:if test="gewenste_gezondheidstoestand">
-                <xsl:variable name="FoMStatus" select="nf:resolveAdaInstance(functionele_of_mentale_status, $in)" as="element()?"/>
+            <xsl:for-each select="$functionalOrMentalStatus">
                 <xsl:variable name="parts" as="item()*">
-                    <xsl:if test="$FoMStatus/status_naam/@displayName">
-                        <xsl:value-of select="concat('Gewenste gezondheidstoestand: ', $FoMStatus/status_naam/@displayName)"/>
+                    <xsl:if test="status_naam/@displayName">
+                        <xsl:value-of select="concat('Gewenste gezondheidstoestand: ', status_naam/@displayName)"/>
                     </xsl:if>
-                    <xsl:if test="$FoMStatus/status_waarde/@displayName">
-                        <xsl:value-of select="concat('specifiek doel: ', $FoMStatus/status_waarde/@displayName)"/>
+                    <xsl:if test="status_waarde/@displayName">
+                        <xsl:value-of select="concat('specifiek doel: ', status_waarde/@displayName)"/>
                     </xsl:if>
-                    <xsl:if test="$FoMStatus/status_datum/@value">
-                        <xsl:value-of select="concat('per ', $FoMStatus/status_datum/@value)"/>
+                    <xsl:if test="status_datum/@value">
+                        <xsl:value-of select="concat('per ', status_datum/@value)"/>
                     </xsl:if>
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts[. != ''], ' ')"/>
-            </xsl:if>
+            </xsl:for-each>
             
-            <xsl:if test="gewenst_zorgresultaat">
+            <xsl:for-each select="gewenst_zorgresultaat">
                 <xsl:value-of select="concat('Gewenst zorgresultaat: ', gewenst_zorgresultaat/@value)"/>
-            </xsl:if>
+            </xsl:for-each>
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ' ')"/>
-    </xsl:template>-->
+    </xsl:template>
 </xsl:stylesheet>
