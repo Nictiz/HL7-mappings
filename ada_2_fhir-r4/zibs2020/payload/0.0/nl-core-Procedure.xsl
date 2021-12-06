@@ -155,13 +155,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="wrapIn" select="'report'"/>
                     </xsl:call-template>
                 </xsl:for-each>
-
+                
+                <!-- Error in profile? Reference should be to DeviceUseStatement, but not possible -->
                 <xsl:for-each select="medisch_hulpmiddel">
                     <focalDevice>
                         <manipulated>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="medisch_hulpmiddel"/>
-                                <xsl:with-param name="profile" select="'nl-core-MedicalDevice'"/>
+                                <xsl:with-param name="profile" select="'nl-core-MedicalDevice.Product'"/>
                             </xsl:call-template>
                         </manipulated>
                     </focalDevice>
