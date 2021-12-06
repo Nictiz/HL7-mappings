@@ -44,10 +44,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-MedicationAdministration2" mode="nl-core-MedicationAdministration2" match="medicatie_toediening" as="element(f:MedicationAdministration)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="toedienings_product" as="element()?"/>
-        <xsl:param name="administrationAgreement" select="gerelateerde_afspraak/toedieningsafspraak" as="element()?"/>
-        <xsl:param name="request" select="gerelateerde_afspraak/medicatieafspraak" as="element()?"/>
-        <xsl:param name="performer" select="toediener/*" as="element()?"/>
+        <xsl:param name="medicationReference" select="toedienings_product/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="administrationAgreement" select="gerelateerde_afspraak/toedieningsafspraak/*" as="element()?"/>
+        <xsl:param name="request" select="gerelateerde_afspraak/medicatieafspraak/*" as="element()?"/>
+        <xsl:param name="performer" select="toediener/*[self::patient or self::zorgverlener or self::mantelzorger]/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationAdministration>
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 
                 <xsl:for-each select="afgesproken_datum_tijd">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedDateTime">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
                         <valueDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="dubbele_controle_uitgevoerd">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.DoubleCheckPerformed">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DoubleCheckPerformed">
                         <valueBoolean>
                             <xsl:call-template name="boolean-to-boolean"/>
                         </valueBoolean>
@@ -77,7 +77,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:for-each select="afwijkende_toediening">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.DeviatingAdministration">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DeviatingAdministration">
                         <valueBoolean>
                             <xsl:call-template name="boolean-to-boolean"/>
                         </valueBoolean>
@@ -85,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="medicatie_toediening_reden_van_afwijken">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.ReasonForDeviation">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>
                         </valueCodeableConcept>
@@ -177,9 +177,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                     <!-- TODO: It's not clear yet how to map zib Range here. Also see https://bits.nictiz.nl/browse/ZIB-815 -->
-                    <xsl:for-each select="toedieningssnelheid">
-                        <xsl:comment>Implemention of this concept is paused until https://bits.nictiz.nl/browse/ZIB-815 is resolved.</xsl:comment>
-                    </xsl:for-each>
+                    
+                    <!-- AT: A proposal for this mapping is below. I am not sure if the <rate> is correct. 
+                        Missing ada instances.
+                        Also related tickets https://github.com/Nictiz/Nictiz-R4-zib2020/issues/118 and https://bits.nictiz.nl/browse/MP-78 -->
+                    
+                    <!--<xsl:for-each select="toedieningssnelheid">
+                        <xsl:if test="nominale_waarde[@value]">
+                            <rateQuantity>
+                                <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                            </rateQuantity>
+                        </xsl:if>
+                        <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
+                            <rate>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministreringSpeedRange">
+                                    <valueRange>
+                                        <low value="{minimum_waarde/@value}"/>
+                                        <high value="{maximum_waarde/@value}"/>
+                                    </valueRange>
+                                </extension>
+                            </rate>                           
+                        </xsl:if>
+                    </xsl:for-each>-->
                 </xsl:variable>
                 <xsl:if test="$dosage">
                     <dosage>

@@ -370,23 +370,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:for-each>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:serviceType">
                             <tr>
                                 <th>
@@ -697,23 +684,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </tfoot>
                     </xsl:if>
                     <tbody>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:period">
                             <tr>
                                 <th>
@@ -1411,23 +1385,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:period">
                             <tr>
                                 <th>
@@ -2987,23 +2948,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:authoredOn">
                             <tr>
                                 <th>
@@ -3351,23 +3299,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </tfoot>
                     </xsl:if>
                     <tbody>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <tr>
                             <th>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -5780,23 +5715,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:*[starts-with(local-name(), 'medication')]">
                             <tr>
                                 <th>
@@ -6359,23 +6281,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:*[starts-with(local-name(), 'medication')]">
                             <tr>
                                 <th>
@@ -6968,23 +6877,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:groupIdentifier">
                             <tr>
                                 <th>
@@ -7603,23 +7499,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:*[starts-with(local-name(), 'medication')]">
                             <tr>
                                 <th>
@@ -8370,26 +8253,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </tfoot>
                     </xsl:if>
                     <tbody>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:if test="$colspan gt 2">
-                                        <xsl:attribute name="colspan" select="$colspan - 1"/>
-                                    </xsl:if>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                            <xsl:with-param name="colspan" select="$colspan - 1"/>
+                        </xsl:call-template>
                         <xsl:if test="f:*[starts-with(local-name(), 'effective')]">
                             <tr>
                                 <th>
@@ -10738,23 +10606,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </tfoot>
                     </xsl:if>
                     <tbody>
-                        <xsl:if test="f:context">
-                            <tr>
-                                <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Context</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
-                                </th>
-                                <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:context"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </xsl:if>
+                        <xsl:call-template name="doResourceContext">
+                            <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:*[starts-with(local-name(), 'definition')]">
                             <tr>
                                 <th>
@@ -11688,7 +11543,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </div>
         </xsl:for-each>
     </xsl:template>
-    
+    <xsl:template name="doResourceContext">
+        <xsl:param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference" as="element()*"/>
+        <xsl:param name="colspan" select="1" as="xs:integer?"/>
+        <xsl:param name="textLang" as="xs:string"/>
+        <xsl:if test="$in">
+            <tr xmlns="http://www.w3.org/1999/xhtml">
+                <th>
+                    <xsl:call-template name="util:getLocalizedString">
+                        <xsl:with-param name="key">Context</xsl:with-param>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                    </xsl:call-template>
+                </th>
+                <td>
+                    <xsl:if test="$colspan gt 1">
+                        <xsl:attribute name="colspan" select="$colspan"/>
+                    </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="count($in) = 1">
+                            <xsl:call-template name="doDT_Reference">
+                                <xsl:with-param name="in" select="$in"/>
+                                <xsl:with-param name="textLang" select="$textLang"/>
+                                <xsl:with-param name="allowDiv" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <ul>
+                                <xsl:for-each select="$in">
+                                    <li>
+                                        <xsl:call-template name="doDT_Reference">
+                                            <xsl:with-param name="in" select="."/>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="allowDiv" select="true()"/>
+                                        </xsl:call-template>
+                                    </li>
+                                </xsl:for-each>
+                            </ul>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </td>
+            </tr>
+        </xsl:if>
+    </xsl:template>
     <!-- ***************** -->
     <!-- Datatypes Section -->
     <!-- ***************** -->
@@ -12472,6 +12368,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:variable>
                         <xsl:value-of select="format-dateTime($date, concat('[H01]:[m01]:[s01], [D] ',$monthName,' [Y0001]'))"/>
+                    </xsl:when>
+                    <xsl:when test="@value castable as xs:date">
+                        <xsl:variable name="date" select="xs:date(@value)"/>
+                        <xsl:variable name="monthName" as="xs:string?">
+                            <xsl:call-template name="getLocalizedMonthOfTheYear">
+                                <xsl:with-param name="in" select="month-from-date($date)"/>
+                                <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:value-of select="format-date($date, concat('[D] ',$monthName,' [Y0001]'))"/>
                     </xsl:when>
                     <xsl:when test="@value">
                         <xsl:value-of select="@value"/>
@@ -13567,7 +13473,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             <xsl:if test="f:count">
-                                <xsl:if test="f:count/preceding-sibling::f:*">
+                                <xsl:if test="f:count/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:choose>
@@ -13590,7 +13496,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:if>
                             <xsl:if test="f:countMax">
-                                <xsl:if test="f:countMax/preceding-sibling::f:*">
+                                <xsl:if test="f:countMax/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -13618,7 +13524,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:if>
                             <xsl:if test="f:duration">
-                                <xsl:if test="f:duration/preceding-sibling::f:*">
+                                <xsl:if test="f:duration/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="doDT_Integer">
@@ -13635,7 +13541,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="f:durationMax">
-                                <xsl:if test="f:durationMax/preceding-sibling::f:*">
+                                <xsl:if test="f:durationMax/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -13657,7 +13563,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="f:frequency">
-                                <xsl:if test="f:frequency/preceding-sibling::f:*">
+                                <xsl:if test="f:frequency/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <!--<xsl:call-template name="util:getLocalizedString">
@@ -13685,7 +13591,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:if>
                             <xsl:if test="f:frequencyMax">
-                                <xsl:if test="f:frequencyMax/preceding-sibling::f:*">
+                                <xsl:if test="f:frequencyMax/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -13721,7 +13627,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:with-param name="post" select="' '"/>
                                         </xsl:call-template>
                                     </xsl:when>
-                                    <xsl:when test="f:period/preceding-sibling::f:*">
+                                    <xsl:when test="f:period/preceding-sibling::f:*[not(self::f:extension)]">
                                         <xsl:text>, </xsl:text>
                                     </xsl:when>
                                 </xsl:choose>
@@ -13743,7 +13649,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="f:periodMax">
-                                <xsl:if test="f:periodMax/preceding-sibling::f:*">
+                                <xsl:if test="f:periodMax/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -13765,7 +13671,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="f:dayOfWeek">
-                                <xsl:if test="f:dayOfWeek/preceding-sibling::f:*">
+                                <xsl:if test="f:dayOfWeek/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:call-template name="util:getLocalizedString">
                                         <xsl:with-param name="pre" select="', '"/>
                                         <xsl:with-param name="key">on</xsl:with-param>
@@ -13778,7 +13684,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             <xsl:if test="f:timeOfDay">
-                                <xsl:if test="f:timeOfWeek/preceding-sibling::f:*">
+                                <xsl:if test="f:timeOfWeek/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:call-template name="util:getLocalizedString">
                                         <xsl:with-param name="pre" select="', '"/>
                                         <xsl:with-param name="key">at</xsl:with-param>
@@ -13791,7 +13697,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             <xsl:if test="f:when">
-                                <xsl:if test="f:when/preceding-sibling::f:*">
+                                <xsl:if test="f:when/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="doDT_Code">
@@ -13800,11 +13706,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             <xsl:if test="f:offset">
-                                <xsl:if test="f:when/preceding-sibling::f:*">
+                                <xsl:if test="f:when/preceding-sibling::f:*[not(self::f:extension)]">
                                     <xsl:text>, </xsl:text>
                                 </xsl:if>
                                 <xsl:call-template name="doDT_CodeableConcept">
                                     <xsl:with-param name="in" select="f:offset"/>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                </xsl:call-template>
+                            </xsl:if>
+                            <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/timing-exact']/f:valueBoolean/@value = 'true'">
+                                <!-- test for following sibling, the text for this extension is at the end, but the extension in fhir is the first element -->
+                                <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/timing-exact'][f:valueBoolean/@value = 'true']/following-sibling::f:*">
+                                    <xsl:text>. </xsl:text>
+                                </xsl:if>
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">Timing exact</xsl:with-param>
                                     <xsl:with-param name="textLang" select="$textLang"/>
                                 </xsl:call-template>
                             </xsl:if>

@@ -185,16 +185,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole</xsl:variable>
                 <PractitionerRole>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
                     <meta>
-                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <xsl:if test="$practitionerRef">
                         <practitioner>
-                            <xsl:copy-of select="$organizationRef[self::f:extension]"/>
+                            <xsl:copy-of select="$practitionerRef[self::f:extension]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:reference]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:identifier]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:display]"/>
@@ -217,9 +218,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:for-each>-->
                     <xsl:for-each select="specialisme | specialty">
+                        <xsl:variable name="display" select="@displayName[not(. = '')]"/>
                         <specialty>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="codeMap" as="element()*">
+                                    <xsl:for-each select="$uziRoleCodeMap">
+                                        <map>
+                                            <xsl:attribute name="inCode" select="@hl7Code"/>
+                                            <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
+                                            <xsl:attribute name="code" select="@hl7Code"/>
+                                            <xsl:attribute name="codeSystem" select="@hl7CodeSystem"/>
+                                                <!-- reuse original displayName -->
+                                            <xsl:attribute name="displayName" select="($display, @displayName)[1]"/>
+                                        </map>
+                                    </xsl:for-each>
+                                </xsl:with-param>
                             </xsl:call-template>
                         </specialty>
                     </xsl:for-each>
