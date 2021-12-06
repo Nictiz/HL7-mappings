@@ -120,13 +120,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </detailCodeableConcept>
                         </xsl:for-each>
-                    <xsl:for-each select="$FoMStatus/status_datum">
-                        <dueDate>
-                            <xsl:call-template name="date-to-datetime">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </dueDate>
-                    </xsl:for-each>
+                        <xsl:for-each select="$FoMStatus/status_datum">
+                            <dueDate>
+                                <xsl:call-template name="date-to-datetime">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </dueDate>
+                        </xsl:for-each>
                     </target>                   
                 </xsl:for-each>
                 
