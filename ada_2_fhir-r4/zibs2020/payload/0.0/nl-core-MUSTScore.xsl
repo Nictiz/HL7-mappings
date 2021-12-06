@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-MUSTScore instance as an Observation FHIR instance from ada mustscore element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="mustscore" name="nl-core-MUSTScore" mode="nl-core-MUSTScore" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="414648004"/>
-                        <display value="MUST"/>
+                        <display value="Malnutrition Universal Screening Tool"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
