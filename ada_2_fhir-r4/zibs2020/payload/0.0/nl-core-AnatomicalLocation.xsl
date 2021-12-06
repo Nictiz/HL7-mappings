@@ -37,22 +37,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="anatomische_locatie" mode="nl-core-AnatomicalLocation" name="nl-core-AnatomicalLocation" as="element()*">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="doWrap" select="false()" as="xs:boolean"/>
-        
+        <xsl:param name="profile"/>
+                
         <xsl:for-each select="$in">
             <xsl:choose>
                 <xsl:when test="$doWrap">
                     <valueCodeableConcept>
-                        <xsl:call-template name="_doAnatomicalLocation"/>
+                        <xsl:call-template name="_doAnatomicalLocation">
+                            <xsl:with-param name="profile" select="$profile"/>
+                        </xsl:call-template>
                     </valueCodeableConcept>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:call-template name="_doAnatomicalLocation"/>
+                    <xsl:call-template name="_doAnatomicalLocation">
+                        <xsl:with-param name="profile" select="$profile"/>    
+                    </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
     
     <xsl:template name="_doAnatomicalLocation">
+        <xsl:param name="profile"/>
+        
         <xsl:for-each select="lateraliteit">
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
                 <valueCodeableConcept>
@@ -62,11 +69,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </valueCodeableConcept>
             </extension>
         </xsl:for-each>
-        <xsl:for-each select="locatie">
-            <xsl:call-template name="code-to-CodeableConcept">
-                <xsl:with-param name="in" select="."/>
-            </xsl:call-template>
-        </xsl:for-each>
+        <xsl:choose>
+            <xsl:when test="$profile = 'nl-core-HearingFunction.HearingAid'">
+                <xsl:for-each select="hulpmiddel_anatomische_locatie">
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="locatie">
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
+        
     </xsl:template>
     
 </xsl:stylesheet>

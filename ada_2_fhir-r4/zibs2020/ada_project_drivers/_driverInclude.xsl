@@ -87,12 +87,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:variable name="logicalId">
             <xsl:choose>
-                <xsl:when test="parent::*/local-name() = 'referenties'">
-                    <!-- This is a contained ada instance, therefor does not have a valid base-uri() -->
+                <xsl:when test="ancestor::*/local-name() = 'referenties'">
+                    <!-- This is a contained ada instance, therefore does not have a valid base-uri() -->
                     <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
                     <xsl:variable name="position" as="xs:integer" select="count(preceding-sibling::*[local-name() = $localName]) + 1"/>
                     <!-- This leads to a contained zib AdministrationAgreement being referenced as 'nl-core-MedicationAdministration2-02-MedicationDispense-01'. Could be more clear. On the other hand, do we need to put more effort into contained ADA instances? -->
-                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>                
+                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
+                    <!-- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -->
+                    <!--<xsl:value-of select="string-join(($id, tokenize($profile, '-')[last()], format-number($position, '00')), '-')"/>-->    
                 </xsl:when>
                 <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
                     <xsl:value-of select="$id"/>
@@ -225,6 +227,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'farmaceutisch_product'">
                 <xsl:apply-templates select="$in" mode="nl-core-PharmaceuticalProduct"/>
             </xsl:when>
+            <xsl:when test="$localName = 'functie_horen'">
+                <xsl:apply-templates select="$in" mode="nl-core-HearingFunction">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="nf:resolveAdaInstance(horen_hulpmiddel/medisch_hulpmiddel,$in)">
+                    <xsl:call-template name="nl-core-HearingFunction.HearingAid">
+                        <xsl:with-param name="subject" select="$subject"/>
+                        <xsl:with-param name="reasonReference" select="$in"/>
+                    </xsl:call-template>
+                    <xsl:for-each select="product">
+                        <xsl:call-template name="nl-core-HearingFunction.HearingAid.Product">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:call-template>    
+                    </xsl:for-each>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:when test="$localName = 'functie_zien'">
+                <xsl:apply-templates select="$in" mode="nl-core-VisualFunction">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="nf:resolveAdaInstance(zien_hulpmiddel/medisch_hulpmiddel,$in)">
+                    <xsl:call-template name="nl-core-VisualFunction.VisualAid">
+                        <xsl:with-param name="subject" select="$subject"/>
+                        <xsl:with-param name="reasonReference" select="$in"/>
+                    </xsl:call-template>
+                    <xsl:for-each select="product">
+                        <xsl:call-template name="nl-core-VisualFunction.VisualAid.Product">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:call-template>    
+                    </xsl:for-each>
+                </xsl:for-each>
+            </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -277,6 +311,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-MedicationAdministration2">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'medisch_hulpmiddel'">
+                <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>  
+                <xsl:for-each select="product">
+                    <xsl:call-template name="nl-core-MedicalDevice.Product">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'o2saturatie'">
                 <xsl:apply-templates select="$in" mode="nl-core-O2Saturation">

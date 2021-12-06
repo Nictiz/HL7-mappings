@@ -134,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
 
-                <!--<xsl:for-each select="medisch_hulpmiddel">
+                <xsl:for-each select="medisch_hulpmiddel">
                     <focalDevice>
                         <manipulated>
                             <xsl:call-template name="makeReference">
@@ -143,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </manipulated>
                     </focalDevice>
-                </xsl:for-each>-->
+                </xsl:for-each>
             </Procedure>
         </xsl:for-each>
     </xsl:template>
