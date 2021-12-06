@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-HearingFunction instance as an Observation FHIR instance from ada functie_horen element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="functie_horen" name="nl-core-HearingFunction" mode="nl-core-HearingFunction" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
@@ -84,25 +84,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-HearingFunction.HearingAid instance as a DeviceUseStatement FHIR instance from ada horen_hulpmiddel/medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="reasonReference">ADA instance used to populate the reasonReference element in the MedicalDevice.</xd:param>
     </xd:doc>
     <xsl:template match="horen_hulpmiddel/medisch_hulpmiddel" name="nl-core-HearingFunction.HearingAid" mode="nl-core-HearingFunction.HearingAid" as="element(f:DeviceUseStatement)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="reasonReference"/>
+        <xsl:param name="reasonReference" select="ancestor::functie_horen"/>
         
         <xsl:call-template name="nl-core-MedicalDevice">
             <xsl:with-param name="subject" select="$subject"/>
             <xsl:with-param name="profile" select="'nl-core-HearingFunction.HearingAid'"/>
             <xsl:with-param name="reasonReference" select="$reasonReference"/>
-            <xsl:with-param name="reasonReferenceProfile" select="'nl-core-HearingFunction'"/>
         </xsl:call-template>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Create an nl-core-HearingFunction.HearingAid.Product instance as a Device FHIR instance from ada product element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="product" name="nl-core-HearingFunction.HearingAid.Product" mode="nl-core-HearingFunction.HearingAid.Product" as="element(f:Device)?">
         <xsl:param name="in" select="." as="element()?"/>
@@ -123,16 +123,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="hoor_functie[@displayName]">
                 <xsl:value-of select="hoor_functie/@displayName"/>
             </xsl:if>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="product" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:value-of select="../product_omschrijving/@value"/>
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>

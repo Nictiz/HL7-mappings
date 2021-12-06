@@ -22,6 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:local="urn:fhir:stu3:functions" 
     version="2.0">
     
     <xsl:output method="xml" indent="yes"/>
@@ -34,14 +35,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-MedicalDevice instance as a DeviceUseStatement FHIR instance from ada medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice'.</xd:param>
+        <xd:param name="reasonReference">Optional ADA instance used to populate the reasonReference element. Used for zib HearingFunction and VisualFunction, which are mapped to FHIR Observation resources and that contain a reference to MedicalDevice, which is mapped via this reasonReference.</xd:param>
     </xd:doc>
     <xsl:template match="medisch_hulpmiddel" name="nl-core-MedicalDevice" mode="nl-core-MedicalDevice" as="element(f:DeviceUseStatement)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="profile" select="'nl-core-MedicalDevice'" as="xs:string"/>
         <xsl:param name="reasonReference" as="element()?"/>
-        <xsl:param name="reasonReferenceProfile" select="''" as="xs:string"/>
         
         <xsl:for-each select="$in">
             <DeviceUseStatement>
@@ -142,15 +144,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <!--The element reasonReference is present to support Observations that refer to a MedicalDevice, such as HearingFunction and VisualFunction. -->
-                <xsl:if test="$reasonReference">
-                    <xsl:for-each select="../..">
-                        <reasonReference>
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile" select="$reasonReferenceProfile"/>
-                            </xsl:call-template>
-                        </reasonReference>
-                    </xsl:for-each>
-                </xsl:if>            
+                <xsl:for-each select="$reasonReference">
+                    <reasonReference>
+                        <xsl:call-template name="makeReference"/>
+                    </reasonReference>
+                </xsl:for-each>
                 
                 <xsl:for-each select="anatomische_locatie">
                     <bodySite>
@@ -177,7 +175,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-MedicalDevice.Product instance as a Device FHIR instance from ada medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice.Product'. Other uses are 'nl-core-HearingFunction.HearingAid' and 'nl-core-VisualFunction.Product'.</xd:param>
     </xd:doc>
     <xsl:template match="product" name="nl-core-MedicalDevice.Product" mode="nl-core-MedicalDevice.Product" as="element(f:Device)?">
         <xsl:param name="in" select="." as="element()?"/>
@@ -194,38 +193,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                         
                 <xsl:for-each select="product_id">
-                    <identifier>
-                        <system>
-                            <xsl:choose>
-                                <xsl:when test="./@codeSystem = $oidGTIN">
-                                    <xsl:attribute name="value" select="'https://www.gs1.org/gtin'"/>
-                                </xsl:when>
-                                <xsl:when test="./@codeSystem = $oidHIBC">
-                                    <xsl:attribute name="value" select="'urn:oid:2.16.840.1.113883.6.40'"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </system>
-                        <value>
-                            <xsl:attribute name="value" select="./@code"/>
-                        </value>
-                    </identifier>
-                                  
-                    <udiCarrier>
-                        <issuer>
-                            <xsl:choose>
-                                <xsl:when test="./@codeSystem = $oidGTIN">
-                                    <xsl:attribute name="value" select="'https://www.gs1.org/gtin'"/>
-                                </xsl:when>
-                                <xsl:when test="./@codeSystem = $oidHIBC">
-                                    <xsl:attribute name="value" select="'urn:oid:2.16.840.1.113883.6.40'"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </issuer>
-                        
-                        <carrierHRF>
-                            <xsl:attribute name="value" select="./@code"/>
-                        </carrierHRF>
-                    </udiCarrier>
+                    <xsl:choose>
+                        <xsl:when test="@codeSystem = ($oidGTIN, $oidHIBC)">
+                            <xsl:variable name="system" select="local:getUri(@codeSystem)"/>
+                            <identifier>
+                                <system value="{$system}"/>
+                                <value value="{@code}"/>
+                            </identifier>
+                            <udiCarrier>
+                                <issuer value="{$system}"/>
+                                <carrierHRF value="{@code}"/>
+                            </udiCarrier>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- Let's hope for the best -->
+                            <identifier>
+                                <system value="{local:getUri(@codeSystem)}"/>
+                                <value value="{@code}"/>
+                            </identifier>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>
                 
                 <xsl:for-each select="product_type">

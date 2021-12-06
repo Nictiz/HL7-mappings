@@ -148,10 +148,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Helper template to create an Observation.component with the specified SNOMED code and the context translated to valueQuantity.</xd:desc>
+        <xd:param>SNOMED code to be placed in component.code.coding.code.</xd:param>
+        <xd:param>SNOMED code display value to be placed in component.code.coding.display.</xd:param>
+        <xd:param>(Optional) unit of the valueQuantity to be outputted. Defaults to @unit.</xd:param>
     </xd:doc>
     <xsl:template name="_refractionComponent">
-        <xsl:param name="snomedCode"/>
-        <xsl:param name="snomedDisplay"/>
+        <xsl:param name="snomedCode" required="yes"/>
+        <xsl:param name="snomedDisplay" required="yes"/>
         <xsl:param name="unit" select="@unit"/>
         <xsl:variable name="value" select="if (starts-with(@value, '+')) then substring-after(@value, '+') else @value"/>
         <component>
