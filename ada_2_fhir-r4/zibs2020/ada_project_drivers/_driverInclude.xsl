@@ -330,6 +330,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'patient'">
                 <xsl:apply-templates select="$in" mode="nl-core-Patient"/>
             </xsl:when>
+            <xsl:when test="$localName = 'patientbespreking'">
+                <xsl:apply-templates select="$in" mode="nl-core-MultidisciplinaryTeamMeeting"/>
+                <xsl:for-each select="beleid">
+                    <xsl:call-template name="nl-core-MultidisciplinaryTeamMeeting.Plan"/>
+                </xsl:for-each>
+            </xsl:when>
             <xsl:when test="$localName = 'probleem'">
                 <xsl:apply-templates select="$in" mode="nl-core-Problem">
                     <xsl:with-param name="subject" select="$subject"/>
