@@ -84,12 +84,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </type>
                         </xsl:for-each>
-                        <individual>
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="zorgverlener"/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
-                            </xsl:call-template>
-                        </individual>
+                        <xsl:for-each select="zorgverlener">
+                            <individual>
+                                <xsl:call-template name="makeReference">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                </xsl:call-template>
+                            </individual>
+                        </xsl:for-each>
+                        <xsl:for-each select="contactpersoon">
+                            <individual>
+                                <xsl:call-template name="makeReference">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="profile" select="'nl-core-ContactPerson'"/>
+                                </xsl:call-template>
+                            </individual>
+                        </xsl:for-each>
+                        <xsl:for-each select="patient">
+                            <individual>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter-PatientParticipant">
+                                    <valueReference>
+                                        <xsl:call-template name="makeReference">
+                                            <xsl:with-param name="in" select="$subject"/>
+                                            <xsl:with-param name="profile" select="'nl-core-Patient'"/>
+                                        </xsl:call-template>
+                                    </valueReference>
+                                </extension> 
+                            </individual>
+                        </xsl:for-each>
                     </participant>
                 </xsl:for-each>
                 <xsl:for-each select="patientbespreking_datum_tijd">
