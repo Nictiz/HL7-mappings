@@ -44,7 +44,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<xsl:variable name="referenceAtValue" select="string(@value)"/>
 				<xsl:variable name="PractitioneridentifierAtValue" select="//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:identifier/f:value/@value"/>
 				<zorgverlener id="{$PractitioneridentifierAtValue}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
-					<zorgverlener_identificatienummer value="{$PractitioneridentifierAtValue}" root="{//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/id/@value}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+					<!--//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:id/@value-->
+					<zorgverlener_identificatienummer value="{$PractitioneridentifierAtValue}" root="{replace(//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:id/@value, '', '')   }" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
 					<naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
 						<voornamen value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
 						<geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
