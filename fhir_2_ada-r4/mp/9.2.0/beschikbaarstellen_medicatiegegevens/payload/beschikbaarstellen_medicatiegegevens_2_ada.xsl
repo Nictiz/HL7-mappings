@@ -41,11 +41,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     		</xsl:for-each>-->
 
 			<xsl:for-each select="f:Bundle/f:entry/f:resource/f:PractitionerRole/f:practitioner/f:reference">
+				<!-- zoek het doel (Practitioner) bij deze referentie (practitioner/reference) om de zorgverlener bouwsteen te kunnen maken-->
 				<xsl:variable name="referenceAtValue" select="string(@value)"/>
 				<xsl:variable name="PractitioneridentifierAtValue" select="//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:identifier/f:value/@value"/>
+				<xsl:variable name="PractitionerRole" select="./../.."/>
+<!-- xxxwim remove: -->
+<!--				<xsl:message>
+	<xsl:value-of select="name($PractitionerRole)"/>
+</xsl:message>-->
+				
 				<zorgverlener id="{$PractitioneridentifierAtValue}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
-					<!--//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:id/@value-->
-					<zorgverlener_identificatienummer value="{$PractitioneridentifierAtValue}" root="{replace(//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:id/@value, '', '')   }" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+					<zorgverlener_identificatienummer value="{$PractitioneridentifierAtValue}" root="{replace(//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:id/@value, '-.*', '')   }" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
 					<naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
 						<voornamen value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
 						<geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
@@ -53,15 +59,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<achternaam value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
 						</geslachtsnaam>
 					</naamgegevens>
-					<specialisme codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00"
-						displayName="Huisartsen, niet nader gespecificeerd" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
-					<zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
-						<zorgaanbieder datatype="reference" value="Huisartsenpraktijk_Pulver_en_Partners" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
+					<!--replace(, 'urn:oid:', '')-->
+					<specialisme codeSystem="{replace($PractitionerRole/f:specialty/f:coding/f:system/@value, 'urn:oid:', '')}" codeSystemVersion="{$PractitionerRole/f:specialty/f:coding/f:version/@value}"
+						displayName="{$PractitionerRole/f:specialty/f:coding/f:display/@value}"
+						code="{$PractitionerRole/f:specialty/f:coding/f:code/@value}"/>
+					<zorgaanbieder> <!-- de referentie naar bouwsteen zorgaanbieder-->
+						<zorgaanbieder datatype="reference" value="{$PractitionerRole/f:organization/f:reference/@value}"/>
 					</zorgaanbieder>
 				</zorgverlener>
 			</xsl:for-each>
 
+			<xsl:for-each select="f:Bundle/f:entry/f:resource/f:Organization">
+				<xsl:variable name="entryFullURrlAtValue" select="./../../f:fullUrl/@value"/>
+<!--				<xsl:variable name="PractitioneridentifierAtValue" select="//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:identifier/f:value/@value"/>
+				<xsl:variable name="PractitionerRole" select="./../.."/>-->
+				<!-- xxxwim remove: -->
+				<xsl:message>
+					<xsl:value-of select="$entryFullURrlAtValue"/>
+				</xsl:message>
 
+				<zorgaanbieder id="{replace($entryFullURrlAtValue, 'urn:uuid:', '')}">
+				<zorgaanbieder_identificatienummer value="{./f:identifier/f:value/@value}" root="2.16.528.1.1007.3.3"/>
+				<organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+				<adresgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243">
+					<straat value="Dorpsstraat" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.244"/>
+					<huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.245"/>
+					<postcode value="1234AA" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.249"/>
+					<woonplaats value="Ons Dorp" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.250"/>
+					<adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"/>
+				</adresgegevens>
+			</zorgaanbieder>
+				
+			</xsl:for-each>
 
 
 		</xsl:variable>
