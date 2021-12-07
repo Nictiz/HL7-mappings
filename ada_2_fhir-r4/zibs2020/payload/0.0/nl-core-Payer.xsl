@@ -118,17 +118,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 <xsl:for-each select="betaler_persoon">
-                  <!--    
-                    <xsl:for-each select="betaler_persoon/betaler_naam">
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile" select="'nl-core-Payer-Patient'"/>
-                            <xsl:with-param name="wrapIn">payor</xsl:with-param>                        
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    -->   
-                    
+                    <payor>
                     <xsl:for-each select="bankgegevens">
-                        <payor>
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation">
                             <xsl:for-each select="bank_naam">
                                 <extension url="bankName">
@@ -145,13 +136,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <valueString value="{normalize-space(@value)}"/>
                                 </extension>
                             </xsl:for-each>
-                         </extension>
-                        </payor>
+                         </extension>                           
                     </xsl:for-each>
+                    <!-- Cannot make a reference because it is no refernce in ADA.... -->
+                    <!--  
+                    <xsl:for-each select="betaler_naam">
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile" select="'nl-core-Patient-Payer'"/>
+                            <xsl:with-param name="wrapIn">payor</xsl:with-param>                        
+                        </xsl:call-template>
+                    </xsl:for-each>-->
+                    </payor>    
                 </xsl:for-each>
-                
- 
-               
             </Coverage>
         </xsl:for-each>
     </xsl:template>
@@ -195,22 +191,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     
     
-  <!--  <xd:doc>
-        <xd:desc>Create an nl-core-Patient FHIR instance from the ada parts Payer.</xd:desc>
+    <xd:doc>
+        <xd:desc>Create an nl-core-Patient compliant FHIR instance from the ada parts Payer.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
-    <xsl:template match="betaler" mode="nl-core-Payer-Patient" name="nl-core-Payer-Patient" as="element(f:Patient)">
+    <xsl:template match="betaler" mode="nl-core-Patient-Payer" name="nl-core-Patient-Payer" as="element(f:Patient)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:for-each select="$in">
             <Patient>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Payer-Patient'"/>
+                    <xsl:with-param name="profile" select="nl-core-Patient-Payer"/>
                 </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
                 </meta>
                 
-                <!-\- Payer name information from the nl-core-Payer profile. -\->
+                <!-- Payer name information from the nl-core-Payer profile. -->
                 <xsl:for-each select="betaler_persoon/betaler_naam">
                     <name>
                         <text value="{normalize-space(@value)}"/>
@@ -226,7 +222,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </Patient>
         </xsl:for-each>
-    </xsl:template>-->
+    </xsl:template>
     
     
 
