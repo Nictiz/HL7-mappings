@@ -21,16 +21,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <!--Uncomment imports for standalone use and testing.-->
-    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
+    <xsl:variable name="ext-TimeInterval-Duration">http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Template to convert f:extension zib-MedicationUse-Duration to gebruiksperiode element.</xd:desc>
+        <xd:desc>Template to convert f:extension ext-TimeInterval-Duration to tijdsduur element.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']" mode="ext-zib-medication-use-duration-2.0">
+    <xsl:template match="f:extension[@url=$ext-TimeInterval-Duration]" mode="ext-TimeInterval-Duration">
         <xsl:call-template name="Duration-to-hoeveelheid">
             <xsl:with-param name="in" select="f:valueDuration"/>
-            <xsl:with-param name="adaElementName">gebruiksperiode</xsl:with-param>
+            <xsl:with-param name="adaElementName">tijds_duur</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
