@@ -21,8 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:variable name="ext-TimeInterval-Period">http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period</xsl:variable>
-    
+    <xsl:variable name="ext-TimeInterval-Period">http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period</xsl:variable>    
     
     <xd:doc>
         <xd:desc>Template to resolve f:extension zib-Medication-PeriodOfUse</xd:desc>
@@ -43,28 +42,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:start to gebruiksperiode_start</xd:desc>
     </xd:doc>
     <xsl:template match="f:start" mode="ext-TimeInterval-Period">
-        <gebruiksperiode_start>
+        <start_datum_tijd>
             <xsl:attribute name="value">
                 <xsl:call-template name="format2ADADate">
                     <xsl:with-param name="dateTime" select="@value"/>
                 </xsl:call-template>               
             </xsl:attribute>
-            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
-        </gebruiksperiode_start>
+         </start_datum_tijd>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to convert f:end to gebruiksperiode_eind</xd:desc>
     </xd:doc>
     <xsl:template match="f:end" mode="ext-TimeInterval-Period">
-        <gebruiksperiode_eind>
+        <eind_datum_tijd>
             <xsl:attribute name="value">
                 <xsl:call-template name="format2ADADate">
                     <xsl:with-param name="dateTime" select="@value"/>
                 </xsl:call-template>                          
             </xsl:attribute>
-            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
-        </gebruiksperiode_eind>
+          </eind_datum_tijd>
     </xsl:template>
     
 </xsl:stylesheet>
