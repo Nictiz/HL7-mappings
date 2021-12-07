@@ -60,13 +60,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- medicatieafspraak -->
                             <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='16076005']" mode="nl-core-MedicationAgreement"/>
                             <!-- verstrekkingsverzoek -->
-                           <!-- <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='52711000146108']" mode="zib-DispenseRequest-2.2"/>
-                            <!-\- toedieningsafspraak -\->
-                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='422037009']" mode="zib-AdministrationAgreement-2.2"/>
-                            <!-\- verstrekking -\->
-                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.2"/>
-                            <!-\- medicatie_gebruik -\->
-                            <xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value='6']" mode="zib-MedicationUse-2.2"/>-->
+<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='52711000146108']" mode="zib-DispenseRequest-2.2"/>-->
+                            <!-- toedieningsafspraak -->
+                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='422037009']" mode="nl-core-AdministrationAgreement"/>
+                            <!-- verstrekking -->
+<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.2"/>-->
+                            <!-- medicatie_gebruik -->
+<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value='6']" mode="zib-MedicationUse-2.2"/>-->
                         </medicamenteuze_behandeling>
                     </xsl:for-each-group>
                 </beschikbaarstellen_medicatiegegevens>
