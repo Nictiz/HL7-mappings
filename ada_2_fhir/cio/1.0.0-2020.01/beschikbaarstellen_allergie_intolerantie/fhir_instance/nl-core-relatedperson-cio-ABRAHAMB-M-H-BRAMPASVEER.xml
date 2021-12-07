@@ -1,0 +1,106 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="nl-core-relatedperson-cio-ABRAHAMB-M-H-BRAMPASVEER"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Abraham B.M.H. Pasveer (Bram)</div>
+         <div>
+            <a href="tel:06-12345670">06-12345670</a> (Tel Mobiel), <a href="mailto:brampasveer_123@hotmail.com">brampasveer_123@hotmail.com</a> (E-mail Privé)</div>
+         <div>Bolweg 99 b, 9999XX Stitswerd (Bezoek)</div>
+         <div>
+            <span title="Vriend(in)/kennis (20 - RoleCodeLijst (COD472-VEKT))">Vriend(in)/kennis</span>, Boezemvriend van Véronique V. Véronique XXX-TEST-D</div>
+      </div>
+   </text>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="20"/>
+            <display value="Vriend(in)/kennis"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <patient>
+      <reference value="Patient/XXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
+   </patient>
+   <relationship>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="OTH"/>
+      </extension>
+      <text value="Boezemvriend"/>
+   </relationship>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <family value="Pasveer">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Pasveer"/>
+         </extension>
+      </family>
+      <given value="Abraham">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="B.M.H.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Bram">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="06-12345670"/>
+      <use value="mobile"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="brampasveer_123@hotmail.com"/>
+      <use value="home"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Bolweg 99 b">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Bolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="99"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="b"/>
+         </extension>
+      </line>
+      <city value="Stitswerd"/>
+      <postalCode value="9999XX"/>
+   </address>
+</RelatedPerson>

@@ -85,15 +85,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- medicamenteuze_behandeling -->
                             <medicamenteuze_behandeling>
                                 <xsl:for-each select="./hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id">
-                                    <xsl:variable name="elemName">identificatie</xsl:variable>
-                                    <xsl:element name="{$elemName}">
-                                        <xsl:for-each select="@extension">
-                                            <xsl:attribute name="value" select="."/>
-                                        </xsl:for-each>
-                                        <xsl:for-each select="@root">
-                                            <xsl:attribute name="root" select="."/>
-                                        </xsl:for-each>
-                                    </xsl:element>
+                                    <xsl:call-template name="handleII">
+                                        <xsl:with-param name="elemName">identificatie</xsl:with-param>
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
                                 </xsl:for-each>
                                 <!-- medicatieafspraak -->
                                 <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-medicatieafspraak]">

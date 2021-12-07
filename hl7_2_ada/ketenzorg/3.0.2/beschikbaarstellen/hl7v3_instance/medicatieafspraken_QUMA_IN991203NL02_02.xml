@@ -1,0 +1,198 @@
+<MCCI_IN200101 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<id extension="747237" root="2.16.840.1.113883.2.4.6.6"/>
+	<creationTime value="20200210085928"/>
+	<versionCode code="NICTIZEd2005-Okt"/>
+	<interactionId extension="MCCI_IN200101" root="2.16.840.1.113883.1.6"/>
+	<profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+	<transmissionQuantity value="1"/>
+	<acknowledgement typeCode="AA">
+		<targetTransmission>
+			<id extension="D0175CB1-9C08-4E04-A50E-6697EBC48C7D" root="2.16.528.1.1007.3.3.4005.1"/>
+		</targetTransmission>
+	</acknowledgement>
+	<receiver>
+		<device>
+			<id extension="4005" root="2.16.840.1.113883.2.4.6.6"/>
+		</device>
+	</receiver>
+	<sender>
+		<device>
+			<id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+		</device>
+	</sender>
+	<QUMA_IN991203NL02 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/Publicaties/VZVZ/Ketenzorg/1.0.2/schemas/QUMA_IN991203NL02.xsd" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<!-- Testbericht voor VZVZ acceptatie Scenario: MedMij huisartsgegevens Publicatie: geen (PvE 0.2); Ketenzorg bouwstenen uit publicatie: 1.0.2 Type: Medicatieafspraken bouwsteen Auteur: Camille van den Berg -->
+		<id extension="Parasoft-7665-3363-6240" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+		<creationTime value="20200210085825"/>
+		<versionCode code="NICTIZEd2005-Okt"/>
+		<interactionId extension="QUMA_IN991203NL02" root="2.16.840.1.113883.1.6"/>
+		<profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+		<processingCode code="P"/>
+		<processingModeCode code="T"/>
+		<acceptAckCode code="NE"/>
+		<acknowledgement typeCode="AA">
+			<targetMessage>
+				<id extension="747236" root="2.16.840.1.113883.2.4.6.6"/>
+			</targetMessage>
+		</acknowledgement>
+		<receiver>
+			<device classCode="DEV" determinerCode="INSTANCE">
+				<id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+			</device>
+		</receiver>
+		<sender>
+			<device classCode="DEV" determinerCode="INSTANCE">
+				<id root="2.16.840.1.113883.2.4.6.6" extension="70001000"/>
+			</device>
+		</sender>
+		<ControlActProcess moodCode="EVN">
+			<authorOrPerformer typeCode="AUT">
+				<participant>
+					<AssignedDevice>
+						<id extension="900017439" root="2.16.528.1.1007.3.2"/>
+						<id extension="70001000" root="2.16.840.1.113883.2.4.6.6"/>
+						<Organization>
+							<id extension="00002727" root="2.16.528.1.1007.3.3"/>
+							<name>VZVZ Simulator</name>
+						</Organization>
+					</AssignedDevice>
+				</participant>
+			</authorOrPerformer>
+			<subject>
+				<organizer classCode="CLUSTER" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9265"/>
+					<code displayName="Gegevensobject (gegevensobject)" codeSystemName="SNOMED CT" code="419891008" codeSystem="2.16.840.1.113883.6.96"/>
+					<statusCode code="completed"/>
+					<recordTarget typeCode="RCT" contextControlCode="OP">
+						<patientRole>
+							<id extension="900184590" root="2.16.840.1.113883.2.4.6.3"/>
+							<addr>
+								<streetName>Knolweg</streetName>
+								<houseNumber>1003</houseNumber>
+								<postalCode>9999 ZA</postalCode>
+								<city>STITSWERD</city>
+								<country>Nederland</country>
+							</addr>
+							<patient classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<given qualifier="IN">H.</given>
+									<family qualifier="BR">XXX_Mulders</family>
+								</name>
+								<administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" code="M"/>
+								<birthTime value="19851230"/>
+							</patient>
+						</patientRole>
+					</recordTarget>
+					<!-- METFORMINE -->
+					<component typeCode="COMP" contextControlCode="OP">
+						<substanceAdministration classCode="SBADM" moodCode="RQO">
+							<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+							<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+							<!-- identificatie -->
+							<id extension="MedMijHG_Medicatieafspraak1.2.1" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+							<code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+							<!-- mp-9581 Omschrijving -->
+							<text mediaType="text/plain">3 maal daags 1 tablet</text>
+							<!-- Gebruiksperiode -->
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20190725085825"/>
+							</effectiveTime>
+							<!-- 19941 Toedieningsweg -->
+							<routeCode code="9" displayName="oraal" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+							<!-- Afgesproken geneesmiddel -->
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+									<manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+										<code code="60674" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="PRK" displayName="METFORMINE TABLET 1000MG">
+											<translation code="114421" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="GPK" displayName="METFORMINE 1000MG TABLET"/>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<!-- voorschrijver -->
+							<author>
+								<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+								<!-- Afspraakdatum -->
+								<time value="20190725085825"/>
+								<assignedAuthor>
+									<!-- identificatie -->
+									<id extension="900016431" root="2.16.528.1.1007.3.1"/>
+									<code code="01.015" displayName="Huisarts" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+									<assignedPerson>
+										<name>
+											<family>Huisarts 1</family>
+										</name>
+									</assignedPerson>
+									<!-- Zorgaanbieder -->
+									<representedOrganization>
+										<id root="2.16.528.1.1007.3.3" extension="00002727"/>
+										<name>Gezondheidscentrum Aesculaap</name>
+										<addr use="WP">
+											<city>Maastricht</city>
+										</addr>
+									</representedOrganization>
+								</assignedAuthor>
+							</author>
+							<!-- Reden van Voorschrijven -->
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+									<code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven."/>
+									<value xsi:type="CE" code="T90.02" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Diabetes Mellitus type 2"/>
+								</observation>
+							</entryRelationship>
+							<!-- Doseerinstructie -->
+							<entryRelationship typeCode="COMP">
+								<sequenceNumber value="1"/>
+								<substanceAdministration classCode="SBADM" moodCode="RQO">
+									<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+									<effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+										<hl7nl:frequency xsi:type="hl7nl:RTO">
+											<hl7nl:numerator xsi:type="hl7nl:INT" value="3"/>
+											<hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+										</hl7nl:frequency>
+									</effectiveTime>
+									<doseQuantity>
+										<center value="1" unit="1">
+											<translation value="1" code="211" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Eenheid"/>
+										</center>
+									</doseQuantity>
+									<consumable xsi:nil="true"/>
+								</substanceAdministration>
+							</entryRelationship>
+							<!--Relatie naar medicamenteuze behandeling-->
+							<entryRelationship typeCode="COMP" inversionInd="true">
+								<procedure classCode="PROC" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+									<id nullFlavor="NI"/>
+									<code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+								</procedure>
+							</entryRelationship>
+							<!-- Relatie naar OverdrachtConcern -->
+							<entryRelationship typeCode="REFR">
+								<act classCode="ACT" moodCode="EVN">
+									<id extension="MedMijHG_concern_DM" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+									<code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+								</act>
+							</entryRelationship>
+							<!-- Relatie naar contactmoment -->
+							<entryRelationship typeCode="REFR">
+								<encounter classCode="ENC" moodCode="EVN">
+									<id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment1.2"/>
+								</encounter>
+							</entryRelationship>
+						</substanceAdministration>
+					</component>
+				</organizer>
+			</subject>
+			<queryAck>
+				<queryId extension="0DC8649C-AD03-4CED-872D-37FB945C9866" root="2.16.528.1.1007.3.3.4005.2"/>
+				<queryResponseCode code="OK"/>
+				<resultTotalQuantity value="1"/>
+				<resultCurrentQuantity value="1"/>
+				<resultRemainingQuantity value="0"/>
+			</queryAck>
+		</ControlActProcess>
+	</QUMA_IN991203NL02>
+</MCCI_IN200101>

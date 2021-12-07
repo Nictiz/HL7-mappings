@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
-    <!--    <xsl:import href="../zib2017bbr/payload/hl7-toelichting-20180611.xsl"/>-->
+<!--    <xsl:import href="../zib2017bbr/payload/hl7-toelichting-20180611.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
 
@@ -44,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="deZorgaanbieder">ada zorgaanbieder, defaults to context element</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000" match="zorgaanbieder | healthcare_provider">
-        <xsl:param name="deZorgaanbieder" select="."/>
+        <xsl:param name="deZorgaanbieder" select="." as="element()*"/>
 
         <xsl:for-each select="$deZorgaanbieder">
             <representedOrganization>

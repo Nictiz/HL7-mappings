@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e8f8cc8-5992-11eb-1458-020000000000"/>
+   <id value="bc8e0f24-e3c1-11eb-2537-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e8f89b1-5992-11eb-1458-020000000000"/>
+      <fullUrl value="urn:uuid:bc8e2d82-e3c1-11eb-2537-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T+0D{00:00:00}, tot en met T+70D{23:59:59}, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, tot en met T + 70 dagen, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan</div>
                               <div>Instructie: <ul>
                                     <li>
                                        <span title="voor de nacht (1128 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">voor de nacht</span>
@@ -92,7 +92,7 @@
                <display value="IMIQUIMOD 50MG/G CREME"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e8f8ccf-5992-11eb-1458-020000000000"/>
+               <reference value="urn:uuid:bc8e2d66-e3c1-11eb-2537-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:25:00+02:00"/>
@@ -100,7 +100,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e8f89b7-5992-11eb-1458-020000000000"/>
+                        <reference value="urn:uuid:bc8e2d8e-e3c1-11eb-2537-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -109,7 +109,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T+0D{00:00:00}, tot en met T+70D{23:59:59}, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
+               <text value="Vanaf T, tot en met T + 70 dagen, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -146,7 +146,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e8f8ccf-5992-11eb-1458-020000000000"/>
+      <fullUrl value="urn:uuid:bc8e2d66-e3c1-11eb-2537-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -181,7 +181,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -286,7 +296,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e8f89b7-5992-11eb-1458-020000000000"/>
+      <fullUrl value="urn:uuid:bc8e2d8e-e3c1-11eb-2537-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

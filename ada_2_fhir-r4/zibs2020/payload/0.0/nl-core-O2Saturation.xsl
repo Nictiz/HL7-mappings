@@ -27,10 +27,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-O2Saturation instance as a Observation FHIR instance from ADA o2saturatie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template match="o2saturatie" name="nl-core-O2Saturation" mode="nl-core-O2Saturation" as="element(f:Observation)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" as="element()?"/>
+        
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>

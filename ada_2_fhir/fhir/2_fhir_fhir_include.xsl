@@ -13,9 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:util="urn:hl7:utilities"
-    version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:util="urn:hl7:utilities" version="2.0">
     <!-- import because we want to be able to override the param for macAddress -->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
@@ -114,7 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message terminate="yes">Cannot determine the datatype based on @datatype, or value not supported: <xsl:value-of select="$theDatatype"/></xsl:message>
+                    <xsl:message terminate="yes">FATAL: Cannot determine the datatype based on @datatype, or value not supported: <xsl:value-of select="$theDatatype"/></xsl:message>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
@@ -126,9 +124,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="boolean-to-boolean" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
-
+        
+        
         <xsl:choose>
             <xsl:when test="$in/@value">
+                <xsl:if test="$in/@value[not(. = ('true', 'false'))]">
+                    <xsl:message terminate="yes">FATAL: Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:message>
+                </xsl:if>
+                
                 <xsl:attribute name="value" select="$in/@value"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
@@ -274,7 +277,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="userSelected" as="xs:boolean?"/>
         <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
         <xsl:param name="codeMap" as="element()*"/>
-        
+
         <xsl:variable name="theCode">
             <xsl:choose>
                 <xsl:when test="$in/@code">
@@ -305,7 +308,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:choose>
             <xsl:when test="$out[@codeSystem = $oidHL7NullFlavor] and not($treatNullFlavorAsCoding)">
                 <extension url="{$urlExtHL7NullFlavor}">
@@ -677,29 +680,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </denominator>
         </xsl:for-each>
     </xsl:template>
-    <xd:doc>
-        <xd:desc>Converts an ada time unit to the UCUM unit as used in FHIR</xd:desc>
-        <xd:param name="ADAtime">The ada time unit string</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:convertTime_ADA_unit2UCUM_FHIR" as="xs:string?">
-        <xsl:param name="ADAtime" as="xs:string?"/>
-        <xsl:if test="$ADAtime">
-            <xsl:choose>
-                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
-                <xsl:otherwise>
-                    <!-- If all else fails: wrap in {} to make it an annotation -->
-                    <xsl:value-of select="concat('{', $ADAtime, '}')"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-    </xsl:function>
-    <xd:doc>
+    
+     <xd:doc>
         <xd:desc>Converts an ada unit to the UCUM unit as used in FHIR</xd:desc>
         <xd:param name="ADAunit">The ada unit string</xd:param>
     </xd:doc>
@@ -882,7 +864,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
             <xsl:when test="matches($dateTime, 'T([+\-]\d+(\.\d+)?[YMD])?')">
-                <xsl:variable name="sign" >
+                <xsl:variable name="sign">
                     <xsl:variable name="temp" select="replace($dateTime, 'T(([+\-])?.*)?', '$2')"/>
                     <xsl:choose>
                         <xsl:when test="string-length($temp) gt 0">
@@ -957,7 +939,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="format-dateTime(xs:dateTime($newDateTime), $picture)"/>
                     </xsl:when>
                     <xsl:when test="$newDate castable as xs:date">
-                        <xsl:value-of select="format-date(xs:date($newDateTime), '[Y0001]-[M01]-[D01]')"/>
+                        <xsl:value-of select="format-date(xs:date($newDate), '[Y0001]-[M01]-[D01]')"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="$dateTime"/>
@@ -1072,7 +1054,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getGroupingKeyPatient" as="xs:string?">
         <xsl:param name="patient" as="element()?"/>
         <xsl:if test="$patient">
-        <!-- use all fields of patient except bsn -->
+            <!-- use all fields of patient except bsn -->
             <xsl:variable name="patientKey" as="xs:string*">
                 <xsl:for-each select="$patient/*[not(@root = $oidBurgerservicenummer)]">
                     <xsl:value-of select="nf:getGroupingKeyDefault(.)"/>
