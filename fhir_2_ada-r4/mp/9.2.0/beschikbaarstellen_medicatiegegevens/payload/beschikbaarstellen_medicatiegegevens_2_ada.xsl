@@ -110,7 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:message terminate="yes">Multiple Patients and/or subject references found. Please check.</xsl:message>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-patient-2.1"/>
+                            <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-Patient"/>
                         </xsl:otherwise>
                     </xsl:choose>
 					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement)"
