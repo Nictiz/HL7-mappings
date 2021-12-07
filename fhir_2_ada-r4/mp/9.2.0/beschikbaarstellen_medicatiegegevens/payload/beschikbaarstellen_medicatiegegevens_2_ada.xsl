@@ -12,14 +12,8 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:f="http://hl7.org/fhir"
-    xmlns:local="urn:fhir:stu3:functions"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    exclude-result-prefixes="#all"
-    version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir"
+	xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
     
     <!-- TODO currently the 907 version, we should upgrade to 920 -->
     <xsl:import href="../../../../../fhir_2_ada/mp/fhir_2_ada_mp_include.xsl"/>
@@ -30,28 +24,67 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Base template for the main interaction.</xd:desc>
     </xd:doc>
     <xsl:template match="/">
+
+		<!--xxxwim bouwstenen toevoegen  -->
+		<xsl:variable name="bouwstenen">
+			<xsl:for-each select="f:Bundle/f:entry/f:resource/f:Medication">
+				<farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+					<xsl:for-each select="./f:code/f:coding">
+						<product_code codeSystem="{replace(./f:system/@value, 'urn:oid:', '')}" displayName="./display@value" codeSystemName="G-Standaard PRK" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+					</xsl:for-each>
+				</farmaceutisch_product>
+			</xsl:for-each>
+
+			<!--xxxwim: TODO    		
+    		<xsl:for-each select="ancestor::f:Bundle/f:entry/f:fullUrl/f:....">
+    		| ancestor::f:Bundle/f:entry/esource/PractitionerRole/specialty
+    		</xsl:for-each>-->
+
+			<xsl:for-each select="f:Bundle/f:entry/f:resource/f:PractitionerRole/f:practitioner/f:reference">
+				<xsl:variable name="referenceAtValue" select="string(@value)"/>
+				<xsl:variable name="PractitioneridentifierAtValue" select="//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/f:identifier/f:value/@value"/>
+				<zorgverlener id="{$PractitioneridentifierAtValue}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+					<zorgverlener_identificatienummer value="{$PractitioneridentifierAtValue}" root="{//f:entry/f:fullUrl[./@value eq $referenceAtValue]/../f:resource/f:Practitioner/id/@value}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+					<naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
+						<voornamen value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
+						<geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
+							<voorvoegsels value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
+							<achternaam value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
+						</geslachtsnaam>
+					</naamgegevens>
+					<specialisme codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00"
+						displayName="Huisartsen, niet nader gespecificeerd" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
+					<zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+						<zorgaanbieder datatype="reference" value="Huisartsenpraktijk_Pulver_en_Partners" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
+					</zorgaanbieder>
+				</zorgverlener>
+			</xsl:for-each>
+
+
+
+
+		</xsl:variable>
+
+
         <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
             <meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>            
             <data>
-                <beschikbaarstellen_medicatiegegevens app="mp-mp920" 
-                    shortName="beschikbaarstellen_medicatiegegevens"
-                    formName="medicatiegegevens"
-                    transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172"
-                    transactionEffectiveDate="2021-04-02T09:33:39"
-                    prefix="mp-"
-                    language="nl-NL">
+				<beschikbaarstellen_medicatiegegevens app="mp-mp920" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172"
+					transactionEffectiveDate="2021-04-02T09:33:39" prefix="mp-" language="nl-NL">
                     <xsl:attribute name="title">Generated from HL7 FHIR medicatiegegevens 9.0.7 xml</xsl:attribute>
                     <xsl:attribute name="id">DUMMY</xsl:attribute>
                     
                     <xsl:choose>
-                        <xsl:when test="count(f:Bundle/f:entry/f:resource/f:Patient) ge 2 or count(distinct-values(f:Bundle/f:entry/f:resource/(f:MedicationRequest|f:MedicationDispense|f:MedicationStatement)/f:subject/f:reference/@value)) ge 2">
+						<xsl:when
+							test="count(f:Bundle/f:entry/f:resource/f:Patient) ge 2 or count(distinct-values(f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement)/f:subject/f:reference/@value)) ge 2">
                             <xsl:message terminate="yes">Multiple Patients and/or subject references found. Please check.</xsl:message>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-patient-2.1"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                    <xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest|f:MedicationDispense|f:MedicationStatement)" group-by="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/concat(f:system/@value,f:value/@value)">
+					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement)"
+						group-by="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
                         <medicamenteuze_behandeling>
                             <identificatie>
                                 <xsl:attribute name="value" select="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/f:value/@value"/>
@@ -69,6 +102,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <!--                            <xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value='6']" mode="zib-MedicationUse-2.2"/>-->
                         </medicamenteuze_behandeling>
                     </xsl:for-each-group>
+					<!--xxxwim bouwstenen -->
+					<bouwstenen>
+						<xsl:for-each select="$bouwstenen">
+							<xsl:copy-of select="."/>
+						</xsl:for-each>
+					</bouwstenen>
+
                 </beschikbaarstellen_medicatiegegevens>
             </data>
         </adaxml>
