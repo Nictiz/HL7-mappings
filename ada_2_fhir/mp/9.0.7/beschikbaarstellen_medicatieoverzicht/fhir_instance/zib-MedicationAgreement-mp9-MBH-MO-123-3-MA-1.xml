@@ -1,0 +1,142 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-mp9-MBH-MO-123-3-MA-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: I. XXX_Jangi. Id: MBH_MO_123_3_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Exact 4 weken</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th colspan="2">Deze informatie is gekopieerd van een derde partij</th>
+               </tr>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_MO_123_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>GLIMEPIRIDE TABLET 3MG</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -15}T09:13:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>
+                     <ul>
+                        <li>Vanaf ${DATE, T, D, -15}T00:00:00+02:00</li>
+                        <li>4 week</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf T - 15 dagen, gedurende 4 weken, 1 maal per dag 2 stuks, oraal</div>
+                     <div>Timing: <div>eenmalig per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                     </div>
+                     <div>Dosering: 2 stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="${DATE, T, D, -15}T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="4"/>
+         <unit value="week"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="wk"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_MO_123_3"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_MO_123_3_MA_1"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-44458"/>
+      <display value="GLIMEPIRIDE TABLET 3MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/XXX-JANGI"/>
+      <display value="I. XXX_Jangi"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -15}T09:13:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-mp9-010000001111"/>
+               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-mp9-c9a3164e-e3c1-11eb-1218-020000000000"/>
+         <display value="John de Vries"/>
+      </agent>
+   </requester>
+   <note>
+      <text value="Exact 4 weken"/>
+   </note>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Vanaf T - 15 dagen, gedurende 4 weken, 1 maal per dag 2 stuks, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="2"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="398f26bc-5992-11eb-8018-020000000000"/>
+   <id value="f7b2bffc-b8b8-11eb-2087-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:398f27c9-5992-11eb-8018-020000000000"/>
+      <fullUrl value="urn:uuid:f7b2c120-b8b8-11eb-2087-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -69,7 +69,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf T+0D{00:00:00}, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="Vanaf T, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
                <valueDuration>
@@ -97,7 +97,7 @@
                <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:398f26c3-5992-11eb-8018-020000000000"/>
+               <reference value="urn:uuid:f7b2c104-b8b8-11eb-2087-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:33:00+02:00"/>
@@ -105,7 +105,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:398f27ce-5992-11eb-8018-020000000000"/>
+                        <reference value="urn:uuid:f7b2c12a-b8b8-11eb-2087-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -148,7 +148,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:398f26c3-5992-11eb-8018-020000000000"/>
+      <fullUrl value="urn:uuid:f7b2c104-b8b8-11eb-2087-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -183,7 +183,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -288,7 +298,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:398f27ce-5992-11eb-8018-020000000000"/>
+      <fullUrl value="urn:uuid:f7b2c12a-b8b8-11eb-2087-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

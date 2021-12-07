@@ -36,14 +36,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-DispenseRequest instance as a MedicationRequest FHIR instance from ADA verstrekkingsverzoek.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationRequest.subject as ADA element or reference.</xd:param>
-        <xd:param name="medicationReference">The MedicationRequest.medicationReference as ADA element or reference.</xd:param>
-        <xd:param name="performer">The MedicationDispense.performer as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-DispenseRequest" mode="nl-core-DispenseRequest" match="verstrekkingsverzoek" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="te_verstrekken_geneesmiddel" as="element()?"/>
-        <xsl:param name="performer" select="beoogd_verstrekker" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationRequest>
@@ -60,11 +56,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
-                <!-- There's no mapping from the zib to the status, so we'll default to unknown -->
-                <status value="unknown"/>
+                <xsl:for-each select="financiele_indicatiecode">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept"/>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each> 
                 
-                <!-- TODO: Proposed to use proposal as default, but this is not definite -->
-                <intent value="proposal"/>
+                <!-- There's no mapping from the zib to the status, so we'll default to unknown -->
+                <status>
+                    <xsl:attribute name="value">
+                        <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
+                             so we can perform the required logic using a start and end datetime. -->
+                        <xsl:variable name="period" as="element(f:temp)?">
+                            <xsl:call-template name="ext-TimeInterval.Period">
+                                <xsl:with-param name="in" select="verbruiksperiode"/>
+                                <xsl:with-param name="wrapIn">temp</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
+                            <xsl:otherwise>unknown</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </status>
+                
+                <intent value="order"/>
                 
                 <category>
                     <coding>
@@ -74,7 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>
                 
-                <xsl:for-each select="$medicationReference">
+                <xsl:for-each select="te_verstrekken_geneesmiddel/farmaceutisch_product">
                     <medicationReference>
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>
@@ -96,7 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </authoredOn>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$performer">
+                <xsl:for-each select="beoogd_verstrekker/zorgaanbieder">
                     <performer>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>

@@ -6,13 +6,19 @@
             <patient-id value="111222333" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
         </onderwerp>
         <referenties conceptId="2.16.840.1.113883.2.4.3.11.999.121.1.3">
-            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1">
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1" id="za1">
                 <organisatie_naam value="Apotheek De Gulle Gaper" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.3"/>
             </zorgaanbieder>
-            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926">
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926" id="fp1">
                 <product_code code="63630" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="METOCLOPRAMIDE 20MG ZETPIL" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19927"/>
             </farmaceutisch_product>
         </referenties>
+        <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.10.19966">
+            <zorgaanbieder value="za1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.433"/>
+        </beoogd_verstrekker>
+        <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.10.22249">
+            <farmaceutisch_product value="fp1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.434"/>
+        </te_verstrekken_geneesmiddel>
         <verstrekkingsverzoek_datum value="2015-07-13" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.10.20060"/>
         <verbruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.10.20062">
             <tijds_duur value="40" unit="d" conceptId="2.16.840.1.113883.2.4.3.11.60.121.2.437"/>
