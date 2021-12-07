@@ -206,6 +206,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'betaler'">
+                <xsl:apply-templates select="$in" mode="nl-core-Payer">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <xsl:if test="verzekeraar/indentificatie_nummer | verzekeraar/organisatie_naam">
+                    <xsl:apply-templates select="$in" mode="nl-core-Payer-Organization"/>
+                </xsl:if>
+                <xsl:if test="betaler_persoon/betaler_naam">
+                    <xsl:apply-templates select="$in" mode="nl-core-Patient"/>
+                </xsl:if>
+            </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">
                     <xsl:with-param name="subject" select="$subject"/>
