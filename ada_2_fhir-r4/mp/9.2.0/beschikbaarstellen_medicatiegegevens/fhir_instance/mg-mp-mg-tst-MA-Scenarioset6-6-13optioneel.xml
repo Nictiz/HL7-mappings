@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="2d985952-51e2-11ec-7318-020000000000"/>
+   <id value="72290a22-5812-11ec-1692-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://www.nictiz.nl/fhir/example"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:2d986d15-51e2-11ec-7318-020000000000"/>
+      <fullUrl value="urn:uuid:72291de5-5812-11ec-1692-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -44,18 +44,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:2d9859f0-51e2-11ec-7318-020000000000"/>
+               <reference value="urn:uuid:72290ac0-5812-11ec-1692-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:2d985996-51e2-11ec-7318-020000000000"/>
+               <reference value="urn:uuid:72290a66-5812-11ec-1692-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2021-01-01T08:47:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:2d9859b4-51e2-11ec-7318-020000000000"/>
+               <reference value="urn:uuid:72290a84-5812-11ec-1692-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -71,11 +71,16 @@
                   <rateRange>
                      <low>
                         <value value="0.2"/>
-                        <unit value="milliliter"/>
-                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                        <code value="233"/>
+                        <unit value="ml/h"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="ml/h"/>
                      </low>
-                     <high value="0.5/"/>
+                     <high>
+                        <value value="0.5"/>
+                        <unit value="ml/h"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="ml/h"/>
+                     </high>
                   </rateRange>
                </doseAndRate>
             </dosageInstruction>
@@ -86,7 +91,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2d985996-51e2-11ec-7318-020000000000"/>
+      <fullUrl value="urn:uuid:72290a66-5812-11ec-1692-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -134,7 +139,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2d9859b4-51e2-11ec-7318-020000000000"/>
+      <fullUrl value="urn:uuid:72290a84-5812-11ec-1692-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -142,12 +147,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:2d9859d2-51e2-11ec-7318-020000000000"/>
+               <reference value="urn:uuid:72290aa2-5812-11ec-1692-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:2d985a0e-51e2-11ec-7318-020000000000"/>
+               <reference value="urn:uuid:72290ade-5812-11ec-1692-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -163,7 +168,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2d9859d2-51e2-11ec-7318-020000000000"/>
+      <fullUrl value="urn:uuid:72290aa2-5812-11ec-1692-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -195,7 +200,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2d985a0e-51e2-11ec-7318-020000000000"/>
+      <fullUrl value="urn:uuid:72290ade-5812-11ec-1692-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -233,7 +238,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2d9859f0-51e2-11ec-7318-020000000000"/>
+      <fullUrl value="urn:uuid:72290ac0-5812-11ec-1692-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-94692"/>

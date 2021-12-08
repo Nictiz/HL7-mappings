@@ -205,17 +205,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                                         <!-- this is zib ada dataset -->
                                         <xsl:for-each select="toedieningssnelheid[minimum_waarde | nominale_waarde | maximum_waarde]">
-                                            <xsl:if test="(minimum_waarde, maximum_waarde)[@value]">
-                                                <!-- TODO FIXME, low is SimpleQuantity in FHIR, the implementation below is not valid in FHIR -->
-                                                <rateRange>
-                                                    <low value="{minimum_waarde/@value}"/>
-                                                    <high value="{maximum_waarde/@value}"/>
-                                                </rateRange>
-                                            </xsl:if>
-                                            <xsl:if test="nominale_waarde[@value]">
+                                            <xsl:if test="nominale_waarde[@value | @unit | @nullFlavor]">
                                                 <rateQuantity>
-                                                    <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                                                    <xsl:call-template name="hoeveelheid-to-Quantity">
+                                                        <xsl:with-param name="in" select="nominale_waarde"/>
+                                                    </xsl:call-template>
                                                 </rateQuantity>
+                                            </xsl:if>
+                                            <xsl:if test="(minimum_waarde, maximum_waarde)[@value | @unit | @nullFlavor]">
+                                                <rateRange>
+                                                    <xsl:if test="minimum_waarde[@value | @unit | @nullFlavor]">
+                                                        <low>
+                                                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                                                <xsl:with-param name="in" select="minimum_waarde"/>
+                                                            </xsl:call-template>
+                                                        </low>
+                                                    </xsl:if>
+                                                    <xsl:if test="maximum_waarde[@value | @unit | @nullFlavor]">
+                                                        <high>
+                                                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                                                <xsl:with-param name="in" select="maximum_waarde"/>
+                                                            </xsl:call-template>
+                                                        </high>
+                                                    </xsl:if>
+                                                </rateRange>
                                             </xsl:if>
                                         </xsl:for-each>
                                         <!-- end of zib ada dataset -->
@@ -224,23 +237,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                                         <!-- this is MP9 ada dataset -->
                                         <xsl:for-each select="toedieningssnelheid[*/(minimum_waarde | nominale_waarde | maximum_waarde)]">
-                                            <xsl:if test="waarde/(minimum_waarde, maximum_waarde)[@value]">
-                                                <!-- TODO finish implementation, not done for rate yet -->
-                                                <rateRange>
-                                                    <low>
-                                                        <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                                                            <xsl:with-param name="waarde" select="waarde/minimum_waarde"/>
-                                                            <xsl:with-param name="eenheid" select="eenheid"/>
-                                                        </xsl:call-template>
-                                                    </low>
-                                                    <high value="{waarde/maximum_waarde/@value}/{}"/>
-                                                </rateRange>
-                                            </xsl:if>
-                                            <xsl:if test="waarde/nominale_waarde[@value]">
-                                                <rateQuantity>
-                                                    <xsl:call-template name="hoeveelheid-to-Quantity"/>
-                                                </rateQuantity>
-                                            </xsl:if>
+                                            <xsl:choose>
+                                                <xsl:when test="not(tijdseenheid/@value castable as xs:integer)">
+                                                    <xsl:call-template name="util:logMessage">
+                                                        <xsl:with-param name="level" select="$logERROR"/>
+                                                        <xsl:with-param name="msg">Encountered a toedieningssnelheid/tijdseenheid/@value which is not castable as integer, cannot output rate.</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:variable name="ucum-tijdseenheid-value">
+                                                        <xsl:if test="xs:integer(tijdseenheid/@value) ne 1">
+                                                            <xsl:value-of select="concat(tijdseenheid/@value, '.')"/>
+                                                        </xsl:if>
+                                                    </xsl:variable>
+                                                    <!-- we cannot use the G-standaard unit in this case, can only be communicated in FHIR using UCUM -->
+                                                    <!-- let's determine the right UCUM for the rate (toedieningssnelheid) -->
+                                                    <xsl:variable name="UCUM-rate" select="concat(nf:convertGstdBasiseenheid2UCUM(eenheid/@code), '/', $ucum-tijdseenheid-value, nf:convertTime_ADA_unit2UCUM_FHIR(tijdseenheid/@unit))"/>
+
+                                                    <xsl:if test="waarde/nominale_waarde[@value]">
+                                                        <rateQuantity>
+                                                            <value value="{waarde/nominale_waarde/@value}"/>
+                                                            <unit value="{$UCUM-rate}"/>
+                                                            <system value="http://unitsofmeasure.org"/>
+                                                            <code value="{$UCUM-rate}"/>
+                                                        </rateQuantity>
+                                                    </xsl:if>
+                                                    <xsl:if test="waarde/(minimum_waarde, maximum_waarde)[@value]">
+                                                        <!-- TODO finish implementation, not done for rate yet -->
+                                                        <rateRange>
+                                                            <xsl:if test="waarde/minimum_waarde[@value]">
+                                                                <low>
+                                                                    <value value="{waarde/minimum_waarde/@value}"/>
+                                                                    <unit value="{$UCUM-rate}"/>
+                                                                    <system value="http://unitsofmeasure.org"/>
+                                                                    <code value="{$UCUM-rate}"/>
+                                                                </low>
+                                                            </xsl:if>
+                                                            <xsl:if test="waarde/maximum_waarde[@value]">
+                                                                <high>
+                                                                    <value value="{waarde/maximum_waarde/@value}"/>
+                                                                    <unit value="{$UCUM-rate}"/>
+                                                                    <system value="http://unitsofmeasure.org"/>
+                                                                    <code value="{$UCUM-rate}"/>
+                                                                </high>
+                                                            </xsl:if>
+                                                        </rateRange>
+                                                    </xsl:if>
+
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+
                                         </xsl:for-each>
                                         <!-- end of MP ada dataset -->
                                         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -338,23 +384,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:if test="not(frequentie//*[@unit != ''])">
                 <xsl:if test="frequentie/nominale_waarde[@value]">
-                    <count value="${frequentie/nominale_waarde/@value}"/>
+                    <count value="{frequentie/nominale_waarde/@value}"/>
                 </xsl:if>
                 <xsl:if test="frequentie/minimum_waarde[@value]">
-                    <count value="${frequentie/minimum_waarde/@value}"/>
+                    <count value="{frequentie/minimum_waarde/@value}"/>
                 </xsl:if>
                 <xsl:if test="frequentie/maximum_waarde[@value]">
-                    <countMax value="${frequentie/maximum_waarde/@value}"/>
+                    <countMax value="{frequentie/maximum_waarde/@value}"/>
                 </xsl:if>
             </xsl:if>
-            <xsl:if test="toedieningsduur/tijds_duur[@value]">
-                <duration value="${toedieningsduur/tijds_duur/@value}"/>
-                <xsl:if test="toedingsduur/tijds_duur[@unit]">
-                    <durationUnit>
-                        <unit value="{./@unit}"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="${nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
-                    </durationUnit>
+            <xsl:if test="../toedieningsduur/tijds_duur[@value]">
+                <duration value="{../toedieningsduur/tijds_duur/@value}"/>
+                <xsl:if test="../toedieningsduur/tijds_duur[@unit]">
+                    <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(../toedieningsduur/tijds_duur/@unit)}"/>                    
                     <!-- start_datum_tijd and eind_datum_tijd are not mapped to the profile -->
                 </xsl:if>
             </xsl:if>

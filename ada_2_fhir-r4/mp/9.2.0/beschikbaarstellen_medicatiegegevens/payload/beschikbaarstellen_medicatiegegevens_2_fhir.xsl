@@ -13,8 +13,6 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- import because we want to be able to override the param for macAddress for UUID generation
-         and the param for referById -->
     <xsl:import href="../../2_fhir_mp92_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -39,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select=".//(patient | bouwstenen/(zorgverlener | zorgaanbieder | farmaceutisch_product | contactpersoon))"/>
+            <xsl:with-param name="in" select=".//(patient | reden_van_voorschrijven/probleem | medicatieverstrekking/afleverlocatie | bouwstenen/(zorgverlener | zorgaanbieder | farmaceutisch_product | contactpersoon))"/>
         </xsl:call-template>
     </xsl:param>
 
@@ -61,8 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
-        <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
-<!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
+    <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
 
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <!--        <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>-->
@@ -123,6 +121,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-PharmaceuticalProduct">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+        <xsl:for-each select="/adaxml/data/*//reden_van_voorschrijven/probleem">
+            <!-- entry for problem -->
+            <xsl:variable name="prbKey" select="nf:getGroupingKeyDefault(.)"/>
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Condition'][nm:group-key/text() = $prbKey]/nm:full-url/text()}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-Problem">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="/adaxml/data/*/patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+        <xsl:for-each select="/adaxml/data/*//afleverlocatie[@value]">
+            <!-- entry for problem -->
+            <xsl:variable name="locKey" select="nf:getGroupingKeyDefault(.)"/>
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Location'][nm:group-key/text() = $locKey]/nm:full-url/text()}"/>
+                <resource>
+                    <Location>
+                        <xsl:call-template name="insertLogicalId"/>                        
+                        <name value="{@value}"/>
+                    </Location>
                 </resource>
             </entry>
         </xsl:for-each>

@@ -13,23 +13,10 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet 
-    exclude-result-prefixes="#all" 
-    xmlns="http://hl7.org/fhir"
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:uuid="http://www.uuid.org" 
-    xmlns:local="urn:fhir:stu3:functions" 
-    xmlns:nf="http://www.nictiz.nl/functions"
-    xmlns:nm="http://www.nictiz.nl/mappings" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:util="urn:hl7:utilities"
-    version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:util="urn:hl7:utilities" version="2.0">
+
     <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
-    
+
     <xd:doc>
         <xd:desc>
             When $populateId equals true(), Resource.id will be filled. It will be filled with @logicalId if it is present in the ada-element or generated if no @logicalId is present.
@@ -39,13 +26,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:param name="populateId" select="true()" as="xs:boolean"/>
-    
+
     <xd:doc>
         <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
-            <xd:li>logicalId</xd:li>
-            <xd:li>uuid</xd:li>
-            <xd:li>none</xd:li>
-        </xd:ul>
+                <xd:li>logicalId</xd:li>
+                <xd:li>uuid</xd:li>
+                <xd:li>none</xd:li>
+            </xd:ul>
             When $referencingStrategy equals 'logicalId', the value of $populateId is ignored. A Resource.id is added to the resource, with its value being populated from (in this order) @logicalId on the root of the ada element being referenced or from a template with mode '_generateId'. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Should not be used when there is no FHIR server available to retrieve the resources.
             When $referencingStrategy equals 'uuid', all referencing is done using uuids. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Meant for use within Bundles. Be sure to include all referenced resources in the Bundle! 
             When $referencingStrategy equals 'none', it is attempted to generate a Reference from an identifier being present in the referenced ada-element. If this is not possible, referencing fails.
@@ -54,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:param name="referencingStrategy" select="'uuid'" as="xs:string"/>
-    
+
     <xd:doc>
         <xd:desc>The server base URI for creating logical references.</xd:desc>
     </xd:doc>
@@ -64,6 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
+        <nm:map ada="afleverlocatie" resource="Location"/>
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
@@ -107,12 +95,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
     <xsl:param name="fhirVersion" select="'R4'"/>
-    
+
     <xd:doc>
         <xd:param name="patientTokensXml">Override optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
     </xd:doc>
     <xsl:param name="patientTokensXml" select="document('../../ada_2_fhir/fhir/QualificationTokens.xml')"/>
-    
+
     <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
     </xd:doc>
@@ -120,8 +108,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="buildFhirMetadata">
             <xsl:with-param name="in" select="/."/>
         </xsl:call-template>
-    </xsl:param>   
-    
+    </xsl:param>
+
     <xd:doc>
         <xd:desc>Build the FHIR metadata for the resources that shall result from the transformation of the specified ADA instances. This metadata may then be used when building the actual FHIR instances for building references and Bundle's. For each generated FHIR instance, the FHIR metadata will be stored in an nm:resource element and may contain the following elements:
             <xd:ul>
@@ -139,44 +127,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="buildFhirMetadata">
         <xsl:param name="in"/>
-        
+
         <xsl:if test="not($referencingStrategy = ('logicalId', 'uuid', 'none'))">
             <xsl:message terminate="yes">Invalid $referencingStrategy. Should be one of 'logicalId', 'uuid', 'none'</xsl:message>
         </xsl:if>
-        
+
         <xsl:for-each-group select="$in[self::patient[.//(@value | @code | @nullFlavor)]]" group-by="concat((identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/@root, (identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/normalize-space(@value))">
-                <!-- Experiment: why don't we just use nf:getGroupingKeyDefault()? Less hardly-used functions, and nobody is going to see the result anyways. -->
-                <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
+            <!-- Experiment: why don't we just use nf:getGroupingKeyDefault()? Less hardly-used functions, and nobody is going to see the result anyways. -->
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
             </xsl:for-each-group>
-        
+        </xsl:for-each-group>
+
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
-            concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
-            nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
-                <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
+                concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
+                nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
             </xsl:for-each-group>
-        
-        <!-- General rule for all zib root concepts -->
+        </xsl:for-each-group>
+
+        <!-- General rule for concepts -->
         <xsl:for-each-group select="$in[not(self::patient or self::zorgverlener)][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
-        
-        <xsl:for-each select="$in[not(.//(@value | @code | @nullFlavor))][not(ends-with(local-name(),'-start'))]">
+
+        <xsl:for-each select="$in[not(.//(@value | @code | @nullFlavor))][not(ends-with(local-name(), '-start'))]">
             <xsl:message>Error: no meaningful content found in <xsl:value-of select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/> - <xsl:value-of select="local-name()"/></xsl:message>
         </xsl:for-each>
-        
+
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Helper template to build the FHIR metadata for a singe ADA instance. See the documentation on <xd:ref name="buildFhirMetadata" type="template"/> for more information.</xd:desc>
         <xd:param name="in">The ADA instance to generate metadata for.</xd:param>
     </xd:doc>
     <xsl:template name="_buildFhirMetadataForAdaEntry" as="element(nm:resource)*">
         <xsl:param name="in" select="current-group()[1]"/>
-        
+
         <xsl:variable name="adaElement" as="xs:string" select="$in/local-name()"/>
         <xsl:variable name="adaId" select="$in/@id"/>
         <xsl:variable name="groupKey" select="current-grouping-key()"/>
@@ -209,7 +197,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$in/@logicalId">
                             <xsl:choose>
                                 <xsl:when test="count($ada2resourceType/nm:map[@ada = $adaElement]) gt 1">
-                                    <xsl:value-of select="concat($in/@logicalId,'-',@resource)"/>
+                                    <xsl:value-of select="concat($in/@logicalId, '-', @resource)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:value-of select="$in/@logicalId"/>
@@ -228,7 +216,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="$logicalId"/>
                     </nm:logical-id>
                 </xsl:if>
-                
+
                 <xsl:choose>
                     <xsl:when test="$in/@referenceUri">
                         <nm:full-url>
@@ -277,7 +265,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:apply-templates>
                 </nm:reference-display>
             </nm:resource>
-            
+
             <!-- SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
             <xsl:choose>
                 <xsl:when test="$in/self::soepverslag">
@@ -293,10 +281,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Generate a FHIR reference. When there's no input or a reference can't otherwise be constructed, no output is generated.</xd:desc>
-        
+
         <xd:param name="in">The target of the reference as either an ADA instance an ADA reference element. May be omitted if it is the same as the context.</xd:param>
         <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
         <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated either.</xd:param>
@@ -314,18 +302,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
 
         <xsl:variable name="groupKey">
-                    <xsl:choose>
-                        <xsl:when test="$in[@datatype = 'reference' and @value]">
-                    <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in,/))"/>
-                        </xsl:when>
-                        <xsl:otherwise>
+            <xsl:choose>
+                <xsl:when test="$in[@datatype = 'reference' and @value]">
+                    <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in, /))"/>
+                </xsl:when>
+                <xsl:otherwise>
                     <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:variable name="element" as="element()?">
-                    <xsl:choose>
+            <xsl:choose>
                 <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
                     <xsl:if test="string-length($profile) = 0">
                         <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:message>
@@ -334,9 +322,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:message>
                     </xsl:if>
                     <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -385,7 +373,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Insert the FHIR resource id element for the specified ADA instance, if an id is required (see the <xd:ref name="populateId" type="parameter"/> and <xd:ref name="referencingStrategy" type="parameter"/> parameters).
         </xd:desc>
@@ -395,19 +383,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="insertLogicalId">
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
-        
+
         <xsl:variable name="logicalId">
             <xsl:call-template name="getLogicalIdFromFhirMetadata">
                 <xsl:with-param name="in" select="$in"/>
                 <xsl:with-param name="profile" select="$profile"/>
             </xsl:call-template>
         </xsl:variable>
-        
+
         <xsl:if test="string-length($logicalId) gt 0">
             <id value="{$logicalId}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Get the FHIR resource id element for the specified ADA instance, if an id is available (see the <xd:ref name="populateId" type="parameter"/> and <xd:ref name="referencingStrategy" type="parameter"/> parameters).
         </xd:desc>
@@ -417,13 +405,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="getLogicalIdFromFhirMetadata">
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
-        
+
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
-        
+
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:message>
         </xsl:if>
-        
+
         <xsl:variable name="logicalId">
             <xsl:choose>
                 <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
@@ -434,27 +422,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:if test="string-length($logicalId) gt 0">
             <xsl:value-of select="$logicalId"/>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Insert the FHIR fullUrl element for the specified instance, if one is available (see the <xd:ref name="referencingStrategy" type="parameter"/> parameter).</xd:desc>
         <xd:param name="in">The ADA instance that the FHIR resource is generated for.</xd:param>
         <xd:param name="profile">The id of the profile that is being generated from the specified ADA instance. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
-    </xd:doc>    
+    </xd:doc>
     <xsl:template name="insertFullUrl">
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
-        
+
         <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
-        
-        <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and  string-length($profile) = 0">
+
+        <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertFullUrl: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
         </xsl:if>
-        
+
         <xsl:variable name="fullUrl">
             <xsl:choose>
                 <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
@@ -465,14 +453,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:if test="string-length($fullUrl) gt 0">
             <fullUrl value="{$fullUrl}"/>
         </xsl:if>
     </xsl:template>
 
     <!-- Generic (fallback) templates, each zib transformation can have more relevant id and display generation mechanisms -->
-    
+
     <xd:doc>
         <xd:desc>Generic template for generating an id for a FHIR resource. Stylesheets for specific zibs can override this with a more specific version.</xd:desc>
         <xd:param name="in">The ADA instance to generate the id for.</xd:param>
@@ -480,8 +468,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="*" mode="_generateId">
         <xsl:param name="in" select="."/>
-        <xsl:param name="profile" as="xs:string" select="''"/>
-        
+        <xsl:param name="profile" as="xs:string?" select="''"/>
+
         <xsl:variable name="uuidIn" as="element()?">
             <xsl:element name="{$in/local-name()}">
                 <xsl:copy-of select="$in/@*"/>
@@ -489,21 +477,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="$in/node()"/>
             </xsl:element>
         </xsl:variable>
-        
-        <xsl:variable name="fullUrl">
-            <xsl:value-of select="nf:get-fhir-uuid($uuidIn)"/>
-        </xsl:variable>
-        
-        <xsl:value-of select="nf:removeSpecialCharacters(replace($fullUrl, 'urn:[^i]*id:', ''))"/>
+
+        <xsl:value-of select="nf:assure-logicalid-chars(nf:get-uuid($uuidIn))"/>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Generic template for generating a display for use in FHIR references. Stylesheets for specific zibs can override this with a more specific version.</xd:desc>
         <xd:param name="in">The ADA instance to generate the display for.</xd:param>
     </xd:doc>
     <xsl:template match="*" mode="_generateDisplay">
         <xsl:param name="in" select="."/>
-        
+
         <xsl:choose>
             <xsl:when test="$in//*[ends-with(local-name(.), '_naam')][@value or @displayName or @originalText]">
                 <xsl:value-of select="($in//*[ends-with(local-name(.), '_naam')]/(@displayName, @originalText, @value))[1]"/>
@@ -513,7 +497,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Function to resolve internal references in an ADA instance. The output is the contained ADA instance being referenced or the input node if the input node isn't a reference.</xd:desc>
         <xd:param name="in">The ADA instance to resolve.</xd:param>
@@ -522,7 +506,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:resolveAdaInstance">
         <xsl:param name="in"/>
         <xsl:param name="context" as="node()"/>
-        
+
         <xsl:choose>
             <xsl:when test="$in[@datatype = 'reference' and @value]">
                 <xsl:variable name="adaId" select="$in/@value"/>
@@ -533,18 +517,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Returns a string based on requirements for FHIR logicalId (https://www.hl7.org/fhir/datatypes.html#id). 
             An underscore is translated to '-'. Any other char that is not allowed is simply removed.</xd:desc>
         <xd:param name="logicalId">The string to handle</xd:param>
     </xd:doc>
     <xsl:function name="nf:assure-logicalid-chars" as="xs:string">
-        <xsl:param name="logicalId" as="xs:string?"/>        
-           
+        <xsl:param name="logicalId" as="xs:string?"/>
+
         <xsl:value-of select="replace(translate($logicalId, '_', '-'), '[^A-Za-z0-9\-\.]', '')"/>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Returns a concatenated string based on input param $logicalId. Only returns a string of length max length for FHIR logicalId (64). 
             Because uniqueness is determined more by the latter part of $logicalId than by the start (often some sort of prefix), the last 64 characters are used.</xd:desc>
@@ -552,7 +536,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:assure-logicalid-length" as="xs:string">
         <xsl:param name="logicalId" as="xs:string?"/>
-        
+
         <xsl:variable name="lengthLogicalId" select="string-length($logicalId)" as="xs:integer"/>
         <xsl:variable name="startingLoc" as="xs:integer">
             <xsl:choose>
@@ -569,14 +553,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:value-of select="substring($logicalId, $startingLoc, $lengthLogicalId)"/>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
         <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
-    </xd:doc>    
+    </xd:doc>
     <xsl:function name="nf:isFuture" as="xs:boolean">
         <xsl:param name="dateOrDt"/>
         <xsl:choose>
@@ -591,10 +575,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-    </xd:doc>    
+    </xd:doc>
     <xsl:function name="nf:isPast" as="xs:boolean">
         <xsl:param name="dateOrDt"/>
         <xsl:choose>
@@ -609,5 +593,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
 </xsl:stylesheet>

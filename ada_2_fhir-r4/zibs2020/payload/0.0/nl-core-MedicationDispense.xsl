@@ -13,25 +13,15 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions"
-    xmlns:nm="http://www.nictiz.nl/mapping"
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mapping" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA medicatieverstrekking to FHIR MedicationDispense conforming to profile nl-core-MedicationDispense</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Create a nl-core-MedicationDispense instance as a MedicationDispense FHIR instance from ADA medicatieverstrekking.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -46,14 +36,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="medicationReference" select="verstrekt_geneesmiddel/farmaceutisch_product" as="element()?"/>
         <xsl:param name="performer" select="verstrekker/zorgaanbieder" as="element()?"/>
         <xsl:param name="authorizingPrescription" select="verstrekkingsverzoek/verstrekkingsverzoek" as="element()?"/>
-        
+
         <xsl:for-each select="$in">
             <MedicationDispense>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationDispense"/>
                 </meta>
-                
+
                 <xsl:for-each select="medicatieverstrekking_aanvullende_informatie">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation">
                         <valueCodeableConcept>
@@ -61,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="aanschrijf_datum">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate">
                         <valueDateTime>
@@ -73,19 +63,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueDateTime>
                     </extension>
                 </xsl:for-each>
-                    
+
                 <xsl:for-each select="distributievorm">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>
                         </valueCodeableConcept>
-                    </extension>    
+                    </extension>
                 </xsl:for-each>
-                
+
                 <!-- It is expected that in most use cases only actual, executed, medication dispenses are exchanged which result in a _completed_ value. We use completed as a default value. 
                     See https://github.com/Nictiz/Nictiz-R4-zib2020/issues/122 -->
                 <status value="completed"/>
-                
+
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
@@ -93,21 +83,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="verstrekken van medicatie"/>
                     </coding>
                 </category>
-                
+
                 <xsl:for-each select="$medicationReference">
                     <medicationReference>
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="$subject">
                     <subject>
                         <xsl:call-template name="makeReference"/>
                     </subject>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="$performer">
-                    <performer> <!-- There's at most 1 perfomer, so we can write both elements here -->
+                    <performer>
+                        <!-- There's at most 1 perfomer, so we can write both elements here -->
                         <actor>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
@@ -115,26 +106,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </actor>
                     </performer>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="$authorizingPrescription">
                     <authorizingPrescription>
                         <xsl:call-template name="makeReference"/>
                     </authorizingPrescription>
                 </xsl:for-each>
-                
-                <xsl:for-each select="verstrekte_hoeveelheid">
+
+                <!-- zib ada dataset -->
+                <xsl:for-each select="verstrekte_hoeveelheid[@value]">
                     <quantity>
-                        <!-- TODO: Handle G-standaard extension -->
                         <xsl:call-template name="hoeveelheid-to-Quantity"/>
                     </quantity>
                 </xsl:for-each>
-                
+                <!-- MP9 ada dataset -->
+                <xsl:for-each select="verstrekte_hoeveelheid/aantal[@value]">
+                    <quantity>
+                        <xsl:call-template name="_buildMedicationQuantity">
+                            <xsl:with-param name="adaValue" select="."/>
+                            <xsl:with-param name="adaUnit" select="../eenheid[@codeSystem = $oidGStandaardBST902THES2]"/>
+                        </xsl:call-template>
+                    </quantity>
+                </xsl:for-each>
+
                 <xsl:for-each select="verbruiksduur">
                     <daysSupply>
                         <xsl:call-template name="hoeveelheid-to-Quantity"/>
                     </daysSupply>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="medicatieverstrekkings_datum_tijd">
                     <whenHandedOver>
                         <xsl:attribute name="value">
@@ -144,9 +144,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:attribute>
                     </whenHandedOver>
                 </xsl:for-each>
-                
+
                 <!-- TODO: DispenseLocation is a string in the zib, but mapped to a Location reference in FHIR. How should this be handled? Should a Location resource be created from just the string? -->
-                
+                <xsl:for-each select="afleverlocatie[@value]">
+                    <destination>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </destination>
+                </xsl:for-each>
+
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
@@ -158,6 +165,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Specific template for generating an id for afleverlocatie.</xd:desc>
+        <xd:param name="in">The ADA element to generate the id for.</xd:param>
+    </xd:doc>
+    <xsl:template match="afleverlocatie" mode="_generateId">
+        <xsl:param name="in" select="."/>
+        
+        <xsl:choose>
+            <xsl:when test="string-length(nf:assure-logicalid-chars(@value)) le 64">
+                <xsl:value-of select="nf:assure-logicalid-chars(@value)"/>                
+            </xsl:when>
+            <xsl:otherwise>                
+                <xsl:value-of select="nf:assure-logicalid-chars(nf:get-uuid($in))"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:template>
+
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
@@ -175,7 +200,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>

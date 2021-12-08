@@ -31,6 +31,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile nl-core-HealthcareProvider</xd:desc>
     </xd:doc>
+
+    <xsl:variable name="profilenameHealthcareProvider">nl-core-HealthcareProvider</xsl:variable>
+    <xsl:variable name="profilenameHealthcareProviderOrganization">nl-core-HealthcareProvider-Organization</xsl:variable>
     
     <xd:doc>
         <xd:desc>Produces a Location resource based on nl-core-HealthcareProvider</xd:desc>
@@ -42,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Location>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                    <xsl:with-param name="profile" select="$profilenameHealthcareProvider"/>
                 </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
@@ -83,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Organization>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
+                    <xsl:with-param name="profile" select="$profilenameHealthcareProviderOrganization"/>
                 </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
@@ -127,7 +130,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" required="yes" as="xs:string"/>
         
         <xsl:choose>
-            <xsl:when test="$profile = 'nl-core-HealthcareProvider'">
+            <xsl:when test="$profile = $profilenameHealthcareProvider">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Healthcare provider (location)</xsl:text>
                     <xsl:value-of select="organisatie_naam/@value"/>
@@ -139,7 +142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
-            <xsl:when test="$profile = 'nl-core-HealthcareProvider-Organization'">
+            <xsl:when test="$profile = $profilenameHealthcareProviderOrganization">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Healthcare provider (organization)</xsl:text>
                     <xsl:value-of select="organisatie_naam/@value"/>
@@ -162,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="organizationLocation" select="(organisatie_locatie/locatie_naam/@value[not(. = '')], 'Location')[1]"/>
         
         <xsl:choose>
-            <xsl:when test="$profile = 'nl-core-HealthcareProvider'">
+            <xsl:when test="$profile = $profilenameHealthcareProvider">
                 <xsl:choose>
                     <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
                         <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/concat(@root, '-', @value)))"/>
@@ -174,7 +177,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>   
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="$profile = 'nl-core-HealthcareProvider-Organization'">
+            <xsl:when test="$profile = $profilenameHealthcareProviderOrganization">
                 <xsl:choose>
                     <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
                         <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/concat(@root, '-', @value)))"/>

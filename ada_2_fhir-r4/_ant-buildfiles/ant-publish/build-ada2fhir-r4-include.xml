@@ -85,7 +85,7 @@
     <target name="convert_ada_2_fhir_sub">
 
         <property name="xsl.ada2fhir" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir.xsl"/>
-        <property name="xsl.ada2fhir.resources" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir_resources.xsl"/>
+<!--        <property name="xsl.ada2fhir.resources" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir_resources.xsl"/>-->
 
         <property name="xsl.input" value="${build.dir}/${usecase}/${xsl.in}"/>
         <property name="xsl.output" value="${build.dir}/${usecase}/${xsl.out}"/>
@@ -100,13 +100,13 @@
         <sequential>
             <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
 
-            <echo/>
+          <!--  <echo/>
             <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir.resources}</echo>
             <xslt force="true" style="${xsl.ada2fhir.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputFiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
-            </xslt>
+            </xslt>-->
 
             <echo/>
             <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir}</echo>

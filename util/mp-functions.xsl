@@ -247,14 +247,20 @@
                                     </xsl:when>
                                 </xsl:choose>
                                 <xsl:if test="$toedieningssnelheid">
-                                    <xsl:value-of select="
-                                            concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', if ($toedieningssnelheid/tijdseenheid/@value ne '1') then
-                                                concat($toedieningssnelheid/tijdseenheid/@value, ' ', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))
-                                            else
-                                                '', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))"/>
+                                    <xsl:variable name="unitString" as="xs:string?">
+                                        <xsl:choose>
+                                            <xsl:when test="$toedieningssnelheid/tijdseenheid/@value ne '1'">
+                                                <xsl:value-of select="concat($toedieningssnelheid/tijdseenheid/@value, ' ', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="concat('', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>                                    
+                                    <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
                                 </xsl:if>
                             </xsl:variable>
-                            <xsl:variable name="toedieningsduur" select="./toedieningsduur[(@value | @unit)]"/>
+                            <xsl:variable name="toedieningsduur" select="(toedieningsduur | toedieningsduur/tijds_duur)[(@value | @unit)]"/>
                             <xsl:variable name="toedieningsduur-string" as="xs:string?">
                                 <xsl:if test="$toedieningsduur">
                                     <xsl:value-of select="concat('gedurende ', $toedieningsduur/@value, ' ', nwf:unit-string($toedieningsduur/@value, $toedieningsduur/@unit))"/>

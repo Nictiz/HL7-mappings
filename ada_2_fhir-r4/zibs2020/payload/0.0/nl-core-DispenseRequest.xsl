@@ -60,6 +60,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
+                <!-- pharmaceuticalTreatmentIdentifier -->
+                <xsl:for-each select="../identificatie">
+                    <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                
                 <xsl:for-each select="financiele_indicatiecode">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode">
                         <valueCodeableConcept>
@@ -67,6 +74,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </extension>
                 </xsl:for-each> 
+                
+                <!-- todo relatie episode/contact -->
                 
                 <!-- There's no mapping from the zib to the status, so we'll default to unknown -->
                 <status>
@@ -123,7 +132,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$performer">
                     <performer>
                         <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
+                            <xsl:with-param name="profile" select="$profilenameHealthcareProviderOrganization"/>
                         </xsl:call-template>
                     </performer>
                 </xsl:for-each>
@@ -148,14 +157,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <numberOfRepeatsAllowed value="{./@value}"/>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="te_verstrekken_hoeveelheid">
+                    <!-- zib ada dataset -->
+                    <xsl:for-each select="te_verstrekken_hoeveelheid[@value]">
                         <quantity>
                             <xsl:call-template name="hoeveelheid-to-Quantity"/>
                         </quantity>
                     </xsl:for-each>
-                    
+                    <!-- MP9 ada dataset -->
+                    <xsl:for-each select="te_verstrekken_hoeveelheid/aantal[@value]">
+                        <quantity>
+                            <xsl:call-template name="_buildMedicationQuantity">
+                                <xsl:with-param name="adaValue" select="."/>
+                                <xsl:with-param name="adaUnit" select="../eenheid[@codeSystem = $oidGStandaardBST902THES2]"/>
+                            </xsl:call-template>
+                        </quantity>
+                    </xsl:for-each>                    
                 </xsl:variable>
-                <xsl:if test="count($dispenseRequest) &gt; 0">
+                
+                <xsl:if test="count($dispenseRequest) gt 0">
                     <dispenseRequest>
                         <xsl:copy-of select="$dispenseRequest"/>
                     </dispenseRequest>
