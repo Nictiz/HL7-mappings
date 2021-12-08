@@ -36,14 +36,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-DispenseRequest instance as a MedicationRequest FHIR instance from ADA verstrekkingsverzoek.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationRequest.subject as ADA element or reference.</xd:param>
-        <xd:param name="medicationReference">The MedicationRequest.medicationReference as ADA element or reference.</xd:param>
-        <xd:param name="performer">The MedicationDispense.performer as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-DispenseRequest" mode="nl-core-DispenseRequest" match="verstrekkingsverzoek" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="te_verstrekken_geneesmiddel/farmaceutisch_product" as="element()?"/>
-        <xsl:param name="performer" select="beoogd_verstrekker/zorgaanbieder" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationRequest>
@@ -98,7 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>
                 
-                <xsl:for-each select="$medicationReference">
+                <xsl:for-each select="te_verstrekken_geneesmiddel/farmaceutisch_product">
                     <medicationReference>
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>
@@ -120,7 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </authoredOn>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$performer">
+                <xsl:for-each select="beoogd_verstrekker/zorgaanbieder">
                     <performer>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
