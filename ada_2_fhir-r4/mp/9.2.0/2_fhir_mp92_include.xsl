@@ -175,17 +175,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>-->
         <!-- toedieningsafspraken -->
-        <!--    <xsl:for-each select="//toedieningsafspraak">
+            <xsl:for-each select="//toedieningsafspraak">
             <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
+                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
                 <resource>
-                    <xsl:call-template name="zib-AdministrationAgreement-3.0">
+                    <xsl:call-template name="nl-core-AdministrationAgreement">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="resource-id" select="
-                                if ($referById) then
-                                    nf:removeSpecialCharacters(./identificatie/@value)
-                                else
-                                    ()"/>
+                        <xsl:with-param name="subject" select="../../patient" as="element()"/>
+                        <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]"/>                        
                     </xsl:call-template>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
@@ -194,7 +191,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </search>
                 </xsl:if>
             </entry>
-        </xsl:for-each>-->
+        </xsl:for-each>
         <!-- verstrekkingen -->
         <xsl:for-each select="//verstrekking">
             <entry xmlns="http://hl7.org/fhir">

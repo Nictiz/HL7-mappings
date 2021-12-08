@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="9dbce082-51af-11ec-3403-020000000000"/>
+   <id value="5304ad82-51b8-11ec-1357-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://www.nictiz.nl/fhir/example"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:9dbcf445-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:5304c146-51b8-11ec-1357-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,23 +18,22 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_zonderkeerdosis"/>
+                  <value value="MBH_920_dagdeel"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2021, tot en met 29 jan 2021, 3 maal per dag, aanbrengen, cutaan"/>
+               <valueString value="Vanaf 1 jan 2021, 1 stuk 's avonds, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
                   <start value="2021-01-01T00:00:00+01:00"/>
-                  <end value="2021-01-29T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_920_zonderkeerdosis_MA"/>
+               <value value="MBH_920_dagdeel_MA"/>
             </identifier>
-            <status value="completed"/>
+            <status value="active"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -44,43 +43,50 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9dbce120-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:5304ae20-51b8-11ec-1357-020000000000"/>
                <type value="Medication"/>
-               <display value="Cetomacrogolcreme met vaseline 10%"/>
+               <display value="EZETIMIB/SIMVASTATINE 10/20"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9dbce0c6-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:5304adc6-51b8-11ec-1357-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
-            <authoredOn value="2021-01-01T08:12:00+01:00"/>
+            <authoredOn value="2021-01-01T08:27:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:9dbce0e4-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:5304ade4-51b8-11ec-1357-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <dosageInstruction>
-               <additionalInstruction>
-                  <coding>
-                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-                     <code value="1018"/>
-                     <display value="aanbrengen"/>
-                  </coding>
-               </additionalInstruction>
                <timing>
                   <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
+                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="53"/>
-                     <display value="cutaan"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
                   </coding>
                </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
             </dosageInstruction>
          </MedicationRequest>
       </resource>
@@ -89,7 +95,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce0c6-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:5304adc6-51b8-11ec-1357-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -137,7 +143,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce0e4-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:5304ade4-51b8-11ec-1357-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -145,12 +151,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:9dbce102-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:5304ae02-51b8-11ec-1357-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:9dbce13e-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:5304ae3e-51b8-11ec-1357-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -166,7 +172,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce102-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:5304ae02-51b8-11ec-1357-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -198,7 +204,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce13e-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:5304ae3e-51b8-11ec-1357-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -236,26 +242,26 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce120-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:5304ae20-51b8-11ec-1357-020000000000"/>
       <resource>
          <Medication>
-            <id value="2.16.840.1.113883.2.4.4.10-92789"/>
+            <id value="2.16.840.1.113883.2.4.4.10-77038"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="92789"/>
-                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+                  <code value="77038"/>
+                  <display value="EZETIMIB/SIMVASTATINE 10/20"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="133329"/>
-                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+                  <code value="123129"/>
+                  <display value="EZETIMIB/SIMVASTATINE 10/20"/>
                </coding>
-               <text value="Cetomacrogolcreme met vaseline 10%"/>
+               <text value="EZETIMIB/SIMVASTATINE 10/20"/>
             </code>
          </Medication>
       </resource>

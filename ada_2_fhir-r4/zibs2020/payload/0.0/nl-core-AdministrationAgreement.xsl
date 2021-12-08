@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-AdministrationAgreement" mode="nl-core-AdministrationAgreement" match="toedieningsafspraak" as="element(f:MedicationDispense)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="geneesmiddel_bij_toedienings_afspraak/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="medicationReference" select="(geneesmiddel_bij_toedienings_afspraak|geneesmiddel_bij_toedieningsafspraak)/farmaceutisch_product" as="element()?"/>
         <xsl:param name="performer" select="verstrekker/zorgaanbieder" as="element()?"/>
         <xsl:param name="authorizingPrescription" select="medicatieafspraak/medicatieafspraak" as="element()?"/>
         
@@ -53,6 +53,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
                 </meta>
+                
+                <!-- pharmaceuticalTreatmentIdentifier -->
+                <xsl:for-each select="../identificatie">
+                    <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 
                 <xsl:for-each select="toedieningsafspraak_aanvullende_informatie">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
@@ -98,6 +105,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </modifierExtension>
                 </xsl:for-each>
+                
+                <xsl:for-each select="identificatie[@value | @root]">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier"/>
+                    </identifier>
+                </xsl:for-each>
+                
                 
                 <xsl:for-each select="gebruiksinstructie">
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>

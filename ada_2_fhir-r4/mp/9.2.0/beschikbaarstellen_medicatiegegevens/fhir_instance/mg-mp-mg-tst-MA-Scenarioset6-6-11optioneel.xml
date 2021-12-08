@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="9dbce082-51af-11ec-3403-020000000000"/>
+   <id value="26e486b2-51ba-11ec-5909-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://www.nictiz.nl/fhir/example"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:9dbcf445-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:26e49a76-51ba-11ec-5909-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,21 +18,21 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_zonderkeerdosis"/>
+                  <value value="MBH_920_afbouwschema"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2021, tot en met 29 jan 2021, 3 maal per dag, aanbrengen, cutaan"/>
+               <valueString value="Vanaf 1 jan 2021, tot en met 11 feb 2021, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
                   <start value="2021-01-01T00:00:00+01:00"/>
-                  <end value="2021-01-29T23:59:59+01:00"/>
+                  <end value="2021-02-11T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_920_zonderkeerdosis_MA"/>
+               <value value="MBH_920_afbouwschema_MA"/>
             </identifier>
             <status value="completed"/>
             <intent value="order"/>
@@ -44,32 +44,32 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9dbce120-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:26e48750-51ba-11ec-5909-020000000000"/>
                <type value="Medication"/>
-               <display value="Cetomacrogolcreme met vaseline 10%"/>
+               <display value="Fusidinezuur creme 20mg/g"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9dbce0c6-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:26e486f6-51ba-11ec-5909-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
-            <authoredOn value="2021-01-01T08:12:00+01:00"/>
+            <authoredOn value="2021-01-01T08:40:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:9dbce0e4-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:26e48714-51ba-11ec-5909-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <dosageInstruction>
-               <additionalInstruction>
-                  <coding>
-                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-                     <code value="1018"/>
-                     <display value="aanbrengen"/>
-                  </coding>
-               </additionalInstruction>
+               <sequence value="1"/>
                <timing>
                   <repeat>
-                     <frequency value="3"/>
+                     <boundsDuration>
+                        <value value="2"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
@@ -81,6 +81,100 @@
                      <display value="cutaan"/>
                   </coding>
                </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="3"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="3"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="3"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="53"/>
+                     <display value="cutaan"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="3"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="6"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="53"/>
+                     <display value="cutaan"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </doseQuantity>
+               </doseAndRate>
             </dosageInstruction>
          </MedicationRequest>
       </resource>
@@ -89,7 +183,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce0c6-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:26e486f6-51ba-11ec-5909-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -137,7 +231,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce0e4-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:26e48714-51ba-11ec-5909-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -145,12 +239,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:9dbce102-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:26e48732-51ba-11ec-5909-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:9dbce13e-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:26e4876e-51ba-11ec-5909-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -166,7 +260,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce102-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:26e48732-51ba-11ec-5909-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -198,7 +292,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce13e-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:26e4876e-51ba-11ec-5909-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -236,26 +330,26 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce120-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:26e48750-51ba-11ec-5909-020000000000"/>
       <resource>
          <Medication>
-            <id value="2.16.840.1.113883.2.4.4.10-92789"/>
+            <id value="2.16.840.1.113883.2.4.4.10-16705"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="92789"/>
-                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+                  <code value="16705"/>
+                  <display value="Fusidinezuur creme 20mg/g"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="133329"/>
-                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+                  <code value="73466"/>
+                  <display value="Fusidinezuur creme 20mg/g"/>
                </coding>
-               <text value="Cetomacrogolcreme met vaseline 10%"/>
+               <text value="Fusidinezuur creme 20mg/g"/>
             </code>
          </Medication>
       </resource>

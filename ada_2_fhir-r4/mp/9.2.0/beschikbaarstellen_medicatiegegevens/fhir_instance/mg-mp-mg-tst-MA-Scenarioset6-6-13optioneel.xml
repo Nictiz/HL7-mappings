@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="9dbce082-51af-11ec-3403-020000000000"/>
+   <id value="2d985952-51e2-11ec-7318-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://www.nictiz.nl/fhir/example"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:9dbcf445-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:2d986d15-51e2-11ec-7318-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,21 +18,21 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_zonderkeerdosis"/>
+                  <value value="MBH_920_toedieningssnelheid"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2021, tot en met 29 jan 2021, 3 maal per dag, aanbrengen, cutaan"/>
+               <valueString value="Vanaf 1 jan 2021, tot en met 9 jan 2021, toedieningssnelheid: maximaal 0.2 à 0.5 ml per uur, parenteraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
                   <start value="2021-01-01T00:00:00+01:00"/>
-                  <end value="2021-01-29T23:59:59+01:00"/>
+                  <end value="2021-01-09T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_920_zonderkeerdosis_MA"/>
+               <value value="MBH_920_toedieningssnelheid_MA"/>
             </identifier>
             <status value="completed"/>
             <intent value="order"/>
@@ -44,43 +44,40 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9dbce120-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:2d9859f0-51e2-11ec-7318-020000000000"/>
                <type value="Medication"/>
-               <display value="Cetomacrogolcreme met vaseline 10%"/>
+               <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9dbce0c6-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:2d985996-51e2-11ec-7318-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
-            <authoredOn value="2021-01-01T08:12:00+01:00"/>
+            <authoredOn value="2021-01-01T08:47:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:9dbce0e4-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:2d9859b4-51e2-11ec-7318-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <dosageInstruction>
-               <additionalInstruction>
-                  <coding>
-                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-                     <code value="1018"/>
-                     <display value="aanbrengen"/>
-                  </coding>
-               </additionalInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="53"/>
-                     <display value="cutaan"/>
+                     <code value="10"/>
+                     <display value="parenteraal"/>
                   </coding>
                </route>
+               <doseAndRate>
+                  <rateRange>
+                     <low>
+                        <value value="0.2"/>
+                        <unit value="milliliter"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="233"/>
+                     </low>
+                     <high value="0.5/"/>
+                  </rateRange>
+               </doseAndRate>
             </dosageInstruction>
          </MedicationRequest>
       </resource>
@@ -89,7 +86,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce0c6-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:2d985996-51e2-11ec-7318-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -137,7 +134,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce0e4-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:2d9859b4-51e2-11ec-7318-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -145,12 +142,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:9dbce102-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:2d9859d2-51e2-11ec-7318-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:9dbce13e-51af-11ec-3403-020000000000"/>
+               <reference value="urn:uuid:2d985a0e-51e2-11ec-7318-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -166,7 +163,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce102-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:2d9859d2-51e2-11ec-7318-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -198,7 +195,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce13e-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:2d985a0e-51e2-11ec-7318-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -236,26 +233,26 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9dbce120-51af-11ec-3403-020000000000"/>
+      <fullUrl value="urn:uuid:2d9859f0-51e2-11ec-7318-020000000000"/>
       <resource>
          <Medication>
-            <id value="2.16.840.1.113883.2.4.4.10-92789"/>
+            <id value="2.16.840.1.113883.2.4.4.10-94692"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="92789"/>
-                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+                  <code value="94692"/>
+                  <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="133329"/>
-                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+                  <code value="134538"/>
+                  <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
                </coding>
-               <text value="Cetomacrogolcreme met vaseline 10%"/>
+               <text value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </code>
          </Medication>
       </resource>
