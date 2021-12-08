@@ -81,11 +81,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:medicationReference" mode="nl-core-MedicationAgreement">
 		<xsl:variable name="referenceValue" select="f:reference/@value"/>
-		<afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
+		<afgesproken_geneesmiddel>
 			<!-- xxxwim: element 'f:medicationReference' komt overeen met de cómbi 'afgesproken_geneesmiddel/farmaceutisch_product',
 				dus 1 element wordt 2 elementen -->	
-			<farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49" value="{./f:reference/@value}"/>
-<!--xxxwim: removed:		
+			<farmaceutisch_product value="{nf:convert2NCName(./f:reference/@value)}"/>
+<!--xxxwim: removed:		moet naar bouwstenen
 			<xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:Medication" mode="zib-PharmaceuticalProduct-2.0"/>-->
 		</afgesproken_geneesmiddel>
 	</xsl:template>
@@ -117,8 +117,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:requester to voorschrijver</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:requester" mode="nl-core-MedicationAgreement">
-		<voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
-			<zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45" value="{./f:reference/@value}">
+		<voorschrijver>
+			<zorgverlener value="{nf:convert2NCName(./f:reference/@value)}">
 			</zorgverlener>
 			<!-- xxxwim: de entry/fullUrl/@value met content resource/PractitionerRole/specialty moet nog in de bouwstenen/zorgverlener-->			
 		</voorschrijver>
