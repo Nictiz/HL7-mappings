@@ -29,6 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="nl-core-AbilityToUseToilet.xsl"/>
     <xsl:import href="nl-core-AddressInformation.xsl"/>
+    <xsl:import href="nl-core-AdvanceDirective.xsl"/>
     <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
     <xsl:import href="nl-core-AlcoholUse.xsl"/>
     <xsl:import href="nl-core-Alert.xsl"/>
@@ -69,6 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-SOAPReport.xsl"/>
     <xsl:import href="nl-core-TobaccoUse.xsl"/>
     <xsl:import href="nl-core-TextResult.xsl"/>
+    <xsl:import href="nl-core-Vaccination.xsl"/>
     <xsl:import href="nl-core-VisualAcuity.xsl"/>
     <xsl:import href="nl-core-VisualFunction.xsl"/>
     

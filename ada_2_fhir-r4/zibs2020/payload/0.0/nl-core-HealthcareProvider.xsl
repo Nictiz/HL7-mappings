@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a Organization resource based on nl-core-HealthcareProvider-Organization</xd:desc>
+        <xd:desc>Produces an Organization resource based on nl-core-HealthcareProvider-Organization</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="nl-core-HealthcareProvider-Organization" name="nl-core-HealthcareProvider-Organization" as="element(f:Organization)?">
@@ -121,7 +121,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing a HealthcareProvider, both to a Location and an Organization resource</xd:desc>
-        <xd:param name="profile"></xd:param>
+        <xd:param name="profile">Parameter to indicate for which target profile a display is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder" mode="_generateDisplay">
         <xsl:param name="profile" required="yes" as="xs:string"/>
@@ -154,7 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify a HealthProfessional present in a (set of) ada-instance(s)</xd:desc>
-        <xd:param name="profile">If the patient is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
+        <xd:param name="profile">Parameter to indicate for which target profile an id is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>

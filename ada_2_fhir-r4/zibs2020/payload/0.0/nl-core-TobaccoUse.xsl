@@ -31,6 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-TobaccoUse instance as a Observation FHIR instance from ADA tabak_gebruik.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="tabak_gebruik" name="nl-core-TobaccoUse" mode="nl-core-TobaccoUse" as="element(f:Observation)">
         <xsl:param name="in" as="element()?" select="."/>
