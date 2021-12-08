@@ -36,16 +36,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-MedicationAgreement instance as a MedicationRequest FHIR instance from ADA medicatieafspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationRequest.subject as ADA element or reference.</xd:param>
-        <xd:param name="medicationReference">The MedicationRequest.medicationReference as ADA element or reference.</xd:param>
-        <xd:param name="requester">The MedicationRequest.requester as ADA element or reference.</xd:param>
-        <xd:param name="reasonReference">The MedicationRequest.reasonReference as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-MedicationAgreement" mode="nl-core-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="afgesprokengeneesmiddel/farmaceutisch_product" as="element()?"/>
-        <xsl:param name="requester" select="voorschrijver/zorgverlener" as="element()?"/>
-        <xsl:param name="reasonReference" select="reden_van_voorschrijven/probleem" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationRequest>
@@ -115,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>
                 
-                <xsl:for-each select="$medicationReference">
+                <xsl:for-each select="afgesprokengeneesmiddel/farmaceutisch_product">
                     <medicationReference>
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>
@@ -137,7 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </authoredOn>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$requester">
+                <xsl:for-each select="voorschrijver/zorgverlener">
                     <requester>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
@@ -151,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </reasonCode>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$reasonReference">
+                <xsl:for-each select="reden_van_voorschrijven/probleem">
                     <reasonReference>
                         <xsl:call-template name="makeReference"/>
                     </reasonReference>

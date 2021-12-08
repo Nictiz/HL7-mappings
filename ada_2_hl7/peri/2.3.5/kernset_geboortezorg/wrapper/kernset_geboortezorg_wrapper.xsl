@@ -17,10 +17,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <!-- the param can be called from outside this stylesheet, if no value is provided it defaults to whatever is set in 'select'
         If the input doc contains data and a wrapper in meta, data is taken from input -->
-    <xsl:param name="input_xml_payload" select="adaxml/data"/>
+    <xsl:param name="input_xml_payload" select="if (adaxml/data) then adaxml/data else ."/>
     <!--<xsl:param name="input_xml_payload" select="'../ada_instance/999.1 Test_NL.xml'"/>
         If the input doc contains data and a wrapper in meta, wrapper is taken from input -->
-    <xsl:param name="input_xml_wrapper" select="adaxml/meta"/>
+    <xsl:param name="input_xml_wrapper" select="if (adaxml/meta/*) then adaxml/meta else 'input_wrapper.xml'"/>
 
     <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
     <xsl:param name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>

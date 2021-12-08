@@ -28,17 +28,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada tekst_uitslag to FHIR DiagnosticReport conforming to profile nl-core-TextResult</xd:desc>
+        <xd:desc>Converts ada tekst_uitslag to FHIR DiagnosticReport and Media conforming to profile nl-core-TextResult and nl-core-TextResult.VisualResult.</xd:desc>
     </xd:doc>
     
     <xd:doc>
         <xd:desc>Create a FHIR DiagnosticReport instance conforming to profile nl-core-TextResult from ada tekst_uitslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <!--<xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-        <xd:param name="author">Optional ADA instance or ADA reference element for the author.</xd:param>-->
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="tekst_uitslag" name="nl-core-TextResult" mode="nl-core-TextResult" as="element(f:DiagnosticReport)?">
         <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" as="element()?"/>
         
         <xsl:for-each select="$in">
             <DiagnosticReport>
@@ -76,6 +76,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </code>
                 </xsl:for-each>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
                 <xsl:for-each select="tekst_uitslag_datum_tijd">
                     <effectiveDateTime>
                         <xsl:attribute name="value">
@@ -89,7 +93,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <media>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="'nl-core-TextResult-Media'"/>
+                            <xsl:with-param name="profile" select="'nl-core-TextResult.VisualResult'"/>
                             <xsl:with-param name="wrapIn" select="'link'"/>
                         </xsl:call-template>
                     </media>
@@ -101,16 +105,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="visueel_resultaat" name="nl-core-TextResult-Media" mode="nl-core-TextResult-Media" as="element(f:Media)?">
+    <xd:doc>
+        <xd:desc>Create a FHIR Media instance conforming to profile nl-core-TextResult.VisualResult from ada tekst_uitslag element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+    </xd:doc>
+    <xsl:template match="visueel_resultaat" name="nl-core-TextResult.VisualResult" mode="nl-core-TextResult.VisualResult" as="element(f:Media)?">
         <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Media>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile">nl-core-TextResult.VisualResult</xsl:with-param>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult-Media"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult"/>
                 </meta>
                 <status value="unknown"/>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
                 <content>
                     <!-- Needed to satisfy constraint att-1. 'application/octet-stream' is basically 'unknown' ('arbitrary binary data') -->
                     <contentType value="application/octet-stream"/>

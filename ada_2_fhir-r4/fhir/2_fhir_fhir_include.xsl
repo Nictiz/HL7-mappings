@@ -61,15 +61,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="serverBaseUri" select="'http://example.nictiz.nl/fhir'" as="xs:string"/>
 
     <xd:doc>
-        <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
+        <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile ids. Note that multiple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
+        <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
         <nm:map ada="farmaceutisch_product" resource="Medication" profile="nl-core-PharmaceuticalProduct"/>
+        <nm:map ada="functie_horen" resource="Observation" profile="nl-core-HearingFunction"/>
+        <nm:map ada="functie_zien" resource="Observation" profile="nl-core-VisualFunction"/>
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
@@ -81,16 +84,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medicatie_toediening" resource="MedicationAdministration" profile="nl-core-MedicationAdministration2"/>
         <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="nl-core-MedicationAgreement"/>
         <nm:map ada="medicatieverstrekking" resource="MedicationDispense" profile="nl-core-MedicationDispense"/>
+        <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-MedicalDevice"/>
+        <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
+        <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
+        <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
+        <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport-Observation"/>
         <nm:map ada="tabak_gebruik" resource="Observation" profile="nl-core-TobaccoUse"/>
         <nm:map ada="tekst_uitslag" resource="DiagnosticReport" profile="nl-core-TextResult"/>
+        <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult.VisualResult"/>
         <nm:map ada="toedieningsafspraak" resource="MedicationDispense" profile="nl-core-AdministrationAgreement"/>
+        <nm:map ada="vaccinatie" resource="Immunization" profile="nl-core-Vaccination-event"/>
+        <nm:map ada="vaccinatie" resource="ImmunizationRecommendation" profile="nl-core-Vaccination-request"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="nl-core-DispenseRequest"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
@@ -278,28 +290,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:apply-templates>
                 </nm:reference-display>
             </nm:resource>
-            
-            <!-- SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
-            <xsl:choose>
-                <xsl:when test="$in/self::soepverslag">
-                    <xsl:for-each-group select="$in/soepregel" group-by="nf:getGroupingKeyDefault(.)">
-                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                    </xsl:for-each-group>
-                </xsl:when>
-                <xsl:when test="$in/self::tekst_uitslag">
-                    <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
-                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                    </xsl:for-each-group>
-                </xsl:when>
-            </xsl:choose>
         </xsl:for-each>
+        
+        <!-- HearingFunction.HearingAid::MedicalDevice, VisualFunction.VisualAid::MedicalDevice, MedicalDevice::Product, SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
+        <xsl:choose>
+            <xsl:when test="$in/self::functie_horen">
+                <xsl:for-each-group select="$in/horen_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+            <xsl:when test="$in/self::functie_zien">
+                <xsl:for-each-group select="$in/zien_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+            <xsl:when test="$in/self::medisch_hulpmiddel">
+                <xsl:for-each-group select="$in/product" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+            <xsl:when test="$in/self::soepverslag">
+                <xsl:for-each-group select="$in/soepregel" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+            <xsl:when test="$in/self::tekst_uitslag">
+                <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Generate a FHIR reference. When there's no input or a reference can't otherwise be constructed, no output is generated.</xd:desc>
         
-        <xd:param name="in">The target of the reference as either an ADA instance an ADA reference element. May be omitted if it is the same as the context.</xd:param>
-        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="in">The target of the reference as either an ADA instance or an ADA reference element. May be omitted if it is the same as the context.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
         <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated as well.</xd:param>
     </xd:doc>
     <!-- Outputs reference if input is ADA, fhirMetadata or ADA reference element -->
