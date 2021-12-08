@@ -35,6 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-LivingSituation instance as an Observation FHIR instance from ADA woonsituatie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template match="woonsituatie" name="nl-core-LivingSituation" mode="nl-core-LivingSituation" as="element(f:Observation)">
         <xsl:param name="in" as="element()?" select="."/>

@@ -34,11 +34,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-Alert instance as a Flag FHIR instance from ADA alert.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template match="alert" name="nl-core-Alert" mode="nl-core-Alert" as="element(f:Flag)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="problem" select="conditie/probleem/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Flag>
@@ -47,11 +47,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Alert"/>
                 </meta>
                 
-                <xsl:for-each select="$problem">
+                <xsl:for-each select="conditie/probleem">
                     <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                         <valueReference>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="$problem"/>
                                 <xsl:with-param name="profile" select="'nl-core-Problem'"/>
                             </xsl:call-template>
                         </valueReference>
@@ -98,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </code>
                         </xsl:for-each>
                     </xsl:when>
-                    <xsl:when test="not(alert_naam) and $problem">
+                    <xsl:when test="not(alert_naam) and conditie/probleem">
                         <code>
                             <coding>
                                 <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
