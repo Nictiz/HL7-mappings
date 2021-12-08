@@ -80,13 +80,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 				<zorgaanbieder id="{replace($entryFullURrlAtValue, 'urn:uuid:', '')}">
 				<zorgaanbieder_identificatienummer value="{./f:identifier/f:value/@value}" root="2.16.528.1.1007.3.3"/>
-				<organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
-				<adresgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243">
-					<straat value="Dorpsstraat" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.244"/>
-					<huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.245"/>
-					<postcode value="1234AA" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.249"/>
-					<woonplaats value="Ons Dorp" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.250"/>
-					<adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"/>
+				<organisatie_naam value="{./f:name/@value}"/>
+				<adresgegevens comment="">
+					<straat value="{./f:address/f:line/f:extension[@url eq 'http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName']/f:valueString/@value}"/>
+					<huisnummer value="{./f:address/f:line/f:extension[@url eq 'http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber']/f:valueString/@value}"/>
+					<postcode value="{./f:address/f:postalCode/@value}"/>
+					<woonplaats value="{./f:address/f:city/@value}"/>
+					
+					<adres_soort value="" code="{./f:address/f:line/f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType']/f:valueCodeableConcept/f:coding/f:code/@value}" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
 				</adresgegevens>
 			</zorgaanbieder>
 				
