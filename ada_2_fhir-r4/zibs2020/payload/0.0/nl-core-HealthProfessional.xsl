@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="zorgaanbieder">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="zorgaanbieder"/>
-                        <xsl:with-param name="profile">nl-core-HealthcareProvider</xsl:with-param>
+                        <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
                         <xsl:with-param name="wrapIn" select="'organization'"/>
                     </xsl:call-template>
                 </xsl:for-each>

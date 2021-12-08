@@ -374,6 +374,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-AdministrationAgreement">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+            </xsl:when>            
+            <xsl:when test="$localName = 'vaccinatie'">
+                <xsl:choose>
+                    <xsl:when test="vaccinatie_datum/@value and nf:isPast(vaccinatie_datum/@value)">
+                        <xsl:apply-templates select="$in" mode="nl-core-Vaccination-event">
+                            <xsl:with-param name="patient" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:when test="vaccinatie_datum/@value and nf:isFuture(vaccinatie_datum/@value)">
+                        <xsl:apply-templates select="$in" mode="nl-core-Vaccination-request">
+                            <xsl:with-param name="patient" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="$in" mode="nl-core-Vaccination-event">
+                            <xsl:with-param name="patient" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="$localName = 'verrichting'">
                 <xsl:apply-templates select="$in" mode="nl-core-Procedure">
