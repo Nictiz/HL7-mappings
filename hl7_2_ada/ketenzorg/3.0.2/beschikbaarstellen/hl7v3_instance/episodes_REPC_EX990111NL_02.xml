@@ -1,0 +1,138 @@
+<MCCI_IN200101 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<id extension="750729" root="2.16.840.1.113883.2.4.6.6"/>
+	<creationTime value="20200312131229"/>
+	<versionCode code="NICTIZEd2005-Okt"/>
+	<interactionId extension="MCCI_IN200101" root="2.16.840.1.113883.1.6"/>
+	<profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+	<transmissionQuantity value="1"/>
+	<acknowledgement typeCode="AA">
+		<targetTransmission>
+			<id extension="F6E6ED37-8864-4D8E-AF1D-A4144DA89B03" root="2.16.528.1.1007.3.3.4005.1"/>
+		</targetTransmission>
+	</acknowledgement>
+	<receiver>
+		<device>
+			<id extension="4005" root="2.16.840.1.113883.2.4.6.6"/>
+		</device>
+	</receiver>
+	<sender>
+		<device>
+			<id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+		</device>
+	</sender>
+	<REPC_IN990111NL xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/Publicaties/VZVZ/Ketenzorg/1.0.2/schemas_codeGen_flat/REPC_IN990111NL.xsd" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<!-- Testbericht voor VZVZ acceptatie Scenario: MedMij huisartsgegevens Publicatie: geen (PvE 0.2); Ketenzorg bouwstenen uit publicatie: 1.0.2 Type: Overdracht concerns bouwsteen Auteur: Camille van den Berg -->
+		<id extension="Parasoft-0619-3684-5211" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+		<creationTime value="20200312131229"/>
+		<versionCode code="NICTIZEd2005-Okt"/>
+		<interactionId extension="REPC_IN990111NL" root="2.16.840.1.113883.1.6"/>
+		<profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+		<processingCode code="P"/>
+		<processingModeCode code="T"/>
+		<acceptAckCode code="NE"/>
+		<acknowledgement typeCode="AA">
+			<targetMessage>
+				<id extension="750728" root="2.16.840.1.113883.2.4.6.6"/>
+			</targetMessage>
+		</acknowledgement>
+		<receiver>
+			<device classCode="DEV" determinerCode="INSTANCE">
+				<id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+			</device>
+		</receiver>
+		<sender>
+			<device classCode="DEV" determinerCode="INSTANCE">
+				<id root="2.16.840.1.113883.2.4.6.6" extension="70001000"/>
+			</device>
+		</sender>
+		<ControlActProcess moodCode="EVN">
+			<!-- control act wrapper -->
+			<authorOrPerformer typeCode="AUT">
+				<participant>
+					<AssignedDevice>
+						<id extension="900017439" root="2.16.528.1.1007.3.2"/>
+						<id extension="70001000" root="2.16.840.1.113883.2.4.6.6"/>
+						<Organization>
+							<id extension="00002727" root="2.16.528.1.1007.3.3"/>
+							<name>VZVZ Simulator</name>
+						</Organization>
+					</AssignedDevice>
+				</participant>
+			</authorOrPerformer>
+			<subject>
+				<organizer classCode="CLUSTER" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.16"/>
+					<code code="75310-3" displayName="Health concerns" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<statusCode code="completed"/>
+					<recordTarget typeCode="RCT" contextControlCode="OP">
+						<patientRole>
+							<id extension="900184590" root="2.16.840.1.113883.2.4.6.3"/>
+							<addr>
+								<streetName>Knolweg</streetName>
+								<houseNumber>1003</houseNumber>
+								<postalCode>9999 ZA</postalCode>
+								<city>STITSWERD</city>
+								<country>Nederland</country>
+							</addr>
+							<patient classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<given qualifier="IN">H.</given>
+									<family qualifier="BR">XXX_Mulders</family>
+								</name>
+								<administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" code="M"/>
+								<birthTime value="19851230"/>
+							</patient>
+						</patientRole>
+					</recordTarget>
+					<participant typeCode="CST">
+						<participantRole classCode="ASSIGNED">
+							<id root="2.16.528.1.1007.3.1" extension="900016431"/>
+							<code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+							<playingEntity classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<family qualifier="BR">Huisarts 1</family>
+								</name>
+							</playingEntity>
+							<scopingEntity classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.528.1.1007.3.3" extension="00002727"/>
+								<desc>Gezondheidscentrum Aesculaap</desc>
+							</scopingEntity>
+						</participantRole>
+					</participant>
+					<component contextControlCode="OP" typeCode="COMP">
+						<act classCode="ACT" moodCode="EVN">
+							<!--Overdracht concern-->
+							<templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.212"/>
+							<id extension="MedMijHG_concern_S74.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+							<code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+							<text>Tinea Pedis</text>
+							<statusCode code="active"/>
+							<effectiveTime>
+							    <low value="190001010040"/>
+							</effectiveTime>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+									<id extension="MedMijHG_concern_S74.01_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+									<code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<low value="20190924141229"/>
+									</effectiveTime>
+									<value code="S74.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Tinea Pedis" xsi:type="CD"/>
+								</observation>
+							</entryRelationship>
+						</act>
+					</component>
+				</organizer>
+			</subject>
+			<queryAck>
+				<queryId extension="737FAC7E-B3E0-4A1B-B988-315CD26D7E14" root="2.16.528.1.1007.3.3.4005.2"/>
+				<queryResponseCode code="OK"/>
+				<resultTotalQuantity value="1"/>
+				<resultCurrentQuantity value="1"/>
+				<resultRemainingQuantity value="0"/>
+			</queryAck>
+		</ControlActProcess>
+	</REPC_IN990111NL>
+</MCCI_IN200101>

@@ -1,9 +1,9 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="0b6b03e0-5a6a-11eb-7554-020000000000"/>
+   <id value="8f3b7068-42fb-11ec-2959-020000000000"/>
    <type value="searchset"/>
-   <total value="6"/>
+   <total value="7"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
@@ -20,12 +20,16 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21120 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: 49581000146104 (SNOMED CT), Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
+                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21120 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
                      </caption>
                      <tbody>
                         <tr>
+                           <th>Context</th>
+                           <td>Contact ID: 996624 2.16.840.1.113883.2.4.6.6.90000258.4.1 (Id: 996624 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1))</td>
+                        </tr>
+                        <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-01-30</td>
+                           <td>30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -62,6 +66,7 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
                </coding>
             </category>
             <code>
@@ -73,14 +78,21 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0b6b130a-5a6a-11eb-7554-020000000000"/>
+               <reference value="urn:uuid:8f3b7fec-42fb-11ec-2959-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996624"/>
+               </identifier>
+               <display value="Contact ID: 996624 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0b6b131f-5a6a-11eb-7554-020000000000"/>
+                     <reference value="urn:uuid:8f3b8003-42fb-11ec-2959-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
@@ -101,7 +113,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0b6b1327-5a6a-11eb-7554-020000000000"/>
+      <fullUrl value="urn:uuid:8f3b800b-42fb-11ec-2959-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -112,12 +124,12 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21121 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: 49581000146104 (SNOMED CT), Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
+                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21121 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="2">2019-01-30</td>
+                           <td colspan="2">30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -130,7 +142,8 @@
                            </td>
                            <td>97 %</td>
                            <td>
-                              <div>normal (referencerange-meaning) 95 % - 99 %</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 95 % - 99 %</div>
                            </td>
                         </tr>
                      </tbody>
@@ -156,6 +169,7 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
                </coding>
             </category>
             <code>
@@ -167,14 +181,14 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0b6b130a-5a6a-11eb-7554-020000000000"/>
+               <reference value="urn:uuid:8f3b7fec-42fb-11ec-2959-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0b6b131f-5a6a-11eb-7554-020000000000"/>
+                     <reference value="urn:uuid:8f3b8003-42fb-11ec-2959-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
@@ -204,6 +218,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -214,7 +229,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0b6b1335-5a6a-11eb-7554-020000000000"/>
+      <fullUrl value="urn:uuid:8f3b8019-42fb-11ec-2959-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -225,12 +240,12 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21123 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: 49581000146104 (SNOMED CT), Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
+                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21123 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-02-03</td>
+                           <td>3 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -267,6 +282,7 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
                </coding>
             </category>
             <code>
@@ -278,14 +294,14 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0b6b130a-5a6a-11eb-7554-020000000000"/>
+               <reference value="urn:uuid:8f3b7fec-42fb-11ec-2959-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-03"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0b6b131f-5a6a-11eb-7554-020000000000"/>
+                     <reference value="urn:uuid:8f3b8003-42fb-11ec-2959-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
@@ -306,7 +322,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0b6b1341-5a6a-11eb-7554-020000000000"/>
+      <fullUrl value="urn:uuid:8f3b8025-42fb-11ec-2959-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -317,12 +333,12 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21124 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: 49581000146104 (SNOMED CT), Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
+                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21124 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="2">2019-02-05</td>
+                           <td colspan="2">5 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -335,7 +351,8 @@
                            </td>
                            <td>4.5 mmol/L</td>
                            <td>
-                              <div>normal (referencerange-meaning) 4 mmol/L - 8 mmol/L</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 4 mmol/L - 8 mmol/L</div>
                            </td>
                         </tr>
                      </tbody>
@@ -361,6 +378,7 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
                </coding>
             </category>
             <code>
@@ -372,14 +390,14 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0b6b130a-5a6a-11eb-7554-020000000000"/>
+               <reference value="urn:uuid:8f3b7fec-42fb-11ec-2959-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-05"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0b6b131f-5a6a-11eb-7554-020000000000"/>
+                     <reference value="urn:uuid:8f3b8003-42fb-11ec-2959-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
@@ -409,6 +427,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -419,7 +438,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0b6b134f-5a6a-11eb-7554-020000000000"/>
+      <fullUrl value="urn:uuid:8f3b8033-42fb-11ec-2959-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -430,12 +449,12 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21132 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: 49581000146104 (SNOMED CT), Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
+                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21132 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="2">2019-02-02</td>
+                           <td colspan="2">2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -448,7 +467,8 @@
                            </td>
                            <td>95 %</td>
                            <td>
-                              <div>normal (referencerange-meaning) 95 % - 99 %</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 95 % - 99 %</div>
                            </td>
                         </tr>
                      </tbody>
@@ -474,6 +494,7 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
                </coding>
             </category>
             <code>
@@ -485,14 +506,14 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0b6b130a-5a6a-11eb-7554-020000000000"/>
+               <reference value="urn:uuid:8f3b7fec-42fb-11ec-2959-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0b6b131f-5a6a-11eb-7554-020000000000"/>
+                     <reference value="urn:uuid:8f3b8003-42fb-11ec-2959-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
@@ -522,6 +543,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -532,7 +554,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0b6b135d-5a6a-11eb-7554-020000000000"/>
+      <fullUrl value="urn:uuid:8f3b8041-42fb-11ec-2959-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -543,12 +565,12 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21132 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: 49581000146104 (SNOMED CT), Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
+                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21132 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="3">2019-02-02</td>
+                           <td colspan="3">2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -565,7 +587,8 @@
                               <span title="Low (L - v2/0078)">Low</span>
                            </td>
                            <td>
-                              <div>normal (referencerange-meaning) 95 % - 99 %</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 95 % - 99 %</div>
                            </td>
                         </tr>
                      </tbody>
@@ -591,6 +614,7 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
                </coding>
             </category>
             <code>
@@ -602,14 +626,14 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0b6b130a-5a6a-11eb-7554-020000000000"/>
+               <reference value="urn:uuid:8f3b7fec-42fb-11ec-2959-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0b6b131f-5a6a-11eb-7554-020000000000"/>
+                     <reference value="urn:uuid:8f3b8003-42fb-11ec-2959-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
@@ -646,6 +670,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -656,7 +681,92 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0b6b130a-5a6a-11eb-7554-020000000000"/>
+      <fullUrl value="urn:uuid:8f3b7ec0-42fb-11ec-2959-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-LaboratoryResult"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Id: 21123 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief<span style="display: block;">Uitvoerende: Responsible Party</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Bepalingdatum/tijd</th>
+                           <td>3 februari 2019</td>
+                        </tr>
+                        <tr>
+                           <th>Code</th>
+                           <th>Waarde</th>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span title="boolean test (3333333333 - nhg-tabel-45-diagnostische-bepalingen)">boolean test</span>
+                           </td>
+                           <td>ja</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+               <value value="21123"/>
+            </identifier>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+                  <version value="v29"/>
+                  <code value="3333333333"/>
+                  <display value="boolean test"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:8f3b7fec-42fb-11ec-2959-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+            <effectiveDateTime value="2019-02-03"/>
+            <performer>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                  <valueReference>
+                     <reference value="urn:uuid:8f3b8003-42fb-11ec-2959-020000000000"/>
+                     <display value="Responsible Party"/>
+                  </valueReference>
+               </extension>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <display value="Responsible Party"/>
+            </performer>
+            <valueBoolean value="true"/>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:8f3b7fec-42fb-11ec-2959-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -692,7 +802,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-08-02"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
@@ -754,7 +874,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0b6b1307-5a6a-11eb-7554-020000000000"/>
+      <fullUrl value="urn:uuid:8f3b7fe9-42fb-11ec-2959-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -782,7 +902,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0b6b131f-5a6a-11eb-7554-020000000000"/>
+      <fullUrl value="urn:uuid:8f3b8003-42fb-11ec-2959-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

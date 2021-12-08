@@ -102,6 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="xsiType"/>
             </xsl:call-template>
         </xsl:for-each>
+        
         <!-- meerlingindicator -->
         <xsl:for-each select="meerling_indicator[@value | @nullFlavor]">
             <xsl:call-template name="makeBLValue">

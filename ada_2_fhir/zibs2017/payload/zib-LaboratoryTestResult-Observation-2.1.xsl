@@ -145,16 +145,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data]"/>
             
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation</xsl:variable>
+                
                 <Observation>
                     <xsl:if test="$referById">
-                        <id value="{$logicalId}"/>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
                     <meta>
                         <xsl:if test="test_code[@codeSystem = $oidNHGTabel45DiagnBepal]">
                             <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-LaboratoryResult"/>
                         </xsl:if>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
+                    <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                    <xsl:for-each select="episode">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+                            <valueReference>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                                <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>
                     <!--NL-CM:0.0.6   Identificatienummer-->
                     <xsl:for-each select="hcimroot/identification_number">
                         <identifier>
@@ -187,6 +202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="49581000146104"/>
+                            <display value="Laboratory test finding"/>
                         </coding>
                     </category>
                     <!--NL-CM:13.1.8	TestCode	1	The name and code of the executed test.		ListTestNameCodelist-->
@@ -203,7 +219,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                         </subject>
                     </xsl:for-each>
-                    <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we could opt to only support Encounter here. -->
+                    <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we opt to only support Encounter here and move EpisodeOfCare to an extension -->
                     <xsl:for-each select="../encounter">
                         <context>
                             <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
@@ -285,6 +301,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <coding>
                                     <system value="http://hl7.org/fhir/referencerange-meaning"/>
                                     <code value="normal"/>
+                                    <display value="Normal Range"/>
                                 </coding>
                             </type>
                         </referenceRange>

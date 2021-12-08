@@ -36,8 +36,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
-    <xsl:variable name="usecase">mp9</xsl:variable>
-
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
+    
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
     </xsl:variable>
@@ -124,8 +125,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
     </xd:doc>
     <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>
-        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
+        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, './')[last()]"/>
+        <xsl:result-document href="./{f:id/@value}.xml">
             <xsl:copy-of select="."/>
         </xsl:result-document>
     </xsl:template>
