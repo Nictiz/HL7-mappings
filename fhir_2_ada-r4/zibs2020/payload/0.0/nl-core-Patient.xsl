@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="nl-core-patient">http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Template to convert f:Patient to ADA patient</xd:desc>
+        <xd:desc>Template to convert f:Patient to ADA patient, currently only support for elements that are part of MP9 2.0 transactions</xd:desc>
     </xd:doc>
     <xsl:template match="f:Patient" mode="nl-core-Patient">
         <patient>
