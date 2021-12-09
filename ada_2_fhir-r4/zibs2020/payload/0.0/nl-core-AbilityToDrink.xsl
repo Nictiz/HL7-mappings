@@ -84,4 +84,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="vermogen_tot_drinken" mode="_generateDisplay">
+        <xsl:variable name="parts">
+            <xsl:text>AbilityToDrink observation: </xsl:text>
+            <xsl:if test="drinken/@displayName">
+                <xsl:value-of select="drinken/@displayName"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ', ')"/>     
+    </xsl:template>
+    
 </xsl:stylesheet>
