@@ -28,11 +28,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada snaq65score to FHIR Observation conforming to profile nl-core-SNAQ65+Score</xd:desc>
+        <xd:desc>Converts ada snaq65score to FHIR Observation conforming to profile nl-core-SNAQ65plusScore</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-SNAQ65+Score instance as an Observation FHIR instance from ada snaq65score element.</xd:desc>
+        <xd:desc>Create an nl-core-SNAQ65plusScore instance as an Observation FHIR instance from ada snaq65score element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -43,11 +43,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-SNAQ65+Score'"/>
+                    <xsl:with-param name="profile" select="'nl-core-SNAQ65plusScore'"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SNAQ65+Score"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SNAQ65plusScore"/>
                 </meta>
                 <status value="final"/>
                 <code>

@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-Problem.xsl"/>
     <xsl:import href="nl-core-Procedure.xsl"/>
     <xsl:import href="nl-core-Refraction.xsl"/>
-    <xsl:import href="nl-core-SNAQ65+Score.xsl"/>
+    <xsl:import href="nl-core-SNAQ65plusScore.xsl"/>
     <xsl:import href="nl-core-SNAQrcScore.xsl"/>
     <xsl:import href="nl-core-SNAQScore.xsl"/>
     <xsl:import href="nl-core-SOAPReport.xsl"/>
