@@ -36,14 +36,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_gebruik.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationStatement.subject as ADA element or reference.</xd:param>
-        <xd:param name="medicationReference">The MedicationStatement.medicationReference as ADA element or reference.</xd:param>
-        <xd:param name="prescriber">The MedicationStatement.prescriber as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_gebruik" as="element(f:MedicationStatement)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="gebruiksproduct/farmaceutisch_product" as="element()?"/>
-        <xsl:param name="prescriber" select="voorschrijver/zorgverlener" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationStatement>
@@ -60,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-TimeInterval.Duration"/>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$prescriber">
+                <xsl:for-each select="voorschrijver/zorgverlener">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                         <valueReference>
                             <xsl:call-template name="makeReference">
@@ -127,7 +123,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>
                 
-                <xsl:for-each select="$medicationReference">
+                <xsl:for-each select="gebruiksproduct/farmaceutisch_product">
                     <medicationReference>
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>

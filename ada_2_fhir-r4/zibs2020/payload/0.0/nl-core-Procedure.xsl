@@ -33,11 +33,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create an nl-core-Procedure as a Procedure FHIR instance from ada verrichting element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="report">The Report concept as ADA 'tekst_uitslag' element or reference.</xd:param>
     </xd:doc>
     <xsl:template match="verrichting" name="nl-core-Procedure" mode="nl-core-Procedure" as="element(f:Procedure)">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="report" as="element(tekst_uitslag)?"/>
+        
         <xsl:for-each select="$in">
             <Procedure>
                 <xsl:call-template name="insertLogicalId"/>
@@ -132,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
 
-                <!--<xsl:for-each select="medisch_hulpmiddel">
+                <xsl:for-each select="medisch_hulpmiddel">
                     <focalDevice>
                         <manipulated>
                             <xsl:call-template name="makeReference">
@@ -141,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </manipulated>
                     </focalDevice>
-                </xsl:for-each>-->
+                </xsl:for-each>
             </Procedure>
         </xsl:for-each>
     </xsl:template>

@@ -35,12 +35,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a FHIR Composition instance conforming to profile nl-core-SOAPReport from ada soepverslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-        <xd:param name="author">Optional ADA instance or ADA reference element for the author.</xd:param>
     </xd:doc>
     <xsl:template match="soepverslag" name="nl-core-SOAPReport" mode="nl-core-SOAPReport" as="element(f:Composition)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="author" select="auteur/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Composition>
@@ -69,11 +67,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$author"/>
-                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
-                    <xsl:with-param name="wrapIn" select="'author'"/>
-                </xsl:call-template>
+                <xsl:for-each select="auteur/*">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        <xsl:with-param name="wrapIn" select="'author'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 <title>
                     <xsl:attribute name="value">
                         <!-- Suggested value is the ICPC display name on the E-entry -->
@@ -115,6 +114,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Create a FHIR Observation instance conforming to profile nl-core-SOAPReport-Observation from ada 'soepregel' element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+    </xd:doc>
     <xsl:template match="soepregel" name="nl-core-SOAPReport-Observation" mode="nl-core-SOAPReport-Observation" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         
