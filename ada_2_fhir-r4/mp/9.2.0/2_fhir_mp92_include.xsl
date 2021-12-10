@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="nl-core-MedicationAgreement">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="subject" select="../../patient" as="element()"/>
+                        <xsl:with-param name="subject" select="../../patient"/>
                         <xsl:with-param name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]"/>
                     </xsl:call-template>
                 </resource>
