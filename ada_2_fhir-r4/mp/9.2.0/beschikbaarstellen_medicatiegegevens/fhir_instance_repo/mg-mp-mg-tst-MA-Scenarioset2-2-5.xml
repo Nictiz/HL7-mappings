@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="5f2ad5a6-583d-11ec-8098-020000000000"/>
+   <id value="748fc9be-583e-11ec-1065-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:5f2ae582-583d-11ec-8098-020000000000"/>
+      <fullUrl value="urn:uuid:748fd99a-583e-11ec-1065-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,19 +18,19 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 5 dagen, tot en met T + 2 dagen, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+               <valueString value="Vanaf 27 dec 2020, tot en met 3 jan 2021, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +2}T23:59:59+02:00"/>
+                  <start value="2020-12-27T00:00:00+01:00"/>
+                  <end value="2021-01-03T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_920_Toedieningsweg_MA"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -40,18 +40,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5f2ad63a-583d-11ec-8098-020000000000"/>
+               <reference value="urn:uuid:748fca52-583e-11ec-1065-020000000000"/>
                <type value="Medication"/>
                <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5f2ad5e0-583d-11ec-8098-020000000000"/>
+               <reference value="urn:uuid:748fc9f8-583e-11ec-1065-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -5}T08:15:00+02:00"/>
+            <authoredOn value="2020-12-27T08:15:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:5f2ad5fe-583d-11ec-8098-020000000000"/>
+               <reference value="urn:uuid:748fca16-583e-11ec-1065-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -100,7 +100,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2ad5e0-583d-11ec-8098-020000000000"/>
+      <fullUrl value="urn:uuid:748fc9f8-583e-11ec-1065-020000000000"/>
       <resource>
          <Patient>
             <id value="C-XXX-COENEN"/>
@@ -148,7 +148,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2ad5fe-583d-11ec-8098-020000000000"/>
+      <fullUrl value="urn:uuid:748fca16-583e-11ec-1065-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -156,12 +156,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:5f2ad61c-583d-11ec-8098-020000000000"/>
+               <reference value="urn:uuid:748fca34-583e-11ec-1065-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:5f2ad658-583d-11ec-8098-020000000000"/>
+               <reference value="urn:uuid:748fca70-583e-11ec-1065-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -177,7 +177,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2ad61c-583d-11ec-8098-020000000000"/>
+      <fullUrl value="urn:uuid:748fca34-583e-11ec-1065-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -209,7 +209,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2ad658-583d-11ec-8098-020000000000"/>
+      <fullUrl value="urn:uuid:748fca70-583e-11ec-1065-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -247,7 +247,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2ad63a-583d-11ec-8098-020000000000"/>
+      <fullUrl value="urn:uuid:748fca52-583e-11ec-1065-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-80691"/>

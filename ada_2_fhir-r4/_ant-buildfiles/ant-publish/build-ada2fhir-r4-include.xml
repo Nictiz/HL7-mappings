@@ -114,6 +114,7 @@
                 <fileset refid="inputFiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
             </xslt>
         </sequential>
     </target>

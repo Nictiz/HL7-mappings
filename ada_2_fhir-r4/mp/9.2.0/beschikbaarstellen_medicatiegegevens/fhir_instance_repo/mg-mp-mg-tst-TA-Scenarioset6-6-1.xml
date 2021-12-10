@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="61688cdc-583d-11ec-5730-020000000000"/>
+   <id value="76d3ada8-583e-11ec-1222-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:616887dc-583d-11ec-5730-020000000000"/>
+      <fullUrl value="urn:uuid:76d3a8a8-583e-11ec-1222-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -18,22 +18,22 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, +0}T09:00:00+02:00"/>
+               <valueDateTime value="2021-01-01T09:00:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T + 16 dagen, 1 à 2 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf 1 jan 2021, tot en met 17 jan 2021, 1 à 2 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +16}T23:59:59+02:00"/>
+                  <start value="2021-01-01T00:00:00+01:00"/>
+                  <end value="2021-01-17T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_variabelefrequentie_TA"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -42,18 +42,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:61688d34-583d-11ec-5730-020000000000"/>
+               <reference value="urn:uuid:76d3ae00-583e-11ec-1222-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:61688d16-583d-11ec-5730-020000000000"/>
+               <reference value="urn:uuid:76d3ade2-583e-11ec-1222-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:61688d52-583d-11ec-5730-020000000000"/>
+                  <reference value="urn:uuid:76d3ae1e-583e-11ec-1222-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -98,7 +98,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:61688d16-583d-11ec-5730-020000000000"/>
+      <fullUrl value="urn:uuid:76d3ade2-583e-11ec-1222-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -146,7 +146,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:61688d52-583d-11ec-5730-020000000000"/>
+      <fullUrl value="urn:uuid:76d3ae1e-583e-11ec-1222-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -162,7 +162,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:61688d34-583d-11ec-5730-020000000000"/>
+      <fullUrl value="urn:uuid:76d3ae00-583e-11ec-1222-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1101099"/>

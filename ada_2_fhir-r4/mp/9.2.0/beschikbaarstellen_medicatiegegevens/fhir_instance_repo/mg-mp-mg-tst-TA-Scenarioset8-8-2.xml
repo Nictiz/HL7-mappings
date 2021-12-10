@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="6190b0a4-583d-11ec-1794-020000000000"/>
+   <id value="7704585e-583e-11ec-1849-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:6190a21c-583d-11ec-1794-020000000000"/>
+      <fullUrl value="urn:uuid:770449d6-583e-11ec-1849-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -18,15 +18,15 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, +0}T10:05:00+02:00"/>
+               <valueDateTime value="2021-01-01T10:05:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 5 dagen, tot en met T, 1 maal per dag 1 stuk, Oraal, definitief gestopt"/>
+               <valueString value="Vanaf 27 dec 2020, tot en met 1 jan 2021, 1 maal per dag 1 stuk, Oraal, definitief gestopt"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +0}T23:59:59+02:00"/>
+                  <start value="2020-12-27T00:00:00+01:00"/>
+                  <end value="2021-01-01T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
@@ -42,7 +42,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_stakenandermansTA_TA2"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -51,18 +51,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6190b0fc-583d-11ec-1794-020000000000"/>
+               <reference value="urn:uuid:770458b6-583e-11ec-1849-020000000000"/>
                <type value="Medication"/>
                <display value="ZESTRIL TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6190b0de-583d-11ec-1794-020000000000"/>
+               <reference value="urn:uuid:77045898-583e-11ec-1849-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:6190b11a-583d-11ec-1794-020000000000"/>
+                  <reference value="urn:uuid:770458d4-583e-11ec-1849-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -106,7 +106,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6190a237-583d-11ec-1794-020000000000"/>
+      <fullUrl value="urn:uuid:770449f1-583e-11ec-1849-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -119,22 +119,22 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, -5}T09:45:00+02:00"/>
+               <valueDateTime value="2020-12-27T09:45:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 5 dagen, tot en met T + 15 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="Vanaf 27 dec 2020, tot en met 16 jan 2021, 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +15}T23:59:59+02:00"/>
+                  <start value="2020-12-27T00:00:00+01:00"/>
+                  <end value="2021-01-16T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_stakenandermansTA_TA1"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -143,18 +143,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6190b0fc-583d-11ec-1794-020000000000"/>
+               <reference value="urn:uuid:770458b6-583e-11ec-1849-020000000000"/>
                <type value="Medication"/>
                <display value="ZESTRIL TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6190b0de-583d-11ec-1794-020000000000"/>
+               <reference value="urn:uuid:77045898-583e-11ec-1849-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:6190b11a-583d-11ec-1794-020000000000"/>
+                  <reference value="urn:uuid:770458d4-583e-11ec-1849-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -198,7 +198,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6190b0de-583d-11ec-1794-020000000000"/>
+      <fullUrl value="urn:uuid:77045898-583e-11ec-1849-020000000000"/>
       <resource>
          <Patient>
             <id value="L-VANXXX-MEIJS"/>
@@ -249,7 +249,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6190b11a-583d-11ec-1794-020000000000"/>
+      <fullUrl value="urn:uuid:770458d4-583e-11ec-1849-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -265,7 +265,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6190b0fc-583d-11ec-1794-020000000000"/>
+      <fullUrl value="urn:uuid:770458b6-583e-11ec-1849-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-615560"/>

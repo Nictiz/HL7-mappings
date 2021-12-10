@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="5f2d3cc4-583d-11ec-4693-020000000000"/>
+   <id value="74932f6e-583e-11ec-3625-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:5f2d5235-583d-11ec-4693-020000000000"/>
+      <fullUrl value="urn:uuid:749344df-583e-11ec-3625-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,12 +18,12 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 4 maanden, tot en met T - 10 dagen, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal, definitief gestopt"/>
+               <valueString value="Vanaf 1 sep 2020, tot en met 22 dec 2020, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal, definitief gestopt"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
-                  <start value="${DATE, T, M, -4}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, -10}T23:59:59+02:00"/>
+                  <start value="2020-09-01T00:00:00+02:00"/>
+                  <end value="2020-12-22T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
@@ -49,18 +49,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5f2d3d58-583d-11ec-4693-020000000000"/>
+               <reference value="urn:uuid:74933002-583e-11ec-3625-020000000000"/>
                <type value="Medication"/>
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5f2d3cfe-583d-11ec-4693-020000000000"/>
+               <reference value="urn:uuid:74932fa8-583e-11ec-3625-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -10}T18:00:00+02:00"/>
+            <authoredOn value="2020-12-22T18:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:5f2d3d1c-583d-11ec-4693-020000000000"/>
+               <reference value="urn:uuid:74932fc6-583e-11ec-3625-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -109,7 +109,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2d3cfe-583d-11ec-4693-020000000000"/>
+      <fullUrl value="urn:uuid:74932fa8-583e-11ec-3625-020000000000"/>
       <resource>
          <Patient>
             <id value="C-XXX-COENEN"/>
@@ -157,7 +157,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2d3d1c-583d-11ec-4693-020000000000"/>
+      <fullUrl value="urn:uuid:74932fc6-583e-11ec-3625-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -165,12 +165,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:5f2d3d3a-583d-11ec-4693-020000000000"/>
+               <reference value="urn:uuid:74932fe4-583e-11ec-3625-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:5f2d3d76-583d-11ec-4693-020000000000"/>
+               <reference value="urn:uuid:74933020-583e-11ec-3625-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -186,7 +186,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2d3d3a-583d-11ec-4693-020000000000"/>
+      <fullUrl value="urn:uuid:74932fe4-583e-11ec-3625-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -218,7 +218,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2d3d76-583d-11ec-4693-020000000000"/>
+      <fullUrl value="urn:uuid:74933020-583e-11ec-3625-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -256,7 +256,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5f2d3d58-583d-11ec-4693-020000000000"/>
+      <fullUrl value="urn:uuid:74933002-583e-11ec-3625-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-49484"/>

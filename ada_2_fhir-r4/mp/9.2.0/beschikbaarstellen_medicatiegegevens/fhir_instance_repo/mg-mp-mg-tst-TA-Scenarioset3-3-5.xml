@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="615bb106-583d-11ec-2004-020000000000"/>
+   <id value="76c26322-583e-11ec-1193-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:615bb23d-583d-11ec-2004-020000000000"/>
+      <fullUrl value="urn:uuid:76c26459-583e-11ec-1193-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -27,15 +27,15 @@
                </valueCoding>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, -50}T12:30:00+02:00"/>
+               <valueDateTime value="2020-11-12T12:30:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 60 dagen, tot en met T - 51 dagen, 1 maal per dag 1 stuk, Oraal, definitief gestopt"/>
+               <valueString value="Vanaf 2 nov 2020, tot en met 11 nov 2020, 1 maal per dag 1 stuk, Oraal, definitief gestopt"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -60}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, -51}T23:59:59+02:00"/>
+                  <start value="2020-11-02T00:00:00+01:00"/>
+                  <end value="2020-11-11T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
@@ -51,7 +51,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_start_duur2_TA_techstaken"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -60,18 +60,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:615bb15e-583d-11ec-2004-020000000000"/>
+               <reference value="urn:uuid:76c2637a-583e-11ec-1193-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:615bb140-583d-11ec-2004-020000000000"/>
+               <reference value="urn:uuid:76c2635c-583e-11ec-1193-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:615bb17c-583d-11ec-2004-020000000000"/>
+                  <reference value="urn:uuid:76c26398-583e-11ec-1193-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -115,7 +115,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:615bb259-583d-11ec-2004-020000000000"/>
+      <fullUrl value="urn:uuid:76c26475-583e-11ec-1193-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -131,14 +131,14 @@
                <valueString value="Pantozol niet leverbaar"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, -50}T12:35:00+02:00"/>
+               <valueDateTime value="2020-11-12T12:35:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 50 dagen, gedurende 18 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="Vanaf 12 nov 2020, gedurende 18 dagen, 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+                  <start value="2020-11-12T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
             <identifier>
@@ -154,18 +154,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:615bb15e-583d-11ec-2004-020000000000"/>
+               <reference value="urn:uuid:76c2637a-583e-11ec-1193-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:615bb140-583d-11ec-2004-020000000000"/>
+               <reference value="urn:uuid:76c2635c-583e-11ec-1193-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:615bb17c-583d-11ec-2004-020000000000"/>
+                  <reference value="urn:uuid:76c26398-583e-11ec-1193-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -209,7 +209,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:615bb140-583d-11ec-2004-020000000000"/>
+      <fullUrl value="urn:uuid:76c2635c-583e-11ec-1193-020000000000"/>
       <resource>
          <Patient>
             <id value="C-XXX-COENEN"/>
@@ -257,7 +257,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:615bb17c-583d-11ec-2004-020000000000"/>
+      <fullUrl value="urn:uuid:76c26398-583e-11ec-1193-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -273,7 +273,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:615bb15e-583d-11ec-2004-020000000000"/>
+      <fullUrl value="urn:uuid:76c2637a-583e-11ec-1193-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1163094"/>
