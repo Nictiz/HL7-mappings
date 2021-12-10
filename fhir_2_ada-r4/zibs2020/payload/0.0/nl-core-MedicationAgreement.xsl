@@ -102,6 +102,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:attribute>
 			<!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
 		</afspraakdatum>
+
+
+medicatieafspraak_datum_tijd
+
+
+
 	</xsl:template>
 
 	<xd:doc>
