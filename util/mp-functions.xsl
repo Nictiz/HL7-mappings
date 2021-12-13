@@ -188,7 +188,7 @@
                                 </xsl:choose>
                                 <xsl:choose>
                                     <xsl:when test="not($frequentie)"/>
-                                    <xsl:when test="not($frequentie/tijdseenheid/@value)">keer.</xsl:when>
+                                    <xsl:when test="not($frequentie/tijdseenheid/@value)">keer</xsl:when>
                                     <xsl:otherwise>
                                         <xsl:variable name="frequentie-value">
                                             <xsl:if test="$frequentie/tijdseenheid/@value castable as xs:float and xs:float($frequentie/tijdseenheid/@value) ne 1">

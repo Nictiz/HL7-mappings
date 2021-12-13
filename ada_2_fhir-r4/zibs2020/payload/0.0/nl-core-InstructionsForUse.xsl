@@ -382,21 +382,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
             <xsl:copy-of select="$boundsDuration"/>
 
+            <!-- without unit we use count -->
             <xsl:if test="not(frequentie//*[@unit != ''])">
-                <xsl:if test="frequentie/nominale_waarde[@value]">
-                    <count value="{frequentie/nominale_waarde/@value}"/>
+                <xsl:if test="frequentie/(nominale_waarde | */nominale_waarde)[@value]">
+                    <count value="{frequentie/(nominale_waarde | */nominale_waarde)/@value}"/>
                 </xsl:if>
-                <xsl:if test="frequentie/minimum_waarde[@value]">
-                    <count value="{frequentie/minimum_waarde/@value}"/>
+                <xsl:if test="frequentie/(minimum_waarde | */minimum_waarde)[@value]">
+                    <count value="{frequentie/(minimum_waarde | */minimum_waarde)/@value}"/>
                 </xsl:if>
-                <xsl:if test="frequentie/maximum_waarde[@value]">
-                    <countMax value="{frequentie/maximum_waarde/@value}"/>
+                <xsl:if test="frequentie/(maximum_waarde | */maximum_waarde)[@value]">
+                    <countMax value="{frequentie/(maximum_waarde | */maximum_waarde)/@value}"/>
                 </xsl:if>
             </xsl:if>
             <xsl:if test="../toedieningsduur/tijds_duur[@value]">
                 <duration value="{../toedieningsduur/tijds_duur/@value}"/>
                 <xsl:if test="../toedieningsduur/tijds_duur[@unit]">
-                    <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(../toedieningsduur/tijds_duur/@unit)}"/>                    
+                    <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(../toedieningsduur/tijds_duur/@unit)}"/>
                     <!-- start_datum_tijd and eind_datum_tijd are not mapped to the profile -->
                 </xsl:if>
             </xsl:if>
