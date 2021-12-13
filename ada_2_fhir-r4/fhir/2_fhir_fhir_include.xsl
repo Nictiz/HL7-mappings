@@ -113,6 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
+        <nm:map ada="zorg_afspraak" resource="CarePlan" profile="nl-core-CareAgreement"/>
         <nm:map ada="zorg_episode" resource="EpisodeOfCare" profile="nl-core-EpisodeOfCare"/>
         <nm:map ada="zorg_team" resource="CareTeam" profile="nl-core-CareTeam"/>
         <nm:map ada="zorgverlener" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
