@@ -94,20 +94,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:authoredOn to afspraakdatum</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:authoredOn" mode="nl-core-MedicationAgreement">
-		<afspraakdatum>
+		<medicatieafspraak_datum_tijd>
 			<xsl:attribute name="value">
 				<xsl:call-template name="format2ADADate">
 					<xsl:with-param name="dateTime" select="@value"/>
 				</xsl:call-template>
 			</xsl:attribute>
 			<!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
-		</afspraakdatum>
-
-
-medicatieafspraak_datum_tijd
-
-
-
+		</medicatieafspraak_datum_tijd>
 	</xsl:template>
 
 	<xd:doc>
