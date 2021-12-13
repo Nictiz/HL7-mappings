@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- afgesproken_geneesmiddel -->
 			<xsl:apply-templates select="f:medicationReference" mode="#current"/>
 			<!-- gebruiksinstructie -->
-			<xsl:apply-templates select="f:dosageInstruction" mode="zib-instructions-for-use-2.0"/>
+			<xsl:apply-templates select="f:dosageInstruction" mode="nl-core-InstructionsForUse"/>
 			<!-- lichaamslengte -->
 			<xsl:apply-templates select="f:supportingInformation" mode="resolve-bodyHeight"/>
 			<!-- lichaamsgewicht -->

@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			The ·base type· of ID is NCName. 
 			NCName 	::= 	(Letter | '_') (NCNameChar)*
 			NCNameChar 	::= 	Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
-			Letter	   ::=   	BaseChar | Ideographic    !!! =:regexpr /i minus '!'
+			Letter	   ::=   	BaseChar | Ideographic    !!! =:regexpr /i minus ':'
 or			
 NCName 	::= 	(\i | '_') (\i | Digit | '.' | '-' | '_' | CombiningChar | Extender)* 
 or
@@ -60,8 +60,6 @@ NCName 	::= 	(/i |
 			Digit	   ::=   	[#x0030-#x0039] | [#x0660-#x0669] | [#x06F0-#x06F9] | [#x0966-#x096F] | [#x09E6-#x09EF] | [#x0A66-#x0A6F] | [#x0AE6-#x0AEF] | [#x0B66-#x0B6F] | [#x0BE7-#x0BEF] | [#x0C66-#x0C6F] | [#x0CE6-#x0CEF] | [#x0D66-#x0D6F] | [#x0E50-#x0E59] | [#x0ED0-#x0ED9] | [#x0F20-#x0F29] 
 		
 			\i	the set of initial name characters, those ·match·ed by: Letter | '_' | ':'
-			\c	the set of name characters, those ·match·ed by: NameChar
-			\C	::= [^\c]
 			
 			replace non-permitted chars in an xml ID (type xs:ID) [\i-[:]][\c-[:]]* in
 			targets (bouwstenen element) zorgaanbieder@id, zorgverlener@id, farmaceutisch_product@id.
@@ -79,7 +77,7 @@ NCName 	::= 	(/i |
 		<xsl:variable name="pelString" select="subsequence($charStringInAndtestChar, 1, 1)"/>
 		<xsl:variable name="testChar" select="substring($pelString, 1, 1)"/>
 		<xsl:variable name="finalString" select="subsequence($charStringInAndtestChar, 2, 1)"/>
-		
+		<xsl:variable name="firstChar" select="substring($pelString, 1, 1)"/>
   <!--these messages do give a layed out overview of what happens, possibly nice to keep?--> 
 		<xsl:message>
 			<xsl:value-of select="concat('char= ', string($testChar))"/>
@@ -106,7 +104,8 @@ NCName 	::= 	(/i |
 
 	<xsl:function name="nf:convert2NCName">
 		<xsl:param name="stringIn"/>
-		<xsl:variable name="parm" select="($stringIn, $stringIn)"/>
+		<xsl:variable name="stringOut" select="replace($stringIn, '^([\d_])(.*)','_$2' )"/>
+		<xsl:variable name="parm" select="($stringOut, $stringOut)"/>
 		<xsl:value-of select="nf:replaceChar($parm)"/>
 	</xsl:function>
 

@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-12-09T15:50:09.187385+01:00"
-         last-update-date="2021-12-09T15:50:09.187385+01:00"/>
+         creation-date="2021-12-13T15:43:10.949556+01:00"
+         last-update-date="2021-12-13T15:43:10.949556+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -27,20 +27,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_920_QA1_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <afspraakdatum value="2020-12-12T08:00:00+01:00"/>
-               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"
-                                value="urn:uuid:74539d84-583e-11ec-6997-020000000000"/>
+               <medicatieafspraak_datum_tijd value="2020-12-12T08:00:00+01:00"/>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-74539d84-583e-11ec-6997-020000000000"/>
                </voorschrijver>
-               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
-                  <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"
-                                         value="urn:uuid:74539dc0-583e-11ec-6997-020000000000"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-74539dc0-583e-11ec-6997-020000000000"/>
                </afgesproken_geneesmiddel>
                <!--Unhandled FHIR node: f:dosageInstruction-->
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+            <farmaceutisch_product id="urn-uuid-74539dc0-583e-11ec-6997-020000000000"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
                <product_code codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="./display@value"
                              codeSystemName="G-Standaard PRK"
@@ -50,15 +49,13 @@
                              codeSystemName="G-Standaard PRK"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <zorgverlener id="000001111" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
-               <zorgverlener_identificatienummer value="000001111"
-                                                 root="2.16.528.1.1007.3.1"
-                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
-               <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
-                  <voornamen value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
-                  <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
-                     <voorvoegsels value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
-                     <achternaam value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
+            <zorgverlener id="000001111">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value=""/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value=""/>
+                     <achternaam value=""/>
                   </geslachtsnaam>
                </naamgegevens>
                <specialisme codeSystem="2.16.840.1.113883.2.4.6.7"
@@ -67,10 +64,10 @@
                             code="0100"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn:uuid:74539dde-583e-11ec-6997-020000000000"/>
+                                 value="urn-uuid-74539dde-583e-11ec-6997-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="74539dde-583e-11ec-6997-020000000000">
+            <zorgaanbieder id="urn-uuid-74539dde-583e-11ec-6997-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens comment="">
@@ -79,7 +76,7 @@
                   <postcode value="1234AA"/>
                   <woonplaats value="Ons Dorp"/>
                   <adres_soort value=""
-                               code=""
+                               code="WP"
                                codeSystem="2.16.840.1.113883.5.1119"
                                displayName="Werkadres"/>
                </adresgegevens>
