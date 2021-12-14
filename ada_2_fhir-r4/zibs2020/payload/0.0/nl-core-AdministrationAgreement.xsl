@@ -13,25 +13,15 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions"
-    xmlns:nm="http://www.nictiz.nl/mapping"
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mapping" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA toedienings_afsrpaak to FHIR MedicationDispense conforming to profile nl-core-AdministrationAgreement.</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Create a nl-core-AdministrationAgreement instance as a MedicationDispense FHIR instance from ADA toedienings_afspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,32 +33,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-AdministrationAgreement" mode="nl-core-AdministrationAgreement" match="toedieningsafspraak" as="element(f:MedicationDispense)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="(geneesmiddel_bij_toedienings_afspraak|geneesmiddel_bij_toedieningsafspraak)/farmaceutisch_product" as="element()?"/>
+        <xsl:param name="medicationReference" select="(geneesmiddel_bij_toedienings_afspraak | geneesmiddel_bij_toedieningsafspraak)/farmaceutisch_product" as="element()?"/>
         <xsl:param name="performer" select="verstrekker/zorgaanbieder" as="element()?"/>
         <xsl:param name="authorizingPrescription" select="medicatieafspraak/medicatieafspraak" as="element()?"/>
-        
+
         <xsl:for-each select="$in">
             <MedicationDispense>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
                 </meta>
-                
-                <!-- pharmaceuticalTreatmentIdentifier -->
-                <xsl:for-each select="../identificatie">
-                    <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                
+
                 <xsl:for-each select="toedieningsafspraak_aanvullende_informatie">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
                         <valueCoding>
-                            <xsl:call-template name="code-to-CodeableConcept"/>
+                            <xsl:call-template name="code-to-Coding"/>
                         </valueCoding>
                     </extension>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="reden_afspraak">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AgreementReason">
                         <valueString>
@@ -76,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueString>
                     </extension>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="toedieningsafspraak_datum_tijd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                         <valueDateTime>
@@ -92,12 +75,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="gebruiksinstructie">
                     <xsl:call-template name="ext-RenderedDosageInstruction"/>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="gebruiksperiode">
                     <xsl:call-template name="ext-TimeInterval.Period"/>
                     <xsl:call-template name="ext-TimeInterval.Duration"/>
                 </xsl:for-each>
-                
+
+                <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
+                    <xsl:call-template name="ext-CopyIndicator"/>
+                </xsl:for-each>
+
+                <!-- pharmaceuticalTreatmentIdentifier -->
+                <xsl:for-each select="../identificatie">
+                    <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
+
                 <xsl:for-each select="toedieningsafspraak_stop_type">
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                         <valueCodeableConcept>
@@ -105,38 +99,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </modifierExtension>
                 </xsl:for-each>
-                
+
+                <!-- herhaalperiode_cyclisch_schema -->
+                <xsl:for-each select="gebruiksinstructie">
+                    <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
+                </xsl:for-each>
+
                 <xsl:for-each select="identificatie[@value | @root]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier"/>
                     </identifier>
                 </xsl:for-each>
-                
-                
-                <xsl:for-each select="gebruiksinstructie">
-                    <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
-                </xsl:for-each>
-                
-                <status>
-                    <xsl:attribute name="value">
-                        <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
-                             so we can perform the required logic using a start and end datetime. -->
-                        <xsl:variable name="period" as="element(f:temp)?">
-                            <xsl:call-template name="ext-TimeInterval.Period">
-                                <xsl:with-param name="in" select="gebruiksperiode"/>
-                                <xsl:with-param name="wrapIn">temp</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:variable>
-                        <xsl:choose>
-                            <xsl:when test="geannuleerd_indicator/@value = 'true'">entered-in-error</xsl:when>
-                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
-                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
-                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
-                            <xsl:otherwise>unknown</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                </status>
-    
+
+                <!-- we do not know the current status of this instance -->
+                <status value="unknown"/>
+
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
@@ -144,21 +121,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="toedieningsafspraak"/>
                     </coding>
                 </category>
-                
+
                 <xsl:for-each select="$medicationReference">
                     <medicationReference>
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="$subject">
                     <subject>
                         <xsl:call-template name="makeReference"/>
                     </subject>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="$performer">
-                    <performer> <!-- There's at most 1 perfomer, so we can write both elements here -->
+                    <performer>
+                        <!-- There's at most 1 perfomer, so we can write both elements here -->
                         <actor>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
@@ -166,13 +144,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </actor>
                     </performer>
                 </xsl:for-each>
-                
+
+                <!-- zib dataset -->
                 <xsl:for-each select="$authorizingPrescription">
                     <authorizingPrescription>
                         <xsl:call-template name="makeReference"/>
                     </authorizingPrescription>
                 </xsl:for-each>
-                
+
+                <!-- mp9 dataset -->
+                <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value|@root]">
+                    <authorizingPrescription>
+                        <type value="MedicationRequest"/>
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier"/>
+                        </identifier>
+                        <display value="relatie naar medicatieafspraak met identificatie: {string-join((@value, @root), ' || ')}"/>
+                    </authorizingPrescription>
+                </xsl:for-each>
+
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
@@ -180,17 +170,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </text>
                     </note>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="gebruiksinstructie">
                     <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction">
                         <xsl:with-param name="wrapIn">dosageInstruction</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
             </MedicationDispense>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
@@ -203,7 +193,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>

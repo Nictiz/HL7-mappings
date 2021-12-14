@@ -1,16 +1,22 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="76589a6e-583e-11ec-2120-020000000000"/>
+   <id value="ae44c06a-5d11-11ec-1358-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:7658845c-583e-11ec-2120-020000000000"/>
+      <fullUrl value="urn:uuid:ae44ae4a-5d11-11ec-1358-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationDispense"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_afleverlocatie"/>
+               </valueIdentifier>
+            </extension>
             <status value="completed"/>
             <category>
                <coding>
@@ -20,22 +26,30 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:76589ae4-583e-11ec-2120-020000000000"/>
+               <reference value="urn:uuid:ae44c0e0-5d11-11ec-1358-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:76589aa8-583e-11ec-2120-020000000000"/>
+               <reference value="urn:uuid:ae44c0a4-5d11-11ec-1358-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:76589b02-583e-11ec-2120-020000000000"/>
+                  <reference value="urn:uuid:ae44c0fe-5d11-11ec-1358-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_920_afleverlocatie_VV"/>
+               </identifier>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_afleverlocatie_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
@@ -52,7 +66,7 @@
             </quantity>
             <whenHandedOver value="2021-01-01T12:07:00+01:00"/>
             <destination>
-               <reference value="urn:uuid:76589ac6-583e-11ec-2120-020000000000"/>
+               <reference value="urn:uuid:ae44c0c2-5d11-11ec-1358-020000000000"/>
                <type value="Location"/>
                <display value="afleverlocatie"/>
             </destination>
@@ -63,7 +77,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76589aa8-583e-11ec-2120-020000000000"/>
+      <fullUrl value="urn:uuid:ae44c0a4-5d11-11ec-1358-020000000000"/>
       <resource>
          <Patient>
             <id value="M-XXX-NEDERVEEN"/>
@@ -111,7 +125,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76589b02-583e-11ec-2120-020000000000"/>
+      <fullUrl value="urn:uuid:ae44c0fe-5d11-11ec-1358-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -127,7 +141,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76589ae4-583e-11ec-2120-020000000000"/>
+      <fullUrl value="urn:uuid:ae44c0e0-5d11-11ec-1358-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-425087"/>
@@ -157,7 +171,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76589ac6-583e-11ec-2120-020000000000"/>
+      <fullUrl value="urn:uuid:ae44c0c2-5d11-11ec-1358-020000000000"/>
       <resource>
          <Location>
             <id value="Dorpsrand2001256ZZOnsDorp"/>

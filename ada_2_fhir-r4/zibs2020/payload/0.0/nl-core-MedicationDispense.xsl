@@ -72,6 +72,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
 
+                <!-- pharmaceuticalTreatmentIdentifier -->
+                <xsl:for-each select="../identificatie">
+                    <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
+
+
                 <!-- It is expected that in most use cases only actual, executed, medication dispenses are exchanged which result in a _completed_ value. We use completed as a default value. 
                     See https://github.com/Nictiz/Nictiz-R4-zib2020/issues/122 -->
                 <status value="completed"/>
@@ -98,7 +106,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="$performer">
                     <performer>
-                        <!-- There's at most 1 perfomer, so we can write both elements here -->
                         <actor>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
@@ -107,9 +114,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </performer>
                 </xsl:for-each>
 
+                <!-- zib ada dataset, but this won't work in real live because the FHIR server that is source system for a dispense (AIS) is typically not source system for a dispenseRequest (EVS) -->
                 <xsl:for-each select="$authorizingPrescription">
                     <authorizingPrescription>
                         <xsl:call-template name="makeReference"/>
+                    </authorizingPrescription>
+                </xsl:for-each>
+
+                <!-- mp9 ada dataset, a reference using business identifier, id est: loosely coupled -->
+                <xsl:for-each select="relatie_verstrekkingsverzoek/identificatie[@value | @root]">
+                    <authorizingPrescription>
+                        <type value="MedicationRequest"/>
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier"/>
+                        </identifier>
+                        <display value="relatie naar verstrekkingsverzoek met identificatie: {string-join((@value, @root), ' || ')}"/>
                     </authorizingPrescription>
                 </xsl:for-each>
 
@@ -145,7 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </whenHandedOver>
                 </xsl:for-each>
 
-                <!-- TODO: DispenseLocation is a string in the zib, but mapped to a Location reference in FHIR. How should this be handled? Should a Location resource be created from just the string? -->
+                <!-- DispenseLocation is a string in the zib, mapped to a Location reference in FHIR. A FHIR Location resource is created from just the string -->
                 <xsl:for-each select="afleverlocatie[@value]">
                     <destination>
                         <xsl:call-template name="makeReference">
@@ -164,23 +183,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </MedicationDispense>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Specific template for generating an id for afleverlocatie.</xd:desc>
         <xd:param name="in">The ADA element to generate the id for.</xd:param>
     </xd:doc>
     <xsl:template match="afleverlocatie" mode="_generateId">
         <xsl:param name="in" select="."/>
-        
+
         <xsl:choose>
             <xsl:when test="string-length(nf:assure-logicalid-chars(@value)) le 64">
-                <xsl:value-of select="nf:assure-logicalid-chars(@value)"/>                
+                <xsl:value-of select="nf:assure-logicalid-chars(@value)"/>
             </xsl:when>
-            <xsl:otherwise>                
+            <xsl:otherwise>
                 <xsl:value-of select="nf:assure-logicalid-chars(nf:get-uuid($in))"/>
             </xsl:otherwise>
         </xsl:choose>
-        
+
     </xsl:template>
 
     <xd:doc>

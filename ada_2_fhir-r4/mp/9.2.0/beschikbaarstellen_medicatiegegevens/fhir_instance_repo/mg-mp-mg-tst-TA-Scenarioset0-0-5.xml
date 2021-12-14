@@ -1,22 +1,16 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="767849b8-583e-11ec-9815-020000000000"/>
+   <id value="ae6465d2-5d11-11ec-3387-020000000000"/>
    <type value="searchset"/>
    <total value="3"/>
    <entry>
-      <fullUrl value="urn:uuid:76784120-583e-11ec-9815-020000000000"/>
+      <fullUrl value="urn:uuid:ae647ca2-5d11-11ec-3387-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_QA2"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="2020-09-23T09:04:00+02:00"/>
             </extension>
@@ -29,11 +23,17 @@
                   <end value="2020-10-21T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_QA2"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_QA2_TA"/>
             </identifier>
-            <status value="completed"/>
+            <status value="unknown"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -42,22 +42,30 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:76784a10-583e-11ec-9815-020000000000"/>
+               <reference value="urn:uuid:ae64662a-5d11-11ec-3387-020000000000"/>
                <type value="Medication"/>
                <display value="XPRAEP SIROOP 2MG/ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:767849f2-583e-11ec-9815-020000000000"/>
+               <reference value="urn:uuid:ae64660c-5d11-11ec-3387-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, B. XXX_Blik"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:76784a6a-583e-11ec-9815-020000000000"/>
+                  <reference value="urn:uuid:ae646684-5d11-11ec-3387-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_QA2_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_920_QA2_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
             <dosageInstruction>
                <timing>
                   <repeat>
@@ -97,18 +105,12 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7678413d-583e-11ec-9815-020000000000"/>
+      <fullUrl value="urn:uuid:ae647cbf-5d11-11ec-3387-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_QA3"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="2020-11-12T09:10:00+01:00"/>
             </extension>
@@ -121,11 +123,17 @@
                   <end value="2020-12-21T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_QA3"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_QA3_TA"/>
             </identifier>
-            <status value="completed"/>
+            <status value="unknown"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -134,22 +142,30 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:76784a2e-583e-11ec-9815-020000000000"/>
+               <reference value="urn:uuid:ae646648-5d11-11ec-3387-020000000000"/>
                <type value="Medication"/>
                <display value="NUTRIDRINK BANAANSMAAK"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:767849f2-583e-11ec-9815-020000000000"/>
+               <reference value="urn:uuid:ae64660c-5d11-11ec-3387-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, B. XXX_Blik"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:76784a6a-583e-11ec-9815-020000000000"/>
+                  <reference value="urn:uuid:ae646684-5d11-11ec-3387-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_QA3_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_920_QA3_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
             <dosageInstruction>
                <timing>
                   <repeat>
@@ -189,18 +205,12 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7678415a-583e-11ec-9815-020000000000"/>
+      <fullUrl value="urn:uuid:ae647cdc-5d11-11ec-3387-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_QA5"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="2020-11-12T09:15:00+01:00"/>
             </extension>
@@ -212,11 +222,25 @@
                   <start value="2020-11-12T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
+               <valueDuration>
+                  <value value="7"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_QA5"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_QA5_TA"/>
             </identifier>
-            <status value="active"/>
+            <status value="unknown"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -225,22 +249,30 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:76784a4c-583e-11ec-9815-020000000000"/>
+               <reference value="urn:uuid:ae646666-5d11-11ec-3387-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL SANDOZ TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:767849f2-583e-11ec-9815-020000000000"/>
+               <reference value="urn:uuid:ae64660c-5d11-11ec-3387-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, B. XXX_Blik"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:76784a6a-583e-11ec-9815-020000000000"/>
+                  <reference value="urn:uuid:ae646684-5d11-11ec-3387-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_QA5_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_920_QA5_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
             <dosageInstruction>
                <timing>
                   <repeat>
@@ -280,7 +312,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:767849f2-583e-11ec-9815-020000000000"/>
+      <fullUrl value="urn:uuid:ae64660c-5d11-11ec-3387-020000000000"/>
       <resource>
          <Patient>
             <id value="B-XXX-BLIK"/>
@@ -328,7 +360,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76784a6a-583e-11ec-9815-020000000000"/>
+      <fullUrl value="urn:uuid:ae646684-5d11-11ec-3387-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -344,7 +376,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76784a10-583e-11ec-9815-020000000000"/>
+      <fullUrl value="urn:uuid:ae64662a-5d11-11ec-3387-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-101079"/>
@@ -374,7 +406,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76784a2e-583e-11ec-9815-020000000000"/>
+      <fullUrl value="urn:uuid:ae646648-5d11-11ec-3387-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-690090"/>
@@ -404,7 +436,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76784a4c-583e-11ec-9815-020000000000"/>
+      <fullUrl value="urn:uuid:ae646666-5d11-11ec-3387-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-665800"/>

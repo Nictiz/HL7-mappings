@@ -1,22 +1,16 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="7535a85c-583e-11ec-8884-020000000000"/>
+   <id value="ac9c8a86-5d11-11ec-1635-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:753592a2-583e-11ec-8884-020000000000"/>
+      <fullUrl value="urn:uuid:ac9c7c9c-5d11-11ec-1635-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_logistiekeverbruiksperiode_duur_dagen"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 1 jan 2021, tot en met 31 mei 2021, 1 maal per dag 1 stuk, Oraal"/>
             </extension>
@@ -26,11 +20,17 @@
                   <end value="2021-05-31T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_logistiekeverbruiksperiode_duur_dagen"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_920_logistiekeverbruiksperiode_duur_dagen_MA"/>
             </identifier>
-            <status value="completed"/>
+            <status value="unknown"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -40,18 +40,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7535a8f0-583e-11ec-8884-020000000000"/>
+               <reference value="urn:uuid:ac9c8b1a-5d11-11ec-1635-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7535a896-583e-11ec-8884-020000000000"/>
+               <reference value="urn:uuid:ac9c8ac0-5d11-11ec-1635-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2021-01-01T11:02:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7535a8b4-583e-11ec-8884-020000000000"/>
+               <reference value="urn:uuid:ac9c8ade-5d11-11ec-1635-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -94,7 +94,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7535a896-583e-11ec-8884-020000000000"/>
+      <fullUrl value="urn:uuid:ac9c8ac0-5d11-11ec-1635-020000000000"/>
       <resource>
          <Patient>
             <id value="M-XXX-NEDERVEEN"/>
@@ -142,7 +142,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7535a8b4-583e-11ec-8884-020000000000"/>
+      <fullUrl value="urn:uuid:ac9c8ade-5d11-11ec-1635-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -150,12 +150,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:7535a8d2-583e-11ec-8884-020000000000"/>
+               <reference value="urn:uuid:ac9c8afc-5d11-11ec-1635-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7535a90e-583e-11ec-8884-020000000000"/>
+               <reference value="urn:uuid:ac9c8b38-5d11-11ec-1635-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -171,7 +171,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7535a8d2-583e-11ec-8884-020000000000"/>
+      <fullUrl value="urn:uuid:ac9c8afc-5d11-11ec-1635-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -203,7 +203,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7535a90e-583e-11ec-8884-020000000000"/>
+      <fullUrl value="urn:uuid:ac9c8b38-5d11-11ec-1635-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -241,7 +241,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7535a8f0-583e-11ec-8884-020000000000"/>
+      <fullUrl value="urn:uuid:ac9c8b1a-5d11-11ec-1635-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-67903"/>

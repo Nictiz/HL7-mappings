@@ -65,9 +65,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <!--        <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>-->
 
-        <xsl:for-each select="/adaxml/data/*/patient">
+        <xsl:for-each-group select="/adaxml/data/*/patient" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for patient -->
-            <xsl:variable name="patientKey" select="nf:getGroupingKeyDefault(.)"/>
+            <xsl:variable name="patientKey" select="current-grouping-key()"/>
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:group-key/text() = $patientKey]/nm:full-url/text()}"/>
                 <resource>
@@ -76,10 +76,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
             </entry>
-        </xsl:for-each>
-        <xsl:for-each select="/adaxml/data/*/bouwstenen/zorgverlener">
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/zorgverlener" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for practitionerrole -->
-            <xsl:variable name="zvlKey" select="nf:getGroupingKeyDefault(.)"/>
+            <xsl:variable name="zvlKey" select="current-grouping-key()"/>
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'PractitionerRole'][nm:group-key/text() = $zvlKey]/nm:full-url/text()}"/>
                 <resource>
@@ -99,10 +99,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
             </entry>
-        </xsl:for-each>
-        <xsl:for-each select="/adaxml/data/*/bouwstenen/zorgaanbieder">
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for organization -->
-            <xsl:variable name="zabKey" select="nf:getGroupingKeyDefault(.)"/>
+            <xsl:variable name="zabKey" select="current-grouping-key()"/>
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Organization'][nm:group-key/text() = $zabKey]/nm:full-url/text()}"/>
                 <resource>
@@ -111,10 +111,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
             </entry>
-        </xsl:for-each>
-        <xsl:for-each select="/adaxml/data/*/bouwstenen/farmaceutisch_product">
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/farmaceutisch_product" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for product -->
-            <xsl:variable name="prdKey" select="nf:getGroupingKeyDefault(.)"/>
+            <xsl:variable name="prdKey" select="current-grouping-key()"/>
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Medication'][nm:group-key/text() = $prdKey]/nm:full-url/text()}"/>
                 <resource>
@@ -123,10 +123,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
             </entry>
-        </xsl:for-each>
-        <xsl:for-each select="/adaxml/data/*//reden_van_voorschrijven/probleem">
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*//reden_van_voorschrijven/probleem" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for problem -->
-            <xsl:variable name="prbKey" select="nf:getGroupingKeyDefault(.)"/>
+            <xsl:variable name="prbKey" select="current-grouping-key()"/>
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Condition'][nm:group-key/text() = $prbKey]/nm:full-url/text()}"/>
                 <resource>
@@ -136,10 +136,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
             </entry>
-        </xsl:for-each>
-        <xsl:for-each select="/adaxml/data/*//afleverlocatie[@value]">
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*//afleverlocatie[@value]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for problem -->
-            <xsl:variable name="locKey" select="nf:getGroupingKeyDefault(.)"/>
+            <xsl:variable name="locKey" select="current-grouping-key()"/>
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Location'][nm:group-key/text() = $locKey]/nm:full-url/text()}"/>
                 <resource>
@@ -149,7 +149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </Location>
                 </resource>
             </entry>
-        </xsl:for-each>
+        </xsl:for-each-group>
     </xsl:variable>
 
     <xd:doc>

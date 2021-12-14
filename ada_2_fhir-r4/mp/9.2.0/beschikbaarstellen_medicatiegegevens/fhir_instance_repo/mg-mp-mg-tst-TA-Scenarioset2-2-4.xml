@@ -1,29 +1,21 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="76aabe02-583e-11ec-1652-020000000000"/>
+   <id value="ae9618fc-5d11-11ec-1224-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:76aac7e5-583e-11ec-1652-020000000000"/>
+      <fullUrl value="urn:uuid:ae960d27-5d11-11ec-1224-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_aanvullendeinformatiewensen"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
                <valueCoding>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"/>
-                     <code value="14"/>
-                     <display value="Bijwerking besproken"/>
-                  </coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"/>
+                  <code value="14"/>
+                  <display value="Bijwerking besproken"/>
                </valueCoding>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
@@ -38,11 +30,17 @@
                   <end value="2021-01-06T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_aanvullendeinformatiewensen"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_aanvullendeinformatiewensen_TA"/>
             </identifier>
-            <status value="completed"/>
+            <status value="unknown"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -51,22 +49,30 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:76aabe5a-583e-11ec-1652-020000000000"/>
+               <reference value="urn:uuid:ae961954-5d11-11ec-1224-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:76aabe3c-583e-11ec-1652-020000000000"/>
+               <reference value="urn:uuid:ae961936-5d11-11ec-1224-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:76aabe78-583e-11ec-1652-020000000000"/>
+                  <reference value="urn:uuid:ae961972-5d11-11ec-1224-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_aanvullendeinformatiewensen_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_920_aanvullendeinformatiewensen_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
             <dosageInstruction>
                <timing>
                   <repeat>
@@ -106,7 +112,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76aabe3c-583e-11ec-1652-020000000000"/>
+      <fullUrl value="urn:uuid:ae961936-5d11-11ec-1224-020000000000"/>
       <resource>
          <Patient>
             <id value="C-XXX-COENEN"/>
@@ -154,7 +160,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76aabe78-583e-11ec-1652-020000000000"/>
+      <fullUrl value="urn:uuid:ae961972-5d11-11ec-1224-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -170,7 +176,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76aabe5a-583e-11ec-1652-020000000000"/>
+      <fullUrl value="urn:uuid:ae961954-5d11-11ec-1224-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-425087"/>

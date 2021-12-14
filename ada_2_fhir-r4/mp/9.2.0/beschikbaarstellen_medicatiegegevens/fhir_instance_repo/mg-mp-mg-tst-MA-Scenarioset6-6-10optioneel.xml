@@ -1,22 +1,16 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="74b1d6ee-583e-11ec-1859-020000000000"/>
+   <id value="abd4b3f8-5d11-11ec-1036-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:74b1c58c-583e-11ec-1859-020000000000"/>
+      <fullUrl value="urn:uuid:abd4c46a-5d11-11ec-1036-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_cyclischschema"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 1 jan 2021, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
             </extension>
@@ -24,6 +18,12 @@
                <valuePeriod>
                   <start value="2021-01-01T00:00:00+01:00"/>
                </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_cyclischschema"/>
+               </valueIdentifier>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
                <valueDuration>
@@ -37,7 +37,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_920_cyclischschema_MA"/>
             </identifier>
-            <status value="active"/>
+            <status value="unknown"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -47,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:74b1d782-583e-11ec-1859-020000000000"/>
+               <reference value="urn:uuid:abd4b48c-5d11-11ec-1036-020000000000"/>
                <type value="Medication"/>
                <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:74b1d728-583e-11ec-1859-020000000000"/>
+               <reference value="urn:uuid:abd4b432-5d11-11ec-1036-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2021-01-01T08:33:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:74b1d746-583e-11ec-1859-020000000000"/>
+               <reference value="urn:uuid:abd4b450-5d11-11ec-1036-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -107,7 +107,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74b1d728-583e-11ec-1859-020000000000"/>
+      <fullUrl value="urn:uuid:abd4b432-5d11-11ec-1036-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -155,7 +155,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74b1d746-583e-11ec-1859-020000000000"/>
+      <fullUrl value="urn:uuid:abd4b450-5d11-11ec-1036-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -163,12 +163,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:74b1d764-583e-11ec-1859-020000000000"/>
+               <reference value="urn:uuid:abd4b46e-5d11-11ec-1036-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:74b1d7a0-583e-11ec-1859-020000000000"/>
+               <reference value="urn:uuid:abd4b4aa-5d11-11ec-1036-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -184,7 +184,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74b1d764-583e-11ec-1859-020000000000"/>
+      <fullUrl value="urn:uuid:abd4b46e-5d11-11ec-1036-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -216,7 +216,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74b1d7a0-583e-11ec-1859-020000000000"/>
+      <fullUrl value="urn:uuid:abd4b4aa-5d11-11ec-1036-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -254,7 +254,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74b1d782-583e-11ec-1859-020000000000"/>
+      <fullUrl value="urn:uuid:abd4b48c-5d11-11ec-1036-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-16292"/>

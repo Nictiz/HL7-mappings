@@ -75,23 +75,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each> 
                 
-                <!-- todo relatie episode/contact -->
+                <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
+                    <xsl:call-template name="ext-Context-EpisodeOfCare"/>
+                </xsl:for-each>                
                 
-                <!-- There's no mapping from the zib to the status, so we'll default to unknown -->
+                <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier"/>
+                    </identifier>
+                </xsl:for-each>
+                
+                <!-- There's no mapping from the dataset to the status except for geannuleerd_indicator, so we'll default to unknown unless it was cancelled -->
                 <status>
                     <xsl:attribute name="value">
-                        <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
-                             so we can perform the required logic using a start and end datetime. -->
-                        <xsl:variable name="period" as="element(f:temp)?">
-                            <xsl:call-template name="ext-TimeInterval.Period">
-                                <xsl:with-param name="in" select="verbruiksperiode"/>
-                                <xsl:with-param name="wrapIn">temp</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:variable>
                         <xsl:choose>
-                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
-                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
-                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
+                            <xsl:when test="geannuleerd_indicator/@value='true'">entered-in-error</xsl:when>
                             <xsl:otherwise>unknown</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
@@ -119,6 +117,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </subject>
                 </xsl:for-each>
                 
+                <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
+                    <encounter>
+                        <type value="Encounter"/>
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier"/>
+                        </identifier>
+                        <display value="relatie naar contact met identificatie: {string-join((@value, @root), ' || ')}"/>
+                    </encounter>
+                </xsl:for-each>
+                
                 <xsl:for-each select="verstrekkingsverzoek_datum">
                     <authoredOn>
                         <xsl:attribute name="value">
@@ -135,6 +143,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="profile" select="$profilenameHealthcareProviderOrganization"/>
                         </xsl:call-template>
                     </performer>
+                </xsl:for-each>
+                
+                <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
+                    <basedOn>
+                        <type value="MedicationRequest"/>
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier"/>
+                        </identifier>
+                        <display value="relatie naar medicatieafspraak  met identificatie: {string-join((@value, @root), ' || ')}"/>
+                    </basedOn>
                 </xsl:for-each>
                 
                 <xsl:for-each select="toelichting">

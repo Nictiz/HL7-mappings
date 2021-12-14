@@ -1,22 +1,16 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="76e3aa5a-583e-11ec-1035-020000000000"/>
+   <id value="aee44e32-5d11-11ec-2117-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:76e39664-583e-11ec-1035-020000000000"/>
+      <fullUrl value="urn:uuid:aee43c76-5d11-11ec-2117-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_toedieningsduur"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="2021-01-01T09:49:00+01:00"/>
             </extension>
@@ -28,11 +22,17 @@
                   <start value="2021-01-01T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_toedieningsduur"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_920_toedieningsduur_TA"/>
             </identifier>
-            <status value="active"/>
+            <status value="unknown"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -41,22 +41,30 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:76e3aab2-583e-11ec-1035-020000000000"/>
+               <reference value="urn:uuid:aee44e8a-5d11-11ec-2117-020000000000"/>
                <type value="Medication"/>
                <display value="DEPONIT T 5 PLEISTER TRANSDERMAAL 18,7MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:76e3aa94-583e-11ec-1035-020000000000"/>
+               <reference value="urn:uuid:aee44e6c-5d11-11ec-2117-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:76e3aad0-583e-11ec-1035-020000000000"/>
+                  <reference value="urn:uuid:aee44ea8-5d11-11ec-2117-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
             </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_toedieningsduur_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_920_toedieningsduur_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
             <dosageInstruction>
                <timing>
                   <repeat>
@@ -98,7 +106,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76e3aa94-583e-11ec-1035-020000000000"/>
+      <fullUrl value="urn:uuid:aee44e6c-5d11-11ec-2117-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -146,7 +154,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76e3aad0-583e-11ec-1035-020000000000"/>
+      <fullUrl value="urn:uuid:aee44ea8-5d11-11ec-2117-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -162,7 +170,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:76e3aab2-583e-11ec-1035-020000000000"/>
+      <fullUrl value="urn:uuid:aee44e8a-5d11-11ec-2117-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1013602"/>

@@ -65,10 +65,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-SOAPReport.xsl"/>
     <xsl:import href="nl-core-TobaccoUse.xsl"/>
     <xsl:import href="nl-core-TextResult.xsl"/>
+    <xsl:import href="nl-core-VariableDosingRegimen.xsl"/>
     <xsl:import href="nl-core-VisualAcuity.xsl"/>
     
     <xsl:import href="ext-CodeSpecification.xsl"/>
     <xsl:import href="ext-Comment.xsl"/>
+    <xsl:import href="ext-Context-EpisodeOfCare.xsl"/>
+    <xsl:import href="ext-CopyIndicator.xsl"/>
     <xsl:import href="ext-PharmaceuticalTreatmentIdentifier.xsl"/>
     <xsl:import href="ext-TimeInterval.xsl"/>
     

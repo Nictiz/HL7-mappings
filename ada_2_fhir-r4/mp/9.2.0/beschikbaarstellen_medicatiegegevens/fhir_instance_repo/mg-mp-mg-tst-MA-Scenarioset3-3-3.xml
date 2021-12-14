@@ -1,22 +1,16 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="7497fee0-583e-11ec-1535-020000000000"/>
+   <id value="ab603e38-5d11-11ec-7435-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:749801ec-583e-11ec-1535-020000000000"/>
+      <fullUrl value="urn:uuid:ab60452c-5d11-11ec-7435-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_redenvanvoorschrijven"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 31 dec 2020, tot en met 15 jan 2021, 1 maal per week 4 stuks, Oraal"/>
             </extension>
@@ -26,11 +20,17 @@
                   <end value="2021-01-15T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_redenvanvoorschrijven"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_920_redenvanvoorschrijven_MA_wijzigingzonderVV"/>
             </identifier>
-            <status value="completed"/>
+            <status value="unknown"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -40,23 +40,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7497ff9c-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603ef4-5d11-11ec-7435-020000000000"/>
                <type value="Medication"/>
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7497ff1a-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603e72-5d11-11ec-7435-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <authoredOn value="2020-12-31T08:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7497ff38-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603e90-5d11-11ec-7435-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <reasonReference>
-               <reference value="urn:uuid:7497ff7e-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603ed6-5d11-11ec-7435-020000000000"/>
                <type value="Condition"/>
                <display value="Problem"/>
             </reasonReference>
@@ -92,6 +92,14 @@
                   </doseQuantity>
                </doseAndRate>
             </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_redenvanvoorschrijven_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_920_redenvanvoorschrijven_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
          </MedicationRequest>
       </resource>
       <search>
@@ -99,18 +107,12 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7498020a-583e-11ec-1535-020000000000"/>
+      <fullUrl value="urn:uuid:ab60454a-5d11-11ec-7435-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_redenvanvoorschrijven"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 19 dec 2020, tot en met 30 dec 2020, 1 maal per week 5 stuks, Oraal, definitief gestopt"/>
             </extension>
@@ -119,6 +121,12 @@
                   <start value="2020-12-19T00:00:00+01:00"/>
                   <end value="2020-12-30T23:59:59+01:00"/>
                </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_redenvanvoorschrijven"/>
+               </valueIdentifier>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                <valueCodeableConcept>
@@ -133,7 +141,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_920_redenvanvoorschrijven_MA_techstaken"/>
             </identifier>
-            <status value="stopped"/>
+            <status value="unknown"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -143,23 +151,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7497ff9c-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603ef4-5d11-11ec-7435-020000000000"/>
                <type value="Medication"/>
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7497ff1a-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603e72-5d11-11ec-7435-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <authoredOn value="2020-12-31T08:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7497ff38-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603e90-5d11-11ec-7435-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <reasonReference>
-               <reference value="urn:uuid:7497ff7e-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603ed6-5d11-11ec-7435-020000000000"/>
                <type value="Condition"/>
                <display value="Problem"/>
             </reasonReference>
@@ -195,6 +203,14 @@
                   </doseQuantity>
                </doseAndRate>
             </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_redenvanvoorschrijven_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_920_redenvanvoorschrijven_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
          </MedicationRequest>
       </resource>
       <search>
@@ -202,7 +218,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7497ff1a-583e-11ec-1535-020000000000"/>
+      <fullUrl value="urn:uuid:ab603e72-5d11-11ec-7435-020000000000"/>
       <resource>
          <Patient>
             <id value="C-XXX-COENEN"/>
@@ -250,7 +266,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7497ff38-583e-11ec-1535-020000000000"/>
+      <fullUrl value="urn:uuid:ab603e90-5d11-11ec-7435-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -258,12 +274,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:7497ff56-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603eae-5d11-11ec-7435-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7497ffba-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603f12-5d11-11ec-7435-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -279,7 +295,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7497ff56-583e-11ec-1535-020000000000"/>
+      <fullUrl value="urn:uuid:ab603eae-5d11-11ec-7435-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -311,7 +327,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7497ffba-583e-11ec-1535-020000000000"/>
+      <fullUrl value="urn:uuid:ab603f12-5d11-11ec-7435-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -349,7 +365,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7497ff9c-583e-11ec-1535-020000000000"/>
+      <fullUrl value="urn:uuid:ab603ef4-5d11-11ec-7435-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-141631"/>
@@ -374,10 +390,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7497ff7e-583e-11ec-1535-020000000000"/>
+      <fullUrl value="urn:uuid:ab603ed6-5d11-11ec-7435-020000000000"/>
       <resource>
          <Condition>
-            <id value="7497ff74-583e-11ec-1535-020000000000"/>
+            <id value="ab603ecc-5d11-11ec-7435-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
             </meta>
@@ -388,29 +404,7 @@
                <text value="Reumatoide artritis"/>
             </code>
             <subject>
-               <reference value="urn:uuid:7497ff1a-583e-11ec-1535-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, C. XXX_Coenen"/>
-            </subject>
-         </Condition>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:7497ff7e-583e-11ec-1535-020000000000"/>
-      <resource>
-         <Condition>
-            <id value="7497ff74-583e-11ec-1535-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
-            </meta>
-            <code>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
-               <text value="Reumatoide artritis"/>
-            </code>
-            <subject>
-               <reference value="urn:uuid:7497ff1a-583e-11ec-1535-020000000000"/>
+               <reference value="urn:uuid:ab603e72-5d11-11ec-7435-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>

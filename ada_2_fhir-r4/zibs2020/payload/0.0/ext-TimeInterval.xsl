@@ -154,7 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="wrapIn" as="xs:string?"/>
 
         <xsl:for-each select="$in">
-            <xsl:if test="not(start_datum_tijd[@value != ''] or eind_datum_tijd[@value != '']) and tijds_duur[@value and @unit]">
+            <xsl:if test="tijds_duur[@value | @unit]">
                 <xsl:choose>
                     <!-- If no wrapIn is given, write out the extension element and iteratively call this template. -->
                     <xsl:when test="$wrapIn != ''">

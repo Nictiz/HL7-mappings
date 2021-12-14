@@ -49,7 +49,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         
-        <!-- TODO wisselend_doseerschema -->
+        <!-- wisselend_doseerschema -->
+        <xsl:for-each select="//wisselend_doseerschema">
+            <!-- entry for MedicationRequest -->
+            <entry>
+                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-VariableDosingRegimen">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="../../patient"/>
+                        <xsl:with-param name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]"/>
+                    </xsl:call-template>
+                </resource>
+                <xsl:if test="string-length($searchMode) gt 0">
+                    <search>
+                        <mode value="{$searchMode}"/>
+                    </search>
+                </xsl:if>
+            </entry>
+        </xsl:for-each>
         
         <!-- verstrekkingsverzoeken -->
          <xsl:for-each select="//verstrekkingsverzoek">

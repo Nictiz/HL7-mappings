@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="75971b46-583e-11ec-1681-020000000000"/>
+   <id value="ad5c0636-5d11-11ec-1021-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:75970714-583e-11ec-1681-020000000000"/>
+      <fullUrl value="urn:uuid:ad5c1d06-5d11-11ec-1021-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -13,6 +13,14 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 3 okt 2020, gedurende 10 dagen, 1 maal per dag 1 stuk, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
+               <valueDuration>
+                  <value value="10"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
@@ -22,7 +30,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author">
                <valueReference>
-                  <reference value="urn:uuid:75971b80-583e-11ec-1681-020000000000"/>
+                  <reference value="urn:uuid:ad5c0670-5d11-11ec-1021-020000000000"/>
                   <type value="Patient"/>
                   <display value="Patient, M. XXX_Raamsdonk"/>
                </valueReference>
@@ -40,12 +48,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:75971b9e-583e-11ec-1681-020000000000"/>
+               <reference value="urn:uuid:ad5c068e-5d11-11ec-1021-020000000000"/>
                <type value="Medication"/>
                <display value="PREVALIN ALLERSTOP CETIRIZINE TABLET FILMOMH 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:75971b80-583e-11ec-1681-020000000000"/>
+               <reference value="urn:uuid:ad5c0670-5d11-11ec-1021-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Raamsdonk"/>
             </subject>
@@ -92,7 +100,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:75971b80-583e-11ec-1681-020000000000"/>
+      <fullUrl value="urn:uuid:ad5c0670-5d11-11ec-1021-020000000000"/>
       <resource>
          <Patient>
             <id value="M-XXX-RAAMSDONK"/>
@@ -140,7 +148,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:75971b9e-583e-11ec-1681-020000000000"/>
+      <fullUrl value="urn:uuid:ad5c068e-5d11-11ec-1021-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-2497905"/>

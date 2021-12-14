@@ -1,11 +1,185 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="7795fd86-583e-11ec-6467-020000000000"/>
+   <id value="afee5520-5d11-11ec-2116-020000000000"/>
    <type value="searchset"/>
-   <total value="0"/>
+   <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:7795fdfc-583e-11ec-6467-020000000000"/>
+      <fullUrl value="urn:uuid:afee4ecb-5d11-11ec-2116-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_contactepisode"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare">
+               <valueReference>
+                  <type value="EpisodeOfCare"/>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+                     <value value="MBH_920_contactepisode_EPISODE1"/>
+                  </identifier>
+                  <display value="relatie naar episode met identificatie: MBH_920_contactepisode_EPISODE1 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf 12 dec 2020, tot en met 17 dec 2020, eerst gedurende 3 dagen 1 maal per dag om 20:00 2 stuks, dan gedurende 3 dagen 1 maal per dag om 20:00 1 stuk, Oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+               <valuePeriod>
+                  <start value="2020-12-12T00:00:00+01:00"/>
+                  <end value="2020-12-17T23:59:59+01:00"/>
+               </valuePeriod>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <value value="MBH_920_contactepisode_WDS_opstartschema"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="274512008"/>
+                  <display value="optimaliseren van dosering van medicatie"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <code>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="masked"/>
+                     </extension>
+                  </code>
+               </coding>
+               <text value="zie bijbehorende medicatiebouwstenen in deze medicamenteuze behandeling"/>
+            </medicationCodeableConcept>
+            <subject>
+               <reference value="urn:uuid:afee555a-5d11-11ec-2116-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. XXX_Pherai"/>
+            </subject>
+            <encounter>
+               <type value="Encounter"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+                  <value value="MBH_920_contactepisode_CONTACT1"/>
+               </identifier>
+               <display value="relatie naar contact met identificatie: MBH_920_contactepisode_CONTACT1 || 2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+            </encounter>
+            <authoredOn value="2020-12-12T08:00:00+01:00"/>
+            <requester>
+               <reference value="urn:uuid:afee5578-5d11-11ec-2116-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+            </requester>
+            <basedOn>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_wdsmtd1_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_920_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </basedOn>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <timing>
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="3"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                     <timeOfDay value="20:00:00"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <timing>
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="3"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                     <timeOfDay value="20:00:00"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:afee555a-5d11-11ec-2116-020000000000"/>
       <resource>
          <Patient>
             <id value="M-XXX-PHERAI"/>
@@ -53,7 +227,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7795fe1a-583e-11ec-6467-020000000000"/>
+      <fullUrl value="urn:uuid:afee5578-5d11-11ec-2116-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -61,12 +235,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:7795fe38-583e-11ec-6467-020000000000"/>
+               <reference value="urn:uuid:afee5596-5d11-11ec-2116-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7795fe56-583e-11ec-6467-020000000000"/>
+               <reference value="urn:uuid:afee55b4-5d11-11ec-2116-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -82,7 +256,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7795fe38-583e-11ec-6467-020000000000"/>
+      <fullUrl value="urn:uuid:afee5596-5d11-11ec-2116-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -114,7 +288,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7795fe56-583e-11ec-6467-020000000000"/>
+      <fullUrl value="urn:uuid:afee55b4-5d11-11ec-2116-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>

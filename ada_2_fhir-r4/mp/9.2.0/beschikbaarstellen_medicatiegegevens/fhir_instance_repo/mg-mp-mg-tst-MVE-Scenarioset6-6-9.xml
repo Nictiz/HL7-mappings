@@ -1,16 +1,22 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="763c00b6-583e-11ec-1367-020000000000"/>
+   <id value="ae1a92ae-5d11-11ec-1484-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:763bfdb4-583e-11ec-1367-020000000000"/>
+      <fullUrl value="urn:uuid:ae1a939e-5d11-11ec-1484-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationDispense"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_dagdeel"/>
+               </valueIdentifier>
+            </extension>
             <status value="completed"/>
             <category>
                <coding>
@@ -20,22 +26,30 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:763c010e-583e-11ec-1367-020000000000"/>
+               <reference value="urn:uuid:ae1a9306-5d11-11ec-1484-020000000000"/>
                <type value="Medication"/>
                <display value="INEGY TABLET 10/20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:763c00f0-583e-11ec-1367-020000000000"/>
+               <reference value="urn:uuid:ae1a92e8-5d11-11ec-1484-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:763c012c-583e-11ec-1367-020000000000"/>
+                  <reference value="urn:uuid:ae1a9324-5d11-11ec-1484-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
             </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_920_dagdeel_VV"/>
+               </identifier>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_dagdeel_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
@@ -58,7 +72,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:763c00f0-583e-11ec-1367-020000000000"/>
+      <fullUrl value="urn:uuid:ae1a92e8-5d11-11ec-1484-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -106,7 +120,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:763c012c-583e-11ec-1367-020000000000"/>
+      <fullUrl value="urn:uuid:ae1a9324-5d11-11ec-1484-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -122,7 +136,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:763c010e-583e-11ec-1367-020000000000"/>
+      <fullUrl value="urn:uuid:ae1a9306-5d11-11ec-1484-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1719785"/>
