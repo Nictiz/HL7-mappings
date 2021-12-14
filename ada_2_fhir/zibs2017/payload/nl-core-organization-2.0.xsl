@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="nf:get-fhir-uuid(.)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nf:getUriFromAdaId(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number, 'Organization', false())"/>
+                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number), 'Organization', false())"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
