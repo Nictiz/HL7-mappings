@@ -31,8 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- naamgegevens -->
             <!-- TODO naam even uitstellen vanwege zib issue -->
 <!--            <xsl:apply-templates select="f:name" mode="nl-core-humanname-2.0"/>-->
-            <naamgegevens/>
-            <!-- TODO adresgegevens, contactgegevens -->
+             <!-- naamgegevens -->
+            <xsl:apply-templates select="f:name" mode="#current"/>
             <!-- identificatienummer -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- geboortedatum -->
@@ -94,6 +94,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <meerling_indicator>
             <xsl:call-template name="boolean-to-boolean"/>
         </meerling_indicator>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:name to naamgegevens</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:name" mode="nl-core-Patient">
+        <xsl:apply-templates select="." mode="nl-core-NameInformation"/>
     </xsl:template>
     
 </xsl:stylesheet>

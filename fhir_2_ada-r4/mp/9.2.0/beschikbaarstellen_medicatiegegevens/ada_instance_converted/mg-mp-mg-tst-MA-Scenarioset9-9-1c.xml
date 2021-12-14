@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-12-13T15:43:11.275879+01:00"
-         last-update-date="2021-12-13T15:43:11.275879+01:00"/>
+         creation-date="2021-12-14T21:12:32.671142+01:00"
+         last-update-date="2021-12-14T21:12:32.671142+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -14,10 +13,19 @@
                                             transactionEffectiveDate="2021-04-02T09:33:39"
                                             prefix="mp-"
                                             language="nl-NL"
-                                            title="Generated from HL7 FHIR medicatiegegevens 9.0.7 xml"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
                                             id="DUMMY">
          <patient>
-            <naamgegevens/>
+            <naamgegevens>
+               <ongestructureerde_naam value="M. XXX_Nederveen"/>
+               <initialen value="M."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Nederveen"/>
+               </geslachtsnaam>
+            </naamgegevens>
             <identificatienummer nullFlavor="MSK" root="2.16.840.1.113883.2.4.6.3"/>
             <geboortedatum value="1985-10-28"/>
             <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
@@ -30,54 +38,81 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <medicatieafspraak_datum_tijd value="2021-01-01T11:02:00+01:00"/>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-7535a8b4-583e-11ec-8884-020000000000"/>
+                  <zorgverlener value="urn-uuid-49dd5d54-5d0e-11ec-5999-020000000000"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-7535a8f0-583e-11ec-8884-020000000000"/>
+                  <farmaceutisch_product value="urn-uuid-49dd5d90-5d0e-11ec-5999-020000000000"/>
                </afgesproken_geneesmiddel>
-               <!--Unhandled FHIR node: f:dosageInstruction-->
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 31 mei 2021, 1 maal per dag 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard TH007 Toedieningswegen"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-7535a8f0-583e-11ec-8884-020000000000"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="./display@value"
+            <farmaceutisch_product id="urn-uuid-49dd5d90-5d0e-11ec-5999-020000000000">
+               <product_code code="67903"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code codeSystem="2.16.840.1.113883.2.4.4.1"
-                             displayName="./display@value"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+                             displayName="PARACETAMOL 500MG TABLET"
+                             preferred="true"/>
+               <product_code code="2194"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PARACETAMOL 500MG TABLET"/>
             </farmaceutisch_product>
-            <zorgverlener id="000001112">
+            <zorgverlener id="urn-uuid-49dd5d72-5d0e-11ec-5999-020000000000">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
-               <naamgegevens comment="">
-                  <voornamen value=""/>
-                  <geslachtsnaam comment="">
-                     <voorvoegsels value=""/>
-                     <achternaam value=""/>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Bertine van Doorn"/>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Doorn"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <specialisme codeSystem="2.16.840.1.113883.2.4.6.7"
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"
                             codeSystemVersion="2020-10-23T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"
-                            code="0100"/>
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-7535a90e-583e-11ec-8884-020000000000"/>
+                                 value="urn-uuid-49dd5dae-5d0e-11ec-5999-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-7535a90e-583e-11ec-8884-020000000000">
+            <zorgaanbieder id="urn-uuid-49dd5dae-5d0e-11ec-5999-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
-               <adresgegevens comment="">
+               <adresgegevens>
                   <straat value="Dorpsstraat"/>
                   <huisnummer value="1"/>
                   <postcode value="1234AA"/>
                   <woonplaats value="Ons Dorp"/>
-                  <adres_soort value=""
-                               code="WP"
+                  <adres_soort code="WP"
                                codeSystem="2.16.840.1.113883.5.1119"
                                displayName="Werkadres"/>
                </adresgegevens>

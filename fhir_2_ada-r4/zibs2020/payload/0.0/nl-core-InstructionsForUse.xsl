@@ -14,10 +14,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
 
-    <!-- TODO, don't see extension for herhaalperiode cyclisch schema in FHIR profile https://simplifier.net/packages/nictiz.fhir.nl.r4.zib2020/0.1.0-beta1/files/412283 -->
     <xsl:variable name="ext-InstructionsForUse-RepeatPeriodCyclicalSchedule">http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule</xsl:variable>
     <xsl:variable name="ext-RenderedDosageInstruction">http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction</xsl:variable>
     <xsl:variable name="ext-iso21090-PQ-translation">http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation</xsl:variable>
+    <xsl:variable name="extTimingExact">http://hl7.org/fhir/StructureDefinition/timing-exact</xsl:variable>
 
     <xd:doc>
         <xd:desc>Template to convert f:dosageInstruction or f:dosage to ADA gebruiksinstructie. Multiple following f:dosage(Instruction) siblings are merged into one gebruiksinstructie.</xd:desc>
@@ -32,22 +32,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="f:route" mode="#current"/>
                     <!-- aanvullende_instructie -->
                     <xsl:apply-templates select="f:additionalInstruction" mode="#current"/>
-                    <!-- TODO, not found in FHIR - herhaalperiode_cyclisch_schema -->
-                    <xsl:apply-templates select="parent::f:MedicationRequest/f:modifierExtension[@url = $ext-InstructionsForUse-RepeatPeriodCyclicalSchedule]" mode="#current"/>
+                    <!-- TODO, check for MA herhaalperiode_cyclisch_schema -->
+                    <xsl:apply-templates select="parent::f:*/f:modifierExtension[@url = $ext-InstructionsForUse-RepeatPeriodCyclicalSchedule]" mode="#current"/>
 
                     <!-- AWE: ideally we make this a bit more smart, dosageInstructions with same sequence/usePeriod may be translated in one doseerinstructie in ada -->
                     <xsl:for-each select="(. | following-sibling::*[self::f:dosageInstruction or self::f:dosage])">
-                        <xsl:if test="f:sequence | f:asNeededCodeableConcept | f:doseQuantity | f:doseRange | f:timing | f:asNeededCodeableConcept | f:maxDosePerPeriod | f:rateRatio | f:rateRange">
+                        <xsl:if test="f:sequence | f:asNeededCodeableConcept | f:doseAndRate | f:timing | f:asNeededCodeableConcept | f:maxDosePerPeriod">
                             <!-- doseerinstructie -->
                             <doseerinstructie>
+                                <!-- doseerduur -->
+                                <xsl:apply-templates select="f:timing/f:repeat/f:boundsDuration" mode="#current"/>
                                 <!-- volgnummer -->
                                 <xsl:apply-templates select="f:sequence" mode="#current"/>
-                                <!-- dosserduur -->
-                                <xsl:apply-templates select="f:timing/f:repeat/f:boundsDuration" mode="#current"/>
                                 <!-- dosering -->
                                 <dosering>
                                     <!-- keerdosis -->
-                                    <xsl:if test="f:doseAndRate">
+                                    <xsl:if test="f:doseAndRate/(f:doseQuantity | f:doseRange)">
                                         <keerdosis>
                                             <xsl:apply-templates select="f:doseAndRate/f:doseQuantity" mode="#current"/>
                                             <xsl:apply-templates select="f:doseAndRate/f:doseRange" mode="#current"/>
@@ -65,17 +65,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </zo_nodig>
                                     </xsl:if>
                                     <!-- toedieningssnelheid -->
-                                    <xsl:if test="f:rateRatio | f:rateRange">
+                                    <xsl:if test="f:doseAndRate/(f:rateRatio | f:rateRange | f:rateQuantity)">
                                         <toedieningssnelheid>
                                             <!-- waarde -->
                                             <!-- eenheid -->
                                             <!-- tijdseenheid -->
-                                            <xsl:apply-templates select="f:rateRatio" mode="#current"/>
-                                            <xsl:apply-templates select="f:rateRange" mode="#current"/>
+                                            <xsl:apply-templates select="f:doseAndRate/f:rateRatio" mode="#current"/>
+                                            <xsl:apply-templates select="f:doseAndRate/f:rateRange" mode="#current"/>
+                                            <xsl:apply-templates select="f:doseAndRate/f:rateQuantity" mode="#current"/>
                                         </toedieningssnelheid>
                                     </xsl:if>
                                     <!-- toedieningsduur -->
-                                    <xsl:apply-templates select="f:timing/f:repeat/f:duration"/>
+                                    <xsl:apply-templates select="f:timing/f:repeat/f:duration" mode="#current"/>
                                 </dosering>
                             </doseerinstructie>
                         </xsl:if>
@@ -186,7 +187,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:repeat" mode="nl-core-InstructionsForUse">
         <xsl:choose>
-            <xsl:when test="f:frequency | f:frequencyMax">
+            <xsl:when test="(f:frequency | f:frequencyMax |f:period | f:periodUnit) and not(f:extension[@url=$extTimingExact]/f:valueBoolean[@value = 'true'])">
                 <!-- frequentie -->
                 <frequentie>
                     <!-- aantal -->
@@ -206,8 +207,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                 </frequentie>
             </xsl:when>
-            <xsl:when test="f:period | f:periodUnit">
-                <!-- interval -->
+            <xsl:when test="(f:frequency | f:period | f:periodUnit)  and f:extension[@url=$extTimingExact]/f:valueBoolean[@value = 'true']">
+                <!-- interval, assumption is that if present f:frequency = 1, maybe raise error of do division if not ... TODO -->
                 <interval>
                     <xsl:apply-templates select="f:period" mode="#current"/>
                     <xsl:apply-templates select="f:periodUnit" mode="#current"/>
@@ -216,6 +217,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
         <!-- toedientijd -->
         <xsl:apply-templates select="f:timeOfDay" mode="#current"/>
+        <!-- is_flexibel -->
+        <xsl:for-each select="f:extension[@url=$extTimingExact]/f:valueBoolean">
+            <!-- timing exact has reverse boolean logic with is_flexibel -->
+            <is_flexibel>
+                <xsl:choose>
+                    <xsl:when test="f:extension/@url = $urlExtHL7NullFlavor">
+                        <xsl:attribute name="nullFlavor" select="f:extension[@url = $urlExtHL7NullFlavor]/f:valueCode/@value"/>
+                    </xsl:when>
+                    <xsl:when test="@value">
+                        <xsl:attribute name="value" select="not(@value = 'true')"/>
+                    </xsl:when>
+                </xsl:choose>
+            </is_flexibel>
+        </xsl:for-each>
         <!-- weekdag -->
         <xsl:apply-templates select="f:dayOfWeek" mode="#current"/>
         <!-- dagdeel -->
@@ -225,8 +240,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:duration to toedieningsduur</xd:desc>
     </xd:doc>
-    <xsl:template match="f:duration">
-        <toedieningsduur value="{@value}" unit="{nf:convertTime_UCUM_FHIR2ADA_unit(following-sibling::f:durationUnit/@value)}"/>
+    <xsl:template match="f:duration" mode="nl-core-InstructionsForUse">
+        <toedieningsduur>
+            <tijds_duur value="{@value}" unit="{nf:convertTime_UCUM_FHIR2ADA_unit(following-sibling::f:durationUnit/@value)}"/>
+        </toedieningsduur>
     </xsl:template>
 
     <xd:doc>
@@ -268,6 +285,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:timeOfDay to toedientijd</xd:desc>
     </xd:doc>
     <xsl:template match="f:timeOfDay" mode="nl-core-InstructionsForUse">
+        <!-- TODO add isFlexible stuff with extension for timing exact -->
         <toedientijd>
             <xsl:variable name="value">
                 <xsl:choose>
@@ -283,8 +301,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:variable>
             <xsl:attribute name="value" select="$value"/>
-            <xsl:attribute name="datatype" select="'datetime'"/>
-        </toedientijd>
+            <xsl:attribute name="datatype">time</xsl:attribute>
+        </toedientijd>       
     </xsl:template>
 
     <xd:doc>
@@ -329,7 +347,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:asNeededCodeableConcept" mode="nl-core-InstructionsForUse">
         <criterium>
-            <xsl:call-template name="CodeableConcept-to-code"/>
+            <xsl:call-template name="CodeableConcept-to-code">
+                <xsl:with-param name="adaElementName">criterium</xsl:with-param>
+            </xsl:call-template>
             <!-- criterium heeft een ./omschrijving als uitzondering. -->
             <xsl:if test="f:text/@value">
                 <omschrijving value="{f:text/@value}"/>
@@ -364,8 +384,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="unit-UCUM" select="substring-before($unit, '/')"/>
         <!--<xsl:variable name="unit-time" select="nf:convertTime_UCUM_FHIR2ADA_unit(substring-after($unit,'/'))"/>-->
         <waarde>
-            <min value="{f:low/f:value/@value}"/>
-            <max value="{f:high/f:value/@value}"/>
+            <minimum_waarde value="{f:low/f:value/@value}"/>
+            <maximum_waarde value="{f:high/f:value/@value}"/>
         </waarde>
         <eenheid>
             <xsl:call-template name="UCUM2GstdBasiseenheid">

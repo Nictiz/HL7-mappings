@@ -26,10 +26,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <xsl:import href="../../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
+    <xsl:import href="nl-core-HealthcareProvider-Organization.xsl"/>
+    <xsl:import href="nl-core-HealthProfessional-Practitioner.xsl"/>
+    <xsl:import href="nl-core-HealthProfessional-PractitionerRole.xsl"/>
     <xsl:import href="nl-core-InstructionsForUse.xsl"/>
     <xsl:import href="nl-core-MedicationAgreement.xsl"/>
+    <xsl:import href="nl-core-NameInformation.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
+    <xsl:import href="nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="ext-TimeInterval-period.xsl"/>
     <xsl:import href="ext-TimeInterval-Duration.xsl"/>
     

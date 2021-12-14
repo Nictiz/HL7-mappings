@@ -1,22 +1,16 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="7521774c-583e-11ec-9644-020000000000"/>
+   <id value="49c07cc2-5d0e-11ec-1202-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:75218cc8-583e-11ec-9644-020000000000"/>
+      <fullUrl value="urn:uuid:49c07952-5d0e-11ec-1202-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_VVandermansMA"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 18 dec 2020, tot en met 7 jan 2021, 1 maal per dag 1 stuk, oraal"/>
             </extension>
@@ -26,11 +20,17 @@
                   <end value="2021-01-07T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_VVandermansMA"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_920_VVandermansMA_MA"/>
             </identifier>
-            <status value="completed"/>
+            <status value="unknown"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -40,18 +40,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:752177e0-583e-11ec-9644-020000000000"/>
+               <reference value="urn:uuid:49c05646-5d0e-11ec-1202-020000000000"/>
                <type value="Medication"/>
                <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:75217786-583e-11ec-9644-020000000000"/>
+               <reference value="urn:uuid:49c07cfc-5d0e-11ec-1202-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <authoredOn value="2020-12-18T09:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:752177a4-583e-11ec-9644-020000000000"/>
+               <reference value="urn:uuid:49c07d1a-5d0e-11ec-1202-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -94,7 +94,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:75217786-583e-11ec-9644-020000000000"/>
+      <fullUrl value="urn:uuid:49c07cfc-5d0e-11ec-1202-020000000000"/>
       <resource>
          <Patient>
             <id value="L-VANXXX-MEIJS"/>
@@ -145,7 +145,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:752177a4-583e-11ec-9644-020000000000"/>
+      <fullUrl value="urn:uuid:49c07d1a-5d0e-11ec-1202-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001115-0100-00005111"/>
@@ -153,12 +153,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:752177c2-583e-11ec-9644-020000000000"/>
+               <reference value="urn:uuid:49c05628-5d0e-11ec-1202-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Marcha van Partners"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:752177fe-583e-11ec-9644-020000000000"/>
+               <reference value="urn:uuid:49c05664-5d0e-11ec-1202-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
             </organization>
@@ -174,7 +174,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:752177c2-583e-11ec-9644-020000000000"/>
+      <fullUrl value="urn:uuid:49c05628-5d0e-11ec-1202-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001115"/>
@@ -206,7 +206,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:752177fe-583e-11ec-9644-020000000000"/>
+      <fullUrl value="urn:uuid:49c05664-5d0e-11ec-1202-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00005111"/>
@@ -244,7 +244,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:752177e0-583e-11ec-9644-020000000000"/>
+      <fullUrl value="urn:uuid:49c05646-5d0e-11ec-1202-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-8052"/>

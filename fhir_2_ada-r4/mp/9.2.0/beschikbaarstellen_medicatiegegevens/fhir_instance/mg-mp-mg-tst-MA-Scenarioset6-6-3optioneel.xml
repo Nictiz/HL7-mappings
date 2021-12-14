@@ -1,22 +1,16 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="74e71494-583e-11ec-1557-020000000000"/>
+   <id value="49731acc-5d0e-11ec-5439-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:74e70d63-583e-11ec-1557-020000000000"/>
+      <fullUrl value="urn:uuid:49732e0d-5d0e-11ec-5439-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_variabelehoeveelheid"/>
-               </valueIdentifier>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 1 jan 2021, tot en met 29 jan 2021, 3 maal per dag 1 à 2 stuks, oraal"/>
             </extension>
@@ -26,11 +20,17 @@
                   <end value="2021-01-29T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_variabelehoeveelheid"/>
+               </valueIdentifier>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_920_variabelehoeveelheid_MA"/>
             </identifier>
-            <status value="completed"/>
+            <status value="unknown"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -40,18 +40,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:74e71528-583e-11ec-1557-020000000000"/>
+               <reference value="urn:uuid:49731b60-5d0e-11ec-5439-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:74e714ce-583e-11ec-1557-020000000000"/>
+               <reference value="urn:uuid:49731b06-5d0e-11ec-5439-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2021-01-01T08:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:74e714ec-583e-11ec-1557-020000000000"/>
+               <reference value="urn:uuid:49731b24-5d0e-11ec-5439-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -110,7 +110,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74e714ce-583e-11ec-1557-020000000000"/>
+      <fullUrl value="urn:uuid:49731b06-5d0e-11ec-5439-020000000000"/>
       <resource>
          <Patient>
             <id value="G-XXX-HEMSBERGEN"/>
@@ -158,7 +158,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74e714ec-583e-11ec-1557-020000000000"/>
+      <fullUrl value="urn:uuid:49731b24-5d0e-11ec-5439-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -166,12 +166,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:74e7150a-583e-11ec-1557-020000000000"/>
+               <reference value="urn:uuid:49731b42-5d0e-11ec-5439-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:74e71546-583e-11ec-1557-020000000000"/>
+               <reference value="urn:uuid:49731b7e-5d0e-11ec-5439-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -187,7 +187,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74e7150a-583e-11ec-1557-020000000000"/>
+      <fullUrl value="urn:uuid:49731b42-5d0e-11ec-5439-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -219,7 +219,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74e71546-583e-11ec-1557-020000000000"/>
+      <fullUrl value="urn:uuid:49731b7e-5d0e-11ec-5439-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -257,7 +257,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:74e71528-583e-11ec-1557-020000000000"/>
+      <fullUrl value="urn:uuid:49731b60-5d0e-11ec-5439-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-67903"/>
