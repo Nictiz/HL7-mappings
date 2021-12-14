@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-12-14
+* MM-2740 Fixed handling of organizations with multiple ids (e.g. AGB, UZI)
 2021-12-03
 * MM-2606 Reset references to fullUrl instead of making those relative. Reset referById parameter from default true() to default false()
 * Added missing display on Observation.referenceRange.type "Normal display"
