@@ -1,21 +1,21 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="cf724bf4-5da7-11ec-1435-020000000000"/>
+   <id value="995786ca-5dc4-11ec-1126-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:cf724230-5da7-11ec-1435-020000000000"/>
+      <fullUrl value="urn:uuid:99578846-5dc4-11ec-1126-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="dispense"/>
+            <id value="dispenseExtraverstrekkingsverzoekomdatpatientmedicatieiskwijtger"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_aanvullendeinstructie"/>
+                  <value value="MBH_920_toelichting"/>
                </valueIdentifier>
             </extension>
             <status value="completed"/>
@@ -27,18 +27,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:cf724c6a-5da7-11ec-1435-020000000000"/>
+               <reference value="urn:uuid:99578740-5dc4-11ec-1126-020000000000"/>
                <type value="Medication"/>
-               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <display value="LASIX TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:cf724c2e-5da7-11ec-1435-020000000000"/>
+               <reference value="urn:uuid:99578704-5dc4-11ec-1126-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:cf724c88-5da7-11ec-1435-020000000000"/>
+                  <reference value="urn:uuid:995787a4-5dc4-11ec-1126-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -47,25 +47,28 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_920_aanvullendeinstructie_VV"/>
+                  <value value="MBH_920_toelichting_VV"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_aanvullendeinstructie_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_toelichting_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="180"/>
+                     <value value="30"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="180"/>
+               <value value="30"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2020-09-01T09:00:00+02:00"/>
+            <whenHandedOver value="2020-12-11T09:02:00+01:00"/>
+            <note>
+               <text value="Extra verstrekkingsverzoek omdat patient medicatie is kwijtgeraakt"/>
+            </note>
          </MedicationDispense>
       </resource>
       <search>
@@ -73,7 +76,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cf724c2e-5da7-11ec-1435-020000000000"/>
+      <fullUrl value="urn:uuid:99578704-5dc4-11ec-1126-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--C.XXX-Coenen"/>
@@ -121,10 +124,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cf724c88-5da7-11ec-1435-020000000000"/>
+      <fullUrl value="urn:uuid:995787a4-5dc4-11ec-1126-020000000000"/>
       <resource>
          <Organization>
-            <id value="2.16.528.1.1007.3.3-01236578"/>
+            <id value="re-HealthcareProvider-Organization--2.16.528.1.1007.3.3-01236578"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -137,31 +140,31 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cf724c6a-5da7-11ec-1435-020000000000"/>
+      <fullUrl value="urn:uuid:99578740-5dc4-11ec-1126-020000000000"/>
       <resource>
          <Medication>
-            <id value="nl-core-PharmaceuticalProduct--2.16.840.1.113883.2.4.4.7-1110837"/>
+            <id value="nl-core-PharmaceuticalProduct--2.16.840.1.113883.2.4.4.7-220515"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1110837"/>
-                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                  <code value="220515"/>
+                  <display value="LASIX TABLET 40MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="5967"/>
+                  <display value="FUROSEMIDE 40MG TABLET"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="16810"/>
+                  <display value="FUROSEMIDE 40MG TABLET"/>
                </coding>
-               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <text value="LASIX TABLET 40MG"/>
             </code>
          </Medication>
       </resource>
