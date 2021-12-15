@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select=".//(patient | medicamenteuze_behandeling/* | reden_van_voorschrijven/probleem | medicatieverstrekking/afleverlocatie | bouwstenen/*)"/>
+            <xsl:with-param name="in" select=".//(patient | medicamenteuze_behandeling/* | reden_van_voorschrijven/probleem | */afleverlocatie | bouwstenen/*)"/>
         </xsl:call-template>
     </xsl:param>    
  
