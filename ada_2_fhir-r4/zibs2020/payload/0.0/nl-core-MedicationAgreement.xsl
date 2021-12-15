@@ -22,6 +22,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA medicatieafspraak to FHIR MedicationRequest conforming to profile nl-core-MedicationAgreement</xd:desc>
     </xd:doc>
 
+
+    <xd:doc>
+        <xd:desc>Profilename for this resource.</xd:desc>
+    </xd:doc>
+    <xsl:variable name="nlcoreMedicationAgreement">http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement</xsl:variable>
+
     <xd:doc>
         <xd:desc>Create a nl-core-MedicationAgreement instance as a MedicationRequest FHIR instance from ADA medicatieafspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -41,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <MedicationRequest>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
+                    <profile value="{$nlcoreMedicationAgreement}"/>
                 </meta>
 
                 <xsl:for-each select="medicatieafspraak_aanvullende_informatie">
@@ -68,10 +74,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
 
-                 <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
+                <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
                     <xsl:call-template name="ext-CopyIndicator"/>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedAdministrationAgreement">
                         <valueReference>
@@ -83,7 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueReference>
                     </extension>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_medicatiegebruik/identificatie[@value]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse">
                         <valueReference>
@@ -95,16 +101,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueReference>
                     </extension>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
                     <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                 </xsl:for-each>
-                
+
                 <!--herhaalperiode_cyclisch_schema-->
                 <xsl:for-each select="gebruiksinstructie">
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
-           
+
                 <xsl:for-each select="medicatieafspraak_stop_type">
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                         <valueCodeableConcept>
@@ -112,7 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </modifierExtension>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier"/>
@@ -120,7 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- we do not know the current status of this instance -->
-                <status value="unknown"/>                
+                <status value="unknown"/>
 
                 <intent value="order"/>
 
@@ -216,13 +222,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatieafspraak" mode="_generateId">
-        <xsl:variable name="parts">
-            <xsl:text>agreement</xsl:text>
-            <xsl:value-of select="reden_van_voorschrijven/@displayName"/>
-            <xsl:value-of select="medicatieafspraak_datum_tijd/@value"/>
-            <xsl:value-of select="toelichting/@value"/>
+   
+        <xsl:variable name="uniqueString" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="identificatie[@root][@value][string-length(concat(@root, @value)) le $maxLengthFHIRLogicalId - 2]">
+                    <xsl:for-each select="(identificatie[@root][@value])[1]">
+                        <xsl:value-of select="concat(@root, '-', @value)"/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="uuid:get-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
-        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
+
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="profileName" select="$nlcoreMedicationAgreement"/>
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xd:doc>

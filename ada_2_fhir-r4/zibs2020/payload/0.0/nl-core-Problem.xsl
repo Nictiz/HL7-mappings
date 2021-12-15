@@ -30,6 +30,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xd:doc>
+        <xd:desc>Profilename for this resource.</xd:desc>
+    </xd:doc>
+    <xsl:variable name="nlcoreProblem">http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem</xsl:variable>
+    
+    <xd:doc>
         <xd:desc>Create an nl-core-Problem as a Condition FHIR instance from ada probleem element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
@@ -42,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Condition>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
+                    <profile value="{$nlcoreProblem}"/>
                 </meta>
                 <xsl:for-each select="probleem_status">
                     <clinicalStatus>
@@ -128,6 +133,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Condition>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="probleem" mode="_generateId">    
+        
+        <xsl:variable name="uniqueString" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="identificatie[@root][@value][string-length(concat(@root, @value)) le $maxLengthFHIRLogicalId - 2]">
+                    <xsl:for-each select="(identificatie[@root][@value])[1]">
+                        <xsl:value-of select="concat(@root, '-', @value)"/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="uuid:get-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="profileName" select="$nlcoreProblem"/>
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
+    </xsl:template>
+    
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>

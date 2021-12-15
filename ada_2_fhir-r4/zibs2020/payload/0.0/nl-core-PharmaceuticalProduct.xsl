@@ -15,14 +15,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mapping" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- uncomment these imports for development purposes only -->
-<!--    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
-    
+    <!--    <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>-->
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA farmaceutisch_product to FHIR Medication conforming to profile nl-core-PharmaceuticalProduct.</xd:desc>
     </xd:doc>
+
+    <xd:doc>
+        <xd:desc>Usecasename for resource id. Optional, no default.</xd:desc>
+    </xd:doc>
+    <xsl:param name="usecase" as="xs:string?"/>
+
+    <xd:doc>
+        <xd:desc>Profilename for this resource.</xd:desc>
+    </xd:doc>
+    <xsl:variable name="nlcorePharmaceuticalProduct">http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct</xsl:variable>
+
 
     <xd:doc>
         <xd:desc>Create a nl-core-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
@@ -127,21 +138,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="farmaceutisch_product" mode="_generateId">
 
-        <xsl:choose>
-            <xsl:when test="product_code[@codeSystem = ($oidGStandaardZInummer, $oidGStandaardHPK, $oidGStandaardPRK, $oidGStandaardGPK, $oidGStandaardSNK, $oidGStandaardSSK)][@code]">
-                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
-                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat($most-specific-product-code/@codeSystem, '-',$most-specific-product-code/@code)))"/>
-            </xsl:when>
-            <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)][string-length(concat(@code, '-', @codeSystem)) le $maxLengthFHIRLogicalId]">
-                <!-- own 90-million product-code which will fit in a logicalId -->
-                <xsl:variable name="productCode" select="(product_code[string-length(concat(@code, '-', @codeSystem)) le $maxLengthFHIRLogicalId])[1]" as="element(product_code)?"/>
-                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat($productCode/@codeSystem, '-',$productCode/@code)))"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
-                <xsl:value-of select="uuid:get-uuid(.)"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="uniqueString" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="product_code[@codeSystem = ($oidGStandaardZInummer, $oidGStandaardHPK, $oidGStandaardPRK, $oidGStandaardGPK, $oidGStandaardSNK, $oidGStandaardSSK)][@code]">
+                    <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
+                    <xsl:value-of select="concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code)"/>
+                </xsl:when>
+                <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)][string-length(concat(@code, '-', @codeSystem)) le $maxLengthFHIRLogicalId]">
+                    <!-- own 90-million product-code which will fit in a logicalId -->
+                    <xsl:variable name="productCode" select="(product_code[string-length(concat(@code, '-', @codeSystem)) le $maxLengthFHIRLogicalId])[1]" as="element(product_code)?"/>
+                    <xsl:value-of select="concat($productCode/@codeSystem, '-', $productCode/@code)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="uuid:get-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="profileName" select="$nlcorePharmaceuticalProduct"/>
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xd:doc>

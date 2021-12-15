@@ -1,0 +1,102 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="ore-MedicationAgreement-mp9-46ac36d0-5dab-11ec-5150-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="xxx"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+      <valuePeriod>
+         <start value="2020-10-03T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
+      <valueDuration>
+         <value value="30"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_zelfzorgmedicatie"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse">
+      <valueReference>
+         <type value="MedicationUse"/>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+            <value value="MBH_920_zelfzorgmedicatie_MBG"/>
+         </identifier>
+         <display value="relatie naar medicatiegebruik met identificatie: MBH_920_zelfzorgmedicatie_MBG || 2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_920_zelfzorgmedicatie_MA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="voorschrijven"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="urn:uuid:46ac4760-5dab-11ec-5150-020000000000"/>
+      <type value="Medication"/>
+      <display value="CETIRIZINE TABLET 10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="urn:uuid:46ac46a2-5dab-11ec-5150-020000000000"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Raamsdonk"/>
+   </subject>
+   <authoredOn value="2020-10-14T08:30:00+02:00"/>
+   <requester>
+      <reference value="urn:uuid:46ac4706-5dab-11ec-5150-020000000000"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <note>
+      <text value="Patiënt koopt zelfzorgmedicatie bij drogist."/>
+   </note>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationRequest>

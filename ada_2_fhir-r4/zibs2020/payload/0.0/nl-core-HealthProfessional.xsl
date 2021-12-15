@@ -15,15 +15,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xsl:variable name="profileNameHealthProfessionalPractitionerRole">nl-core-HealthProfessional-PractitionerRole</xsl:variable>
     <xsl:variable name="profileNameHealthProfessionalPractitioner">nl-core-HealthProfessional-Practitioner</xsl:variable>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada zorgverlener_rol to FHIR resource conforming to profile nl-core-HealthProfessional-PractitionerRole</xd:desc>
     </xd:doc>
 
-    <xd:doc>
+     <xd:doc>
         <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole FHIR instance from an ada 'zorgverlener' element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="organization">Optional ADA instance or ADA reference element of the organization.</xd:param>
@@ -185,36 +185,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" required="yes" as="xs:string"/>
         <xsl:param name="fullUrl" tunnel="yes"/>
 
-        <xsl:choose>
-            <xsl:when test="$profile = $profileNameHealthProfessionalPractitionerRole">
-                <!-- we only use value attributes from person, specialism and organization, including the oid would breach the 64 chars for logicalId -->
-                <xsl:variable name="personIdentifier" select="nf:getValueAttrDefault(nf:ada-healthprofessional-id(zorgverlener_identificatienummer))"/>
-                <xsl:variable name="specialism" select="upper-case(string-join((specialisme//@code)/normalize-space(), ''))"/>
-                <!-- AWE: not so nice to search "anywhere in the input ada" for a matching zorgaanbieder -->
-                <xsl:variable name="organization" select="//zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]"/>
-                <xsl:variable name="organizationId" select="nf:getValueAttrDefault(nf:ada-healthprovider-id($organization/zorgaanbieder_identificatienummer))"/>
+        <xsl:variable name="uniqueString" as="xs:string?">
 
-                <xsl:variable name="display" select="concat($personIdentifier, '-', $specialism, '-', $organizationId)"/>
-                <xsl:choose>
-                    <xsl:when test="string-length($display) gt 0">
-                        <xsl:value-of select="$display"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:next-match/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:when test="$profile = $profileNameHealthProfessionalPractitioner">
-                <xsl:choose>
-                    <xsl:when test="zorgverlener_identificatienummer[@value | @root]">
-                        <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/concat(@root, '-', @value)))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:next-match/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-        </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$profile = $profileNameHealthProfessionalPractitionerRole">
+                    <!-- we only use value attributes from person, specialism and organization, including the oid would breach the 64 chars for logicalId -->
+                    <xsl:variable name="personIdentifier" select="nf:getValueAttrDefault(nf:ada-healthprofessional-id(zorgverlener_identificatienummer))"/>
+                    <xsl:variable name="specialism" select="upper-case(string-join((specialisme//@code)/normalize-space(), ''))"/>
+                    <!-- AWE: not so nice to search "anywhere in the input ada" for a matching zorgaanbieder -->
+                    <xsl:variable name="organization" select="//zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]"/>
+                    <xsl:variable name="organizationId" select="nf:getValueAttrDefault(nf:ada-healthprovider-id($organization/zorgaanbieder_identificatienummer))"/>
+
+                    <xsl:variable name="display" select="concat($personIdentifier, '-', $specialism, '-', $organizationId)"/>
+                    <xsl:choose>
+                        <xsl:when test="string-length($display) gt 0">
+                            <xsl:value-of select="$display"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:next-match/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="$profile = $profileNameHealthProfessionalPractitioner">
+                    <xsl:choose>
+                        <xsl:when test="zorgverlener_identificatienummer[@value | @root]">
+                            <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/concat(@root, '-', @value)))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:next-match/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="profileName" select="$profile"/>
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
+
     </xsl:template>
 
     <xd:doc>

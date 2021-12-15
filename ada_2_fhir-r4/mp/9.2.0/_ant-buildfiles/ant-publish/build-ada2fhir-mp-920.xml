@@ -36,27 +36,43 @@
         <!-- the MP specific stuff for version 9.2.0 -->
         <echo>the MP specific stuff for version 9.2.0</echo>
         <echo/>
-        <echo>MedMij stuff beschikbaarstellen_medicatiegegevens</echo>
+        <echo>beschikbaarstellen_medicatiegegevens</echo>
+        <property name="xsl.input" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
+        <property name="xsl.output" value="${build.dir}/${usecase.mg}/fhir_instance_repo"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.*"/>
+        </delete>
+        <!-- resources for Touchstone -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.in" value="ada_instance_repo"/>
-            <param name="xsl.out" value="fhir_instance_repo"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl"/>
+            <param name="xsl.in" value="${xsl.input}"/>
+            <param name="xsl.in.include" value="*MA*.xml"/>
+            <param name="xsl.out" value="${xsl.output}"/>
+        </antcall>
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${xsl.input}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${xsl.output}"/>
         </antcall>
         
-       
-<!--        <!-\- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -\->
-        <echo>copy the appropriate fhir instances for Touchstone to a separate folder</echo>
+        <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
+        <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMPServe</echo>
         <mkdir dir="${build.dir}/4TouchstoneMPServe"/>
-        <!-\- clean previous results, if any -\->
+        <!-- clean previous results, if any -->
         <delete>
             <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="mo-mor*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="mp9-nl-core-patient-*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_VV" includes="mp9-*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_MA" includes="mp9-*.xml"/>
-         </copy>-->
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_repo" excludes="mg-mp-mg-*.xml"/>
+        </copy>       
 
     </target>
 

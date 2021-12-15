@@ -28,6 +28,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="populateId" select="true()" as="xs:boolean"/>
 
     <xd:doc>
+        <xd:desc>Usecasename for resource id. Optional, no default.</xd:desc>
+    </xd:doc>
+    <xsl:param name="usecase" as="xs:string?"/>
+
+    <xd:doc>
         <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
                 <xd:li>logicalId</xd:li>
                 <xd:li>uuid</xd:li>
@@ -280,6 +285,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
             </xsl:choose>
         </xsl:for-each>
+    </xsl:template>
+
+
+    <!-- TODO, AWE: this template is quite specific to adhere to MM-1752, however those requirements are really for Touchstone, 
+        we should move the 'logicalIdStartString' part to Touchstone specific XSLT's -->
+    <xd:doc>
+        <xd:desc>Helper template for creating logicalId</xd:desc>
+        <xd:param name="profileName">The profile of the resource for which to create a logical id. Optional. No default value.</xd:param>
+        <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
+    </xd:doc>
+    <xsl:template name="generateLogicalId">
+        <xsl:param name="profileName" as="xs:string?"/>
+        <xsl:param name="uniqueString" as="xs:string?"/>
+
+        <xsl:variable name="profileNameLastPart" select="tokenize($profileName, './')[last()]"/>
+
+        <xsl:variable name="logicalIdStartString" as="xs:string*">
+            <xsl:value-of select="$profileNameLastPart"/>
+            <xsl:value-of select="$usecase"/>
+        </xsl:variable>
+
+        <xsl:choose>
+            <xsl:when test="string-length($uniqueString) le $maxLengthFHIRLogicalId - 2 and string-length($uniqueString) gt 0">
+                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat(string-join($logicalIdStartString, '-'), '-', $uniqueString)))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat(string-join($logicalIdStartString, '-'), '-', uuid:get-uuid(.))))"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xd:doc>

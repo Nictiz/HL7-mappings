@@ -13,17 +13,18 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../../2_fhir_mp90_include.xsl"/>
+    <xsl:import href="../../2_fhir_mp92_include.xsl"/>
+    <xsl:import href="../../../../../ada_2_fhir/fhir/2_fhir_fixtures.xsl"/>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR instances, based on agreed profiles.</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR profiles .</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
                 <xd:ul>
-                    <xd:li>2018-06-12 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
+                    <xd:li>2021-12-12 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
                 </xd:ul>
             </xd:p>
         </xd:desc>
@@ -47,10 +48,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     
-    <xsl:variable name="usecase">mp9</xsl:variable>
-    <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $relatedPersons/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>
-    </xsl:variable>
+    <xsl:param name="usecase">mp9</xsl:param>
+   
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
     </xd:doc>
@@ -67,22 +66,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="mbh"/>
 
         <xsl:variable name="entries" as="element(f:entry)*">
-            <xsl:copy-of select="$bouwstenen-907"/>
+            <xsl:copy-of select="$bouwstenen-920"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, relatedpersons, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
             <xsl:copy-of select="$commonEntries"/>
         </xsl:variable>
 
+        <!-- and output the resource in a file -->
         <xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
-    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>
-        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
-            <xsl:copy-of select="."/>
-        </xsl:result-document>
-    </xsl:template>
-
-</xsl:stylesheet>
+    </xsl:template>    
+    
+  </xsl:stylesheet>

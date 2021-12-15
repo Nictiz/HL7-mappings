@@ -84,38 +84,19 @@
     <!-- from ada2fhir -->
     <target name="convert_ada_2_fhir_sub">
 
-        <property name="xsl.ada2fhir" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir.xsl"/>
-<!--        <property name="xsl.ada2fhir.resources" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir_resources.xsl"/>-->
-
-        <property name="xsl.input" value="${build.dir}/${usecase}/${xsl.in}"/>
-        <property name="xsl.output" value="${build.dir}/${usecase}/${xsl.out}"/>
-
-        <!-- make dir if it does not exist (anymore) -->
-        <mkdir dir="${xsl.output}"/>
-        <echo>Deleting previous results, if any</echo>
-        <delete>
-            <fileset dir="${xsl.output}" includes="*.*"/>
-        </delete>
-
+    
         <sequential>
-            <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
-
-          <!--  <echo/>
-            <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir.resources}</echo>
-            <xslt force="true" style="${xsl.ada2fhir.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputFiles"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>-->
+            <fileset id="inputFiles" dir="${xsl.in}" includes="${xsl.in.include}"/>
 
             <echo/>
-            <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir}</echo>
-            <xslt force="true" style="${xsl.ada2fhir}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
+            <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputFiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>
             </xslt>
+           
         </sequential>
     </target>
 
