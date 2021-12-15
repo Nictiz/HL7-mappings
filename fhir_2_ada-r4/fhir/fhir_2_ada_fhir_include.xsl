@@ -85,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="finalString" select="subsequence($charStringInAndtestChar, 2, 1)"/>
         <xsl:variable name="firstChar" select="substring($pelString, 1, 1)"/>
         <!--these messages do give a layed out overview of what happens, possibly nice to keep?--> 
-        <xsl:message>
+<!--        <xsl:message>
             <xsl:value-of select="concat('char= ', string($testChar))"/>
         </xsl:message>
         <xsl:message>
@@ -93,7 +93,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:message>
         <xsl:message>
             <xsl:value-of select="concat('finalstring= ', $finalString)"/>
-        </xsl:message>
+        </xsl:message>-->
         
         <xsl:choose>
             <xsl:when test="string-length($pelString) lt 1">

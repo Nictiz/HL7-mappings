@@ -29,15 +29,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:MedicationRequest" mode="nl-core-MedicationAgreement">
 		<medicatieafspraak>
-			<!-- gebruiksperiode_start -->
-			<!-- gebruiksperiode_eind -->
-			<xsl:apply-templates select="f:extension[@url = $zib-Medication-PeriodOfUse]" mode="ext-zib-Medication-PeriodOfUse-2.0"/>
 			<!-- identificatie -->
 			<xsl:apply-templates select="f:identifier" mode="#current"/>
 			<!-- afspraakdatum -->
 			<xsl:apply-templates select="f:authoredOn" mode="#current"/>
-			<!-- gebruiksperiode -->
-			<xsl:apply-templates select="f:extension[@url = $zib-MedicationUse-Duration]" mode="ext-zib-medication-use-duration-2.0"/>
+		    <!-- gebruiksperiode -->
+		    <xsl:if test="f:extension[@url = $ext-TimeInterval-Period] or f:extension[@url = $ext-TimeInterval-Duration]">
+		        <gebruiksperiode>
+		            <xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Period]" mode="ext-TimeInterval-Period"/>
+		            <xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Duration]" mode="ext-TimeInterval-Duration"/>
+		        </gebruiksperiode>
+		    </xsl:if>
 			<!-- geannuleerd_indicator  -->
 			<xsl:apply-templates select="f:status" mode="#current"/>
 			<!-- stoptype -->
