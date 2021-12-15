@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="4db97638-5dab-11ec-7224-020000000000"/>
+   <id value="51dff436-5db4-11ec-1821-020000000000"/>
    <type value="searchset"/>
-   <total value="1"/>
+   <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:4db98a42-5dab-11ec-7224-020000000000"/>
+      <fullUrl value="urn:uuid:51dffd8b-5db4-11ec-1821-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="dispense"/>
@@ -15,7 +15,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_920_start_eind"/>
+                  <value value="MBH_920_chronisch"/>
                </valueIdentifier>
             </extension>
             <status value="completed"/>
@@ -27,18 +27,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:4db976ae-5dab-11ec-7224-020000000000"/>
+               <reference value="urn:uuid:51dff4ca-5db4-11ec-1821-020000000000"/>
                <type value="Medication"/>
-               <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <display value="ROTER APC TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4db97672-5dab-11ec-7224-020000000000"/>
+               <reference value="urn:uuid:51dff470-5db4-11ec-1821-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:4db97712-5dab-11ec-7224-020000000000"/>
+                  <reference value="urn:uuid:51dff52e-5db4-11ec-1821-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -47,25 +47,25 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_920_start_eind_VV"/>
+                  <value value="MBH_920_chronisch_VV"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_start_eind_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_chronisch_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="5"/>
+                     <value value="21"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="5"/>
+               <value value="21"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2021-01-01T12:20:00+01:00"/>
+            <whenHandedOver value="2020-12-02T12:32:00+01:00"/>
          </MedicationDispense>
       </resource>
       <search>
@@ -73,7 +73,75 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4db97672-5dab-11ec-7224-020000000000"/>
+      <fullUrl value="urn:uuid:51dffd97-5db4-11ec-1821-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <id value="dispense"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationDispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_chronisch"/>
+               </valueIdentifier>
+            </extension>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="verstrekken van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:51dff4ca-5db4-11ec-1821-020000000000"/>
+               <type value="Medication"/>
+               <display value="ROTER APC TABLET"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:51dff470-5db4-11ec-1821-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Brugge"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:51dff52e-5db4-11ec-1821-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_920_chronisch_VV_extraVVbestaandeMA"/>
+               </identifier>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_chronisch_VV_extraVVbestaandeMA || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
+            <quantity>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                  <valueQuantity>
+                     <value value="90"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </valueQuantity>
+               </extension>
+               <value value="90"/>
+               <unit value="stuk"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="1"/>
+            </quantity>
+            <whenHandedOver value="2020-12-22T12:35:00+01:00"/>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:51dff470-5db4-11ec-1821-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--C.XXX-Brugge"/>
@@ -121,7 +189,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4db97712-5dab-11ec-7224-020000000000"/>
+      <fullUrl value="urn:uuid:51dff52e-5db4-11ec-1821-020000000000"/>
       <resource>
          <Organization>
             <id value="re-HealthcareProvider-Organization--2.16.528.1.1007.3.3-01236578"/>
@@ -137,31 +205,31 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4db976ae-5dab-11ec-7224-020000000000"/>
+      <fullUrl value="urn:uuid:51dff4ca-5db4-11ec-1821-020000000000"/>
       <resource>
          <Medication>
-            <id value="nl-core-PharmaceuticalProduct--2.16.840.1.113883.2.4.4.7-560308"/>
+            <id value="nl-core-PharmaceuticalProduct--2.16.840.1.113883.2.4.4.7-202185"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="560308"/>
-                  <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+                  <code value="202185"/>
+                  <display value="ROTER APC TABLET"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="6947"/>
-                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
+                  <code value="3891"/>
+                  <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="19429"/>
-                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
+                  <code value="61433"/>
+                  <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
                </coding>
-               <text value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <text value="ROTER APC TABLET"/>
             </code>
          </Medication>
       </resource>

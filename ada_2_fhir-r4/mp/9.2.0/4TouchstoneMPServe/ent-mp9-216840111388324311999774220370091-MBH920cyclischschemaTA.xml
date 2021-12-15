@@ -1,0 +1,106 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="ent-mp9-216840111388324311999774220370091-MBH920cyclischschemaTA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="2021-01-01T09:33:00+01:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf &lt;T+0D&gt;, cyclus van 28 dagen: gedurende 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+      <valuePeriod>
+         <start value="2021-01-01T00:00:00+01:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_cyclischschema"/>
+      </valueIdentifier>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
+      <valueDuration>
+         <value value="28"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      <value value="MBH_920_cyclischschema_TA"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="urn:uuid:4ca6e8d8-5db4-11ec-3349-020000000000"/>
+      <type value="Medication"/>
+      <display value="Fusidinezuur creme 20mg/g"/>
+   </medicationReference>
+   <subject>
+      <reference value="urn:uuid:4ca6e856-5db4-11ec-3349-020000000000"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Hemsbergen"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="urn:uuid:4ca6e8f6-5db4-11ec-3349-020000000000"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_920_cyclischschema_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_920_cyclischschema_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <boundsDuration>
+               <value value="21"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationDispense>

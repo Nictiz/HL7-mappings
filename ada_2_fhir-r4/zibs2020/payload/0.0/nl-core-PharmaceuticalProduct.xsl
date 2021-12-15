@@ -144,10 +144,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
                     <xsl:value-of select="concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code)"/>
                 </xsl:when>
-                <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)][string-length(concat(@code, '-', @codeSystem)) le $maxLengthFHIRLogicalId]">
+                <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
                     <!-- own 90-million product-code which will fit in a logicalId -->
-                    <xsl:variable name="productCode" select="(product_code[string-length(concat(@code, '-', @codeSystem)) le $maxLengthFHIRLogicalId])[1]" as="element(product_code)?"/>
-                    <xsl:value-of select="concat($productCode/@codeSystem, '-', $productCode/@code)"/>
+                    <xsl:variable name="productCode" select="product_code[not(@codeSystem = $oidHL7NullFlavor)][1]" as="element(product_code)?"/>
+                    <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                    <xsl:value-of select="concat(replace($productCode/@codeSystem, '\.', ''), '-', replace($productCode/@code, '_', ''))"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- we do not have anything to create a stable logicalId, lets return a UUID -->

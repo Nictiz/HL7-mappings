@@ -1,0 +1,82 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="ore-MedicationAgreement-mp9-4b8caf14-5db4-11ec-1541-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf &lt;T+10D{00:00:00}&gt; t/m &lt;T+12M{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+      <valuePeriod>
+         <start value="2021-01-11T00:00:00+01:00"/>
+         <end value="2022-01-01T23:59:59+01:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_logistiekeverbruiksperiode_start_eind"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_920_logistiekeverbruiksperiode_start_eind_MA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="voorschrijven"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="urn:uuid:4b8cbad6-5db4-11ec-1541-020000000000"/>
+      <type value="Medication"/>
+      <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="urn:uuid:4b8cba18-5db4-11ec-1541-020000000000"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Nederveen"/>
+   </subject>
+   <authoredOn value="2021-01-01T11:00:00+01:00"/>
+   <requester>
+      <reference value="urn:uuid:4b8cba7c-5db4-11ec-1541-020000000000"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationRequest>

@@ -1,0 +1,399 @@
+<?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
+   <id value="4f5f00b1-5db4-11ec-3867-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f1580-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:4f5f015a-5db4-11ec-3867-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Hans van Doorn, Medisch specialisten, inwendige geneeskunde"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_TESTAWE_1"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author">
+               <valueReference>
+                  <reference value="urn:uuid:4f5f0196-5db4-11ec-3867-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Hans van Doorn, Medisch specialisten, inwendige geneeskunde"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_TESTAWE_1_MGB_1"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422979000"/>
+                  <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:4f5f0218-5db4-11ec-3867-020000000000"/>
+               <type value="Medication"/>
+               <display value="FUROSEMIDE TABLET 40MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:4f5f00f6-5db4-11ec-3867-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, J. XXX_Amaya"/>
+            </subject>
+            <dateAsserted value="2018-09-01T15:39:00+02:00"/>
+            <informationSource/>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_2_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <dosage>
+               <sequence value="1"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f00f6-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="nl-core-Patient--XXX-AMAYA"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
+               <value value="51107"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="J. XXX_Amaya"/>
+               <family value="XXX_Amaya">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Amaya"/>
+                  </extension>
+               </family>
+               <given value="J.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1964-08-06"/>
+         </Patient>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f015a-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="ore-HealthProfessional-PractitionerRole--999001112-0313-99901111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:4f5f0178-5db4-11ec-3867-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Hans van Doorn"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:4f5f0286-5db4-11ec-3867-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Ziekenhuis Stitswerd"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0313"/>
+                  <display value="Medisch specialisten, inwendige geneeskunde"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f0178-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <Practitioner>
+            <id value="e-HealthProfessional-Practitioner--2.16.528.1.1007.3.1-999001112"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="999001112"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Hans van Doorn"/>
+               <family value="van Doorn">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Doorn"/>
+                  </extension>
+               </family>
+               <given value="Hans">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f0196-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="ore-HealthProfessional-PractitionerRole--999001112-0313-99901111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:4f5f01b4-5db4-11ec-3867-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Hans van Doorn"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:4f5f0286-5db4-11ec-3867-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Ziekenhuis Stitswerd"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0313"/>
+                  <display value="Medisch specialisten, inwendige geneeskunde"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f01b4-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <Practitioner>
+            <id value="e-HealthProfessional-Practitioner--2.16.528.1.1007.3.1-999001112"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="999001112"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Hans van Doorn"/>
+               <family value="van Doorn">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Doorn"/>
+                  </extension>
+               </family>
+               <given value="Hans">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f01d2-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="nl-core-HealthProfessional-PractitionerRole----"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:4f5f01fa-5db4-11ec-3867-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), test achternaam"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:4f5f0240-5db4-11ec-3867-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), organisation-id  in system "/>
+            </organization>
+         </PractitionerRole>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f01fa-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <Practitioner>
+            <id value="hProfessional-Practitioner--4f5f01f0-5db4-11ec-3867-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="NI"/>
+               </extension>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="test achternaam"/>
+               <family value="test achternaam">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="test achternaam"/>
+                  </extension>
+               </family>
+            </name>
+         </Practitioner>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f0240-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="hcareProvider-Organization--4f5f0236-5db4-11ec-3867-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="T2"/>
+                  <display value="Thuiszorg"/>
+               </coding>
+            </type>
+            <name value=""/>
+            <address>
+               <line value="">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value=""/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value=""/>
+                  </extension>
+               </line>
+               <city value=""/>
+               <postalCode value=""/>
+            </address>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f0286-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="re-HealthcareProvider-Organization--2.16.528.1.1007.3.3-99901111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="99901111"/>
+            </identifier>
+            <name value="Ziekenhuis Stitswerd"/>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4f5f0218-5db4-11ec-3867-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="nl-core-PharmaceuticalProduct--2.16.840.1.113883.2.4.4.10-5967"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="5967"/>
+                  <display value="FUROSEMIDE TABLET 40MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="16810"/>
+                  <display value="FUROSEMIDE TABLET 40MG"/>
+               </coding>
+               <text value="FUROSEMIDE TABLET 40MG"/>
+            </code>
+         </Medication>
+      </resource>
+   </entry>
+</Bundle>

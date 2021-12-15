@@ -225,9 +225,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    
         <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>
-                <xsl:when test="identificatie[@root][@value][string-length(concat(@root, @value)) le $maxLengthFHIRLogicalId - 2]">
+                <xsl:when test="identificatie[@root][@value]">
                     <xsl:for-each select="(identificatie[@root][@value])[1]">
-                        <xsl:value-of select="concat(@root, '-', @value)"/>
+                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
