@@ -1,0 +1,169 @@
+<?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
+   <id value="cfc3a4ae-5da7-11ec-6751-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:cfc3a9e9-5da7-11ec-6751-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <id value="dispense"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationDispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_variabelehoeveelheid2"/>
+               </valueIdentifier>
+            </extension>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="verstrekken van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:cfc3a524-5da7-11ec-6751-020000000000"/>
+               <type value="Medication"/>
+               <display value="WATERSTOFPEROXIDE 3% CONC VOOR MONDSP FNA MR"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:cfc3a4e8-5da7-11ec-6751-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Hemsbergen"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:cfc3a542-5da7-11ec-6751-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_920_variabelehoeveelheid2_VV"/>
+               </identifier>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_variabelehoeveelheid2_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
+            <quantity>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                  <valueQuantity>
+                     <value value="450"/>
+                     <unit value="milliliter"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="233"/>
+                  </valueQuantity>
+               </extension>
+               <value value="450"/>
+               <unit value="milliliter"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml"/>
+            </quantity>
+            <whenHandedOver value="2021-01-01T09:18:00+01:00"/>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cfc3a4e8-5da7-11ec-6751-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="nl-core-Patient--G.XXX-Hemsbergen"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="G. XXX_Hemsbergen"/>
+               <family value="XXX_Hemsbergen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Hemsbergen"/>
+                  </extension>
+               </family>
+               <given value="G.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1963-11-02"/>
+         </Patient>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cfc3a542-5da7-11ec-6751-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="2.16.528.1.1007.3.3-01236578"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek de Gulle Gaper"/>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cfc3a524-5da7-11ec-6751-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="nl-core-PharmaceuticalProduct--2.16.840.1.113883.2.4.4.7-261815"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="261815"/>
+                  <display value="WATERSTOFPEROXIDE 3% CONC VOOR MONDSP FNA MR"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="72994"/>
+                  <display value="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="119903"/>
+                  <display value="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+               </coding>
+               <text value="WATERSTOFPEROXIDE 3% CONC VOOR MONDSP FNA MR"/>
+            </code>
+         </Medication>
+      </resource>
+   </entry>
+</Bundle>
