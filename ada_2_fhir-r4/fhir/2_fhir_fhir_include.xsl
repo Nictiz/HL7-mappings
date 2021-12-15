@@ -308,7 +308,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:choose>
             <xsl:when test="string-length($uniqueString) le $maxLengthFHIRLogicalId - 2 and string-length($uniqueString) gt 0">
-                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat(string-join($logicalIdStartString, '-'), '-', $uniqueString)))"/>
+                <xsl:value-of select="replace(nf:assure-logicalid-length(nf:assure-logicalid-chars(concat(string-join($logicalIdStartString, '-'), '-', $uniqueString))), '\.', '-')"/>
             </xsl:when>
             <xsl:otherwise>
                 <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
