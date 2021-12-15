@@ -36,6 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-NameInformation.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
     <xsl:import href="nl-core-PharmaceuticalProduct.xsl"/>
+    <xsl:import href="nl-core-Problem.xsl"/>
     <xsl:import href="ext-TimeInterval-period.xsl"/>
     <xsl:import href="ext-TimeInterval-Duration.xsl"/>
     

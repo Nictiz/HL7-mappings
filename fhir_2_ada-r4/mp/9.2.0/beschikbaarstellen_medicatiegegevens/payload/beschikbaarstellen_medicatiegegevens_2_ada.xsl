@@ -76,11 +76,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</medicamenteuze_behandeling>
 					</xsl:for-each-group>
 					<!--xxxwim bouwstenen -->
+				    <xsl:if test="$bouwstenen/element()">
 					<bouwstenen>
 						<xsl:for-each select="$bouwstenen">
 							<xsl:copy-of select="."/>
 						</xsl:for-each>
 					</bouwstenen>
+				    </xsl:if>
 
 				</beschikbaarstellen_medicatiegegevens>
 			</data>

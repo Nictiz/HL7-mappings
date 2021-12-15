@@ -40,6 +40,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		            <xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Duration]" mode="ext-TimeInterval-Duration"/>
 		        </gebruiksperiode>
 		    </xsl:if>
+		    <!-- relatie_contact -->
+		    <xsl:apply-templates select="f:encounter[f:type/@value eq 'Encounter']"  mode="#current"/>
 			<!-- geannuleerd_indicator  -->
 			<xsl:apply-templates select="f:status" mode="#current"/>
 			<!-- stoptype -->
@@ -106,6 +108,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</medicatieafspraak_datum_tijd>
 	</xsl:template>
 
+    <xd:doc>
+        <xd:desc>Template to convert f:encounter to relatie_contact</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:encounter" mode="nl-core-MedicationAgreement">
+    <relatie_contact>
+        <xsl:call-template name="Identifier-to-identificatie">
+            <xsl:with-param name="in" select="f:identifier"/>   
+            <xsl:with-param name="adaElementName">identificatienummer</xsl:with-param>
+        </xsl:call-template>
+    </relatie_contact>
+    </xsl:template>
+
 	<xd:doc>
 		<xd:desc>Template to convert f:status to geannuleerd_indicator. Only the FHIR status value 'entered-in-error' is used in this mapping.</xd:desc>
 	</xd:doc>
@@ -143,8 +157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:variable name="reference" select="f:reference/@value"/>
 		<reden_van_voorschrijven>
 			<!--<xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $reference]/f:Observation" mode="general-observation"/>-->
-			<xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $reference]/f:resource/f:Condition[f:meta/f:profile/@value = 'http://nictiz.nl/fhir/StructureDefinition/zib-Problem']"
-				mode="zib-problem-2.1"/>
+		    <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $reference]/f:resource/f:Condition[f:meta/f:profile/@value = 'http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem']" mode="nl-core-Problem"/>
 		</reden_van_voorschrijven>
 	</xsl:template>
 
