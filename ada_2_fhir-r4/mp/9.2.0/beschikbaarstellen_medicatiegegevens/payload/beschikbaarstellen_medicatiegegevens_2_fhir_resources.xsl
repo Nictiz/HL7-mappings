@@ -49,6 +49,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     
     <xsl:param name="usecase">mp9</xsl:param>
+    
+    <xd:doc>
+        <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
+            <xd:li>logicalId</xd:li>
+            <xd:li>uuid</xd:li>
+            <xd:li>none</xd:li>
+        </xd:ul>
+            When $referencingStrategy equals 'logicalId', the value of $populateId is ignored. A Resource.id is added to the resource, with its value being populated from (in this order) @logicalId on the root of the ada element being referenced or from a template with mode '_generateId'. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Should not be used when there is no FHIR server available to retrieve the resources.
+            When $referencingStrategy equals 'uuid', all referencing is done using uuids. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Meant for use within Bundles. Be sure to include all referenced resources in the Bundle! 
+            When $referencingStrategy equals 'none', it is attempted to generate a Reference from an identifier being present in the referenced ada-element. If this is not possible, referencing fails.
+            
+            With any strategy, the referencing of a specific ada element can be overruled by adding an @referenceUri to the ada reference element. The value of @referenceUri is added to Reference.reference (for example an absolute url or URN). An attempt is made to parse a fullUrl form @referenceUri within $fhirMetadata.
+        </xd:desc>
+    </xd:doc>
+    <xsl:param name="referencingStrategy" as="xs:string">logicalId</xsl:param>
+    
    
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
