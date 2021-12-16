@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:util="urn:hl7:utilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
-    <xsl:import href="../zibs2017/payload/all-zibs.xsl"/>
+    <xsl:import href="../zibs2017/payload/package-1.3.10.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -345,6 +345,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
                 </meta>
+                
+                <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                <xsl:for-each select="episode">
+                    <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
+                    <xsl:variable name="theEpisode" select="$theEpisodes[f:fullUrl[@value = $theReference]]/f:resource/f:*" as="element()*"/>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+                        <valueReference>
+                            <xsl:choose>
+                                <xsl:when test="$theEpisode">
+                                    <reference value="{$theReference}"/>
+                                    <display value="Episode {$theEpisode/f:status/@value, ($theEpisode/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title']/f:valueString/@value, $theEpisode/f:diagnosis/f:condition/f:display/@value)[1]}"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <identifier>
+                                        <xsl:call-template name="id-to-Identifier">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </identifier>
+                                    <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </valueReference>
+                    </extension>
+                </xsl:for-each>
+                
                 <!--<identifier>
                     <xsl:call-template name="id-to-Identifier">
                         <xsl:with-param name="in" select="hcimroot/identification_number"/>
@@ -653,15 +678,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:attribute>
                     </start>
-                    <xsl:if test="end_date_time">
-                        <end>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="end_date_time/@value"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </end>
-                    </xsl:if>
+                    <!-- https://bits.nictiz.nl/browse/MM-1453 - GP encounters may not have an end date, but that should still be interpreted as ended on that date. Substitute low as end date -->
+                    <end>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="end_date_time">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="end_date_time/@value"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="start_date_time/@value"/>
+                                    </xsl:call-template>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </end>
                 </period>
                 <!-- Encounter.reason is a codeableconcept with a binding on a valueset containing all SNOMED codes. The ADA model doesn't support this coding, but it does support the contact_reason/deviating_result string, which can be mapped to the text field of the .reason. -->
                 <xsl:if test="contact_reason/deviating_result">
@@ -705,6 +738,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
                     </meta>
+                    <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                    <xsl:for-each select="../episode">
+                        <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
+                        <xsl:variable name="theEpisode" select="$theEpisodes[f:fullUrl[@value = $theReference]]/f:resource/f:*" as="element()*"/>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+                            <valueReference>
+                                <xsl:choose>
+                                    <xsl:when test="$theEpisode">
+                                        <reference value="{$theReference}"/>
+                                        <display value="Episode {$theEpisode/f:status/@value, ($theEpisode/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title']/f:valueString/@value, $theEpisode/f:diagnosis/f:condition/f:display/@value)[1]}"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <identifier>
+                                            <xsl:call-template name="id-to-Identifier">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </identifier>
+                                        <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>
                     <!--NL-CM:0.0.6   Identificatienummer-->
                     <xsl:for-each select="hcimroot/identification_number">
                         <identifier>
@@ -866,6 +922,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
                 </meta>
+                <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                <xsl:for-each select="../episode">
+                    <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
+                    <xsl:variable name="theEpisode" select="$theEpisodes[f:fullUrl[@value = $theReference]]/f:resource/f:*" as="element()*"/>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+                        <valueReference>
+                            <xsl:choose>
+                                <xsl:when test="$theEpisode">
+                                    <reference value="{$theReference}"/>
+                                    <display value="Episode {$theEpisode/f:status/@value, ($theEpisode/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title']/f:valueString/@value, $theEpisode/f:diagnosis/f:condition/f:display/@value)[1]}"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <identifier>
+                                        <xsl:call-template name="id-to-Identifier">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </identifier>
+                                    <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </valueReference>
+                    </extension>
+                </xsl:for-each>
                 <!--NL-CM:0.0.6   Identificatienummer-->
                 <xsl:for-each select="hcimroot/identification_number">
                     <identifier>
@@ -888,7 +967,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:for-each>
-                <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we could opt to only support Encounter here. -->
+                <!-- We would love to tell you more about the episode/encounter, but alas an id is all we have... based on R4 we opt to only support Encounter here and move EpisodeOfCare to an extension -->
                 <xsl:for-each select="../encounter">
                     <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
                     <context>
@@ -1035,6 +1114,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
                 </meta>
+                <!-- We would love to tell you more about the episodeofcare, but alas an id is all we have... -->
+                <xsl:for-each select="episode">
+                    <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
+                    <xsl:variable name="theEpisode" select="$theEpisodes[f:fullUrl[@value = $theReference]]/f:resource/f:*" as="element()*"/>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+                        <valueReference>
+                            <xsl:choose>
+                                <xsl:when test="$theEpisode">
+                                    <reference value="{$theReference}"/>
+                                    <display value="Episode {$theEpisode/f:status/@value, ($theEpisode/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title']/f:valueString/@value, $theEpisode/f:diagnosis/f:condition/f:display/@value)[1]}"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <identifier>
+                                        <xsl:call-template name="id-to-Identifier">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </identifier>
+                                    <display value="Episode ID: {string-join((@value, @root), ' ')}"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </valueReference>
+                    </extension>
+                </xsl:for-each>
                 <xsl:for-each select="identifier">
                     <xsl:call-template name="id-to-Identifier">
                         <xsl:with-param name="in" select="."/>

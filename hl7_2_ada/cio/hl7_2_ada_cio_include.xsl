@@ -809,6 +809,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="handleCV">
                 <xsl:with-param name="in" select="$current-patient/hl7:Person/hl7:administrativeGenderCode"/>
                 <xsl:with-param name="elemName" select="$elmGender"/>
+                <xsl:with-param name="codeMap" as="element()*">
+                    <xsl:if test="not($current-patient/hl7:Person/hl7:administrativeGenderCode/@displayName)">
+                        <xsl:for-each select="$genderMap">
+                            <map>
+                                <xsl:attribute name="inCode" select="@hl7Code"/>
+                                <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
+                                <!-- ada has the hl7Code's so inCode is same as out code, we just add the @displayName -->
+                                <xsl:attribute name="code" select="@hl7Code"/>
+                                <xsl:attribute name="codeSystem" select="@hl7CodeSystem"/>
+                                <xsl:attribute name="displayName" select="@displayName"/>
+                            </map>
+                        </xsl:for-each>
+                    </xsl:if>
+                </xsl:with-param>
             </xsl:call-template>
 
             <!-- meerlingindicator -->

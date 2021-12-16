@@ -32,13 +32,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-EpisodeOfCare instance as a EpisodeOfCare FHIR instance from ADA zorg_episode.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template match="zorg_episode" name="nl-core-EpisodeOfCare" mode="nl-core-EpisodeOfCare" as="element(f:EpisodeOfCare)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <!-- Gaat dit goed? Zou dit niet 'focus_zorg_episode' moeten zijn?  -->
-        <xsl:param name="problem" select="referenties/probleem" as="element()?"/>
         
         <xsl:for-each select="$in">
             <EpisodeOfCare>
@@ -100,10 +98,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </status>
                                 
-                <xsl:for-each select="$problem">
+                <xsl:for-each select="focus_zorg_episode/probleem">
                     <diagnosis>
                         <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="$problem"/>
                             <xsl:with-param name="wrapIn" select="'condition'"/>
                         </xsl:call-template>
                     </diagnosis>

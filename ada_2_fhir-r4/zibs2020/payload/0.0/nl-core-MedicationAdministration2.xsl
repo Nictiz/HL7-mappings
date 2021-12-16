@@ -36,18 +36,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-MedicationAdministration2 instance as a MedicationAdministration FHIR instance from ADA medicatie_toediening.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationAdministration.subject as ADA element or reference.</xd:param>
-        <xd:param name="medicationReference">The MedicationAdministration.medicationReference as ADA element or reference.</xd:param>
-        <xd:param name="administrationAgreement">The MedicationAdministration.administrationAgreement as ADA element or reference.</xd:param>
-        <xd:param name="request">The MedicationAdministration.request as ADA element or reference.</xd:param>
-        <xd:param name="performer">The MedicationAdministration.performer as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-MedicationAdministration2" mode="nl-core-MedicationAdministration2" match="medicatie_toediening" as="element(f:MedicationAdministration)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="toedienings_product/farmaceutisch_product" as="element()?"/>
-        <xsl:param name="administrationAgreement" select="gerelateerde_afspraak/toedieningsafspraak/*" as="element()?"/>
-        <xsl:param name="request" select="gerelateerde_afspraak/medicatieafspraak/*" as="element()?"/>
-        <xsl:param name="performer" select="toediener/*[self::patient or self::zorgverlener or self::mantelzorger]/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationAdministration>
@@ -116,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>
                 
-                <xsl:for-each select="$medicationReference">
+                <xsl:for-each select="toedienings_product/farmaceutisch_product">
                     <medicationReference>
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>
@@ -127,10 +119,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn">subject</xsl:with-param>
                 </xsl:call-template>
                 
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$administrationAgreement"/>
-                    <xsl:with-param name="wrapIn">supportingInformation</xsl:with-param>
-                </xsl:call-template>
+                <xsl:for-each select="gerelateerde_afspraak/toedieningsafspraak/*">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="wrapIn">supportingInformation</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
                 
                 <xsl:for-each select="toedienings_datum_tijd">
                     <effectiveDateTime>
@@ -142,7 +135,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </effectiveDateTime>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$performer">
+                <xsl:for-each select="toediener/*[self::patient or self::zorgverlener or self::mantelzorger]/*">
                     <performer> <!-- There's at most 1 perfomer, so we can write both elements here -->
                         <actor>
                             <xsl:call-template name="makeReference"/>
@@ -150,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </performer>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$request">
+                <xsl:for-each select="gerelateerde_afspraak/medicatieafspraak/*">
                     <request>
                         <xsl:call-template name="makeReference"/>
                     </request>

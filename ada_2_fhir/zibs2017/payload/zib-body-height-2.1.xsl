@@ -87,7 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPatient($adaPatient)"/>
                         <xsl:variable name="theGroupElement" select="$patients[group-key = $theGroupKey]" as="element()?"/>
                         <xsl:variable name="patientLogicalId" select="$theGroupElement/f:entry/f:resource/f:Patient/f:id/@value"/>
-                        <xsl:value-of select="concat(./local-name(), $patientLogicalId, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit), '')))))"/>
+                        <xsl:value-of select="concat($patientLogicalId, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit), '')))))"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
@@ -134,12 +134,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight</xsl:variable>
                 <Observation>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <status value="final"/>
                     <category>

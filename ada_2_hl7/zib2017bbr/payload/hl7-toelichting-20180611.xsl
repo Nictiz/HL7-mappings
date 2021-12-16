@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <act classCode="ACT" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
                 <code code="48767-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Annotation comment"/>
-                <text>
+                <text mediaType="text/plain">
                     <xsl:value-of select="@value"/>
                 </text>
             </act>
