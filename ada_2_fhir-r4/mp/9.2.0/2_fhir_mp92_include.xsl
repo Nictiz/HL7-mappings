@@ -25,18 +25,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
-    
+
     <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
     </xd:doc>
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select=".//(patient | medicamenteuze_behandeling/* | reden_van_voorschrijven/probleem | */afleverlocatie | bouwstenen/*)"/>
+            <xsl:with-param name="in" select=".//(patient | medicamenteuze_behandeling/*[not(self::identificatie)] | reden_van_voorschrijven/probleem | */afleverlocatie | bouwstenen/*)"/>
         </xsl:call-template>
-    </xsl:param>    
- 
+    </xsl:param>
+
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        
+
         <xsl:for-each-group select="/adaxml/data/*/patient" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for patient -->
             <xsl:variable name="patientKey" select="current-grouping-key()"/>
@@ -116,15 +116,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Location'][nm:group-key/text() = $locKey]/nm:full-url/text()}"/>
                 <resource>
                     <Location>
-                        <xsl:call-template name="insertLogicalId"/>                        
+                        <xsl:call-template name="insertLogicalId"/>
                         <name value="{@value}"/>
                     </Location>
                 </resource>
             </entry>
         </xsl:for-each-group>
     </xsl:variable>
-    
-    
+
     <xsl:variable name="bouwstenen-920" as="element(f:entry)*">
         <xsl:variable name="searchMode" as="xs:string">match</xsl:variable>
 
@@ -132,7 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//medicatieafspraak">
             <!-- entry for MedicationRequest -->
             <entry>
-                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
                 <resource>
                     <xsl:call-template name="nl-core-MedicationAgreement">
                         <xsl:with-param name="in" select="."/>
@@ -147,12 +146,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </entry>
         </xsl:for-each>
-        
+
         <!-- wisselend_doseerschema -->
         <xsl:for-each select="//wisselend_doseerschema">
             <!-- entry for MedicationRequest -->
             <entry>
-                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
                 <resource>
                     <xsl:call-template name="nl-core-VariableDosingRegimen">
                         <xsl:with-param name="in" select="."/>
@@ -167,27 +166,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </entry>
         </xsl:for-each>
-        
+
         <!-- verstrekkingsverzoeken -->
-         <xsl:for-each select="//verstrekkingsverzoek">
-             <!-- entry for MedicationRequest -->
-             <entry>
-                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
-                 <resource>
-                     <xsl:call-template name="nl-core-DispenseRequest">
-                         <xsl:with-param name="in" select="."/>
-                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
-                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/beoogd_verstrekker/zorgaanbieder/@value]"/>
-                     </xsl:call-template>
-                 </resource>
-                 <xsl:if test="string-length($searchMode) gt 0">
-                     <search>
-                         <mode value="{$searchMode}"/>
-                     </search>
-                 </xsl:if>
-             </entry>
+        <xsl:for-each select="//verstrekkingsverzoek">
+            <!-- entry for MedicationRequest -->
+            <entry>
+                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-DispenseRequest">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="../../patient" as="element()"/>
+                        <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/beoogd_verstrekker/zorgaanbieder/@value]"/>
+                    </xsl:call-template>
+                </resource>
+                <xsl:if test="string-length($searchMode) gt 0">
+                    <search>
+                        <mode value="{$searchMode}"/>
+                    </search>
+                </xsl:if>
+            </entry>
         </xsl:for-each>
-        
+
         <!-- toedieningsafspraken -->
         <xsl:for-each select="//toedieningsafspraak">
             <entry xmlns="http://hl7.org/fhir">
@@ -206,12 +205,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </entry>
         </xsl:for-each>
-        
+
         <!-- verstrekkingen -->
         <xsl:for-each select="//medicatieverstrekking">
             <!-- entry for MedicationDispense -->
             <entry>
-                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
                 <resource>
                     <xsl:call-template name="nl-core-MedicationDispense">
                         <xsl:with-param name="in" select="."/>
@@ -226,10 +225,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </entry>
         </xsl:for-each>
-        
+
         <!-- medicatie_gebruik -->
         <xsl:for-each select="//(medicatie_gebruik | medicatiegebruik)">
-            <!-- entry for MedicationRequest -->
+            <!-- entry for MedicationUse -->
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
                 <resource>
@@ -246,11 +245,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </entry>
         </xsl:for-each>
-        
+
         <!-- TODO medicatietoediening -->
-        
+
     </xsl:variable>
-   <xd:doc>
+    <xd:doc>
         <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
         <xd:param name="in">The ADA instance to extract the rendered dosage instruction from, override for default function in nl-core-InstructionsForUse</xd:param>
     </xd:doc>
@@ -277,4 +276,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    </xsl:stylesheet>
+</xsl:stylesheet>

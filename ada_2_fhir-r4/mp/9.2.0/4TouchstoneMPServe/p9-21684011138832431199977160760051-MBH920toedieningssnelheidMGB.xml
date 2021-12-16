@@ -1,0 +1,96 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="p9-21684011138832431199977160760051-MBH920toedieningssnelheidMGB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+8D{23:59:59}&gt;, 0.2 a 0.5 ml per uur parenteraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001111-0100-00001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_toedieningssnelheid"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author">
+      <valueReference>
+         <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001111-0100-00001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_920_toedieningssnelheid_MGB"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422979000"/>
+         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-94692"/>
+      <type value="Medication"/>
+      <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-G-XXX-Hemsbergen"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Hemsbergen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, +8}T23:59:59+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="${DATE, T, D, +8}T23:59:59+02:00"/>
+   <informationSource>
+      <reference value="Patient/nl-core-Patient-mp9-G-XXX-Hemsbergen"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Hemsbergen"/>
+   </informationSource>
+   <derivedFrom>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_920_toedieningssnelheid_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+   <dosage>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="10"/>
+            <display value="parenteraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <rateRange>
+            <low>
+               <value value="0.2"/>
+               <unit value="ml/h"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml/h"/>
+            </low>
+            <high>
+               <value value="0.5"/>
+               <unit value="ml/h"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml/h"/>
+            </high>
+         </rateRange>
+      </doseAndRate>
+   </dosage>
+</MedicationStatement>

@@ -70,6 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
         <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="nl-core-MedicationContraIndication"/>
+        <nm:map ada="medicatiegebruik" resource="MedicationStatement" profile="nl-core-MedicationUse2"/>
         <nm:map ada="medicatie_gebruik" resource="MedicationStatement" profile="nl-core-MedicationUse2"/>
         <nm:map ada="medicatie_toediening" resource="MedicationAdministration" profile="nl-core-MedicationAdministration2"/>
         <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="nl-core-MedicationAgreement"/>

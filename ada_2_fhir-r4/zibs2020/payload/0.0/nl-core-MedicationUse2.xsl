@@ -22,6 +22,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA medicatie_gebruik to FHIR MedicationStatement conforming to profile nl-core-MedicationUse2</xd:desc>
     </xd:doc>
 
+
+    <xd:doc>
+        <xd:desc>Profilename for this resource.</xd:desc>
+    </xd:doc>
+    <xsl:variable name="nlcoreMedicationUse">http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2</xsl:variable>
+    
+
     <xd:doc>
         <xd:desc>Create a nl-core-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_gebruik.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -29,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="medicationReference">The MedicationStatement.medicationReference as ADA element or reference.</xd:param>
         <xd:param name="prescriber">The MedicationStatement.prescriber as ADA element or reference.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_gebruik" as="element(f:MedicationStatement)?">
+    <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_gebruik | medicatiegebruik" as="element(f:MedicationStatement)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="gebruiksproduct/farmaceutisch_product" as="element()?"/>
@@ -39,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <MedicationStatement>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
+                    <profile value="{$nlcoreMedicationUse}"/>
                 </meta>
 
                 <xsl:for-each select="gebruiksinstructie">
@@ -264,23 +271,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="medicatie_gebruik" mode="_generateId">
-        <xsl:variable name="parts">
-            <xsl:text>dispense</xsl:text>
-            <xsl:value-of select="medicatie_gebruik_datum_tijd/@value"/>
-            <xsl:value-of select="gebruik_indicator/@displayName"/>
-            <xsl:value-of select="reden_gebruik/@value"/>
-            <xsl:value-of select="concat(medicatie_gebruik_stop_type/@value, medicatie_gebruik_stop_type/@unit)"/>
-            <xsl:value-of select="concat(reden_wijzigen_of_stoppen_gebruik/@value, reden_wijzigen_of_stoppen_gebruik/@unit)"/>
-            <xsl:value-of select="toelichting/@value"/>
+    <xsl:template match="medicatie_gebruik | medicatiegebruik" mode="_generateId">
+        <xsl:variable name="uniqueString" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="identificatie[@root][@value]">
+                    <xsl:for-each select="(identificatie[@root][@value])[1]">
+                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="uuid:get-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
-        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
+        
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="profileName" select="$nlcoreMedicationUse"/>
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="medicatie_gebruik" mode="_generateDisplay">
+    <xsl:template match="medicatie_gebruik | medicatiegebruik" mode="_generateDisplay">
         <xsl:variable name="parts">
             <xsl:text>Medication use</xsl:text>
             <xsl:if test="medicatie_gebruik_datum_tijd/@value">
