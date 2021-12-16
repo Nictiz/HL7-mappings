@@ -21,17 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
     </xd:doc>
 
-    <xd:doc>
-        <xd:desc>Usecasename for resource id. Optional, no default.</xd:desc>
-    </xd:doc>
-    <xsl:param name="usecase" as="xs:string?"/>
-
-    <xd:doc>
-        <xd:desc>Profilename for this resource.</xd:desc>
-    </xd:doc>
-    <xsl:variable name="nlcorePatient">http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient</xsl:variable>
-
-    <xd:doc>
+     <xd:doc>
         <xd:desc>Create an nl-core-Patient FHIR instance from the following ada parts:
             <xd:ul>
                 <xd:li>zib Patient</xd:li>
@@ -63,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Patient>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="{$nlcorePatient}"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <!-- Nationality is a zib on its own, but the implementation is specific for the Patient resource. 
                  Therefore, it is created inline. -->
@@ -282,10 +272,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="profileName" select="$nlcorePatient"/>
+            <xsl:with-param name="profileName" select="nf:get-profilename-from-adaelement(.)"/>
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
-
+        
     </xsl:template>
 
     <xd:doc>

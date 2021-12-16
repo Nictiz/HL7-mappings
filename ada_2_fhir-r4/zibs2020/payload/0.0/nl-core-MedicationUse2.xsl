@@ -21,14 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA medicatie_gebruik to FHIR MedicationStatement conforming to profile nl-core-MedicationUse2</xd:desc>
     </xd:doc>
-
-
-    <xd:doc>
-        <xd:desc>Profilename for this resource.</xd:desc>
-    </xd:doc>
-    <xsl:variable name="nlcoreMedicationUse">http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2</xsl:variable>
-    
-
+  
     <xd:doc>
         <xd:desc>Create a nl-core-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_gebruik.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -46,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <MedicationStatement>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="{$nlcoreMedicationUse}"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
                 <xsl:for-each select="gebruiksinstructie">
@@ -288,7 +281,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="profileName" select="$nlcoreMedicationUse"/>
+            <xsl:with-param name="profileName" select="nf:get-profilename-from-adaelement(.)"/>
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
     </xsl:template>

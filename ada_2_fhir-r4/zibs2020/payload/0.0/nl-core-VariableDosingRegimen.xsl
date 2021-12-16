@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mapping" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA wisselend_doseerschema to FHIR MedicationRequest conforming to profile nl-core-VariableDosingRegimen</xd:desc>
     </xd:doc>
-
+    
     <xd:doc>
         <xd:desc>Create a nl-core-VariableDosingRegimen instance as a MedicationRequest FHIR instance from ADA wisselend_doseerschema.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <MedicationRequest>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
                 <!-- pharmaceuticalTreatmentIdentifier -->
@@ -204,20 +204,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="wisselend_doseerschema" mode="_generateId">
-        <xsl:variable name="parts">
+        <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>
-                <xsl:when test="identificatie[@value][@root]">
-                    <xsl:value-of select="identificatie/concat(@value, '-', @root)"/>                    
+                <xsl:when test="identificatie[@root][@value]">
+                    <xsl:for-each select="(identificatie[@root][@value])[1]">
+                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                    </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:text>variabledosingregimen</xsl:text>
-                    <xsl:value-of select="wisselend_doseerschema_datum_tijd/@value"/>
-                    <xsl:value-of select="toelichting/@value"/>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="uuid:get-uuid(.)"/>
                 </xsl:otherwise>
             </xsl:choose>
-            
         </xsl:variable>
-        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
+        
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="profileName" select="nf:get-profilename-from-adaelement(.)"/>
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xd:doc>

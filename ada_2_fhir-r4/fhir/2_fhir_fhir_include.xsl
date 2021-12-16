@@ -90,6 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
+        <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="nl-core-VariableDosingRegimen"/>
         <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
@@ -628,6 +629,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="false()"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns the full profileName for an ada element, based on $urlBaseNictizProfile and $ada2resourceType constant</xd:desc>
+        <xd:param name="adaElement">The ada element for which to get the profileName</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-full-profilename-from-adaelement" as="xs:string?">
+        <xsl:param name="adaElement" as="element()?"/>
+        
+        <xsl:value-of select="concat($urlBaseNictizProfile, nf:get-profilename-from-adaelement($adaElement))"/>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns the last part of the profileName for an ada element, based on $ada2resourceType constant</xd:desc>
+        <xd:param name="adaElement">The ada element for which to get the profileName</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-profilename-from-adaelement" as="xs:string?">
+        <xsl:param name="adaElement" as="element()?"/>
+        
+        <xsl:value-of select="$ada2resourceType/nm:map[@ada = $adaElement/local-name()]/@profile"/>
     </xsl:function>
 
 </xsl:stylesheet>

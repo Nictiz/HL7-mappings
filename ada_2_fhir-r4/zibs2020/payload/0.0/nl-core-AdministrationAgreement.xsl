@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mapping" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -22,12 +22,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA toedienings_afsrpaak to FHIR MedicationDispense conforming to profile nl-core-AdministrationAgreement.</xd:desc>
     </xd:doc>
     
-    <xd:doc>
-        <xd:desc>Profilename for this resource.</xd:desc>
-    </xd:doc>
-    <xsl:variable name="nlcoreAdministrationAgreement">http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement</xsl:variable>
-    
-
     <xd:doc>
         <xd:desc>Create a nl-core-AdministrationAgreement instance as a MedicationDispense FHIR instance from ADA toedienings_afspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -47,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <MedicationDispense>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="{$nlcoreAdministrationAgreement}"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
                 <xsl:for-each select="toedieningsafspraak_aanvullende_informatie">
@@ -207,7 +201,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="profileName" select="$nlcoreAdministrationAgreement"/>
+            <xsl:with-param name="profileName" select="nf:get-profilename-from-adaelement(.)"/>
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
     </xsl:template>
