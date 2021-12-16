@@ -98,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="functionele_of_mentale_status" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>FunctioneleOfMentaleStatus</xsl:text>
+            <xsl:text>Functional or mental status observation</xsl:text>
             <xsl:if test="status_datum/@value">
                 <xsl:value-of select="concat('measurement date ', status_datum/@value)"/>
             </xsl:if>
