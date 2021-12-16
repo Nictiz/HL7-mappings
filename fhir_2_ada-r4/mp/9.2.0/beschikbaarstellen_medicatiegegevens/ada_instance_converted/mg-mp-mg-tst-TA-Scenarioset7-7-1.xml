@@ -1,0 +1,92 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2021-12-16T10:51:22.524109+01:00"
+         last-update-date="2021-12-16T10:51:22.524109+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp920"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172"
+                                            transactionEffectiveDate="2021-04-02T09:33:39"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="G. XXX_Hess"/>
+               <initialen value="G."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Hess"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer nullFlavor="MSK" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-03"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_920_magistraalalleingredienten"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak>
+               <identificatie value="MBH_920_magistraalalleingredienten_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="2021-01-01T13:00:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2021-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd value="2021-02-01T23:59:59+01:00"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-9a92f112-5dc4-11ec-6162-020000000000"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-9a92f0f4-5dc4-11ec-6162-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 1 feb 2021, Zo nodig, cutaan"/>
+                  <toedieningsweg code="53"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard TH007 Toedieningswegen"
+                                  displayName="cutaan"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <zo_nodig>
+                           <criterium>
+                              <criterium code="1137"
+                                         codeSystem="2.16.840.1.113883.2.4.4.5"
+                                         codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                         displayName="Zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_920_magistraalalleingredienten_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-9a92f0f4-5dc4-11ec-6162-020000000000">
+               <product_code code="OTH"
+                             codeSystem="2.16.840.1.113883.5.1008"
+                             codeSystemName="HL7 NullFlavor"
+                             displayName="overig"
+                             originalText="Ureum 10% in eucerine cum aqua 100gr"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="urn-uuid-9a92f112-5dc4-11ec-6162-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
