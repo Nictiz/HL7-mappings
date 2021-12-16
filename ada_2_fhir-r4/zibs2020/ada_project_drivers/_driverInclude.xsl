@@ -90,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="ancestor::*/local-name() = 'referenties'">
                     <!-- This is a contained ada instance, therefore does not have a valid base-uri() -->
                     <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
-                    <xsl:variable name="position" as="xs:integer" select="count(preceding-sibling::*[local-name() = $localName]) + 1"/>
+                    <xsl:variable name="position" as="xs:integer" select="count(preceding::*[local-name() = $localName][ancestor::*/local-name() = 'referenties']) + 1"/>
                     <!-- This leads to a contained zib AdministrationAgreement being referenced as 'nl-core-MedicationAdministration2-02-MedicationDispense-01'. Could be more clear. On the other hand, do we need to put more effort into contained ADA instances? -->
                     <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
                     <!-- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -->
@@ -187,7 +187,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="subject">The 'subject' parameter to pass to the nl-core template</xd:param>
     </xd:doc>
     <xsl:template name="_applyNlCoreTemplate">
-        <xsl:param name="in" select="."/>
+        <xsl:param name="in" select="nf:ada-resolve-reference(.)"/>
         <xsl:param name="subject"/>
 
         <!-- Quite verbose, but the only way to 'dynamically' apply a mode -->
@@ -263,9 +263,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-FunctionalOrMentalStatus">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
-<!--             <xsl:for-each select="hulpmiddel">
-                    <xsl:call-template name="nl-core-MedicalDevice"/>
-                </xsl:for-each>-->
+            </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -322,11 +320,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'medisch_hulpmiddel'">
                 <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
+                    <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
+                    <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                 </xsl:apply-templates>  
                 <xsl:for-each select="product">
                     <xsl:call-template name="nl-core-MedicalDevice.Product">
                         <xsl:with-param name="subject" select="$subject"/>
-                    </xsl:call-template>    
+                    </xsl:call-template>
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'o2saturatie'">

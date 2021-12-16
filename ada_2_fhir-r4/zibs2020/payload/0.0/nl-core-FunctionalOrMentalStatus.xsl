@@ -32,16 +32,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="functionele_of_mentale_status" name="nl-core-FunctionalOrMentalStatus" mode="nl-core-FunctionalOrMentalStatus" as="element(f:Observation)">
-        <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" as="element()?"/>
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="'nl-core-FunctionalOrMentalStatus'"/>
+                </xsl:call-template>
+                
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FunctionalOrMentalStatus"/>
                 </meta>      
                 <status value="final"/>
-
                 <xsl:call-template name="util:logMessage">
                     <xsl:with-param name="msg">The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket ZIB-1549). Therefore SNOMED code 118228005 is hard coded which may not be the right category for the information that is transformed.</xsl:with-param>
                     <xsl:with-param name="level">WARN</xsl:with-param>
