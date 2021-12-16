@@ -23,6 +23,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
 
     <xd:doc>
+        <xd:desc>Profilename for this resource.</xd:desc>
+    </xd:doc>
+    <xsl:variable name="nlcoreMedicationDispense">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationDispense</xsl:variable>
+    
+
+    <xd:doc>
         <xd:desc>Create a nl-core-MedicationDispense instance as a MedicationDispense FHIR instance from ADA medicatieverstrekking.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationDispense.subject as ADA element or reference.</xd:param>
@@ -41,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <MedicationDispense>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationDispense"/>
+                    <profile value="{$nlcoreMedicationDispense}"/>
                 </meta>
 
                 <xsl:for-each select="medicatieverstrekking_aanvullende_informatie">
@@ -206,18 +212,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatieverstrekking" mode="_generateId">
-        <xsl:variable name="parts">
-            <xsl:text>dispense</xsl:text>
-            <xsl:value-of select="medicatieverstrekking_datum_tijd/@value"/>
-            <xsl:value-of select="aanschrijf_datum/@value"/>
-            <xsl:value-of select="distributievorm/@displayName"/>
-            <xsl:value-of select="concat(verbruiksduur/@value, verbruiksduur/@unit)"/>
-            <xsl:value-of select="medicatieverstrekking_aanvullende_informatie/@displayName"/>
-            <xsl:value-of select="concat(verstrekte_hoeveelheid/@value, verstrekte_hoeveelheid/@unit)"/>
-            <xsl:value-of select="toelichting/@value"/>
-            <xsl:value-of select="afleverlocatie/@value"/>
+        <xsl:variable name="uniqueString" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="identificatie[@root][@value]">
+                    <xsl:for-each select="(identificatie[@root][@value])[1]">
+                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="uuid:get-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
-        <xsl:value-of select="substring(replace(string-join($parts, '-'), '[^A-Za-z0-9-.]', ''), 1, 64)"/>
+        
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="profileName" select="$nlcoreMedicationDispense"/>
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xd:doc>

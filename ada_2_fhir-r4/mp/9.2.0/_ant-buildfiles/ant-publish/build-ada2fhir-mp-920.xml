@@ -61,6 +61,13 @@
             <param name="xsl.in.include" value="*VV-*.xml"/>
             <param name="xsl.out" value="${xsl.output}"/>
         </antcall>
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl"/>
+            <param name="xsl.in" value="${xsl.input}"/>
+            <param name="xsl.in.include" value="*MVE-*.xml"/>
+            <param name="xsl.out" value="${xsl.output}"/>
+        </antcall>
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
