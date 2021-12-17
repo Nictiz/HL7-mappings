@@ -153,10 +153,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="behandeldoel" mode="_generateDisplay">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="functionalOrMentalStatus" select="nf:resolveAdaInstance(gewenste_gezondheidstoestand/functionele_of_mentale_status, $in)" as="element()?"/>
-        <xsl:variable name="parts">
+        <xsl:variable name="parts" as="xs:string*">
             <xsl:text>Behandeldoel</xsl:text>
             <xsl:for-each select="$functionalOrMentalStatus">
-                <xsl:variable name="parts" as="item()*">
                     <xsl:if test="status_naam/@displayName">
                         <xsl:value-of select="concat('Gewenste gezondheidstoestand: ', status_naam/@displayName)"/>
                     </xsl:if>
@@ -166,14 +165,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="status_datum/@value">
                         <xsl:value-of select="concat('per ', status_datum/@value)"/>
                     </xsl:if>
-                </xsl:variable>
-                <xsl:value-of select="string-join($parts[. != ''], ' ')"/>
             </xsl:for-each>
             
             <xsl:for-each select="gewenst_zorgresultaat">
-                <xsl:value-of select="concat('Gewenst zorgresultaat: ', gewenst_zorgresultaat/@value)"/>
+                <xsl:value-of select="concat('Gewenst zorgresultaat: ', @value)"/>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:value-of select="string-join($parts[. != ''], ' ')"/>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
 </xsl:stylesheet>
