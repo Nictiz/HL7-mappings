@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>      
                 <status value="final"/>
                 <xsl:call-template name="util:logMessage">
-                    <xsl:with-param name="msg">The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket ZIB-1549). Therefore SNOMED code 118228005 is hard coded which may not be the right category for the information that is transformed.</xsl:with-param>
+                    <xsl:with-param name="msg">Zib-FunctionalOrMentalStatus doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket ZIB-1549). Therefore SNOMED code 118228005 is hard coded which may not be the right category for the information that is transformed.</xsl:with-param>
                     <xsl:with-param name="level">WARN</xsl:with-param>
                     <xsl:with-param name="terminate">false</xsl:with-param>
                 </xsl:call-template>

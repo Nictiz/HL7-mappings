@@ -156,15 +156,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="parts" as="xs:string*">
             <xsl:text>Behandeldoel</xsl:text>
             <xsl:for-each select="$functionalOrMentalStatus">
-                    <xsl:if test="status_naam/@displayName">
-                        <xsl:value-of select="concat('Gewenste gezondheidstoestand: ', status_naam/@displayName)"/>
-                    </xsl:if>
-                    <xsl:if test="status_waarde/@displayName">
-                        <xsl:value-of select="concat('specifiek doel: ', status_waarde/@displayName)"/>
-                    </xsl:if>
-                    <xsl:if test="status_datum/@value">
-                        <xsl:value-of select="concat('per ', status_datum/@value)"/>
-                    </xsl:if>
+                <xsl:if test="status_naam/@displayName">
+                    <xsl:value-of select="concat('Gewenste gezondheidstoestand: ', status_naam/@displayName)"/>
+                </xsl:if>
+                <xsl:if test="status_waarde/@displayName">
+                    <xsl:value-of select="concat('specifiek doel: ', status_waarde/@displayName)"/>
+                </xsl:if>
+                <xsl:if test="status_datum/@value">
+                    <xsl:value-of select="concat('per ', status_datum/@value)"/>
+                </xsl:if>
             </xsl:for-each>
             
             <xsl:for-each select="gewenst_zorgresultaat">
