@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-LegalSituation-LegalStatus FHIR instance from an ada juridische_situatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template match="juridische_situatie" name="nl-core-LegalSituation-LegalStatus" mode="nl-core-LegalSituation-LegalStatus" as="element(f:Condition)?">
         <xsl:param name="in" as="element()?" select="."/>
@@ -168,6 +168,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+        <xd:param name="profile">Parameter to indicate for which target profile a display is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="juridische_situatie" mode="_generateDisplay">
         <xsl:param name="profile" required="yes" as="xs:string"/>

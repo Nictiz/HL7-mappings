@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="all-zibs.xsl"/>-->
+<!--    <xsl:import href="all-zibs.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -111,12 +111,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <!-- NL-CM:8.2.1    AllergieIntolerantie -->
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance</xsl:variable>
                 <AllergyIntolerance>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
 
                     <!-- text narrative 
@@ -162,20 +163,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
 
                     <!-- Conceptmap: https://simplifier.net/NictizSTU3-Zib2017/AllergieStatusCodelijst-to-allergy-status -->
+                    <!-- https://bits.nictiz.nl/browse/MM-2235 -->
+                    <xsl:variable name="allergyStatus" select="(allergie_status | allergy_status)/@code"/>
                     <verificationStatus>
-                        <xsl:choose>
-                            <xsl:when test="(allergie_status | allergy_status)[@code = 'nullified']">
-                                <xsl:attribute name="value">entered-in-error</xsl:attribute>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <!-- we don't know, but still a required element, data-absent-reason -->
-                                <extension url="{$urlExtHL7DataAbsentReason}">
-                                    <valueCode value="unknown"/>
-                                </extension>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <!-- zib compliant -->
+                                <xsl:when test="$allergyStatus = ('nullified')">
+                                    <xsl:text>entered-in-error</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="$allergyStatus = ('obsolete')">
+                                    <xsl:text>refuted</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="$allergyStatus = ('active', 'completed')">
+                                    <xsl:text>confirmed</xsl:text>
+                                </xsl:when>
+                                <!-- valid ActStatus in V3 but not zib-compliant -->
+                                <xsl:when test="$allergyStatus = ('cancelled')">
+                                    <xsl:text>entered-in-error</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="$allergyStatus = ('aborted')">
+                                    <xsl:text>refuted</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="$allergyStatus = ('normal', 'held', 'suspended')">
+                                    <xsl:text>confirmed</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="$allergyStatus = ('new')">
+                                    <xsl:text>unconfirmed</xsl:text>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text>confirmed</xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
                     </verificationStatus>
-
+                    
                     <!-- CD    NL-CM:8.2.4        AllergieCategorie        0..1 AllergieCategorieCodelijst-->
                     <!-- The ZIB prescribes an (optional) value list for the allergy category, which is mapped onto
                          AllergyIntolerance.category. However, .category defines its own required coding, which can't be
@@ -383,8 +405,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="$adaAuteur[self::zorgverlener | self::health_professional]">
                             <xsl:call-template name="practitionerRoleReference">
                                 <xsl:with-param name="useExtension" select="true()"/>
-                                <xsl:with-param name="addDisplay" select="true()"/>
+                                <xsl:with-param name="addDisplay" select="false()"/>
                             </xsl:call-template>
+                            <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
                         </xsl:for-each>
                         <xsl:for-each select="$adaAuteur[self::patient]">
                             <xsl:sequence select="$patientRef"/>
@@ -417,11 +440,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
 
                     <xsl:variable name="informantRef" as="element()*">
-                        <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">
+                        <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">                            
                             <xsl:call-template name="practitionerRoleReference">
                                 <xsl:with-param name="useExtension" select="true()"/>
-                                <xsl:with-param name="addDisplay" select="true()"/>
+                                <xsl:with-param name="addDisplay" select="false()"/>
                             </xsl:call-template>
+                            <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>                            
                         </xsl:for-each>
                         <xsl:for-each select="$adaInformant[self::patient]">
                             <xsl:sequence select="$patientRef"/>

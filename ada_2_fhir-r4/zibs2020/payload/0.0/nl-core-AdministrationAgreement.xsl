@@ -36,16 +36,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-AdministrationAgreement instance as a MedicationDispense FHIR instance from ADA toedienings_afspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationDispense.subject as ADA element or reference.</xd:param>
-        <xd:param name="medicationReference">The MedicationDispense.medicationReference as ADA element or reference.</xd:param>
-        <xd:param name="performer">The MedicationDispense.performer as ADA element or reference.</xd:param>
-        <xd:param name="authorizingPrescription">The MedicationDispense.authorizingPrescription as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-AdministrationAgreement" mode="nl-core-AdministrationAgreement" match="toedieningsafspraak" as="element(f:MedicationDispense)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="geneesmiddel_bij_toedienings_afspraak" as="element()?"/>
-        <xsl:param name="performer" select="verstrekker" as="element()?"/>
-        <xsl:param name="authorizingPrescription" select="medicatieafspraak" as="element()?"/>
         
         <xsl:for-each select="$in">
             <MedicationDispense>
@@ -103,7 +97,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
                 
-                <!-- TODO: Add status. The guidance is not clear how this relates to CancelledIndicator and other zib concepts -->
+                <status>
+                    <xsl:attribute name="value">
+                        <!-- Internally convert the TimeInterval to a Period using the ext-TimeInterval-Period template
+                             so we can perform the required logic using a start and end datetime. -->
+                        <xsl:variable name="period" as="element(f:temp)?">
+                            <xsl:call-template name="ext-TimeInterval.Period">
+                                <xsl:with-param name="in" select="gebruiksperiode"/>
+                                <xsl:with-param name="wrapIn">temp</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="geannuleerd_indicator/@value = 'true'">entered-in-error</xsl:when>
+                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
+                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
+                            <xsl:otherwise>unknown</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </status>
     
                 <category>
                     <coding>
@@ -113,7 +125,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>
                 
-                <xsl:for-each select="$medicationReference">
+                <xsl:for-each select="geneesmiddel_bij_toedienings_afspraak/farmaceutisch_product">
                     <medicationReference>
                         <xsl:call-template name="makeReference"/>
                     </medicationReference>
@@ -125,7 +137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </subject>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$performer">
+                <xsl:for-each select="verstrekker/zorgaanbieder">
                     <performer> <!-- There's at most 1 perfomer, so we can write both elements here -->
                         <actor>
                             <xsl:call-template name="makeReference">
@@ -135,7 +147,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </performer>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$authorizingPrescription">
+                <xsl:for-each select="medicatieafspraak/medicatieafspraak">
                     <authorizingPrescription>
                         <xsl:call-template name="makeReference"/>
                     </authorizingPrescription>

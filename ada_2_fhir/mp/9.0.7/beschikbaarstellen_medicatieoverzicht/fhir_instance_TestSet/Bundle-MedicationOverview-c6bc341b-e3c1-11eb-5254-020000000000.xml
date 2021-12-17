@@ -1,0 +1,1555 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="Bundle-MedicationOverview-c6bc341b-e3c1-11eb-5254-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
+   </meta>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc29d0-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <List>
+            <id value="d3825e616"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
+               <extension url="VerificationPatient">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="VerificationHealthProfessional">
+                  <valueBoolean value="false"/>
+               </extension>
+            </extension>
+            <status value="current"/>
+            <mode value="snapshot"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="11181000146103"/>
+                  <display value="Actual medication overview (record artifact)"/>
+               </coding>
+               <text value="Medicatieoverzicht"/>
+            </code>
+            <subject>
+               <reference value="Patient/K-XXX-LEV-TEST-B"/>
+               <display value="K. XXX-LEV-TEST-B"/>
+            </subject>
+            <date value="${DATE, T, D, +0}"/>
+            <source>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
+                  <valueReference>
+                     <reference value="Organization/nl-core-organization-mp9-2-16-528-1-1007-3-3-00001111"/>
+                     <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </source>
+            <entry>
+               <item>
+                  <reference value="MedicationRequest/ationAgreement-mp9-tsMBH-907-aanvullendeinstructie-MA-staken-LTB"/>
+                  <display value="Medicatieafspraak identifier: value='tsMBH_907_aanvullendeinstructie_MA_staken-LTB', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+               </item>
+            </entry>
+            <entry>
+               <item>
+                  <reference value="MedicationRequest/icationAgreement-mp9-tsMBH-907-toelichting-MA-wijzigingmetVV-LTB"/>
+                  <display value="Medicatieafspraak identifier: value='tsMBH_907_toelichting_MA_wijzigingmetVV-LTB', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+               </item>
+            </entry>
+            <entry>
+               <item>
+                  <reference value="MedicationRequest/ent-mp9-tsMBH-907-redenvanvoorschrijven-MA-wijzigingzonderVV-LTB"/>
+                  <display value="Medicatieafspraak identifier: value='tsMBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-LTB', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+               </item>
+            </entry>
+            <entry>
+               <item>
+                  <reference value="MedicationRequest/zib-MedicationAgreement-mp9-tsMBH-907-chronisch-MA-LTB"/>
+                  <display value="Medicatieafspraak identifier: value='tsMBH_907_chronisch_MA-LTB', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+               </item>
+            </entry>
+            <entry>
+               <item>
+                  <reference value="MedicationRequest/ement-mp9-tsMBH-907-logistiekeverbruiksperiode-start-eind-MA-LTB"/>
+                  <display value="Medicatieafspraak identifier: value='tsMBH_907_logistiekeverbruiksperiode_start_eind_MA-LTB', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+               </item>
+            </entry>
+         </List>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc1dcd-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="ationAgreement-mp9-tsMBH-907-aanvullendeinstructie-MA-staken-LTB"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: K. XXX-LEV-TEST-B. Id: tsMBH_907_aanvullendeinstructie_MA_staken-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th colspan="2">Medicatie is gestopt: <span title="Definitief (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Definitief</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>tsMBH_907_aanvullendeinstructie-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: tsMBH_907_aanvullendeinstructie_MA-LTB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: tsMBH_907_aanvullendeinstructie_MA-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>Acetylsalicylzuur tabletmsr 100mg</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -1}T18:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>
+                              <span title="Geen of onvoldoende effect (58848006 - SNOMED CT)">Geen of onvoldoende effect</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, M, -1}T00:00:00+02:00 - ${DATE, T, D, -1}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: Vanaf T - 1 maand, tot en met T - 1 dag, 1 maal per dag 1 stuk, Niet in combinatie met alcohol gebruiken, Rectaal</div>
+                              <div>Instructie: Niet in combinatie met alcohol gebruiken</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Rectaal (12 - G-Standaard thesaurus subtabel 0007)">Rectaal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, M, -1}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -1}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="tsMBH_907_aanvullendeinstructie-LTB"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="tsMBH_907_aanvullendeinstructie_MA-LTB"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: tsMBH_907_aanvullendeinstructie_MA-LTB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                     <code value="2"/>
+                     <display value="Definitief"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="tsMBH_907_aanvullendeinstructie_MA_staken-LTB"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-6939"/>
+               <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+            </medicationReference>
+            <subject>
+               <reference value="Patient/K-XXX-LEV-TEST-B"/>
+               <display value="K. XXX-LEV-TEST-B"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -1}T18:00:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/nl-core-practitionerrole-mp9-000001117010000001116"/>
+                        <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001117"/>
+                  <display value="Bert van Dam"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="58848006"/>
+                  <display value="Geen of onvoldoende effect"/>
+               </coding>
+            </reasonCode>
+            <dosageInstruction>
+               <text value="Vanaf T - 1 maand, tot en met T - 1 dag, 1 maal per dag 1 stuk, Niet in combinatie met alcohol gebruiken, Rectaal"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="Niet in combinatie met alcohol gebruiken"/>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="12"/>
+                     <display value="Rectaal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc280b-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="icationAgreement-mp9-tsMBH-907-toelichting-MA-wijzigingmetVV-LTB"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: K. XXX-LEV-TEST-B. Id: tsMBH_907_toelichting_MA_wijzigingmetVV-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>tsMBH_907_toelichting-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: tsMBH_907_toelichting_MA-LTB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: tsMBH_907_toelichting_MA-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>APACOF 250/250/50MG TABLET</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -1}T09:06:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>
+                              <span title="Geen of onvoldoende effect (5 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Geen of onvoldoende effect</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>Vanaf ${DATE, T, D, -1}T00:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: Vanaf T - 1 dag, 1 maal per dag 2 stuks, Oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 2 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -1}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="tsMBH_907_toelichting-LTB"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="tsMBH_907_toelichting_MA-LTB"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: tsMBH_907_toelichting_MA-LTB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="tsMBH_907_toelichting_MA_wijzigingmetVV-LTB"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-3891"/>
+               <display value="APACOF 250/250/50MG TABLET"/>
+            </medicationReference>
+            <subject>
+               <reference value="Patient/K-XXX-LEV-TEST-B"/>
+               <display value="K. XXX-LEV-TEST-B"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -1}T09:06:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/l-core-practitionerrole-mp9-c6bc281a-e3c1-11eb-5254-020000000000"/>
+                        <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001117"/>
+                  <display value="Bert van Dam"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                  <code value="5"/>
+                  <display value="Geen of onvoldoende effect"/>
+               </coding>
+            </reasonCode>
+            <dosageInstruction>
+               <text value="Vanaf T - 1 dag, 1 maal per dag 2 stuks, Oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="2"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc287e-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="ent-mp9-tsMBH-907-redenvanvoorschrijven-MA-wijzigingzonderVV-LTB"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: K. XXX-LEV-TEST-B. Id: tsMBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>tsMBH_907_redenvanvoorschrijven-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: tsMBH_907_redenvanvoorschrijven_MA-LTB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: tsMBH_907_redenvanvoorschrijven_MA-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MINOCYCLINE TABLET 100MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -5}T08:10:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>
+                              <ul>
+                                 <li>
+                                    <span title="Allergie of non-allergische overgevoeligheid of bijwerking (16 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Allergie of non-allergische overgevoeligheid of bijwerking</span>
+                                 </li>
+                                 <li>overig Rosacea</li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, D, -5}T00:00:00+02:00 - ${DATE, T, D, +28}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: Vanaf T - 5 dagen, tot en met T + 28 dagen, 1 maal per dag 1 stuk, Oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +28}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="tsMBH_907_redenvanvoorschrijven-LTB"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="tsMBH_907_redenvanvoorschrijven_MA-LTB"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: tsMBH_907_redenvanvoorschrijven_MA-LTB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="tsMBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-LTB"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-31607"/>
+               <display value="MINOCYCLINE TABLET 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="Patient/K-XXX-LEV-TEST-B"/>
+               <display value="K. XXX-LEV-TEST-B"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -5}T08:10:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/l-core-practitionerrole-mp9-c6bc281a-e3c1-11eb-5254-020000000000"/>
+                        <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001117"/>
+                  <display value="Bert van Dam"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                  <code value="16"/>
+                  <display value="Allergie of non-allergische overgevoeligheid of bijwerking"/>
+               </coding>
+            </reasonCode>
+            <reasonReference>
+               <reference value="Condition/zib-Problem-mp9-c6bc28bf-e3c1-11eb-5254-020000000000"/>
+               <display value="overig Rosacea"/>
+            </reasonReference>
+            <dosageInstruction>
+               <text value="Vanaf T - 5 dagen, tot en met T + 28 dagen, 1 maal per dag 1 stuk, Oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc28fb-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="zib-MedicationAgreement-mp9-tsMBH-907-chronisch-MA-LTB"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: K. XXX-LEV-TEST-B. Id: tsMBH_907_chronisch_MA-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Pieter de Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>tsMBH_907_chronisch-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>HYDROCHLOORTHIAZIDE TABLET 25MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -20}T11:32:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>Vanaf ${DATE, T, D, -20}T00:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: Vanaf T - 20 dagen, 1 maal per dag 1 stuk, Oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="tsMBH_907_chronisch-LTB"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="tsMBH_907_chronisch_MA-LTB"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-965"/>
+               <display value="HYDROCHLOORTHIAZIDE TABLET 25MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="Patient/K-XXX-LEV-TEST-B"/>
+               <display value="K. XXX-LEV-TEST-B"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -20}T11:32:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/nl-core-practitionerrole-mp9-000001116010000001116"/>
+                        <display value="Pieter de Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001116"/>
+                  <display value="Pieter de Plat"/>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <text value="Vanaf T - 20 dagen, 1 maal per dag 1 stuk, Oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc2968-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="ement-mp9-tsMBH-907-logistiekeverbruiksperiode-start-eind-MA-LTB"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: K. XXX-LEV-TEST-B. Id: tsMBH_907_logistiekeverbruiksperiode_start_eind_MA-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>tsMBH_907_logistiekeverbruiksperiode_start_eind-LTB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>RIVAROXABAN TABLET 20MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, +0}T11:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, D, +9}T00:00:00+02:00 - ${DATE, T, M, +10}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: Vanaf T + 9 dagen, tot en met T + 10 maanden, 2 maal per dag 1 stuk, Oraal</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, +9}T00:00:00+02:00"/>
+                  <end value="${DATE, T, M, +10}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="tsMBH_907_logistiekeverbruiksperiode_start_eind-LTB"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="tsMBH_907_logistiekeverbruiksperiode_start_eind_MA-LTB"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-100153"/>
+               <display value="RIVAROXABAN TABLET 20MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="Patient/K-XXX-LEV-TEST-B"/>
+               <display value="K. XXX-LEV-TEST-B"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, +0}T11:00:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/l-core-practitionerrole-mp9-c6bc281a-e3c1-11eb-5254-020000000000"/>
+                        <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001117"/>
+                  <display value="Bert van Dam"/>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <text value="Vanaf T + 9 dagen, tot en met T + 10 maanden, 2 maal per dag 1 stuk, Oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc1db2-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="K-XXX-LEV-TEST-B"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), K. XXX-LEV-TEST-B, Man, 3 februari 1950</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX-LEV-TEST-B">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX-LEV-TEST-B"/>
+                  </extension>
+               </family>
+               <given value="K.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1950-02-03"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1117"/>
+      <resource>
+         <Practitioner>
+            <id value="nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001117"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 000001117 (UZI-NR-PERS), Bert van Dam</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001117"/>
+            </identifier>
+            <name>
+               <family value="van Dam">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Dam"/>
+                  </extension>
+               </family>
+               <given value="Bert">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1116"/>
+      <resource>
+         <Practitioner>
+            <id value="nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001116"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 000001116 (UZI-NR-PERS), Pieter de Plat</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001116"/>
+            </identifier>
+            <name>
+               <family value="de Plat">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Plat"/>
+                  </extension>
+               </family>
+               <given value="Pieter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1116"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-organization-mp9-2-16-528-1-1007-3-3-00001116"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001116 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Staden</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Hazepad 2, 1234BB Mijn Stad (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001116"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Staden"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hazepad 2">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hazepad"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="2"/>
+                  </extension>
+               </line>
+               <city value="Mijn Stad"/>
+               <postalCode value="1234BB"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc291a-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-organization-mp9-c6bc291a-e3c1-11eb-5254-020000000000"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001116 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Staden</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Kerkstraat 4, 1234AB Onze Stad (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001116"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Staden"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Kerkstraat 4">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Kerkstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="4"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234AB"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1117"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-organization-mp9-2-16-528-1-1007-3-3-00001117"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001117 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Van Dam</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Hazepad 2, 1234BB Mijn Dorp (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001117"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Van Dam"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hazepad 2">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hazepad"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="2"/>
+                  </extension>
+               </line>
+               <city value="Mijn Dorp"/>
+               <postalCode value="1234BB"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-organization-mp9-2-16-528-1-1007-3-3-00001111"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <a href="tel:099-12345678">099-12345678</a> (Tel)</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="099-12345678"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc1de1-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="nl-core-practitionerrole-mp9-000001117010000001116"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Bert van Dam</div>
+                              <div>Huisartsenpraktijk Staden</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001117"/>
+               <display value="Bert van Dam"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/nl-core-organization-mp9-2-16-528-1-1007-3-3-00001116"/>
+               <display value="Huisartsenpraktijk Staden"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc281a-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="l-core-practitionerrole-mp9-c6bc281a-e3c1-11eb-5254-020000000000"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Bert van Dam</div>
+                              <div>Huisartsenpraktijk Van Dam</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001117"/>
+               <display value="Bert van Dam"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/nl-core-organization-mp9-2-16-528-1-1007-3-3-00001117"/>
+               <display value="Huisartsenpraktijk Van Dam"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6bc2905-e3c1-11eb-5254-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="nl-core-practitionerrole-mp9-000001116010000001116"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Pieter de Plat</div>
+                              <div>Huisartsenpraktijk Staden</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001116"/>
+               <display value="Pieter de Plat"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/nl-core-organization-mp9-c6bc291a-e3c1-11eb-5254-020000000000"/>
+               <display value="Huisartsenpraktijk Staden"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.6939"/>
+      <resource>
+         <Medication>
+            <id value="zib-Product-mp9-2-16-840-1-113883-2-4-4-10-6939"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="Acetylsalicylzuur tabletmsr 100mg (6939 - G-Standaard PRK)">Acetylsalicylzuur tabletmsr 100mg</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="6939"/>
+                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="63630"/>
+                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+               </coding>
+               <text value="Acetylsalicylzuur tabletmsr 100mg"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.3891"/>
+      <resource>
+         <Medication>
+            <id value="zib-Product-mp9-2-16-840-1-113883-2-4-4-10-3891"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="APACOF 250/250/50MG TABLET (3891 - G-Standaard PRK)">APACOF 250/250/50MG TABLET</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="3891"/>
+                  <display value="APACOF 250/250/50MG TABLET"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="61433"/>
+                  <display value="APACOF 250/250/50MG TABLET"/>
+               </coding>
+               <text value="APACOF 250/250/50MG TABLET"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.31607"/>
+      <resource>
+         <Medication>
+            <id value="zib-Product-mp9-2-16-840-1-113883-2-4-4-10-31607"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="MINOCYCLINE TABLET 100MG (31607 - G-Standaard PRK)">MINOCYCLINE TABLET 100MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="31607"/>
+                  <display value="MINOCYCLINE TABLET 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="81728"/>
+                  <display value="MINOCYCLINE TABLET 100MG"/>
+               </coding>
+               <text value="MINOCYCLINE TABLET 100MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.965"/>
+      <resource>
+         <Medication>
+            <id value="zib-Product-mp9-2-16-840-1-113883-2-4-4-10-965"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="HYDROCHLOORTHIAZIDE TABLET 25MG (965 - G-Standaard PRK)">HYDROCHLOORTHIAZIDE TABLET 25MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="965"/>
+                  <display value="HYDROCHLOORTHIAZIDE TABLET 25MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="2682"/>
+                  <display value="HYDROCHLOORTHIAZIDE TABLET 25MG"/>
+               </coding>
+               <text value="HYDROCHLOORTHIAZIDE TABLET 25MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.100153"/>
+      <resource>
+         <Medication>
+            <id value="zib-Product-mp9-2-16-840-1-113883-2-4-4-10-100153"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="RIVAROXABAN TABLET 20MG (100153 - G-Standaard PRK)">RIVAROXABAN TABLET 20MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="100153"/>
+                  <display value="RIVAROXABAN TABLET 20MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="138363"/>
+                  <display value="RIVAROXABAN TABLET 20MG"/>
+               </coding>
+               <text value="RIVAROXABAN TABLET 20MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

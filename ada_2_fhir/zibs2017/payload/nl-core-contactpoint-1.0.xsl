@@ -14,7 +14,8 @@
                         <xsl:when test="$telecomType = 'FAX'">fax</xsl:when>
                         <xsl:when test="$telecomType = 'MC'">phone</xsl:when>
                         <xsl:when test="$telecomType = 'PG'">pager</xsl:when>
-                        <xsl:when test="not($telecomType = 'UNK')">other</xsl:when>
+                        <!-- MM-2563 ContactPoint.system SHALL have a value and since we are in the telephone_numbers section ... -->
+                        <xsl:otherwise>phone</xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="numberType" select="nummer_soort/@code | number_type/@code"/>
@@ -27,29 +28,13 @@
                     </xsl:choose>
                 </xsl:variable>
                 <telecom>
-                    <system>
-                        <xsl:choose>
-                            <xsl:when test="empty($telecomTypeValue) and $telecomType/../@codeSystem = $oidHL7NullFlavor">
-                                <xsl:call-template name="NullFlavor-to-DataAbsentReason">
-                                    <xsl:with-param name="in" select="$telecomType/parent::*"/>
-                                </xsl:call-template>
-                            </xsl:when>
-                            <xsl:when test="empty($telecomTypeValue)">
-                                <extension url="{$urlExtHL7DataAbsentReason}">
-                                    <valueCode value="unknown"/>
-                                </extension>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:attribute name="value" select="$telecomTypeValue"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        <xsl:choose>
-                            <xsl:when test="$telecomType[not(../@codeSystem = $oidHL7NullFlavor)]">
-                                <xsl:call-template name="ext-code-specification-1.0">
-                                    <xsl:with-param name="in" select="$telecomType/parent::*"/>
-                                </xsl:call-template>
-                            </xsl:when>
-                        </xsl:choose>
+                    <!-- MM-2563 ContactPoint.system SHALL have a value -->
+                    <system value="{$telecomTypeValue}">
+                        <xsl:if test="$telecomType[not(../@codeSystem = $oidHL7NullFlavor)]">
+                            <xsl:call-template name="ext-code-specification-1.0">
+                                <xsl:with-param name="in" select="$telecomType/parent::*"/>
+                            </xsl:call-template>
+                        </xsl:if>
                     </system>
                     <xsl:for-each select="telefoonnummer/@value | telephone_number/@value">
                         <value value="{normalize-space(.)}"/>

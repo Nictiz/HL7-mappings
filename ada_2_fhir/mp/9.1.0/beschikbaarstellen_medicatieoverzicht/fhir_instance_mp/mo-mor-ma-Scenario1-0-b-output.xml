@@ -4,7 +4,7 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
-   <id value="3f143261-5992-11eb-2105-020000000000"/>
+   <id value="fd364501-b8b8-11eb-1151-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -12,7 +12,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:3f142c32-5992-11eb-2105-020000000000"/>
+      <fullUrl value="urn:uuid:fd363ee5-b8b8-11eb-1151-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -37,7 +37,7 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:3f143267-5992-11eb-2105-020000000000"/>
+               <reference value="urn:uuid:fd363ecc-b8b8-11eb-1151-020000000000"/>
                <display value="F. van de XXX_Stijl"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
@@ -57,7 +57,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3f143267-5992-11eb-2105-020000000000"/>
+      <fullUrl value="urn:uuid:fd363ecc-b8b8-11eb-1151-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -95,7 +95,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>

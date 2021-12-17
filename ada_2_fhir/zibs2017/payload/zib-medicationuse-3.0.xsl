@@ -93,12 +93,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse</xsl:variable>
                 <MedicationStatement>
-                    <xsl:for-each select="$logicalId[string-length(.) gt 0]">
-                        <id value="{.}"/>
-                    </xsl:for-each>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     
                     <!-- volgens_afspraak_indicator -->

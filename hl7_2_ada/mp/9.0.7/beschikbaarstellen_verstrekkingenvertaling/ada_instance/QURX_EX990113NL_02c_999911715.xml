@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 735860f0-2dc1-11e8-b566-0800200c9a66.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2021-11-11T12:18:28.298847+01:00"
+         last-update-date="2021-11-11T12:18:28.298847+01:00"/>
+   <data>
+      <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907"
+                                                  shortName="beschikbaarstellen_verstrekkingenvertaling"
+                                                  formName="uitwisselen_verstrekkingenvertaling"
+                                                  transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                                  transactionEffectiveDate="2016-03-23T16:32:43"
+                                                  prefix="mp-"
+                                                  language="nl-NL"
+                                                  title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                                  id="QURX_EX990113NL_02c_999911715.xml">
+         <patient>
+            <naamgegevens>
+               <roepnaam value="Hanneke"/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Bekker"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer root="2.16.840.1.113883.2.4.6.3" value="999911715"/>
+            <geboortedatum value="1964-08-02"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      codeSystemName="AdministrativeGender"
+                      displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+            <identificatie value="14606290-2dbd-11e8-b566-0800200c9a66"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <afspraakdatum value="2017-03-06"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam nullFlavor="NI"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="15401367"
+                                   codeSystem="2.16.840.1.113883.2.4.4.8"
+                                   displayName="PARACETAMOL PCH TABLET 500MG"
+                                   codeSystemName="G-Standaard Artikelnummer"/>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-2-->
+               <gebruiksinstructie>
+                  <omschrijving value="Zo nodig bij pijn, maximaal 6 stuks per dag"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <code code="1140"
+                                    codeSystem="2.16.840.1.113883.2.4.4.5"
+                                    displayName="zo nodig bij pijn"/>
+                           </criterium>
+                           <!--maximale dosering-->
+                           <maximale_dosering>
+                              <aantal value="6"/>
+                              <eenheid code="245"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       displayName="stuk"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </toedieningsafspraak>
+            <verstrekking>
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="14606290-2dbd-11e8-b566-0800200c9a66"/>
+               <datum nullFlavor="NI"/>
+               <aanschrijfdatum value="2017-03-06"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam nullFlavor="NI"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="20"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="15401367"
+                                   codeSystem="2.16.840.1.113883.2.4.4.8"
+                                   displayName="PARACETAMOL PCH TABLET 500MG"
+                                   codeSystemName="G-Standaard Artikelnummer"/>
+                  </product>
+               </verstrekt_geneesmiddel>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+            <identificatie value="13438b70-2dbe-11e8-b566-0800200c9a66"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <afspraakdatum value="2017-03-13"/>
+               <gebruiksperiode value="7" unit="dag"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam nullFlavor="NI"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="15401367"
+                                   codeSystem="2.16.840.1.113883.2.4.4.8"
+                                   displayName="PARACETAMOL PCH TABLET 500MG"
+                                   codeSystemName="G-Standaard Artikelnummer"/>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-2-->
+               <gebruiksinstructie>
+                  <omschrijving value="Gedurende 7 dagen, 1 keer per 4 uur 1 stuk"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="4" unit="uur"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </toedieningsafspraak>
+            <verstrekking>
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="13438b70-2dbe-11e8-b566-0800200c9a66"/>
+               <datum nullFlavor="NI"/>
+               <aanschrijfdatum value="2017-03-13"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam nullFlavor="NI"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="40"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="15401367"
+                                   codeSystem="2.16.840.1.113883.2.4.4.8"
+                                   displayName="PARACETAMOL PCH TABLET 500MG"
+                                   codeSystemName="G-Standaard Artikelnummer"/>
+                  </product>
+               </verstrekt_geneesmiddel>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+            <identificatie value="a083ca80-5772-11e8-b566-0800200c9a66"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <afspraakdatum value="2018-03-13"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam nullFlavor="NI"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="OTH"
+                                   codeSystem="2.16.840.1.113883.5.1008"
+                                   displayName=""
+                                   originalText="Ureum 10% in eucerine cum aqua"/>
+                     <product_specificatie>
+                        <product_naam value="Ureum 10% in eucerine cum aqua"/>
+                        <omschrijving value="Titel: Ureum 10% in eucerine cum aqua&#xA;                                        Regel: Ureum 10 gr &#xA;                                        Regel: Eucerine met water creme FNA ad 100g.&#xA;                                    "/>
+                        <ingredient>
+                           <sterkte>
+                              <hoeveelheid_ingredient>
+                                 <waarde value="10"/>
+                                 <eenheid code="215"
+                                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                          codeSystemName="G-Standaard thesaurus basiseenheden"
+                                          displayName="gram"/>
+                              </hoeveelheid_ingredient>
+                              <hoeveelheid_product>
+                                 <waarde value="100"/>
+                                 <eenheid code="215"
+                                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                          codeSystemName="G-Standaard thesaurus basiseenheden"
+                                          displayName="gram"/>
+                              </hoeveelheid_product>
+                           </sterkte>
+                           <ingredient_code code="15219127"
+                                            codeSystem="2.16.840.1.113883.2.4.4.8"
+                                            displayName="UREUM"/>
+                        </ingredient>
+                        <ingredient>
+                           <sterkte>
+                              <hoeveelheid_ingredient>
+                                 <waarde nullFlavor="QS"/>
+                                 <eenheid code="QS"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="voldoende hoeveelheid"/>
+                              </hoeveelheid_ingredient>
+                              <hoeveelheid_product>
+                                 <waarde value="100"/>
+                                 <eenheid code="215"
+                                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                          codeSystemName="G-Standaard thesaurus basiseenheden"
+                                          displayName="gram"/>
+                              </hoeveelheid_product>
+                           </sterkte>
+                           <ingredient_code code="14740877"
+                                            codeSystem="2.16.840.1.113883.2.4.4.8"
+                                            displayName="EUCERINE MET WATER FAGRON"/>
+                        </ingredient>
+                     </product_specificatie>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-2-->
+               <gebruiksinstructie>
+                  <omschrijving value="Zo nodig"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <code code="1137"
+                                    codeSystem="2.16.840.1.113883.2.4.4.5"
+                                    displayName="zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </toedieningsafspraak>
+            <verstrekking>
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="a083ca80-5772-11e8-b566-0800200c9a66"/>
+               <datum nullFlavor="NI"/>
+               <aanschrijfdatum value="2018-03-13"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam nullFlavor="NI"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="100"/>
+                  <eenheid code="215"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="gram"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="OTH"
+                                   codeSystem="2.16.840.1.113883.5.1008"
+                                   displayName=""
+                                   originalText="Ureum 10% in eucerine cum aqua"/>
+                     <product_specificatie>
+                        <product_naam value="Ureum 10% in eucerine cum aqua"/>
+                        <omschrijving value="Titel: Ureum 10% in eucerine cum aqua&#xA;                                        Regel: Ureum 10 gr &#xA;                                        Regel: Eucerine met water creme FNA ad 100g.&#xA;                                    "/>
+                        <ingredient>
+                           <sterkte>
+                              <hoeveelheid_ingredient>
+                                 <waarde value="10"/>
+                                 <eenheid code="215"
+                                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                          codeSystemName="G-Standaard thesaurus basiseenheden"
+                                          displayName="gram"/>
+                              </hoeveelheid_ingredient>
+                              <hoeveelheid_product>
+                                 <waarde value="100"/>
+                                 <eenheid code="215"
+                                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                          codeSystemName="G-Standaard thesaurus basiseenheden"
+                                          displayName="gram"/>
+                              </hoeveelheid_product>
+                           </sterkte>
+                           <ingredient_code code="15219127"
+                                            codeSystem="2.16.840.1.113883.2.4.4.8"
+                                            displayName="UREUM"/>
+                        </ingredient>
+                        <ingredient>
+                           <sterkte>
+                              <hoeveelheid_ingredient>
+                                 <waarde nullFlavor="QS"/>
+                                 <eenheid code="QS"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="voldoende hoeveelheid"/>
+                              </hoeveelheid_ingredient>
+                              <hoeveelheid_product>
+                                 <waarde value="100"/>
+                                 <eenheid code="215"
+                                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                          codeSystemName="G-Standaard thesaurus basiseenheden"
+                                          displayName="gram"/>
+                              </hoeveelheid_product>
+                           </sterkte>
+                           <ingredient_code code="14740877"
+                                            codeSystem="2.16.840.1.113883.2.4.4.8"
+                                            displayName="EUCERINE MET WATER FAGRON"/>
+                        </ingredient>
+                     </product_specificatie>
+                  </product>
+               </verstrekt_geneesmiddel>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_verstrekkingenvertaling>
+   </data>
+</adaxml>

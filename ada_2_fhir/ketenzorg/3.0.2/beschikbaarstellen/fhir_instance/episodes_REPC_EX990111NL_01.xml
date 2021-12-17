@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="08a06cfe-5a6a-11eb-1779-020000000000"/>
+   <id value="8d309fa0-42fb-11ec-1629-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -71,12 +71,12 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:08a07c35-5a6a-11eb-1779-020000000000"/>
+                  <reference value="urn:uuid:8d30af31-42fb-11ec-1629-020000000000"/>
                   <display value="Emfyseem/COPD"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:08a07c28-5a6a-11eb-1779-020000000000"/>
+               <reference value="urn:uuid:8d30af24-42fb-11ec-1629-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <managingOrganization>
@@ -93,7 +93,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:08a07c28-5a6a-11eb-1779-020000000000"/>
+      <fullUrl value="urn:uuid:8d30af24-42fb-11ec-1629-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -128,7 +128,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
          </Patient>
       </resource>
       <search>
@@ -168,7 +178,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:08a07c35-5a6a-11eb-1779-020000000000"/>
+      <fullUrl value="urn:uuid:8d30af31-42fb-11ec-1629-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -194,7 +204,17 @@
                   </table>
                </div>
             </text>
-            <clinicalStatus value="active"/>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="55561003"/>
+                        <display value="Active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -210,7 +230,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:08a07c28-5a6a-11eb-1779-020000000000"/>
+               <reference value="urn:uuid:8d30af24-42fb-11ec-1629-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <onsetPeriod>

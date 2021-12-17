@@ -35,13 +35,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-MedicationContraIndication FHIR Flag resource from ada medicatie_contra_indicatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>       
+        <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template match="medicatie_contra_indicatie" name="nl-core-MedicationContraIndication" mode="nl-core-MedicationContraIndication" as="element(f:Flag)?">
         <xsl:param name="in" select="." as="element()?"/>
-        
-        <xsl:param name="subject" select="patient" as="element()?"/>
-        <xsl:param name="author" select="melder/*" as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
           
         <xsl:for-each select="$in">
             <Flag>
@@ -110,11 +108,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                     </period>
                 </xsl:if>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$author"/>
-                    <xsl:with-param name="wrapIn" select="'author'"/>
-                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"></xsl:with-param>
-                </xsl:call-template>
+                <xsl:for-each select="melder/*">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="wrapIn" select="'author'"/>
+                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"></xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
             </Flag>
         </xsl:for-each>
     </xsl:template>
