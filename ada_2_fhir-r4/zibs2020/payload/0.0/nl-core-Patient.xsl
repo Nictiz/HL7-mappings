@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
     </xd:doc>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc>Create an nl-core-Patient FHIR instance from the following ada parts:
             <xd:ul>
                 <xd:li>zib Patient</xd:li>
@@ -247,7 +247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify a patient present in a (set of) ada-instance(s)</xd:desc>
     </xd:doc>
     <xsl:template match="patient" mode="_generateId">
-  
+
         <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>
                 <!-- this when is only for Touchstone purposes, should be removed here -->
@@ -272,10 +272,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="profileName" select="nf:get-profilename-from-adaelement(.)"/>
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
-        
+
     </xsl:template>
 
     <xd:doc>

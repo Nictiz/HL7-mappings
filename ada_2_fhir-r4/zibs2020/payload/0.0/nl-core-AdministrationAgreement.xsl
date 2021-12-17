@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA toedienings_afsrpaak to FHIR MedicationDispense conforming to profile nl-core-AdministrationAgreement.</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Create a nl-core-AdministrationAgreement instance as a MedicationDispense FHIR instance from ADA toedienings_afspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -153,7 +153,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- mp9 dataset -->
-                <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value|@root]">
+                <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value | @root]">
                     <authorizingPrescription>
                         <type value="MedicationRequest"/>
                         <identifier>
@@ -199,13 +199,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="profileName" select="nf:get-profilename-from-adaelement(.)"/>
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
     </xsl:template>
-   
+
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>

@@ -14,7 +14,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nm="http://www.nictiz.nl/mappings" version="2.0">
     <xsl:import href="../../2_fhir_mp92_include.xsl"/>
+    <!-- The order of the imports above is important, the 2_fhir_fixtures.xsl does specific handling for Touchstone which is what we need here, 
+    it therefore needs to overwrite the templates/functions in the generic XSLT code. So the 2_fhir_fixtures.xsl must be imported last.-->
     <xsl:import href="../../../../../ada_2_fhir/fhir/2_fhir_fixtures.xsl"/>
+    
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <xd:doc scope="stylesheet">
@@ -47,15 +50,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
-    
+
     <xsl:param name="usecase">mp9</xsl:param>
-    
+
     <xd:doc>
         <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
-            <xd:li>logicalId</xd:li>
-            <xd:li>uuid</xd:li>
-            <xd:li>none</xd:li>
-        </xd:ul>
+                <xd:li>logicalId</xd:li>
+                <xd:li>uuid</xd:li>
+                <xd:li>none</xd:li>
+            </xd:ul>
             When $referencingStrategy equals 'logicalId', the value of $populateId is ignored. A Resource.id is added to the resource, with its value being populated from (in this order) @logicalId on the root of the ada element being referenced or from a template with mode '_generateId'. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Should not be used when there is no FHIR server available to retrieve the resources.
             When $referencingStrategy equals 'uuid', all referencing is done using uuids. It is the responsibility of the use case XSLT to extract the fullUrl from $fhirMetadata. Meant for use within Bundles. Be sure to include all referenced resources in the Bundle! 
             When $referencingStrategy equals 'none', it is attempted to generate a Reference from an identifier being present in the referenced ada-element. If this is not possible, referencing fails.
@@ -64,8 +67,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:param name="referencingStrategy" as="xs:string">logicalId</xsl:param>
-    
-   
+
+
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
     </xd:doc>
@@ -89,6 +92,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <!-- and output the resource in a file -->
         <xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
-    </xsl:template>    
-    
-  </xsl:stylesheet>
+    </xsl:template>
+
+</xsl:stylesheet>

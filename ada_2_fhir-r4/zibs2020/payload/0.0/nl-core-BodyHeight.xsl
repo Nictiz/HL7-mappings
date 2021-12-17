@@ -13,24 +13,15 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada lichaamslengte to FHIR Observation conforming to profile nl-core-BodyHeight</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Create an nl-core-BodyHeight as a Observation FHIR instance from ada lichaamslengte element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -39,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="lichaamslengte" name="nl-core-BodyHeight" mode="nl-core-BodyHeight" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
+
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
@@ -87,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </text>
                     </note>
-                </xsl:for-each>  
+                </xsl:for-each>
                 <xsl:for-each select="positie">
                     <component>
                         <code>
@@ -107,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
@@ -121,5 +112,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
-    
+
 </xsl:stylesheet>

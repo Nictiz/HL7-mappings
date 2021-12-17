@@ -27,10 +27,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:param name="populateId" select="true()" as="xs:boolean"/>
 
-    <xd:doc>
-        <xd:desc>Usecasename for resource id. Optional, no default.</xd:desc>
-    </xd:doc>
-    <xsl:param name="usecase" as="xs:string?"/>
 
     <xd:doc>
         <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
@@ -53,7 +49,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="serverBaseUri" select="'http://example.nictiz.nl/fhir'" as="xs:string"/>
 
     <xd:doc>
-        <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.</xd:desc>
+        <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. 
+            Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.
+            Note that that muliple nm:map elements with different ada attribute but same other attributes might occur due to differences in ada datasets.
+        </xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
         <nm:map ada="afleverlocatie" resource="Location"/>
@@ -73,6 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medicatiegebruik" resource="MedicationStatement" profile="nl-core-MedicationUse2"/>
         <nm:map ada="medicatie_gebruik" resource="MedicationStatement" profile="nl-core-MedicationUse2"/>
         <nm:map ada="medicatie_toediening" resource="MedicationAdministration" profile="nl-core-MedicationAdministration2"/>
+        <nm:map ada="medicatietoediening" resource="MedicationAdministration" profile="nl-core-MedicationAdministration2"/>
         <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="nl-core-MedicationAgreement"/>
         <nm:map ada="medicatieverstrekking" resource="MedicationDispense" profile="nl-core-MedicationDispense"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
@@ -289,32 +289,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
-    <!-- TODO, AWE: this template is quite specific to adhere to MM-1752, however those requirements are really for Touchstone, 
-        we should move the 'logicalIdStartString' part to Touchstone specific XSLT's -->
-    <xd:doc>
+     <xd:doc>
         <xd:desc>Helper template for creating logicalId</xd:desc>
-        <xd:param name="profileName">The profile of the resource for which to create a logical id. Optional. No default value.</xd:param>
-        <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
+         <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
     </xd:doc>
     <xsl:template name="generateLogicalId">
-        <xsl:param name="profileName" as="xs:string?"/>
-        <xsl:param name="uniqueString" as="xs:string?"/>
-
-        <xsl:variable name="profileNameLastPart" select="tokenize($profileName, './')[last()]"/>
-
-        <xsl:variable name="logicalIdStartString" as="xs:string*">
-            <xsl:value-of select="$profileNameLastPart"/>
-            <xsl:value-of select="$usecase"/>
-        </xsl:variable>
-
+         <xsl:param name="uniqueString" as="xs:string?"/>
+  
         <xsl:choose>
             <xsl:when test="string-length($uniqueString) le $maxLengthFHIRLogicalId - 2 and string-length($uniqueString) gt 0">
-                <xsl:value-of select="replace(nf:assure-logicalid-length(nf:assure-logicalid-chars(concat(string-join($logicalIdStartString, '-'), '-', $uniqueString))), '\.', '-')"/>
+                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars($uniqueString))"/>
             </xsl:when>
             <xsl:otherwise>
                 <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
-                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat(string-join($logicalIdStartString, '-'), '-', uuid:get-uuid(.))))"/>
+                <xsl:value-of select="uuid:get-uuid(.)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

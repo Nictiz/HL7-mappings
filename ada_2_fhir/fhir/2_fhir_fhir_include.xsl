@@ -125,12 +125,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="boolean-to-boolean" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
 
-
         <xsl:choose>
             <xsl:when test="$in/@value">
+                <!-- we do not terminate: garbage in / garbage out -->
                 <xsl:if test="$in/@value[not(. = ('true', 'false'))]">
-                    <xsl:message terminate="yes">FATAL: Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:message>
-                </xsl:if>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="msg">ERROR: Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:with-param>
+                        <xsl:with-param name="level" select="$logERROR"/>
+                    </xsl:call-template>
+                 </xsl:if>
 
                 <xsl:attribute name="value" select="$in/@value"/>
             </xsl:when>

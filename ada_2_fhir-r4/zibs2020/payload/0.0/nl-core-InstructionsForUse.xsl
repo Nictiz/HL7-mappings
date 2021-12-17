@@ -292,8 +292,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                                     </xsl:variable>
 
-
-
                                     <xsl:if test="$doseAndRate">
                                         <doseAndRate>
                                             <xsl:copy-of select="$doseAndRate"/>
@@ -302,7 +300,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                                     <!-- zib ada -->
                                     <xsl:for-each select="zonodig/maximale_dosering[@value and @unit]">
-                                        <!-- TODO, adapt for MP9 dataset -->
                                         <xsl:call-template name="hoeveelheid-to-Ratio">
                                             <xsl:with-param name="wrapIn">maxDosePerPeriod</xsl:with-param>
                                         </xsl:call-template>

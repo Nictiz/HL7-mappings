@@ -13,32 +13,22 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions"
-    xmlns:nm="http://www.nictiz.nl/mappings"
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile nl-core-ContactInformation-TelephoneNumbers and nl-core-ContactInformation-E-mailAddresses</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Produces FHIR ContactPoint datatypes with telecom elements.</xd:desc>
         <xd:param name="in">Ada 'contactgegevens' element containing the nl-core data</xd:param>
     </xd:doc>
     <xsl:template match="contactgegevens" mode="nl-core-ContactInformation" name="nl-core-ContactInformation" as="element(f:telecom)*">
         <xsl:param name="in" select="." as="element()?"/>
-        
+
         <xsl:for-each select="$in">
             <xsl:for-each select="telefoonnummers[telefoonnummer/@value]">
                 <xsl:variable name="telecomType" select="telecom_type/@code"/>
@@ -60,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$numberType = 'WP'">work</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
-                
+
                 <telecom>
                     <xsl:for-each select="toelichting">
                         <xsl:call-template name="ext-Comment">
@@ -95,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$emailType = 'HP'">home</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
-                
+
                 <telecom>
                     <system value="email"/>
                     <xsl:for-each select="email_adres">

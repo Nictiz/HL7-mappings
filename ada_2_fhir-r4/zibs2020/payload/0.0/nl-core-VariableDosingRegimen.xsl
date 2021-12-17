@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA wisselend_doseerschema to FHIR MedicationRequest conforming to profile nl-core-VariableDosingRegimen</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Create a nl-core-VariableDosingRegimen instance as a MedicationRequest FHIR instance from ADA wisselend_doseerschema.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product" as="element()?"/>
         <xsl:param name="requester" select="auteur" as="element()?"/>
-    
+
         <xsl:for-each select="$in">
             <MedicationRequest>
                 <xsl:call-template name="insertLogicalId"/>
@@ -48,14 +48,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
                     <xsl:call-template name="ext-CopyIndicator"/>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
                     <xsl:call-template name="ext-Context-EpisodeOfCare"/>
-                </xsl:for-each>                
+                </xsl:for-each>
 
                 <xsl:for-each select="gebruiksinstructie">
                     <xsl:call-template name="ext-RenderedDosageInstruction"/>
@@ -86,8 +86,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- we do not know the current status of this instance -->
-                <status value="unknown"/>      
-                
+                <status value="unknown"/>
+
                 <intent value="order"/>
 
                 <!-- TODO: Issue FHIR profile has wrong SNOMED code 274512008, should be: 395067002 -->
@@ -120,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </coding>
                             <text value="zie bijbehorende medicatiebouwstenen in deze medicamenteuze behandeling"/>
                         </medicationCodeableConcept>
-                    </xsl:otherwise>                    
+                    </xsl:otherwise>
                 </xsl:choose>
 
                 <xsl:for-each select="$subject">
@@ -162,7 +162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </reasonCode>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
                     <basedOn>
                         <type value="MedicationRequest"/>
@@ -172,7 +172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="relatie naar medicatieafspraak met identificatie: {string-join((@value, @root), ' || ')}"/>
                     </basedOn>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value]">
                     <basedOn>
                         <type value="MedicationRequest"/>
@@ -218,9 +218,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="profileName" select="nf:get-profilename-from-adaelement(.)"/>
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
     </xsl:template>

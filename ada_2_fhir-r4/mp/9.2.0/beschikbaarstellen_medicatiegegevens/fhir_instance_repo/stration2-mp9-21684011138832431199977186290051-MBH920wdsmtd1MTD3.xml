@@ -1,0 +1,93 @@
+<MedicationAdministration xmlns="http://hl7.org/fhir">
+   <id value="stration2-mp9-21684011138832431199977186290051-MBH920wdsmtd1MTD3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAdministration2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
+      <valueDateTime value="${DATE, T, D, -17}T20:00:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="408366001"/>
+            <display value="Niet in staat om medicatie te gebruiken"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Medication.AsAgreedIndicator">
+      <valueBoolean value="false"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+      <value value="MBH_920_wdsmtd1_MTD3"/>
+   </identifier>
+   <status value="entered-in-error"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="18629005"/>
+         <display value="toediening van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/l-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-7323"/>
+      <type value="Medication"/>
+      <display value="ACENOCOUMAROL TABLET 1MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-M-XXX-Pherai"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Pherai"/>
+   </subject>
+   <supportingInformation>
+      <type value="MedicationDispense"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <value value="MBH_920_QA1_TA"/>
+      </identifier>
+      <display value="relatie naar toedieningsafspraak met identificatie: "/>
+   </supportingInformation>
+   <effectiveDateTime value="${DATE, T, D, -17}T20:00:00+02:00"/>
+   <performer>
+      <actor>
+         <reference value="Patient/nl-core-Patient-mp9-64493a87-5f4b-11ec-2097-020000000000"/>
+         <type value="Patient"/>
+         <display value="Patient, "/>
+      </actor>
+   </performer>
+   <request>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_920_wdsmtd1_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_920_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </request>
+   <dosage>
+      <site>
+         <text value="Geprobeerd, maar niet gelukt met de tablet"/>
+      </site>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <dose>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+            <valueQuantity>
+               <value value="1"/>
+               <unit value="stuk"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </valueQuantity>
+         </extension>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="1"/>
+      </dose>
+   </dosage>
+</MedicationAdministration>

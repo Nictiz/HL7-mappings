@@ -8,7 +8,7 @@
         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
             <valueBoolean>
                 <xsl:call-template name="boolean-to-boolean"/>
-            </valueBoolean>            
+            </valueBoolean>
         </extension>
     </xsl:template>
 </xsl:stylesheet>

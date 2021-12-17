@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <MedicationRequest>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>                    
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
                 <xsl:for-each select="aanvullende_wensen">
@@ -222,7 +222,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="profileName" select="nf:get-profilename-from-adaelement(.)"/>
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
     </xsl:template>
@@ -244,7 +243,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="profileName">Location</xsl:with-param>
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
     </xsl:template>

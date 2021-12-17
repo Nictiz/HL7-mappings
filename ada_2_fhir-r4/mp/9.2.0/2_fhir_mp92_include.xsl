@@ -49,6 +49,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/contactpersoon" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for Contact -->
+            <xsl:variable name="contactKey" select="current-grouping-key()"/>
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'RelatedPerson'][nm:group-key/text() = $contactKey]/nm:full-url/text()}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-ContactPerson">
+                        <xsl:with-param name="patient" select="../../patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>           
+        </xsl:for-each-group>
         <xsl:for-each-group select="/adaxml/data/*/bouwstenen/zorgverlener" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for practitionerrole -->
             <xsl:variable name="zvlKey" select="current-grouping-key()"/>
@@ -131,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//medicatieafspraak">
             <!-- entry for MedicationRequest -->
             <entry>
-                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
+                <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
                     <xsl:call-template name="nl-core-MedicationAgreement">
                         <xsl:with-param name="in" select="."/>
@@ -246,8 +258,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
 
-        <!-- TODO medicatietoediening -->
-
+        <!-- medicatietoediening -->
+        <xsl:for-each select="//medicatietoediening">
+            <!-- entry for MedicationAdministration -->
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-MedicationAdministration2">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="../../patient"/>
+                      </xsl:call-template>
+                </resource>
+                <xsl:if test="string-length($searchMode) gt 0">
+                    <search>
+                        <mode value="{$searchMode}"/>
+                    </search>
+                </xsl:if>
+            </entry>
+        </xsl:for-each>
+        
     </xsl:variable>
     <xd:doc>
         <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>

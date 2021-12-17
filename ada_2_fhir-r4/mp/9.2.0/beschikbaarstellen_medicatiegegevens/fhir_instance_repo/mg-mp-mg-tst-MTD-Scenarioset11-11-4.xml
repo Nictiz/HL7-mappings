@@ -1,14 +1,113 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="3716bf9e-5e96-11ec-9443-020000000000"/>
+   <id value="6b157730-5f4b-11ec-1317-020000000000"/>
    <type value="searchset"/>
-   <total value="0"/>
+   <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:3716c014-5e96-11ec-9443-020000000000"/>
+      <fullUrl value="urn:uuid:6b1577ba-5f4b-11ec-1317-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <id value="21684011138832431199977186290051-MBH920wdsmtd1MTD4"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="153241000146104"/>
+                     <display value="Zorgafnemer is niet beschikbaar om medicatie in ontvangst te nemen"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Medication.AsAgreedIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_920_wdsmtd1_MTD4"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:6b1577d8-5f4b-11ec-1317-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL TABLET 1MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:6b157760-5f4b-11ec-1317-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. XXX_Pherai"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_920_QA1_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: "/>
+            </supportingInformation>
+            <effectiveDateTime>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </effectiveDateTime>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:6b15777e-5f4b-11ec-1317-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Marleen van der Brand, Verpleegkundigen, niet nader gespecificeerd"/>
+               </actor>
+            </performer>
+            <request>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_wdsmtd1_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_920_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="0"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="0"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:6b157760-5f4b-11ec-1317-020000000000"/>
       <resource>
          <Patient>
-            <id value="nl-core-Patient--M-XXX-Pherai"/>
+            <id value="M.XXX-Pherai"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -53,20 +152,20 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3716c032-5e96-11ec-9443-020000000000"/>
+      <fullUrl value="urn:uuid:6b15777e-5f4b-11ec-1317-020000000000"/>
       <resource>
          <PractitionerRole>
-            <id value="ore-HealthProfessional-PractitionerRole--111110000-9100-11110000"/>
+            <id value="111110000-9100-11110000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:3716c050-5e96-11ec-9443-020000000000"/>
+               <reference value="urn:uuid:6b15779c-5f4b-11ec-1317-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Marleen van der Brand"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:3716c08c-5e96-11ec-9443-020000000000"/>
+               <reference value="urn:uuid:6b1577f6-5f4b-11ec-1317-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
             </organization>
@@ -82,10 +181,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3716c050-5e96-11ec-9443-020000000000"/>
+      <fullUrl value="urn:uuid:6b15779c-5f4b-11ec-1317-020000000000"/>
       <resource>
          <Practitioner>
-            <id value="e-HealthProfessional-Practitioner--2-16-528-1-1007-3-1-111110000"/>
+            <id value="2.16.528.1.1007.3.1-111110000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -114,10 +213,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3716c08c-5e96-11ec-9443-020000000000"/>
+      <fullUrl value="urn:uuid:6b1577f6-5f4b-11ec-1317-020000000000"/>
       <resource>
          <Organization>
-            <id value="re-HealthcareProvider-Organization--2-16-528-1-1007-3-3-11110000"/>
+            <id value="2.16.528.1.1007.3.3-11110000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -149,10 +248,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3716c06e-5e96-11ec-9443-020000000000"/>
+      <fullUrl value="urn:uuid:6b1577d8-5f4b-11ec-1317-020000000000"/>
       <resource>
          <Medication>
-            <id value="nl-core-PharmaceuticalProduct--2-16-840-1-113883-2-4-4-10-7323"/>
+            <id value="2.16.840.1.113883.2.4.4.10-7323"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>

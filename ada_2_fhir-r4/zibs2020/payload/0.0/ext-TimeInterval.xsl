@@ -107,8 +107,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="end" as="xs:string">
                             <xsl:choose>
                                 <xsl:when test="eind_datum_tijd[@value]">
-                                    <!-- commented out, does not support T-dates -->                                    
-<!--                                    <xsl:value-of select="format-dateTime($endDateTime, $picture)"/>-->
+                                    <!-- commented out, does not support T-dates -->
+                                    <!--                                    <xsl:value-of select="format-dateTime($endDateTime, $picture)"/>-->
                                     <xsl:variable name="startTmp">
                                         <xsl:call-template name="format2FHIRDate">
                                             <xsl:with-param name="dateTime" select="eind_datum_tijd/@value"/>
