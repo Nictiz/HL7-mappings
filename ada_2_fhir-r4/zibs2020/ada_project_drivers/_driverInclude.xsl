@@ -207,16 +207,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'behandeldoel'">
-                <xsl:choose>
-                    <xsl:when test="ancestor::*[local-name() = 'behandeldoel']">
-                        <!-- Do nothing, because a 'functionele_of_mentale_status' instance contained in a 'behandeldoel' will be modeled in the nl-core-TreatmentObjective profile. -->
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:apply-templates select="$in" mode="nl-core-TreatmentObjective">
-                            <xsl:with-param name="subject" select="$subject"/>
-                        </xsl:apply-templates>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:apply-templates select="$in" mode="nl-core-TreatmentObjective">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">
@@ -272,9 +265,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'functionele_of_mentale_status'">
-                <xsl:apply-templates select="$in" mode="nl-core-FunctionalOrMentalStatus">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
+                <xsl:choose>
+                    <xsl:when test="ancestor::*[local-name() = 'behandeldoel']">
+                        <!-- Do nothing, because a 'functionele_of_mentale_status' instance contained in a 'behandeldoel' will be modeled in the nl-core-TreatmentObjective profile. -->
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="$in" mode="nl-core-FunctionalOrMentalStatus">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
