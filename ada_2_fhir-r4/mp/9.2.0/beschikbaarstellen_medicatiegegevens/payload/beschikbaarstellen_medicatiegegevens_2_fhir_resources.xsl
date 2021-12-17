@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../2_fhir_mp92_include.xsl"/>
     <!-- The order of the imports above is important, the 2_fhir_fixtures.xsl does specific handling for Touchstone which is what we need here, 
     it therefore needs to overwrite the templates/functions in the generic XSLT code. So the 2_fhir_fixtures.xsl must be imported last.-->
-    <xsl:import href="../../../../../ada_2_fhir/fhir/2_fhir_fixtures.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
     
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
