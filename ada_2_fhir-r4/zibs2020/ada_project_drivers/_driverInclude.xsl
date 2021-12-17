@@ -90,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="ancestor::*/local-name() = 'referenties'">
                     <!-- This is a contained ada instance, therefore does not have a valid base-uri() -->
                     <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
-                    <xsl:variable name="position" as="xs:integer" select="count(preceding::*[local-name() = $localName][ancestor::*/local-name() = 'referenties']) + 1"/>
+                    <xsl:variable name="position" as="xs:integer" select="count(preceding::*[local-name() = $localName][ancestor::*/local-name() = 'referenties'][not(@datatype = 'reference')]) + 1"/>
                     <!-- This leads to a contained zib AdministrationAgreement being referenced as 'nl-core-MedicationAdministration2-02-MedicationDispense-01'. Could be more clear. On the other hand, do we need to put more effort into contained ADA instances? -->
                     <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
                     <!-- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -->
