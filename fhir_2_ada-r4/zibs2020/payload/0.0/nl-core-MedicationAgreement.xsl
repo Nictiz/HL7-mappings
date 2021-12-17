@@ -22,7 +22,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:variable name="zib-MedicationAgreement-BasedOnAgreementOrUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'"/>
 	<xsl:variable name="zib-MedicationUse-Duration" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
 	<xsl:variable name="zib-Medication-CopyIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
-	<xsl:variable name="zib-Medication-AdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation'"/>
+<!--xxxwim-->
+    <xsl:variable name="medication-AdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation'"/>
+<!--xxxwim geen gerealteerde zib of nl_core gevonden-->
+    <xsl:variable name="ext-Context-EpisodeOfCare" select="'http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare'"/>
 
 	<xd:doc>
 		<xd:desc>Template to convert f:MedicationRequest to ADA medicatieafspraak</xd:desc>
@@ -42,6 +45,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		    </xsl:if>
 		    <!-- relatie_contact -->
 		    <xsl:apply-templates select="f:encounter[f:type/@value eq 'Encounter']"  mode="#current"/>
+		    <!-- xxxwim  relatie_zorgepisode -->
+		    <xsl:apply-templates select="f:extension[@url = $ext-Context-EpisodeOfCare]"  mode="#current"/>
 			<!-- geannuleerd_indicator  -->
 			<xsl:apply-templates select="f:status" mode="#current"/>
 			<!-- stoptype -->
@@ -65,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- lichaamsgewicht -->
 			<xsl:apply-templates select="f:supportingInformation" mode="resolve-bodyWeight"/>
 			<!-- aanvullende_informatie -->
-			<xsl:apply-templates select="f:extension[@url = $zib-Medication-AdditionalInformation]" mode="ext-zib-Medication-AdditionalInformation-2.0"/>
+		    <xsl:apply-templates select="f:extension[@url = $medication-AdditionalInformation]" mode="#current"/>
 			<!-- kopie indicator -->
 			<xsl:apply-templates select="f:extension[@url = $zib-Medication-CopyIndicator]" mode="ext-zib-Medication-CopyIndicator-2.0"/>
 			<!-- toelichting -->
@@ -73,7 +78,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</medicatieafspraak>
 	</xsl:template>
 
-	<xd:doc>
+
+<!--xxxwim:-->
+    <xd:doc>
+        <xd:desc>Template to convert f:extension medication-AdditionalInformation to aanvullende_informatie element.</xd:desc>
+        <xd:param name="adaElementName">Optional alternative ADA element name.</xd:param>
+    </xd:doc>
+    <xsl:template match="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation']" mode="nl-core-MedicationAgreement">
+        <xsl:param name="adaElementName" tunnel="yes" select="'aanvullende_informatie'"/>
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="f:valueCodeableConcept"/>
+            <xsl:with-param name="adaElementName" select="$adaElementName"/>
+        </xsl:call-template>
+    </xsl:template>
+
+    <xd:doc>
 		<xd:desc>Template to convert f:identifier to identificatie</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:identifier" mode="nl-core-MedicationAgreement">
@@ -119,7 +138,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </relatie_contact>
     </xsl:template>
-
+<!--xxxwim-->
+    <xd:doc>
+        <xd:desc>Template to convert f:extension/f:valueReference to relatie_zorgepisode</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:extension[@url = $ext-Context-EpisodeOfCare]" mode="nl-core-MedicationAgreement">
+        <relatie_zorgepisode>
+            <xsl:call-template name="Identifier-to-identificatie">
+                <xsl:with-param name="in" select="f:valueReference/f:identifier"/>   
+                <xsl:with-param name="adaElementName">identificatienummer</xsl:with-param>
+            </xsl:call-template>
+        </relatie_zorgepisode>
+    </xsl:template>
 	<xd:doc>
 		<xd:desc>Template to convert f:status to geannuleerd_indicator. Only the FHIR status value 'entered-in-error' is used in this mapping.</xd:desc>
 	</xd:doc>
