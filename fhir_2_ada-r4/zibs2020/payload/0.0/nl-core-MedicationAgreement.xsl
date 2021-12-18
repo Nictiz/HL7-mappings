@@ -24,6 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:variable name="zib-Medication-CopyIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
 <!--xxxwim-->
     <xsl:variable name="medication-AdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation'"/>
+    <xsl:variable name="extStoptype" select="'http://nictiz.nl/fhir/StructureDefinition/ext-StopType'"/>
 <!--xxxwim geen gerealteerde zib of nl_core gevonden-->
     <xsl:variable name="ext-Context-EpisodeOfCare" select="'http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare'"/>
 
@@ -50,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- geannuleerd_indicator  -->
 			<xsl:apply-templates select="f:status" mode="#current"/>
 			<!-- stoptype -->
-			<xsl:apply-templates select="f:modifierExtension[@url = $zib-Medication-StopType]" mode="ext-zib-Medication-Stop-Type-2.0"/>
+		    <xsl:apply-templates select="f:ModifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-Medication-stop-type"/>
 			<!-- relatie_naar_afspraak_of_gebruik -->
 			<xsl:apply-templates select="f:extension[@url = $zib-MedicationAgreement-BasedOnAgreementOrUse]" mode="#current"/>
 			<!-- relaties_ketenzorg -->
@@ -78,8 +79,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</medicatieafspraak>
 	</xsl:template>
 
-
-<!--xxxwim:-->
+ 
+    <!--xxxwim:-->
     <xd:doc>
         <xd:desc>Template to convert f:extension medication-AdditionalInformation to aanvullende_informatie element.</xd:desc>
         <xd:param name="adaElementName">Optional alternative ADA element name.</xd:param>
@@ -91,6 +92,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="adaElementName" select="$adaElementName"/>
         </xsl:call-template>
     </xsl:template>
+
+<!--xxxwim:
+    <xd:doc>
+        <xd:desc>Template to resolve f:modifierExtension zib-Medication-StopType.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:modifierExtension[@url ='http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-MedicationAgreement">
+        <xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:valueCodeableConcept" mode="ext-zib-Medication-Stop-Type-2.0">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="adaElementName" select="'stoptype'"/>
+        </xsl:call-template>    
+    </xsl:template>-->
 
     <xd:doc>
 		<xd:desc>Template to convert f:identifier to identificatie</xd:desc>
