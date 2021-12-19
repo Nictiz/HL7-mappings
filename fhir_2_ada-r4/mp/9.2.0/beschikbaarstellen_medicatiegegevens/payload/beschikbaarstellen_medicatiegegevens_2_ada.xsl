@@ -26,8 +26,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 		<xsl:variable name="bouwstenen">
 
-			<!-- TODO contactpersoon -->
-
+			<!--  contactpersoon -->
+			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:RelatedPerson" mode="nl-core-ContactPerson"/>
+			
 			<!-- farmaceutisch_product -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Medication" mode="nl-core-PharmaceuticalProduct"/>
 
@@ -57,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-Patient"/>
 						</xsl:otherwise>
 					</xsl:choose>
-					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement)" group-by="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
+					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement | f:MedicationAdministration)" group-by="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
 						<medicamenteuze_behandeling>
 							<identificatie>
 								<xsl:attribute name="value" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/f:value/@value"/>
@@ -73,6 +74,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.2"/>-->
 							<!-- medicatie_gebruik -->
 							<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value='6']" mode="zib-MedicationUse-2.2"/>-->
+							<!-- medicatietoediening -->
+							<xsl:apply-templates select="current-group()[self::f:MedicationAdministration]" mode="nl-core-MedicationAdministration"/>
+							
 						</medicamenteuze_behandeling>
 					</xsl:for-each-group>
 					<!--xxxwim bouwstenen -->

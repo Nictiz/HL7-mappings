@@ -1,0 +1,108 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2021-12-19T19:58:52.153285+01:00"
+         last-update-date="2021-12-19T19:58:52.153285+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp920"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172"
+                                            transactionEffectiveDate="2021-04-02T09:33:39"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="M. XXX_Nederveen"/>
+               <initialen value="M."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Nederveen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer nullFlavor="MSK" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-28"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_920_logistiekeverbruiksperiode_eind"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak>
+               <identificatie value="MBH_920_logistiekeverbruiksperiode_eind_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="2020-12-23T12:01:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2020-12-23T00:00:00+01:00"/>
+                  <eind_datum_tijd value="2021-07-20T23:59:59+02:00"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-6cb36b72-5f4b-11ec-1252-020000000000"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-6cb36b54-5f4b-11ec-1252-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 23 dec 2020, tot en met 20 jul 2021, 1 maal per dag 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard TH007 Toedieningswegen"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_920_logistiekeverbruiksperiode_eind_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-6cb36b54-5f4b-11ec-1252-020000000000">
+               <product_code code="1101099"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="MIZOLLEN TABLET MGA 10MG"
+                             preferred="true"/>
+               <product_code code="48291"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"/>
+               <product_code code="102164"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="urn-uuid-6cb36b72-5f4b-11ec-1252-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

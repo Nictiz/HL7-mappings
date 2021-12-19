@@ -1,0 +1,91 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2021-12-19T19:58:50.603321+01:00"
+         last-update-date="2021-12-19T19:58:50.603321+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp920"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172"
+                                            transactionEffectiveDate="2021-04-02T09:33:39"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="M. XXX_Pherai"/>
+               <initialen value="M."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Pherai"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer nullFlavor="MSK" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-01"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_920_wdsmtd1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatietoediening>
+               <identificatie value="MBH_920_wdsmtd1_MTD3"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="urn-uuid-702f3492-60d2-11ec-6180-020000000000"
+                                         datatype="reference"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="2020-12-15T20:00:00+01:00"/>
+               <afgesproken_datum_tijd value="2020-12-15T20:00:00+01:00"/>
+               <geannuleerd_indicator value="true"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           displayName="stuk"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+               </toegediende_hoeveelheid>
+               <volgens_afspraak_indicator value="false"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard TH007 Toedieningswegen"
+                               displayName="Oraal"/>
+               <prik_plak_locatie value="Geprobeerd, maar niet gelukt met de tablet"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_920_wdsmtd1_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_920_QA1_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <toediener>
+                  <patient>
+                     <toediener_is_patient value="true"/>
+                  </patient>
+               </toediener>
+               <medicatie_toediening_reden_van_afwijken code="408366001"
+                                                        codeSystem="2.16.840.1.113883.6.96"
+                                                        codeSystemName="SNOMED CT"
+                                                        displayName="Niet in staat om medicatie te gebruiken"/>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-702f3492-60d2-11ec-6180-020000000000">
+               <product_code code="7323"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="ACENOCOUMAROL TABLET 1MG"
+                             preferred="true"/>
+               <product_code code="20303"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="ACENOCOUMAROL TABLET 1MG"/>
+            </farmaceutisch_product>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

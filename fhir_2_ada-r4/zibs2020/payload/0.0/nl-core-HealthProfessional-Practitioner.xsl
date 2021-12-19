@@ -30,10 +30,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="organizationReference"/>
         <xsl:param name="specialtyReference"/>
         <zorgverlener>
-            <xsl:if test="../../f:fullUrl[@value]">
+            <xsl:if test="$specialtyReference or ../../f:fullUrl[@value]">
                 <xsl:attribute name="id">
-                    <xsl:value-of select="nf:convert2NCName(../../f:fullUrl/@value)"/>
-                </xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="$specialtyReference">
+                            <xsl:value-of select="nf:convert2NCName($specialtyReference)"/>                            
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:convert2NCName(../../f:fullUrl/@value)"/>                            
+                        </xsl:otherwise>                        
+                    </xsl:choose>                    
+                  </xsl:attribute>
             </xsl:if>
             <!-- zorgverlener_identificatienummer -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>

@@ -121,7 +121,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:route" mode="nl-core-InstructionsForUse">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="adaElementName" select="'toedieningsweg'"/>
+            <xsl:with-param name="adaElementName">toedieningsweg</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
 
@@ -142,9 +142,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to convert f:doseQuantity to aantal (with nominale_waarde child) and eenheid element.</xd:desc>
+        <xd:desc>Template to convert FHIR element of type G-standaard (Simple)Quantity to ada aantal (with nominale_waarde child) and eenheid element.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:doseQuantity" mode="nl-core-InstructionsForUse">
+    <xsl:template match="f:doseQuantity | f:extension[@url=$extMedicationAdministrationAgreedAmount]" mode="nl-core-InstructionsForUse">
         <xsl:for-each select="f:extension[@url = $ext-iso21090-PQ-translation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)]">
             <aantal>
                 <nominale_waarde value="{f:value/@value}"/>
@@ -397,6 +397,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- tijdseenheid is usually of a format like: ml/h -->
         <!-- however, a format like ml/2.h (milliliter per 2 hours) is also allowed in UCUM and the datamodel -->
         <!-- however, all the occurences of rate unit (min and max) must be equal to one another -->
+        <xsl:variable name="firstChar" select="substring(translate($ucum-tijdseenheid, '0123456789.', ''), 1, 1)"/>
+        <xsl:variable name="beforeFirstChar" select="substring-before($ucum-tijdseenheid, $firstChar)"/>
+        <xsl:variable name="ucum-tijdseenheid-value">
+            <xsl:choose>
+                <xsl:when test="string-length($beforeFirstChar) gt 0">
+                    <xsl:value-of select="substring-before($beforeFirstChar, '.')"/>
+                </xsl:when>
+                <xsl:otherwise>1</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="ucum-tijdseenheid-unit" select="concat($firstChar, substring-after($ucum-tijdseenheid, $firstChar))"/>
+        <tijdseenheid value="{$ucum-tijdseenheid-value}" unit="{nf:convertTime_UCUM_FHIR2ADA_unit($ucum-tijdseenheid-unit)}"/>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:rateQuantity to waarde (with nominale_waarde child), eenheid and tijdseenheid</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:rateQuantity" mode="nl-core-InstructionsForUse">
+        <xsl:variable name="unit" select="(f:unit/@value)[1]"/>
+        <xsl:variable name="unit-UCUM" select="substring-before($unit, '/')"/>
+        <!--<xsl:variable name="unit-time" select="nf:convertTime_UCUM_FHIR2ADA_unit(substring-after($unit,'/'))"/>-->
+        <waarde>
+            <nominale_waarde value="{f:value/@value}"/>
+          </waarde>
+        <eenheid>
+            <xsl:call-template name="UCUM2GstdBasiseenheid">
+                <xsl:with-param name="UCUM" select="$unit-UCUM"/>
+            </xsl:call-template>
+            <xsl:attribute name="codeSystemName" select="local:getDisplayName($oidGStandaardBST902THES2)"/>
+        </eenheid>
+        <xsl:variable name="ucum-tijdseenheid" select="substring-after($unit, '/')"/>
+        <!-- tijdseenheid is usually of a format like: ml/h -->
+        <!-- however, a format like ml/2.h (milliliter per 2 hours) is also allowed in UCUM and the datamodel -->
         <xsl:variable name="firstChar" select="substring(translate($ucum-tijdseenheid, '0123456789.', ''), 1, 1)"/>
         <xsl:variable name="beforeFirstChar" select="substring-before($ucum-tijdseenheid, $firstChar)"/>
         <xsl:variable name="ucum-tijdseenheid-value">

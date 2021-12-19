@@ -141,11 +141,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     
     <xsl:variable name="hl7ActStatusMap" as="element()+">
-        <map hl7Code="active" hl7CodeSystem="2.16.840.1.113883.5.14" displayName="actief" displayNameEN="active"/>
-        <map hl7Code="suspended" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="onderbroken" displayNameEN="suspended"/>
-        <map hl7Code="aborted" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="afgebroken" displayNameEN="aborted"/>
-        <map hl7Code="completed" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="voltooid" displayNameEN="completed"/>
-        <map hl7Code="cancelled" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="niet gestart" displayNameEN="cancelled"/>
+        <map hl7Code="active" hl7CodeSystem="{$oidHL7ActStatus}" displayName="actief" displayNameEN="active"/>
+        <map hl7Code="suspended" hl7CodeSystem="{$oidHL7ActStatus}"  displayName="onderbroken" displayNameEN="suspended"/>
+        <map hl7Code="aborted" hl7CodeSystem="{$oidHL7ActStatus}"  displayName="afgebroken" displayNameEN="aborted"/>
+        <map hl7Code="completed" hl7CodeSystem="{$oidHL7ActStatus}"  displayName="voltooid" displayNameEN="completed"/>
+        <map hl7Code="cancelled" hl7CodeSystem="{$oidHL7ActStatus}"  displayName="niet gestart" displayNameEN="cancelled"/>
     </xsl:variable>
     
     <xsl:variable name="uziRoleCodeMap" as="element()+">
