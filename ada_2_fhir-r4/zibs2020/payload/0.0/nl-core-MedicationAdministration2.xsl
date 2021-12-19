@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
-                <xsl:for-each select="afgesproken_datum_tijd">
+                      <xsl:for-each select="afgesproken_datum_tijd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
                         <valueDateTime>
                             <xsl:attribute name="value">
@@ -85,6 +85,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- TODO: extension is not yet in profile -->
                 <xsl:for-each select="volgens_afspraak_indicator">
                     <xsl:call-template name="ext-AsAgreedIndicator"/>
+                </xsl:for-each>
+                
+                <!-- pharmaceuticalTreatmentIdentifier -->
+                <xsl:for-each select="../identificatie">
+                    <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
                 </xsl:for-each>
 
                 <!-- TODO afgesproken_hoeveelheid, where is it mapped to in FHIR? -->
