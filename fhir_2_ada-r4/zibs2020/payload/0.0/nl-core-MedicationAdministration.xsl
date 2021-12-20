@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- toegediende_hoeveelheid -->
 			<xsl:apply-templates select="f:dosage/f:dose" mode="#current"/>
 			<!-- afgesproken_hoeveelheid -->
-			<xsl:apply-templates select="f:dosage/f:extension[@url = $extMedicationAdministrationAgreedAmount]" mode="#current"/>
+			<xsl:apply-templates select="f:dosage/f:extension[@url = $extMedicationAdministrationAgreedAmount]/f:valueQuantity" mode="#current"/>
 			<!-- volgens_afspraak_indicator -->
 			<!-- TODO: should be updated in FHIR profile -->
 			<xsl:apply-templates select="f:extension[@url = $extAsAgreed]" mode="#current"/>
@@ -61,10 +61,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:supportingInformation" mode="#current"/>
 			<!-- relatie_wisselend_doseerschema -->
 			<!-- TODO relatie_wisselend_doseerschema: where in FHIR? -->
-			<!-- relatie_contact -->
+			<!-- relatie_contact of relatie_zorgepisode -->
 			<xsl:apply-templates select="f:context[f:reference | f:identifier]" mode="contextContactEpisodeOfCare"/>
-			<!-- relatie_zorgepisode -->
-			<xsl:apply-templates select="f:context/f:extension[@url = $extContextEpisodeOfCare]" mode="contextContactEpisodeOfCare"/>
+			<!-- relatie_zorgepisode wanneer ook relatie_contact-->
+			<xsl:apply-templates select="f:context/f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
 			<!-- toediener -->
 			<xsl:apply-templates select="f:performer" mode="#current"/>
 			<!-- medicatie_toediening_reden_van_afwijken -->
@@ -117,9 +117,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc>Template to convert f:dosage/f:extension[@url= <xd:ref name="extMedicationAdministrationAgreedAmount" type="variable"/>] to afgesproken_hoeveelheid</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:dosage/f:extension[@url = $extMedicationAdministrationAgreedAmount]" mode="nl-core-MedicationAdministration">
+	<xsl:template match="f:dosage/f:extension[@url = $extMedicationAdministrationAgreedAmount]/f:valueQuantity" mode="nl-core-MedicationAdministration">
 		<afgesproken_hoeveelheid>
-			<xsl:apply-templates select="." mode="nl-core-InstructionsForUse"/>
+			<xsl:for-each select="f:extension[@url = $ext-iso21090-PQ-translation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)]">
+				<aantal value="{f:value/@value}"/>
+				<eenheid code="{f:code/@value}" displayName="{f:unit/@value}" codeSystem="{$oidGStandaardBST902THES2}"/>
+			</xsl:for-each>
 		</afgesproken_hoeveelheid>
 	</xsl:template>
 
@@ -145,16 +148,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 
 	<xd:doc>
-		<xd:desc>Template to convert f:authoredOn to afspraakdatum</xd:desc>
+		<xd:desc>Template to convert f:effectiveDateTime to toedienings_datum_tijd</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:effectiveDateTime" mode="nl-core-MedicationAdministration">
-		<toedienings_datum_tijd>
-			<xsl:attribute name="value">
-				<xsl:call-template name="format2ADADate">
-					<xsl:with-param name="dateTime" select="@value"/>
-				</xsl:call-template>
-			</xsl:attribute>
-		</toedienings_datum_tijd>
+			<xsl:call-template name="datetime-to-datetime">
+				<xsl:with-param name="in" select="."/>
+				<xsl:with-param name="adaElementName">toedienings_datum_tijd</xsl:with-param>
+			</xsl:call-template>
+			
 	</xsl:template>
 
 	<xd:doc>

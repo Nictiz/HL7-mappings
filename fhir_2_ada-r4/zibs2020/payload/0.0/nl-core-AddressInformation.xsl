@@ -135,28 +135,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to convert AD-use f:extension to adres_soort. Because of a profiling error, the extension can exist in two places.</xd:desc>
+        <xd:desc>Template to convert AD-use f:extension to adres_soort.</xd:desc>
     </xd:doc>
     <xsl:template name="address-use-type">
-        <xsl:variable name="ad-use" select="'http://hl7.org/fhir/StructureDefinition/iso21090-AD-use'"/>
-        <!-- Accounts for both possible cases of AD_use extension -->
-        <xsl:variable name="ad-use-valueCode" select="(f:extension[@url=$ad-use]/f:valueCode/@value,f:use/f:extension[@url=$ad-use]/f:valueCode/@value)[1]"/>
-        <xsl:if test="not($ad-use-valueCode='')">
+        <xsl:variable name="ad-use">http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType</xsl:variable>
+        <xsl:variable name="ad-use-valueCode" select="f:extension[@url=$ad-use]/f:valueCodeableConcept/f:coding[f:system/@value='http://terminology.hl7.org/CodeSystem/v3-AddressUse']/f:code/@value"/>
+        <xsl:if test="not(empty($ad-use-valueCode))">
             <xsl:variable name="codeMapInput">
                 <xsl:choose>
                     <!-- Postadres -->
                     <xsl:when test="$ad-use-valueCode='PST' or f:type/@value='postal'">PST</xsl:when>
                     <!-- Officieel adres -->
                     <xsl:when test="$ad-use-valueCode='HP'">HP</xsl:when>
+                    <xsl:when test="f:use/@value='home' and f:type/@value='both'">HP</xsl:when>
                     <!-- Woon-/verblijfadres -->
                     <xsl:when test="$ad-use-valueCode='PHYS'">PHYS</xsl:when>
+                    <xsl:when test="f:use/@value='home' and f:type/@value='physical'">PHYS</xsl:when>
                     <!-- Vakantie-adres -->
                     <xsl:when test="$ad-use-valueCode='HV'">HV</xsl:when>
                     <!-- Tijdelijk adres -->
+                    <xsl:when test="$ad-use-valueCode='TMP'">TMP</xsl:when>
                     <xsl:when test="f:use/@value='temp'">TMP</xsl:when>
                     <!-- Werkadres -->
+                    <xsl:when test="$ad-use-valueCode='WP'">WP</xsl:when>
                     <xsl:when test="f:use/@value='work'">WP</xsl:when>
-                </xsl:choose>
+                 </xsl:choose>
             </xsl:variable>
             
             <adres_soort>

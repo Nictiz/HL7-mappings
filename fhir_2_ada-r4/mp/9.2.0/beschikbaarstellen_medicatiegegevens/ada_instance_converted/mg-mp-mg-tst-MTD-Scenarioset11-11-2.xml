@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-12-19T19:58:50.575078+01:00"
-         last-update-date="2021-12-19T19:58:50.575078+01:00"/>
+         creation-date="2021-12-20T11:29:14.258982+01:00"
+         last-update-date="2021-12-20T11:29:14.258982+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -36,7 +36,7 @@
                <identificatie value="MBH_920_wdsmtd1_MTD2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="urn-uuid-702ce75a-60d2-11ec-1349-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b37bc0e0-617b-11ec-1597-020000000000"
                                          datatype="reference"/>
                </toedienings_product>
                <toedienings_datum_tijd value="2020-12-13T20:00:00+01:00"/>
@@ -47,6 +47,12 @@
                            displayName="stuk"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
                </toegediende_hoeveelheid>
+               <afgesproken_hoeveelheid>
+                  <aantal value="2"/>
+                  <eenheid code="245"
+                           displayName="stuk"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+               </afgesproken_hoeveelheid>
                <volgens_afspraak_indicator value="false"/>
                <toedieningsweg code="9"
                                codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -58,7 +64,7 @@
                </relatie_medicatieafspraak>
                <toediener>
                   <zorgverlener>
-                     <zorgverlener value="urn-uuid-702ce700-60d2-11ec-1349-020000000000"/>
+                     <zorgverlener value="urn-uuid-b37bc086-617b-11ec-1597-020000000000"/>
                   </zorgverlener>
                </toediener>
                <medicatie_toediening_reden_van_afwijken code="406149000"
@@ -68,7 +74,7 @@
             </medicatietoediening>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-702ce75a-60d2-11ec-1349-020000000000">
+            <farmaceutisch_product id="urn-uuid-b37bc0e0-617b-11ec-1597-020000000000">
                <product_code code="7323"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -79,7 +85,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACENOCOUMAROL TABLET 1MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-702ce700-60d2-11ec-1349-020000000000">
+            <zorgverlener id="urn-uuid-b37bc086-617b-11ec-1597-020000000000">
                <zorgverlener_identificatienummer value="222220000" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <ongestructureerde_naam value="Jantien Toedien"/>
@@ -95,10 +101,10 @@
                             displayName="Verpleegkundigen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-702ce778-60d2-11ec-1349-020000000000"/>
+                                 value="urn-uuid-b37bc0fe-617b-11ec-1597-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-702ce778-60d2-11ec-1349-020000000000">
+            <zorgaanbieder id="urn-uuid-b37bc0fe-617b-11ec-1597-020000000000">
                <zorgaanbieder_identificatienummer value="11110000" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Thuiszorg Om en Bij"/>
                <adresgegevens>
@@ -106,8 +112,11 @@
                   <huisnummer value="1"/>
                   <postcode value="1223BA"/>
                   <woonplaats value="Ons Dorp"/>
-                  <adres_soort code="" codeSystem=""/>
                </adresgegevens>
+               <organisatie_type code="T2"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                 displayName="Thuiszorg"/>
             </zorgaanbieder>
          </bouwstenen>
       </beschikbaarstellen_medicatiegegevens>

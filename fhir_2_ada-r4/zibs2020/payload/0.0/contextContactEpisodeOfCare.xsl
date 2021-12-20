@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:context to relatie_contact or relatie_zorgepisode based on identifier or reference.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:context | f:extension[@url = $extContextEpisodeOfCare]" mode="contextContactEpisodeOfCare">
+    <xsl:template match="f:context | f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare">
         <!-- relatie_contact -  resource: Encounter -->
         <!-- relatie_zorgepisode - resource: EpisodeOfCare -->
 
@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <relatie_contact>
                     <xsl:call-template name="Identifier-to-identificatie">
                         <xsl:with-param name="in" select="(f:identifier | $resource/f:Encounter/f:identifier)[1]"/>
-                        <xsl:with-param name="adaElementName">identificatie</xsl:with-param>
+                        <xsl:with-param name="adaElementName">identificatienummer</xsl:with-param>
                     </xsl:call-template>
                 </relatie_contact>
             </xsl:when>
@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <relatie_zorgepisode>
                     <xsl:call-template name="Identifier-to-identificatie">
                         <xsl:with-param name="in" select="(f:identifier | $resource/f:EpisodeOfCare/f:identifier)[1]"/>
-                        <xsl:with-param name="adaElementName">identificatie</xsl:with-param>
+                        <xsl:with-param name="adaElementName">identificatienummer</xsl:with-param>
                     </xsl:call-template>
                 </relatie_zorgepisode>
             </xsl:when>
