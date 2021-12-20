@@ -46,12 +46,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- naamgegevens -->
             <xsl:apply-templates select="f:name" mode="#current"/>
-            <!--telecom
-            address not present in MP9.0.7-->
-            <!-- specialisme -->
+              <!-- specialisme -->
             <xsl:if test="not($specialtyReference = '')">
                 <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $specialtyReference]/f:resource/f:PractitionerRole" mode="nl-core-HealthProfessional-PractitionerRole"/>
             </xsl:if>
+            <!-- geslacht TODO -->
+            
+            <!-- adresgegevens -->
+            <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
+            <!-- contactgegevens -->
+            <xsl:if test="f:telephoneNumbers | f:emailAddresses">
+                <contactgegevens>
+                    <xsl:apply-templates select="f:telephoneNumbers" mode="nl-core-ContactInformation-TelephoneNumbers"/>
+                    <xsl:apply-templates select="f:emailAddresses" mode="nl-core-ContactInformation-EmailAddresses"/>
+                </contactgegevens>
+            </xsl:if>
+            
             <!-- zorgaanbieder -->
             <xsl:if test="not($organizationReference = '')">
                 <zorgaanbieder>

@@ -12,17 +12,10 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:f="http://hl7.org/fhir"
-    xmlns:local="urn:fhir:stu3:functions"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    exclude-result-prefixes="#all"
-    version="2.0">
-    
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
+
     <xsl:variable name="nl-core-patient">http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient</xsl:variable>
-    
+
     <xd:doc>
         <xd:desc>Template to convert f:Patient to ADA patient, currently only support for elements that are part of MP9 2.0 transactions</xd:desc>
     </xd:doc>
@@ -30,9 +23,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <patient>
             <!-- naamgegevens -->
             <!-- TODO naam even uitstellen vanwege zib issue -->
-<!--            <xsl:apply-templates select="f:name" mode="nl-core-humanname-2.0"/>-->
-             <!-- naamgegevens -->
+            <!-- naamgegevens -->
             <xsl:apply-templates select="f:name" mode="#current"/>
+            <!-- adresgegevens -->
+            <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
+            <!-- contactgegevens -->
+            <xsl:if test="f:telephoneNumbers | f:emailAddresses">
+                <contactgegevens>
+                    <xsl:apply-templates select="f:telephoneNumbers" mode="nl-core-ContactInformation-TelephoneNumbers"/>
+                    <xsl:apply-templates select="f:emailAddresses" mode="nl-core-ContactInformation-EmailAddresses"/>
+                </contactgegevens>
+            </xsl:if>
             <!-- identificatienummer -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- geboortedatum -->
@@ -44,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- TODO overlijdensindicator datum_overlijden -->
         </patient>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to convert f:identifier to identificatienummer</xd:desc>
     </xd:doc>
@@ -53,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="adaElementName">identificatienummer</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to convert f:birthDate to geboortedatum</xd:desc>
     </xd:doc>
@@ -68,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
         </geboortedatum>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to convert f:gender to geslacht</xd:desc>
     </xd:doc>
@@ -86,7 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- displayName attribute? -->
         </geslacht>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to convert f:multipleBirthBoolean to meerling_indicator</xd:desc>
     </xd:doc>
@@ -95,12 +96,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="boolean-to-boolean"/>
         </meerling_indicator>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to convert f:name to naamgegevens</xd:desc>
     </xd:doc>
     <xsl:template match="f:name" mode="nl-core-Patient">
         <xsl:apply-templates select="." mode="nl-core-NameInformation"/>
     </xsl:template>
-    
+
 </xsl:stylesheet>
