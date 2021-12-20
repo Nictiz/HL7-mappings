@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:context to relatie_contact or relatie_zorgepisode based on identifier or reference.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:context | f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare">
+    <xsl:template match="f:context | f:encounter | f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare">
         <!-- relatie_contact -  resource: Encounter -->
         <!-- relatie_zorgepisode - resource: EpisodeOfCare -->
 
