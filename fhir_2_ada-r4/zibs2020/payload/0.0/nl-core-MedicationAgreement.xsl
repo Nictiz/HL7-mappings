@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- geannuleerd_indicator  -->
 			<xsl:apply-templates select="f:status" mode="#current"/>
 			<!-- stoptype -->
-		    <xsl:apply-templates select="f:ModifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-MedicationAgreement"/>
+		    <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-MedicationAgreement"/>
 			<!-- relatie_naar_afspraak_of_gebruik -->
 			<xsl:apply-templates select="f:extension[@url = $zib-MedicationAgreement-BasedOnAgreementOrUse]" mode="#current"/>
 			<!-- relaties_ketenzorg -->
@@ -100,6 +100,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       <medicatieafspraak_stop_type>
         <xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
       </medicatieafspraak_stop_type>
+    </xsl:template>
+    <xsl:template match="f:modifierExtension">
+        <medicatieafspraak_stop_type>
+            <xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
+        </medicatieafspraak_stop_type>
     </xsl:template>
 
     <xd:doc>
