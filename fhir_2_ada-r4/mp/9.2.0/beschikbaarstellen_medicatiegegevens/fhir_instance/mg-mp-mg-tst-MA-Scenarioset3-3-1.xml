@@ -1,14 +1,14 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="6981c5ae-5f4b-11ec-1750-020000000000"/>
+   <id value="b10458f0-61a9-11ec-1532-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:6981c638-5f4b-11ec-1750-020000000000"/>
+      <fullUrl value="urn:uuid:b104597a-61a9-11ec-1532-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="6981c7d3-5f4b-11ec-1750-020000000000"/>
+            <id value="b1045b15-61a9-11ec-1532-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
             </meta>
@@ -50,21 +50,28 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6981c656-5f4b-11ec-1750-020000000000"/>
+               <reference value="urn:uuid:b1045998-61a9-11ec-1532-020000000000"/>
                <type value="Medication"/>
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6981c5de-5f4b-11ec-1750-020000000000"/>
+               <reference value="urn:uuid:b1045920-61a9-11ec-1532-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <authoredOn value="2020-12-22T18:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:6981c5fc-5f4b-11ec-1750-020000000000"/>
+               <reference value="urn:uuid:b104593e-61a9-11ec-1532-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="79899007"/>
+                  <display value="Geneesmiddelinteractie"/>
+               </coding>
+            </reasonCode>
             <dosageInstruction>
                <additionalInstruction>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
@@ -118,7 +125,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6981c5de-5f4b-11ec-1750-020000000000"/>
+      <fullUrl value="urn:uuid:b1045920-61a9-11ec-1532-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Coenen"/>
@@ -166,7 +173,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6981c5fc-5f4b-11ec-1750-020000000000"/>
+      <fullUrl value="urn:uuid:b104593e-61a9-11ec-1532-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -174,12 +181,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:6981c61a-5f4b-11ec-1750-020000000000"/>
+               <reference value="urn:uuid:b104595c-61a9-11ec-1532-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:6981c674-5f4b-11ec-1750-020000000000"/>
+               <reference value="urn:uuid:b10459b6-61a9-11ec-1532-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -195,7 +202,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6981c61a-5f4b-11ec-1750-020000000000"/>
+      <fullUrl value="urn:uuid:b104595c-61a9-11ec-1532-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -227,7 +234,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6981c674-5f4b-11ec-1750-020000000000"/>
+      <fullUrl value="urn:uuid:b10459b6-61a9-11ec-1532-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -265,7 +272,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6981c656-5f4b-11ec-1750-020000000000"/>
+      <fullUrl value="urn:uuid:b1045998-61a9-11ec-1532-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-49484"/>

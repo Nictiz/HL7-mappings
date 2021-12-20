@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="702ce6b2-60d2-11ec-1349-020000000000"/>
+   <id value="b603a4a0-61a9-11ec-8606-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:702ce73c-60d2-11ec-1349-020000000000"/>
+      <fullUrl value="urn:uuid:b603a52a-61a9-11ec-8606-020000000000"/>
       <resource>
          <MedicationAdministration>
             <id value="21684011138832431199977186290051-MBH920wdsmtd1MTD2"/>
@@ -46,19 +46,19 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:702ce75a-60d2-11ec-1349-020000000000"/>
+               <reference value="urn:uuid:b603a548-61a9-11ec-8606-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:702ce6e2-60d2-11ec-1349-020000000000"/>
+               <reference value="urn:uuid:b603a4d0-61a9-11ec-8606-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <effectiveDateTime value="2020-12-13T20:00:00+01:00"/>
             <performer>
                <actor>
-                  <reference value="urn:uuid:702ce700-60d2-11ec-1349-020000000000"/>
+                  <reference value="urn:uuid:b603a4ee-61a9-11ec-8606-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd"/>
                </actor>
@@ -72,6 +72,22 @@
                <display value="relatie naar medicatieafspraak met identificatie: MBH_920_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedAmount">
+                  <valueQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </valueQuantity>
+               </extension>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -101,7 +117,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:702ce6e2-60d2-11ec-1349-020000000000"/>
+      <fullUrl value="urn:uuid:b603a4d0-61a9-11ec-8606-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Pherai"/>
@@ -149,7 +165,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:702ce700-60d2-11ec-1349-020000000000"/>
+      <fullUrl value="urn:uuid:b603a4ee-61a9-11ec-8606-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="222220000-9100-11110000"/>
@@ -157,12 +173,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:702ce71e-60d2-11ec-1349-020000000000"/>
+               <reference value="urn:uuid:b603a50c-61a9-11ec-8606-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Jantien Toedien"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:702ce778-60d2-11ec-1349-020000000000"/>
+               <reference value="urn:uuid:b603a566-61a9-11ec-8606-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
             </organization>
@@ -178,7 +194,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:702ce71e-60d2-11ec-1349-020000000000"/>
+      <fullUrl value="urn:uuid:b603a50c-61a9-11ec-8606-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-222220000"/>
@@ -207,7 +223,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:702ce778-60d2-11ec-1349-020000000000"/>
+      <fullUrl value="urn:uuid:b603a566-61a9-11ec-8606-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-11110000"/>
@@ -242,7 +258,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:702ce75a-60d2-11ec-1349-020000000000"/>
+      <fullUrl value="urn:uuid:b603a548-61a9-11ec-8606-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-7323"/>
