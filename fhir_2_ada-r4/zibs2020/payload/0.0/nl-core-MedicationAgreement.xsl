@@ -52,6 +52,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:status" mode="#current"/>
 			<!-- stoptype -->
 		    <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-MedicationAgreement"/>
+		    <!-- relatie medicatieafspraak -->
+		    <xsl:apply-templates select="f:priorPrescription" mode="#current"/>		    
 			<!-- relatie_naar_afspraak_of_gebruik -->
 			<xsl:apply-templates select="f:extension[@url = $zib-MedicationAgreement-BasedOnAgreementOrUse]" mode="#current"/>
 			<!-- relaties_ketenzorg -->
@@ -93,27 +95,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <!--xxxwim: komt uit HL7-mappings/fhir_2_ada/zibs2017/payload/ext-zib-medication-stop-type-2.0.xsl
+        (zit ook bij Administrationagreement)-->
     <xd:doc>
         <xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:modifierExtension[@url ='http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-MedicationAgreement">
-      <medicatieafspraak_stop_type>
+    <xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="nl-core-MedicationAgreement">
         <xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
-      </medicatieafspraak_stop_type>
     </xsl:template>
-    <xsl:template match="f:modifierExtension">
-        <medicatieafspraak_stop_type>
-            <xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
-        </medicatieafspraak_stop_type>
+    <xd:doc>
+        <xd:desc>Template to resolve priorPrescription.</xd:desc>
+    </xd:doc>    
+    <xd:doc>
+        <xd:desc>Template to convert f:authorizingPrescription to relatie_medicatieafspraak</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:priorPrescription" mode="nl-core-MedicationAgreement">
+        <relatie_medicatieafspraak>
+            <xsl:call-template name="Reference-to-identificatie"/>
+        </relatie_medicatieafspraak>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:valueCodeableConcept" mode="ext-zib-Medication-Stop-Type-2.0">
+    <xsl:template match="f:valueCodeableConcept" mode="nl-core-MedicationAgreement">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="adaElementName" select="'stoptype'"/>
+            <xsl:with-param name="adaElementName" select="'medicatieafspraak_stop_type'"/>
         </xsl:call-template>    
     </xsl:template>
 
