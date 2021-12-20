@@ -173,7 +173,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </requester>
                 </xsl:for-each>
 
-                <xsl:for-each select="reden_medicatieafspraak">
+                <xsl:for-each select="reden_wijzigen_of_staken[@code]">
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </reasonCode>

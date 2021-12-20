@@ -44,11 +44,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
 
                 <xsl:for-each select="rol[@code]">
-                    <relationship>
+                    <role>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </relationship>
+                    </role>
                 </xsl:for-each>
 
                 <xsl:for-each select="relatie[@code]">

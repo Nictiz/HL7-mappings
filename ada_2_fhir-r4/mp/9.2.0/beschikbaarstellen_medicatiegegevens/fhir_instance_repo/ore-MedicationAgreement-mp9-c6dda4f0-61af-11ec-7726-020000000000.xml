@@ -1,0 +1,104 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="ore-MedicationAgreement-mp9-c6dda4f0-61af-11ec-7726-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf &lt;T-13D{00:00:00}&gt; t/m &lt;T-2D{23:59:59}&gt;, 1 maal per week 5 stuks, oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -13}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -2}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_redenvanvoorschrijven"/>
+      </valueIdentifier>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="113371000146109"/>
+            <display value="definitief gestopt met medicatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_920_redenvanvoorschrijven_MA_techstaken"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="voorschrijven"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-141631"/>
+      <type value="Medication"/>
+      <display value="Methotrexaat tablet 2,5mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-C-XXX-Coenen"/>
+      <type value="Patient"/>
+      <display value="Patient, C. XXX_Coenen"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/core-HealthProfessional-Practitioner-mp9-000001112-0100-00001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <reasonReference>
+      <reference value="Condition/nl-core-Problem-mp9-c6dda4de-61af-11ec-7726-020000000000"/>
+      <type value="Condition"/>
+      <display value="Problem"/>
+   </reasonReference>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="wk"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="5"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="5"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+   <priorPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_920_redenvanvoorschrijven_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak: MBH_920_redenvanvoorschrijven_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </priorPrescription>
+</MedicationRequest>

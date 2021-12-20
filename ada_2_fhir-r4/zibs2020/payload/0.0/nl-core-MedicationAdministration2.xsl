@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
-                      <xsl:for-each select="afgesproken_datum_tijd">
+                <xsl:for-each select="afgesproken_datum_tijd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
                         <valueDateTime>
                             <xsl:attribute name="value">
@@ -86,15 +86,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="volgens_afspraak_indicator">
                     <xsl:call-template name="ext-AsAgreedIndicator"/>
                 </xsl:for-each>
-                
+
                 <!-- pharmaceuticalTreatmentIdentifier -->
                 <xsl:for-each select="../identificatie">
                     <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
-
-                <!-- TODO afgesproken_hoeveelheid, where is it mapped to in FHIR? -->
 
                 <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
                     <identifier>
@@ -151,7 +149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
                     <context>
                         <!-- relatie_episode -->
-                        <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
+                        <xsl:for-each select="../../relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
                             <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                         </xsl:for-each>
                         <!-- relatie_contact -->
@@ -163,9 +161,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </context>
                 </xsl:for-each>
 
+                <!-- relatie_episode when there is no relatie_contact -->
                 <xsl:if test="relatie_zorgepisode/(identificatie | identificatienummer)[@value] and not(relatie_contact/(identificatie | identificatienummer)[@value])">
                     <context>
-                        <!-- relatie_episode -->
                         <type value="EpisodeOfCare"/>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier"/>
@@ -269,6 +267,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:variable name="dosage">
+                    <!--  afgesproken_hoeveelheid -->
+                    <xsl:for-each select="afgesproken_hoeveelheid">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedAmount">
+                            <valueQuantity>
+                                <xsl:call-template name="_buildMedicationQuantity">
+                                    <xsl:with-param name="adaValue" select="aantal"/>
+                                    <xsl:with-param name="adaUnit" select="eenheid"/>                                    
+                                </xsl:call-template>
+                            </valueQuantity>
+                        </extension>
+                    </xsl:for-each>
+
+
                     <xsl:for-each select="prik_plak_locatie[@value | @nullFlavor]">
                         <site>
                             <text>
