@@ -13,7 +13,7 @@
     <property name="build.dir" value="../.."/>
     <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
     <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\${is.version}"/>
-    
+
     <property name="organizer.to.cda.xsl" value="MP9_Transform_Organizer2CDA.xsl"/>
 
     <!-- place import exactly here, otherwise it can't resolve the properties above, or we can't resolve some properties below, such as ${echo.label.in} -->
@@ -41,11 +41,11 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
-        
-          <!-- beschikbaarstellen_medicatiegegevens MA -->
+
+        <!-- beschikbaarstellen_medicatiegegevens MA -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.mg}"/>
-             <param name="fileset.dir" value="ada_instance_MA"/>
+            <param name="fileset.dir" value="ada_instance_MA"/>
             <param name="fileset.include" value="*MA*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
@@ -59,7 +59,7 @@
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.mo}"/>
-             <param name="fileset.dir" value="ada_instance_mp"/>
+            <param name="fileset.dir" value="ada_instance_mp"/>
             <param name="fileset.include" value="*output*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
@@ -233,7 +233,7 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
-        
+
         <!-- everything also to CDA-->
         <sequential>
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
@@ -246,7 +246,7 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-        </sequential>    
+        </sequential>
     </target>
 
     <target name="convert_ada_2_hl7_sub">
@@ -262,23 +262,21 @@
             <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
 
-        <sequential>
-            <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+        <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
 
-            <echo/>
-            <echo>${echo.label} ${xsl.mp} input dir ${xsl.input}</echo>
-            <xslt force="true" style="${xsl.mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesMP"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
-                <!-- whether to generate the textual instruction for use based on structured data, 
+        <echo/>
+        <echo>${echo.label} ${xsl.mp} input dir ${xsl.input}</echo>
+        <xslt force="true" style="${xsl.mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfilesMP"/>
+            <param name="dateT" expression="${date.T}" if="date.T"/>
+            <!-- whether to generate the textual instruction for use based on structured data, 
                     typically true for test/example instances 
                     typically false for production -->
-                <param name="generateInstructionText" expression="true"/>
-                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
+            <param name="generateInstructionText" expression="true"/>
+            <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
     </target>
 
 
