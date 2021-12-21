@@ -13,22 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- 
-        System-id: /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/hl7_2_ada/hl7/hl7_2_ada_hl7_include.xsl
-        Main validation file: ..../hl7_2_ada/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_medicatieafspraken907_2_ada.xsl
-        Description: Stylesheet module file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/hl7_2_ada/hl7/hl7_2_ada_hl7_include.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
-        
-        Systeem-id: /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/constants.xsl
-        Main validation file: ..../hl7_2_ada/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_medicatieafspraken907_2_ada.xsl
-        Description: Stylesheet module file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/constants.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
 
-        Systeem-id: /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/uuid.xsl
-        Main validation file: ..../hl7_2_ada/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_medicatieafspraken907_2_ada.xsl
-        Description: Stylesheet module file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/uuid.xsl is included or imported more than once. This is permitted, but may lead to errors or unexpected behavior
-    
-        leave in comment unless you are testing from this file directly or looking forward to errors like those above here:
-    -->
-<!--        <xsl:import href="../../hl7/hl7_2_ada_hl7_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
 
     <xsl:strip-space elements="*"/>
@@ -39,31 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
   
-    <xsl:variable name="elmContactPerson">
-        <xsl:choose>
-            <xsl:when test="$language = 'en-US'">contact_person</xsl:when>
-            <xsl:otherwise>contactpersoon</xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="elmHealthcareProvider">
-        <xsl:choose>
-            <xsl:when test="$language = 'en-US'">healthcare_provider</xsl:when>
-            <xsl:otherwise>zorgaanbieder</xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="elmHealthProfessional">
-        <xsl:choose>
-            <xsl:when test="$language = 'en-US'">health_professional</xsl:when>
-            <xsl:otherwise>zorgverlener</xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="elmPatient">
-        <xsl:choose>
-            <xsl:when test="$language = 'en-US'">patient</xsl:when>
-            <xsl:otherwise>patient</xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-
+  
 
     <!-- variable which contains all information needed to create ada patient (reference) for the transaction being handled -->
     <xsl:variable name="patients" as="element()*">

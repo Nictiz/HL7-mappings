@@ -15,6 +15,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xsl:import href="../../../../zibs2020/payload/all-zibs.xsl"/>
+    <!-- to be phased out _zib2020.xsl -->
+    <xsl:import href="../../../../zibs2020/payload/_zib2020.xsl"/>
     <xsl:import href="../../../../../ada_2_ada/ada/AddConceptIds.xsl"/>
 
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
@@ -28,8 +30,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- wether or not to add adaconcept id's, this is not really necessary, so out of performance considerations this should be false() -->
     <!--        <xsl:param name="addAdaConceptId" as="xs:boolean?" select="false()"/>-->
     <xsl:param name="addAdaConceptId" as="xs:boolean?" select="true()"/>
-    
-    <xsl:variable name="medicatiegegevens-lijst-92" select="//hl7:organizer[@codeSystem='2.16.840.1.113883.2.4.3.11.60.20.77.4'] | //hl7:ClinicalDocument"/>
+
+    <xsl:variable name="medicatiegegevens-lijst-92" select="//hl7:organizer[@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4'] | //hl7:ClinicalDocument"/>
     <xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/>
     <xsl:variable name="extension" select="tokenize($filename, '\.')[last()]"/>
     <xsl:variable name="idBasedOnFilename" select="replace($filename, concat('.', $extension, '$'), '')"/>
@@ -42,11 +44,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- let's use the extension of the message id -->
                 <xsl:value-of select="$medicatiegegevens-lijst-92/../../../hl7:id/@extension"/>
             </xsl:when>
-            <xsl:otherwise><xsl:value-of select="generate-id(.)"/></xsl:otherwise>
+            <xsl:otherwise>
+                <xsl:value-of select="generate-id(.)"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:param>
-    
-    
+
+
+    <xsl:variable name="elmContactPerson">
+        <xsl:choose>
+            <xsl:when test="$language = 'en-US'">contact_person</xsl:when>
+            <xsl:otherwise>contactpersoon</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="elmHealthcareProvider">
+        <xsl:choose>
+            <xsl:when test="$language = 'en-US'">healthcare_provider</xsl:when>
+            <xsl:otherwise>zorgaanbieder</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="elmHealthProfessional">
+        <xsl:choose>
+            <xsl:when test="$language = 'en-US'">health_professional</xsl:when>
+            <xsl:otherwise>zorgverlener</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="elmPatient">
+        <xsl:choose>
+            <xsl:when test="$language = 'en-US'">patient</xsl:when>
+            <xsl:otherwise>patient</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
+
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -118,12 +149,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <bouwstenen>
                                 <!-- lichaamslengte  -->
                                 <xsl:for-each select="//*[hl7:templateId/@root = $templateId-lichaamslengte]">
-                                    <xsl:call-template name="zib-Lichaamslengte-3.1"/> 
+                                    <xsl:call-template name="zib-Lichaamslengte-3.1"/>
                                 </xsl:for-each>
                                 <!-- lichaamsgewicht  -->
                                 <xsl:for-each select="//*[hl7:templateId/@root = $templateId-lichaamsgewicht]">
-                                    <xsl:call-template name="zib-Lichaamsgewicht-3.1"/> 
-                                </xsl:for-each>                               
+                                    <xsl:call-template name="zib-Lichaamsgewicht-3.1"/>
+                                </xsl:for-each>
                             </bouwstenen>
                         </xsl:if>
                     </sturen_medicatievoorschrift>
