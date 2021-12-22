@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-12-20T11:29:14.072477+01:00"
-         last-update-date="2021-12-20T11:29:14.072477+01:00"/>
+         creation-date="2021-12-21T18:11:32.480108+01:00"
+         last-update-date="2021-12-21T18:11:32.480108+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -33,9 +33,21 @@
          <medicamenteuze_behandeling>
             <identificatie value="MBH_920_toedieningsduur"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik>
+               <gebruiksperiode_start value="2021-01-01T00:00:00+01:00"/>
+               <gebruiksperiode_eind value="2021-01-15T12:00:00+01:00"/>
+               <identificatie value="MBH_920_toedieningsduur_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratiedatum value="2021-01-15T12:00:00+01:00"/>
+               <gebruiks_product><!--Unhandled FHIR node: f:Medication--></gebruiks_product>
+               <!--Unhandled FHIR node: f:dosage-->
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+            </medicatiegebruik>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-b2b1646c-617b-11ec-1055-020000000000">
+            <farmaceutisch_product id="urn-uuid-b5431d50-61a9-11ec-8663-020000000000">
                <product_code code="44520"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -46,7 +58,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-b2b16412-617b-11ec-1055-020000000000">
+            <zorgverlener id="urn-uuid-b5431cf6-61a9-11ec-8663-020000000000">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <ongestructureerde_naam value="Peter van Pulver"/>
@@ -63,10 +75,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-b2b1648a-617b-11ec-1055-020000000000"/>
+                                 value="urn-uuid-b5431d6e-61a9-11ec-8663-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-b2b1648a-617b-11ec-1055-020000000000">
+            <zorgaanbieder id="urn-uuid-b5431d6e-61a9-11ec-8663-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -74,6 +86,9 @@
                   <huisnummer value="1"/>
                   <postcode value="1234AA"/>
                   <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>

@@ -15,7 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
 
 	<!-- TODO currently the 907 version, we should upgrade to 920 -->
-	<xsl:import href="../../../../../fhir_2_ada/mp/fhir_2_ada_mp_include.xsl"/>
+	<!--<xsl:import href="../../../../../fhir_2_ada/mp/fhir_2_ada_mp_include.xsl"/>-->
 	<xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
 	<xsl:output indent="yes" omit-xml-declaration="yes"/>
 
@@ -73,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<!-- verstrekking -->
 							<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.2"/>-->
 							<!-- medicatie_gebruik -->
-							<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value='6']" mode="zib-MedicationUse-2.2"/>-->
+						    <xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value='422979000']" mode="nl-core-MedicationUse2"/>
 							<!-- medicatietoediening -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationAdministration]" mode="nl-core-MedicationAdministration"/>
 							

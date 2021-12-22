@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-12-20T11:29:13.768291+01:00"
-         last-update-date="2021-12-20T11:29:13.768291+01:00"/>
+         creation-date="2021-12-21T18:11:32.350359+01:00"
+         last-update-date="2021-12-21T18:11:32.350359+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -32,9 +32,17 @@
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_920_QA1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik>
+               <gebruiksperiode_start value="2020-12-12T00:00:00+01:00"/>
+               <gebruiksperiode_eind value="2021-01-10T23:59:59+01:00"/>
+               <identificatie value="MBH_920_QA1_MGB" root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="2020-12-31T10:04:23+01:00"/>
+               <gebruiks_product><!--Unhandled FHIR node: f:Medication--></gebruiks_product>
+               <!--Unhandled FHIR node: f:dosage-->
+            </medicatiegebruik>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-b1819f08-617b-11ec-1060-020000000000">
+            <farmaceutisch_product id="urn-uuid-b3c2a1a8-61a9-11ec-1306-020000000000">
                <product_code code="641898"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -49,7 +57,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="IBUPROFEN TABLET 600MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-b1819eae-617b-11ec-1060-020000000000">
+            <zorgverlener id="urn-uuid-b3c2a14e-61a9-11ec-1306-020000000000">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <ongestructureerde_naam value="Peter van Pulver"/>
@@ -66,10 +74,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-b1819f26-617b-11ec-1060-020000000000"/>
+                                 value="urn-uuid-b3c2a1c6-61a9-11ec-1306-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-b1819f26-617b-11ec-1060-020000000000">
+            <zorgaanbieder id="urn-uuid-b3c2a1c6-61a9-11ec-1306-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -77,6 +85,9 @@
                   <huisnummer value="1"/>
                   <postcode value="1234AA"/>
                   <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>

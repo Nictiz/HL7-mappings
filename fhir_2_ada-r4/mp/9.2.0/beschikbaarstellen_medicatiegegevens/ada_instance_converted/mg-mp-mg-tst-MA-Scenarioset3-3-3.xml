@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-12-20T11:29:13.016303+01:00"
-         last-update-date="2021-12-20T11:29:13.016303+01:00"/>
+         creation-date="2021-12-21T18:11:32.005582+01:00"
+         last-update-date="2021-12-21T18:11:32.005582+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -41,9 +41,17 @@
                   <start_datum_tijd value="2020-12-31T00:00:00+01:00"/>
                   <eind_datum_tijd value="2021-01-15T23:59:59+01:00"/>
                </gebruiksperiode>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_920_redenvanvoorschrijven_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-b036ee82-617b-11ec-1570-020000000000"/>
+                  <zorgverlener value="urn-uuid-b12226bc-61a9-11ec-1852-020000000000"/>
                </voorschrijver>
+               <reden_wijzigen_of_staken code="112251000146103"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         codeSystemName="SNOMED CT"
+                                         displayName="Te sterk effect van medicatie"/>
                <reden_van_voorschrijven>
                   <probleem>
                      <probleem_naam code="OTH"
@@ -53,7 +61,7 @@
                   </probleem>
                </reden_van_voorschrijven>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-b036ef18-617b-11ec-1570-020000000000"/>
+                  <farmaceutisch_product value="urn-uuid-b1222752-61a9-11ec-1852-020000000000"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf 31 dec 2020, tot en met 15 jan 2021, 1 maal per week 4 stuks, Oraal"/>
@@ -91,8 +99,16 @@
                   <start_datum_tijd value="2020-12-19T00:00:00+01:00"/>
                   <eind_datum_tijd value="2020-12-30T23:59:59+01:00"/>
                </gebruiksperiode>
+               <medicatieafspraak_stop_type code="113371000146109"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            codeSystemName="SNOMED CT"
+                                            displayName="definitief gestopt met medicatie"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_920_redenvanvoorschrijven_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-b036ee82-617b-11ec-1570-020000000000"/>
+                  <zorgverlener value="urn-uuid-b12226bc-61a9-11ec-1852-020000000000"/>
                </voorschrijver>
                <reden_van_voorschrijven>
                   <probleem>
@@ -103,7 +119,7 @@
                   </probleem>
                </reden_van_voorschrijven>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-b036ef18-617b-11ec-1570-020000000000"/>
+                  <farmaceutisch_product value="urn-uuid-b1222752-61a9-11ec-1852-020000000000"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf 19 dec 2020, tot en met 30 dec 2020, 1 maal per week 5 stuks, Oraal, definitief gestopt"/>
@@ -135,7 +151,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-b036ef18-617b-11ec-1570-020000000000">
+            <farmaceutisch_product id="urn-uuid-b1222752-61a9-11ec-1852-020000000000">
                <product_code code="141631"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -146,7 +162,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="Methotrexaat tablet 2,5mg"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-b036ee82-617b-11ec-1570-020000000000">
+            <zorgverlener id="urn-uuid-b12226bc-61a9-11ec-1852-020000000000">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <ongestructureerde_naam value="Bertine van Doorn"/>
@@ -163,10 +179,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-b036ef36-617b-11ec-1570-020000000000"/>
+                                 value="urn-uuid-b1222770-61a9-11ec-1852-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-b036ef36-617b-11ec-1570-020000000000">
+            <zorgaanbieder id="urn-uuid-b1222770-61a9-11ec-1852-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -174,6 +190,9 @@
                   <huisnummer value="1"/>
                   <postcode value="1234AA"/>
                   <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>

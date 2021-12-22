@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-12-20T11:29:12.956462+01:00"
-         last-update-date="2021-12-20T11:29:12.956462+01:00"/>
+         creation-date="2021-12-21T18:11:31.981124+01:00"
+         last-update-date="2021-12-21T18:11:31.981124+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -41,11 +41,23 @@
                   <start_datum_tijd value="2020-09-01T00:00:00+02:00"/>
                   <eind_datum_tijd value="2020-12-22T23:59:59+01:00"/>
                </gebruiksperiode>
+               <medicatieafspraak_stop_type code="113371000146109"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            codeSystemName="SNOMED CT"
+                                            displayName="definitief gestopt met medicatie"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_920_aanvullendeinstructie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-b0258a52-617b-11ec-3086-020000000000"/>
+                  <zorgverlener value="urn-uuid-b104593e-61a9-11ec-1532-020000000000"/>
                </voorschrijver>
+               <reden_wijzigen_of_staken code="79899007"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         codeSystemName="SNOMED CT"
+                                         displayName="Geneesmiddelinteractie"/>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-b0258aac-617b-11ec-3086-020000000000"/>
+                  <farmaceutisch_product value="urn-uuid-b1045998-61a9-11ec-1532-020000000000"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf 1 sep 2020, tot en met 22 dec 2020, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal, definitief gestopt"/>
@@ -82,7 +94,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-b0258aac-617b-11ec-3086-020000000000">
+            <farmaceutisch_product id="urn-uuid-b1045998-61a9-11ec-1532-020000000000">
                <product_code code="49484"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -93,7 +105,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="Acetylsalicylzuur tabletmsr 100mg"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-b0258a52-617b-11ec-3086-020000000000">
+            <zorgverlener id="urn-uuid-b104593e-61a9-11ec-1532-020000000000">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <ongestructureerde_naam value="Bertine van Doorn"/>
@@ -110,10 +122,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-b0258aca-617b-11ec-3086-020000000000"/>
+                                 value="urn-uuid-b10459b6-61a9-11ec-1532-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-b0258aca-617b-11ec-3086-020000000000">
+            <zorgaanbieder id="urn-uuid-b10459b6-61a9-11ec-1532-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -121,6 +133,9 @@
                   <huisnummer value="1"/>
                   <postcode value="1234AA"/>
                   <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>

@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2021-12-20T11:29:14.190164+01:00"
-         last-update-date="2021-12-20T11:29:14.190164+01:00"/>
+         creation-date="2021-12-21T18:11:32.532452+01:00"
+         last-update-date="2021-12-21T18:11:32.532452+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp920"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -33,16 +33,25 @@
          <medicamenteuze_behandeling>
             <identificatie value="MBH_920_magistraalalleingredienten"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik>
+               <gebruiksperiode_start value="2021-01-01T00:00:00+01:00"/>
+               <gebruiksperiode_eind value="2021-01-01T23:59:59+01:00"/>
+               <identificatie value="MBH_920_magistraalalleingredienten_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="2021-01-01T21:53:00+01:00"/>
+               <gebruiks_product><!--Unhandled FHIR node: f:Medication--></gebruiks_product>
+               <!--Unhandled FHIR node: f:dosage-->
+            </medicatiegebruik>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-b34a3a34-617b-11ec-5340-020000000000">
+            <farmaceutisch_product id="urn-uuid-b5c50a90-61a9-11ec-1553-020000000000">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              codeSystemName="HL7 NullFlavor"
                              displayName="overig"
                              originalText="Ureum 10% in eucerine cum aqua 100gr"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-b34a39da-617b-11ec-5340-020000000000">
+            <zorgverlener id="urn-uuid-b5c50a36-61a9-11ec-1553-020000000000">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <ongestructureerde_naam value="Peter van Pulver"/>
@@ -59,10 +68,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-b34a3a52-617b-11ec-5340-020000000000"/>
+                                 value="urn-uuid-b5c50aae-61a9-11ec-1553-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-b34a3a52-617b-11ec-5340-020000000000">
+            <zorgaanbieder id="urn-uuid-b5c50aae-61a9-11ec-1553-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -70,6 +79,9 @@
                   <huisnummer value="1"/>
                   <postcode value="1234AA"/>
                   <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
