@@ -23,8 +23,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:dosageInstruction or f:dosage to ADA gebruiksinstructie. Multiple following f:dosage(Instruction) siblings are merged into one gebruiksinstructie.</xd:desc>
     </xd:doc>
     <xsl:template match="f:dosageInstruction | f:dosage" mode="nl-core-InstructionsForUse">
-        <xsl:choose>
-            <xsl:when test="not(preceding-sibling::*[self::f:dosageInstruction or self::f:dosage])">
+        <xsl:choose><!--not(preceding-sibling::*[self::f:dosageInstruction or self::f:dosage])-->
+            <xsl:when test="not(preceding-sibling::*[self::f:dosageInstruction] or preceding-sibling::*[self::f:dosage])">
                 <gebruiksinstructie>
                     <!-- omschrijving -->
                     <xsl:apply-templates select="../f:extension[@url = $ext-RenderedDosageInstruction]" mode="#current"/>
