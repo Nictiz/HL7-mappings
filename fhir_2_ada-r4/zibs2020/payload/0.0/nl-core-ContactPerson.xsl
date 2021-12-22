@@ -29,12 +29,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- naamgegevens -->
             <xsl:apply-templates select="f:name" mode="nl-core-NameInformation"/>
-            <!-- contactgegevens TODO -->
+            
+            <!-- contactgegevens -->
+            <xsl:if test="f:telephoneNumbers | f:emailAddresses">
+                <contactgegevens>
+                    <xsl:apply-templates select="f:telephoneNumbers" mode="nl-core-ContactInformation-TelephoneNumbers"/>
+                    <xsl:apply-templates select="f:emailAddresses" mode="nl-core-ContactInformation-EmailAddresses"/>
+                </contactgegevens>
+            </xsl:if>
+            
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
-            <!-- rol TODO-->
-            <!-- relatie TODO-->
+            
+            <!-- rol -->
+            <xsl:apply-templates select="f:role" mode="#current"/>
+            
+            <!-- relatie -->
+            <xsl:apply-templates select="f:relationship" mode="#current"/> 
+            
         </contactpersoon>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:role to ADA contactpersoon/rol</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:relationship" mode="nl-core-ContactPerson">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="adaElementName">relatie</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:role to ADA contactpersoon/rol</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:role" mode="nl-core-ContactPerson">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="adaElementName">rol</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
 
 </xsl:stylesheet>

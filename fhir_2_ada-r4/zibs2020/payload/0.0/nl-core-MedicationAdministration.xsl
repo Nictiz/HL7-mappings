@@ -256,7 +256,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</afgesproken_datum_tijd>
 	</xsl:template>
 
-
 	<xd:doc>
 		<xd:desc>Template to convert f:note to toelichting</xd:desc>
 	</xd:doc>

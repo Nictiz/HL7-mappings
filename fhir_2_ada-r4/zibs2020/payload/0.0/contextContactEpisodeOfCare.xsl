@@ -26,7 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- first try to find the referenced resource with f:reference, can only be found in this Bundle -->
         <xsl:variable name="resource" select="nf:resolveRefInBundle(.)"/>
         <xsl:choose>
-            <xsl:when test="f:type/@value = 'Encounter' or $resource[f:Encounter]">
+            <xsl:when test="f:type/@value = 'Encounter' or $resource[f:Encounter/f:identifier]">
                 <relatie_contact>
                     <xsl:call-template name="Identifier-to-identificatie">
                         <xsl:with-param name="in" select="(f:identifier | $resource/f:Encounter/f:identifier)[1]"/>
@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </relatie_contact>
             </xsl:when>
-            <xsl:when test="f:type/@value = 'EpisodeOfCare' or $resource[f:EpisodeOfCare]">
+            <xsl:when test="f:type/@value = 'EpisodeOfCare' or $resource[f:EpisodeOfCare/f:identifier]">
                 <relatie_zorgepisode>
                     <xsl:call-template name="Identifier-to-identificatie">
                         <xsl:with-param name="in" select="(f:identifier | $resource/f:EpisodeOfCare/f:identifier)[1]"/>
@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="parent::f:resource/f:*/local-name()"/>
                         <xsl:text> with fullUrl '</xsl:text>
                         <xsl:value-of select="parent::f:resource/f:*/parent::f:resource/preceding-sibling::f:fullUrl/@value"/>
-                        <xsl:text>' .context reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to contact and/or episode of care) will be lost.</xsl:text>
+                        <xsl:text>' .context or .encounter or episodeOfCare extension reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to contact and/or episode of care) will be lost.</xsl:text>
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:otherwise>            

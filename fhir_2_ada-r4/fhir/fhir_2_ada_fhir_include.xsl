@@ -13,11 +13,122 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
-
     <xsl:import href="../../fhir_2_ada/fhir/fhir_2_ada_fhir_include.xsl"/>
 
     <xsl:output indent="yes"/>
     <xsl:strip-space elements="*"/>
+
+    <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/references.html#Reference">Reference</xd:a> to ada 'identificatie'</xd:desc>
+        <xd:param name="resourceList">Xpath sequence of the resource names as strings that are allowed when resolving the reference (e.g. "('MedicationUse','MedicationStatement'). When not given, no filtering on resourcename is applied.</xd:param>
+    </xd:doc>
+    <xsl:template name="Reference-to-identificatie">
+        <xsl:param name="resourceList" as="xs:string*"/>
+        <xsl:choose>
+            <xsl:when test="f:reference">
+                <xsl:variable name="nonFilteredResource" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = current()/f:reference/@value]/f:resource"/>
+                <xsl:variable name="resource" as="element()*">
+                    <xsl:choose>
+                        <xsl:when test="not(empty($resourceList))">
+                            <xsl:sequence select="$nonFilteredResource[local-name() = $resourceList]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:sequence select="$nonFilteredResource"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:choose>
+                    <xsl:when test="$resource/f:identifier">
+                        <xsl:call-template name="Identifier-to-identificatie">
+                            <xsl:with-param name="in" select="$resource/f:identifier"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logERROR"/>
+                            <xsl:with-param name="msg">
+                                <xsl:value-of select="ancestor::f:resource/f:*/local-name()"/>
+                                <xsl:text> with fullUrl '</xsl:text>
+                                <xsl:value-of select="ancestor::f:resource/preceding-sibling::f:fullUrl/@value"/>
+                                <xsl:text>' .</xsl:text>
+                                <xsl:choose>
+                                    <xsl:when test="../parent::f:extension">
+                                        <xsl:value-of select="concat('extensie ', ../parent::f:extension/tokenize(@url, '/')[last()])"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="f:*/local-name()"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                                <xsl:text> reference cannot be resolved within the Bundle. Therefore information will be lost.</xsl:text>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:when test="f:identifier">
+                <xsl:call-template name="Identifier-to-identificatie">
+                    <xsl:with-param name="in" select="f:identifier"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">
+                        <xsl:value-of select="ancestor::f:resource/f:*/local-name()"/>
+                        <xsl:text> with fullUrl '</xsl:text>
+                        <xsl:value-of select="ancestor::f:resource/preceding-sibling::f:fullUrl/@value"/>
+                        <xsl:text>' .</xsl:text>
+                        <xsl:choose>
+                            <xsl:when test="../parent::f:extension">
+                                <xsl:value-of select="concat('extensie ', ../parent::f:extension/tokenize(@url, '/')[last()])"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="f:*/local-name()"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:text> reference cannot be resolved within the Bundle. Therefore information will be lost.</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+      
+    <xsl:function name="nf:replaceChar">
+        <!--xxwim TODO remove multiples in $pelstring-->
+        <xsl:param name="charStringInAndtestChar"/>
+        <!--replaced &#x09EF; &#x09EE;-->
+        <xsl:variable name="NCNameChars"
+            select="'\i|[&#x0030;-&#x0039;]|[&#x0660;-&#x0669;]|[&#x06F0;-&#x06F9;]|[&#x0966;-&#x096F;]|[&#x09E6;-&#x09EF;]|[&#x0A66;-&#x0A6F;]|[&#x0AE6;-&#x0AEF;]|[&#x0B66;-&#x0B6F;]|[&#x0BE7;-&#x0BEF;]|[&#x0C66;-&#x0C6F;]|[&#x0CE6;-&#x0CEF;]|[&#x0D66;-&#x0D6F;]|[&#x0E50;-&#x0E59;]|[&#x0ED0;-&#x0ED9;]|[&#x0F20;-&#x0F29;]\.|\-|_|[&#x0300;-&#x0345;]|[&#x0360;-&#x0361;]|[&#x0483;-&#x0486;]|[&#x0591;-&#x05A1;]|[&#x05A3;-&#x05B9;]|[&#x05BB;-&#x05BD;]|&#x05BF;|[&#x05C1;-&#x05C2;]|&#x05C4;|[&#x064B;-&#x0652;]|&#x0670;|[&#x06D6;-&#x06DC;]|[&#x06DD;-&#x06DF;]|[&#x06E0;-&#x06E4;]|[&#x06E7;-&#x06E8;]|[&#x06EA;-&#x06ED;]|[&#x0901;-&#x0903;]|&#x093C;|[&#x093E;-&#x094C;]|&#x094D;|[&#x0951;-&#x0954;]|[&#x0962;-&#x0963;]|[&#x0981;-&#x0983;]|&#x09BC;|&#x09BE;|&#x09BF;|[&#x09C0;-&#x09C4;]|[&#x09C7;-&#x09C8;]|[&#x09CB;-&#x09CD;]|&#x09D7;|[&#x09E2;-&#x09E3;]|&#x0A02;|&#x0A3C;|&#x0A3E;|&#x0A3F;|[&#x0A40;-&#x0A42;]|[&#x0A47;-&#x0A48;]|[&#x0A4B;-&#x0A4D;]|[&#x0A70;-&#x0A71;]|[&#x0A81;-&#x0A83;]|&#x0ABC;|[&#x0ABE;-&#x0AC5;]|[&#x0AC7;-&#x0AC9;]|[&#x0ACB;-&#x0ACD;]|[&#x0B01;-&#x0B03;]|&#x0B3C;|[&#x0B3E;-&#x0B43;]|[&#x0B47;-&#x0B48;]|[&#x0B4B;-&#x0B4D;]|[&#x0B56;-&#x0B57;]|[&#x0B82;-&#x0B83;]|[&#x0BBE;-&#x0BC2;]|[&#x0BC6;-&#x0BC8;]|[&#x0BCA;-&#x0BCD;]|&#x0BD7;|[&#x0C01;-&#x0C03;]|[&#x0C3E;-&#x0C44;]|[&#x0C46;-&#x0C48;]|[&#x0C4A;-&#x0C4D;]|[&#x0C55;-&#x0C56;]|[&#x0C82;-&#x0C83;]|[&#x0CBE;-&#x0CC4;]|[&#x0CC6;-&#x0CC8;]|[&#x0CCA;-&#x0CCD;]|[&#x0CD5;-&#x0CD6;]|[&#x0D02;-&#x0D03;]|[&#x0D3E;-&#x0D43;]|[&#x0D46;-&#x0D48;]|[&#x0D4A;-&#x0D4D;]|&#x0D57;|&#x0E31;|[&#x0E34;-&#x0E3A;]|[&#x0E47;-&#x0E4E;]|&#x0EB1;|[&#x0EB4;-&#x0EB9;]|[&#x0EBB;-&#x0EBC;]|[&#x0EC8;-&#x0ECD;]|[&#x0F18;-&#x0F19;]|&#x0F35;|&#x0F37;|&#x0F39;|&#x0F3E;|&#x0F3F;|[&#x0F71;-&#x0F84;]|[&#x0F86;-&#x0F8B;]|[&#x0F90;-&#x0F95;]|&#x0F97;|[&#x0F99;-&#x0FAD;]|[&#x0FB1;-&#x0FB7;]|&#x0FB9;|[&#x20D0;-&#x20DC;]|&#x20E1;|[&#x302A;-&#x302F;]|&#x3099;|&#x309A;|&#x00B7;|&#x02D0;|&#x02D1;|&#x0387;|&#x0640;|&#x0E46;|&#x0EC6;|&#x3005;|[&#x3031;-&#x3035;]|[&#x309D;-&#x309E;]|[&#x30FC;-&#x30FE;]'"/>
+
+        <xsl:variable name="pelString" select="subsequence($charStringInAndtestChar, 1, 1)"/>
+        <xsl:variable name="testChar" select="substring($pelString, 1, 1)"/>
+        <xsl:variable name="finalString" select="subsequence($charStringInAndtestChar, 2, 1)"/>
+        <xsl:variable name="firstChar" select="substring($pelString, 1, 1)"/>
+        <!--these messages do give a layed out overview of what happens, possibly nice to keep?-->
+        <!--        <xsl:message>
+            <xsl:value-of select="concat('char= ', string($testChar))"/>
+        </xsl:message>
+        <xsl:message>
+            <xsl:value-of select="concat('pelstring=   ', $pelString)"/>
+        </xsl:message>
+        <xsl:message>
+            <xsl:value-of select="concat('finalstring= ', $finalString)"/>
+        </xsl:message>-->
+
+        <xsl:choose>
+            <xsl:when test="string-length($pelString) lt 1">
+                <xsl:value-of select="$finalString"/>
+            </xsl:when>
+            <xsl:when test="not(matches($testChar, $NCNameChars)) or ($testChar eq ':')">
+                <!-- ':' part of \i, but NOT part NCName/Letter. So replace it too -->
+                <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), replace($finalString, $testChar, '-')))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), $finalString))"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc> 
@@ -65,44 +176,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
         <xd:param name="stringIn"/>
     </xd:doc>
-
-
-    <xsl:function name="nf:replaceChar">
-        <!--xxwim TODO remove multiples in $pelstring-->
-        <xsl:param name="charStringInAndtestChar"/>
-        <!--replaced &#x09EF; &#x09EE;-->
-        <xsl:variable name="NCNameChars"
-            select="'\i|[&#x0030;-&#x0039;]|[&#x0660;-&#x0669;]|[&#x06F0;-&#x06F9;]|[&#x0966;-&#x096F;]|[&#x09E6;-&#x09EF;]|[&#x0A66;-&#x0A6F;]|[&#x0AE6;-&#x0AEF;]|[&#x0B66;-&#x0B6F;]|[&#x0BE7;-&#x0BEF;]|[&#x0C66;-&#x0C6F;]|[&#x0CE6;-&#x0CEF;]|[&#x0D66;-&#x0D6F;]|[&#x0E50;-&#x0E59;]|[&#x0ED0;-&#x0ED9;]|[&#x0F20;-&#x0F29;]\.|\-|_|[&#x0300;-&#x0345;]|[&#x0360;-&#x0361;]|[&#x0483;-&#x0486;]|[&#x0591;-&#x05A1;]|[&#x05A3;-&#x05B9;]|[&#x05BB;-&#x05BD;]|&#x05BF;|[&#x05C1;-&#x05C2;]|&#x05C4;|[&#x064B;-&#x0652;]|&#x0670;|[&#x06D6;-&#x06DC;]|[&#x06DD;-&#x06DF;]|[&#x06E0;-&#x06E4;]|[&#x06E7;-&#x06E8;]|[&#x06EA;-&#x06ED;]|[&#x0901;-&#x0903;]|&#x093C;|[&#x093E;-&#x094C;]|&#x094D;|[&#x0951;-&#x0954;]|[&#x0962;-&#x0963;]|[&#x0981;-&#x0983;]|&#x09BC;|&#x09BE;|&#x09BF;|[&#x09C0;-&#x09C4;]|[&#x09C7;-&#x09C8;]|[&#x09CB;-&#x09CD;]|&#x09D7;|[&#x09E2;-&#x09E3;]|&#x0A02;|&#x0A3C;|&#x0A3E;|&#x0A3F;|[&#x0A40;-&#x0A42;]|[&#x0A47;-&#x0A48;]|[&#x0A4B;-&#x0A4D;]|[&#x0A70;-&#x0A71;]|[&#x0A81;-&#x0A83;]|&#x0ABC;|[&#x0ABE;-&#x0AC5;]|[&#x0AC7;-&#x0AC9;]|[&#x0ACB;-&#x0ACD;]|[&#x0B01;-&#x0B03;]|&#x0B3C;|[&#x0B3E;-&#x0B43;]|[&#x0B47;-&#x0B48;]|[&#x0B4B;-&#x0B4D;]|[&#x0B56;-&#x0B57;]|[&#x0B82;-&#x0B83;]|[&#x0BBE;-&#x0BC2;]|[&#x0BC6;-&#x0BC8;]|[&#x0BCA;-&#x0BCD;]|&#x0BD7;|[&#x0C01;-&#x0C03;]|[&#x0C3E;-&#x0C44;]|[&#x0C46;-&#x0C48;]|[&#x0C4A;-&#x0C4D;]|[&#x0C55;-&#x0C56;]|[&#x0C82;-&#x0C83;]|[&#x0CBE;-&#x0CC4;]|[&#x0CC6;-&#x0CC8;]|[&#x0CCA;-&#x0CCD;]|[&#x0CD5;-&#x0CD6;]|[&#x0D02;-&#x0D03;]|[&#x0D3E;-&#x0D43;]|[&#x0D46;-&#x0D48;]|[&#x0D4A;-&#x0D4D;]|&#x0D57;|&#x0E31;|[&#x0E34;-&#x0E3A;]|[&#x0E47;-&#x0E4E;]|&#x0EB1;|[&#x0EB4;-&#x0EB9;]|[&#x0EBB;-&#x0EBC;]|[&#x0EC8;-&#x0ECD;]|[&#x0F18;-&#x0F19;]|&#x0F35;|&#x0F37;|&#x0F39;|&#x0F3E;|&#x0F3F;|[&#x0F71;-&#x0F84;]|[&#x0F86;-&#x0F8B;]|[&#x0F90;-&#x0F95;]|&#x0F97;|[&#x0F99;-&#x0FAD;]|[&#x0FB1;-&#x0FB7;]|&#x0FB9;|[&#x20D0;-&#x20DC;]|&#x20E1;|[&#x302A;-&#x302F;]|&#x3099;|&#x309A;|&#x00B7;|&#x02D0;|&#x02D1;|&#x0387;|&#x0640;|&#x0E46;|&#x0EC6;|&#x3005;|[&#x3031;-&#x3035;]|[&#x309D;-&#x309E;]|[&#x30FC;-&#x30FE;]'"/>
-
-        <xsl:variable name="pelString" select="subsequence($charStringInAndtestChar, 1, 1)"/>
-        <xsl:variable name="testChar" select="substring($pelString, 1, 1)"/>
-        <xsl:variable name="finalString" select="subsequence($charStringInAndtestChar, 2, 1)"/>
-        <xsl:variable name="firstChar" select="substring($pelString, 1, 1)"/>
-        <!--these messages do give a layed out overview of what happens, possibly nice to keep?-->
-        <!--        <xsl:message>
-            <xsl:value-of select="concat('char= ', string($testChar))"/>
-        </xsl:message>
-        <xsl:message>
-            <xsl:value-of select="concat('pelstring=   ', $pelString)"/>
-        </xsl:message>
-        <xsl:message>
-            <xsl:value-of select="concat('finalstring= ', $finalString)"/>
-        </xsl:message>-->
-
-        <xsl:choose>
-            <xsl:when test="string-length($pelString) lt 1">
-                <xsl:value-of select="$finalString"/>
-            </xsl:when>
-            <xsl:when test="not(matches($testChar, $NCNameChars)) or ($testChar eq ':')">
-                <!-- ':' part of \i, but NOT part NCName/Letter. So replace it too -->
-                <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), replace($finalString, $testChar, '-')))"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), $finalString))"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-
     <xsl:function name="nf:convert2NCName">
         <xsl:param name="stringIn"/>
         <xsl:variable name="stringOut" select="replace($stringIn, '^([\d_])(.*)', '_$2')"/>

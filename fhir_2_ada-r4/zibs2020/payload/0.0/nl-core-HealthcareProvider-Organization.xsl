@@ -26,12 +26,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- organisatie_naam -->
             <xsl:apply-templates select="f:name" mode="#current"/>
-            <!-- contactgegevens TODO -->
-            <xsl:apply-templates select="f:telecom" mode="nl-core-contactpoint-1.0"/>
+            <!-- contactgegevens -->
+            <xsl:if test="f:telephoneNumbers | f:emailAddresses">
+                <contactgegevens>
+                    <xsl:apply-templates select="f:telephoneNumbers" mode="nl-core-ContactInformation-TelephoneNumbers"/>
+                    <xsl:apply-templates select="f:emailAddresses" mode="nl-core-ContactInformation-EmailAddresses"/>
+                </contactgegevens>
+            </xsl:if>
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             <!-- organisatie_type -->
             <xsl:apply-templates select="f:type" mode="#current"/>
+            <!-- organisatie_locatie TODO -->
         </zorgaanbieder>
     </xsl:template>
 
