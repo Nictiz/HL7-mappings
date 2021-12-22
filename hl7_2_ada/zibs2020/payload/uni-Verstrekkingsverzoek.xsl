@@ -15,6 +15,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xsl:variable name="vvCode" as="xs:string*" select="'52711000146108'"/>
+    <xsl:variable name="templateId-verstrekkingsverzoek" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9356', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9301', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9257'"/>
   
     <xd:doc>
         <xd:desc>Verstrekkingsverzoek MP 9 2.0</xd:desc>
@@ -121,24 +124,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
                 
                 <!-- toelichting -->
-                <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:code[@code = '48767-8'][@codeSystem = $oidLOINC]]/hl7:text">
-                    <toelichting value="{text()}"/>
-                </xsl:for-each>
-                
+                <xsl:call-template name="uni-toelichting"/>
+                                
                 <!-- relatie_medicatieafspraak -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = ('33633005', '16076005')]/hl7:id[@extension | @root | @nullFlavor]">
-                    <relatie_medicatieafspraak>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_medicatieafspraak>
-                </xsl:for-each>
-                
-                <!-- huisartsen relaties -->
-                <xsl:call-template name="_huisartsenRelaties"/>
+                <xsl:call-template name="uni-relatieMedicatieafspraak"/>
+
+                <!-- relatie contact -->
+                <xsl:call-template name="uni-relatieContact"/>
+
+                <!-- relatie zorgepisode -->
+                <xsl:call-template name="uni-relatieZorgepisode"/>
                 
             </verstrekkingsverzoek>
         </xsl:for-each>
     </xsl:template>    
+    
+    <xd:doc>
+        <xd:desc>Helper template for the relatie verstrekkingsverzoek</xd:desc>
+        <xd:param name="in">The hl7 building block which has the relations in entryRelationships. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="uni-relatieVerstrekkingsverzoek">
+        <xsl:param name="in" select="."/>
+        
+        <xsl:for-each select="$in">
+            <xsl:call-template name="_relatieBouwsteen">
+                <xsl:with-param name="hl7Code" select="$vvCode"/>
+                <xsl:with-param name="adaElementName">relatie_verstrekkingsverzoek</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+    
     
 </xsl:stylesheet>

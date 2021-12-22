@@ -17,6 +17,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
+    
+    <xsl:variable name="templateId-lichaamslengte" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.7.10.30', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122'"/>
+    
 
     <xd:doc>
         <xd:desc>Mapping of HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.7.10.30 20171025 to zib nl.zorg.Lichaamslengte 3.1 concept in ADA. 

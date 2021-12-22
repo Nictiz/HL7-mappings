@@ -17,8 +17,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
   
     <xsl:variable name="taCode" as="xs:string*" select="'422037009'"/>
-    
-    
+    <xsl:variable name="templateId-toedieningsafspraak" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9332', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9299', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9259', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9256'"/>
+        
     <xd:doc>
         <xd:desc> Toedieningsafspraak MP 9 2.0 Inhoud</xd:desc>
         <xd:param name="in">HL7 substanceAdministration for toedieningsafspraak</xd:param>
@@ -61,12 +61,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <!-- stoptype  -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $templateId-stoptype]/hl7:value">
-                    <xsl:call-template name="handleCV">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="elemName">toedieningsafspraak_stop_type</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
+                <xsl:call-template name="uni-stoptype">
+                    <xsl:with-param name="adaElementName">toedieningsafspraak_stop_type</xsl:with-param>
+                </xsl:call-template>
                 
                 <!-- verstrekker -->
                 <xsl:for-each select="hl7:author/hl7:assignedAuthor/hl7:representedOrganization">
@@ -106,32 +103,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <!-- toelichting -->
-                <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:code[@code = '48767-8'][@codeSystem = $oidLOINC]]/hl7:text">
-                    <xsl:variable name="elemName">toelichting</xsl:variable>
-                    <xsl:element name="{$elemName}">
-                        <xsl:attribute name="value" select="text()"/>
-                    </xsl:element>
-                </xsl:for-each>
+                <xsl:call-template name="uni-toelichting"/>                
                 
                 <!-- kopie_indicator -->
-                <xsl:variable name="ada-elemName">kopie_indicator</xsl:variable>
-                <xsl:call-template name="handleBL">
-                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
-                    <xsl:with-param name="elemName" select="$ada-elemName"/>
-                </xsl:call-template>
+                <xsl:call-template name="uni-kopieIndicator"/>
                 
                 <!-- relatie_medicatieafspraak -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = $maCode]/hl7:id[@extension | @root | @nullFlavor]">
-                    <relatie_medicatieafspraak>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_medicatieafspraak>
-                </xsl:for-each>
+                <xsl:call-template name="uni-relatieMedicatieafspraak"/>                
                 
             </toedieningsafspraak>
         </xsl:for-each>
     </xsl:template>
     
-
+    <xd:doc>
+        <xd:desc>Helper template for the relatie toedieningsafspraak</xd:desc>
+        <xd:param name="in">The hl7 building block which has the relations in entryRelationships. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="uni-relatieToedieningsafspraak">
+        <xsl:param name="in" select="."/>
+        
+        <xsl:for-each select="$in">
+            <xsl:call-template name="_relatieBouwsteen">
+                <xsl:with-param name="hl7Code" select="$taCode"/>
+                <xsl:with-param name="adaElementName">relatie_toedieningsafspraak</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+    
 </xsl:stylesheet>

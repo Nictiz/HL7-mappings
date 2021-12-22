@@ -15,7 +15,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-
+    
+    <xsl:variable name="templateId-medicatietoediening" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9373'"/>
+    
     <xd:doc>
         <xd:desc> Medicatietoediening MP 9 2.0</xd:desc>
         <xd:param name="in">HL7 medication administration</xd:param>
@@ -24,6 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <!-- medicatietoediening -->
         <xsl:for-each select="$in">
+            
             <medicatietoediening>
 
                 <!-- identificatie -->
@@ -87,22 +90,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- volgens_afspraak_indicator -->
-                <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '8'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2'] or hl7:code[@code = '112221000146107'][@codeSystem = $oidSNOMEDCT]]/hl7:value">
-                    <xsl:call-template name="handleBL">
-                        <xsl:with-param name="elemName">volgens_afspraak_indicator</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
+                <xsl:call-template name="uni-volgensAfspraakIndicator"/>
 
                 <!-- toedieningsweg -->
-                <xsl:for-each select="hl7:routeCode">
-                    <xsl:variable name="elemName">toedieningsweg</xsl:variable>
-                    <xsl:call-template name="handleCV">
-                        <xsl:with-param name="elemName" select="$elemName"/>
-                    </xsl:call-template>
-                </xsl:for-each>
+                <xsl:call-template name="routeCode2toedieningsweg"/>
 
                 <!-- toedieningssnelheid -->
-                <xsl:call-template name="_toedieningssnelheid92">
+                <xsl:call-template name="toedieningssnelheid92">
                     <xsl:with-param name="inHl7" select="hl7:rateQuantity"/>
                 </xsl:call-template>
 
@@ -112,13 +106,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- relatie_medicatieafspraak -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = $maCode]/hl7:id[@extension | @root | @nullFlavor]">
-                    <relatie_medicatieafspraak>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_medicatieafspraak>
-                </xsl:for-each>
+                <xsl:call-template name="uni-relatieMedicatieafspraak"/>
 
                 <!-- relatie_toedieningsafspraak -->
                 <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = $taCode]/hl7:id[@extension | @root | @nullFlavor]">
@@ -138,9 +126,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </relatie_wisselend_doseerschema>
                 </xsl:for-each>
 
-                <!-- huisartsen relaties -->
-                <xsl:call-template name="_huisartsenRelaties"/>
-
+                <!-- relatie contact -->
+                <xsl:call-template name="uni-relatieContact"/>
+                <!-- relatie zorgepisode -->
+                <xsl:call-template name="uni-relatieZorgepisode"/>
+                
                 <!-- toediener -->
                 <xsl:for-each select="hl7:performer">
                     <toediener>
@@ -187,12 +177,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- toelichting -->
-                <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:code[@code = '48767-8'][@codeSystem = $oidLOINC]]/hl7:text">
-                    <xsl:variable name="elemName">toelichting</xsl:variable>
-                    <xsl:element name="{$elemName}">
-                        <xsl:attribute name="value" select="text()"/>
-                    </xsl:element>
-                </xsl:for-each>
+                <xsl:call-template name="uni-toelichting"/>
+                
             </medicatietoediening>
         </xsl:for-each>
 

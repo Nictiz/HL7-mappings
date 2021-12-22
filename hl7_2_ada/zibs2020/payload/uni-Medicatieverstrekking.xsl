@@ -15,7 +15,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-  
+    
+    <xsl:variable name="mveCode" as="xs:string*" select="'52711000146108'"/>
+    <xsl:variable name="templateId-medicatieverstrekking" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9364', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9294', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9255'"/>
+    
     <xd:doc>
         <xd:desc>Medicatieverstrekking MP 9 2.0</xd:desc>
         <xd:param name="in">input hl7 verstrekking</xd:param>
@@ -25,6 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <medicatieverstrekking>
+                
                 <!-- identificatie -->
                 <xsl:for-each select="hl7:id">
                     <xsl:call-template name="handleII">
@@ -123,22 +127,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <!-- toelichting -->
-                <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:code[@code = '48767-8'][@codeSystem = $oidLOINC]]/hl7:text">
-                    <toelichting value="{text()}"/>
-                </xsl:for-each>
+                <xsl:call-template name="uni-toelichting"/>                
                 
                 <!-- relatie_verstrekkingsverzoek -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code[(@code = '3' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3') or (@code = '52711000146108' and @codeSystem = $oidSNOMEDCT)]]/hl7:id[@root | @extension | @nullFlavor]">
-                    <relatie_verstrekkingsverzoek>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_verstrekkingsverzoek>
-                </xsl:for-each>
+                <xsl:call-template name="uni-relatieVerstrekkingsverzoek"/>                
+                
             </medicatieverstrekking>
             
         </xsl:for-each>
     </xsl:template>
     
-    
+    <xd:doc>
+        <xd:desc>Helper template for the relatie medicatieverstrekking</xd:desc>
+        <xd:param name="in">The hl7 building block which has the relations in entryRelationships. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="uni-relatieMedicatieverstrekking">
+        <xsl:param name="in" select="."/>
+        
+        <xsl:for-each select="$in">
+            <xsl:call-template name="_relatieBouwsteen">
+                <xsl:with-param name="hl7Code" select="$mveCode"/>
+                <xsl:with-param name="adaElementName">relatie_medicatieverstrekking</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+   
 </xsl:stylesheet>

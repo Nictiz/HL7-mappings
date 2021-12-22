@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (c) Nictiz
+Copyright © Nictiz
 
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
@@ -12,50 +12,9 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
-
     <xsl:strip-space elements="*"/>
-    <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
-    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-
-    <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-  
-  
-
- 
-    <xd:doc>
-        <xd:desc>Create ada contact_point using an hl7 element</xd:desc>
-        <xd:param name="adaId">Optional parameter to specify the ada id for this ada element. Defaults to a generate-id of context element</xd:param>
-        </xd:doc>
-    <xsl:template name="HandleContactPerson" match="hl7:responsibleParty" mode="HandleContactPerson">
-        <xsl:param name="adaId" as="xs:string?" select="generate-id(.)"/>
-      
-        <xsl:element name="{$elmContactPerson}">
-            <xsl:attribute name="id" select="$adaId"/>
-
-            <xsl:call-template name="handleENtoNameInformation">
-                <xsl:with-param name="in" select="hl7:agentPerson/hl7:name"/>
-                <xsl:with-param name="language" select="$language"/>
-            </xsl:call-template>
-
-            <xsl:call-template name="handleTELtoContactInformation">
-                <xsl:with-param name="in" select="hl7:telecom"/>
-                <xsl:with-param name="language" select="$language"/>
-            </xsl:call-template>
-
-            <xsl:call-template name="handleADtoAddressInformation">
-                <xsl:with-param name="in" select="hl7:addr"/>
-                <xsl:with-param name="language" select="$language"/>
-            </xsl:call-template>
-
-        </xsl:element>
-    </xsl:template>
-
-
 
     <xd:doc>
         <xd:desc>Converts the contents of an assignedPerson / assignedEntity a to zib Health Professional (zorgverlener)</xd:desc>
@@ -74,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="../local-name() = 'author'">AUT</xsl:when>
             </xsl:choose>
         </xsl:variable>
-
+        
         <!-- language specific ada element names -->
         <xsl:variable name="elmHealthProfessionalIdentificationNumber">
             <xsl:choose>
@@ -88,16 +47,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>specialisme</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-
-        <xsl:element name="{$elmHealthProfessional}">
+        
+        <zorgverlener>
             
-            <!-- we don't want to evaluate the xsd for performance reasons, so we leave it to the caller of this template whether to generate an @id -->
-            <!--<xsl:if test="nf:existsADAComplexTypeId($schemaFragment)">-->
-            <xsl:if test="$generateAttributeId">
+             <xsl:if test="$generateAttributeId">
                 <xsl:attribute name="id" select="$adaId"/>
             </xsl:if>
-            <!--</xsl:if>-->
-      
+            
             <!-- identification number -->
             <xsl:for-each select="hl7:id">
                 <xsl:call-template name="handleII">
@@ -110,49 +66,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="in" select="./hl7:assignedPerson/hl7:name"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
-
+            
             <!-- Specialism -->
             <xsl:call-template name="handleCV">
                 <xsl:with-param name="in" select="hl7:code"/>
                 <xsl:with-param name="elemName" select="$elmSpecialism"/>
             </xsl:call-template>
-
+            
             <!-- address information -->
             <xsl:call-template name="handleADtoAddressInformation">
                 <xsl:with-param name="in" select="hl7:addr"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
-
+            
             <!-- contact details -->
             <xsl:call-template name="handleTELtoContactInformation">
                 <xsl:with-param name="in" select="hl7:telecom"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
-
+            
             <!-- zorgaanbieder -->
             <xsl:for-each select="hl7:Organization | hl7:representedOrganization">
-                <xsl:element name="{$elmHealthcareProvider}">
+                <zorgaanbieder>
                     <xsl:variable name="ref" select="generate-id(.)"/>
                     <!-- create the element for the reference -->
-                    <xsl:element name="{$elmHealthcareProvider}">
+                    <zorgaanbieder>
                         <xsl:attribute name="value" select="$ref"/>
                         <xsl:attribute name="datatype">reference</xsl:attribute>
-                    </xsl:element>
+                    </zorgaanbieder>
                     <!-- output the actual organization here as well, we will take it out later -->
                     <xsl:call-template name="HandleOrganization">
                         <xsl:with-param name="adaId" select="$ref"/>
                     </xsl:call-template>
-                </xsl:element>
+                </zorgaanbieder>
             </xsl:for-each>
-
-
+            
+            
             <xsl:variable name="elmName">
                 <xsl:choose>
                     <xsl:when test="$language = 'en-US'">health_professional_role</xsl:when>
                     <xsl:otherwise>zorgverleners_rol</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-
+            
             <xsl:choose>
                 <xsl:when test="$typeCode = 'AUT'">
                     <xsl:element name="{$elmName}">
@@ -212,69 +168,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:when>
             </xsl:choose>
-
-
-        </xsl:element>
-
+            
+            
+        </zorgverlener>
+        
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Create ada healthcare_provider using hl7:Organization</xd:desc>
-        <xd:param name="adaId">Optional parameter to specify the ada id for this ada element. Defaults to a generate-id of context element</xd:param>
-      </xd:doc>
-    <xsl:template name="HandleOrganization" match="hl7:Organization" mode="HandleOrganization">
-        <xsl:param name="adaId" as="xs:string?" select="generate-id(.)"/>
-           <!-- ada language aware element names -->
-        <xsl:variable name="elmHealthcareProvider">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">healthcare_provider</xsl:when>
-                <xsl:otherwise>zorgaanbieder</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="elmHealthcareProviderIdentificationNumber">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">healthcare_provider_identification_number</xsl:when>
-                <xsl:otherwise>zorgaanbieder_identificatienummer</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="elmHealthcareProviderName">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">organization_name</xsl:when>
-                <xsl:otherwise>organisatie_naam</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="elmHealthcareProviderType">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">organization_type</xsl:when>
-                <xsl:otherwise>organisatie_type</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:element name="{$elmHealthcareProvider}">
-            <xsl:attribute name="id" select="$adaId"/>
-            <!-- id is required -->
-            <xsl:call-template name="handleII">
-                <xsl:with-param name="in" select="hl7:id"/>
-                <xsl:with-param name="elemName" select="$elmHealthcareProviderIdentificationNumber"/>
-                <xsl:with-param name="nullIfMissing">NI</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="handleST">
-                <xsl:with-param name="in" select="(hl7:name | hl7:desc)[1]"/>
-                <xsl:with-param name="elemName" select="$elmHealthcareProviderName"/>
-            </xsl:call-template>
-            <xsl:call-template name="handleTELtoContactInformation">
-                <xsl:with-param name="in" select="hl7:telecom"/>
-                <xsl:with-param name="language" select="$language"/>
-            </xsl:call-template>
-            <xsl:call-template name="handleADtoAddressInformation">
-                <xsl:with-param name="in" select="hl7:addr"/>
-                <xsl:with-param name="language" select="$language"/>
-            </xsl:call-template>
-            <xsl:call-template name="handleCV">
-                <xsl:with-param name="in" select="hl7:code"/>
-                <xsl:with-param name="elemName" select="$elmHealthcareProviderType"/>
-            </xsl:call-template>
-        </xsl:element>
-    </xsl:template>
-
+    
 </xsl:stylesheet>
