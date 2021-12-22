@@ -69,12 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>zorgverlener</xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="elmPatient">
-        <xsl:choose>
-            <xsl:when test="$language = 'en-US'">patient</xsl:when>
-            <xsl:otherwise>patient</xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
+   
 
 
 

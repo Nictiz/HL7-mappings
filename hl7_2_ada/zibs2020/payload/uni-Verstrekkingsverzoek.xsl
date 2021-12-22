@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
+  
+    <xd:doc>
+        <xd:desc>Verstrekkingsverzoek MP 9 2.0</xd:desc>
+        <xd:param name="in">input hl7 verstrekkingsverzoek</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9356_20210402132627" match="hl7:supply" mode="HandleVV92">
+        <xsl:param name="in" as="element(hl7:supply)*" select="."/>
+        
+        <xsl:for-each select="$in">
+            <verstrekkingsverzoek>
+                
+                <!-- identificatie -->
+                <xsl:for-each select="hl7:id">
+                    <identificatie value="{@extension}" root="{@root}"/>
+                </xsl:for-each>
+                
+                <!-- datum -->
+                <xsl:for-each select="hl7:author/hl7:time">
+                    <xsl:call-template name="handleTS">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName">verstrekkingsverzoek_datum</xsl:with-param>
+                        <xsl:with-param name="vagueDate" select="true()"/>
+                        <xsl:with-param name="datatype">datetime</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                
+                <!-- auteur -->
+                <xsl:for-each select="hl7:author[.//(@value | @code | @nullFlavor)]">
+                    <auteur>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
+                            <xsl:with-param name="author-hl7" select="."/>
+                            <xsl:with-param name="generateId" select="true()"/>
+                        </xsl:call-template>
+                    </auteur>
+                </xsl:for-each>
+                
+                <!-- te_verstrekken_geneesmiddel -->
+                <xsl:for-each select="hl7:product/hl7:manufacturedProduct/hl7:manufacturedMaterial">
+                    <te_verstrekken_geneesmiddel>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9362_20210602154632">
+                            <xsl:with-param name="product-hl7" select="."/>
+                            <xsl:with-param name="generateId" select="true()"/>
+                        </xsl:call-template>
+                    </te_verstrekken_geneesmiddel>
+                </xsl:for-each>
+                
+                <!-- te_verstrekken_hoeveelheid -->
+                <xsl:for-each select="hl7:quantity[.//(@value | @code | @unit | @nullFlavor)]">
+                    <te_verstrekken_hoeveelheid>
+                        <aantal value="{(hl7:translation[@codeSystem = $oidGStandaardBST902THES2]/@value)[1]}"/>
+                        <xsl:call-template name="handleCV">
+                            <xsl:with-param name="in" select="(hl7:translation[@codeSystem = $oidGStandaardBST902THES2])[1]"/>
+                            <xsl:with-param name="elemName">eenheid</xsl:with-param>
+                        </xsl:call-template>
+                    </te_verstrekken_hoeveelheid>
+                </xsl:for-each>
+                
+                <!-- aantal_herhalingen -->
+                <xsl:for-each select="hl7:repeatNumber[@value castable as xs:integer]">
+                    <aantal_herhalingen value="{xs:integer(@value) - 1}"/>
+                </xsl:for-each>
+                
+                <!-- verbruiksperiode -->
+                <xsl:call-template name="mp92-gebruiksperiode">
+                    <xsl:with-param name="IVL_TS" select="hl7:expectedUseTime[.//(@value | @unit | @nullFlavor | @code)]"/>
+                    <xsl:with-param name="elemName">verbruiksperiode</xsl:with-param>
+                </xsl:call-template>
+                
+                <!-- geannuleerd_indicator -->
+                <xsl:if test="hl7:statusCode[@code = 'nullified']">
+                    <geannuleerd_indicator value="true"/>
+                </xsl:if>
+                
+                <!-- beoogd_verstrekker -->
+                <xsl:for-each select="hl7:performer/hl7:assignedEntity/hl7:representedOrganization">
+                    <beoogd_verstrekker>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701">
+                            <xsl:with-param name="hl7-current-organization" select="."/>
+                            <xsl:with-param name="generateId" select="true()"/>
+                        </xsl:call-template>
+                    </beoogd_verstrekker>
+                </xsl:for-each>
+                
+                <!-- afleverlocatie -->
+                <xsl:for-each select="hl7:participant[@typeCode = 'DST']/hl7:participantRole[@classCode = 'SDLOC']/hl7:addr">
+                    <afleverlocatie>
+                        <xsl:attribute name="value">
+                            <xsl:copy-of select="normalize-space(.)"/>
+                        </xsl:attribute>
+                    </afleverlocatie>
+                </xsl:for-each>
+                
+                <!-- aanvullende_wensen -->
+                <xsl:for-each select="hl7:entryRelationship/hl7:act[@classCode = 'ACT'][@moodCode = 'RQO']/hl7:code">
+                    <xsl:call-template name="handleCV">
+                        <xsl:with-param name="elemName">aanvullende_wensen</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                
+                <!-- financiele indicatiecode -->
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '153931000146103'][@codeSystem = $oidSNOMEDCT]]/hl7:value[@code | @nullFlavor]"/>
+                    <xsl:with-param name="elemName">financiele_indicatiecode</xsl:with-param>
+                </xsl:call-template>
+                
+                <!-- toelichting -->
+                <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:code[@code = '48767-8'][@codeSystem = $oidLOINC]]/hl7:text">
+                    <toelichting value="{text()}"/>
+                </xsl:for-each>
+                
+                <!-- relatie_medicatieafspraak -->
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = ('33633005', '16076005')]/hl7:id[@extension | @root | @nullFlavor]">
+                    <relatie_medicatieafspraak>
+                        <xsl:call-template name="handleII">
+                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
+                        </xsl:call-template>
+                    </relatie_medicatieafspraak>
+                </xsl:for-each>
+                
+                <!-- huisartsen relaties -->
+                <xsl:call-template name="_huisartsenRelaties"/>
+                
+            </verstrekkingsverzoek>
+        </xsl:for-each>
+    </xsl:template>    
+    
+</xsl:stylesheet>

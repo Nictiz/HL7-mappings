@@ -13,12 +13,12 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:f="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
-    <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
-    <xsl:import href="../../../../../ada_2_ada/ada/AddConceptIds.xsl"/>
+    <xsl:import href="../../../../zibs2020/payload/all-zibs.xsl"/>
+  
     <xd:doc>
         <xd:desc>Dit is een conversie voor MP 9 2.0 van HL7v3 naar ADA beschikbaarstellen medicatiegegevens</xd:desc>
     </xd:doc>
+    
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="true()"/>

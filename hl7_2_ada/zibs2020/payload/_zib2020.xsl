@@ -26,22 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
   
   
 
-    <!-- variable which contains all information needed to create ada patient (reference) for the transaction being handled -->
-    <xsl:variable name="patients" as="element()*">
-         <!-- each hcim zibroot has patient, but those must be identical in a transaction according to standard, 
-                let's assume that's true and only evaluate the first patient we find -->
-        <xsl:variable name="patient" select="(//hl7:patient | //hl7:recordTarget/hl7:patientRole)[1]"/>
-
-        <patients>
-            <xsl:for-each select="$patient">
-                <patient_information>
-                    <!-- the actual ada patient -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180601000000"/>
-                </patient_information>
-            </xsl:for-each>
-        </patients>
-    </xsl:variable>
-
+ 
     <xd:doc>
         <xd:desc>Create ada contact_point using an hl7 element</xd:desc>
         <xd:param name="adaId">Optional parameter to specify the ada id for this ada element. Defaults to a generate-id of context element</xd:param>
