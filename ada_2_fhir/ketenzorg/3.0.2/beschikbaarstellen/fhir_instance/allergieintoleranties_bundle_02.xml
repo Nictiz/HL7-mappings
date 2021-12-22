@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="505daa6e-1e02-11ec-8341-020000000000"/>
+   <id value="f1c58644-5da2-11ec-2147-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17.593306010885055"/>
+      <fullUrl value="https://example.org/fhir/AllergyIntolerance/2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17-3306010885055"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -19,7 +19,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: van Anoniempje. Id: 0000593306010885055 (urn:oid:2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd</caption>
+                     <caption>Allergie/intolerantie. Patiënt: van Anoniempje. Id: 3306010885055 (urn:oid:2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd</caption>
                      <tbody>
                         <tr>
                            <th>Code</th>
@@ -37,7 +37,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.51732.10003466.17"/>
-               <value value="0000593306010885055"/>
+               <value value="3306010885055"/>
             </identifier>
             <clinicalStatus value="active">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -70,7 +70,7 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:505dbd76-1e02-11ec-8341-020000000000"/>
+               <reference value="urn:uuid:f1c56544-5da2-11ec-2147-020000000000"/>
                <display value="van Anoniempje"/>
             </patient>
             <onsetDateTime value="2011-08-16"/>
@@ -142,7 +142,7 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:505dbd76-1e02-11ec-8341-020000000000"/>
+               <reference value="urn:uuid:f1c56544-5da2-11ec-2147-020000000000"/>
                <display value="van Anoniempje"/>
             </patient>
             <onsetDateTime value="2011-08-16"/>
@@ -153,7 +153,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:505dbd76-1e02-11ec-8341-020000000000"/>
+      <fullUrl value="urn:uuid:f1c56544-5da2-11ec-2147-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -164,7 +164,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), van Anoniempje, Man, 1 januari 2000</div>
                   <div>
-                     <a href="">0123-123456</a> ()</div>
+                     <a href="tel:0123-123456">0123-123456</a> (Tel)</div>
                   <div>Teststraat 3, 1234AB Veghel (officieel Privé (hoofd) Bezoek)</div>
                </div>
             </text>
@@ -190,11 +190,7 @@
                </family>
             </name>
             <telecom>
-               <system>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                     <valueCode value="unknown"/>
-                  </extension>
-               </system>
+               <system value="phone"/>
                <value value="0123-123456"/>
             </telecom>
             <gender value="male">
@@ -245,9 +241,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.67045"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00067045"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-00067045"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>

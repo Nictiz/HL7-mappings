@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="510362ec-1e02-11ec-1247-020000000000"/>
+   <id value="f2a00ca6-5da2-11ec-7511-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -34,7 +34,9 @@
                         </tr>
                         <tr>
                            <th>Zorgmanager</th>
-                           <td>Bester</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-02234567">Bester</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Diagnose</th>
@@ -71,16 +73,16 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:5103727d-1e02-11ec-1247-020000000000"/>
+                  <reference value="urn:uuid:c4543900-ee6f-44c6-ab71-315b29da078e"/>
                   <display value="Emfyseem/COPD"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:51037270-1e02-11ec-1247-020000000000"/>
+               <reference value="urn:uuid:f2a01c2a-5da2-11ec-7511-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <managingOrganization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2234567"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-02234567"/>
                <display value="Bester"/>
             </managingOrganization>
             <period>
@@ -93,7 +95,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:51037270-1e02-11ec-1247-020000000000"/>
+      <fullUrl value="urn:uuid:f2a01c2a-5da2-11ec-7511-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -146,9 +148,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.2234567"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-02234567"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-02234567"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -178,7 +181,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5103727d-1e02-11ec-1247-020000000000"/>
+      <fullUrl value="urn:uuid:c4543900-ee6f-44c6-ab71-315b29da078e"/>
       <resource>
          <Condition>
             <meta>
@@ -188,7 +191,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Aandoening. Subject: Joris Hansman. Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief</caption>
+                     <caption>Aandoening. Subject: Joris Hansman. Id: c4543900-ee6f-44c6-ab71-315b29da078e (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Code</th>
@@ -204,6 +207,10 @@
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="c4543900-ee6f-44c6-ab71-315b29da078e"/>
+            </identifier>
             <clinicalStatus value="active">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -230,7 +237,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:51037270-1e02-11ec-1247-020000000000"/>
+               <reference value="urn:uuid:f2a01c2a-5da2-11ec-7511-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <onsetPeriod>

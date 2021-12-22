@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="c4fb4884-e3c1-11eb-3545-020000000000"/>
+   <id value="0f31e1f2-5cf7-11ec-5716-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c4fb49d0-e3c1-11eb-3545-020000000000"/>
+      <fullUrl value="urn:uuid:0f320039-5cf7-11ec-5716-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T, exact iedere 12 uur 1 stuk, oraal</div>
+                              <div>Tekst: Vanaf T, iedere 12 uur 1 stuk , let op! Tijden exact aanhouden., oraal</div>
                               <div>Timing: <div>12 uren. Tijden zo precies mogelijk aanhouden</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -83,7 +83,7 @@
                <display value="CANAGLIFLOZINE/METFORMINE TABLET 150/ 850MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c4fb49b4-e3c1-11eb-3545-020000000000"/>
+               <reference value="urn:uuid:0f31e1f9-5cf7-11ec-5716-020000000000"/>
                <display value="F. XXX-GBZ-Smoketest-B"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:04:00+02:00"/>
@@ -91,7 +91,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c4fb49da-e3c1-11eb-3545-020000000000"/>
+                        <reference value="urn:uuid:0f32003c-5cf7-11ec-5716-020000000000"/>
                         <display value="Pieter de Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden"/>
                      </valueReference>
                   </extension>
@@ -100,7 +100,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T, exact iedere 12 uur 1 stuk, oraal"/>
+               <text value="Vanaf T, iedere 12 uur 1 stuk , let op! Tijden exact aanhouden., oraal"/>
                <timing>
                   <repeat>
                      <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
@@ -131,7 +131,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c4fb49b4-e3c1-11eb-3545-020000000000"/>
+      <fullUrl value="urn:uuid:0f31e1f9-5cf7-11ec-5716-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -281,7 +281,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c4fb49da-e3c1-11eb-3545-020000000000"/>
+      <fullUrl value="urn:uuid:0f32003c-5cf7-11ec-5716-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -336,6 +336,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.118435"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-118435"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>

@@ -13836,7 +13836,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:for-each>
-                        <xsl:value-of select="$sep"/>
+                        <xsl:choose>
+                            <xsl:when test="$sep = 'br'">
+                                <br xmlns="http://www.w3.org/1999/xhtml"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$sep"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>

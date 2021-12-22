@@ -61,7 +61,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="xsi:schemaLocation" select="./@value"/>
                 </xsl:for-each>
                 <xsl:for-each select="./id">
-                    <xsl:call-template name="makeId"/>
+                    <xsl:choose>
+                        <xsl:when test="@value='generate_id'">
+                            <id extension="{concat(translate(substring(xs:string(current-dateTime()), 1, 19), 'T:.-', ''), $input_xml_payload_doc//burgerservicenummer/@value/string())}" root="{@root}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="makeId"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>
                 <xsl:for-each select="./creation_time">
                     <creationTime>

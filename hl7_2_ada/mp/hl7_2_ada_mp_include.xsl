@@ -664,7 +664,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </gebruiksinstructie>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>907</xd:desc>
         <xd:param name="in">input hl7 component</xd:param>
@@ -1134,7 +1133,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
-
  
     <xd:doc>
         <xd:desc>hlt 2 ada mp9 gebruiksinstructie from mp910</xd:desc>
@@ -1770,7 +1768,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </gebruiksinstructie>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc/>
         <xd:param name="inputValue"/>
@@ -1796,7 +1793,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>Converts HL7v3 input gender to ada gender. Completes codeSystemName and displayName if not input. Creates nullFlavor UNK if input is unknown.</xd:desc>
         <xd:param name="current-administrativeGenderCode">HL7v3 input element for gender</xd:param>
@@ -1908,7 +1904,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>Creates an ada interval element based on a HL7-PIVL_TS.</xd:desc>
         <xd:param name="in">the HL7 PIVL_TS which contains the interval, defaults to context.</xd:param>
@@ -1930,7 +1925,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </interval>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>Creates an ada keerdosis element based on a HL7 input.</xd:desc>
         <xd:param name="hl7-doseQuantity"/>
@@ -2071,7 +2065,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </naamgegevens>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>Helper template to make a time duration</xd:desc>
         <xd:param name="in">Optional, but without it, no output. HL7 PQ element (may be more than one) to be converted to ada duration</xd:param>
@@ -2096,7 +2089,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc/>
         <xd:param name="current-dispense-event"/>
@@ -2279,7 +2271,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </toedieningsafspraak>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>Handle an hl7 dispenseEvent and create an ada toedieningsafspraak element.</xd:desc>
         <xd:param name="current-dispense-event">The input hl7 dispenseEvent, defaults to context.</xd:param>
@@ -2448,7 +2439,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </toedieningsafspraak>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>MP 9 Toedieningssnelheid</xd:desc>
         <xd:param name="hl7-ratequantity">hl7 element containing rate quantity</xd:param>
@@ -2619,7 +2609,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
 
     </xsl:template>
-
     <xd:doc>
         <xd:desc/>
         <xd:param name="max-dose"/>
@@ -2728,7 +2717,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </zorgaanbieder>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>9.1.0 MP zorgaanbieder</xd:desc>
         <xd:param name="in">input hl7 organization</xd:param>
@@ -2758,7 +2746,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>9.0.7 MP zorgaanbieder</xd:desc>
         <xd:param name="in">input hl7 organization</xd:param>
@@ -2787,7 +2774,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>9.0.7 MP zorgaanbieder</xd:desc>
         <xd:param name="hl7-current-organization">input hl7 organization</xd:param>
@@ -3016,7 +3002,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </medicamenteuze_behandeling>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc> PatientNL in verstrekking 6.12 </xd:desc>
     </xd:doc>
@@ -3110,7 +3095,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </patient>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc> Frequency </xd:desc>
@@ -3350,7 +3334,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc> MP 9 MP CDA Medication Information </xd:desc>
         <xd:param name="product-hl7">The hl7 xml element which contains the medication product. Defaults to context.</xd:param>
@@ -3466,7 +3449,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc> Make ada frequentie from HL7 PIVL TS </xd:desc>
@@ -4022,7 +4004,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc> Medicatiegebruik MP 9.1.0 Inhoud</xd:desc>
         <xd:param name="in">input hl7 Medicatiegebruik</xd:param>
@@ -4479,7 +4460,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc> Medicatieafspraak MP 9.0.7 Inhoud </xd:desc>
         <xd:param name="ma_hl7_90">HL7 medicatieafspraak, defaults to context.</xd:param>
@@ -4683,7 +4663,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc> Medicatieafspraak MP 9.0.6 </xd:desc>
@@ -5141,8 +5120,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
-
-
 
     <xd:doc>
         <xd:desc>Verstrekkingsverzoek MP 9.0.7</xd:desc>
@@ -5701,7 +5678,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-  
      <xd:doc>
         <xd:desc>Toedieningsafspraak MP 9.1.0</xd:desc>
         <xd:param name="in">input hl7 Toedieningsafspraak</xd:param>
@@ -6043,6 +6019,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise><!-- geen attribuut opnemen --></xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="dateTime"/>
@@ -6205,7 +6182,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Make a reference to the bouwstenen</xd:desc>
     </xd:doc>
-    <xsl:template match="toediener/mantelzorger/contactpersoon | (voorschrijver | auteur | auteur_is_zorgverlener | toediener/zorgverlener)/zorgverlener | farmaceutisch_product | (beoogd_verstrekker | verstrekker | auteur_is_zorgaanbieder)/zorgaanbieder" mode="handleBouwstenen">
+    <xsl:template match="toediener/mantelzorger/contactpersoon | voorschrijver/zorgverlener | auteur/zorgverlener | auteur_is_zorgverlener/zorgverlener | toediener/zorgverlener/zorgverlener | farmaceutisch_product | beoogd_verstrekker/zorgaanbieder | verstrekker/zorgaanbieder | auteur_is_zorgaanbieder/zorgaanbieder" mode="handleBouwstenen">
         <xsl:copy>
             <xsl:attribute name="datatype">reference</xsl:attribute>
             <xsl:attribute name="value" select="@id"/>
@@ -6324,7 +6301,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Find the correct reference in the deduplication mode in step 2 </xd:desc>
     </xd:doc>
-    <xsl:template match="medicamenteuze_behandeling//(farmaceutisch_product | contactpersoon | zorgaanbieder | zorgverlener[not(zorgverlener)])" mode="deduplicateBouwstenenStep2">
+    <xsl:template match="medicamenteuze_behandeling//farmaceutisch_product | medicamenteuze_behandeling//contactpersoon | medicamenteuze_behandeling//zorgaanbieder | medicamenteuze_behandeling//zorgverlener[not(zorgverlener)]" mode="deduplicateBouwstenenStep2">
         <xsl:copy>
             <xsl:apply-templates select="@conceptId" mode="deduplicateBouwstenenStep2"/>
             <xsl:attribute name="value">
@@ -6360,7 +6337,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="bouwstenen/*/key" mode="deduplicateBouwstenenStep2"/>
 
-
     <xd:doc>
         <xd:desc>Default copy template for deduplication the bouwstenen stuff (step 1) in the 9.2 dataset</xd:desc>
     </xd:doc>
@@ -6379,7 +6355,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:copy>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc>Default copy template for adding the bouwstenen stuff in the 9.2 dataset</xd:desc>
     </xd:doc>
@@ -6397,7 +6372,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="node() | @*" mode="addBouwstenen"/>
         </xsl:copy>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc/>
@@ -6504,6 +6478,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     div xs:dayTimeDuration('P1D')) mod 7
                 "/>
     </xsl:function>
-
 
 </xsl:stylesheet>
