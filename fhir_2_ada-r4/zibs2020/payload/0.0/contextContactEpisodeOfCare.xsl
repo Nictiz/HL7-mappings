@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- relatie_contact -  resource: Encounter -->
         <!-- relatie_zorgepisode - resource: EpisodeOfCare -->
 
-        <!-- first try to find the referenced resource with f:reference, can only be found in this Bundle -->
+        <!-- first try to find the referenced resource with f:reference or f:identifier, can only be found in this Bundle -->
         <xsl:variable name="resource" select="nf:resolveRefInBundle(.)"/>
         <xsl:choose>
             <xsl:when test="f:type/@value = 'Encounter' or $resource[f:Encounter/f:identifier]">
