@@ -40,6 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:code" mode="nl-core-Problem">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="adaElementName">probleem_naam</xsl:with-param>
+            <xsl:with-param name="originalText" select="f:text/@value"/>
         </xsl:call-template>
     </xsl:template>
     

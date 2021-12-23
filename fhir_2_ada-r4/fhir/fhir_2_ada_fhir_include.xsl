@@ -109,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="value" select="f:value/@value"/>
                 </xsl:element>
                 <xsl:element name="{$adaElementNameEenheid}">
-                    <xsl:attribute name="value" select="f:code/@value"/>
+                    <xsl:attribute name="code" select="f:code/@value"/>
                     <xsl:attribute name="displayName" select="f:unit/@value"/>
                     <xsl:attribute name="codeSystem" select="$oidGStandaardBST902THES2"/>
                     <xsl:attribute name="codeSystemName" select="$oidMap[@oid = $oidGStandaardBST902THES2]/@displayName"/>

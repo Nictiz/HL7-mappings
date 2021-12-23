@@ -59,15 +59,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:birthDate to geboortedatum</xd:desc>
     </xd:doc>
     <xsl:template match="f:birthDate" mode="nl-core-Patient">
-        <geboortedatum>
-            <xsl:attribute name="value">
-                <xsl:call-template name="format2ADADate">
-                    <xsl:with-param name="dateTime" select="@value"/>
-                    <xsl:with-param name="precision" select="'DAY'"/>
-                </xsl:call-template>
-            </xsl:attribute>
-            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
-        </geboortedatum>
+        <xsl:call-template name="datetime-to-datetime">
+            <xsl:with-param name="adaElementName">geboortedatum</xsl:with-param>            
+            <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
 
     <xd:doc>
