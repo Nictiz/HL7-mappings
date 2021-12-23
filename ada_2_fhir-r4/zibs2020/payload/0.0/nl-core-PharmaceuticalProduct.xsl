@@ -48,9 +48,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- the most specific coding will get userselected true, so a receiver can easily recognise the 'main' code -->
                 <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
                 <xsl:choose>
-                    <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)][@code]">
+                    <xsl:when test="product_code[@codeSystem = $oidsGstandaardMedication][@code]">
                         <code>
-                            <xsl:for-each select="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
+                            <xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">
                                 <xsl:choose>
                                     <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
                                         <xsl:call-template name="code-to-CodeableConcept">
@@ -70,6 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                         </code>
                     </xsl:when>
+                    <!-- magistraal -->
                     <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor]">
                         <code>
                             <xsl:call-template name="code-to-CodeableConcept">
@@ -80,6 +81,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </code>
                     </xsl:when>
+                    <!-- 90 miljoen -->
+                    <xsl:when test="product_code[not(@codeSystem = ($oidHL7NullFlavor, $oidsGstandaardMedication))]">
+                        <code>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <!-- do not input @originalText -->
+                                <xsl:with-param name="in" as="element()">
+                                    <product_code><xsl:copy-of select="product_code/(@code, @codeSystem, @codeSystemName, @displayName)"/></product_code>
+                                </xsl:with-param>
+                            </xsl:call-template>
+                            <xsl:choose>
+                                <xsl:when test="product_specificatie/product_naam/@value">
+                                    <text value="{product_specificatie/product_naam/@value}"/>                                    
+                                </xsl:when>
+                                <xsl:when test="product_code[@originalText]">
+                                    <text value="{product_code[@originalText]}"/>                                    
+                                </xsl:when>
+                            </xsl:choose>
+                        </code>
+                    </xsl:when>                    
                     <xsl:when test="product_specificatie/product_naam[@value]">
                         <code>
                             <text value="{product_specificatie/product_naam/@value}"/>
