@@ -169,11 +169,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             Template to convert f:status to gebruik_indicator
             Note: the values below are not fully implemented in the xml schema.
             See MedicationStatement.status documentation.
-            *not-taken > false
-            *on-hold > false
-            *stopped > false
-            *completed > false
-            *active > true
+            not-taken > false
+            on-hold > false
+            stopped > false
+            completed > false
+            active > true
             unknown > unknown (invalid ADA)
         </xd:desc>
     </xd:doc>
@@ -191,7 +191,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </gebruik_indicator>
                 <stoptype code="113371000146109" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Definitief"/>
             </xsl:when>
-            <xsl:when test=" some $val in ('not-taken', 'completed') satisfies $val = ./@value">
+            <xsl:when test="
+                    some $val in ('not-taken', 'completed')
+                        satisfies $val eq string(./@value)">
                 <gebruik_indicator>
                     <xsl:attribute name="value" select="'false'"/>
                 </gebruik_indicator>
