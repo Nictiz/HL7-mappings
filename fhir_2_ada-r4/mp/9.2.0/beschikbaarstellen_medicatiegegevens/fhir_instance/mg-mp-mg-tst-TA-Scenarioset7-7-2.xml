@@ -1,14 +1,14 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="d630bae6-61af-11ec-1624-020000000000"/>
+   <id value="aade47d0-63d7-11ec-1859-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:d630c4d3-61af-11ec-1624-020000000000"/>
+      <fullUrl value="urn:uuid:aade564f-63d7-11ec-1859-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="d630c4d2-61af-11ec-1624-020000000000"/>
+            <id value="aade564e-63d7-11ec-1859-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
             </meta>
@@ -43,18 +43,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d630bb5c-61af-11ec-1624-020000000000"/>
+               <reference value="urn:uuid:aade4846-63d7-11ec-1859-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d630bb20-61af-11ec-1624-020000000000"/>
+               <reference value="urn:uuid:aade480a-63d7-11ec-1859-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:d630bb7a-61af-11ec-1624-020000000000"/>
+                  <reference value="urn:uuid:aade4864-63d7-11ec-1859-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -90,7 +90,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d630bb20-61af-11ec-1624-020000000000"/>
+      <fullUrl value="urn:uuid:aade480a-63d7-11ec-1859-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hess"/>
@@ -138,7 +138,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d630bb7a-61af-11ec-1624-020000000000"/>
+      <fullUrl value="urn:uuid:aade4864-63d7-11ec-1859-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -154,10 +154,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d630bb5c-61af-11ec-1624-020000000000"/>
+      <fullUrl value="urn:uuid:aade4846-63d7-11ec-1859-020000000000"/>
       <resource>
          <Medication>
-            <id value="d630c4e9-61af-11ec-1624-020000000000"/>
+            <id value="aade5665-63d7-11ec-1859-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
@@ -167,6 +167,45 @@
                </extension>
                <text value="Vaseline 20% in cetomacrogolcrème FNA"/>
             </code>
+            <ingredient>
+               <itemCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                     <code value="457590"/>
+                     <display value="CETOMACROGOLCREME FNA"/>
+                  </coding>
+               </itemCodeableConcept>
+               <strength>
+                  <numerator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="80"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="80"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </numerator>
+                  <denominator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="100"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="100"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </denominator>
+               </strength>
+            </ingredient>
          </Medication>
       </resource>
    </entry>

@@ -1,14 +1,14 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="d340e34c-61af-11ec-9595-020000000000"/>
+   <id value="a7eae6be-63d7-11ec-1013-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:d340e3d6-61af-11ec-9595-020000000000"/>
+      <fullUrl value="urn:uuid:a7eae748-63d7-11ec-1013-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="d340d2a8-61af-11ec-9595-020000000000"/>
+            <id value="a7ead61a-63d7-11ec-1013-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
             </meta>
@@ -41,18 +41,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d340e3f4-61af-11ec-9595-020000000000"/>
+               <reference value="urn:uuid:a7eae766-63d7-11ec-1013-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d340e37c-61af-11ec-9595-020000000000"/>
+               <reference value="urn:uuid:a7eae6ee-63d7-11ec-1013-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <authoredOn value="2021-01-01T12:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:d340e39a-61af-11ec-9595-020000000000"/>
+               <reference value="urn:uuid:a7eae70c-63d7-11ec-1013-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -79,7 +79,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d340e37c-61af-11ec-9595-020000000000"/>
+      <fullUrl value="urn:uuid:a7eae6ee-63d7-11ec-1013-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hess"/>
@@ -127,7 +127,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d340e39a-61af-11ec-9595-020000000000"/>
+      <fullUrl value="urn:uuid:a7eae70c-63d7-11ec-1013-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -135,12 +135,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:d340e3b8-61af-11ec-9595-020000000000"/>
+               <reference value="urn:uuid:a7eae72a-63d7-11ec-1013-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:d340e412-61af-11ec-9595-020000000000"/>
+               <reference value="urn:uuid:a7eae784-63d7-11ec-1013-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -156,7 +156,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d340e3b8-61af-11ec-9595-020000000000"/>
+      <fullUrl value="urn:uuid:a7eae72a-63d7-11ec-1013-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -188,7 +188,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d340e412-61af-11ec-9595-020000000000"/>
+      <fullUrl value="urn:uuid:a7eae784-63d7-11ec-1013-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -226,10 +226,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d340e3f4-61af-11ec-9595-020000000000"/>
+      <fullUrl value="urn:uuid:a7eae766-63d7-11ec-1013-020000000000"/>
       <resource>
          <Medication>
-            <id value="d340d2bb-61af-11ec-9595-020000000000"/>
+            <id value="a7ead62d-63d7-11ec-1013-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
@@ -239,6 +239,84 @@
                </extension>
                <text value="Ureum 10% in eucerine cum aqua 100gr"/>
             </code>
+            <ingredient>
+               <itemCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                     <code value="15219127"/>
+                     <display value="UREUM"/>
+                  </coding>
+               </itemCodeableConcept>
+               <strength>
+                  <numerator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="10"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="10"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </numerator>
+                  <denominator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="100"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="100"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </denominator>
+               </strength>
+            </ingredient>
+            <ingredient>
+               <itemCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                     <code value="14740877"/>
+                     <display value="EUCERINE MET WATER FAGRON"/>
+                  </coding>
+               </itemCodeableConcept>
+               <strength>
+                  <numerator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="90"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="90"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </numerator>
+                  <denominator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="100"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="100"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </denominator>
+               </strength>
+            </ingredient>
          </Medication>
       </resource>
    </entry>
