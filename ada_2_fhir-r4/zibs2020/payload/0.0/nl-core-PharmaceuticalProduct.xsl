@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
-                <xsl:for-each select="omschrijving">
+                <xsl:for-each select="product_specificatie/omschrijving">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalProduct.Description">
                         <valueString>
                             <xsl:attribute name="value" select="./@value"/>
