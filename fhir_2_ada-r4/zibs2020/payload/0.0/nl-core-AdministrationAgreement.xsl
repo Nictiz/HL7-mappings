@@ -81,13 +81,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:extension[@url = $extAdministrationAgreementDateTime] to toedieningsafspraak_datum_tijd</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = $extAdministrationAgreementDateTime]" mode="nl-core-AdministrationAgreement">
-        <toedieningsafspraak_datum_tijd>
-            <xsl:attribute name="value">
-                <xsl:call-template name="format2ADADate">
-                    <xsl:with-param name="dateTime" select="f:valueDateTime/@value"/>
-                </xsl:call-template>
-            </xsl:attribute>
-        </toedieningsafspraak_datum_tijd>
+
+        <xsl:for-each select="f:valueDateTime">
+            <xsl:call-template name="datetime-to-datetime">
+                <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
+                <xsl:with-param name="adaElementName">toedieningsafspraak_datum_tijd</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+       
     </xsl:template>
 
     <xd:doc>
