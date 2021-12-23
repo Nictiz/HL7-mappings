@@ -62,7 +62,7 @@
             <xsl:with-param name="fixtures" select="$expanded//f:fixture" tunnel="yes"/>
             <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::f:origin | ancestor::f:destination)]" tunnel="yes"/>
             <xsl:with-param name="variables" select="$expanded//f:variable" tunnel="yes"/>
-            <xsl:with-param name="rules" select="$expanded//f:rule[@id]" tunnel="yes"/>
+            <xsl:with-param name="rules" select="$expanded//f:extension[@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule']" tunnel="yes"/>
             <xsl:with-param name="scenario" select="$scenario" tunnel="yes"/>
             <xsl:with-param name="expectedResponseFormat" select="$expectedResponseFormat" tunnel="yes"/>
         </xsl:apply-templates>
@@ -97,7 +97,18 @@
                 <xsl:apply-templates select="f:meta/f:security | f:meta/f:tag" mode="#current"/>
             </meta>
             <!-- Apply all templates that can exist between f:meta and f:url -->
-            <xsl:apply-templates select="f:implicitRules | f:language | f:text | f:contained | f:extension | f:modifierExtension" mode="#current"/>
+            <xsl:apply-templates select="f:implicitRules | f:language | f:text | f:contained" mode="#current"/>
+            
+            <xsl:for-each-group select="$rules" group-by="f:extension[@url = 'ruleId']/f:valueId/@value">
+                <xsl:for-each select="subsequence(current-group(), 2)">
+                    <xsl:if test="not(deep-equal(current-group()[1], .))">
+                        <xsl:message terminate="yes" select="concat('Encountered different rules using the id ''', f:extension[@url = 'ruleId']/f:valueId/@value, '''')"/>
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:copy-of select="current-group()[1]"/>
+            </xsl:for-each-group>
+            
+            <xsl:apply-templates select="f:extension[not(@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule')] | f:modifierExtension" mode="#current"/>
             <xsl:if test="f:url/@value">
                 <xsl:message>Overriding url to conform to convention</xsl:message>
             </xsl:if>
@@ -176,15 +187,7 @@
                 </xsl:for-each>
                 <xsl:copy-of select="current-group()[1]"/>
             </xsl:for-each-group>
-            <xsl:for-each-group select="$rules" group-by="@id">
-                <xsl:for-each select="subsequence(current-group(), 2)">
-                    <xsl:if test="not(deep-equal(current-group()[1], .))">
-                        <xsl:message terminate="yes" select="concat('Encountered different rules using the id ''', @id, '''')"/>
-                    </xsl:if>
-                </xsl:for-each>
-                <xsl:copy-of select="current-group()[1]"/>
-            </xsl:for-each-group>
-            <xsl:apply-templates select="f:ruleset | f:setup | f:test | f:teardown" mode="#current"/>
+            <xsl:apply-templates select="f:setup | f:test | f:teardown" mode="#current"/>
         </xsl:copy>
     </xsl:template>
     
@@ -192,7 +195,7 @@
     <xsl:template match="f:TestScript//f:fixture" mode="filter" />
     <xsl:template match="f:TestScript//f:profile" mode="filter" />
     <xsl:template match="f:TestScript//f:variable" mode="filter" />
-    <xsl:template match="f:TestScript//f:rule[@id]" mode="filter" />
+    <xsl:template match="f:TestScript//f:extension[@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule']" mode="filter" />
 
     <!-- Silence all remaining nts: elements and attributes (that have been read but are not transformed) -->
     <xsl:template match="nts:*" mode="filter"/>
@@ -302,6 +305,8 @@
             <!-- Expand the nts:patientTokenFixture element for 'phr' type scripts -->
             <xsl:when test="$scenario='client'">
                 <fixture id="patient-token-fixture">
+                    <autocreate value="false"/>
+                    <autodelete value="false"/>
                     <resource>
                         <reference value="{nts:constructFilePath($referenceBase, $href)}"/>
                     </resource>
@@ -414,12 +419,14 @@
     
     <!-- Expand a nts:rule element -->
     <xsl:template match="nts:rule[@id and @href]" mode="expand">
-        <rule id="{@id}">
-            <resource>
-                <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
-            </resource>
-            <xsl:copy-of select="./*"/>
-        </rule>
+        <extension url="http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule">
+            <extension url="ruleId">
+                <valueId value="{@id}"/>
+            </extension>
+            <extension url="path">
+                <valueString value="{nts:constructFilePath($referenceBase, @href)}"/>
+            </extension>
+        </extension>
     </xsl:template>
     
     <!-- Include or exclude elements with the nts:ifset and nts:ifnotset attributes, based on whether the specified 
