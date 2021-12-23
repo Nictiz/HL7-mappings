@@ -476,7 +476,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaValue" as="element()"/>
         <xsl:param name="adaUnit" as="element()"/>
 
-        <!-- G-Standaard SimpleQuantity -->
+        <!-- G-Standaard (Simple)Quantity -->
         <xsl:for-each select="$adaUnit[@codeSystem = $oidGStandaardBST902THES2]">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                 <valueQuantity>

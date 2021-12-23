@@ -93,19 +93,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </form>
                 </xsl:for-each>
 
-                <xsl:for-each select="ingredient">
+                <xsl:for-each select="product_specificatie/ingredient">
                     <xsl:variable name="ingredientContent">
                         <xsl:for-each select="ingredient_code">
                             <itemCodeableConcept>
                                 <xsl:call-template name="code-to-CodeableConcept"/>
                             </itemCodeableConcept>
                         </xsl:for-each>
-                        <xsl:for-each select="sterkte[ingredient_hoeveelheid/@value or product_hoeveelheid/@value]">
+                        <xsl:for-each select="sterkte[ingredient_hoeveelheid//@value or product_hoeveelheid//@value]">
                             <strength>
-                                <xsl:call-template name="hoeveelheid-complex-to-Ratio">
-                                    <xsl:with-param name="numerator" select="ingredient_hoeveelheid"/>
-                                    <xsl:with-param name="denominator" select="product_hoeveelheid"/>
-                                </xsl:call-template>
+                                <xsl:for-each select="ingredient_hoeveelheid[.//@value]">
+                                    <numerator>
+                                        <xsl:call-template name="_buildMedicationQuantity">
+                                            <xsl:with-param name="adaValue" select="waarde"/>
+                                            <xsl:with-param name="adaUnit" select="eenheid[@codeSystem = $oidGStandaardBST902THES2]"/>
+                                        </xsl:call-template>                                        
+                                    </numerator>
+                                </xsl:for-each>
+                                <xsl:for-each select="product_hoeveelheid[.//@value]">
+                                    <denominator>
+                                        <xsl:call-template name="_buildMedicationQuantity">
+                                            <xsl:with-param name="adaValue" select="waarde"/>
+                                            <xsl:with-param name="adaUnit" select="eenheid[@codeSystem = $oidGStandaardBST902THES2]"/>
+                                        </xsl:call-template>                                        
+                                    </denominator>
+                                </xsl:for-each>
                             </strength>
                         </xsl:for-each>
                     </xsl:variable>
