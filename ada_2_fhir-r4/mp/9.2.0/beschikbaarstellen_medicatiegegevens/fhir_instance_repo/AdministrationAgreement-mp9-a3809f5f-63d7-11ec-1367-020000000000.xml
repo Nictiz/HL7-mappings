@@ -1,0 +1,131 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="AdministrationAgreement-mp9-a3809f5f-63d7-11ec-1367-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="${DATE, T, D, +0}T09:45:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+21D{23:59:59}&gt;, 1 a 2 stuks bij hoest, maximaal 6 stuks per dag, oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +21}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_variabelehoeveelheidenmaximum"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      <value value="MBH_920_variabelehoeveelheidenmaximum_TA"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-7-874965"/>
+      <type value="Medication"/>
+      <display value="CODEINEFOSFAAT PCH TABLET 10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-G-XXX-Hemsbergen"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Hemsbergen"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/ationnl-core-HealthcareProvider-mp9-2-16-528-1-1007-3-3-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_920_variabelehoeveelheidenmaximum_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_920_variabelehoeveelheidenmaximum_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <asNeededCodeableConcept>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1387"/>
+            <display value="Bij hoest"/>
+         </coding>
+      </asNeededCodeableConcept>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseRange>
+            <low>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                  <valueQuantity>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </valueQuantity>
+               </extension>
+               <value value="1"/>
+               <unit value="stuk"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="1"/>
+            </low>
+            <high>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                  <valueQuantity>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </valueQuantity>
+               </extension>
+               <value value="2"/>
+               <unit value="stuk"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="1"/>
+            </high>
+         </doseRange>
+      </doseAndRate>
+      <maxDosePerPeriod>
+         <numerator>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="6"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="6"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </numerator>
+         <denominator>
+            <value value="1"/>
+            <unit value="dag"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </denominator>
+      </maxDosePerPeriod>
+   </dosageInstruction>
+</MedicationDispense>
