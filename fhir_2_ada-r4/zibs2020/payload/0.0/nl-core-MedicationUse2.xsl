@@ -55,17 +55,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_iIndicator -->
+            <!-- stoptype -->
             <xsl:apply-templates select="f:status" mode="#current"/>
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $ext-MedicationUse2.AsAgreedIndicator]" mode="#current"/>
-            <!-- stoptype -->
-            <xsl:apply-templates select="f:status" mode="#current"/>
             <!-- gebruiks_product -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
             <xsl:apply-templates select="f:dosage" mode="nl-core-InstructionsForUse"/>
             <!-- relatie_medicatieafspraak, toedieningsafspraak, medicatieverstrekking -->
-             <xsl:apply-templates select="f:derivedFrom" mode="#current"/>
+            <xsl:apply-templates select="f:derivedFrom" mode="#current"/>
             <!-- relatie_contact en zorgepisode -->
             <xsl:apply-templates select="f:context" mode="contextContactEpisodeOfCare"/>
             <!-- voorschrijver -->
@@ -163,35 +162,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+
     <xd:doc>
-        <xd:desc>Template to convert f:status to gebruik_indicator
+        <xd:desc>
+            Template to convert f:status to stoptype. Only the FHIR status values that map to a ADA stoptype value are mapped.
+            Template to convert f:status to gebruik_indicator
             Note: the values below are not fully implemented in the xml schema.
             See MedicationStatement.status documentation.
-            not-taken > false
-            on-hold > false
-            stopped > false
-            completed > false
-            active > true
+            *not-taken > false
+            *on-hold > false
+            *stopped > false
+            *completed > false
+            *active > true
             unknown > unknown (invalid ADA)
         </xd:desc>
     </xd:doc>
     <xsl:template match="f:status" mode="nl-core-MedicationUse2">
-        <gebruik_indicator>
-            <xsl:choose>
-                <xsl:when test="some $val in ('not-taken', 'on-hold', 'stopped', 'completed') satisfies $val = ./@value ">
-                    <xsl:attribute name="value" select="'true'"/>
-                </xsl:when>
-                <xsl:when test="@value = 'n'">
+        <xsl:choose>
+            <xsl:when test="@value eq 'on-hold'">
+                <gebruik_indicator>
                     <xsl:attribute name="value" select="'false'"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="value" select="'unknown'"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </gebruik_indicator>
+                </gebruik_indicator>
+                <stoptype code="113381000146106" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Onderbreking"/>
+            </xsl:when>
+            <xsl:when test="@value eq 'stopped'">
+                <gebruik_indicator>
+                    <xsl:attribute name="value" select="'false'"/>
+                </gebruik_indicator>
+                <stoptype code="113371000146109" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Definitief"/>
+            </xsl:when>
+            <xsl:when test=" some $val in ('not-taken', 'completed') satisfies $val = ./@value">
+                <gebruik_indicator>
+                    <xsl:attribute name="value" select="'false'"/>
+                </gebruik_indicator>
+            </xsl:when>
+            <xsl:when test="@value = 'active'">
+                <gebruik_indicator>
+                    <xsl:attribute name="value" select="'true'"/>
+                </gebruik_indicator>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment select="concat('unhandeld FHIR value: ', @value)"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
-
-
     <xd:doc>
         <xd:desc>Template to convert f:medicationReference to gebruiks_product</xd:desc>
     </xd:doc>
@@ -321,7 +335,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
 
-     </xsl:template>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url "$author-url" to auteur</xd:desc>
@@ -412,20 +426,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="f:valueCodeableConcept"/>
             <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_stoppen_gebruik'"/>
         </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to convert f:status to stoptype. Only the FHIR status values that map to a ADA stoptype value are mapped.</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:status" mode="nl-core-MedicationUse2">
-        <xsl:choose>
-            <xsl:when test="@value = 'on-hold'">
-                <stoptype code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Onderbreking"/>
-            </xsl:when>
-            <xsl:when test="@value = 'stopped'">
-                <stoptype code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Definitief"/>
-            </xsl:when>
-        </xsl:choose>
     </xsl:template>
 
     <xd:doc>
