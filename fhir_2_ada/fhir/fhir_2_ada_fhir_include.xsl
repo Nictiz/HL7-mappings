@@ -123,10 +123,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/datatypes.html#dateTime">dateTime contents</xd:a> to ada date(time) element.</xd:desc>
         <xd:param name="in">the FHIR dateTime element</xd:param>
         <xd:param name="adaElementName">Optional string to provide the name for the output ada element. Default is datum_tijd.</xd:param>
+        <xd:param name="adaDatatype">Optional string to add datatype attribute in ada element.</xd:param>
     </xd:doc>
     <xsl:template name="datetime-to-datetime">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="adaElementName" as="xs:string">datum_tijd</xsl:param>
+        <xsl:param name="adaDatatype" as="xs:string?"/>
 
         <xsl:for-each select="$in">
 
@@ -146,6 +148,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     <xsl:element name="{$adaElementName}">
                         <xsl:attribute name="nullFlavor" select="$nullFlavorValue"/>
+                        <xsl:if test="not(empty($adaDatatype))">
+                            <xsl:attribute name="datatype" select="$adaDatatype"/>
+                        </xsl:if>
                     </xsl:element>
                 </xsl:when>
                 <xsl:when test="@value">
@@ -155,6 +160,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="dateTime" select="$in/@value"/>
                             </xsl:call-template>
                         </xsl:attribute>
+                        <xsl:if test="not(empty($adaDatatype))">
+                            <xsl:attribute name="datatype" select="$adaDatatype"/>
+                        </xsl:if>
                     </xsl:element>
                 </xsl:when>
             </xsl:choose>
