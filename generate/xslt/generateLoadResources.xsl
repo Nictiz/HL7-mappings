@@ -64,7 +64,7 @@
         <xsl:choose>
             <xsl:when test="$fixtures">
         <!-- Write out the TestScript resource -->
-        <TestScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/testscript.xsd">
+        <TestScript xmlns="http://hl7.org/fhir">
             <id value="resources-purgecreateupdate-xml"/>
             <url value="http://nictiz.nl/fhir/TestScript/load-resources-purgecreateupdate-xml"/>
             <name value="Load Test Resources - Purge Create Update - XML"/>
@@ -88,6 +88,8 @@
                     <xsl:call-template name="generateFixtureId"/>
                 </xsl:variable>
                 <fixture id="{$fixtureId}">
+                    <autocreate value="false"/>
+                    <autodelete value="false"/>
                     <resource>
                         <reference value="{replace(document-uri(ancestor::node()), $referenceDirAsUrl, $referenceBaseSanitized)}"/>
                     </resource>
@@ -126,6 +128,7 @@
                             <resource value="Patient"/>
                             <accept value="xml"/>
                             <contentType value="xml"/>
+                            <encodeRequestUrl value="true"/>
                             <params value="/$purge"/>
                             <requestHeader>
                                 <field value="Authorization"/>
@@ -139,6 +142,7 @@
                                 value="Confirm that the returned HTTP status is 200(OK) or 204(No Content)"/>
                             <operator value="in"/>
                             <responseCode value="200,204"/>
+                            <warningOnly value="false"/>
                         </assert>
                     </action>
                 </xsl:for-each>
@@ -162,6 +166,7 @@
                             <resource value="{local-name(.)}"/>
                             <accept value="xml"/>
                             <contentType value="xml"/>
+                            <encodeRequestUrl value="true"/>
                             <params value="/${{{$fixtureId}-id}}"/>
                             <requestHeader>
                                 <field value="Authorization"/>
@@ -178,6 +183,7 @@
                             <description value="Confirm that the returned HTTP status is 200(OK) or 201(Created)."/>
                             <operator value="in"/>
                             <responseCode value="200,201"/>
+                            <warningOnly value="false"/>
                         </assert>
                     </action>
                 </xsl:for-each>
