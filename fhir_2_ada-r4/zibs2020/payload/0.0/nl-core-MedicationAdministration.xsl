@@ -119,10 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:dosage/f:extension[@url = $extMedicationAdministrationAgreedAmount]/f:valueQuantity" mode="nl-core-MedicationAdministration">
 		<afgesproken_hoeveelheid>
-			<xsl:for-each select="f:extension[@url = $ext-iso21090-PQ-translation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)]">
-				<aantal value="{f:value/@value}"/>
-				<eenheid code="{f:code/@value}" displayName="{f:unit/@value}" codeSystem="{$oidGStandaardBST902THES2}"/>
-			</xsl:for-each>
+			<xsl:call-template name="GstdQuantity2ada"/>
 		</afgesproken_hoeveelheid>
 	</xsl:template>
 
@@ -132,10 +129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template match="f:dosage/f:dose" mode="nl-core-MedicationAdministration">
 
 		<toegediende_hoeveelheid>
-			<xsl:for-each select="f:extension[@url = $ext-iso21090-PQ-translation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)]">
-				<aantal value="{f:value/@value}"/>
-				<eenheid code="{f:code/@value}" displayName="{f:unit/@value}" codeSystem="{$oidGStandaardBST902THES2}"/>
-			</xsl:for-each>
+			<xsl:call-template name="GstdQuantity2ada"/>
 		</toegediende_hoeveelheid>
 
 	</xsl:template>

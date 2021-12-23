@@ -93,7 +93,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
-      
+    <xd:doc>
+        <xd:desc>Template to convert FHIR Gstandaard (Simple)Quantity to ada waarde and eenheid elements (no range supported)</xd:desc>
+        <xd:param name="in">FHIR element of type Gstandaard (Simple)Quantity</xd:param>
+        <xd:param name="adaElementNameWaarde">The ada element name for value. Defaults to aantal.</xd:param>
+        <xd:param name="adaElementNameEenheid">The ada element name for unit. Defaults to eenheid.</xd:param>
+    </xd:doc>
+    <xsl:template name="GstdQuantity2ada">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="adaElementNameWaarde" as="xs:string">aantal</xsl:param>
+        <xsl:param name="adaElementNameEenheid" as="xs:string">eenheid</xsl:param>
+        <xsl:for-each select="$in">
+            <xsl:for-each select="f:extension[@url = $ext-iso21090-PQ-translation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)]">
+                <xsl:element name="{$adaElementNameWaarde}">
+                    <xsl:attribute name="value" select="f:value/@value"/>
+                </xsl:element>
+                <xsl:element name="{$adaElementNameEenheid}">
+                    <xsl:attribute name="value" select="f:code/@value"/>
+                    <xsl:attribute name="displayName" select="f:unit/@value"/>
+                    <xsl:attribute name="codeSystem" select="$oidGStandaardBST902THES2"/>
+                    <xsl:attribute name="codeSystemName" select="$oidMap[@oid = $oidGStandaardBST902THES2]/@displayName"/>
+                </xsl:element>
+             </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+
     <xsl:function name="nf:replaceChar">
         <!--xxwim TODO remove multiples in $pelstring-->
         <xsl:param name="charStringInAndtestChar"/>
