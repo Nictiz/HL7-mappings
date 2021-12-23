@@ -113,28 +113,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:start to gebruiksperiode_start</xd:desc>
     </xd:doc>
     <xsl:template match="f:start" mode="nl-core-MedicationUse2">
-        <start_datum_tijd>
-            <xsl:attribute name="value">
-                <xsl:call-template name="format2ADADate">
-                    <xsl:with-param name="dateTime" select="@value"/>
-                </xsl:call-template>
-            </xsl:attribute>
-            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
-        </start_datum_tijd>
+        <xsl:call-template name="datetime-to-datetime">
+            <xsl:with-param name="adaElementName">start_datum_tijd</xsl:with-param>
+            <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to convert f:end to gebruiksperiode_eind</xd:desc>
     </xd:doc>
     <xsl:template match="f:end" mode="nl-core-MedicationUse2">
-        <eind_datum_tijd>
-            <xsl:attribute name="value">
-                <xsl:call-template name="format2ADADate">
-                    <xsl:with-param name="dateTime" select="@value"/>
-                </xsl:call-template>
-            </xsl:attribute>
-            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
-        </eind_datum_tijd>
+        <xsl:call-template name="datetime-to-datetime">
+            <xsl:with-param name="adaElementName">eind_datum_tijd</xsl:with-param>
+            <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
     
 <!--xxxwim        <xd:doc>
@@ -169,14 +161,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:dateAsserted to registratiedatum</xd:desc>
     </xd:doc>
     <xsl:template match="f:dateAsserted" mode="nl-core-MedicationUse2">
-        <medicatiegebruik_datum_tijd>
-            <xsl:attribute name="value">
-                <xsl:call-template name="format2ADADate">
-                    <xsl:with-param name="dateTime" select="@value"/>
-                </xsl:call-template>
-            </xsl:attribute>
-            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
-        </medicatiegebruik_datum_tijd>
+        <xsl:call-template name="datetime-to-datetime">
+            <xsl:with-param name="adaElementName">medicatiegebruik_datum_tijd</xsl:with-param>
+            <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
+        </xsl:call-template>        
     </xsl:template>
 
     <xd:doc>
