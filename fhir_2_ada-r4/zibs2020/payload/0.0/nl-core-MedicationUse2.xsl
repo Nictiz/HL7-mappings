@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_iIndicator -->
-            <xsl:apply-templates select="f:taken" mode="#current"/>
+            <xsl:apply-templates select="f:status" mode="#current"/>
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $ext-MedicationUse2.AsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
@@ -164,22 +164,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to convert f:taken to gebruik_indicator</xd:desc>
+        <xd:desc>Template to convert f:status to gebruik_indicator
+            Note: the values below are not fully implemented in the xml schema.
+            See MedicationStatement.status documentation.
+            not-taken > false
+            on-hold > false
+            stopped > false
+            completed > false
+            active > true
+            unknown > unknown (invalid ADA)
+        </xd:desc>
     </xd:doc>
-    <xsl:template match="f:taken" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:status" mode="nl-core-MedicationUse2">
         <gebruik_indicator>
             <xsl:choose>
-                <xsl:when test="@value = 'y'">
+                <xsl:when test="some $val in ('not-taken', 'on-hold', 'stopped', 'completed') satisfies $val = ./@value ">
                     <xsl:attribute name="value" select="'true'"/>
                 </xsl:when>
                 <xsl:when test="@value = 'n'">
                     <xsl:attribute name="value" select="'false'"/>
                 </xsl:when>
-                <xsl:when test="@value = 'na'">
-                    <xsl:attribute name="nullFlavor" select="'NA'"/>
-                </xsl:when>
                 <xsl:otherwise>
-                    <xsl:attribute name="nullFlavor" select="'UNK'"/>
+                    <xsl:attribute name="value" select="'unknown'"/>
                 </xsl:otherwise>
             </xsl:choose>
         </gebruik_indicator>

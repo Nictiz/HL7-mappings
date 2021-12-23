@@ -15,7 +15,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 64ms :: artifacts dl 7ms
+[ivy:resolve] :: resolution report :: resolve 76ms :: artifacts dl 8ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -46,7 +46,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 62ms :: artifacts dl 8ms
+[ivy:resolve] :: resolution report :: resolve 40ms :: artifacts dl 5ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -55,7 +55,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/3ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/2ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -141,50 +141,425 @@ convert_fhir_2_ada_sub:
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MA-Scenarioset9-9-3.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MA-Scenarioset9-9-3.xml
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MA-Scenarioset9-9-4.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MA-Scenarioset9-9-4.xml
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset0-0-1.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset0-0-1.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[2]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[2]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[3]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[3]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[4]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[4]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[5]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[5]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[6]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[6]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset0-0-2.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset0-0-2.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset0-0-3optioneel.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset0-0-3optioneel.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset0-0-4.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset0-0-4.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[2]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[2]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[3]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[3]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[4]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[4]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset0-0-5.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset0-0-5.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[2]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[2]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[3]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[3]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset0-0-6.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset0-0-6.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[2]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[2]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[3]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[3]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset0-0-7.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset0-0-7.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset0-0-8.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset0-0-8.xml
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset1-1-1.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset1-1-1.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset1-1-2a.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset1-1-2a.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset1-1-2b.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset1-1-2b.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset1-1-3.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset1-1-3.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset1-1-4.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset1-1-4.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset10-10-1.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset10-10-1.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset10-10-2.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset10-10-2.xml
      [xslt] WARNING: local:getDisplayName() expects an OID, but got "2.16.840.1.113883.2.4.4.8" OR cannot find the matching displayName
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset13-13-5.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset13-13-5.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset2-2-2.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset2-2-2.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset2-2-3.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset2-2-3.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset5-5-1.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset5-5-1.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset5-5-2.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset5-5-2.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset5-5-3.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset5-5-3.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset5-5-4.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset5-5-4.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset5-5-5.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset5-5-5.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-1.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-1.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-10.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-10.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-11.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-11.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-12.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-12.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-13.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-13.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-14.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-14.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-15.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-15.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-2.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-2.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-3.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-3.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-4.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-4.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-5.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-5.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-6.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-6.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-7a.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-7a.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-7b.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-7b.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-8.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-8.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset6-6-9.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset6-6-9.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset7-7-1.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset7-7-1.xml
      [xslt] WARNING: local:getOid() expects a FHIR System URI, but got "2.16.840.1.113883.5.1008"
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset7-7-2.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset7-7-2.xml
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset7-7-3.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MGB-Scenarioset7-7-3.xml
      [xslt] WARNING: local:getDisplayName() expects an OID, but got "2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111" OR cannot find the matching displayName
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] : Warning! Ambiguous rule match for /Bundle/entry[1]/resource[1]/MedicationStatement[1]/status[1]
+     [xslt] Matches both "element(Q{http://hl7.org/fhir}status)" on line 420 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] and "element(Q{http://hl7.org/fhir}status)" on line 178 of file:/home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/zibs2020/payload/0.0/nl-core-MedicationUse2.xsl
+     [xslt] ERROR  :  with fullUrl '' reference cannot be resolved within the Bundle nor can the type of reference be determined by the identifier. Therefore information (potentially the relation to medication agreeement, administration agreement or medication dispense) will be lost.
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MTD-Scenarioset0-0-1.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MTD-Scenarioset0-0-1.xml
      [xslt] WARNING: local:getDisplayName() expects an OID, but got "2.16.840.1.113883.2.4.3.11.22.472" OR cannot find the matching displayName
      [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MTD-Scenarioset11-11-1.xml to /home/wim/nictiz/REPS/HL7-mappings/fhir_2_ada-r4/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-mp-mg-tst-MTD-Scenarioset11-11-1.xml
