@@ -149,7 +149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <aantal>
                 <nominale_waarde value="{f:value/@value}"/>
             </aantal>
-            <eenheid code="{f:code/@value}" displayName="{f:unit/@value}" codeSystem="{$oidGStandaardBST902THES2}"/>
+            <eenheid code="{f:code/@value}" displayName="{f:unit/@value}" codeSystem="{$oidGStandaardBST902THES2}" codeSystemName="{$oidMap[@oid=$oidGStandaardBST902THES2]/@displayName}"/>
         </xsl:for-each>
     </xsl:template>
 
@@ -167,7 +167,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </aantal>
             <xsl:for-each select="(*/f:extension[@url = $ext-iso21090-PQ-translation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)])[1]">
-                <eenheid code="{f:code/@value}" displayName="{f:unit/@value}" codeSystem="{$oidGStandaardBST902THES2}"/>
+                <eenheid code="{f:code/@value}" displayName="{f:unit/@value}" codeSystem="{$oidGStandaardBST902THES2}" codeSystemName="{$oidMap[@oid=$oidGStandaardBST902THES2]/@displayName}"/>
             </xsl:for-each>
 
         </xsl:if>
@@ -362,7 +362,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:maxDosePerPeriod" mode="nl-core-InstructionsForUse">
         <maximale_dosering>
-            <xsl:call-template name="Ratio-to-quotient"/>
+            <xsl:call-template name="GstdQuantity2ada">
+                <xsl:with-param name="in" select="f:numerator"/>
+            </xsl:call-template>
+            <xsl:call-template name="Duration-to-hoeveelheid">
+                <xsl:with-param name="in" select="f:denominator"/>
+            </xsl:call-template>
         </maximale_dosering>
     </xsl:template>
 

@@ -269,7 +269,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="oidMap" as="element()+">
         <map oid="{$oidAGB}" uri="http://fhir.nl/fhir/NamingSystem/agb-z" displayName="AGB-Z"/>
-        <map oid="{$oidAGBSpecialismen}" displayName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"/>
+        <map oid="{$oidAGBSpecialismen}" displayName="Vektis AGB-medische specialismen"/>
         <map oid="{$oidBurgerservicenummer}" uri="http://fhir.nl/fhir/NamingSystem/bsn" displayName="BSN"/>
         <map oid="{$oidChoiceListOrientation}" uri="http://hl7.org/fhir/choice-list-orientation" displayName="ChoiceListOrientation"/>
         <map oid="{$oidFHIRObservationCategory}" uri="http://hl7.org/fhir/observation-category" displayName="ObservationCategory"/>
@@ -278,11 +278,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidGStandaardGPK}" displayName="G-Standaard GPK"/>
         <map oid="{$oidGStandaardSNK}" displayName="G-Standaard SNK"/>
         <map oid="{$oidGStandaardSSK}" displayName="G-Standaard SSK"/>
-        <map oid="{$oidGStandaardTH007Toedieningswegen}" displayName="G-Standaard TH007 Toedieningswegen"/>
+        <map oid="{$oidGStandaardTH007Toedieningswegen}" displayName="G-Standaard Toedieningswegen (tabel 7)"/>
         <map oid="{$oidGStandaardTH040ContraIndicaties}" displayName="G-Standaard TH040 Contraindicaties"/>
         <map oid="{$oidGStandaardTH122OngewensteGroepen}" displayName="G-Standaard TH122 Ongewenste groepen"/>
         <map oid="{$oidGStandaardBST361}" displayName="G-Standaard Bestand 361 a-tabel (eenheid gebruiksadvies)"/>
-        <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard Bestand 902 Thesaurus 2"/>
+        <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard thesaurus basiseenheden"/>
         <map oid="{$oidGStandaardFarmaceutischeVormen}" displayName="G-Standaard Farmaceutische vormen (tabel 6)"/>
         <map oid="{$oidHL7ActCode}" uri="http://hl7.org/fhir/v3/ActCode" displayName="HL7 ActCode"/>
         <map oid="{$oidHL7ActStatus}" uri="http://hl7.org/fhir/v3/ActStatus" displayName="HL7 ActStatus"/>

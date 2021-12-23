@@ -42,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             
             <!-- rol -->
-            <xsl:apply-templates select="f:role" mode="#current"/>
+            <xsl:apply-templates select="f:relationship" mode="#current"/>
             
             <!-- relatie -->
             <xsl:apply-templates select="f:relationship" mode="#current"/> 
