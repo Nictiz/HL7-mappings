@@ -145,11 +145,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:effectiveDateTime to toedienings_datum_tijd</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:effectiveDateTime" mode="nl-core-MedicationAdministration">
-			<xsl:call-template name="datetime-to-datetime">
-				<xsl:with-param name="in" select="."/>
-				<xsl:with-param name="adaElementName">toedienings_datum_tijd</xsl:with-param>
-			</xsl:call-template>
-			
+		<xsl:call-template name="datetime-to-datetime">
+			<xsl:with-param name="adaElementName">toedienings_datum_tijd</xsl:with-param>
+			<xsl:with-param name="adaDatatype">datetime</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 
 	<xd:doc>
@@ -197,12 +196,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</xsl:when>
 					<xsl:when test="f:type/@value = ('Practitioner', 'PractitionerRole') or $resource[f:Practitioner | f:PractitionerRole]">
 						<zorgverlener>
-							<zorgverlener value="{nf:convert2NCName(f:reference/@value)}"/>
+							<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
 						</zorgverlener>
 					</xsl:when>
 					<xsl:when test="f:type/@value = ('RelatedPerson') or $resource[f:RelatedPerson]">
 						<mantelzorger>
-							<contactpersoon value="{nf:convert2NCName(f:reference/@value)}"/>
+							<contactpersoon value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
 						</mantelzorger>
 					</xsl:when>
 				</xsl:choose>
@@ -241,13 +240,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:extension with extension url "$extMedicationAdministration2AgreedDateTime" to afgesproken_datum_tijd</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:extension[@url = $extMedicationAdministration2AgreedDateTime]" mode="nl-core-MedicationAdministration">
-		<afgesproken_datum_tijd>
-			<xsl:attribute name="value">
-				<xsl:call-template name="format2ADADate">
-					<xsl:with-param name="dateTime" select="f:valueDateTime/@value"/>
-				</xsl:call-template>
-			</xsl:attribute>
-		</afgesproken_datum_tijd>
+		<xsl:for-each select="f:valueDateTime">
+			<xsl:call-template name="datetime-to-datetime">
+				<xsl:with-param name="adaElementName">afgesproken_datum_tijd</xsl:with-param>
+				<xsl:with-param name="adaDatatype">datetime</xsl:with-param>
+			</xsl:call-template>
+		</xsl:for-each>
 	</xsl:template>
 
 	<xd:doc>

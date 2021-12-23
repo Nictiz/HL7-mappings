@@ -41,28 +41,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             
-            <!-- rol -->
-            <xsl:apply-templates select="f:relationship" mode="#current"/>
+            <!-- rol, TODO make specific based on codeSystem -->
+            <xsl:apply-templates select="f:relationship[f:coding/f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1')]" mode="#current"/>
             
             <!-- relatie -->
-            <xsl:apply-templates select="f:relationship" mode="#current"/> 
+            <xsl:apply-templates select="f:relationship[not(f:coding/f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1'))]" mode="#current"/> 
             
         </contactpersoon>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to convert f:role to ADA contactpersoon/rol</xd:desc>
+        <xd:desc>Template to convert f:relationship[not(f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1'))] to ADA contactpersoon/relatie</xd:desc>
     </xd:doc>
-    <xsl:template match="f:relationship" mode="nl-core-ContactPerson">
+    <xsl:template match="f:relationship[not(f:coding/f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1'))]" mode="nl-core-ContactPerson">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="adaElementName">relatie</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to convert f:role to ADA contactpersoon/rol</xd:desc>
+        <xd:desc>Template to convert f:relationship[f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1')] to ADA contactpersoon/rol</xd:desc>
     </xd:doc>
-    <xsl:template match="f:role" mode="nl-core-ContactPerson">
+    <xsl:template match="f:relationship[f:coding/f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1')]" mode="nl-core-ContactPerson">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="adaElementName">rol</xsl:with-param>
         </xsl:call-template>
