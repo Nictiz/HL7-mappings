@@ -1,0 +1,75 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MedicationUse2-mp9-8b11cc01-63fe-11ec-1998-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="xxx"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/core-HealthProfessional-Practitioner-mp9-000001111-0100-00001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator">
+      <valueBoolean value="false"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_geen_gebruik_niet_volgens_afspraak"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author">
+      <valueReference>
+         <reference value="PractitionerRole/core-HealthProfessional-Practitioner-mp9-000001111-0100-00001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+      </valueReference>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="113381000146106"/>
+            <display value="tijdelijk gestopt met medicatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_920_geen_gebruik_niet_volgens_afspraak_MGB"/>
+   </identifier>
+   <status value="not-taken"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422979000"/>
+         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-7-2438429"/>
+      <type value="Medication"/>
+      <display value="HYDROCHLOORTHIAZIDE ACTAVIS TABLET 12,5MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-M-XXX-Raamsdonk"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Raamsdonk"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -6}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -5}T23:59:50+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="${DATE, T, D, -4}T08:00:00+02:00"/>
+   <derivedFrom>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <value value="MBH_920_geen_gebruik_niet_volgens_afspraak_TA"/>
+      </identifier>
+      <display value="relatie naar toedieningsafspraak"/>
+   </derivedFrom>
+</MedicationStatement>
