@@ -217,47 +217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="mp92-gebruiksinstructie-from-mp9">
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
-
-                <!-- TODO, move these to bouwstenen -->
-                <!-- lichaamslengte  -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.7.10.30'][hl7:value]">
-                    <xsl:variable name="ada-elemName">lichaamslengte</xsl:variable>
-                    <xsl:element name="{$ada-elemName}">
-                        <!-- lengte_waarde -->
-                        <xsl:variable name="ada-elemName">lengte_waarde</xsl:variable>
-                        <xsl:call-template name="handlePQ">
-                            <xsl:with-param name="elemName" select="$ada-elemName"/>
-                            <xsl:with-param name="in" select="hl7:value"/>
-                        </xsl:call-template>
-                        <!-- lengte_datum_tijd -->
-                        <xsl:variable name="ada-elemName">lengte_datum_tijd</xsl:variable>
-                        <xsl:call-template name="handleTS">
-                            <xsl:with-param name="elemName" select="$ada-elemName"/>
-                            <xsl:with-param name="in" select="hl7:effectiveTime"/>
-                            <xsl:with-param name="vagueDate" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:element>
-                </xsl:for-each>
-                <!-- lichaamsgewicht  -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.7.10.28'][hl7:value]">
-                    <xsl:variable name="ada-elemName">lichaamsgewicht</xsl:variable>
-                    <xsl:element name="{$ada-elemName}">
-                        <xsl:variable name="ada-elemName">gewicht_waarde</xsl:variable>
-                        <xsl:call-template name="handlePQ">
-                            <xsl:with-param name="in" select="hl7:value"/>
-
-                            <xsl:with-param name="elemName" select="$ada-elemName"/>
-                        </xsl:call-template>
-                        <!-- gewicht_datum_tijd -->
-                        <xsl:variable name="ada-elemName">gewicht_datum_tijd</xsl:variable>
-                        <xsl:call-template name="handleTS">
-                            <xsl:with-param name="in" select="hl7:effectiveTime"/>
-                            <xsl:with-param name="elemName" select="$ada-elemName"/>
-                            <xsl:with-param name="vagueDate" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:element>
-                </xsl:for-each>
-
+                
                 <!-- aanvullende_informatie -->
                 <xsl:variable name="ada-elemName">aanvullende_informatie</xsl:variable>
                 <xsl:call-template name="handleCV">

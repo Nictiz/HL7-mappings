@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">HL7 Node to consider in the creation of the ada element</xd:param>
         <xd:param name="zibroot">Optional. The ada zibroot element to be outputted with this HCIM, will be copied in ada element</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Lichaamslengte-3.1" match="hl7:observation" as="element()*" mode="doZibLichaamslengte-3.1">
+    <xsl:template name="uni-Lichaamslengte" match="hl7:observation" as="element()*" mode="doUniLichaamslengte">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="zibroot" as="element()?"/>
 

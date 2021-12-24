@@ -67,15 +67,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Helper template for hl7 routeCode to ada toedieningsweg</xd:desc>
-        <xd:param name="in">HL7 element containing hl7 routeCode. Optional, but no output without it. Defaults to context.</xd:param>
+        <xd:param name="in">HL7 element routeCode. Optional, but no output without it. Defaults to context.</xd:param>
     </xd:doc>
     <xsl:template name="routeCode2toedieningsweg">
         <xsl:param name="in" as="element()?" select="."/>
         
-        <xsl:for-each select="$in/hl7:routecode">
-             <xsl:variable name="elemName">toedieningsweg</xsl:variable>
+        <xsl:for-each select="$in/hl7:routeCode">
             <xsl:call-template name="handleCV">
-                <xsl:with-param name="elemName" select="$elemName"/>
+                <xsl:with-param name="elemName">toedieningsweg</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
