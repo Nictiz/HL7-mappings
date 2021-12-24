@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:attribute name="datatype">reference</xsl:attribute>
                     </zorgaanbieder>
                     <!-- output the actual organization here as well, we will take it out later -->
-                    <xsl:call-template name="HandleOrganization">
+                    <xsl:call-template name="uni-Zorgaanbieder">
                         <xsl:with-param name="adaId" select="$ref"/>
                     </xsl:call-template>
                 </zorgaanbieder>

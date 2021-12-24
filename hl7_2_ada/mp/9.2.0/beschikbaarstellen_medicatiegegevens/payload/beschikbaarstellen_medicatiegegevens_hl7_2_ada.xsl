@@ -84,7 +84,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="language" select="$language"/>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <xsl:variable name="component" select=".//*[hl7:templateId/@root = ($templateId-medicatieafspraak, $templateId-wisselend_doseerschema, $templateId-verstrekkingsverzoek, $templateId-toedieningsafspraak, $templateId-verstrekking, $templateId-medicatiegebruik, $templateId-medicatietoediening)]"/>
+                            <xsl:variable name="component" select=".//*[hl7:templateId/@root = ($templateId-medicatieafspraak, $templateId-wisselend_doseerschema, $templateId-verstrekkingsverzoek, $templateId-toedieningsafspraak, $templateId-medicatieverstrekking, $templateId-medicatiegebruik, $templateId-medicatietoediening)]"/>
                             <xsl:for-each-group select="$component" group-by="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id/concat(@root, @extension)">
                                 <!-- medicamenteuze_behandeling -->
                                 <medicamenteuze_behandeling>
@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:call-template>
                                     </xsl:for-each>
                                     <!-- verstrekking -->
-                                    <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-verstrekking]">
+                                    <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-medicatieverstrekking]">
                                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9364_20210602161935">
                                             <xsl:with-param name="in" select="."/>
                                         </xsl:call-template>

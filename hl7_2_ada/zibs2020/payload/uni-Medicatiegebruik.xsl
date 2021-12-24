@@ -16,6 +16,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
+    <xsl:variable name="mgbCode" as="xs:string*" select="'6', '422979000'"/>
+    <xsl:variable name="templateId-medicatiegebruik" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9322', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9279', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9250', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9246', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9208'"/>
+    <xsl:variable name="template-id-rel-gb">2.16.840.1.113883.2.4.3.11.60.20.77.10.9176</xsl:variable>
+    
+    
     <xd:doc>
         <xd:desc> Medicatiegebruik MP 9 2.0</xd:desc>
         <xd:param name="in">HL7 medication use</xd:param>

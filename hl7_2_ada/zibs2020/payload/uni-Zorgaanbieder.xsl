@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create ada healthcare_provider using hl7:Organization</xd:desc>
         <xd:param name="adaId">Optional parameter to specify the ada id for this ada element. Defaults to a generate-id of context element</xd:param>
     </xd:doc>
-    <xsl:template name="HandleOrganization" match="hl7:Organization" mode="HandleOrganization">
+    <xsl:template name="uni-Zorgaanbieder" match="hl7:Organization | hl7:representedOrganization" mode="HandleOrganization">
         <xsl:param name="adaId" as="xs:string?" select="generate-id(.)"/>
 
         <zorgaanbieder>

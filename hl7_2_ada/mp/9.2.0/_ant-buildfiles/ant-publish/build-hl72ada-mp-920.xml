@@ -24,11 +24,18 @@
             <param name="schema.string" value="*${usecase.mg}.xsd"/>
         </antcall>
         
-        <!-- beschikbaarstellen_medicatiegegevens -->
+        <!-- sturen_medicatievoorschrift -->
         <antcall target="setup_sub_schemas">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="schema.string" value="*${usecase.mv}.xsd"/>
         </antcall>
+        
+        <!-- beschikbaarstellen_medicatieoverzicht -->
+        <antcall target="setup_sub_schemas">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
+            <param name="schema.string" value="*${usecase.mo}.xsd"/>
+        </antcall>
+        
         
         <!-- instances -->
         <!-- beschikbaarstellen_medicatiegegevens -->
@@ -58,6 +65,21 @@
                 <include name="*.xml"/>
             </fileset>
         </copy>
+        
+        <!-- instances -->
+        <!-- beschikbaarstellen_medicatieoverzicht -->
+        <echo/>
+        <echo>Setup ${build.dir}/${usecase.mo} containing refreshed hl7 instances</echo>
+        
+        <mkdir dir="${build.dir}/${usecase.mo}/hl7_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mo}/hl7_instance" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mo}/hl7_instance" failonerror="true">
+            <fileset dir="${build.dir}/../../../ada_2_hl7/mp/9.2.0/${usecase.mo}/hl7_instance">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>        
  
         <!-- let's convert to ada too while we're at it -->
         <antcall target="convert_hl7_2_ada_920"/>
@@ -81,6 +103,15 @@
             <param name="xsl.in" value="cda_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>       
+        
+        <!-- convert medicatieoverzicht -->
+        <antcall target="convert_hl7_2_ada_sub_920">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
+            <param name="xsl.name" value="payload/${usecase.mo}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>       
+        
 
     </target>
     

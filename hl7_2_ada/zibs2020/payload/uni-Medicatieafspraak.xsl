@@ -19,33 +19,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="maCode" as="xs:string*" select="'33633005', '16076005'"/>
     <xsl:variable name="templateId-medicatieafspraak" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9325', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9324', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9323', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9233', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9241', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>
 
-    <!-- relatie_naar_afspraak_of_gebruik -->
     <xsl:variable name="template-id-rel-ma">2.16.840.1.113883.2.4.3.11.60.20.77.10.9086</xsl:variable>
-    <xsl:variable name="template-id-rel-ta">2.16.840.1.113883.2.4.3.11.60.20.77.10.9101</xsl:variable>
-    <xsl:variable name="template-id-rel-gb">2.16.840.1.113883.2.4.3.11.60.20.77.10.9176</xsl:variable>
-    <xsl:variable name="template-id-rel-afspr-gebr" select="($template-id-rel-ma, $template-id-rel-ta, $template-id-rel-gb)"/>
     <xsl:variable name="templateId-stoptype" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9372', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067'"/>
     <xsl:variable name="templateId-redenVanVoorschrijven" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9316', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160'"/>
     <xsl:variable name="templateId-redenWijzigenOfStaken" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9370', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9270'"/>
 
-    <!-- to be moved -->
-    <xsl:variable name="templateId-wisselend_doseerschema" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9380'"/>
-    <xsl:variable name="templateId-verstrekkingsverzoek" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9356', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9301', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9257'"/>
-    <xsl:variable name="templateId-toedieningsafspraak" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9332', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9299', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9259', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9256'"/>
-    <xsl:variable name="templateId-medicatietoediening" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9373'"/>
-    <xsl:variable name="templateId-verstrekking" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9364', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9294', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9255'"/>
-    <xsl:variable name="templateId-medicatiegebruik" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9322', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9279', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9250', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9246', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9208'"/>
-    <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
 
-    <xsl:variable name="templateId-lichaamsgewicht" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.121.10.19', '2.16.840.1.113883.2.4.3.11.60.7.10.28', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123'"/>
-    <xsl:variable name="templateId-lichaamslengte" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.7.10.30', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122'"/>
-    <xsl:variable name="templateId-labuitslag" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.7.10.31'"/>
-
-
-    <xsl:variable name="vvCode" as="xs:string*" select="'33633005', '16076005'"/>
-    <xsl:variable name="wdsCode" as="xs:string*" select="'395067002'"/>
-    <xsl:variable name="mveCode" as="xs:string*" select="'52711000146108'"/>
-    <xsl:variable name="mgbCode" as="xs:string*" select="'6', '422979000'"/>
     <xd:doc>
         <xd:desc>Creates ada attributes taking a hl7 code element as input</xd:desc>
         <xd:param name="current-hl7-code">The hl7 code element for which to create the attributes</xd:param>
@@ -69,9 +48,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-
-
-
 
     <xd:doc>
         <xd:desc>Helper template for the relatie medicatieafspraak</xd:desc>
@@ -168,10 +144,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- relatie contact -->
                 <xsl:call-template name="uni-relatieContact"/>
-                
+
                 <!-- relatie zorgepisode -->
                 <xsl:call-template name="uni-relatieZorgepisode"/>
-                
+
                 <!-- voorschrijver -->
                 <voorschrijver>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
@@ -217,7 +193,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="mp92-gebruiksinstructie-from-mp9">
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
-                
+
                 <!-- aanvullende_informatie -->
                 <xsl:variable name="ada-elemName">aanvullende_informatie</xsl:variable>
                 <xsl:call-template name="handleCV">
