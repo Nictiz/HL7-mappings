@@ -84,34 +84,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
                 
                 <!-- relatie_medicatieafspraak -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = $maCode]/hl7:id[@extension | @root | @nullFlavor]">
-                    <relatie_medicatieafspraak>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_medicatieafspraak>
-                </xsl:for-each>
+                <xsl:call-template name="uni-relatieMedicatieafspraak"/>
                 
                 <!-- relatie_toedieningsafspraak -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = $taCode]/hl7:id[@extension | @root | @nullFlavor]">
-                    <relatie_toedieningsafspraak>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_toedieningsafspraak>
-                </xsl:for-each>
+                <xsl:call-template name="uni-relatieToedieningsafspraak"/>
                 
                 <!-- gerelateerde_verstrekking -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = $mveCode]/hl7:id[@extension | @root | @nullFlavor]">
-                    <relatie_medicatieverstrekking>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_medicatieverstrekking>
-                </xsl:for-each>
+                <xsl:call-template name="uni-relatieMedicatieverstrekking"/>
                 
-                <!-- huisartsen relaties -->
-                <xsl:call-template name="_huisartsenRelaties"/>
+                <!-- relatie contact -->
+                <xsl:call-template name="uni-relatieContact"/>
+                
+                <!-- relatie zorgepisode -->
+                <xsl:call-template name="uni-relatieZorgepisode"/>
                 
                 <!-- voorschrijver -->
                 <xsl:for-each select="hl7:entryRelationship/hl7:substanceAdministration[hl7:code[@code = $maCode][@codeSystem = $oidSNOMEDCT]]/hl7:author">

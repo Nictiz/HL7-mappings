@@ -109,25 +109,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="uni-relatieMedicatieafspraak"/>
 
                 <!-- relatie_toedieningsafspraak -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = $taCode]/hl7:id[@extension | @root | @nullFlavor]">
-                    <relatie_toedieningsafspraak>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_toedieningsafspraak>
-                </xsl:for-each>
-
+                <xsl:call-template name="uni-relatieToedieningsafspraak"/>
+                
                 <!-- relatie_wisselend_doseerschema -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:code/@code = $wdsCode]/hl7:id[@extension | @root | @nullFlavor]">
-                    <relatie_wisselend_doseerschema>
-                        <xsl:call-template name="handleII">
-                            <xsl:with-param name="elemName">identificatie</xsl:with-param>
-                        </xsl:call-template>
-                    </relatie_wisselend_doseerschema>
-                </xsl:for-each>
+                <xsl:call-template name="uni-relatieWisselendDoseerschema"/>                
 
                 <!-- relatie contact -->
                 <xsl:call-template name="uni-relatieContact"/>
+                
                 <!-- relatie zorgepisode -->
                 <xsl:call-template name="uni-relatieZorgepisode"/>
                 

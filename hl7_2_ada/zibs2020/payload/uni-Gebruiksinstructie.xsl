@@ -66,10 +66,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>Helper template for hl7 routeCode to ada toedieningsweg</xd:desc>
+        <xd:param name="in">HL7 element containing hl7 routeCode. Optional, but no output without it. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="routeCode2toedieningsweg">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:for-each select="$in/hl7:routecode">
+             <xsl:variable name="elemName">toedieningsweg</xsl:variable>
+            <xsl:call-template name="handleCV">
+                <xsl:with-param name="elemName" select="$elemName"/>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Helper template for toedieningsweg for MP 9 2.0</xd:desc>
         <xd:param name="inHl7">The HL7 element which contains the toedieningsweg, typically rateQuantity</xd:param>
     </xd:doc>
-    <xsl:template name="_toedieningssnelheid92">
+    <xsl:template name="toedieningssnelheid92">
         <xsl:param name="inHl7" as="element()*" select="."/>
         <xsl:for-each select="$inHl7">
             <xsl:variable name="ucum-rate-eenheden" select="./*/@unit"/>
@@ -147,12 +162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <!-- toedieningsweg -->
-                <xsl:for-each select="hl7:routeCode">
-                    <xsl:variable name="elemName">toedieningsweg</xsl:variable>
-                    <xsl:call-template name="handleCV">
-                        <xsl:with-param name="elemName" select="$elemName"/>
-                    </xsl:call-template>
-                </xsl:for-each>
+                <xsl:call-template name="routeCode2toedieningsweg"/>
                 
                 <!-- aanvullende_instructie -->
                 <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9085']/hl7:code">
@@ -330,7 +340,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                                 
                                 <!-- toedieningssnelheid -->
-                                <xsl:call-template name="_toedieningssnelheid92">
+                                <xsl:call-template name="toedieningssnelheid92">
                                     <xsl:with-param name="inHl7" select="hl7:rateQuantity"/>
                                 </xsl:call-template>
                                 

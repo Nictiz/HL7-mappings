@@ -21,12 +21,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="templateId-lichaamsgewicht" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.121.10.19', '2.16.840.1.113883.2.4.3.11.60.7.10.28', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123'"/>
     
     <xd:doc>
-        <xd:desc>Mapping of HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.7.10.28 20171025 to zib nl.zorg.Lichaamsgewicht 3.1 concept in ADA. 
-                 Created for MP voorschrift, currently only supports fields used in those scenario's</xd:desc>
+        <xd:desc>Mapping of HL7 CDA templates <xd:ref name="templateId-lichaamsgewicht" type="variable"></xd:ref> to Lichaamsgewicht concept in ADA. 
+                 Created for MP, currently only supports fields used in MP</xd:desc>
         <xd:param name="in">HL7 Node to consider in the creation of the ada element</xd:param>
-        <xd:param name="zibroot">Optional. The ada zibroot element to be outputted with this HCIM, will be copied in ada element</xd:param>
+        <xd:param name="zibroot">Optional. The ada  element to be outputted with this HCIM, will be copied in ada element</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Lichaamsgewicht-3.1" match="hl7:observation" as="element()*" mode="doZibLichaamsgewicht-3.1">
+    <xsl:template name="uni-Lichaamsgewicht" match="hl7:observation" as="element()*" mode="doUniLichaamsgewicht">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="zibroot" as="element()?"/>
 
@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>body_weight</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:element name="{$elemName}">
+            <lichaamsgewicht>
 
                 <xsl:choose>
                     <!-- zibroot, left here for backwards compatibility reasons -->
@@ -56,32 +56,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>
                 </xsl:choose>
                 
-                <!-- weight_value -->
-                <xsl:variable name="elemName">
-                    <xsl:choose>
-                        <xsl:when test="$language = 'nl-NL'">gewicht_waarde</xsl:when>
-                        <xsl:otherwise>weight_value_code</xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
+                <!-- weight_value -->            
                 <xsl:call-template name="handlePQ">
                     <xsl:with-param name="in" select="hl7:value[@value | @unit | @nullFlavor]"/>
-                    <xsl:with-param name="elemName" select="$elemName"/>
+                    <xsl:with-param name="elemName">gewicht_waarde</xsl:with-param>
                 </xsl:call-template>
 
-                <!-- weight_date_time -->
-                <xsl:variable name="elemName">
-                    <xsl:choose>
-                        <xsl:when test="$language = 'nl-NL'">gewicht_datum_tijd</xsl:when>
-                        <xsl:otherwise>weight_date_time</xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
+                <!-- weight_date_time -->                
                 <xsl:call-template name="handleTS">
                     <xsl:with-param name="in" select="hl7:effectiveTime[@value | @nullFlavor] | hl7:effectiveTime/hl7:low"/>
-                    <xsl:with-param name="elemName" select="$elemName"/>
+                    <xsl:with-param name="elemName">gewicht_datum_tijd</xsl:with-param>
                     <xsl:with-param name="datatype">datetime</xsl:with-param>
                 </xsl:call-template>
 
-            </xsl:element>
+            </lichaamsgewicht>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
