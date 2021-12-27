@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Please note: the input precision of the start and/or end date is not strictly adhered to; the start- en end date will be either a full date or a full date with time.</xd:p>
         </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval-Period extension.</xd:param>
+        <xd:param name="wrapIn">Wrap the output in this element. If absent, the output will take the form of the ext-TimeInterval.Period extension.</xd:param>
     </xd:doc>
     <xsl:template name="ext-TimeInterval.Period" as="element()*">
         <xsl:param name="in" as="element()?" select="."/>
@@ -41,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:choose>
                     <!-- If no wrapIn is given, write out the extension element and iteratively call this template. -->
                     <xsl:when test="$wrapIn = ''">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                             <xsl:call-template name="ext-TimeInterval.Period">
                                 <xsl:with-param name="wrapIn">valuePeriod</xsl:with-param>
                             </xsl:call-template>
@@ -165,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
                             <xsl:call-template name="ext-TimeInterval.Duration">
                                 <xsl:with-param name="wrapIn">valueDuration</xsl:with-param>
                             </xsl:call-template>

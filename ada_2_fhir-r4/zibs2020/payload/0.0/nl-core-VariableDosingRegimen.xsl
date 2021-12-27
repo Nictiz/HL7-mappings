@@ -89,12 +89,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="unknown"/>
 
                 <intent value="order"/>
-
-                <!-- TODO: Issue FHIR profile has wrong SNOMED code 274512008, should be: 395067002 -->
+                
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="274512008"/>
+                        <code value="395067002"/>
                         <display value="optimaliseren van dosering van medicatie"/>
                     </coding>
                 </category>
@@ -173,16 +172,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </basedOn>
                 </xsl:for-each>
 
-                <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value]">
-                    <basedOn>
-                        <type value="MedicationRequest"/>
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier"/>
-                        </identifier>
-                        <display value="relatie naar wisselend doseerschema met identificatie: {string-join((@value, @root), ' || ')}"/>
-                    </basedOn>
-                </xsl:for-each>
-
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
@@ -195,6 +184,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction">
                         <xsl:with-param name="wrapIn">dosageInstruction</xsl:with-param>
                     </xsl:call-template>
+                </xsl:for-each>
+                
+                <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value]">
+                    <priorPrescription>
+                        <type value="MedicationRequest"/>
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier"/>
+                        </identifier>
+                        <display value="relatie naar wisselend doseerschema met identificatie: {string-join((@value, @root), ' || ')}"/>
+                    </priorPrescription>
                 </xsl:for-each>
             </MedicationRequest>
         </xsl:for-each>
