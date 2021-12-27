@@ -89,12 +89,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="unknown"/>
 
                 <intent value="order"/>
-
-                <!-- TODO: Issue FHIR profile has wrong SNOMED code 274512008, should be: 395067002 -->
+                
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="274512008"/>
+                        <code value="395067002"/>
                         <display value="optimaliseren van dosering van medicatie"/>
                     </coding>
                 </category>
