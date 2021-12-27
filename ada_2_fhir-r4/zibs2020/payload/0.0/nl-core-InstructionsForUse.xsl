@@ -429,19 +429,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="toedientijd">
 
                 <xsl:choose>
-                    <xsl:when test="matches(@value, '[0-9:Z]+')">
-                        <!-- mp9 ada has datatype time -->
-                        <timeOfDay value="{@value}"/>
-                    </xsl:when>
-                    <xsl:when test="matches(@value, '[0-9:]*T[0-9:Z]+')">
+                    <xsl:when test="matches(@value, '[0-9\-]*T[0-9:Z]+')">
                         <!-- Hack; zib ada defined the datatype dateTime, whereas the result should be of FHIR datatype time.
                      So we just let the user create a dateTime and discard the date part. -->
-                        <xsl:analyze-string select="@value" regex="[0-9:]*T([0-9:Z]+)">
+                        <xsl:analyze-string select="@value" regex="[0-9\-]*T([0-9:Z]+)">
                             <xsl:matching-substring>
                                 <timeOfDay value="{regex-group(1)}"/>
                             </xsl:matching-substring>
                         </xsl:analyze-string>
                     </xsl:when>
+                    <xsl:when test="matches(@value, '[0-9:Z]+')">
+                        <!-- mp9 ada has datatype time -->
+                        <timeOfDay value="{@value}"/>
+                    </xsl:when>                   
                     <xsl:otherwise>
                         <!-- we don't know let's convert input to output -->
                         <timeOfDay value="{@value}"/>
