@@ -238,6 +238,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- MP9 dataset -->
                         <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
                             <request>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                                    <!-- Need to become SNOMED 33633005.  
+                                https://github.com/Nictiz/Nictiz-R4-zib2020/issues/221 / https://bits.nictiz.nl/browse/MP-489  -->
+                                    <valueCodeableConcept>
+                                        <coding>
+                                            <system value="http://snomed.info/sct"/>
+                                            <code value="16076005"/>
+                                            <display value="voorschrijven"/>
+                                        </coding>
+                                    </valueCodeableConcept>
+                                </extension>
                                 <type value="MedicationRequest"/>
                                 <identifier>
                                     <xsl:call-template name="id-to-Identifier"/>
@@ -246,6 +257,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </request>
                         </xsl:for-each>
                     </xsl:when>
+                    <xsl:when test="relatie_wisselend_doseerschema/identificatie[@value]">
+                        <!-- MP9 dataset -->
+                        <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value]">
+                            <request>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                                    <valueCodeableConcept>
+                                        <coding>
+                                            <system value="http://snomed.info/sct"/>
+                                            <code value="395067002"/>
+                                            <display value="optimaliseren van dosering van medicatie"/>
+                                        </coding>
+                                    </valueCodeableConcept>
+                                </extension>
+                                <type value="MedicationRequest"/>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier"/>
+                                </identifier>
+                                <display value="relatie naar wisselend doseerschema met identificatie: {string-join((@value, @root), ' || ')}"/>
+                            </request>
+                        </xsl:for-each>
+                    </xsl:when>
+                    
                     <xsl:otherwise>
                         <!-- zib dataset -->
                         <xsl:for-each select="$request">
@@ -255,8 +288,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </xsl:otherwise>
                 </xsl:choose>
-
-                <!-- TODO, not clear how to map relatie_wisselend_doseerschema on FHIR -->
 
                 <xsl:for-each select="toelichting">
                     <note>
