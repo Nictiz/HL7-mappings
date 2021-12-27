@@ -71,31 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
                     <xsl:call-template name="ext-CopyIndicator"/>
                 </xsl:for-each>
-
-                <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value]">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedAdministrationAgreement">
-                        <valueReference>
-                            <type value="MedicationDispense"/>
-                            <identifier>
-                                <xsl:call-template name="id-to-Identifier"/>
-                            </identifier>
-                            <display value="relatie naar toedieningsafspraak met identificatie: {string-join((@value, @root), ' || ')}"/>
-                        </valueReference>
-                    </extension>
-                </xsl:for-each>
-
-                <xsl:for-each select="relatie_medicatiegebruik/identificatie[@value]">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse">
-                        <valueReference>
-                            <type value="MedicationUse"/>
-                            <identifier>
-                                <xsl:call-template name="id-to-Identifier"/>
-                            </identifier>
-                            <display value="relatie naar medicatiegebruik met identificatie: {string-join((@value, @root), ' || ')}"/>
-                        </valueReference>
-                    </extension>
-                </xsl:for-each>
-
+                
                 <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
                     <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                 </xsl:for-each>
@@ -184,6 +160,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="makeReference"/>
                     </reasonReference>
                 </xsl:for-each>
+                
+                <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value]">
+                    <basedOn>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationAdministrationAgreement">
+                            <valueReference>
+                                <type value="MedicationDispense"/>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier"/>
+                                </identifier>
+                                <display value="relatie naar toedieningsafspraak met identificatie: {string-join((@value, @root), ' || ')}"/>
+                            </valueReference>
+                        </extension>
+                    </basedOn>
+                </xsl:for-each>
+                
+                <xsl:for-each select="relatie_medicatiegebruik/identificatie[@value]">
+                    <basedOn>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationMedicationUse">
+                            <valueReference>
+                                <type value="MedicationUse"/>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier"/>
+                                </identifier>
+                                <display value="relatie naar medicatiegebruik met identificatie: {string-join((@value, @root), ' || ')}"/>
+                            </valueReference>
+                        </extension>
+                    </basedOn>
+                </xsl:for-each>               
 
                 <xsl:for-each select="toelichting">
                     <note>
