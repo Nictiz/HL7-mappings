@@ -216,22 +216,63 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- relatie_medicatieafspraak -->
                 <!-- relatie_toedieningsafspraak -->
                 <!-- relatie_medicatieverstrekking -->
-                <xsl:for-each select="(relatie_medicatieafspraak | relatie_toedieningsafspraak | relatie_medicatieverstrekking)/identificatie[@value]">
+                <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
                     <derivedFrom>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                            <!-- Need to become SNOMED 33633005.  
+                                https://github.com/Nictiz/Nictiz-R4-zib2020/issues/221 / https://bits.nictiz.nl/browse/MP-489  -->
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="16076005"/>
+                                    <display value="voorschrijven"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </identifier>
-                        <display>
-                            <xsl:attribute name="value">
-                                <xsl:choose>
-                                    <xsl:when test="../self::relatie_medicatieafspraak">relatie naar medicatieafspraak</xsl:when>
-                                    <xsl:when test="../self::relatie_toedieningsafspraak">relatie naar toedieningsafspraak</xsl:when>
-                                    <xsl:when test="../self::relatie_medicatieverstrekking">relatie naar medicatieverstrekking</xsl:when>
-                                </xsl:choose>
-                            </xsl:attribute>
-                        </display>
+                        <display value="relatie naar medicatieafspraak"/>
+                    </derivedFrom>
+                </xsl:for-each>
+                <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value]">
+                    <derivedFrom>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="422037009"/>
+                                    <display value="toedieningsafspraak"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                        <display value="relatie naar toedieningsafspraak"/>
+                    </derivedFrom>
+                </xsl:for-each>
+                <xsl:for-each select="relatie_medicatieverstrekking/identificatie[@value]">
+                    <derivedFrom>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="373784005"/>
+                                    <display value="verstrekken van medicatie"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                        <display value="relatie naar medicatieverstrekking"/>
                     </derivedFrom>
                 </xsl:for-each>
 
