@@ -77,6 +77,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="mbh" select="//beschikbaarstellen_medicatiegegevens/medicamenteuze_behandeling"/>
         </xsl:call-template>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
         <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>

@@ -140,22 +140,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
 
         <xsl:for-each-group select="$in[self::patient[.//(@value | @code | @nullFlavor)]]" group-by="concat((identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/@root, (identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/normalize-space(@value))">
-            <!-- Experiment: why don't we just use nf:getGroupingKeyDefault()? Less hardly-used functions, and nobody is going to see the result anyways. -->
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
             </xsl:for-each-group>
         </xsl:for-each-group>
-
-        <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
-                concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
-                nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-            </xsl:for-each-group>
-        </xsl:for-each-group>
-
+        
         <!-- General rule for concepts -->
-        <xsl:for-each-group select="$in[not(self::patient or self::zorgverlener)][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="$in[not(self::patient)][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
 
@@ -345,6 +336,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                     <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
                         <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:message>
+                    </xsl:if>
+                    <xsl:if test="count($fhirMetadata[@profile = $profile and nm:group-key = $groupKey]) gt 1">
+                        <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' and $profile '<xsl:value-of select="$profile"/>'in $fhirMetadata.</xsl:message>
                     </xsl:if>
                     <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
                 </xsl:when>
@@ -620,7 +614,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Returns the full profileName for an ada element, based on $urlBaseNictizProfile and $ada2resourceType constant</xd:desc>
+        <xd:desc>Returns the full profileName for an ada element, based on $urlBaseNictizProfile and $ada2resourceType constant.
+            Selects the first one found, which may be wrong if there is more than one entry. In which case you should not use this function.</xd:desc>
         <xd:param name="adaElement">The ada element for which to get the profileName</xd:param>
     </xd:doc>
     <xsl:function name="nf:get-full-profilename-from-adaelement" as="xs:string?">
@@ -630,13 +625,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Returns the last part of the profileName for an ada element, based on $ada2resourceType constant</xd:desc>
+        <xd:desc>Returns the last part of the profileName for an ada element, based on $ada2resourceType constant. 
+            Selects the first one found, which may be wrong if there is more than one entry. In which case you should not use this function.</xd:desc>
         <xd:param name="adaElement">The ada element for which to get the profileName</xd:param>
     </xd:doc>
     <xsl:function name="nf:get-profilename-from-adaelement" as="xs:string?">
         <xsl:param name="adaElement" as="element()?"/>
         
-        <xsl:value-of select="$ada2resourceType/nm:map[@ada = $adaElement/local-name()]/@profile"/>
+        <xsl:value-of select="$ada2resourceType/nm:map[@ada = $adaElement/local-name()][1]/@profile"/>
     </xsl:function>
 
 </xsl:stylesheet>

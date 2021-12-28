@@ -30,6 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="uniqueString" as="xs:string?"/>
         
+        <!-- NOTE: this does not work if you have two ada element names which may end up in different FHIR profiles, the function simply selects the first one found -->
         <xsl:variable name="profileName" as="xs:string?" select="nf:get-profilename-from-adaelement($in)"/>        
         
         <xsl:variable name="logicalIdStartString" as="xs:string*">

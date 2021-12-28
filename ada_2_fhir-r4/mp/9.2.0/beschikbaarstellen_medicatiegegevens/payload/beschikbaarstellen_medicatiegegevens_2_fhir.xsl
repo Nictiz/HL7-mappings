@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR profiles .</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR profiles.</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
                 <xd:ul>
@@ -29,10 +29,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
-         See: https://www.hl7.org/fhir/stu3/search.html#conformance -->
+         See: https://www.hl7.org/fhir/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
 
-  
+
     <!-- only give dateT a value if you want conversion of relative T dates to actual dates, otherwise a Touchstone relative T-date string will be generated -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <!--        <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>-->
@@ -44,8 +44,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="logLevel" select="$logWARN" as="xs:string"/>
     <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
-    <!-- whether or not to output kopie bouwstenen -->
-    <xsl:param name="outputKopieBouwstenen" as="xs:boolean?" select="false()"/>
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -53,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
 
-       <xd:doc>
+    <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
     </xd:doc>
     <xsl:template match="/">

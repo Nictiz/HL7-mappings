@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="c76fbe9e-67c2-11ec-1599-020000000000"/>
+   <id value="30a9f948-6803-11ec-2145-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:c76fbf28-67c2-11ec-1599-020000000000"/>
+      <fullUrl value="urn:uuid:30a9f996-6803-11ec-2145-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH920QA1MA"/>
@@ -15,7 +15,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 12 dec 2020, tot en met 10 jan 2021, 2 maal per dag 1 stuk, oraal"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                <valuePeriod>
                   <start value="2020-12-12T00:00:00+01:00"/>
                   <end value="2021-01-10T23:59:59+01:00"/>
@@ -40,14 +40,19 @@
                   <display value="voorschrijven"/>
                </coding>
             </category>
+            <medicationReference>
+               <reference value="urn:uuid:30a9f9b4-6803-11ec-2145-020000000000"/>
+               <type value="Medication"/>
+               <display value="IBUPROFEN TABLET 600MG"/>
+            </medicationReference>
             <subject>
-               <reference value="urn:uuid:c76fbece-67c2-11ec-1599-020000000000"/>
+               <reference value="urn:uuid:30a9f978-6803-11ec-2145-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, B. XXX_Blik"/>
             </subject>
             <authoredOn value="2020-12-12T08:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c76fbeec-67c2-11ec-1599-020000000000"/>
+               <reference value="urn:uuid:30a9f9d2-6803-11ec-2145-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -90,7 +95,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c76fbece-67c2-11ec-1599-020000000000"/>
+      <fullUrl value="urn:uuid:30a9f978-6803-11ec-2145-020000000000"/>
       <resource>
          <Patient>
             <id value="B.XXX-Blik"/>
@@ -138,7 +143,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c76fbeec-67c2-11ec-1599-020000000000"/>
+      <fullUrl value="urn:uuid:30a9f9d2-6803-11ec-2145-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -146,12 +151,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c76fbf0a-67c2-11ec-1599-020000000000"/>
+               <reference value="urn:uuid:30a9f9f0-6803-11ec-2145-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c76fbf64-67c2-11ec-1599-020000000000"/>
+               <reference value="urn:uuid:30a9fa0e-6803-11ec-2145-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -167,7 +172,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c76fbf0a-67c2-11ec-1599-020000000000"/>
+      <fullUrl value="urn:uuid:30a9f9f0-6803-11ec-2145-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -199,7 +204,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c76fbf64-67c2-11ec-1599-020000000000"/>
+      <fullUrl value="urn:uuid:30a9fa0e-6803-11ec-2145-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -237,7 +242,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c76fbf46-67c2-11ec-1599-020000000000"/>
+      <fullUrl value="urn:uuid:30a9f9b4-6803-11ec-2145-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-17469"/>
