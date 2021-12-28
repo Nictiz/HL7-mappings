@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MedicationDispense-04"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationDispense"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate">
+      <valueDateTime value="2013-08-30T00:25:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"/>
+            <code value="1"/>
+            <display value="GDS"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="verstrekken van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-MedicationDispense-04-Medication-01"/>
+      <type value="Medication"/>
+      <display value="PREDNISON 5MG TABLET"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-AdministrationAgreement-03-Organization-01"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Poli-apotheek Het Ziekenhuis"/>
+      </actor>
+   </performer>
+   <quantity>
+      <value value="100"/>
+      <unit value="stuks"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="{stuks}"/>
+   </quantity>
+   <whenHandedOver value="2013-09-01T13:12:09+02:00"/>
+</MedicationDispense>

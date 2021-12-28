@@ -1,0 +1,174 @@
+<?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
+   <id value="caf48522-67c2-11ec-1226-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:caf4783e-67c2-11ec-1226-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <id value="216840111388324311999773737840051-MBH920ZINRvoorschrijvenMVE"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationDispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_920_ZINRvoorschrijven"/>
+               </valueIdentifier>
+            </extension>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="verstrekken van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:caf48598-67c2-11ec-1226-020000000000"/>
+               <type value="Medication"/>
+               <display value="INDAPAMIDE SANDOZ TABLET 2,5MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:caf4855c-67c2-11ec-1226-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. XXX_Niesing"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:caf485b6-67c2-11ec-1226-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_920_ZINRvoorschrijven_VV"/>
+               </identifier>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_ZINRvoorschrijven_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
+            <quantity>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                  <valueQuantity>
+                     <value value="150"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </valueQuantity>
+               </extension>
+               <value value="150"/>
+               <unit value="stuk"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="1"/>
+            </quantity>
+            <whenHandedOver value="2021-01-01T14:05:00+01:00"/>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:caf4855c-67c2-11ec-1226-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="M.XXX-Niesing"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="M. XXX_Niesing"/>
+               <family value="XXX_Niesing">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Niesing"/>
+                  </extension>
+               </family>
+               <given value="M.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1985-10-29"/>
+         </Patient>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:caf485b6-67c2-11ec-1226-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="2.16.528.1.1007.3.3-01236578"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:caf48598-67c2-11ec-1226-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-14896087"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14896087"/>
+                  <display value="INDAPAMIDE SANDOZ TABLET 2,5MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="685410"/>
+                  <display value="INDAPAMIDE SANDOZ TABLET 2,5MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="2941"/>
+                  <display value="INDAPAMIDE 2,5MG TABLET"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="83593"/>
+                  <display value="INDAPAMIDE 2,5MG TABLET"/>
+               </coding>
+               <text value="INDAPAMIDE SANDOZ TABLET 2,5MG"/>
+            </code>
+         </Medication>
+      </resource>
+   </entry>
+</Bundle>

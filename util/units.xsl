@@ -336,6 +336,33 @@
     </xsl:function>
     
     <xd:doc>
+        <xd:desc>Converts an ada unit to the UCUM unit as used in FHIR</xd:desc>
+        <xd:param name="ADAunit">The ada unit string</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:convert_ADA_unit2UCUM_FHIR" as="xs:string?">
+        <xsl:param name="ADAunit" as="xs:string?"/>
+        <xsl:if test="$ADAunit">
+            <xsl:choose>
+                <xsl:when test="$ADAunit = $ada-unit-gram">g</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-mmHg">mm[Hg]</xsl:when>
+                <xsl:when test="nf:isValidUCUMUnit($ADAunit)">
+                    <xsl:value-of select="$ADAunit"/>
+                </xsl:when>
+                <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM_FHIR($ADAunit), 'onbekend'))">
+                    <xsl:value-of select="nf:convertTime_ADA_unit2UCUM_FHIR($ADAunit)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- If all else fails: wrap in {} to make it an annotation -->
+                    <xsl:value-of select="concat('{', $ADAunit, '}')"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+    
+    <xd:doc>
         <xd:desc>Converts ADA time unit 2 UCUM</xd:desc>
         <xd:param name="ADAtime"/>
     </xd:doc>

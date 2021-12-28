@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="nl-core-AdministrationAgreement-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="2014-09-19T07:12:59+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf 19-9-2014 tot 18-12-2014 1x per dag om 18uur 2500ie(=0,2ml)"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="2014-09-19"/>
+         <end value="2014-12-18"/>
+      </valuePeriod>
+   </extension>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-AdministrationAgreement-03-Medication-01"/>
+      <type value="Medication"/>
+      <display value="DALTEPARINE 12500IE/ML INJV"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-AdministrationAgreement-03-Organization-01"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Poli-apotheek Het Ziekenhuis"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <timeOfDay value="18:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="subcutaan"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <value value="2500"/>
+            <unit value="IE"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="{IE}"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationDispense>

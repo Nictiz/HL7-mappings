@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="nl-core-AdministrationAgreement-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="2015-09-10T09:16:31+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Gedurende 5 dagen 1x/dag (8u) 40 mg (=1 st)"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+      <valueDuration>
+         <value value="5"/>
+         <unit value="d"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-AdministrationAgreement-02-Medication-01"/>
+      <type value="Medication"/>
+      <display value="PANTOPRAZOL 40MG INJPDR"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-AdministrationAgreement-01-Organization-01"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="true"/>
+            </extension>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+            <timeOfDay value="08:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="iv"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <value value="40"/>
+            <unit value="mg"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="mg"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationDispense>

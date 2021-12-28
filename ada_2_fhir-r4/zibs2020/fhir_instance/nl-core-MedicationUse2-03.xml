@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MedicationUse2-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator">
+      <valueBoolean value="false"/>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="113371000146109"/>
+            <display value="definitief gestopt met medicatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <status value="not-taken"/>
+   <statusReason>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="704417003"/>
+         <display value="Loopt risico op bijwerking van medicatie"/>
+      </coding>
+   </statusReason>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422979000"/>
+         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-MedicationDispense-03-Medication-01"/>
+      <type value="Medication"/>
+      <display value="FRAGMIN 2500 INJVLST 12.500IE/ML WWSP 0,2ML"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="2014-09-17"/>
+   </effectivePeriod>
+   <dateAsserted value="2014-09-19T04:12:11+02:00"/>
+   <note>
+      <text value="Tijdelijk gestopt vanwege toenemende bijwerkingen: duizeligheid en misselijkheid."/>
+   </note>
+   <dosage>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="true"/>
+            </extension>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+            <timeOfDay value="18:00:00"/>
+         </repeat>
+      </timing>
+      <doseAndRate>
+         <doseQuantity>
+            <value value="2500"/>
+            <unit value="IE"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="{IE}"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosage>
+</MedicationStatement>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationAdministration xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MedicationAdministration2-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAdministration2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
+      <valueDateTime value="2014-09-19T09:00:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DeviatingAdministration">
+      <valueBoolean value="true"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+            <code value="FORGOT"/>
+            <display value="Forgotten to administer"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="on-hold"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="18629005"/>
+         <display value="toediening van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-MedicationAdministration2-03-Medication-01"/>
+      <type value="Medication"/>
+      <display value="NOVORAPID FLEXPEN INJVLST 100E/ML PEN 3ML"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2014-09-19T14:12:11+02:00"/>
+   <request>
+      <reference value="MedicationRequest/nl-core-MedicationAdministration2-03-MedicationRequest-01"/>
+      <type value="MedicationRequest"/>
+      <display value="Medication agreement"/>
+   </request>
+   <dosage>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="Subcutaan"/>
+         </coding>
+      </route>
+      <dose>
+         <value value="22"/>
+         <unit value="eenheden"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{eenheden}"/>
+      </dose>
+   </dosage>
+</MedicationAdministration>

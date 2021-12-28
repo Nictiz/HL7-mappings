@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BloodPressure-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BloodPressure"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="33586001"/>
+            <display value="Zittende positie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="85354-9"/>
+         <display value="Blood pressure panel with all children optional"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2013-02-08T06:43:00+01:00"/>
+   <note>
+      <text value="Mw. is zwanger"/>
+   </note>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="368209003"/>
+         <display value="Rechter bovenarm"/>
+      </coding>
+   </bodySite>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="371911009"/>
+         <display value="Bloeddrukmeting met gebruikmaking van manchet"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8480-6"/>
+            <display value="Systolic blood pressure"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="125"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8462-4"/>
+            <display value="Diastolic blood pressure"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="75"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="85549003"/>
+            <display value="Korotkofftonen (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="255271000"/>
+            <display value="Fase 4"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="70665002"/>
+            <display value="Blood pressure cuff"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.15.1"/>
+            <code value="STD"/>
+            <display value="Standaard (Standaard manchet voor een volwassene (manchet 16x30 cm)"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="6797001"/>
+            <display value="gemiddelde bloeddruk (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="100"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+</Observation>

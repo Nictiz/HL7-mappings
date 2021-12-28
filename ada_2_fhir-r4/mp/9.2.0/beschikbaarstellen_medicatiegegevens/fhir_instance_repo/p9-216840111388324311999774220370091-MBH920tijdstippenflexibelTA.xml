@@ -1,0 +1,96 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="p9-216840111388324311999774220370091-MBH920tijdstippenflexibelTA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="${DATE, T, D, +0}T09:24:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 3 maal daags 1 tablet, (8:00, 14:00, 20:00) oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +14}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_tijdstippen_flexibel"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      <value value="MBH_920_tijdstippen_flexibel_TA"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-7-693332"/>
+      <type value="Medication"/>
+      <display value="METFORMINE HCL PCH TABLET 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-G-XXX-Hemsbergen"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Hemsbergen"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/ationnl-core-HealthcareProvider-mp9-2-16-528-1-1007-3-3-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_920_tijdstippen_flexibel_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_920_tijdstippen_flexibel_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="false"/>
+            </extension>
+            <timeOfDay value="08:00:00"/>
+            <timeOfDay value="14:00:00"/>
+            <timeOfDay value="20:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationDispense>

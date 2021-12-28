@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="nl-core-AdministrationAgreement-04"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="2013-08-30T08:41:43+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Van 1-8-2013 tot 30-8-2013 volgens afbouwschema. Per 30-8-2013 onderbreken."/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="2013-08-01"/>
+         <end value="2013-08-30"/>
+      </valuePeriod>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="113381000146106"/>
+            <display value="Drug therapy definitively stopped (finding)"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
+      <valueDuration>
+         <value value="1"/>
+         <unit value="d"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </modifierExtension>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-AdministrationAgreement-04-Medication-01"/>
+      <type value="Medication"/>
+      <display value="PREDNISON 5MG TABLET"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-AdministrationAgreement-03-Organization-01"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Poli-apotheek Het Ziekenhuis"/>
+      </actor>
+   </performer>
+</MedicationDispense>
