@@ -160,4 +160,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Creates an Encounter reference based on identifier using ada identificatie element</xd:desc>
+    </xd:doc>
+    <xsl:template name="nl-core-Encounter-RefIdentifier" match="identificatie | identificatienummer" mode="nl-core-Encounter-RefIdentifier">
+        <type value="Encounter"/>
+        <identifier>
+            <xsl:call-template name="id-to-Identifier"/>
+        </identifier>
+        <display value="relatie naar contact met identificatie: {string-join((@value, @root), ' || ')}"/>
+    </xsl:template>
+
 </xsl:stylesheet>

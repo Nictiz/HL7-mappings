@@ -109,11 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
                     <encounter>
-                        <type value="Encounter"/>
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier"/>
-                        </identifier>
-                        <display value="relatie naar contact met identificatie: {string-join((@value, @root), ' || ')}"/>
+                        <xsl:apply-templates select="." mode="nl-core-Encounter-RefIdentifier"/>
                     </encounter>
                 </xsl:for-each>
 

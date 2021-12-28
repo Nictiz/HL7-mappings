@@ -167,4 +167,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:value-of select="string-join($parts, ', ')"/>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template for shared extension http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare</xd:desc>
+        <xd:param name="in">Optional. Ada element containing the identifier of the episode. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="ext-Context-EpisodeOfCare" match="*" as="element()?" mode="ext-Context-EpisodeOfCare">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:for-each select="$in">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare">
+                <valueReference>
+                    <xsl:apply-templates select="." mode="nl-core-EpisodeOfCare-RefIdentifier"/>
+                </valueReference>
+            </extension>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Creates an EpisodeOfCare reference based on identifier using ada identificatie element</xd:desc>
+    </xd:doc>
+    <xsl:template name="nl-core-EpisodeOfCare-RefIdentifier" match="identificatie | identificatienummer" mode="nl-core-EpisodeOfCare-RefIdentifier">
+        <type value="EpisodeOfCare"/>
+        <identifier>
+            <xsl:call-template name="id-to-Identifier"/>
+        </identifier>
+        <display value="relatie naar zorgepisode met identificatie: {string-join((@value, @root), ' || ')}"/>
+    </xsl:template>
+    
 </xsl:stylesheet>

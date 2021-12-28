@@ -76,7 +76,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
 
-                <!-- TODO kopie-indicator -->
+                <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
+                    <xsl:call-template name="ext-CopyIndicator"/>
+                </xsl:for-each>
 
                 <!-- auteur -->
                 <xsl:for-each select="auteur">
@@ -168,6 +170,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn">subject</xsl:with-param>
                 </xsl:call-template>
+
+                <!-- relatie_contact relatie_zorgepisode in context -->
+                <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
+                    <context>
+                        <!-- relatie_episode -->
+                        <xsl:for-each select="../../relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
+                            <xsl:call-template name="ext-Context-EpisodeOfCare"/>
+                        </xsl:for-each>
+                        <!-- relatie_contact -->
+                        <xsl:apply-templates select="." mode="nl-core-Encounter-RefIdentifier"/>
+                    </context>
+                </xsl:for-each>
+                
+                <!-- relatie_episode when there is no relatie_contact -->
+                <xsl:if test="relatie_zorgepisode/(identificatie | identificatienummer)[@value] and not(relatie_contact/(identificatie | identificatienummer)[@value])">
+                    <context>
+                        <xsl:apply-templates select="relatie_zorgepisode/identificatienummer[@value]" mode="nl-core-EpisodeOfCare-RefIdentifier"/>
+                    </context>
+                </xsl:if>
 
                 <xsl:for-each select="gebruiksperiode">
                     <xsl:call-template name="ext-TimeInterval.Period">

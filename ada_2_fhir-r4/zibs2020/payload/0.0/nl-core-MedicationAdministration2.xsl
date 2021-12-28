@@ -146,6 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn">subject</xsl:with-param>
                 </xsl:call-template>
 
+                <!-- relatie_contact relatie_zorgepisode in context -->
                 <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
                     <context>
                         <!-- relatie_episode -->
@@ -153,22 +154,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                         </xsl:for-each>
                         <!-- relatie_contact -->
-                        <type value="Encounter"/>
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier"/>
-                        </identifier>
-                        <display value="relatie naar contact met identificatie: {string-join((@value, @root), ' || ')}"/>
+                        <xsl:apply-templates select="." mode="nl-core-Encounter-RefIdentifier"/>
                     </context>
                 </xsl:for-each>
 
                 <!-- relatie_episode when there is no relatie_contact -->
                 <xsl:if test="relatie_zorgepisode/(identificatie | identificatienummer)[@value] and not(relatie_contact/(identificatie | identificatienummer)[@value])">
                     <context>
-                        <type value="EpisodeOfCare"/>
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier"/>
-                        </identifier>
-                        <display value="relatie naar zorgepisode met identificatie: {string-join((@value, @root), ' || ')}"/>
+                        <xsl:apply-templates select="relatie_zorgepisode/identificatienummer[@value]" mode="nl-core-EpisodeOfCare-RefIdentifier"/>
                     </context>
                 </xsl:if>
 
