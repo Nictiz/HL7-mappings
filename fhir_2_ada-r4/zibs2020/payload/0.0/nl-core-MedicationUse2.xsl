@@ -210,6 +210,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:comment select="concat('unhandeld FHIR value: ', @value)"/>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">
+                        <xsl:value-of select="./local-name()"/>
+                        <xsl:text> with @value '</xsl:text>
+                        <xsl:value-of select="@value"/>
+                        <xsl:text>'is an unhandeld FHIR value</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
