@@ -45,11 +45,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:comment>Generated from ada instance with title: "<xsl:value-of select="$mbh/../@title"/>" and id: "<xsl:value-of select="$mbh/../@id"/>".</xsl:comment>
         <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9127"/>
-            <xsl:for-each select="$in/voorstel_gegevens/voorstel/identificatie[@value | @root]">
+            <xsl:for-each-group select="$in/voorstel_gegevens/voorstel/identificatie[@value | @root]" group-by="concat(@root,@value)">
                 <xsl:call-template name="makeIIValue">
                     <xsl:with-param name="elemName">id</xsl:with-param>
                 </xsl:call-template>
-            </xsl:for-each>
+            </xsl:for-each-group>
             <code code="107" displayName="Sturen voorstel medicatieafspraak" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
             <statusCode nullFlavor="NI"/>
             <!-- Patient -->
@@ -66,11 +66,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:for-each>
             <!-- Toelichting -->
-            <xsl:for-each select="$in/voorstel_gegevens/voorstel/toelichting[@value]">
+            <xsl:for-each-group select="$in/voorstel_gegevens/voorstel/toelichting[@value]" group-by="@value">
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                 </component>
-            </xsl:for-each>
+            </xsl:for-each-group>
             <!-- Lichaamslengte -->
             <xsl:for-each select="$in/bouwstenen/lichaamslengte[.//(@value | @code)]">
                 <component typeCode="COMP">
