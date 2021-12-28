@@ -6,12 +6,12 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 4 maal per dag 3 stuks"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
       <valuePeriod>
          <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
       <valueDuration>
          <value value="7"/>
          <unit value="dag"/>
@@ -38,6 +38,11 @@
          <display value="voorschrijven"/>
       </coding>
    </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-67903"/>
+      <type value="Medication"/>
+      <display value="PARACETAMOL 500MG TABLET"/>
+   </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-B-XXX-Blik"/>
       <type value="Patient"/>
@@ -45,7 +50,7 @@
    </subject>
    <authoredOn value="${DATE, T, D, -50}T08:15:00+02:00"/>
    <requester>
-      <reference value="PractitionerRole/core-HealthProfessional-Practitioner-mp9-000001111-0100-00001111"/>
+      <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001111-0100-00001111"/>
       <type value="PractitionerRole"/>
       <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
    </requester>

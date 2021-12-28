@@ -6,7 +6,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf &lt;T+1D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
       <valuePeriod>
          <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
          <end value="${DATE, T, D, +10}T23:59:59+02:00"/>
@@ -31,6 +31,11 @@
          <display value="voorschrijven"/>
       </coding>
    </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-17205"/>
+      <type value="Medication"/>
+      <display value="FENETICILLINE CAPSULE 500MG"/>
+   </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-M-XXX-Nederveen"/>
       <type value="Patient"/>
@@ -38,7 +43,7 @@
    </subject>
    <authoredOn value="${DATE, T, D, +0}T11:07:00+02:00"/>
    <requester>
-      <reference value="PractitionerRole/core-HealthProfessional-Practitioner-mp9-000001112-0100-00001111"/>
+      <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001112-0100-00001111"/>
       <type value="PractitionerRole"/>
       <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
    </requester>
