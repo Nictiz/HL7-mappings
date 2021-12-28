@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 	<xsl:variable name="zib-MedicationAgreement" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement'"/>
 	<xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
+   <!-- xxxwim moet deze niet weg:-->
 	<xsl:variable name="zib-Medication-StopType" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType'"/>
 	<xsl:variable name="zib-Medication-PeriodOfUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
 	<xsl:variable name="zib-MedicationAgreement-BasedOnAgreementOrUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'"/>
@@ -24,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<!--xxxwim-->
 	<xsl:variable name="medication-AdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation'"/>
 	<xsl:variable name="extStoptype" select="'http://nictiz.nl/fhir/StructureDefinition/ext-StopType'"/>
-	<!--xxxwim geen gerealteerde zib of nl_core gevonden-->
+	<!--xxxwim geen gerelateerde zib of nl_core gevonden-->
 	<xsl:variable name="extRelatedMedicationUse" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse'"/>
 
 
@@ -51,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- geannuleerd_indicator  -->
 			<xsl:apply-templates select="f:status" mode="#current"/>
 			<!-- stoptype -->
-			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-MedicationAgreement"/>
+		    <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
 			<!-- relatie medicatieafspraak -->
 			<xsl:apply-templates select="f:priorPrescription" mode="#current"/>
 			<!-- relatie_medicatiegebruik -->
@@ -99,15 +100,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
 
-	<!--xxxwim: komt uit HL7-mappings/fhir_2_ada/zibs2017/payload/ext-zib-medication-stop-type-2.0.xsl
-        (zit ook bij Administrationagreement)-->
-	<xd:doc>
+<!--	<xd:doc>
 		<xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="nl-core-MedicationAgreement">
 		<xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
 	</xsl:template>
-	<xd:doc>
+
+    <xd:doc>
+        <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:valueCodeableConcept" mode="nl-core-MedicationAgreement">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="adaElementName" select="'medicatieafspraak_stop_type'"/>
+        </xsl:call-template>
+    </xsl:template>
+    -->
+    <xd:doc>
 		<xd:desc>Template to resolve priorPrescription.</xd:desc>
 	</xd:doc>
 	<xd:doc>
@@ -117,16 +127,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<relatie_medicatieafspraak>
 			<xsl:call-template name="Reference-to-identificatie"/>
 		</relatie_medicatieafspraak>
-	</xsl:template>
-
-	<xd:doc>
-		<xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:valueCodeableConcept" mode="nl-core-MedicationAgreement">
-		<xsl:call-template name="CodeableConcept-to-code">
-			<xsl:with-param name="in" select="."/>
-			<xsl:with-param name="adaElementName" select="'medicatieafspraak_stop_type'"/>
-		</xsl:call-template>
 	</xsl:template>
 
 	<xd:doc>
