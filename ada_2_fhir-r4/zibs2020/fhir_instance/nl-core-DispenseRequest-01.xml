@@ -39,7 +39,14 @@
       <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
    </performer>
    <dispenseRequest>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation">
+         <valueReference>
+            <reference value="Location/nl-core-DispenseRequest-01"/>
+            <type value="Location"/>
+            <display value="afleverlocatie"/>
+         </valueReference>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
          <valueDuration>
             <value value="40"/>
             <unit value="d"/>

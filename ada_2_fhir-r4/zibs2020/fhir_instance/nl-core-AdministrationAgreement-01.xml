@@ -10,11 +10,18 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf 2 mei gedurende 4 weken zo nodig bij pijn 500 mg (=1 st), max. 4x per dag"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
          <start value="2012-05-02"/>
-         <end value="2012-05-30"/>
       </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+      <valueDuration>
+         <value value="4"/>
+         <unit value="wk"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="wk"/>
+      </valueDuration>
    </extension>
    <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
       <valueDuration>
@@ -24,7 +31,7 @@
          <code value="d"/>
       </valueDuration>
    </modifierExtension>
-   <status value="completed"/>
+   <status value="unknown"/>
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>

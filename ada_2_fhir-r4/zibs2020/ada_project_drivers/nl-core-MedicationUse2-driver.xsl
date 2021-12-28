@@ -35,4 +35,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     
+    <xsl:template match="/">
+        <xsl:apply-templates mode="_doTransform" select="//medicatie_gebruik2_registratie/medicatie_gebruik"/>
+    </xsl:template>
+    
 </xsl:stylesheet>
