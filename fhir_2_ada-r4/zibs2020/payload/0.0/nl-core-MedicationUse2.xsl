@@ -42,8 +42,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ext-MedicationUse2.AsAgreedIndicator"
         select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator'"/>
     <xsl:variable name="zib-Medication-CopyIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
-    <xsl:variable name="zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse"
-        select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>
+<!--    <xsl:variable name="zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse"
+        select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>-->
 
     <xd:doc>
         <xd:desc>Template to convert f:MedicationStatement to ADA medicatie_gebruik</xd:desc>
@@ -59,6 +59,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_iIndicator -->
             <xsl:apply-templates select="f:status" mode="#current"/>
+            <!-- reden_wijzigen_of_stoppen_gebruik -->
+            <xsl:apply-templates select="f:statusReason" mode="#current"/>
+
             <!-- stoptype -->
             <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
             <!-- volgens_afspraak_indicator -->
@@ -210,6 +213,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>
+            Template to convert f:statusReason to reden_wijzigen_of_stoppen_gebruik.
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="f:statusReason" mode="nl-core-MedicationUse2">
+        <reden_wijzigen_of_stoppen_gebruik 
+            code="{f:coding/f:code/@value}"
+            codeSystem="2.16.840.1.113883.6.96"
+            displayName="{f:coding/f:display/@value}"/>
+    </xsl:template>
+
+
     <xd:doc>
         <xd:desc>Template to convert f:medicationReference to gebruiks_product</xd:desc>
     </xd:doc>
