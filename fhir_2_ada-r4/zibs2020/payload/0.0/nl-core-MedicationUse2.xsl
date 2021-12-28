@@ -18,6 +18,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="extMedicationUse2Prescriber" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber'"/>
     <xsl:variable name="ext-MedicationUse-Author" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author'"/>
     <xsl:variable name="ext-MedicationUse2.AsAgreedIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator'"/>
+    <xsl:variable name="ext-MedicationUse2.TimeIntervalDuration" select="'http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration'"/>
+    
+    
 <!--    <xsl:variable name="zib-Medication-CopyIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>-->
     <!--    <xsl:variable name="zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse"
         select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>-->
@@ -83,8 +86,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <gebruiksperiode>
             <xsl:apply-templates select="f:start" mode="#current"/>
             <xsl:apply-templates select="f:end" mode="#current"/>
+            <xsl:apply-templates select="./parent::f:MedicationStatement/f:extension[@url eq $ext-MedicationUse2.TimeIntervalDuration]" mode="nl-core-MedicationUse2"/>
         </gebruiksperiode>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Template to convert ext-TimeInterval-Duration to tijds_duur</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:extension[@url eq $ext-MedicationUse2.TimeIntervalDuration]" mode="nl-core-MedicationUse2">
+        <xsl:variable name="code-value" select="f:valueDuration/f:code/@value"/>
+        <tijds_duur value="{f:valueDuration/f:value/@value}"
+            unit="{nf:convertTime_UCUM_FHIR2ADA_unit($code-value)}"/>
+    </xsl:template>
+
 
     <xd:doc>
         <xd:desc>Template to convert f:start to gebruiksperiode_start</xd:desc>
@@ -143,7 +157,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc>
