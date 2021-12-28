@@ -83,7 +83,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- reden_gebruik -->
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
             <!-- reden_wijzigen_of_stoppen_gebruik -->
-            <xsl:apply-templates select="f:extension[@url = $zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse]" mode="#current"/>
+<!--            <xsl:apply-templates select="f:extension[@url = $zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse]" mode="#current"/>-->
             <!-- kopie_indicator -->
             <xsl:apply-templates select="f:extension[@url = $zib-Medication-CopyIndicator]" mode="ext-zib-Medication-CopyIndicator-2.0"/>
             <!-- toelichting -->
@@ -475,7 +475,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <reden_gebruik value="{f:text/@value}"/>
     </xsl:template>
 
-    <xd:doc>
+<!--    <xd:doc>
         <xd:desc>Template to convert f:extension with extension url "$reasonForChangeOrDiscontinuationOfUse-url" to reden_wijzigen_of_stoppen_gebruik</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = $zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse]" mode="nl-core-MedicationUse2">
@@ -483,7 +483,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="f:valueCodeableConcept"/>
             <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_stoppen_gebruik'"/>
         </xsl:call-template>
-    </xsl:template>
+    </xsl:template>-->
 
     <xd:doc>
         <xd:desc>Template to convert f:note to toelichting.</xd:desc>
