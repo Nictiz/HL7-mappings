@@ -35,24 +35,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <!-- datum -->
-                <xsl:for-each select="hl7:author/hl7:time">
-                    <xsl:call-template name="handleTS">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="elemName">verstrekkingsverzoek_datum</xsl:with-param>
-                        <xsl:with-param name="vagueDate" select="true()"/>
-                        <xsl:with-param name="datatype">datetime</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                
+                <xsl:apply-templates select="hl7:author/hl7:time" mode="uni-Verstrekkingsverzoek"/>
+                               
                 <!-- auteur -->
-                <xsl:for-each select="hl7:author[.//(@value | @code | @nullFlavor)]">
-                    <auteur>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
-                            <xsl:with-param name="author-hl7" select="."/>
-                            <xsl:with-param name="generateId" select="true()"/>
-                        </xsl:call-template>
-                    </auteur>
-                </xsl:for-each>
+                <xsl:apply-templates select="hl7:author[.//(@value | @code | @nullFlavor)]" mode="uni-Verstrekkingsverzoek"/>
+                
+                    
                 
                 <!-- te_verstrekken_geneesmiddel -->
                 <xsl:for-each select="hl7:product/hl7:manufacturedProduct/hl7:manufacturedMaterial">
@@ -154,5 +142,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Convert hl7:author into ada auteur</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:author" mode="uni-Verstrekkingsverzoek">        
+        <auteur>
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
+                <xsl:with-param name="author-hl7" select="."/>
+                <xsl:with-param name="generateId" select="true()"/>
+            </xsl:call-template>
+        </auteur>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Convert hl7:author/hl7:time into ada verstrekkingsverzoek_datum</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:author/hl7:time" mode="uni-Verstrekkingsverzoek">
+        <xsl:call-template name="handleTS">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="elemName">verstrekkingsverzoek_datum</xsl:with-param>
+            <xsl:with-param name="vagueDate" select="true()"/>
+            <xsl:with-param name="datatype">datetime</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>    
     
 </xsl:stylesheet>

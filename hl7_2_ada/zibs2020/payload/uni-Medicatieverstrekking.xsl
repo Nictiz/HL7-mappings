@@ -49,6 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="hl7:entryRelationship/*[hl7:code[@code = '4'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:value[@value | @nullFlavor]">
                     <xsl:call-template name="handleTS">
                         <xsl:with-param name="elemName">aanschrijf_datum</xsl:with-param>
+                        <xsl:with-param name="datatype">datetime</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 

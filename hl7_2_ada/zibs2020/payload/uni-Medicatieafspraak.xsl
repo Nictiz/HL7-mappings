@@ -90,13 +90,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="elemName">identificatie</xsl:with-param>
                 </xsl:call-template>
 
-                <!-- medicatieafspraak_datum_tijd -->
-                <xsl:call-template name="handleTS">
-                    <xsl:with-param name="in" select="hl7:author/hl7:time"/>
-                    <xsl:with-param name="elemName">medicatieafspraak_datum_tijd</xsl:with-param>
-                    <xsl:with-param name="vagueDate" select="true()"/>
-                    <xsl:with-param name="datatype">datetime</xsl:with-param>
-                </xsl:call-template>
+                <!-- medicatieafspraak_datum_tijd -->               
+                <xsl:apply-templates select="hl7:author/hl7:time" mode="uni-Medicatieafspraak"/>
 
                 <!-- gebruiksperiode -->
                 <xsl:variable name="IVL_TS" select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'IVL_TS')]"/>
@@ -148,13 +143,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- relatie zorgepisode -->
                 <xsl:call-template name="uni-relatieZorgepisode"/>
 
-                <!-- voorschrijver -->
-                <voorschrijver>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
-                        <xsl:with-param name="author-hl7" select="hl7:author"/>
-                        <xsl:with-param name="generateId" select="true()"/>
-                    </xsl:call-template>
-                </voorschrijver>
+                <!-- voorschrijver / voorstelgegevens/auteur -->
+                <xsl:apply-templates select="hl7:author" mode="uni-Medicatieafspraak"/>
 
                 <!-- reden wijzigen of staken -->
                 <xsl:variable name="ada-elemName">reden_wijzigen_of_staken</xsl:variable>
@@ -217,6 +207,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Convert hl7:author/hl7:time into ada medicatieafspraak_datum_tijd</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:author/hl7:time" mode="uni-Medicatieafspraak">
+        <xsl:call-template name="handleTS">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="elemName">medicatieafspraak_datum_tijd</xsl:with-param>
+            <xsl:with-param name="vagueDate" select="true()"/>
+            <xsl:with-param name="datatype">datetime</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Convert hl7:author into ada voorschrijver</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:author" mode="uni-Medicatieafspraak">
+        <voorschrijver>
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
+                <xsl:with-param name="author-hl7" select="."/>
+                <xsl:with-param name="generateId" select="true()"/>
+            </xsl:call-template>
+        </voorschrijver>
+    </xsl:template>
+    
+    
 
 
 </xsl:stylesheet>
