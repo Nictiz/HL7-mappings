@@ -6,7 +6,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf &lt;T-170D&gt; t/m &lt;T-21D&gt;, 1 maal per dag 1 stuk, oraal"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
          <start value="${DATE, T, D, -170}T00:00:00+02:00"/>
          <end value="${DATE, T, D, -21}T23:59:59+02:00"/>
@@ -31,11 +31,6 @@
          <display value="voorschrijven"/>
       </coding>
    </category>
-   <medicationReference>
-      <reference value="Medication/core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-7-2214350"/>
-      <type value="Medication"/>
-      <display value="XARELTO TABLET FILMOMHULD 20MG"/>
-   </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-M-XXX-Niesing"/>
       <type value="Patient"/>

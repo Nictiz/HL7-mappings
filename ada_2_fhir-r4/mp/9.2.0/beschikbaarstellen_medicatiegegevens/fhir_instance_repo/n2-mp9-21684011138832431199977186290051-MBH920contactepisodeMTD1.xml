@@ -45,7 +45,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.9200"/>
                <value value="MBH_920_contactepisode_EPISODE1"/>
             </identifier>
-            <display value="relatie naar episode met identificatie: MBH_920_contactepisode_EPISODE1 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+            <display value="relatie naar zorgepisode met identificatie: MBH_920_contactepisode_EPISODE1 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
          </valueReference>
       </extension>
       <type value="Encounter"/>
@@ -64,6 +64,15 @@
       </actor>
    </performer>
    <request>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="16076005"/>
+               <display value="voorschrijven"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
       <type value="MedicationRequest"/>
       <identifier>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>

@@ -51,6 +51,24 @@
       <type value="Patient"/>
       <display value="Patient, H. XXX_Hoek"/>
    </subject>
+   <context>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare">
+         <valueReference>
+            <type value="EpisodeOfCare"/>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+               <value value="MBH_920_contactepisode_EPISODE1"/>
+            </identifier>
+            <display value="relatie naar zorgepisode met identificatie: MBH_920_contactepisode_EPISODE1 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+         </valueReference>
+      </extension>
+      <type value="Encounter"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+         <value value="MBH_920_contactepisode_CONTACT3"/>
+      </identifier>
+      <display value="relatie naar contact met identificatie: MBH_920_contactepisode_CONTACT3 || 2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+   </context>
    <effectivePeriod>
       <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
       <end value="${DATE, T, D, -9}T23:59:59+02:00"/>
@@ -62,6 +80,15 @@
       <display value="Patient, H. XXX_Hoek"/>
    </informationSource>
    <derivedFrom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="16076005"/>
+               <display value="voorschrijven"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
       <identifier>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <value value="MBH_920_contactepisode_MA"/>

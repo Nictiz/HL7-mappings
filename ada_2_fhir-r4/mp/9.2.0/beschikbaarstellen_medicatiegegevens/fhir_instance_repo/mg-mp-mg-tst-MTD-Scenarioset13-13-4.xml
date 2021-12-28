@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="c57d83ee-640e-11ec-2685-020000000000"/>
+   <id value="cabdda0e-67c2-11ec-1434-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:c57d8478-640e-11ec-2685-020000000000"/>
+      <fullUrl value="urn:uuid:cabdda98-67c2-11ec-1434-020000000000"/>
       <resource>
          <MedicationAdministration>
             <id value="21684011138832431199977186290051-MBH920contactepisodeMTD1"/>
@@ -37,12 +37,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c57d8496-640e-11ec-2685-020000000000"/>
+               <reference value="urn:uuid:cabddab6-67c2-11ec-1434-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c57d841e-640e-11ec-2685-020000000000"/>
+               <reference value="urn:uuid:cabdda3e-67c2-11ec-1434-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
@@ -54,7 +54,7 @@
                         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.9200"/>
                         <value value="MBH_920_contactepisode_EPISODE1"/>
                      </identifier>
-                     <display value="relatie naar episode met identificatie: MBH_920_contactepisode_EPISODE1 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+                     <display value="relatie naar zorgepisode met identificatie: MBH_920_contactepisode_EPISODE1 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
                   </valueReference>
                </extension>
                <type value="Encounter"/>
@@ -67,12 +67,21 @@
             <effectiveDateTime value="2020-12-12T20:30:00+01:00"/>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c57d843c-640e-11ec-2685-020000000000"/>
+                  <reference value="urn:uuid:cabdda5c-67c2-11ec-1434-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
                </actor>
             </performer>
             <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="16076005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -126,7 +135,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c57d841e-640e-11ec-2685-020000000000"/>
+      <fullUrl value="urn:uuid:cabdda3e-67c2-11ec-1434-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Pherai"/>
@@ -174,7 +183,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c57d843c-640e-11ec-2685-020000000000"/>
+      <fullUrl value="urn:uuid:cabdda5c-67c2-11ec-1434-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -182,12 +191,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c57d845a-640e-11ec-2685-020000000000"/>
+               <reference value="urn:uuid:cabdda7a-67c2-11ec-1434-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c57d84b4-640e-11ec-2685-020000000000"/>
+               <reference value="urn:uuid:cabddad4-67c2-11ec-1434-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -203,7 +212,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c57d845a-640e-11ec-2685-020000000000"/>
+      <fullUrl value="urn:uuid:cabdda7a-67c2-11ec-1434-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -235,7 +244,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c57d84b4-640e-11ec-2685-020000000000"/>
+      <fullUrl value="urn:uuid:cabddad4-67c2-11ec-1434-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -273,7 +282,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c57d8496-640e-11ec-2685-020000000000"/>
+      <fullUrl value="urn:uuid:cabddab6-67c2-11ec-1434-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-7323"/>

@@ -12,7 +12,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="wordt gegenereerd"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
          <start value="${DATE, T, D, -14}T00:00:00+02:00"/>
          <end value="${DATE, T, D, -7}T23:59:59+02:00"/>
@@ -44,7 +44,7 @@
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="274512008"/>
+         <code value="395067002"/>
          <display value="optimaliseren van dosering van medicatie"/>
       </coding>
    </category>
@@ -83,14 +83,6 @@
          <value value="MBH_920_wdsmtd1_MA"/>
       </identifier>
       <display value="relatie naar medicatieafspraak met identificatie: MBH_920_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-   </basedOn>
-   <basedOn>
-      <type value="MedicationRequest"/>
-      <identifier>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-         <value value="MBH_920_wdsmtd1_WDS_trombosedienst"/>
-      </identifier>
-      <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_wdsmtd1_WDS_trombosedienst || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
    </basedOn>
    <note>
       <text value="Dosering aangepast i.v.m. te lage INR waarde."/>
@@ -224,4 +216,12 @@
          </doseQuantity>
       </doseAndRate>
    </dosageInstruction>
+   <priorPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+         <value value="MBH_920_wdsmtd1_WDS_trombosedienst"/>
+      </identifier>
+      <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_wdsmtd1_WDS_trombosedienst || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+   </priorPrescription>
 </MedicationRequest>

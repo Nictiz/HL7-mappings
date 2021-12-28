@@ -6,7 +6,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf &lt;T-1Y{00:00:00}&gt;, 1 maal per dag 1 stuk, oraal"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
          <start value="${DATE, T, Y, -1}T00:00:00+02:00"/>
       </valuePeriod>
@@ -30,11 +30,6 @@
          <display value="voorschrijven"/>
       </coding>
    </category>
-   <medicationReference>
-      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-49484"/>
-      <type value="Medication"/>
-      <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
-   </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-E-XXX-Doppen"/>
       <type value="Patient"/>

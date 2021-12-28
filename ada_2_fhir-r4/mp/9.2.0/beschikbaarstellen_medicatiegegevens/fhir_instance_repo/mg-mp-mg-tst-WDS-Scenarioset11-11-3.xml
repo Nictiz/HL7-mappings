@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="c743d66a-640e-11ec-1474-020000000000"/>
+   <id value="cd6dd5ce-67c2-11ec-2702-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:c743e0ce-640e-11ec-1474-020000000000"/>
+      <fullUrl value="urn:uuid:cd6dd88a-67c2-11ec-2702-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="216840111388324311999776321-MBH920wdsmtd1WDStechnischestop"/>
@@ -21,7 +21,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 18 dec 2020, tot en met 25 dec 2020, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal, definitief gestopt"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2020-12-18T00:00:00+01:00"/>
                   <end value="2020-12-25T23:59:59+01:00"/>
@@ -53,7 +53,7 @@
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="274512008"/>
+                  <code value="395067002"/>
                   <display value="optimaliseren van dosering van medicatie"/>
                </coding>
             </category>
@@ -68,13 +68,13 @@
                <text value="zie bijbehorende medicatiebouwstenen in deze medicamenteuze behandeling"/>
             </medicationCodeableConcept>
             <subject>
-               <reference value="urn:uuid:c743d6a4-640e-11ec-1474-020000000000"/>
+               <reference value="urn:uuid:cd6dd608-67c2-11ec-2702-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <authoredOn value="2020-12-25T10:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c743d6c2-640e-11ec-1474-020000000000"/>
+               <reference value="urn:uuid:cd6dd626-67c2-11ec-2702-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten"/>
             </requester>
@@ -92,14 +92,6 @@
                   <value value="MBH_920_wdsmtd1_MA"/>
                </identifier>
                <display value="relatie naar medicatieafspraak met identificatie: MBH_920_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </basedOn>
-            <basedOn>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_920_wdsmtd1_WDS_trombosedienst"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_wdsmtd1_WDS_trombosedienst || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </basedOn>
             <note>
                <text value="Dosering aangepast i.v.m. te lage INR waarde."/>
@@ -233,6 +225,14 @@
                   </doseQuantity>
                </doseAndRate>
             </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+                  <value value="MBH_920_wdsmtd1_WDS_trombosedienst"/>
+               </identifier>
+               <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_wdsmtd1_WDS_trombosedienst || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+            </priorPrescription>
          </MedicationRequest>
       </resource>
       <search>
@@ -240,7 +240,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c743e10e-640e-11ec-1474-020000000000"/>
+      <fullUrl value="urn:uuid:cd6dd8ca-67c2-11ec-2702-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="216840111388324311999776321-MBH920wdsmtd1WDSverhoging"/>
@@ -256,7 +256,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 26 dec 2020, tot en met 7 jan 2021, cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2020-12-26T00:00:00+01:00"/>
                   <end value="2021-01-07T23:59:59+01:00"/>
@@ -279,7 +279,7 @@
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="274512008"/>
+                  <code value="395067002"/>
                   <display value="optimaliseren van dosering van medicatie"/>
                </coding>
             </category>
@@ -294,13 +294,13 @@
                <text value="zie bijbehorende medicatiebouwstenen in deze medicamenteuze behandeling"/>
             </medicationCodeableConcept>
             <subject>
-               <reference value="urn:uuid:c743d6a4-640e-11ec-1474-020000000000"/>
+               <reference value="urn:uuid:cd6dd608-67c2-11ec-2702-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <authoredOn value="2020-12-25T10:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c743d6c2-640e-11ec-1474-020000000000"/>
+               <reference value="urn:uuid:cd6dd626-67c2-11ec-2702-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten"/>
             </requester>
@@ -311,14 +311,6 @@
                   <value value="MBH_920_wdsmtd1_MA"/>
                </identifier>
                <display value="relatie naar medicatieafspraak met identificatie: MBH_920_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </basedOn>
-            <basedOn>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_920_wdsmtd1_WDS_trombosedienst"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_wdsmtd1_WDS_trombosedienst || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </basedOn>
             <dosageInstruction>
                <sequence value="1"/>
@@ -406,6 +398,14 @@
                   </doseQuantity>
                </doseAndRate>
             </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+                  <value value="MBH_920_wdsmtd1_WDS_trombosedienst"/>
+               </identifier>
+               <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_wdsmtd1_WDS_trombosedienst || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+            </priorPrescription>
          </MedicationRequest>
       </resource>
       <search>
@@ -413,7 +413,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c743d6a4-640e-11ec-1474-020000000000"/>
+      <fullUrl value="urn:uuid:cd6dd608-67c2-11ec-2702-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Pherai"/>
@@ -461,7 +461,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c743d6c2-640e-11ec-1474-020000000000"/>
+      <fullUrl value="urn:uuid:cd6dd626-67c2-11ec-2702-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="222221111-3400-11112222"/>
@@ -469,12 +469,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c743d6e0-640e-11ec-1474-020000000000"/>
+               <reference value="urn:uuid:cd6dd644-67c2-11ec-2702-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Tanja de Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c743d73a-640e-11ec-1474-020000000000"/>
+               <reference value="urn:uuid:cd6dd69e-67c2-11ec-2702-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </organization>
@@ -490,7 +490,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c743d6e0-640e-11ec-1474-020000000000"/>
+      <fullUrl value="urn:uuid:cd6dd644-67c2-11ec-2702-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-222221111"/>
@@ -522,7 +522,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c743d73a-640e-11ec-1474-020000000000"/>
+      <fullUrl value="urn:uuid:cd6dd69e-67c2-11ec-2702-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-11112222"/>

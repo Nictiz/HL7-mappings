@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="c73aa464-640e-11ec-1932-020000000000"/>
+   <id value="cd5cba32-67c2-11ec-2056-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:c73ab652-640e-11ec-1932-020000000000"/>
+      <fullUrl value="urn:uuid:cd5cc478-67c2-11ec-2056-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="216840111388324311999776321-MBH920MtdWdsWDS1"/>
@@ -21,7 +21,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 12 dec 2020, tot en met 10 jan 2021, 1 maal per dag 2 stuks, Oraal"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2020-12-12T00:00:00+01:00"/>
                   <end value="2021-01-10T23:59:59+01:00"/>
@@ -36,7 +36,7 @@
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="274512008"/>
+                  <code value="395067002"/>
                   <display value="optimaliseren van dosering van medicatie"/>
                </coding>
             </category>
@@ -51,13 +51,13 @@
                <text value="zie bijbehorende medicatiebouwstenen in deze medicamenteuze behandeling"/>
             </medicationCodeableConcept>
             <subject>
-               <reference value="urn:uuid:c73aa49e-640e-11ec-1932-020000000000"/>
+               <reference value="urn:uuid:cd5cba6c-67c2-11ec-2056-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, S. XXX_Jankie"/>
             </subject>
             <authoredOn value="2020-12-12T08:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c73aa4bc-640e-11ec-1932-020000000000"/>
+               <reference value="urn:uuid:cd5cba8a-67c2-11ec-2056-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -68,14 +68,6 @@
                   <value value="MBH_920_MtdWds_MA1"/>
                </identifier>
                <display value="relatie naar medicatieafspraak met identificatie: MBH_920_MtdWds_MA1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </basedOn>
-            <basedOn>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_920_MtdWds_WDS0"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_MtdWds_WDS0 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </basedOn>
             <note>
                <text value="toelichting WDS in vrije tekst"/>
@@ -112,6 +104,14 @@
                   </doseQuantity>
                </doseAndRate>
             </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+                  <value value="MBH_920_MtdWds_WDS0"/>
+               </identifier>
+               <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_MtdWds_WDS0 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+            </priorPrescription>
          </MedicationRequest>
       </resource>
       <search>
@@ -119,7 +119,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c73ab66f-640e-11ec-1932-020000000000"/>
+      <fullUrl value="urn:uuid:cd5cc495-67c2-11ec-2056-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="216840111388324311999776321-MBH920MtdWdsWDS2"/>
@@ -135,12 +135,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 12 dec 2020, gedurende 3 weken, 1 maal per dag 2 stuks, Oraal, definitief gestopt"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2020-12-12T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
                <valueDuration>
                   <value value="3"/>
                   <unit value="week"/>
@@ -166,7 +166,7 @@
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="274512008"/>
+                  <code value="395067002"/>
                   <display value="optimaliseren van dosering van medicatie"/>
                </coding>
             </category>
@@ -181,13 +181,13 @@
                <text value="zie bijbehorende medicatiebouwstenen in deze medicamenteuze behandeling"/>
             </medicationCodeableConcept>
             <subject>
-               <reference value="urn:uuid:c73aa49e-640e-11ec-1932-020000000000"/>
+               <reference value="urn:uuid:cd5cba6c-67c2-11ec-2056-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, S. XXX_Jankie"/>
             </subject>
             <authoredOn value="2020-12-12T08:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c73aa4bc-640e-11ec-1932-020000000000"/>
+               <reference value="urn:uuid:cd5cba8a-67c2-11ec-2056-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -205,14 +205,6 @@
                   <value value="MBH_920_MtdWds_MA1"/>
                </identifier>
                <display value="relatie naar medicatieafspraak met identificatie: MBH_920_MtdWds_MA1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </basedOn>
-            <basedOn>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_920_MtdWds_WDS1"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_MtdWds_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </basedOn>
             <note>
                <text value="toelichting WDS in vrije tekst"/>
@@ -249,6 +241,14 @@
                   </doseQuantity>
                </doseAndRate>
             </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+                  <value value="MBH_920_MtdWds_WDS1"/>
+               </identifier>
+               <display value="relatie naar wisselend doseerschema met identificatie: MBH_920_MtdWds_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+            </priorPrescription>
          </MedicationRequest>
       </resource>
       <search>
@@ -256,7 +256,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c73aa49e-640e-11ec-1932-020000000000"/>
+      <fullUrl value="urn:uuid:cd5cba6c-67c2-11ec-2056-020000000000"/>
       <resource>
          <Patient>
             <id value="XXX-JANKIE"/>
@@ -304,7 +304,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c73aa4bc-640e-11ec-1932-020000000000"/>
+      <fullUrl value="urn:uuid:cd5cba8a-67c2-11ec-2056-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -312,12 +312,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c73aa4da-640e-11ec-1932-020000000000"/>
+               <reference value="urn:uuid:cd5cbaa8-67c2-11ec-2056-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c73aa534-640e-11ec-1932-020000000000"/>
+               <reference value="urn:uuid:cd5cbb02-67c2-11ec-2056-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -333,7 +333,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c73aa4da-640e-11ec-1932-020000000000"/>
+      <fullUrl value="urn:uuid:cd5cbaa8-67c2-11ec-2056-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -365,7 +365,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c73aa534-640e-11ec-1932-020000000000"/>
+      <fullUrl value="urn:uuid:cd5cbb02-67c2-11ec-2056-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>

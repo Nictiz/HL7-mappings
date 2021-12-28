@@ -6,7 +6,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf &lt;T-14D{00:00:00}&gt; t/m &lt;T+6D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
          <start value="${DATE, T, D, -14}T00:00:00+02:00"/>
          <end value="${DATE, T, D, +6}T23:59:59+02:00"/>
@@ -31,11 +31,6 @@
          <display value="voorschrijven"/>
       </coding>
    </category>
-   <medicationReference>
-      <reference value="Medication/l-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-8052"/>
-      <type value="Medication"/>
-      <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
-   </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-L-vanXXX-Meijs"/>
       <type value="Patient"/>

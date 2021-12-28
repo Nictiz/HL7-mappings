@@ -6,7 +6,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 4 maal per dag 2 stuks"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
       <valueDuration>
          <value value="7"/>
          <unit value="dag"/>
@@ -69,6 +69,15 @@
       <display value="Patient, B. XXX_Blik"/>
    </informationSource>
    <derivedFrom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="422037009"/>
+               <display value="toedieningsafspraak"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
       <identifier>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
          <value value="MBH_920_QA5_TA"/>

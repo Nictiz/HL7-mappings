@@ -57,12 +57,21 @@
    <effectiveDateTime value="${DATE, T, D, -17}T20:00:00+02:00"/>
    <performer>
       <actor>
-         <reference value="Patient/nl-core-Patient-mp9-c0894743-640e-11ec-2277-020000000000"/>
+         <reference value="Patient/nl-core-Patient-mp9-c1574f05-67c2-11ec-1216-020000000000"/>
          <type value="Patient"/>
          <display value="Patient, "/>
       </actor>
    </performer>
    <request>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="16076005"/>
+               <display value="voorschrijven"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
       <type value="MedicationRequest"/>
       <identifier>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
