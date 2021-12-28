@@ -14,20 +14,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
-	<xsl:variable name="zib-MedicationAgreement" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement'"/>
-	<xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
-   <!-- xxxwim moet deze niet weg:-->
-	<xsl:variable name="zib-Medication-StopType" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType'"/>
-	<xsl:variable name="zib-Medication-PeriodOfUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
-	<xsl:variable name="zib-MedicationAgreement-BasedOnAgreementOrUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'"/>
-	<xsl:variable name="zib-MedicationUse-Duration" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
-	<xsl:variable name="medication-CopyIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator'"/>
-	<!--xxxwim-->
 	<xsl:variable name="medication-AdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation'"/>
-	<xsl:variable name="extStoptype" select="'http://nictiz.nl/fhir/StructureDefinition/ext-StopType'"/>
 	<!--xxxwim geen gerelateerde zib of nl_core gevonden-->
 	<xsl:variable name="extRelatedMedicationUse" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse'"/>
-
 
 	<xd:doc>
 		<xd:desc>Template to convert f:MedicationRequest to ADA medicatieafspraak</xd:desc>
@@ -66,11 +55,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- afgesproken_geneesmiddel -->
 			<xsl:apply-templates select="f:medicationReference" mode="#current"/>
 			<!-- gebruiksinstructie -->
-			<xsl:apply-templates select="f:dosageInstruction" mode="nl-core-InstructionsForUse"/>
+			<xsl:call-template name="nl-core-InstructionsForUse"/>
 			<!-- aanvullende_informatie -->
 			<xsl:apply-templates select="f:extension[@url = $medication-AdditionalInformation]" mode="#current"/>
 			<!-- kopie indicator -->
-			<xsl:apply-templates select="f:extension[@url = $medication-CopyIndicator]" mode="ext-CopyIndicator"/>
+			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
 			<!-- toelichting -->
 			<xsl:apply-templates select="f:note" mode="#current"/>
 		</medicatieafspraak>

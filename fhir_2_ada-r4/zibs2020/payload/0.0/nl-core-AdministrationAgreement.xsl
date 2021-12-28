@@ -25,7 +25,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:MedicationDispense" mode="nl-core-AdministrationAgreement">
         <toedieningsafspraak>
-            <xsl:apply-templates select="f:extension[@url = $zib-Medication-PeriodOfUse]" mode="ext-zib-Medication-PeriodOfUse-2.0"/>
             <!-- identificatie -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- toedieningsafspraak_datum_tijd -->
@@ -48,13 +47,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- geneesmiddel_bij_toedieningsafspraak -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
-            <xsl:apply-templates select="f:dosageInstruction" mode="nl-core-InstructionsForUse"/>
+            <xsl:call-template name="nl-core-InstructionsForUse"/>
             <!-- aanvullende_informatie -->
             <xsl:apply-templates select="f:extension[@url = $extAdministrationAgreementAdditionalInformation]" mode="#current"/>
             <!-- toelichting -->
             <xsl:apply-templates select="f:note" mode="#current"/>
             <!-- kopie indicator -->
-            <xsl:apply-templates select="f:extension[@url = $medication-CopyIndicator]" mode="ext-CopyIndicator"/>
+            <xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
             <!-- relatie medicatieafspraak -->
             <xsl:apply-templates select="f:authorizingPrescription" mode="#current"/>
         </toedieningsafspraak>
