@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
-            <xsl:with-param name="in" select=".//(patient | medicamenteuze_behandeling/*[not(self::identificatie)] | reden_van_voorschrijven/probleem | */afleverlocatie | bouwstenen/*)"/>
+            <xsl:with-param name="in" select=".//(patient | medicamenteuze_behandeling/*[not(self::identificatie)] | reden_van_voorschrijven/probleem | */afleverlocatie | bouwstenen/* | documentgegevens/auteur/auteur_is_zorgaanbieder/zorgaanbieder)"/>
         </xsl:call-template>
     </xsl:param>
 
@@ -84,7 +84,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each-group>
-        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="/adaxml/data/*/(bouwstenen | documentgegevens/auteur/auteur_is_zorgaanbieder)/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for organization -->
             <xsl:variable name="zabKey" select="current-grouping-key()"/>
             <entry>

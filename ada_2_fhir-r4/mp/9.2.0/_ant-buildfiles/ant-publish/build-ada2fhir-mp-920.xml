@@ -10,36 +10,41 @@
     <property name="is.version" value="9.2.0"/>
     <property name="is.version.short" value="920"/>
     <!-- date.T, currently only used for the examples -->
-    <property name="date.T"  value="2021-01-01"/>
-    
+    <property name="date.T" value="2021-01-01"/>
+
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
 
     <target name="setup_920">
-         <!-- beschikbaarstellen_medicatiegegevens -->
+        <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="schema.string" value="*${usecase.mg}.xsd"/>
             <param name="fileset.dir" value="ada_instance_repo"/>
             <param name="fileset.include" value="*.xml"/>
             <!-- exclude the initating scenario's -->
-                <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
-            
-     
-        <!-- let's convert too, now that we are here -->
-<!--        <antcall target="convert_ada_2_fhir_920"/>-->
-
+        <!-- beschikbaarstellen_medicatieoverzicht -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
+            <param name="schema.string" value="*${usecase.mo}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <!-- exclude the initating scenario's -->
+            <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
+        </antcall>
+   
     </target>
 
     <target name="convert_ada_2_fhir_920">
-           
+
         <!-- the MP specific stuff for version 9.2.0 -->
         <echo>the MP specific stuff for version 9.2.0</echo>
         <echo/>
         <echo>beschikbaarstellen_medicatiegegevens</echo>
         <property name="xsl.input" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
         <property name="xsl.output" value="${build.dir}/${usecase.mg}/fhir_instance_repo"/>
-        
+
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${xsl.output}"/>
         <echo>Deleting previous results, if any</echo>
@@ -64,7 +69,7 @@
             <param name="xsl.out" value="${xsl.output}"/>
             <param name="param.tdate" value="${date.T}"/>
         </antcall>
-        
+
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMPServe</echo>
         <mkdir dir="${build.dir}/4TouchstoneMPServe"/>
@@ -74,7 +79,38 @@
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_repo" excludes="mg-mp-mg-*.xml"/>
-        </copy>       
+        </copy>
+        
+        <echo>beschikbaarstellen_medicatieoverzicht</echo>
+        <property name="xsl.input.mo" value="${build.dir}/${usecase.mo}/ada_instance"/>
+        <property name="xsl.output.mo" value="${build.dir}/${usecase.mo}/fhir_instance"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output.mo}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output.mo}" includes="*.*"/>
+        </delete>
+        <!-- resources for Touchstone -->
+        <!--<antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mo}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir_resources.xsl"/>
+            <param name="xsl.in" value="${xsl.input.mo}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${xsl.output.mo}"/>
+        </antcall>-->
+        
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mmog}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${xsl.input.mo}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${xsl.output.mo}"/>
+            <param name="param.tdate" value="${date.T}"/>
+        </antcall>
+        
+        
 
     </target>
 

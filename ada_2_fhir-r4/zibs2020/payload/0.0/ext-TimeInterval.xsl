@@ -41,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:choose>
                     <!-- If no wrapIn is given, write out the extension element and iteratively call this template. -->
                     <xsl:when test="$wrapIn = ''">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
                             <xsl:call-template name="ext-TimeInterval.Period">
                                 <xsl:with-param name="wrapIn">valuePeriod</xsl:with-param>
                             </xsl:call-template>
@@ -166,7 +166,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
                             <xsl:call-template name="ext-TimeInterval.Duration">
                                 <xsl:with-param name="wrapIn">valueDuration</xsl:with-param>
                             </xsl:call-template>

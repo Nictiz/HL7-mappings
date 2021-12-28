@@ -184,10 +184,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorgverlener" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
         <xsl:param name="fullUrl" tunnel="yes"/>
+        
+        <!-- we can only use zorgverlener_identificatienummer as logicalId when there is no other preceding zorgverlener with the same identificatienummer and a different grouping-key -->
+        <xsl:variable name="currentZvlId" select="nf:ada-healthprofessional-id(zorgverlener_identificatienummer)"/>
+        <xsl:variable name="precedingZvlCurrentId" as="element()*" select="preceding::zorgverlener[zorgverlener_identificatienummer[@root = $currentZvlId/@root][@value = $currentZvlId/@value]]"/>
+        <xsl:variable name="precedingZvlKey" select="nf:getGroupingKeyDefault($precedingZvlCurrentId)" as="xs:string?"/>
+        <xsl:variable name="idAsLogicalIdAllowed" as="xs:boolean?" select="empty($precedingZvlKey) or current-grouping-key() = $precedingZvlKey"/>
 
         <xsl:variable name="uniqueString" as="xs:string?">
 
             <xsl:choose>
+                <xsl:when test="not($idAsLogicalIdAllowed)">
+                    <xsl:next-match>
+                        <xsl:with-param name="profile" select="$profile"/>
+                    </xsl:next-match>
+                </xsl:when>
                 <xsl:when test="$profile = $profileNameHealthProfessionalPractitionerRole">
                     <!-- we only use value attributes from person, specialism and organization, including the oid would breach the 64 chars for logicalId -->
                     <xsl:variable name="personIdentifier" select="nf:getValueAttrDefault(nf:ada-healthprofessional-id(zorgverlener_identificatienummer))"/>
