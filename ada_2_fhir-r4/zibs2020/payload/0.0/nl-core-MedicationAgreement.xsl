@@ -33,9 +33,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-MedicationAgreement" mode="nl-core-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product" as="element()?"/>
-        <xsl:param name="requester" select="voorschrijver" as="element()?"/>
-        <xsl:param name="reasonReference" select="reden_van_voorschrijven" as="element()?"/>
+        <xsl:param name="medicationReference" select="$in//farmaceutisch_product[@id= $in/(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product/@value]" as="element()?"/>
+        <xsl:param name="requester" select="$in//zorgverlener[@id=$in/voorschrijver/zorgverlener/@value]" as="element()?"/>
+        <xsl:param name="reasonReference" select="$in//probleem[@id = $in/reden_van_voorschrijven/probleem/@value]" as="element()?"/>
 
         <xsl:for-each select="$in">
             <MedicationRequest>
@@ -149,7 +149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </requester>
                 </xsl:for-each>
 
-                <xsl:for-each select="reden_wijzigen_of_staken[@code]">
+                <xsl:for-each select="(reden_medicatieafspraak | reden_wijzigen_of_staken)[@code]">
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </reasonCode>

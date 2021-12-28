@@ -93,10 +93,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:variable>
                                     <xsl:value-of select="string-join($startTmp, '')"/>
                                 </xsl:when>
-                                <xsl:when test="eind_datum_tijd[@value] and tijds_duur[@value and @unit]">
-                                    <!-- TODO FIXME: support for T-date  -->
+                                <!-- AWE do not calculate startdate if not given -->
+                                <!--<xsl:when test="eind_datum_tijd[@value] and tijds_duur[@value and @unit]">
+                                    <!-\- TODO FIXME: support for T-date  -\->
                                     <xsl:value-of select="format-dateTime($endDateTime - $duration, $picture)"/>
-                                </xsl:when>
+                                </xsl:when>-->
                                 <xsl:otherwise>
                                     <xsl:value-of select="''"/>
                                 </xsl:otherwise>
@@ -116,10 +117,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:variable>
                                     <xsl:value-of select="string-join($startTmp, '')"/>
                                 </xsl:when>
-                                <!-- TODO (AWE): why are we calculating end date when it is not in input?! I don't think we should -->
-                                <xsl:when test="start_datum_tijd[@value] and tijds_duur[@value and @unit]">
+                                <!-- AWE do not calculate enddate if not given -->
+                               <!-- <xsl:when test="start_datum_tijd[@value] and tijds_duur[@value and @unit]">
                                     <xsl:value-of select="format-dateTime($startDateTime + $duration, $picture)"/>
-                                </xsl:when>
+                                </xsl:when>-->
                                 <xsl:otherwise>
                                     <xsl:value-of select="''"/>
                                 </xsl:otherwise>
