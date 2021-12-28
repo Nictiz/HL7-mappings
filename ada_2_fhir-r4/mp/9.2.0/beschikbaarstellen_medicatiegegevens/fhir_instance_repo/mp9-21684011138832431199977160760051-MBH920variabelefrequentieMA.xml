@@ -6,7 +6,7 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+16D{23:59:59}&gt;, 1 à 2 maal per dag 1 stuk, oraal"/>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
       <valuePeriod>
          <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
          <end value="${DATE, T, D, +16}T23:59:59+02:00"/>
@@ -31,6 +31,11 @@
          <display value="voorschrijven"/>
       </coding>
    </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-48291"/>
+      <type value="Medication"/>
+      <display value="MIZOLASTINE TABLET MGA 10MG"/>
+   </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-G-XXX-Hemsbergen"/>
       <type value="Patient"/>
@@ -38,7 +43,7 @@
    </subject>
    <authoredOn value="${DATE, T, D, +0}T08:00:00+02:00"/>
    <requester>
-      <reference value="PractitionerRole/core-HealthProfessional-Practitioner-mp9-000001111-0100-00001111"/>
+      <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001111-0100-00001111"/>
       <type value="PractitionerRole"/>
       <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
    </requester>

@@ -147,41 +147,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify a HealthProfessional present in a (set of) ada-instance(s)</xd:desc>
-        <xd:param name="profile">If the patient is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
+        <xd:param name="profile">Profile</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
 
         <xsl:variable name="organizationLocation" select="(organisatie_locatie/locatie_naam/@value[not(. = '')], 'Location')[1]"/>
 
+        <!-- we can only use zorgaanbieder_identificatienummer as logicalId when there is no other preceding zorgaanbieder with the same identificatienummer and a different grouping-key -->
+        <xsl:variable name="currentZaId" select="nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)"/>
+        <xsl:variable name="precedingZaCurrentId" as="element()*" select="preceding::zorgaanbieder[zorgaanbieder_identificatienummer[@root = $currentZaId/@root][@value = $currentZaId/@value]]"/>
+        <xsl:variable name="precedingZaKey" select="nf:getGroupingKeyDefault($precedingZaCurrentId)" as="xs:string?"/>
+        <xsl:variable name="idAsLogicalIdAllowed" as="xs:boolean?" select="empty($precedingZaKey) or current-grouping-key() = $precedingZaKey"/>
+
         <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>
-                <xsl:when test="$profile = $profilenameHealthcareProvider">
-                    <xsl:choose>
-                        <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
-                            <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/concat(@root, '-', @value)))"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:next-match>
-                                <xsl:with-param name="profile" select="$profile"/>
-                            </xsl:next-match>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                <xsl:when test="not($idAsLogicalIdAllowed)">
+                    <xsl:next-match>
+                        <xsl:with-param name="profile" select="$profile"/>
+                    </xsl:next-match>
                 </xsl:when>
-                <xsl:when test="$profile = $profilenameHealthcareProviderOrganization">
-                    <xsl:choose>
-                        <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
-                            <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/concat(@root, '-', @value)))"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:next-match>
-                                <xsl:with-param name="profile" select="$profile"/>
-                            </xsl:next-match>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
+                    <xsl:value-of select="nf:assure-logicalid-length(upper-case(nf:assure-logicalid-chars(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/concat(@root, '-', @value))))"/>
                 </xsl:when>
+                <xsl:otherwise>
+                    <xsl:next-match>
+                        <xsl:with-param name="profile" select="$profile"/>
+                    </xsl:next-match>
+                </xsl:otherwise>
             </xsl:choose>
-
         </xsl:variable>
 
         <xsl:call-template name="generateLogicalId">
