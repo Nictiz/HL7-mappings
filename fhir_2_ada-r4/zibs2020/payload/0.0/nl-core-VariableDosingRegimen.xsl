@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <!--
 TODO
 WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven medicatieafspraak inbrengen
-
+bouwstenen?
 -->
 
 
