@@ -35,6 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- TODO lichaamslengte -->
 			<!-- TODO lichaamsgewicht -->
 		</xsl:variable>
+	    
 		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
 			<meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>
 			<data>
