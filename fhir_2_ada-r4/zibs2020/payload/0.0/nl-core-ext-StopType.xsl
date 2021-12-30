@@ -42,10 +42,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="../parent::f:MedicationStatement">
                         <xsl:value-of select="'medicatie_gebruik_stop_type'"/>
                     </xsl:when>
-                    <xsl:when test="../parent::f:MedicationRequest">
+                    <xsl:when test="../parent::f:MedicationRequest[f:meta/f:profile/@value eq 'http://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen']">
+                        <xsl:value-of select="'wisselend_doseerschema_stop_type'"/>
+                    </xsl:when>
+                    <xsl:when test="../parent::f:MedicationRequest[f:meta/f:profile/@value eq 'http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement']">
                         <xsl:value-of select="'medicatieafspraak_stop_type'"/>
                     </xsl:when>
-                 </xsl:choose>
+                </xsl:choose>
             </xsl:with-param>
         </xsl:call-template>
     </xsl:template>

@@ -40,7 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
 			<!-- geannuleerd_indicator  -->
 			<xsl:apply-templates select="f:status" mode="#current"/>
-			<!-- stoptype -->
+			<!-- stop_type -->
 		    <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
 			<!-- relatie medicatieafspraak -->
 			<xsl:apply-templates select="f:priorPrescription" mode="#current"/>

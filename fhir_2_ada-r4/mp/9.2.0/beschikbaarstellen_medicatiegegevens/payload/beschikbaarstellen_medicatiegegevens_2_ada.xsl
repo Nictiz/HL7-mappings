@@ -23,26 +23,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Base template for the main interaction.</xd:desc>
 	</xd:doc>
 	<xsl:template match="/">
-
 		<xsl:variable name="bouwstenen">
-
 			<!--  contactpersoon -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:RelatedPerson" mode="nl-core-ContactPerson"/>
-			
 			<!-- farmaceutisch_product -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Medication" mode="nl-core-PharmaceuticalProduct"/>
-
 			<!-- zorgverlener -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:PractitionerRole" mode="resolve-HealthProfessional-PractitionerRole"/>
-
 			<!-- zorgaanbieder -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Organization" mode="nl-core-HealthcareProvider-Organization"/>
-
 			<!-- TODO lichaamslengte -->
 			<!-- TODO lichaamsgewicht -->
-
 		</xsl:variable>
-
 		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
 			<meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>
 			<data>
@@ -68,6 +60,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '16076005']" mode="nl-core-MedicationAgreement"/>
 							<!-- verstrekkingsverzoek -->
 							<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='52711000146108']" mode="zib-DispenseRequest-2.2"/>-->
+						    
+						    
+						    <!--XXXXXXXXXXXXXXX WisselendDoseerschema in f:MedicationRequest XXXXXXXXXXXX-->
+						    <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '395067002']" mode="nl-core-VariableDosingRegimen"/>
+						    
+
+
+
+						    
 							<!-- toedieningsafspraak -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value = '422037009']" mode="nl-core-AdministrationAgreement"/>
 							<!-- verstrekking -->

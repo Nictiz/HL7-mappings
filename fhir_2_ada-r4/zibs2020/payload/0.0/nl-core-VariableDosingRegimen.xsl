@@ -14,9 +14,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <!--
+mode = nl-core-VariableDosingRegimen
+alle  ZZZNEW templates gaan mee
 TODO
 WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven medicatieafspraak inbrengen
-
+bouwstenen
 -->
 
 
@@ -27,172 +29,139 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 	<xd:doc>
 	    <xd:desc>Template to convert f:MedicationRequest/f:meta/f:profile[value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen"] to ADA wisselend_doseerschema</xd:desc>
 	</xd:doc>
-    <xsl:template match="f:MedicationRequest/f:meta/f:profile[value = 'http://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen']" mode="nl-core-VariableDosingRegimen">
-		<medicatieafspraak>
+    <xsl:template match="f:MedicationRequest" mode="nl-core-VariableDosingRegimen">
+        <wisselend_doseerschema>
 			<!-- identificatie -->
 			<xsl:apply-templates select="f:identifier" mode="#current"/>
 			<!-- afspraakdatum -->
 			<xsl:apply-templates select="f:authoredOn" mode="#current"/>
-			<!-- gebruiksperiode -->
+            <!-- gebruiksperiode -->
 			<xsl:if test="f:extension[@url = $ext-TimeInterval-Period] or f:extension[@url = $ext-TimeInterval-Duration]">
 				<gebruiksperiode>
 					<xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Period]" mode="ext-TimeInterval-Period"/>
 					<xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Duration]" mode="ext-TimeInterval-Duration"/>
 				</gebruiksperiode>
 			</xsl:if>
-			<!-- relatie_contact -->
+            <!-- relatie_contact -->
 			<xsl:apply-templates select="f:encounter[f:type/@value eq 'Encounter']" mode="contextContactEpisodeOfCare"/>
-			<!-- relatie_zorgepisode -->
+            <!-- relatie_zorgepisode -->
 			<xsl:apply-templates select="f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
-			<!-- geannuleerd_indicator  -->
-			<xsl:apply-templates select="f:status" mode="#current"/>
-			<!-- stoptype -->
+            <!-- stoptype -->
 		    <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
-			<!-- relatie medicatieafspraak -->
+            <!-- relatie medicatieafspraak / relatie_wisselend_doseerschema zie opmerkingen WDS -->
 			<xsl:apply-templates select="f:priorPrescription" mode="#current"/>
-			<!-- relatie_medicatiegebruik -->
-			<xsl:apply-templates select="f:extension[@url = $extRelatedMedicationUse]" mode="#current"/>
-			<!-- voorschrijver -->
-			<xsl:apply-templates select="f:requester" mode="#current"/>
-			<!-- reden_wijzigen_of_staken -->
+            <!--auteur/zorgverlener-->
+            <xsl:apply-templates select="f:requester" mode="#current"/>
+            <!-- reden_wijzigen_of_staken -->
 			<xsl:apply-templates select="f:reasonCode" mode="#current"/>
-			<!-- reden_van_voorschrijven -->
-			<xsl:apply-templates select="f:reasonReference" mode="#current"/>
-			<!-- afgesproken_geneesmiddel -->
-			<xsl:apply-templates select="f:medicationReference" mode="#current"/>
-			<!-- gebruiksinstructie -->
+            <!-- gebruiksinstructie -->
 			<xsl:call-template name="nl-core-InstructionsForUse"/>
-			<!-- aanvullende_informatie -->
-			<xsl:apply-templates select="f:extension[@url = $medication-AdditionalInformation]" mode="#current"/>
-			<!-- kopie indicator -->
+            <!-- kopie indicator -->
 			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
-			<!-- toelichting -->
+            <!-- toelichting -->
 			<xsl:apply-templates select="f:note" mode="#current"/>
-		</medicatieafspraak>
+		</wisselend_doseerschema>
 	</xsl:template>
 
+
+
+
+    <xd:doc>
+        <xd:desc>Template to convert f:requester to auteur/zorgverlener</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:requester" mode="nl-core-VariableDosingRegimen">
+        <auteur>
+            <zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/> 
+        </auteur>
+    </xsl:template>
+    
 
 	<!--xxxwim:-->
 	<xd:doc>
 		<xd:desc>Template to convert f:extension medication-AdditionalInformation to aanvullende_informatie element.</xd:desc>
 		<xd:param name="adaElementName">Optional alternative ADA element name.</xd:param>
 	</xd:doc>
-	<xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation']" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation']" mode="nl-core-VariableDosingRegimen">
 		<xsl:param name="adaElementName" tunnel="yes" select="'aanvullende_informatie'"/>
 		<xsl:call-template name="CodeableConcept-to-code">
 			<xsl:with-param name="in" select="f:valueCodeableConcept"/>
 			<xsl:with-param name="adaElementName" select="$adaElementName"/>
 		</xsl:call-template>
 	</xsl:template>
-	<xd:doc>
-		<xd:desc>Template to convert f:extension/relatedMedicationUse to aanvullende_informatie element.</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:extension[@url = $extRelatedMedicationUse]" mode="nl-core-MedicationAgreement">
-		<relatie_medicatiegebruik>
-			<identificatie value="{f:valueReference/f:identifier/f:value/@value}" root="{f:valueReference/f:identifier/f:system/replace(@value, 'urn:oid:', '')}"/>
-		</relatie_medicatiegebruik>
-	</xsl:template>
+
 
 
 
 <!--	<xd:doc>
 		<xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="nl-core-VariableDosingRegimen">
 		<xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
 	</xsl:template>
 
     <xd:doc>
         <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:valueCodeableConcept" mode="nl-core-MedicationAgreement">
+    <xsl:template match="f:valueCodeableConcept" mode="nl-core-VariableDosingRegimen">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
             <xsl:with-param name="adaElementName" select="'medicatieafspraak_stop_type'"/>
         </xsl:call-template>
     </xsl:template>
     -->
-    <xd:doc>
+    <xd:doc><!-- ZZZNEW -->
 		<xd:desc>Template to resolve priorPrescription.</xd:desc>
 	</xd:doc>
 	<xd:doc>
 		<xd:desc>Template to convert f:authorizingPrescription to relatie_medicatieafspraak</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:priorPrescription" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:priorPrescription" mode="nl-core-VariableDosingRegimen">
 		<relatie_medicatieafspraak>
 			<xsl:call-template name="Reference-to-identificatie"/>
 		</relatie_medicatieafspraak>
 	</xsl:template>
 
-	<xd:doc>
+    <xd:doc><!-- ZZZNEW -->
 		<xd:desc>Template to convert f:identifier to identificatie</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:identifier" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:identifier" mode="nl-core-VariableDosingRegimen">
 		<xsl:call-template name="Identifier-to-identificatie"/>
 	</xsl:template>
 
 	<xd:doc>
 		<xd:desc>Template to convert f:medicationReference to afgesproken_geneesmiddel</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:medicationReference" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:medicationReference" mode="nl-core-VariableDosingRegimen">
 		<xsl:variable name="referenceValue" select="f:reference/@value"/>
 		<afgesproken_geneesmiddel>
 			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
 		</afgesproken_geneesmiddel>
 	</xsl:template>
 
-	<xd:doc>
-		<xd:desc>Template to convert f:authoredOn to afspraakdatum</xd:desc>
+	<xd:doc><!-- ZZZNEW -->
+	    <xd:desc>Template to convert f:authoredOn to wisselend_doseerschema_datum_tijd</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:authoredOn" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:authoredOn" mode="nl-core-VariableDosingRegimen">
 		<xsl:call-template name="datetime-to-datetime">
-			<xsl:with-param name="adaElementName">medicatieafspraak_datum_tijd</xsl:with-param>
+		    <xsl:with-param name="adaElementName">wisselend_doseerschema_datum_tijd</xsl:with-param>
 			<xsl:with-param name="adaDatatype">datetime</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 
-	<xd:doc>
-		<xd:desc>Template to convert f:status to geannuleerd_indicator. Only the FHIR status value 'entered-in-error' is used in this mapping.</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:status" mode="nl-core-MedicationAgreement">
-		<xsl:if test="@value = 'entered-in-error'">
-			<geannuleerd_indicator value="true"/>
-		</xsl:if>
-	</xsl:template>
-
-	<xd:doc>
-		<xd:desc>Template to convert f:requester to voorschrijver</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:requester" mode="nl-core-MedicationAgreement">
-		<voorschrijver>
-			<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/> 
-		</voorschrijver>
-	</xsl:template>
-
-	<xd:doc>
+	<xd:doc><!-- ZZZNEW -->
 		<xd:desc>Template to convert f:reasonCode to reden_wijzigen_of_staken</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:reasonCode" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:reasonCode" mode="nl-core-VariableDosingRegimen">
 		<xsl:call-template name="CodeableConcept-to-code">
 			<xsl:with-param name="in" select="."/>
 			<xsl:with-param name="adaElementName" select="'reden_wijzigen_of_staken'"/>
 		</xsl:call-template>
 	</xsl:template>
-
-	<xd:doc>
-		<xd:desc>Template to convert f:reasonReference to reden_van_voorschrijven</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:reasonReference" mode="nl-core-MedicationAgreement">
-		<xsl:variable name="resource" select="nf:resolveRefInBundle(.)"/>
-		<reden_van_voorschrijven>
-			<xsl:apply-templates select="$resource/f:*" mode="nl-core-Problem"/>
-		</reden_van_voorschrijven>
-	</xsl:template>
 	
 	<xd:doc>
 		<xd:desc>Template to convert f:note to toelichting</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:note" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:note" mode="nl-core-VariableDosingRegimen">
 		<toelichting value="{f:text/@value}"/>
 	</xsl:template>
 
