@@ -60,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<!-- medicatieafspraak -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '16076005']" mode="nl-core-MedicationAgreement"/>
 							<!-- verstrekkingsverzoek -->
-							<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='52711000146108']" mode="zib-DispenseRequest-2.2"/>-->
+						    <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='52711000146108']" mode="nl-core-DispenseRequest"/>
 						    
 						    
 						    <!--XXXXXXXXXXXXXXX WisselendDoseerschema in f:MedicationRequest XXXXXXXXXXXX-->

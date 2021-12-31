@@ -18,8 +18,8 @@ mode = nl-core-VariableDosingRegimen
 alle  ZZZNEW templates gaan mee
 TODO
 WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven medicatieafspraak inbrengen
-bouwstenen
 -->
+
 
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">

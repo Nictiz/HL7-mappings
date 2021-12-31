@@ -21,12 +21,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc>Template to convert f:MedicationRequest to ADA medicatieafspraak</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:MedicationRequest" mode="nl-core-MedicationAgreement">
-		<medicatieafspraak>
+    <xsl:template match="f:dispenseRequest" mode="nl-core-DispenseRequest">
+        <verstrekkingsverzoek>
 			<!-- identificatie -->
 			<xsl:apply-templates select="f:identifier" mode="#current"/>
 			<!-- afspraakdatum -->
 			<xsl:apply-templates select="f:authoredOn" mode="#current"/>
+            <!--auteur/zorgverlener-->
+            <xsl:apply-templates select="f:requester" mode="#current"/>
+            <!--te_verstrekken_hoeveelheid-->
+            <xsl:apply-templates select="f:quantity" mode="#current"/>
+            
+            
 			<!-- gebruiksperiode -->
 			<xsl:if test="f:extension[@url = $ext-TimeInterval-Period] or f:extension[@url = $ext-TimeInterval-Duration]">
 				<gebruiksperiode>
@@ -54,6 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:reasonReference" mode="#current"/>
 			<!-- afgesproken_geneesmiddel -->
 			<xsl:apply-templates select="f:medicationReference" mode="#current"/>
+            
 			<!-- gebruiksinstructie -->
 			<xsl:call-template name="nl-core-InstructionsForUse"/>
 			<!-- aanvullende_informatie -->
@@ -62,9 +69,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
 			<!-- toelichting -->
 			<xsl:apply-templates select="f:note" mode="#current"/>
-		</medicatieafspraak>
+		</verstrekkingsverzoek>
 	</xsl:template>
 
+    <xd:doc>ZZZNEW
+        <xd:desc>Template to convert f:quantity to te_verstrekken_hoeveelheid</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:quantity" mode="zib-DispenseRequest-2.2">
+        <te_verstrekken_hoeveelheid>
+            <xsl:call-template name="Quantity-to-hoeveelheid-complex">
+                <xsl:with-param name="adaWaarde">aantal</xsl:with-param>
+            </xsl:call-template>
+        </te_verstrekken_hoeveelheid>
+    </xsl:template>
+
+    <xd:doc><!--ZZZNEW-->
+        <xd:desc>Template to convert f:requester to auteur/zorgverlener</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:requester" mode="nl-core-VariableDosingRegimen">
+        <auteur>
+            <zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/> 
+        </auteur>
+    </xsl:template>
 
 	<!--xxxwim:-->
 	<xd:doc>
@@ -129,18 +155,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:medicationReference to afgesproken_geneesmiddel</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:medicationReference" mode="nl-core-MedicationAgreement">
-		<xsl:variable name="referenceValue" select="f:reference/@value"/>
-		<afgesproken_geneesmiddel>
+	    <te_verstrekken_geneesmiddel>
 			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
-		</afgesproken_geneesmiddel>
+		</te_verstrekken_geneesmiddel>
 	</xsl:template>
 
-	<xd:doc>
+	<xd:doc><!--ZZZNEW-->
 		<xd:desc>Template to convert f:authoredOn to afspraakdatum</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:authoredOn" mode="nl-core-MedicationAgreement">
+    <xsl:template match="f:authoredOn" mode="nl-core-DispenseRequest">
 		<xsl:call-template name="datetime-to-datetime">
-			<xsl:with-param name="adaElementName">medicatieafspraak_datum_tijd</xsl:with-param>
+		    <xsl:with-param name="adaElementName">verstrekkingsverzoek_datum</xsl:with-param>
 			<xsl:with-param name="adaDatatype">datetime</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
