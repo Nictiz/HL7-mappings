@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-Patient"/>
 						</xsl:otherwise>
 					</xsl:choose>
-					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement | f:MedicationAdministration)" group-by="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
+				    <xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement | f:MedicationAdministration)" group-by="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
 						<medicamenteuze_behandeling>
 							<identificatie>
 								<xsl:attribute name="value" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/f:value/@value"/>
@@ -60,10 +60,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<!-- medicatieafspraak -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '16076005']" mode="nl-core-MedicationAgreement"/>
 							<!-- verstrekkingsverzoek -->
-						    <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='52711000146108']" mode="nl-core-DispenseRequest"/>
+<!--						    <xsl:if test="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '52711000146108']">
+						        <xsl:comment select="'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZ'"/>
+						    </xsl:if>-->
+						    
+						    <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '52711000146108']" mode="nl-core-DispenseRequest"/>
 						    
 						    
-						    <!--XXXXXXXXXXXXXXX WisselendDoseerschema in f:MedicationRequest XXXXXXXXXXXX-->
+						    <!--WisselendDoseerschema in f:MedicationRequest-->
 						    <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '395067002']" mode="nl-core-VariableDosingRegimen"/>
 						    
 
@@ -94,5 +98,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</data>
 		</adaxml>
 	</xsl:template>
+    
 
 </xsl:stylesheet>

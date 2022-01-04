@@ -37,8 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="ext-CopyIndicator.xsl"/>
     <xsl:import href="nl-core-MedicationUse2.xsl"/>
     <xsl:import href="nl-core-ext-StopType.xsl"/>
-    <xsl:import href="nl-core-VariableDosingRegimen.xsl"/>    
-    
+    <xsl:import href="nl-core-DispenseRequest.xsl"/>    
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
