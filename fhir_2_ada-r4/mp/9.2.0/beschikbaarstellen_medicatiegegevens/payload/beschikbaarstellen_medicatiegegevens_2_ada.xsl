@@ -57,27 +57,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								<xsl:attribute name="value" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/f:value/@value"/>
 								<xsl:attribute name="root" select="local:getOid(f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/f:system/@value)"/>
 							</identificatie>
-							<!-- medicatieafspraak -->
+
+						    <!-- medicatieafspraak -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '16076005']" mode="nl-core-MedicationAgreement"/>
-							<!-- verstrekkingsverzoek -->
-<!--						    <xsl:if test="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '52711000146108']">
-						        <xsl:comment select="'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZ'"/>
-						    </xsl:if>-->
-						    
+						    <!-- verstrekkingsverzoek -->
 						    <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '52711000146108']" mode="nl-core-DispenseRequest"/>
-						    
-						    
 						    <!--WisselendDoseerschema in f:MedicationRequest-->
 						    <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '395067002']" mode="nl-core-VariableDosingRegimen"/>
-						    
-
-
-
-						    
 							<!-- toedieningsafspraak -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value = '422037009']" mode="nl-core-AdministrationAgreement"/>
 							<!-- verstrekking -->
-							<!--                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.2"/>-->
+						    <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value = '373784005']" mode="nl-core-MedicationDispense"/>
+						    
 							<!-- medicatie_gebruik -->
 						    <xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value='422979000']" mode="nl-core-MedicationUse2"/>
 							<!-- medicatietoediening -->

@@ -32,6 +32,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:authoredOn" mode="#current"/>
             <!--auteur/zorgverlener-->
             <xsl:apply-templates select="f:requester" mode="#current"/>
+            <!-- (ref) te_verstrekken_geneesmiddel -->
+            <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!--te_verstrekken_hoeveelheid-->
             <xsl:apply-templates select="f:dispenseRequest/f:quantity" mode="#current"/>
             <!--aantal_herhalingen-->
@@ -78,8 +80,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
             <!-- reden_van_voorschrijven -->
             <xsl:apply-templates select="f:reasonReference" mode="#current"/>
-            <!-- (ref) te_verstrekken_geneesmiddel -->
-            <xsl:apply-templates select="f:medicationReference" mode="#current"/>
 
 
 
@@ -126,7 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--ZZZNEW-->
         <xd:desc>Template to convert f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes'] to aanvullende_wensen</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest..AdditionalWishes']"
+    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes']"
         mode="nl-core-DispenseRequest">
         <aanvullende_wensen>
             <xsl:call-template name="Coding-to-code">
@@ -138,11 +138,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <!--ZZZNEW-->
-        <xd:desc>Template to convert f:extension[url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']  to afleverlocatie</xd:desc>
-    </xd:doc>
+        <xd:desc>Template to convert f:extension[url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']  to afleverlocatie</xd:desc>    </xd:doc>
     <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']"
         mode="nl-core-DispenseRequest">
-        <afleverlocatie value="{f:reference/@value}" datatype="refrence"/>
+        <afleverlocatie value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/>
     </xsl:template>
 
     <xd:doc>
@@ -200,7 +199,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <te_verstrekken_hoeveelheid>
             <aantal value="{f:extension/f:valueQuantity/f:value/@value}"/>
             <eenheid code="{f:extension/f:valueQuantity/f:code/@value}"
-                codeSystem="{nf:convert2NCName(f:extension/f:valueQuantity/f:system/@value)}"
+                codeSystem="{replace(f:extension/f:valueQuantity/f:system/@value, 'urn:oid:', '')}"
                 displayName="{f:unit/@value}"/>
         </te_verstrekken_hoeveelheid>
     </xsl:template>
@@ -220,7 +219,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to resolve priorPrescription.</xd:desc>
     </xd:doc>
     <xd:doc>
-        <xd:desc>Template to convert f:authorizingPrescription to relatie_medicatieafspraak</xd:desc>
+        <xd:desc>Template to convert f:priorPrescription to relatie_medicatieafspraak</xd:desc>
     </xd:doc>
     <xsl:template match="f:priorPrescription" mode="nl-core-MedicationAgreement">
         <relatie_medicatieafspraak>
