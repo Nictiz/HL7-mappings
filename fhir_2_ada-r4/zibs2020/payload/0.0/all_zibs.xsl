@@ -39,6 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-ext-StopType.xsl"/>
     <xsl:import href="nl-core-DispenseRequest.xsl"/>
     <xsl:import href="nl-core-MedicationDispense.xsl"/>
+    <xsl:import href="nl-core-Note.xsl"/>
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>

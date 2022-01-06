@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- aanvullende_informatie -->
             <xsl:apply-templates select="f:extension[@url = $extAdministrationAgreementAdditionalInformation]" mode="#current"/>
             <!-- toelichting -->
-            <xsl:apply-templates select="f:note" mode="#current"/>
+            <xsl:apply-templates select="f:note" mode="nl-core-Note"/>
             <!-- kopie indicator -->
             <xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
             <!-- relatie medicatieafspraak -->
@@ -135,13 +135,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url = $extAdministrationAgreementAgreementReason]" mode="nl-core-AdministrationAgreement">
         <reden_afspraak value="{f:valueString/@value}"/>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to convert f:note to toelichting</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:note" mode="nl-core-AdministrationAgreement">
-        <toelichting value="{f:text/@value}"/>
     </xsl:template>
 
     <xd:doc>

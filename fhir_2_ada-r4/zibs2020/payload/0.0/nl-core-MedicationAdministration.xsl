@@ -72,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- medicatie_toediening_status  -->
 			<xsl:apply-templates select="f:status[@value ne 'entered-in-error']" mode="#current"/>
 			<!-- toelichting -->
-			<xsl:apply-templates select="f:note" mode="#current"/>
+		    <xsl:apply-templates select="f:note" mode="nl-core-Note"/>
 		</medicatietoediening>
 	</xsl:template>
 
@@ -248,11 +248,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:for-each>
 	</xsl:template>
 
-	<xd:doc>
-		<xd:desc>Template to convert f:note to toelichting</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:note" mode="nl-core-MedicationAdministration">
-		<toelichting value="{f:text/@value}"/>
-	</xsl:template>
 
 </xsl:stylesheet>

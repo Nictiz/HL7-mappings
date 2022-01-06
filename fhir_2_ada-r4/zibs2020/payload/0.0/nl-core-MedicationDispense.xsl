@@ -22,63 +22,147 @@ TODO
 
 
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions"
+    xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
-    <xsl:variable name="" select="''"/>
-XXXXXXXXXXx
 	<xd:doc>
-	    <xd:desc>Template to convert f:MedicationDispense/f:category/f:coding/f:code/@value = '373784005' to ADA medicatieverstrekking (MVE)</xd:desc>
-	</xd:doc>
+        <xd:desc>Template to convert f:MedicationDispense/f:category/f:coding/f:code/@value = '373784005' to ADA medicatieverstrekking (MVE)</xd:desc>
+    </xd:doc>
     <xsl:template match="f:MedicationRequest" mode="nl-core-MedicationDispense">
         <medicatieverstrekking>
             <!-- identificatie -->
-			<xsl:apply-templates select="f:identifier" mode="#current"/>
+            <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!--medicatieverstrekkings_datum_tijd-->
             <xsl:apply-templates select="f:whenHandedOver" mode="#current"/>
+            <!--aanschrijf_datum-->
+            <xsl:apply-templates
+                select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate']/f:valueDateTime" mode="#current"/> 
+            <!--verstrekker/zorgaanbieder-->
+            <xsl:apply-templates select="f:performer" mode="#current"/>
+             <!--verstrekte_hoeveelheid-->
+            <xsl:apply-templates select="f:dispenseRequest/f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="#current"/>
+            <!-- verstrekt_geneesmiddel -->
+            <xsl:apply-templates select="f:medicationReference" mode="#current"/>
+            <!-- verbruiksduur -->
+            <xsl:apply-templates select="f:daysSupply" mode="#current"/>
+            <!--afleverlocatie-->
+            <xsl:apply-templates select="f:destination/f:reference" mode="#current"/>
+            <!--distributievorm-->
+            <xsl:apply-templates select="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm']" mode="#current"/>
+            <!-- medicatieverstrekking_aanvullende_informatie -->
+            <xsl:apply-templates select="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation']" mode="#current"/>
+            <!-- relatie_verstrekkingsverzoek -->
+            <xsl:apply-templates select="f:authorizingPrescription" mode="#current"/>
+            <relatie_verstrekkingsverzoek comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349">
+                <identificatie value="MBH_920_QA1_VV"
+                    root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+            </relatie_verstrekkingsverzoek>
 
-            
-            <!-- afspraakdatum -->
-			<xsl:apply-templates select="f:authoredOn" mode="#current"/>
-            <!-- gebruiksperiode -->
-			<xsl:if test="f:extension[@url = $ext-TimeInterval-Period] or f:extension[@url = $ext-TimeInterval-Duration]">
-				<gebruiksperiode>
-					<xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Period]" mode="ext-TimeInterval-Period"/>
-					<xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Duration]" mode="ext-TimeInterval-Duration"/>
-				</gebruiksperiode>
-			</xsl:if>
-            <!-- relatie_contact -->
-			<xsl:apply-templates select="f:encounter[f:type/@value eq 'Encounter']" mode="contextContactEpisodeOfCare"/>
-            <!-- relatie_zorgepisode -->
-			<xsl:apply-templates select="f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
-            <!-- stoptype -->
-		    <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
-            <!-- relatie medicatieafspraak / relatie_wisselend_doseerschema zie opmerkingen WDS -->
-			<xsl:apply-templates select="f:priorPrescription" mode="#current"/>
-            <!--auteur/zorgverlener-->
-            <xsl:apply-templates select="f:requester" mode="#current"/>
-            <!-- reden_wijzigen_of_staken -->
-			<xsl:apply-templates select="f:reasonCode" mode="#current"/>
-            <!-- gebruiksinstructie -->
-			<xsl:call-template name="nl-core-InstructionsForUse"/>
-            <!-- kopie indicator -->
-			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
+            <authorizingPrescription>
+                <type value="MedicationRequest"/>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                    <value value="MBH_920_QA1_VV"/>
+                </identifier>
+                <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_QA1_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
             <!-- toelichting -->
-			<xsl:apply-templates select="f:note" mode="#current"/>
-		</medicatieverstrekking>
-	</xsl:template>
+            <xsl:apply-templates select="f:note" mode="nl-core-Note"/>
+        </medicatieverstrekking>
+    </xsl:template>
 
 
+    <xd:doc><!--ZZZNEW-->
+        <xd:desc>Template to convert f:authorizingPrescription to relatie_verstrekkingsverzoek</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:authorizingPrescription" mode="nl-core-MedicationDispense">
+        <relatie_verstrekkingsverzoek>
+            <identificatie value="{f:identifier/f:value/@value}"
+                root="{replace(f:identifier/f:system/@value, 'urn:oid:', '')}"/>
+        </relatie_verstrekkingsverzoek>
+    </xsl:template>
+
+    <xd:doc><!--ZZZNEW-->
+        <xd:desc>Template to convert f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation'] to aanvullende_informatie</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation']" mode="nl-core-MedicationDispense">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="adaElementName" select="'medicatieverstrekking_aanvullende_informatie'">
+            </xsl:with-param></xsl:call-template>
+    </xsl:template>
+
+    <xd:doc><!--ZZZNEW-->
+        <xd:desc>Template to convert f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm' to distributievorm</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm']" mode="nl-core-MedicationDispense">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="adaElementName" select="'distributievorm'">
+            </xsl:with-param></xsl:call-template>
+    </xsl:template>
+
+    <xd:doc>
+        <!--ZZZNEW-->
+        <xd:desc>Template to convert f:destination/f:reference to </xd:desc>    </xd:doc>
+    <xsl:template match="f:destination/f:reference" mode="nl-core-DispenseRequest">
+        <afleverlocatie value="{nf:convert2NCName(./@value)}"/>
+    </xsl:template>
+
+    <xd:doc><!--ZZZNEW-->
+        <xd:desc>Template to f:daysSupply convert to verbruiksduur</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:daysSupply/f:value/@value" mode="nl-core-MedicationDispense">
+        <verbruiksduur value="{f:value/@value}" unit="{f:unit/@value}"/>
+    </xsl:template>  
+
+    <xd:doc>
+        <!--ZZZNEW-->
+        <xd:desc>Template to convert f:medicationReference to verstrekt_geneesmiddel</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:medicationReference" mode="nl-core-DispenseRequest">
+        <verstrekt_geneesmiddel>
+            <farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+        </verstrekt_geneesmiddel>
+    </xsl:template>
+
+    <xd:doc>
+        <!--ZZZNEW-->
+        <xd:desc>Template to convert f:quantity to verstrekte_hoeveelheid</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="nl-core-DispenseRequest">
+        <verstrekte_hoeveelheid>
+            <aantal value="{f:extension/f:valueQuantity/f:value/@value}"/>
+            <eenheid code="{f:extension/f:valueQuantity/f:code/@value}"
+                codeSystem="{replace(f:extension/f:valueQuantity/f:system/@value, 'urn:oid:', '')}"
+                displayName="{f:unit/@value}"/>
+        </verstrekte_hoeveelheid>
+    </xsl:template>
 
 
     <xd:doc>
-        <xd:desc>Template to convert f:requester to auteur/zorgverlener</xd:desc>
+        <!--ZZZNEW-->
+        <xd:desc>Template to convert f:performer to verstrekker/zorgaanbieder </xd:desc>
     </xd:doc>
-    <xsl:template match="f:requester" mode="">
-        <auteur>
-            <zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/> 
-        </auteur>
+    <xsl:template match="f:performer" mode="nl-core-DispenseRequest">
+        <verstrekker>
+            <zorgaanbieder datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
+        </verstrekker>
     </xsl:template>
-    
+
+    <xd:doc><!--ZZZNEW-->
+        <xd:desc>Template to convert f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate']/f:valueDateTime to aanschrijf_datum</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate']/f:valueDateTime"
+        mode="nl-core-MedicationDispense">
+        <aanschrijf_datum>
+            <xsl:attribute name="value">
+                <xsl:call-template name="format2ADADate">
+                    <xsl:with-param name="dateTime" select="./@value"> </xsl:with-param>
+                </xsl:call-template>
+            </xsl:attribute>
+        </aanschrijf_datum>
+    </xsl:template>
 
 
     <xd:doc><!--ZZZNEW-->
@@ -87,95 +171,22 @@ XXXXXXXXXXx
     <xsl:template match="f:whenHandedOver" mode="nl-core-MedicationDispense">
         <medicatieverstrekkings_datum_tijd value="{./@value}"/>
     </xsl:template>
-    
 
-	<!--xxxwim:-->
-	<xd:doc>
-		<xd:desc>Template to convert f:extension medication-AdditionalInformation to aanvullende_informatie element.</xd:desc>
-		<xd:param name="adaElementName">Optional alternative ADA element name.</xd:param>
-	</xd:doc>
-	<xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation']" mode="">
-		<xsl:param name="adaElementName" tunnel="yes" select="'aanvullende_informatie'"/>
-		<xsl:call-template name="CodeableConcept-to-code">
-			<xsl:with-param name="in" select="f:valueCodeableConcept"/>
-			<xsl:with-param name="adaElementName" select="$adaElementName"/>
-		</xsl:call-template>
-	</xsl:template>
-
-
-
-
-<!--	<xd:doc>
-		<xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="">
-		<xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
-	</xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
+    <xd:doc><!-- ZZZNEW -->
+        <xd:desc>Template to resolve priorPrescription.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:valueCodeableConcept" mode="">
-        <xsl:call-template name="CodeableConcept-to-code">
-            <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="adaElementName" select="'medicatieafspraak_stop_type'"/>
-        </xsl:call-template>
+    <xd:doc>
+        <xd:desc>Template to convert f:authorizingPrescription to relatie_medicatieafspraak</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:priorPrescription" mode="XXXXXXXXXXXXXXX">
+        <relatie_medicatieafspraak>
+            <xsl:call-template name="Reference-to-identificatie"/>
+        </relatie_medicatieafspraak>
     </xsl:template>
-    -->
     <xd:doc><!-- ZZZNEW -->
-		<xd:desc>Template to resolve priorPrescription.</xd:desc>
-	</xd:doc>
-	<xd:doc>
-		<xd:desc>Template to convert f:authorizingPrescription to relatie_medicatieafspraak</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:priorPrescription" mode="XXXXXXXXXXXXXXX">
-		<relatie_medicatieafspraak>
-			<xsl:call-template name="Reference-to-identificatie"/>
-		</relatie_medicatieafspraak>
-	</xsl:template>
-
-    <xd:doc><!-- ZZZNEW -->
-		<xd:desc>Template to convert f:identifier to identificatie</xd:desc>
-	</xd:doc>
+        <xd:desc>Template to convert f:identifier to identificatie</xd:desc>
+    </xd:doc>
     <xsl:template match="f:identifier" mode="nl-core-MedicationDispense">
-		<xsl:call-template name="Identifier-to-identificatie"/>
-	</xsl:template>
-
-	<xd:doc>
-		<xd:desc>Template to convert f:medicationReference to afgesproken_geneesmiddel</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:medicationReference" mode="">
-		<xsl:variable name="referenceValue" select="f:reference/@value"/>
-		<afgesproken_geneesmiddel>
-			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
-		</afgesproken_geneesmiddel>
-	</xsl:template>
-
-	<xd:doc><!-- ZZZNEW -->
-	    <xd:desc>Template to convert f:authoredOn to wisselend_doseerschema_datum_tijd</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:authoredOn" mode="">
-		<xsl:call-template name="datetime-to-datetime">
-		    <xsl:with-param name="adaElementName">wisselend_doseerschema_datum_tijd</xsl:with-param>
-			<xsl:with-param name="adaDatatype">datetime</xsl:with-param>
-		</xsl:call-template>
-	</xsl:template>
-
-	<xd:doc><!-- ZZZNEW -->
-		<xd:desc>Template to convert f:reasonCode to reden_wijzigen_of_staken</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:reasonCode" mode="">
-		<xsl:call-template name="CodeableConcept-to-code">
-			<xsl:with-param name="in" select="."/>
-			<xsl:with-param name="adaElementName" select="'reden_wijzigen_of_staken'"/>
-		</xsl:call-template>
-	</xsl:template>
-	
-	<xd:doc>
-		<xd:desc>Template to convert f:note to toelichting</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:note" mode="">
-		<toelichting value="{f:text/@value}"/>
-	</xsl:template>
-
+        <xsl:call-template name="Identifier-to-identificatie"/>
+    </xsl:template>
 </xsl:stylesheet>

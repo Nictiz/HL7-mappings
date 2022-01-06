@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- (ref) te_verstrekken_geneesmiddel -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!--te_verstrekken_hoeveelheid-->
-            <xsl:apply-templates select="f:dispenseRequest/f:quantity" mode="#current"/>
+            <xsl:apply-templates select="f:dispenseRequest/f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="#current"/>
             <!--aantal_herhalingen-->
             <xsl:apply-templates select="f:dispenseRequest/f:numberOfRepeatsAllowed" mode="#current"/>
             <!-- verbruiksperiode/tijds_duur -->
@@ -59,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode']"
                 mode="#current"/>
             <!--toelichting-->
-            <xsl:apply-templates select="f:note" mode="#current"/>
+            <xsl:apply-templates select="f:note" mode="nl-core-Note"/>
             <!-- relatie medicatieafspraak -->
             <xsl:apply-templates select="f:priorPrescription" mode="#current"/>
             <!-- relatie_contact -->
@@ -85,20 +85,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <!-- gebruiksinstructie -->
             <xsl:call-template name="nl-core-InstructionsForUse"/>
-            <!-- aanvullende_informatie -->
-            <xsl:apply-templates select="f:extension[@url = $medication-AdditionalInformation]" mode="#current"/>
             <!-- kopie indicator -->
             <xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
         </verstrekkingsverzoek>
-    </xsl:template>
-
-
-    <xd:doc>
-        <!--ZZZNEW-->
-        <xd:desc>Template to convert f:note to Toelichting</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:note" mode="nl-core-DispenseRequest">
-        <toelichting value="{f:text/@value}"/>
     </xsl:template>
 
     <xd:doc>
@@ -195,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--ZZZNEW-->
         <xd:desc>Template to convert f:quantity to te_verstrekken_hoeveelheid</xd:desc>
     </xd:doc>
-    <xsl:template match="f:quantity" mode="nl-core-DispenseRequest">
+    <xsl:template match="f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="nl-core-DispenseRequest">
         <te_verstrekken_hoeveelheid>
             <aantal value="{f:extension/f:valueQuantity/f:value/@value}"/>
             <eenheid code="{f:extension/f:valueQuantity/f:code/@value}"
@@ -331,11 +320,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </reden_van_voorschrijven>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Template to convert f:note to toelichting</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:note" mode="nl-core-MedicationAgreement">
-        <toelichting value="{f:text/@value}"/>
-    </xsl:template>
 
 </xsl:stylesheet>
