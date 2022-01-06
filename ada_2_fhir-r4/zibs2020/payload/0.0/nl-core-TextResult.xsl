@@ -128,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
                 <content>
-                    <!-- Needed to satisfy contraint att-1. 'application/octet-stream' is basically 'unkown'('arbitrary binary data') -->
+                    <!-- Needed to satisfy constraint att-1. 'application/octet-stream' is basically 'unknown' ('arbitrary binary data') -->
                     <contentType value="application/octet-stream"/>
                     <data value="{@value}"/>
                 </content>
