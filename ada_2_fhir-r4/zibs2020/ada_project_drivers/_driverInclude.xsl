@@ -212,11 +212,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'betaler'">
-                <xsl:apply-templates select="$in" mode="nl-core-Payer">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
-                <xsl:if test="verzekeraar/indentificatie_nummer | verzekeraar/organisatie_naam">
-                    <xsl:apply-templates select="$in" mode="nl-core-Payer-Organization"/>
+                <xsl:if test="betaler_persoon">
+                    <xsl:apply-templates select="$in" mode="nl-core-Payer.PayerPerson">
+                        <xsl:with-param name="beneficiary" select="$subject"/>
+                    </xsl:apply-templates>
+                    <!-- Because the zib officially does not support references to Patient or ContactPerson, it is difficult to model these in ada. Therefore, we always assume a 'betaler_persoon' that is modelled inline is of the profile nl-core-Payer-Organization, which is probably wrong -->
+                    <xsl:apply-templates select="$in" mode="nl-core-Payer-Organization">
+                        <xsl:with-param name="beneficiary" select="$subject"/>
+                    </xsl:apply-templates>
+                </xsl:if>
+                <xsl:if test="verzekeraar">
+                    <xsl:apply-templates select="$in" mode="nl-core-Payer.InsuranceCompany">
+                        <xsl:with-param name="beneficiary" select="$subject"/>
+                    </xsl:apply-templates>
+                    <!-- Name, address and contact details are available in the Payer-Organization profile. -->
+                    <xsl:apply-templates select="$in" mode="nl-core-Payer-Organization">
+                        <xsl:with-param name="beneficiary" select="$subject"/>
+                    </xsl:apply-templates>
                 </xsl:if>
                 <xsl:for-each select="betaler_persoon/betaler_naam">
                     <xsl:apply-templates select="$in" mode="nl-core-Patient-Payer"/>

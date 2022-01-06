@@ -34,10 +34,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="beneficiary">Optional ADA instance or ADA reference element for the beneficiary, usually the patient.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-Payer" mode="nl-core-Payer" match="betaler" as="element(f:Coverage)">
+    <xsl:template name="nl-core-Payer.InsuranceCompany" mode="nl-core-Payer.InsuranceCompany" match="betaler" as="element(f:Coverage)">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" as="element()?"/>
+        <xsl:param name="beneficiary" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Coverage>
@@ -45,25 +46,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="endDate" select="verzekeraar/verzekering/eind_datum_tijd/@value"/>
                 
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Payer'"/>
+                    <xsl:with-param name="profile" select="'nl-core-Payer.InsuranceCompany'"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer.InsuranceCompany"/>
                 </meta>
-                
                 <status>
                     <xsl:choose>
-                        <!-- When EndDate is present and EndDate in the future: _active_  -->
+                        <xsl:when test="nf:isFuture($startDate)">
+                            <xsl:attribute name="value" select="'draft'"/>
+                        </xsl:when>
                         <xsl:when test="nf:isFuture($endDate)">
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:when>
-                        
-                        <!-- When EndDate is present and EndDate in the past: _cancelled_  -->
                         <xsl:when test="nf:isPast($endDate)">
                             <xsl:attribute name="value" select="'cancelled'"/>
                         </xsl:when>
-                        
                         <!-- If no status can be derived from the start and enddate, the Coverage is assumed to be active. 
                         A status code must be provided and no unkown code exists in the required ValueSet.-->
                         <xsl:otherwise>
@@ -83,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="in" select="$beneficiary"/>
                     <xsl:with-param name="wrapIn">beneficiary</xsl:with-param>
                 </xsl:call-template>
                 
@@ -110,44 +109,73 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </period>
                 </xsl:if>
                 
-                <xsl:if test="verzekeraar[identificatie_nummer or organisatie_naam]">
+                <xsl:if test="verzekeraar[identificatie_nummer or organisatie_naam] or adresgegevens or contactgegevens">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
-                
-                <xsl:for-each select="betaler_persoon">
-                    <payor>
-                    <xsl:for-each select="bankgegevens">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation">
-                            <xsl:for-each select="bank_naam">
-                                <extension url="bankName">
-                                    <valueString value="{normalize-space(@value)}"/>
-                                </extension>    
-                            </xsl:for-each>
-                            <xsl:for-each select="bankcode">
-                                <extension url="bankcode">
-                                    <valueString value="{normalize-space(@value)}"/>
-                                </extension>
-                            </xsl:for-each>
-                            <xsl:for-each select="rekeningnummer">
-                                <extension url="accountNumber">
-                                    <valueString value="{normalize-space(@value)}"/>
-                                </extension>
-                            </xsl:for-each>
-                         </extension>                           
-                    </xsl:for-each>
-                    <!-- Cannot make a reference because it is no refernce in ADA.... -->
-                    <!--  
-                    <xsl:for-each select="betaler_naam">
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile" select="'nl-core-Patient-Payer'"/>
-                            <xsl:with-param name="wrapIn">payor</xsl:with-param>                        
-                        </xsl:call-template>
-                    </xsl:for-each>-->
-                    </payor>    
+            </Coverage>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Create a nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="beneficiary">Optional ADA instance or ADA reference element for the beneficiary, usually the patient.</xd:param>
+    </xd:doc>
+    <xsl:template name="nl-core-Payer.PayerPerson" mode="nl-core-Payer.PayerPerson" match="betaler" as="element(f:Coverage)">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="beneficiary" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Coverage>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="'nl-core-Payer.PayerPerson'"/>
+                </xsl:call-template>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer.PayerPerson"/>
+                </meta>
+                <xsl:for-each select="betaler_persoon/bankgegevens">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation">
+                        <xsl:for-each select="bank_naam">
+                            <extension url="bankName">
+                                <valueString value="{normalize-space(@value)}"/>
+                            </extension>    
+                        </xsl:for-each>
+                        <xsl:for-each select="bankcode">
+                            <extension url="bankCode">
+                                <valueString value="{normalize-space(@value)}"/>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select="rekeningnummer">
+                            <extension url="accountNumber">
+                                <valueString value="{normalize-space(@value)}"/>
+                            </extension>
+                        </xsl:for-each>
+                    </extension>                           
                 </xsl:for-each>
+                <!-- The Coverage is assumed to be active. A status code must be provided and no unkown code exists in the required ValueSet.-->
+                <status value="active"/>
+                <type>
+                    <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/coverage-selfpay"/>
+                        <code value="pay"/>
+                    </coding>
+                </type>
+                
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$beneficiary"/>
+                    <xsl:with-param name="wrapIn">beneficiary</xsl:with-param>
+                </xsl:call-template>
+                
+                <!-- We cannot know for sure if this betaler_persoon truly is an Organization, but ADA currently does not allow a reference to a Patient or ContactPerson -->
+                <xsl:if test="betaler_persoon/betaler_naam or adresgegevens or contactgegevens">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
+                        <xsl:with-param name="wrapIn">payor</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
             </Coverage>
         </xsl:for-each>
     </xsl:template>
@@ -166,6 +194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer-Organization"/>
                 </meta>
+                
                 <xsl:for-each select="verzekeraar/identificatie_nummer">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier">
@@ -174,9 +203,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
-                <xsl:for-each select="verzekeraar/organisatie_naam">
-                    <name value="{@value}"/>
-                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="verzekeraar/organisatie_naam">
+                        <name value="{verzekeraar/organisatie_naam/@value}"/>
+                    </xsl:when>
+                    <xsl:when test="betaler_persoon/betaler_naam">
+                        <name value="{betaler_persoon/betaler_naam/@value}"/>
+                    </xsl:when>
+                </xsl:choose>
                 
                 <xsl:call-template name="nl-core-ContactInformation">
                     <xsl:with-param name="in" select="contactgegevens"/>
@@ -187,60 +221,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </Organization>
         </xsl:for-each>
-    </xsl:template> 
-    
-    
-    
-    <xd:doc>
-        <xd:desc>Create an nl-core-Patient compliant FHIR instance from the ada parts Payer.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-    </xd:doc>
-    <xsl:template match="betaler" mode="nl-core-Patient-Payer" name="nl-core-Patient-Payer" as="element(f:Patient)">
-        <xsl:param name="in" as="element()?" select="."/>
-        <xsl:for-each select="$in">
-            <Patient>
-                <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="nl-core-Patient-Payer"/>
-                </xsl:call-template>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
-                </meta>
-                
-                <!-- Payer name information from the nl-core-Payer profile. -->
-                <xsl:for-each select="betaler_persoon/betaler_naam">
-                    <name>
-                        <text value="{normalize-space(@value)}"/>
-                    </name>
-                </xsl:for-each>
-                
-                <xsl:for-each select="contactgegevens">
-                    <xsl:call-template name="nl-core-ContactInformation"/>
-                </xsl:for-each>
-                
-                <xsl:for-each select="adresgegevens">
-                    <xsl:call-template name="nl-core-AddressInformation"/>
-                </xsl:for-each>
-            </Patient>
-        </xsl:for-each>
     </xsl:template>
-    
-    
 
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="betaler" mode="_generateDisplay">
+        <xsl:param name="profile" required="yes" as="xs:string"/>
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Payer</xsl:text>
-            <xsl:if test="betaler_persoon/betaler_naam">
-                <xsl:value-of select="concat('person ', betaler_persoon/betaler_naam/@value)"/>
-            </xsl:if>
-            <xsl:if test="verzekeraar/organisatie_naam">
-                <xsl:value-of select="concat('organization ', verzekeraar/organisatie_naam/@value)"/>
-            </xsl:if>
-            <xsl:if test="verzekeraar/identificatie_nummer">
-                <xsl:value-of select="concat('UZOVI nummer ', verzekeraar/identificatie_nummer/@value)"/>
-            </xsl:if>
+            
+            <xsl:choose>
+                <xsl:when test="$profile = 'nl-core-Payer.InsuranceCompany'">
+                    <xsl:text>Payer as InsuranceCompany</xsl:text>
+                    <xsl:value-of select="verzekeraar/organisatie_naam/@value"/>
+                    <xsl:if test="verzekerde_nummer/@value">
+                        <xsl:value-of select="concat('nummer: ',verzekerde_nummer/@value)"/>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:when test="$profile = 'nl-core-Payer.PayerPerson'">
+                    <xsl:text>Payer as PayerPerson</xsl:text>
+                    <xsl:value-of select="betaler_persoon/betaler_naam/@value"/>
+                </xsl:when>
+                <xsl:when test="$profile = 'nl-core-Payer-Organization'">
+                    <xsl:text>Payer-Organization</xsl:text>
+                    <xsl:value-of select="verzekeraar/organisatie_naam/@value"/>
+                    <xsl:value-of select="betaler_persoon/betaler_naam/@value"/>
+                    <xsl:if test="verzekeraar/identificatie_nummer">
+                        <xsl:value-of select="concat('UZOVI ', verzekeraar/identificatie_nummer/@value)"/>
+                    </xsl:if>
+                </xsl:when>
+            </xsl:choose>
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
