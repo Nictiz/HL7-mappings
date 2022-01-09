@@ -1344,6 +1344,13 @@
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>Verwijder reden voor annulering (subjectOf) bij activiteit Contactmomentafspraak</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:encounter[@moodCode = 'INT']/hl7:subjectOf" mode="dob327">
+    </xsl:template>
+ 
+   <!-- 
+    <xd:doc>
         <xd:desc>Vervang @nullFlavor door het algemenere NI (no information). Deze is mogelijk UNK (onbekend) of NA (not applicable) op basis van historische specificaties.</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:patientPerson/hl7:asPatientOfOtherProvider/hl7:subjectOf/hl7:careProvision/hl7:performer/hl7:assignedProvider/hl7:id[@nullFlavor] | 
