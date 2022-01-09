@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Base template for the main interaction.</xd:desc>
 	</xd:doc>
 	<xsl:template match="/">
-		<xsl:variable name="bouwstenen">
+	    <xsl:variable name="bouwstenen" as="element()*">
 			<!--  contactpersoon -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:RelatedPerson" mode="nl-core-ContactPerson"/>
 			<!-- farmaceutisch_product -->
@@ -57,7 +57,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								<xsl:attribute name="value" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/f:value/@value"/>
 								<xsl:attribute name="root" select="local:getOid(f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']/f:valueIdentifier/f:system/@value)"/>
 							</identificatie>
-
 						    <!-- medicatieafspraak -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = '16076005']" mode="nl-core-MedicationAgreement"/>
 						    <!-- verstrekkingsverzoek -->
