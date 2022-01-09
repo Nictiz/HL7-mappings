@@ -1367,7 +1367,6 @@
     <xsl:template match="hl7:encounter[@moodCode = 'INT']/hl7:subjectOf" mode="dob327">
     </xsl:template>
  
-   <!-- 
     <xd:doc>
         <xd:desc>Vervang @nullFlavor door het algemenere NI (no information). Deze is mogelijk UNK (onbekend) of NA (not applicable) op basis van historische specificaties.</xd:desc>
     </xd:doc>
