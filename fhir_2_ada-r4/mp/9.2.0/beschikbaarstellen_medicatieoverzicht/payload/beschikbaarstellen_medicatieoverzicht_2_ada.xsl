@@ -79,6 +79,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:copy-of select="$bouwstenen"/>
 						</bouwstenen>
 					</xsl:if>
+				    <xsl:apply-templates select="//f:List[/f:meta/f:profile/@value eq 'http://nictiz.nl/fhir/StructureDefinition/MedicationOverview']"/>
+				        <documentgegevens>
+				            
+				        </documentgegevens>
+					
 					
 					<!-- TODO documentgegevens -->
 

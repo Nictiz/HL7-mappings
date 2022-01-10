@@ -18,7 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:Organization to ADA zorgaanbieder</xd:desc>
     </xd:doc>
     <xsl:template match="f:Organization" mode="nl-core-HealthcareProvider-Organization">
-
         <xsl:variable name="entryFullURrlAtValue" select="./../../f:fullUrl/@value"/>
 
         <zorgaanbieder id="{nf:convert2NCName($entryFullURrlAtValue)}">
@@ -65,21 +64,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <organisatie_naam value="{@value}"/>
     </xsl:template>
 
-<!--xxxwim? moet van:
-OrganisatieTypeCodelijst (https://decor.nictiz.nl/pub/medicatieproces/mp-html-20210921T194523/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.2.3-2020-09-01T000000.html)
-naar:
-FHIR OrganizationType (https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/81562)
-Coding-to-code doet niet de mapping
-    -->
 
     <xd:doc>
         <xd:desc>Template to convert f:type to organisatie_type</xd:desc>
     </xd:doc>
+   
     <xsl:template match="f:type" mode="nl-core-HealthcareProvider-Organization">
-        <organisatie_type>
-            <xsl:call-template name="Coding-to-code">
-                <xsl:with-param name="in" select="f:coding"/>
-            </xsl:call-template>
-        </organisatie_type>
+        <xsl:choose>
+            <xsl:when test="f:coding/f:system[@value eq 'urn:oid:2.16.840.1.113883.2.4.6.7']">
+                    <afdeling_specialisme>
+                        <xsl:call-template name="Coding-to-code">
+                            <xsl:with-param name="in" select="f:coding"/>
+                        </xsl:call-template>                        
+                    </afdeling_specialisme>
+                </xsl:when>
+                <xsl:when test="f:coding/f:system[@value eq 'urn:oid:2.16.840.1.113883.2.4.15.1060']">
+                    <organisatie_type>
+                        <xsl:call-template name="Coding-to-code">
+                            <xsl:with-param name="in" select="f:coding"/>
+                        </xsl:call-template>                        
+                    </organisatie_type>
+                </xsl:when>
+            </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
