@@ -61,10 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Patient>
-                <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Patient'"/>
-
-                </xsl:call-template>
+                <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
                 </meta>
