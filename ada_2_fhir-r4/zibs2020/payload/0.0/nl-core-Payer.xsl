@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
+        <xd:desc>Create an nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="beneficiary">Optional ADA instance or ADA reference element for the beneficiary, usually the patient.</xd:param>
     </xd:doc>
@@ -63,8 +63,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="nf:isPast($endDate)">
                             <xsl:attribute name="value" select="'cancelled'"/>
                         </xsl:when>
-                        <!-- If no status can be derived from the start and enddate, the Coverage is assumed to be active. 
-                        A status code must be provided and no unkown code exists in the required ValueSet.-->
+                        <!-- If no status can be derived from the startDate and endDate, the Coverage is assumed to be active. 
+                        A status code must be provided and no unknown code exists in the required ValueSet.-->
                         <xsl:otherwise>
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:otherwise>
@@ -120,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
+        <xd:desc>Create an nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="beneficiary">Optional ADA instance or ADA reference element for the beneficiary, usually the patient.</xd:param>
     </xd:doc>
@@ -155,7 +155,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </extension>                           
                 </xsl:for-each>
-                <!-- The Coverage is assumed to be active. A status code must be provided and no unkown code exists in the required ValueSet.-->
+                <!-- The Coverage is assumed to be active. A status code must be provided and no unknown code exists in the required ValueSet.-->
                 <status value="active"/>
                 <type>
                     <coding>
@@ -181,7 +181,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-Payer-Organization instance as a Orgarnization FHIR instance from ADA betaler.</xd:desc>
+        <xd:desc>Create an nl-core-Payer-Organization instance as an Organization FHIR instance from ADA betaler.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="betaler" name="nl-core-Payer-Organization" mode="nl-core-Payer-Organization" as="element(f:Organization)">
