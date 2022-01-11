@@ -79,17 +79,71 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:copy-of select="$bouwstenen"/>
 						</bouwstenen>
 					</xsl:if>
-				    <xsl:apply-templates select="//f:List[/f:meta/f:profile/@value eq 'http://nictiz.nl/fhir/StructureDefinition/MedicationOverview']"/>
-				        <documentgegevens>
-				            
-				        </documentgegevens>
-					
-					
-					<!-- TODO documentgegevens -->
-
+				    <!-- documentgegevens -->
+				    <xsl:apply-templates select="//f:List[f:meta/f:profile/@value eq 'http://nictiz.nl/fhir/StructureDefinition/MedicationOverview']" mode="MedicationOverview"/>
 				</beschikbaarstellen_medicatieoverzicht>
 			</data>
 		</adaxml>
 	</xsl:template>
-
+    
+    <xd:doc>
+        <xd:desc>Template to convert f:list to ADA documentgegevens (920500)</xd:desc>
+    </xd:doc>    
+    <xsl:template match="f:List[f:meta/f:profile/@value eq 'http://nictiz.nl/fhir/StructureDefinition/MedicationOverview']" mode="MedicationOverview">
+        <documentgegevens>
+            <!-- 920501 date -->
+            <xsl:variable name="dt">
+                <xsl:call-template name="format2ADADate">
+                    <xsl:with-param name="dateTime" select="f:date/@value">
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+            <document_datum value="{$dt}" datatype="datetime"/>
+            <!--920-502 auteur-->
+            <auteur>
+            <xsl:if test="f:source/f:extension/@url eq 'http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization'">
+                <auteur_is_zorgaanbieder>
+                    <zorgaanbieder>
+<!--                        <xsl:comment select="//f:entry[current()/f:source/f:extension/f:valueReference/f:reference/@value eq f:fullUrl/@value]/name()">
+                        </xsl:comment>-->
+                        <xsl:variable name="path2Organization"
+                          select="//f:entry[f:fullUrl/@value eq current()/f:source/f:extension/f:valueReference/f:reference/@value]/f:resource/f:Organization" as="node()"/>
+                        
+                        <zorgaanbieder_identificatienummer value="{$path2Organization/f:identifier/f:value/@value}"
+                            root="{$path2Organization/f:id/@value}"/>
+                        
+<!--                        <organisatie_naam value="Apotheek De Gulle Gaper"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1178"/>
+                        <contactgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1180">
+                            <telefoonnummers comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1181">
+                                <telefoonnummer value="099-98985678"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1182"/>
+                            </telefoonnummers>
+                        </contactgegevens>
+                        <adresgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1189">
+                            <straat value="Dorpsweg"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1190"/>
+                            <huisnummer value="28" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1191"/>
+                            <postcode value="1234AB" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1195"/>
+                            <woonplaats value="Ons Dorp"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1196"/>
+                            <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1200"
+                                value="5"
+                                code="WP"
+                                codeSystem="2.16.840.1.113883.5.1119"
+                                displayName="Werkadres"/>
+                        </adresgegevens>-->
+                    </zorgaanbieder>
+                </auteur_is_zorgaanbieder>
+                
+            </xsl:if>
+                
+                
+            </auteur>
+            
+        </documentgegevens>
+        
+        
+    </xsl:template>
+    
 </xsl:stylesheet>
