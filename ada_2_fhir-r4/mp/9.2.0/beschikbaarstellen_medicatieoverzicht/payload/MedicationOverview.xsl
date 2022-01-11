@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA documentgegevens to FHIR List  conforming to profile MedicationOverview.</xd:desc>
     </xd:doc>
 
-  
+
     <xd:doc>
         <xd:desc>Makes the List entry for MP 9</xd:desc>
         <xd:param name="in">Document data for medication overview. Defaults to context.</xd:param>
@@ -90,8 +90,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <text value="Medicatieoverzicht"/>
                         </code>
                         <subject>
-                            <xsl:for-each select="ancestor::*[ancestor::data]/patient" >
-                                <xsl:call-template name="makeReference"/>                                
+                            <xsl:for-each select="ancestor::*[ancestor::data]/patient">
+                                <xsl:call-template name="makeReference"/>
                             </xsl:for-each>
                         </subject>
                         <xsl:for-each select="document_datum/@value">
@@ -110,7 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <valueReference>
                                             <xsl:call-template name="makeReference">
                                                 <xsl:with-param name="profile" select="$profilenameHealthcareProviderOrganization"/>
-                                            </xsl:call-template>                                
+                                            </xsl:call-template>
                                         </valueReference>
                                     </extension>
                                     <xsl:variable name="display-for-reference">
@@ -132,11 +132,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                         </xsl:for-each>
                         <!-- the entries with references to medicatieafspraak/toedieningsafspraak/medicatiegebruik -->
-                        <!-- MA's en TA's en MGB's-->
-                        <xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'http://snomed.info/sct'][f:code/@value = ('16076005', '33633005', '422037009', '422979000')]]" mode="doMOListReference"/>
-                        <!-- MGB's old style, for backwards compatibility -->
-                        <xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3'][f:code/@value = '6']]" mode="doMOListReference"/>
-                    </List>
+                        <xsl:apply-templates select="../medicamenteuze_behandeling/(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)" mode="doMOListReference"/>
+                      </List>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
                     <search>
@@ -146,6 +143,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
     </xsl:template>
-    
+
+    <xd:doc>
+        <xd:desc>Make an entry with a reference to another entry as is used in the List resource in Bundle for Medicatieoverzicht (medication overview)</xd:desc>
+    </xd:doc>
+    <xsl:template name="medicatieoverzicht-list-reference" match="*" mode="doMOListReference">
+        <entry xmlns="http://hl7.org/fhir">
+            <item>
+                <xsl:call-template name="makeReference"/>               
+            </item>
+        </entry>
+    </xsl:template>
+
 
 </xsl:stylesheet>

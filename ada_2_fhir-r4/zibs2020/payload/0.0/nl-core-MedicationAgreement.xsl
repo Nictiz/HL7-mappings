@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="$in/ancestor::*[@app]//farmaceutisch_product[@id= $in/(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product/@value]" as="element()?"/>
-        <xsl:param name="requester" select="$in//zorgverlener[@id=$in/voorschrijver/zorgverlener/@value]" as="element()?"/>
+        <xsl:param name="requester" select="$in//zorgverlener[@id=$in/voorschrijver/zorgverlener/@value] | $in/voorschrijver/zorgverlener[*]" as="element()?"/>
         <xsl:param name="reasonReference" select="$in//probleem[@id = $in/reden_van_voorschrijven/probleem/@value]" as="element()?"/>
 
         <xsl:for-each select="$in">
@@ -241,12 +241,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatieafspraak" mode="_generateDisplay">
-        <xsl:variable name="parts">
-            <xsl:value-of select="'Medication agreement'"/>
-            <xsl:value-of select="afgesprokengeneesmiddel/@display"/>
-            <xsl:value-of select="medicatieafspraak_datum_tijd/@value"/>
-            <xsl:value-of select="medicatieafspraak_stop_type/@display"/>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts, '-')"/>
+        <xsl:choose>
+            <xsl:when test="identificatie[@value | @root]">
+                <xsl:for-each select="identificatie[@value | @root][1]">
+                    <xsl:value-of select="concat('Medicatieafspraak met identificatie ', @value, ' in identificatiesysteem: ', @root)"/>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="parts">
+                    <xsl:value-of select="'Medication agreement'"/>
+                    <xsl:if test="medicatieafspraak_datum_tijd[@value]">
+                        <xsl:value-of select="concat(',agreed on: ', medicatieafspraak_datum_tijd/@value, '.')"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts, ' ')"/>
+            </xsl:otherwise>
+        </xsl:choose>       
+        
     </xsl:template>
 </xsl:stylesheet>
