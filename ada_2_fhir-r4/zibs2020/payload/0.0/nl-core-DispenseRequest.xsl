@@ -122,7 +122,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:attribute>
                     </authoredOn>
                 </xsl:for-each>
-
+                
+                <xsl:variable name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value] | auteur/zorgverlener[*]"/>
+                <xsl:for-each select="$requester">
+                    <requester>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                        </xsl:call-template>
+                    </requester>
+                </xsl:for-each>
+                
                 <xsl:for-each select="$performer">
                     <performer>
                         <xsl:call-template name="makeReference">
