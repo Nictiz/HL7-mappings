@@ -79,6 +79,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
 
+                <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier"/>
+                    </identifier>
+                </xsl:for-each>                
 
                 <!-- It is expected that in most use cases only actual, executed, medication dispenses are exchanged which result in a _completed_ value. We use completed as a default value. 
                     See https://github.com/Nictiz/Nictiz-R4-zib2020/issues/122 -->

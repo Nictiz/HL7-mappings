@@ -144,7 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
             </xsl:for-each-group>
         </xsl:for-each-group>
-        
+
         <!-- General rule for concepts -->
         <xsl:for-each-group select="$in[not(self::patient)][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
@@ -280,13 +280,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc>Helper template for creating logicalId</xd:desc>
-         <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
+        <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
     </xd:doc>
     <xsl:template name="generateLogicalId">
-         <xsl:param name="uniqueString" as="xs:string?"/>
-  
+        <xsl:param name="uniqueString" as="xs:string?"/>
+
         <xsl:choose>
             <xsl:when test="string-length($uniqueString) le $maxLengthFHIRLogicalId - 2 and string-length($uniqueString) gt 0">
                 <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars($uniqueString))"/>
@@ -319,7 +319,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="groupKey">
             <xsl:choose>
-                <xsl:when test="$in[@datatype = 'reference' and @value]">
+                <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
                     <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in, /))"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -347,12 +347,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="identifier" select="identificatienummer[normalize-space(@value | @nullFlavor)]"/>
+        <xsl:variable name="identifier" select="(identificatienummer | identificatie)[normalize-space(@value | @nullFlavor)]"/>
 
         <!-- Debug -->
-        <xsl:if test="$in and count($element) = 0">
-            <xsl:message terminate="yes">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:message>
-        </xsl:if>
+        <xsl:if test="$in and count($element) = 0 and not($identifier)">
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logERROR"/>
+                <xsl:with-param name="msg">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:with-param>
+            </xsl:call-template>
+          </xsl:if>
 
         <xsl:variable name="populatedReference" as="element()*">
             <xsl:if test="string-length($element/nm:ref-url) gt 0">
@@ -369,7 +372,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </identifier>
                 </xsl:when>
-                <!--<xsl:when test="local-name() = $adaElement and .[@value]">
+                <!-- AWE regardless of referencingStrategy, it makes sense to output an identifier if available if reference has not been populated -->
+                <xsl:when test="empty($element/nm:ref-url) and $identifier">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                        </xsl:call-template>
+                    </identifier>
+                </xsl:when> <!--<xsl:when test="local-name() = $adaElement and .[@value]">
                         Fallback?
                     </xsl:when>-->
             </xsl:choose>
@@ -379,7 +389,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:variable>
 
-        <xsl:if test="count($populatedReference) &gt; 0">
+        <xsl:if test="count($populatedReference) gt 0">
             <xsl:choose>
                 <xsl:when test="$wrapIn">
                     <xsl:element name="{$wrapIn}">
@@ -522,8 +532,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">The ADA instance to resolve.</xd:param>
         <xd:param name="context">The complete ADA instance where the contained ADA instance is contained in.</xd:param>
     </xd:doc>
-    <xsl:function name="nf:resolveAdaInstance">
-        <xsl:param name="in"/>
+    <xsl:function name="nf:resolveAdaInstance" as="element()*">
+        <xsl:param name="in" as="element()?"/>
         <xsl:param name="context" as="node()"/>
 
         <xsl:choose>
@@ -612,7 +622,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Returns the full profileName for an ada element, based on $urlBaseNictizProfile and $ada2resourceType constant.
             Selects the first one found, which may be wrong if there is more than one entry. In which case you should not use this function.</xd:desc>
@@ -620,10 +630,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:get-full-profilename-from-adaelement" as="xs:string?">
         <xsl:param name="adaElement" as="element()?"/>
-        
+
         <xsl:value-of select="concat($urlBaseNictizProfile, nf:get-profilename-from-adaelement($adaElement))"/>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Returns the last part of the profileName for an ada element, based on $ada2resourceType constant. 
             Selects the first one found, which may be wrong if there is more than one entry. In which case you should not use this function.</xd:desc>
@@ -631,7 +641,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:get-profilename-from-adaelement" as="xs:string?">
         <xsl:param name="adaElement" as="element()?"/>
-        
+
         <xsl:value-of select="$ada2resourceType/nm:map[@ada = $adaElement/local-name()][1]/@profile"/>
     </xsl:function>
 

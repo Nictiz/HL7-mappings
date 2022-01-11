@@ -163,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//wisselend_doseerschema">
             <!-- entry for MedicationRequest -->
             <entry>
-                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
+                <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
                     <xsl:call-template name="nl-core-VariableDosingRegimen">
                         <xsl:with-param name="in" select="."/>
@@ -183,7 +183,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//verstrekkingsverzoek">
             <!-- entry for MedicationRequest -->
             <entry>
-                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
+                <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
                     <xsl:call-template name="nl-core-DispenseRequest">
                         <xsl:with-param name="in" select="."/>
@@ -202,7 +202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- toedieningsafspraken -->
         <xsl:for-each select="//toedieningsafspraak">
             <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
+                <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
                     <xsl:call-template name="nl-core-AdministrationAgreement">
                         <xsl:with-param name="in" select="."/>
@@ -222,7 +222,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//medicatieverstrekking">
             <!-- entry for MedicationDispense -->
             <entry>
-                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
+                <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
                     <xsl:call-template name="nl-core-MedicationDispense">
                         <xsl:with-param name="in" select="."/>
@@ -242,7 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//(medicatie_gebruik | medicatiegebruik)">
             <!-- entry for MedicationUse -->
             <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId(identificatie)}"/>
+                <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
                     <xsl:call-template name="nl-core-MedicationUse2">
                         <xsl:with-param name="in" select="."/>

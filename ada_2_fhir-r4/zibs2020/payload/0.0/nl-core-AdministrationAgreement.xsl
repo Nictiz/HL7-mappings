@@ -209,15 +209,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="toedieningsafspraak" mode="_generateDisplay">
-        <xsl:variable name="parts">
-            <xsl:value-of select="'Administration agreement'"/>
-            <xsl:if test="reden_afspraak[@value]">
-                <xsl:value-of select="concat('for ', reden_afspraak/@value)"/>
-            </xsl:if>
-            <xsl:if test="toedieningsafspraak_datum_tijd[@value]">
-                <xsl:value-of select="concat(' (', toedieningsafspraak_datum_tijd/@value, ')')"/>
-            </xsl:if>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts, ' ')"/>
+        <xsl:choose>
+            <xsl:when test="identificatie[@value | @root]">
+                <xsl:for-each select="identificatie[@value | @root][1]">
+                    <xsl:value-of select="concat('Toedieningsafspraak met identificatie ', @value, ' in identificatiesysteem: ', @root)"/>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="parts">
+                    <xsl:value-of select="'Administration agreement'"/>
+                    <xsl:if test="toedieningsafspraak_datum_tijd[@value]">
+                        <xsl:value-of select="concat('agreed on: ', toedieningsafspraak_datum_tijd/@value, '.')"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts, ' ')"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
