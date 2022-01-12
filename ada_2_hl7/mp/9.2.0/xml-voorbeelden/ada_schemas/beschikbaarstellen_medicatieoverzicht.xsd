@@ -9799,11 +9799,48 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.631"/>
-      <xs:attribute name="value" type="xs:decimal"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="tijds_duur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_631 tijds_duur_2_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_631 tijds_duur_3_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_631 tijds_duur_4_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_631 empty_string"/>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit" type="xs:string"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="uur"/>
+               <xs:enumeration value="dag"/>
+               <xs:enumeration value="week"/>
+               <xs:enumeration value="jaar"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: tijdsDuur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="tijds_duur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_631">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: tijdsDuur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="tijds_duur_2_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_631">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: tijdsDuur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="tijds_duur_3_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_631">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: tijdsDuur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="tijds_duur_4_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_631">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: MedicatieafspraakStopType - 0..1 R</xs:documentation>
    </xs:annotation>
@@ -11601,11 +11638,48 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
-      <xs:attribute name="value" type="xs:decimal"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="tijds_duur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_337 tijds_duur_2_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_337 tijds_duur_3_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_337 tijds_duur_4_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_337 empty_string"/>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit" type="xs:string"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="uur"/>
+               <xs:enumeration value="dag"/>
+               <xs:enumeration value="week"/>
+               <xs:enumeration value="jaar"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: tijdsDuur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="tijds_duur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_337">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: tijdsDuur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="tijds_duur_2_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_337">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: tijdsDuur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="tijds_duur_3_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_337">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: tijdsDuur: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="tijds_duur_4_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_337">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: GeannuleerdIndicator - 0..1 R</xs:documentation>
    </xs:annotation>
