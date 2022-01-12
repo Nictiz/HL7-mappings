@@ -14,7 +14,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
-<!--    <xsl:import href="../zib2017bbr/payload/hl7-toelichting-20180611.xsl"/>-->
+    <xsl:import href="../zib2017bbr/payload/hl7-toelichting-20180611.xsl"/>
+    <xsl:import href="payload/hl7-Lichaamsgewicht-20171025.xsl"/>
+    <xsl:import href="payload/hl7-Lichaamslengte-20171025.xsl"/>
+    <xsl:import href="payload/hl7-CDARecordTargetSDTCNL-20180611.xsl"/>
+    <xsl:import href="payload/hl7-CDARecordTargetSDTCNLBSNContactible-20180611.xsl"/>
+    
 
     <xsl:output method="xml" indent="yes"/>
 
