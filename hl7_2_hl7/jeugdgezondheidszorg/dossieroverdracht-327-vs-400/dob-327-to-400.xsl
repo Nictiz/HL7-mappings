@@ -1344,6 +1344,24 @@
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>Voor‑ of buitenschoolse voorzieningen/school: R008 - templateId 2.16.840.1.113883.2.4.6.10.100.108, ID @root vervangen voor nullFlavor NI</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:patientPerson/hl7:asPatientOfOtherProvider/hl7:subjectOf/hl7:careProvision/hl7:performer/hl7:assignedProvider/hl7:id[not(@nullFlavor)] |
+                         hl7:patientPerson/hl7:asPatientOfOtherProvider/hl7:subjectOf/hl7:careProvision/hl7:performer/hl7:assignedProvider/hl7:representedOrganization/hl7:id[not(@nullFlavor)]" mode="dob327">
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="not(ancestor::hl7:careProvision/hl7:code[@code][@codeSystem = '2.16.840.1.113883.2.4.4.40.2'])">
+                    <xsl:apply-templates select="@*"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:apply-templates select="node()" mode="dob327"/>
+        </xsl:copy>
+    </xsl:template>    
+    
+    <xd:doc>
         <xd:desc>Verwijder reden voor annulering (subjectOf) bij activiteit Contactmomentafspraak</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:encounter[@moodCode = 'INT']/hl7:subjectOf" mode="dob327">
