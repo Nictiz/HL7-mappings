@@ -19,7 +19,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:Organization" mode="nl-core-HealthcareProvider-Organization">
         <xsl:variable name="entryFullURrlAtValue" select="./../../f:fullUrl/@value"/>
-
         <zorgaanbieder id="{nf:convert2NCName($entryFullURrlAtValue)}">
             <!-- zorgaanbieder_identificatienummer -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
