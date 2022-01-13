@@ -19,9 +19,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ext-MedicationUse-Author" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author'"/>
     <xsl:variable name="ext-MedicationUse2.AsAgreedIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator'"/>
     <xsl:variable name="ext-MedicationUse2.TimeIntervalDuration" select="'http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration'"/>
-    
-    
-<!--    <xsl:variable name="zib-Medication-CopyIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>-->
+
+
+    <!--    <xsl:variable name="zib-Medication-CopyIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>-->
     <!--    <xsl:variable name="zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse"
         select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>-->
 
@@ -95,8 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url eq $ext-MedicationUse2.TimeIntervalDuration]" mode="nl-core-MedicationUse2">
         <xsl:variable name="code-value" select="f:valueDuration/f:code/@value"/>
-        <tijds_duur value="{f:valueDuration/f:value/@value}"
-            unit="{nf:convertTime_UCUM_FHIR2ADA_unit($code-value)}"/>
+        <tijds_duur value="{f:valueDuration/f:value/@value}" unit="{nf:convertTime_UCUM_FHIR2ADA_unit($code-value)}"/>
     </xsl:template>
 
 
@@ -227,12 +226,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:medicationReference to gebruiks_product</xd:desc>
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="nl-core-MedicationUse2">
-        <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <gebruiksproduct>
-            <farmaceutisch_product value="{nf:convert2NCName(./f:reference/@value)}"/>
-            <!--            <xsl:apply-templates
-                select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:Medication"
-                mode="nl-core-PharmaceuticalProduct"/>-->
+            <farmaceutisch_product value="{nf:convert2NCName(./f:reference/@value)}" datatype="reference"/>
         </gebruiksproduct>
     </xsl:template>
 
@@ -430,28 +425,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:extension with f:extension ext-MedicationUse2.Prescriber to voorschrijver</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = $extMedicationUse2Prescriber]" mode="nl-core-MedicationUse2">
-        <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
-        <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <voorschrijver>
-            <xsl:choose>
-                <!--xxxwim scenario that was not handled -->
-                <xsl:when test="f:valueReference/f:reference">
-                    <zorgverlener value="{nf:convert2NCName($referenceValue)}"/>
-                </xsl:when>
-
-
-                <xsl:when test="$resource/local-name() = 'PractitionerRole'">
-                    <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitionerRole">
-                        <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
-                        <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
-                    </xsl:apply-templates>
-                </xsl:when>
-                <xsl:when test="$resource/local-name() = 'Practitioner'">
-                    <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0">
-                        <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
-                    </xsl:apply-templates>
-                </xsl:when>
-            </xsl:choose>
+            <zorgverlener value="{nf:convert2NCName(f:valueReference/f:reference/@value)}" datatype="reference"/>
         </voorschrijver>
     </xsl:template>
 
