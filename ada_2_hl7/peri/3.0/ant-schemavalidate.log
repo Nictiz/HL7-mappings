@@ -15,7 +15,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 124ms :: artifacts dl 20ms
+[ivy:resolve] :: resolution report :: resolve 84ms :: artifacts dl 14ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -24,12 +24,12 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/43ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/30ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
-setup_peri30:
+schemavalidate_hl7_30:
 
 download-ivy:
      [echo] installing ivy...
@@ -46,7 +46,7 @@ fetch-imports:
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 74ms :: artifacts dl 12ms
+[ivy:resolve] :: resolution report :: resolve 66ms :: artifacts dl 12ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -55,18 +55,14 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/28ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/29ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
 
-setup_sub_schemas:
+schemavalidate_hl7_sub:
      [echo] 
-     [echo] Setup ../../kernset_neonatologie containing refreshed ada schemas (*kernset_neonatologie.xsd)
-     [copy] Copying 3 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\peri\3.0\kernset_neonatologie\ada_schemas
-     [echo] 
-     [echo] Setup ../../kernset_neonatologie containing refreshed ada production instances (*.xml)
-     [copy] Copying 7 files to C:\SourceTree\GitHub\HL7-mappings\ada_2_hl7\peri\3.0\kernset_neonatologie\ada_instance
+     [echo] ADA to HL7 validate schema with input files **/cda_instance/*.xml but excluding nictiz_test/**/*  and schema ${build.dir}/../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/CDANL_extended.xsd
 
 BUILD SUCCESSFUL
-Total time: 2 seconds
+Total time: 4 seconds

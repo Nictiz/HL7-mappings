@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model phase="#ALL" href="../../../../../../../../../AORTA/trunk/Zorgtoepassing/PerinataleZorg/DECOR/peri20-runtime-develop/peri20-ksneo-alg-30.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
+<?xml-model phase="#ALL" href="../../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/PerinataleZorg/DECOR/peri20-runtime-develop/peri20-ksneo-alg-30.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
 <ClinicalDocument xmlns="urn:hl7-org:v3"
                   xmlns:hl7="urn:hl7-org:v3"
                   xmlns:sdtc="urn:hl7-org:sdtc"
@@ -7,19 +7,21 @@
                   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../AORTA/trunk/XML/schemas/CDANL_extended.xsd">
+                  xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../SVN/AORTA/trunk/XML/schemas/CDANL_extended.xsd">
    <realmCode code="NL"/>
    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
-   <id extension="someUniqueID" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
-   <code code="59268-3"
-         displayName="Neonatal care report"
-         codeSystem="2.16.840.1.113883.6.1"
-         codeSystemName="LOINC"/>
+   <id extension="ksneo-test3" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
+   <code code="118761000146105"
+         displayName="rapport voor kwaliteitsregistratie over neonaten (gegevensobject)"
+         codeSystem="2.16.840.1.113883.6.96"
+         codeSystemName="SNOMED CT"/>
    <title>Kernset Neonatologie</title>
    <effectiveTime value="20210101170000"/>
    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
    <languageCode code="nl-NL"/>
+   <setId extension="ksneo-test3" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
+   <versionNumber value="3"/>
    <recordTarget>
       <patientRole>
          <id extension="123" root="1.2.3.999"/>
@@ -349,8 +351,8 @@
                                        codeSystemName="SNOMED CT"/>
                                  <value xsi:type="CD"
                                         code="410590009"
-                                        displayName="Differentiaal"
-                                        codeSystem="2.16.840.1.113883.6.96"/>
+                                        codeSystem="2.16.840.1.113883.6.96"
+                                        displayName="Differentiaal"/>
                               </observation>
                            </entryRelationship>
                         </observation>
