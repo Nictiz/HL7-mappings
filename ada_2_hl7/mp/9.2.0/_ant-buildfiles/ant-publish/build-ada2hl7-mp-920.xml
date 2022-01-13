@@ -22,8 +22,6 @@
     <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/organizer.xsd"/>
     <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/CDANL_extended.xsd"/>
     
-    <property name="xsl.validate.svrl" value="${build.dir}/validate/validate-svrl-output.xsl"/>
-
     <target name="setup_mp920" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
         <!-- nictiz_test copies appropriate ada instances from refs.dir -->
@@ -525,15 +523,15 @@
 
         <!-- now look at the results for conclusions -->
         <!-- beschikbaarstellen_medicatiegegevens -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
-            <param name="input.dir" value="../${usecase.mg}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mg}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- beschikbaarstellen_medicatieoverzicht -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mo}.xml"/>
-            <param name="input.dir" value="../${usecase.mo}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mo}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- beschikbaarstellen_medicatieoverzicht cda instance not generated (yet) -->
@@ -543,61 +541,47 @@
             <param name="input.fileset" value="*.xml"/>            
         </antcall>  -->
         <!-- sturen_afhandeling_medicatievoorschrift -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.av}.xml"/>
-            <param name="input.dir" value="../${usecase.av}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.av}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avvv}.xml"/>
-            <param name="input.dir" value="../${usecase.avvv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.avvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_medicatiegebruik -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mgb}.xml"/>
-            <param name="input.dir" value="../${usecase.mgb}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mgb}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_medicatievoorschrift hl7 organizer -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
-            <param name="input.dir" value="../${usecase.mv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_medicatievoorschrift cda -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/cda_${usecase.mv}.xml"/>
-            <param name="input.dir" value="../${usecase.mv}/validate_cda_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mv}/validate_cda_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_medicatieafspraak -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vma}.xml"/>
-            <param name="input.dir" value="../${usecase.vma}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.vma}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_verstrekkingsverzoek -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <antcall target="schematronresults_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vvv}.xml"/>
-            <param name="input.dir" value="../${usecase.vvv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.vvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
-
-    </target>
-
-
-    <target name="schematronresults_hl7_920_sub">
-
-        <echo/>
-        <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
-        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/validate/default_input.xml" out="${result.xml}">
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-            <param name="inputDir" expression="${input.dir}"/>
-            <param name="inputFileSet" expression="${input.fileset}"/>
-        </xslt>
 
     </target>
 
