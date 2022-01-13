@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="payload/hl7-Lichaamslengte-20171025.xsl"/>
     <xsl:import href="payload/hl7-CDARecordTargetSDTCNL-20180611.xsl"/>
     <xsl:import href="payload/hl7-CDARecordTargetSDTCNLBSNContactible-20180611.xsl"/>
-    
+
 
     <xsl:output method="xml" indent="yes"/>
 
@@ -515,20 +515,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
                         <code code="408729009" displayName="Finding context (attribute)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                        <value xsi:type="CD">
-                            <xsl:if test="@code">
-                                <xsl:attribute name="code" select="@code"/>
-                            </xsl:if>
-                            <xsl:if test="@displayName">
-                                <xsl:attribute name="displayName" select="@displayName"/>
-                            </xsl:if>
-                            <xsl:if test="@codeSystem">
-                                <xsl:attribute name="codeSystem" select="@codeSystem"/>
-                            </xsl:if>
-                            <xsl:if test="@codeSystemName">
-                                <xsl:attribute name="codeSystemName" select="@codeSystemName"/>
-                            </xsl:if>
-                        </value>
+                        <xsl:call-template name="makeCDValue"/>
                     </observation>
                 </entryRelationship>
             </xsl:for-each>
@@ -663,20 +650,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
                         <code code="408729009" displayName="Finding context (attribute)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                        <value xsi:type="CD">
-                            <xsl:if test="@code">
-                                <xsl:attribute name="code" select="@code"/>
-                            </xsl:if>
-                            <xsl:if test="@displayName">
-                                <xsl:attribute name="displayName" select="@displayName"/>
-                            </xsl:if>
-                            <xsl:if test="@codeSystem">
-                                <xsl:attribute name="codeSystem" select="@codeSystem"/>
-                            </xsl:if>
-                            <xsl:if test="@codeSystemName">
-                                <xsl:attribute name="codeSystemName" select="@codeSystemName"/>
-                            </xsl:if>
-                        </value>
+                        <xsl:call-template name="makeCDValue"/>
                     </observation>
                 </entryRelationship>
             </xsl:for-each>

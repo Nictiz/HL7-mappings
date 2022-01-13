@@ -26,7 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Creates HL7 CDA for ada kernset_neonatologie transaction</xd:desc>
     </xd:doc>
     <xsl:template name="kernset_neonatologie_300" match="kernset_neonatologie">
-        <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../AORTA/trunk/Zorgtoepassing/PerinataleZorg/DECOR/peri20-runtime-develop/peri20-ksneo-alg-30.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" </xsl:processing-instruction>
+        <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/PerinataleZorg/DECOR/peri20-runtime-develop/peri20-ksneo-alg-30.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" </xsl:processing-instruction>
         
         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901181_20181107170819"/>
     

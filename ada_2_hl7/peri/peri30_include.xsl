@@ -140,7 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <section>
                             <templateId root="2.16.840.1.113883.2.4.6.10.90.901198"/>
                             <templateId root="2.16.840.1.113883.10.12.701"/>
-                            <code code="58781000146100" displayName="Discharge or transfer of patient (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                            <code code="58781000146100" displayName="Discharge or transfer of patient (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                             <title>Gegevens Ontslag / Overplaatsing, Kernset Neonatologie</title>
                             <text/>
                             <!-- Lichamelijk onderzoek -->
@@ -149,7 +149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <procedure classCode="ACT" moodCode="EVN">
                                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901200"/>
                                         <templateId root="2.16.840.1.113883.10.12.806"/>
-                                        <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                        <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                         <xsl:for-each select="lichaamsgewicht[.//(@value | @code | @nullFlavor)]">
                                             <!-- Lichaamsgewicht -->
                                             <entryRelationship typeCode="COMP">
@@ -198,13 +198,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <section>
                             <templateId root="2.16.840.1.113883.2.4.6.10.90.901204"/>
-                            <code code="58921000146103" displayName="Mortality (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                            <code code="58921000146103" displayName="Mortality (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                             <title>Gegevens mortaliteit, Kernset Neonatologie</title>
                             <text/>
                             <entry>
                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901205"/>
-                                    <code code="406194006" displayName="Death characteristics (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                    <code code="406194006" displayName="Death characteristics (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
 
                                     <!-- Overlijden binnen 12 uur na opname NICU -->
                                     <xsl:for-each select="overlijden_lt12_uur_na_opname_nicu[@value | @nullFlavor]">
@@ -212,7 +212,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
                                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901206"/>
-                                                <code code="58991000146100" displayName="Patient died within 12 hours after admission to NICU (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                                <code code="58991000146100" displayName="Patient died within 12 hours after admission to NICU (finding)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                             </observation>
                                         </entryRelationship>
                                     </xsl:for-each>
@@ -223,7 +223,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
                                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901208"/>
-                                                <code code="59001000146100" displayName="Patient died in delivery room (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                                <code code="59001000146100" displayName="Patient died in delivery room (finding)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                             </observation>
                                         </entryRelationship>
                                     </xsl:for-each>
@@ -233,7 +233,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <entryRelationship typeCode="RSON">
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901207"/>
-                                                <code code="71000146108" displayName="Immediate cause of natural death (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                                <code code="71000146108" displayName="Immediate cause of natural death (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                                 <xsl:call-template name="makeCDValue"/>
                                             </observation>
                                         </entryRelationship>
@@ -245,7 +245,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
                                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901209"/>
-                                                <code code="56371000146104" displayName="Intensive care treatment stopped (situation)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                                <code code="56371000146104" displayName="Intensive care treatment stopped (situation)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                             </observation>
                                         </entryRelationship>
                                     </xsl:for-each>
@@ -261,7 +261,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <section>
                             <templateId root="2.16.840.1.113883.2.4.6.10.90.901210"/>
                             <templateId root="2.16.840.1.113883.10.12.701"/>
-                            <code code="58811000146102" displayName="Follow-up (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                            <code code="58811000146102" displayName="Follow-up (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                             <title>Gegevens Follow-up, Kernset Neonatologie</title>
                             <text/>
                             <!-- Na ontslag-->
@@ -269,7 +269,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <entry>
                                     <organizer classCode="CLUSTER" moodCode="EVN">
                                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901211"/>
-                                        <code code="406151001" displayName="Post-discharge follow-up (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                        <code code="406151001" displayName="Post-discharge follow-up (finding)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                         <statusCode code="completed"/>
                                         <!-- O2 op dag 28 -->
                                         <xsl:for-each select="o2_op_dag_28[@value | @nullFlavor]">
@@ -283,9 +283,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <component>
                                                 <observation classCode="OBS" moodCode="EVN">
                                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901212"/>
-                                                    <code code="67569000" displayName="Bronchopulmonary dysplasia of newborn (disorder)" codeSystem="2.16.840.1.113883.6.96"/>
+                                                    <code code="67569000" displayName="Bronchopulmonary dysplasia of newborn (disorder)" codeSystem="{$oidSNOMEDCT}"/>
                                                     <xsl:call-template name="makeCDValue"/>
-                                                    <!--                                                <value xsi:type="CD" code="22021000146102" displayName="Bronchopulmonary dysplasia of newborn - grade 1 (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>-->
+                                                    <!--                                                <value xsi:type="CD" code="22021000146102" displayName="Bronchopulmonary dysplasia of newborn - grade 1 (disorder)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>-->
                                                 </observation>
                                             </component>
                                         </xsl:for-each>
@@ -324,7 +324,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <subject>
                         <relatedSubject classCode="PRS">
                             <xsl:for-each select="identificatienummer">
-                                <sdtc:id extension="{@value}" root="{@root}"/>
+                                <xsl:call-template name="makeIIValue">
+                                    <xsl:with-param name="elemName">sdtc:id</xsl:with-param>
+                                </xsl:call-template>
                             </xsl:for-each>
                             <code code="NMTH" displayName="natural mother" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode"/>
                             <!-- Adres -->
@@ -446,7 +448,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <section>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901127"/>
             <templateId root="2.16.840.1.113883.10.12.701"/>
-            <code code="109121000146106" displayName="Information about assisted therapy before admission (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="109121000146106" displayName="Information about assisted therapy before admission (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <title>Ondersteuning opvang van Kernset Neonatologie</title>
             <text/>
             <!-- verrichtingen -->
@@ -455,14 +457,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                 </entry>
             </xsl:for-each>
-            <entry>
-                <!-- zib template -->
-                <procedure classCode="PROC" moodCode="EVN">
-                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                    <!-- VerrichtingType -->
-                    <code code="408853006" displayName="Intermittent positive pressure ventilation via endotracheal tube (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                </procedure>
-            </entry>
         </section>
     </xsl:template>
 
@@ -480,7 +474,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Opname -->
                 <procedure classCode="PROC" moodCode="EVN">
                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901129"/>
-                    <code code="305056002" displayName="Admission procedure (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    <code code="305056002" displayName="Admission procedure (procedure)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                     <effectiveTime xsi:type="IVL_TS">
                         <!-- opname datum 	peri30-dataelement-90500 -->
                         <xsl:for-each select="opname/opname_datum[@value | @nullFlavor]">
@@ -522,7 +516,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <entryRelationship typeCode="COMP">
                             <observation classCode="OBS" moodCode="EVN">
                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901136"/>
-                                <code code="58881000146108" displayName="Location of child before admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                <code code="58881000146108" displayName="Location of child before admission (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                 <xsl:call-template name="makeCDValue"/>
                             </observation>
                         </entryRelationship>
@@ -533,7 +527,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <observation classCode="OBS" moodCode="EVN">
                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901130"/>
                                 <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-                                <code code="59021000146108" displayName="Reason for admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                <code code="59021000146108" displayName="Reason for admission (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                 <xsl:call-template name="makeCDValue"/>
                             </observation>
                         </entryRelationship>
@@ -557,7 +551,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901113_20181102122311" match="kernset_neonatologie" mode="HandleCDAKernsetNeoPregnancy">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901113"/>
-            <code code="364320009" displayName="Pregnancy observable (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="364320009" displayName="Pregnancy observable (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <!-- Gravidity -->
             <xsl:for-each select="graviditeit[@value]">
                 <entryRelationship typeCode="COMP">
@@ -631,7 +625,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901120"/>
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                        <code code="434601000124108" displayName="Steroid therapy for fetal lung maturation (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="434601000124108" displayName="Steroid therapy for fetal lung maturation (procedure)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <xsl:choose>
                             <xsl:when test="not(@code = '260413007')">
                                 <methodCode>
@@ -677,7 +671,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="ACT" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901133"/>
             <templateId root="2.16.840.1.113883.10.12.806"/>
-            <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <!-- lichaamslengte -->
             <xsl:for-each select="lichaamslengte[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
@@ -736,7 +730,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entryRelationship typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901139"/>
-                        <code code="56361000146105" displayName="Umbilical arterial cord pH (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="56361000146105" displayName="Umbilical arterial cord pH (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <xsl:call-template name="makePQValue"/>
                     </observation>
                 </entryRelationship>
@@ -747,7 +741,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entryRelationship typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901140"/>
-                        <code code="56351000146107" displayName="Umbilical arterial cord base excess (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="56351000146107" displayName="Umbilical arterial cord base excess (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <xsl:call-template name="makePQValue"/>
                     </observation>
                 </entryRelationship>
@@ -762,7 +756,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <section>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901141"/>
             <templateId root="2.16.840.1.113883.10.12.701"/>
-            <code code="58741000146107" displayName="Medical section (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="58741000146107" displayName="Medical section (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <title>Gegevens Problematiek kind, Kernset Neonatologie</title>
             <text/>
             <!-- Geboortetrauma -->
@@ -770,7 +764,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901142"/>
-                        <code code="58751000146105" displayName="Birth trauma (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="58751000146105" displayName="Birth trauma (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
                         <!-- problemen aanwezig? -->
                         <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
@@ -796,7 +790,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901219"/>
-                        <code code="109041000146101" displayName="Assisted breathing (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="109041000146101" displayName="Assisted breathing (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
                         <!-- Ademhalingsondersteuning? 91104 , mapt op negationInd -->
                         <xsl:for-each select="ademhalingsondersteuningq[@value | @nullFlavor]">
@@ -833,7 +827,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901144"/>
-                        <code code="59041000146102" displayName="Respiratory (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="59041000146102" displayName="Respiratory (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
                         <!-- problemen aanwezig? -->
                         <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
@@ -880,7 +874,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901157"/>
-                        <code code="58761000146108" displayName="Circulatory (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="58761000146108" displayName="Circulatory (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
                         <!-- problemen aanwezig? -->
                         <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
@@ -956,7 +950,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901164"/>
-                        <code code="58861000146100" displayName="Infectious (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="58861000146100" displayName="Infectious (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
                         <!-- problemen aanwezig? -->
                         <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
@@ -987,7 +981,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <component>
                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901238"/>
-                                    <code code="109051000146103" displayName="Antibiotics given during first three days of life (situation)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                    <code code="109051000146103" displayName="Antibiotics given during first three days of life (situation)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                     <xsl:call-template name="makeBLValue"/>
                                 </observation>
                             </component>
@@ -1000,16 +994,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901226"/>
-                        <code code="109111000146101" displayName="Infusion section (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="109111000146101" displayName="Infusion section (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
                         <!-- Observatie -->
                         <xsl:for-each select="infuuskatheter">
                             <component>
                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901227"/>
-                                    <code code="19923001" displayName="katheter (fysiek object)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    <value xsi:type="CD" code="424226004" displayName="Using device (attribute)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    <xsl:for-each select="medisch_hulpmiddel">
+                                    <code code="19923001" displayName="katheter (fysiek object)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                                    <value xsi:type="CD" code="424226004" displayName="Using device (attribute)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                                    <!-- we know the product type (infuuskatheter) which is why it is not explicit again in the dataset, let's add it to medisch_hulpmiddel -->
+                                    <xsl:variable name="medischHulpmiddelInclProduct" as="element()*">
+                                        <xsl:for-each select="medisch_hulpmiddel">
+                                            <xsl:element name="{./local-name()}">
+                                                <xsl:if test="not(product/product_type[@code | @nullFlavor])">
+                                                    <product xmlns="">
+                                                        <product_type code="19923001" displayName="katheter (fysiek object)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                                                    </product>
+                                                </xsl:if>
+                                                <xsl:copy-of select="*"/>
+                                            </xsl:element>
+                                        </xsl:for-each>
+                                    </xsl:variable>
+                                    <xsl:for-each select="$medischHulpmiddelInclProduct">
                                         <entryRelationship typeCode="COMP">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901224_20190704110142"/>
                                         </entryRelationship>
@@ -1025,7 +1032,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901167"/>
-                        <code code="58821000146107" displayName="Gastrointestinal (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="58821000146107" displayName="Gastrointestinal (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
 
                         <!-- problemen aanwezig? -->
@@ -1060,7 +1067,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901175"/>
-                        <code code="58851000146103" displayName="Hematology (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="58851000146103" displayName="Hematology (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
 
                         <!-- problemen aanwezig? -->
@@ -1130,7 +1137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901171"/>
-                        <code code="58911000146108" displayName="Metabolic and endocrine (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="58911000146108" displayName="Metabolic and endocrine (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
                         <!-- problemen aanwezig? -->
                         <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
@@ -1186,7 +1193,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901183"/>
-                        <code code="58941000146109" displayName="Neurological (record artifact)" codeSystem="2.16.840.1.113883.6.96"/>
+                        <code code="58941000146109" displayName="Neurological (record artifact)" codeSystem="{$oidSNOMEDCT}"/>
                         <statusCode code="completed"/>
                         <!-- problemen aanwezig? -->
                         <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
@@ -1223,7 +1230,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901194"/>
-                        <code code="58771000146102" displayName="Congenital disease (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="58771000146102" displayName="Congenital disease (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
 
                         <!-- problemen aanwezig? -->
@@ -1266,7 +1273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="_BooleanAttribute"/>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901148"/>
-            <code code="59031000146105" displayName="Requires oxygen on 28th day of life (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="59031000146105" displayName="Requires oxygen on 28th day of life (finding)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
         </observation>
     </xsl:template>
 
@@ -1275,12 +1282,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901181_20181107170819" match="kernset_neonatologie" mode="HandleCDAKernsetNeo">
 
-        <ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../AORTA/trunk/XML/schemas/CDANL_extended.xsd">
+        <ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../SVN/AORTA/trunk/XML/schemas/CDANL_extended.xsd">
             <realmCode code="NL"/>
             <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
-            <id extension="someUniqueID" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
-            <code code="59268-3" displayName="Neonatal care report" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+            <xsl:for-each select="documentgegevens/identificatie[@value | @root | @nullFlavor]">
+                <xsl:call-template name="makeIIid"/>
+            </xsl:for-each>
+            <code code="118761000146105" displayName="rapport voor kwaliteitsregistratie over neonaten (gegevensobject)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <title>Kernset Neonatologie</title>
             <xsl:for-each select="documentgegevens/document_datum[@value | @nullFlavor]">
                 <xsl:call-template name="makeTSValue">
@@ -1289,6 +1298,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
             <languageCode code="nl-NL"/>
+            <xsl:for-each select="documentgegevens/identificatie[@value | @root | @nullFlavor]">
+                <xsl:call-template name="makeIIValue">
+                    <xsl:with-param name="elemName">setId</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="documentgegevens/versienummer[@value]">
+                <versionNumber value="{@value}"/>
+            </xsl:for-each>
             <!-- recordTarget - patient - kind -->
             <xsl:for-each select="kind/demografische_gegevens/patient[.//(@value | @code | @nullFlavor)]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000"/>
@@ -1309,7 +1326,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:for-each select="documentgegevens/verificatie_zorgverlener[geverifieerd_door_zorgverlenerq/@value = 'true']">
                 <participant typeCode="VRF">
-                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9180"/>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9174"/>
                     <xsl:for-each select="verificatie_datum[@value | @nullFlavor]">
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="elemName">time</xsl:with-param>
@@ -1333,7 +1350,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901186_20181107000000" match="zintuigen" mode="HandleSenses">
         <organizer classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901186"/>
-            <code code="59061000146101" displayName="Senses (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="59061000146101" displayName="Senses (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <statusCode code="completed"/>
             <!-- problemen aanwezig? -->
             <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
@@ -1371,7 +1388,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <component>
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901189"/>
-                        <code code="59051000146104" codeSystem="2.16.840.1.113883.6.96" displayName="Screening for retinopathy of prematurity done or not indicated (situation)" codeSystemName="SNOMED CT"/>
+                        <code code="59051000146104" codeSystem="{$oidSNOMEDCT}" displayName="Screening for retinopathy of prematurity done or not indicated (situation)" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <xsl:call-template name="makeBLValue"/>
                     </observation>
                 </component>
@@ -1385,7 +1402,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="_BooleanAttribute"/>
                         </xsl:for-each>
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                        <code code="413083006" displayName="geautomatiseerde auditieve hersenstamrespons (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="413083006" displayName="geautomatiseerde auditieve hersenstamrespons (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <!-- afwijkend  -->
                         <xsl:for-each select="aabr_afwijkendq[@value | @nullFlavor]">
                             <entryRelationship typeCode="COMP">
@@ -1405,16 +1422,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                         <!-- VerrichtingType -->
-                        <code code="252616000" displayName="hersenstamaudiometrie (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="252616000" displayName="hersenstamaudiometrie (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <!-- Lateraliteit -->
                         <xsl:for-each select="bera/bera_lateraliteit">
-                            <targetSiteCode code="442083009" codeSystem="2.16.840.1.113883.6.96" displayName="anatomische of verworven lichaamsstructuur (lichaamsstructuur)">
+                            <targetSiteCode code="442083009" codeSystem="{$oidSNOMEDCT}" displayName="anatomische of verworven lichaamsstructuur (lichaamsstructuur)">
                                 <qualifier>
-                                    <name code="272741003" codeSystem="2.16.840.1.113883.6.96" displayName="Laterality"/>
+                                    <name code="272741003" codeSystem="{$oidSNOMEDCT}" displayName="Laterality"/>
                                     <xsl:call-template name="makeCDValue">
                                         <xsl:with-param name="xsiType"/>
                                     </xsl:call-template>
-                                    <!--       <value code="7771000" codeSystem="2.16.840.1.113883.6.96" displayName="Left"/>-->
+                                    <!--       <value code="7771000" codeSystem="{$oidSNOMEDCT}" displayName="Left"/>-->
                                 </qualifier>
                             </targetSiteCode>
                         </xsl:for-each>
@@ -1436,7 +1453,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901191_20181108093237" match="element()" mode="HandleAbnormalFinding">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901191"/>
-            <code code="442618008" displayName="Abnormal finding on evaluation procedure (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="442618008" displayName="Abnormal finding on evaluation procedure (finding)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -1446,7 +1463,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901216_20190531145950" match="zwangerschapsduur" mode="HandleBirthPregDuration">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901216"/>
-            <code code="412726003" displayName="Length of gestation at birth" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="412726003" displayName="Length of gestation at birth" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <xsl:call-template name="makePQValue"/>
         </observation>
     </xsl:template>
@@ -1476,7 +1493,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                     <xsl:for-each select="product[.//(@value | @code | @nullFlavor)]">
                         <participant typeCode="PRD">
-                            <xsl:for-each select="product_type[@code]">
+                            <xsl:for-each select="product_type[@code | @nullFlavor]">
                                 <participantRole classCode="MANU">
                                     <playingDevice>
                                         <xsl:call-template name="makeCode"/>
@@ -1498,7 +1515,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- local template in peri because underlying medisch hulpmiddel also needs specific template due to missing enddate in 2017 zib publication -->
         <procedure classCode="PROC" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901239"/>
-            <code code="422834003" displayName="Respiratory assessment (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <code code="422834003" displayName="Respiratory assessment (procedure)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <!-- medisch hulpmiddel, 90232, zib medisch hulpmiddel -->
             <!-- local template in peri because the zib 2017 publication does not allow for enddate in medisch hulpmiddel -->
             <xsl:for-each select="toegediende_zuurstof/toediening_hulpmiddel/medisch_hulpmiddel[.//(@value | @code | @nullFlavor)]">
