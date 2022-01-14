@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2022-01-13T15:55:12.264294+01:00"
-         last-update-date="2022-01-13T15:55:12.264294+01:00"/>
+         creation-date="2022-01-14T12:29:01.52294+01:00"
+         last-update-date="2022-01-14T12:29:01.52294+01:00"/>
    <data>
       <beschikbaarstellen_medicatieoverzicht app="mp-mp920"
                                              shortName="beschikbaarstellen_medicatieoverzicht"
@@ -989,7 +989,8 @@
                   <eind_datum_tijd value="2021-01-10T23:59:59+01:00" datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="urn-uuid-1d2a9bd8-68a7-11ec-4122-020000000000"/>
+                  <farmaceutisch_product value="urn-uuid-1d2a9bd8-68a7-11ec-4122-020000000000"
+                                         datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 2 maal per dag 1 stuk, oraal"/>
@@ -1024,7 +1025,8 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </relatie_toedieningsafspraak>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-1d2a9df4-68a7-11ec-4122-020000000000"/>
+                  <zorgverlener value="urn-uuid-1d2a9df4-68a7-11ec-4122-020000000000"
+                                datatype="reference"/>
                </voorschrijver>
                <auteur>
                   <auteur_is_patient value="true"/>
@@ -1340,27 +1342,19 @@
                <zorgaanbieder_identificatienummer value="99901111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek Jansen en Co"/>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-1d2a9f66-68a7-11ec-4122-020000000000">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Apotheek De Gulle Gaper"/>
-               <adresgegevens>
-                  <straat value="Dorpsweg"/>
-                  <huisnummer value="28"/>
-                  <postcode value="1234AB"/>
-                  <woonplaats value="Ons Dorp"/>
-                  <adres_soort code="WP"
-                               codeSystem="2.16.840.1.113883.5.1119"
-                               displayName="Werkadres"/>
-               </adresgegevens>
-            </zorgaanbieder>
          </bouwstenen>
          <documentgegevens>
-            <document_datum value="2021-01-01"/>
+            <document_datum datatype="datetime" value="2021-01-01"/>
             <auteur>
                <auteur_is_zorgaanbieder>
-                  <zorgaanbieder id="urn-uuid-1d2a9f66-68a7-11ec-4122-020000000000">
+                  <zorgaanbieder>
                      <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                      <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <contactgegevens>
+                        <telefoonnummers>
+                           <telefoonnummer value="099-98985678"/>
+                        </telefoonnummers>
+                     </contactgegevens>
                      <adresgegevens>
                         <straat value="Dorpsweg"/>
                         <huisnummer value="28"/>
