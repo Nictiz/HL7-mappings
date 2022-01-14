@@ -28,8 +28,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../payload/zib_latest_package.xsl"/>
 
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
-    <xsl:param name="outputContained" select="true()" as="xs:boolean"/>
 
+    <xd:doc>
+        <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
+    </xd:doc>
+    <xsl:param name="writeOutputToDisk" select="true()" as="xs:boolean"/>
+    
     <!-- When the input is specified as a bundle, collect all input into the $bundle parameter -->
     <xsl:param name="bundle" as="element()*">
         <xsl:for-each select="/nm:bundle">
@@ -86,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="ancestor::*/local-name() = 'referenties'">
                     <!-- This is a contained ada instance, therefore does not have a valid base-uri() -->
                     <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
-                    <xsl:variable name="position" as="xs:integer" select="count(preceding-sibling::*[local-name() = $localName]) + 1"/>
+                    <xsl:variable name="position" as="xs:integer" select="count(preceding::*[local-name() = $localName][ancestor::*/local-name() = 'referenties'][starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')]) + 1"/>
                     <!-- This leads to a contained zib AdministrationAgreement being referenced as 'nl-core-MedicationAdministration2-02-MedicationDispense-01'. Could be more clear. On the other hand, do we need to put more effort into contained ADA instances? -->
                     <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
                     <!-- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -->
@@ -109,16 +113,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
         
-        <!-- Failsafe, id's can get quite long -->
+        <!-- Failsafe, ids can get quite long -->
         <xsl:value-of select="nf:assure-logicalid-length($logicalId)"/>
         
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Outputs all resources as a FHIR Bundle or as separate resources.</xd:desc>
+        <xd:desc>Perform the transformation on the ADA input and write out or return the result, depending on the writeOutputToDisk parameter.</xd:desc>
+        <xd:param name="fhirEntries">An optional list of FHIR entries to include in the result.</xd:param>
     </xd:doc>
-    <xsl:param name="createBundle" select="false()" as="xs:boolean"/>
-    
     <xsl:template mode="_doTransform" match="*">
         <xsl:param name="fhirEntries" as="element()*"/>
         
@@ -127,11 +130,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:variable name="simpleFhirEntries" as="element()*">
-            <xsl:call-template name="_callMode">
+            <xsl:call-template name="_applyNlCoreTemplate">
                 <xsl:with-param name="subject" select="$subject"/>
             </xsl:call-template>
             <xsl:for-each select="referenties/*">
-                <xsl:call-template name="_callMode">
+                <xsl:call-template name="_applyNlCoreTemplate">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -147,40 +150,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test="$createBundle">
+            <xsl:when test="$writeOutputToDisk">
+                <xsl:for-each select="$resources">
+                    <xsl:choose>
+                        <xsl:when test="string-length(f:id/@value) gt 0">
+                            <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
+                                <xsl:copy-of select="."/>
+                            </xsl:result-document>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- This happens when transforming a non-saved document in Oxygen -->
+                            <xsl:message>Could not output to result-document without Resource.id. Outputting to console instead.</xsl:message>
+                            <xsl:copy-of select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
                 <Bundle>
                     <xsl:for-each select="$resources">
                         <entry>
-                            <xsl:call-template name="insertFullUrlById"/>
+                            <xsl:call-template name="_insertFullUrlById"/>
                             <resource>
                                 <xsl:copy-of select="."/>
                             </resource>
                         </entry>
                     </xsl:for-each>
                 </Bundle>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:for-each select="$resources">
-                    <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
-                        <xsl:copy-of select="."/>
-                    </xsl:result-document>
-                </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to output a referenced instance to disc.</xd:desc>
+        <xd:desc>The -- quite verbose -- template to dynamically call the proper nl-core template on the ADA input.</xd:desc>
         <xd:param name="in">The ADA instance to output.</xd:param>
-        <!--<xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>-->
+        <xd:param name="subject">The 'subject' parameter to pass to the nl-core template</xd:param>
     </xd:doc>
-    <xsl:template name="_callMode">
-        <xsl:param name="in" select="."/>
+    <xsl:template name="_applyNlCoreTemplate">
+        <xsl:param name="in" select="nf:ada-resolve-reference(.)"/>
         <xsl:param name="subject"/>
-        <xsl:param name="localName" select="$in/local-name()"/>
-        <!--<xsl:param name="profile" required="yes"/>-->
-        
+
         <!-- Quite verbose, but the only way to 'dynamically' apply a mode -->
+        <xsl:variable name="localName" select="$in/local-name()"/>
         <xsl:choose>
             <xsl:when test="$localName = 'adaextension'">
                 <!-- Do nothing -->
@@ -192,6 +203,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'alert'">
                 <xsl:apply-templates select="$in" mode="nl-core-Alert">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'allergie_intolerantie'">
+                <xsl:apply-templates select="$in" mode="nl-core-AllergyIntolerance">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
@@ -209,10 +225,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'drugs_gebruik'">
-                <xsl:apply-templates select="$in" mode="nl-core-DrugUse"/>
-                <xsl:for-each select="drugs_gebruik">
-                    <xsl:call-template name="nl-core-DrugUse"/>
-                </xsl:for-each>
+                <xsl:apply-templates select="$in" mode="nl-core-DrugUse">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'farmaceutisch_product'">
                 <xsl:apply-templates select="$in" mode="nl-core-PharmaceuticalProduct"/>
@@ -248,6 +263,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>    
                     </xsl:for-each>
                 </xsl:for-each>
+            </xsl:when>
+            <xsl:when test="$localName = 'functionele_of_mentale_status'">
+                <xsl:apply-templates select="$in" mode="nl-core-FunctionalOrMentalStatus">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
@@ -305,12 +325,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'medisch_hulpmiddel'">
                 <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
+                    <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
+                    <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                 </xsl:apply-templates>  
                 <xsl:for-each select="product">
                     <xsl:call-template name="nl-core-MedicalDevice.Product">
                         <xsl:with-param name="subject" select="$subject"/>
-                    </xsl:call-template>    
+                    </xsl:call-template>
                 </xsl:for-each>
+            </xsl:when>
+            <xsl:when test="$localName = 'mobiliteit'">
+                <xsl:apply-templates select="$in" mode="nl-core-Mobility">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'o2saturatie'">
                 <xsl:apply-templates select="$in" mode="nl-core-O2Saturation">
@@ -340,10 +367,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'tabak_gebruik'">
-                <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse"/>
-                <xsl:for-each select="tabak_gebruik">
-                    <xsl:call-template name="nl-core-TobaccoUse"/>
-                </xsl:for-each>
+                <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'tekst_uitslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-TextResult">
@@ -357,6 +383,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'toedieningsafspraak'">
                 <xsl:apply-templates select="$in" mode="nl-core-AdministrationAgreement">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>            
+            <xsl:when test="$localName = 'vaccinatie'">
+                <xsl:choose>
+                    <xsl:when test="vaccinatie_datum/@value and nf:isPast(vaccinatie_datum/@value)">
+                        <xsl:apply-templates select="$in" mode="nl-core-Vaccination-event">
+                            <xsl:with-param name="patient" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:when test="vaccinatie_datum/@value and nf:isFuture(vaccinatie_datum/@value)">
+                        <xsl:apply-templates select="$in" mode="nl-core-Vaccination-request">
+                            <xsl:with-param name="patient" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="$in" mode="nl-core-Vaccination-event">
+                            <xsl:with-param name="patient" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:when test="$localName = 'vermogen_tot_drinken'">
+                <xsl:apply-templates select="$in" mode="nl-core-AbilityToDrink">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
@@ -401,6 +451,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'wilsverklaring'">
+                <xsl:apply-templates select="$in" mode="nl-core-AdvanceDirective">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'woonsituatie'">
                 <xsl:apply-templates select="$in" mode="nl-core-LivingSituation">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -437,13 +492,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template name="insertFullUrlById">
-        <xsl:param name="in" select="."/>
-        
+    <xsl:template name="_insertFullUrlById">
+        <xsl:param name="in" select="."/>   
         <xsl:param name="fhirId" select="$in/f:id/@value"/>
        
         <xsl:if test="count($fhirMetadata[nm:logical-id = $fhirId]) = 0 ">
-            <xsl:message terminate="yes">insertFullUrlById: Nothing found.</xsl:message>
+            <xsl:message terminate="yes">_insertFullUrlById: Nothing found.</xsl:message>
         </xsl:if>
         
         <xsl:variable name="fullUrl">

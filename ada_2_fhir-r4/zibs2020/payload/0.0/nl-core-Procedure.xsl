@@ -37,11 +37,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create an nl-core-Procedure-event as a Procedure FHIR instance from ada verrichting element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="report">The Report concept as ADA 'tekst_uitslag' element or reference.</xd:param>
     </xd:doc>
     <xsl:template match="verrichting" name="nl-core-Procedure-event" mode="nl-core-Procedure-event" as="element(f:Procedure)">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="report" as="element(tekst_uitslag)?"/>
+        
         <xsl:for-each select="$in">
             <Procedure>
                 <xsl:variable name="startDate" select="verrichting_start_datum"/>

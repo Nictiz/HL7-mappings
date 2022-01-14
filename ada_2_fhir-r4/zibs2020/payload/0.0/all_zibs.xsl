@@ -27,10 +27,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
+    <xsl:import href="nl-core-AbilityToDrink.xsl"/>
     <xsl:import href="nl-core-AddressInformation.xsl"/>
+    <xsl:import href="nl-core-AdvanceDirective.xsl"/>
     <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
     <xsl:import href="nl-core-AlcoholUse.xsl"/>
     <xsl:import href="nl-core-Alert.xsl"/>
+    <xsl:import href="nl-core-AllergyIntolerance.xsl"/>
     <xsl:import href="nl-core-AnatomicalLocation.xsl"/>
     <xsl:import href="nl-core-BloodPressure.xsl"/>
     <xsl:import href="nl-core-BodyHeight.xsl"/>
@@ -44,6 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-Encounter.xsl"/>
     <xsl:import href="nl-core-EpisodeOfcare.xsl"/>
     <xsl:import href="nl-core-FreedomRestrictingIntervention.xsl"/>
+    <xsl:import href="nl-core-FunctionalOrMentalStatus.xsl"/>
     <xsl:import href="nl-core-HeadCircumference.xsl"/>
     <xsl:import href="nl-core-HealthProfessional.xsl"/>
     <xsl:import href="nl-core-HealthcareProvider.xsl"/>
@@ -58,6 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-MedicationContraIndication.xsl"/>
     <xsl:import href="nl-core-MedicationDispense.xsl"/>
     <xsl:import href="nl-core-MedicationUse2.xsl"/>
+    <xsl:import href="nl-core-Mobility.xsl"/>
     <xsl:import href="nl-core-NameInformation.xsl"/>
     <xsl:import href="nl-core-O2Saturation.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
@@ -68,6 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-SOAPReport.xsl"/>
     <xsl:import href="nl-core-TobaccoUse.xsl"/>
     <xsl:import href="nl-core-TextResult.xsl"/>
+    <xsl:import href="nl-core-Vaccination.xsl"/>
     <xsl:import href="nl-core-VisualAcuity.xsl"/>
     <xsl:import href="nl-core-VisualFunction.xsl"/>
     
@@ -81,5 +87,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet"> 
         <xd:desc>This document import common and zib- and nl-core specific functions and templates to convert zib2020 ada instances to FHIR.</xd:desc>
     </xd:doc>
-
 </xsl:stylesheet>

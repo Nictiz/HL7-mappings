@@ -135,7 +135,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </device>
                 </xsl:for-each>
-                    
+
                 <xsl:for-each select="indicatie">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="probleem"/>
