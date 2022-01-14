@@ -35,11 +35,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- (ref) te_verstrekken_geneesmiddel -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!--te_verstrekken_hoeveelheid-->
-            <xsl:apply-templates select="f:dispenseRequest/f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="#current"/>
+            <xsl:apply-templates
+                select="f:dispenseRequest/f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']"
+                mode="#current"/>
             <!--aantal_herhalingen-->
             <xsl:apply-templates select="f:dispenseRequest/f:numberOfRepeatsAllowed" mode="#current"/>
             <!-- verbruiksperiode/tijds_duur -->
-            <xsl:apply-templates select="f:dispenseRequest/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration']"/>
+            <xsl:apply-templates select="f:dispenseRequest/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration']" mode="#current"/>
             <!-- verbruiksperiode/@start_datum_tijd/@value en eind_datum_tijd/@value -->
             <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod" mode="#current"/>
             <!--geannuleerd_indicator-->
@@ -80,13 +82,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
             <!-- reden_van_voorschrijven -->
             <xsl:apply-templates select="f:reasonReference" mode="#current"/>
-
-
-
             <!-- gebruiksinstructie -->
             <xsl:call-template name="nl-core-InstructionsForUse"/>
-            <!-- kopie indicator -->
-            <xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
         </verstrekkingsverzoek>
     </xsl:template>
 
@@ -98,9 +95,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         mode="nl-core-DispenseRequest">
         <financiele_indicatiecode code="{f:valueCodeableConcept/f:extension/f:valueCode/@value}" codeSystem="2.16.840.1.113883.5.1008"
             originalText="{f:valueCodeableConcept/f:text/@value}">
-        <xsl:if test="./f:valueCodeableConcept/f:extension[@value eq 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']">
-            <xsl:attribute name="codeSystemName" select="'NullFlavor'"/>
-        </xsl:if>
+            <xsl:if test="./f:valueCodeableConcept/f:extension[@value eq 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']">
+                <xsl:attribute name="codeSystemName" select="'NullFlavor'"/>
+            </xsl:if>
         </financiele_indicatiecode>
 
         <!--            <xsl:call-template name="CodeableConcept-to-code">
@@ -127,7 +124,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <!--ZZZNEW-->
-        <xd:desc>Template to convert f:extension[url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']  to afleverlocatie</xd:desc>    </xd:doc>
+        <xd:desc>Template to convert f:extension[url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']  to afleverlocatie</xd:desc>
+    </xd:doc>
     <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']"
         mode="nl-core-DispenseRequest">
         <afleverlocatie value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/>
@@ -145,9 +143,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <!--ZZZNEW-->
-        <xd:desc>Template to convert f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration'] to verbruiksperiode/tijdsduur</xd:desc>
+        <xd:desc>Template to convert f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration'] to verbruiksperiode/tijdsduur</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration']" mode="nl-core-DispenseRequest">
+    <xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration']" mode="nl-core-DispenseRequest">
         <verbruiksperiode>
             <xsl:call-template name="Duration-to-hoeveelheid">
                 <xsl:with-param name="in" select="f:valueDuration"/>
@@ -166,6 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="in" select="."/>
                 <xsl:with-param name="adaElementNameStart">start_datum_tijd</xsl:with-param>
                 <xsl:with-param name="adaElementNameEnd">eind_datum_tijd</xsl:with-param>
+                <xsl:with-param name="adaDatatype" as="xs:string?">datetime</xsl:with-param>
             </xsl:call-template>
         </verbruiksperiode>
     </xsl:template>
@@ -184,12 +183,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--ZZZNEW-->
         <xd:desc>Template to convert f:quantity to te_verstrekken_hoeveelheid</xd:desc>
     </xd:doc>
-    <xsl:template match="f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="nl-core-DispenseRequest">
+    <xsl:template match="f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']"
+        mode="nl-core-DispenseRequest">
         <te_verstrekken_hoeveelheid>
             <aantal value="{f:extension/f:valueQuantity/f:value/@value}"/>
             <eenheid code="{f:extension/f:valueQuantity/f:code/@value}"
-                codeSystem="{replace(f:extension/f:valueQuantity/f:system/@value, 'urn:oid:', '')}"
-                displayName="{f:unit/@value}"/>
+                codeSystem="{replace(f:extension/f:valueQuantity/f:system/@value, 'urn:oid:', '')}" displayName="{f:unit/@value}"/>
         </te_verstrekken_hoeveelheid>
     </xsl:template>
 

@@ -129,9 +129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="adaElementName" as="xs:string">datum_tijd</xsl:param>
         <xsl:param name="adaDatatype" as="xs:string?"/>
-
         <xsl:for-each select="$in">
-
             <xsl:choose>
                 <xsl:when test="not(@value) and $in/f:extension[@url = ($urlExtHL7NullFlavor, $urlExtHL7DataAbsentReason)]">
                     <xsl:variable name="nullFlavorValue">
@@ -377,12 +375,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Optional input element. Shoulfd be FHIR Period. Defaults to self (.).</xd:param>
         <xd:param name="adaElementNameStart">Optional string to name the ada element where f:start is mapped to. Default is 'start'.</xd:param>
         <xd:param name="adaElementNameEnd">Optional string to name the ada element where f:end is mapped to. Default is 'eind'.</xd:param>
+        <xd:param name="adaDatatype">Optional string to add datatype attribute in ada element.</xd:param>
     </xd:doc>
     <xsl:template name="Period-to-dates">
         <xsl:param name="in" select="."/>
         <xsl:param name="adaElementNameStart">start</xsl:param>
         <xsl:param name="adaElementNameEnd">eind</xsl:param>
-
+        <xsl:param name="adaDatatype" as="xs:string?"/>
         <xsl:for-each select="$in/f:start">
             <xsl:element name="{$adaElementNameStart}">
                 <xsl:attribute name="value">
@@ -390,6 +389,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="dateTime" select="@value"/>
                     </xsl:call-template>
                 </xsl:attribute>
+                <xsl:if test="not(empty($adaDatatype))">
+                    <xsl:attribute name="datatype" select="$adaDatatype"/>
+                </xsl:if>
             </xsl:element>
         </xsl:for-each>
         <xsl:for-each select="$in/f:end">
@@ -399,6 +401,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="dateTime" select="@value"/>
                     </xsl:call-template>
                 </xsl:attribute>
+                <xsl:if test="not(empty($adaDatatype))">
+                    <xsl:attribute name="datatype" select="$adaDatatype"/>
+                </xsl:if>
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
@@ -488,7 +493,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="dateTime" as="xs:string?"/>
         <xsl:param name="precision">second</xsl:param>
         <xsl:param name="dateT" as="xs:date?"/>
-
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D')">[Y0001]-[M01]-[D01]</xsl:when>
