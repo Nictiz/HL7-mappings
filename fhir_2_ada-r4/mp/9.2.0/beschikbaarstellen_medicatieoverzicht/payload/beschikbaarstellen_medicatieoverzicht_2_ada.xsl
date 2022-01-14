@@ -35,8 +35,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:PractitionerRole" mode="resolve-HealthProfessional-PractitionerRole"/>
 
 			<!-- zorgaanbieder -->
-			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Organization" mode="nl-core-HealthcareProvider-Organization"/>
-
+		    <!-- but not the zorgaanbieder in the List, unless it is also referenced from somewhere else than the List -->
+		    <xsl:variable name="listOrganizationReference" select="f:Bundle/f:entry/f:resource/f:List/f:source/f:extension/f:valueReference/f:reference/@value" as="xs:string*"/>
+		    <xsl:variable name="referencedElseWhere" select="f:Bundle/f:entry/f:resource/*[not(self::f:List)]//f:reference/@value = $listOrganizationReference"/>
+		    
+		    <xsl:choose>
+		        <xsl:when test="not($referencedElseWhere)">
+		            <!-- do not output the zorgaanbieder in the List in bouwstenen -->
+		            <xsl:apply-templates select="f:Bundle/f:entry[f:fullUrl/@value ne $listOrganizationReference]/f:resource/f:Organization" mode="nl-core-HealthcareProvider-Organization"/>
+		        </xsl:when>
+		        <xsl:otherwise>
+		            <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Organization" mode="nl-core-HealthcareProvider-Organization"/>
+		        </xsl:otherwise>		        
+		    </xsl:choose>
+		
 			<!-- TODO lichaamslengte -->
 			<!-- TODO lichaamsgewicht -->
 
@@ -107,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Transforms f:date to ADA document_datum.</xd:desc>
     </xd:doc>
     <xsl:template match="f:date" mode="MedicationOverview-2.0">
-        <document_datum>
+        <document_datum datatype="datetime">
             <xsl:attribute name="value">
                 <xsl:call-template name="format2ADADate">
                     <xsl:with-param name="dateTime" select="@value"/>
@@ -126,7 +138,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="f:extension/@url = $MedicationOverview-SourceOrganization">
                     <xsl:variable name="reference" select="f:extension[@url = $MedicationOverview-SourceOrganization]/f:valueReference/f:reference/@value"/>
                     <auteur_is_zorgaanbieder>
+                        <!-- the zorgaanbieder in ada should not have @id attribute -->
+                        <xsl:variable name="zorgaanbiederWithid" as="element()*">
                         <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$reference]/f:resource/f:Organization" mode="nl-core-HealthcareProvider-Organization"/>
+                        </xsl:variable>
+                    <zorgaanbieder>
+                        <xsl:copy-of select="$zorgaanbiederWithid/*"/>
+                    </zorgaanbieder>
                     </auteur_is_zorgaanbieder>
                 </xsl:when>
                 <xsl:when test="f:reference/@value = ancestor::f:Bundle/f:entry[f:resource/f:Patient]/f:fullUrl/@value">

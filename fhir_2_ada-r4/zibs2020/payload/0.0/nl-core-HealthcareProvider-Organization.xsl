@@ -18,17 +18,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:Organization to ADA zorgaanbieder</xd:desc>
     </xd:doc>
     <xsl:template match="f:Organization" mode="nl-core-HealthcareProvider-Organization">
-        <xsl:variable name="entryFullURrlAtValue" select="./../../f:fullUrl/@value"/>
+        <xsl:variable name="entryFullURrlAtValue" select="../../f:fullUrl/@value"/>
         <zorgaanbieder id="{nf:convert2NCName($entryFullURrlAtValue)}">
             <!-- zorgaanbieder_identificatienummer -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- organisatie_naam -->
             <xsl:apply-templates select="f:name" mode="#current"/>
             <!-- contactgegevens -->
-            <xsl:if test="f:telephoneNumbers | f:emailAddresses">
+            <xsl:if test="f:telecom">
                 <contactgegevens>
-                    <xsl:apply-templates select="f:telephoneNumbers" mode="nl-core-ContactInformation-TelephoneNumbers"/>
-                    <xsl:apply-templates select="f:emailAddresses" mode="nl-core-ContactInformation-EmailAddresses"/>
+                    <xsl:apply-templates select="f:telecom" mode="nl-core-ContactInformation"/>
                 </contactgegevens>
             </xsl:if>
             <!-- adresgegevens -->
