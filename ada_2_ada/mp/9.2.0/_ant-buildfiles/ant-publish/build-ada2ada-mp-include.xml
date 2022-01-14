@@ -6,8 +6,10 @@
         
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
-<project basedir="." name="build-ada2ada-mp-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+<project basedir="." default="resolve-refs_sub" name="build-ada2ada-mp-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <echo message="${basedir}"/>
     <ant antfile="../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
 
@@ -24,11 +26,13 @@
     <property name="project.license" value="GNU-LGPL"/>
     <property name="project.copyright" value="true"/>
 
-    <property name="build.dir" value="../.."/>
+    <property name="build.dir" value="../.."/><!--9.2.0-->
     <property name="dummy.output.dir" value="dummy"/>
-    <property name="ada.project.source.dir" value="${build.dir}\..\..\..\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
+    <!--no project folder-->
+    <!--<property name="ada.project.source.dir" value="${build.dir}\..\..\..\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>-->
+
     
-<!--    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>-->
+    <!--    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>-->
 <!--    <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\ada2ada\${is.abbreviation}\${is.version}"/>-->
 
     <!-- place import exactly here, otherwise it can't resolve the properties above, or we can't resolve some properties below, such as ${echo.label.in} -->
@@ -54,10 +58,11 @@
 
 
     <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada production instances">
-        <antcall target="setup_sub_schemas">
+        <!--sub.build.dir invalid-->
+        <!--        <antcall target="setup_sub_schemas">
             <param name="sub.build.dir" value="${sub.build.dir}"/>
             <param name="schema.string" value="${schema.string}"/>
-        </antcall>
+        </antcall>-->
 
         <antcall target="setup_sub_instances">
             <param name="sub.build.dir" value="${sub.build.dir}"/>
@@ -67,8 +72,8 @@
     </target>
 
     <target name="setup_sub_schemas" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project">
-
-        <echo>Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas, using include string: ${schema.string}</echo>
+        <!--wrong sub.build.dir, schemas already in place-->
+<!--        <echo>Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas, using include string: ${schema.string}</echo>
         
         <mkdir dir="${sub.build.dir}/ada_schemas"/>
         <delete>
@@ -82,11 +87,11 @@
                 <include name="ada_meta.xsd"/>
             </fileset>
         </copy>
-
+-->
     </target>
 
     <target name="setup_sub_instances" description="Setup ${sub.build.dir} containing refreshed ada production instances">
-
+<!--
         <mkdir dir="${sub.build.dir}/ada_instance"/>
         <delete>
             <fileset dir="${sub.build.dir}/ada_instance">
@@ -97,7 +102,7 @@
             <fileset dir="${build.dir}/../../../production-ada-instances/${is.abbreviation}/${is.version}/data/">
                 <include name="${fileset.include}"/>
             </fileset>
-        </copy>
+        </copy>-->
 
     </target>
 
