@@ -157,22 +157,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="wrapIn" select="'report'"/>
                     </xsl:call-template>
                 </xsl:for-each>
-                
-                <!-- Error in profile? Reference should be to DeviceUseStatement, but not possible -->
-                <xsl:for-each select="medisch_hulpmiddel">
-                    <focalDevice>
-                        <manipulated>
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="medisch_hulpmiddel"/>
-                                <xsl:with-param name="profile" select="'nl-core-MedicalDevice.Product'"/>
-                            </xsl:call-template>
-                        </manipulated>
-                    </focalDevice>
-                </xsl:for-each>
             </Procedure>
         </xsl:for-each>
     </xsl:template>
-    
     
     <xd:doc>
         <xd:desc>Create an nl-core-Procedure-request as a ServiceRequest FHIR instance from ada verrichting element.</xd:desc>
@@ -288,15 +275,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </reasonReference>
                 </xsl:for-each>
                 
-<!--                <xsl:for-each select="medisch_hulpmiddel">
-                    <supportingInfo>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="medisch_hulpmiddel"/>
-                            <xsl:with-param name="profile" select="'nl-core-MedicalDevice'"/>
-                        </xsl:call-template>
-                    </supportingInfo>
-                </xsl:for-each>-->
-                
                 <xsl:for-each select="verrichting_anatomische_locatie">
                     <bodySite>
                         <xsl:call-template name="nl-core-AnatomicalLocation"/>
@@ -306,7 +284,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </ServiceRequest>
         </xsl:for-each>
     </xsl:template>
-    
     
     <xd:doc>
     <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>

@@ -37,12 +37,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice'.</xd:param>
+        <xd:param name="derivedFrom">Optional ADA instance used to populate the derivedFrom element. Used for zib Procedure, which are mapped to FHIR Procedure and SerivceRequest resources and that contain a reference to MedicalDevice, which is mapped via this derivedFrom.</xd:param>
         <xd:param name="reasonReference">Optional ADA instance used to populate the reasonReference element. Used for zib HearingFunction and VisualFunction, which are mapped to FHIR Observation resources and that contain a reference to MedicalDevice, which is mapped via this reasonReference.</xd:param>
     </xd:doc>
     <xsl:template match="medisch_hulpmiddel" name="nl-core-MedicalDevice" mode="nl-core-MedicalDevice" as="element(f:DeviceUseStatement)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="profile" select="'nl-core-MedicalDevice'" as="xs:string"/>
+        <xsl:param name="derivedFrom" as="element()?"/>
+        <xsl:param name="derivedFromProfile" as="xs:string?"/>
         <xsl:param name="reasonReference" as="element()?"/>
         
         <xsl:for-each select="$in">
@@ -108,6 +111,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
+                
+                <!--The element derivedFrom is present to support Procedure/ServiceRequest (zib Procedure) resources that refer to a MedicalDevice. -->
+                <xsl:for-each select="$derivedFrom">
+                    <derivedFrom>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile" select="$derivedFromProfile"/>
+                        </xsl:call-template>
+                    </derivedFrom>
+                </xsl:for-each>
                 
                 <xsl:if test="$startDate or $endDate">
                     <timingPeriod>
