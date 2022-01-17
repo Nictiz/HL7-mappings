@@ -6,8 +6,11 @@
         
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
-<project basedir="." default="resolve-refs_sub" name="build-ada2ada-mp-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <echo message="${basedir}"/>
+<project basedir="." default="main" name="build-ada2ada-mp-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+
+
+    <echo message="basedir: ${basedir}"/>
     <ant antfile="../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
 
     <property name="xsl.saxon" value="${saxon.path}"/>
@@ -26,7 +29,8 @@
     <property name="project.license" value="GNU-LGPL"/>
     <property name="project.copyright" value="true"/>
 
-    <property name="build.dir" value="../.."/><!--9.2.0-->
+    <property name="build.dir" value="${basedir}/../.."/><!--9.2.0-->
+    <echo message="build.dir: ${build.dir}"/>
     <property name="dummy.output.dir" value="dummy"/>
     <!--no project folder-->
     <!--<property name="ada.project.source.dir" value="${build.dir}\..\..\..\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>-->
@@ -42,7 +46,13 @@
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
     <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for ${is.name} ${is.version} building blocks to valid ${echo.label.out} instances"/>
 
+    <property name="input.dir" value="ada_instance"/>
+    <property name="output.dir" value="ada_instance_converted"/>
+    
+
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
+    <property name="xsl.mg" value="mg"/>    
+    
     <property name="usecase.mg.rp" value="raadplegen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mo.rp" value="raadplegen_medicatieoverzicht"/>
@@ -55,6 +65,12 @@
     <property name="usecase.mor" value="medicatieoverzicht_met_references"/>
     <property name="usecase.mvr" value="medicatievoorschrift_met_references"/>
     <property name="usecase.var" value="afhandelen_medicatievoorschrift_met_references"/>
+
+<!-- name parts -->
+    <property name="xsl.preName" value="ada_"/>
+    <property name="xsl.midName" value="mg"/>
+    <property name="xsl.postName" value="_907_to_920.xsl"/>
+    
 
 
     <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada production instances">
@@ -105,28 +121,33 @@
         </copy>-->
 
     </target>
-
+    
+    
+    <target name="main" depends="resolve-refs_sub">
+        
+    </target>
 
     <target name="resolve-refs_sub">
-        <property name="xsl.mp" value="${sub.build.dir}/${xsl.name}"/>
-        <property name="xsl.input" value="${sub.build.dir}/${xsl.inputdir}"/>
+        <property name="xsl.mp" value="${build.dir}/${usecase.mg}/payload/${xsl.preName}${xsl.midName}${xsl.postName}"/>
+        <property name="xsl.input" value="${build.dir}/${usecase.mg}/${input.dir}"/>
 
         <!-- get rid of old results -->
-        <mkdir dir="${sub.build.dir}/${output.result.dir}"/>
+        <mkdir dir="${build.dir}/${usecase.mg}/${output.dir}"/>
         <delete>
-            <fileset dir="${sub.build.dir}/${output.result.dir}">
+            <fileset dir="${build.dir}/${usecase.mg}/${output.dir}">
                 <include name="*.xml"/>
             </fileset>
         </delete>
 
         <sequential>
-            <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+            <fileset id="inputfilesMP" dir="${build.dir}/${usecase.mg}/${input.dir}" includes="*.xml"/>
 
             <echo/>
-            <echo>${echo.label} ${xsl.mp}</echo>
-            <xslt force="true" style="${xsl.mp}" destdir="${dummy.output.dir}" extension=".xml" useImplicitFileset="false">
-                <param name="outputDir" expression="${build.dir}/${output.result.dir}" if="output.result.dir"/>
-                <param name="outputDirRaadplegen" expression="${build.dir}/${output.result.dir.raadplegen}" if="output.result.dir.raadplegen"/>
+            <echo>XXXXXXXXXXXXXXXX ${echo.label} ${xsl.mp}</echo>
+            <xslt force="true" style="${xsl.mp}" destdir="${build.dir}/${usecase.mg}/${output.dir}" 
+                extension=".xml" 
+                useImplicitFileset="false">
+                <!-- never used: <param name="outputDirRaadplegen" expression="${build.dir}/${output.result.dir.raadplegen}" if="output.result.dir.raadplegen"/>-->
                 <fileset refid="inputfilesMP"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
