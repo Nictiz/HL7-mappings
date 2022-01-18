@@ -366,6 +366,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-SOAPReport-Observation"/>
                 </xsl:for-each>
             </xsl:when>
+            <xsl:when test="$localName = 'strong_kids_score'">
+                <xsl:apply-templates select="$in" mode="nl-core-StrongKidsScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'tabak_gebruik'">
                 <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse">
                     <xsl:with-param name="subject" select="$subject"/>
