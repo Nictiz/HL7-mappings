@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Common ANT build script for Nictiz NTS projects.
+    
+    # Use of this build script
+    
+    The normal use of this build script is to import it from another ANT build script.
+    
+    # Parameters
+    
+    To run it, the following parameters are expected:
+    - dev.dir          : The folder where the input files reside, the dev folder for all TestScripts.
+    - inputs.dir       : A comma separated list of all project subdirs in dev.dir to be included in the centralizeLoadResources build.
+    - lib.dir          : The directory where all build dependency's will be placed. It's a good idea to add this to .gitignore.
+
+    Additionally, the following optional parameters may be used:
+    - outputLevel: the verbosity level of the script output  
+
+    # Project dirs
+    
+    Projects should be organized using the following folder structure: 
+        ProjectDir/
+            InputFolder1/ : folder containing TestScripts, fixtures etc. in subfolders
+                _LoadResources/ : subfolder containing a LoadResources TestScript
+                    *load-resources-purgecreateupdate-xml.xml : The LoadResources file
+            InputFolder2/
+                _LoadResources/
+                    *load-resources-purgecreateupdate-xml.xml
+    The output directory will be named '_LoadResources' and will be created at the top level of ProjectDir.
+
+-->
+
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="centralizeLoadResources" default="build">
+    <!-- Make the directories passed as parameters absolute (except for output.dir.abs, because we first need to
+         guarantee that this folder exists. This is done in check-input. -->
+    <property name="dev.dir.abs"            location="${dev.dir}"/>
+    
+    <!-- Set testscripttools.dir if it is not supplied by the including build file. -->
+    <dirname property="testscripttools.dir" file="${ant.file.centralizeLoadResources}/.."/>
+    
+    <property name="ivy.install.version" value="2.5.0-rc1" />
+    <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
+    <property name="ivy.dep.file" value="${testscripttools.dir}/ant/ivy.xml" />
+    
+    <property name="xslt.dir" value="${testscripttools.dir}/xslt" />
+    <property name="dependency.dir" value="${lib.dir}/ant-dependencies"/>
+    <property name="ivy.local.jar.file" value="${dependency.dir}/ivy.jar" />
+    
+    <!-- Set the verbosity level of the output. A higher value means more verbose output -->
+    <property name="outputLevel" value="1" />
+    <script language="javascript"> <!-- Gives a script warning. It is advised to switch to Groovy, haven't figured that one out. -->
+        var verboseMode = project.getProperty( "outputLevel" )
+        project.getBuildListeners().firstElement().setMessageOutputLevel(verboseMode);
+    </script>
+    
+    <!-- IVY -->
+    
+    <target name="check-ivy">
+        <condition property="ivy.exists">
+            <or>
+                <available file="${ivy.jar.file}" type="file"/>
+                <available file="${ivy.local.jar.file}" type="file"/>
+            </or>
+        </condition>
+        <mkdir dir="${dependency.dir}"/>
+    </target>
+    
+    <target name="download-ivy" depends="check-ivy" unless="ivy.exists">
+        <echo message="Installing Ivy"/>
+        <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+            dest="${ivy.local.jar.file}" usetimestamp="true"/>
+    </target>
+    
+    <target name="install-ivy" depends="download-ivy" unless="ivy.exists, ivy.loaded">
+        <path id="ivy.lib.path">
+            <fileset dir="${dependency.dir}" includes="*.jar"/>
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+        <property name="ivy.loaded" value="true" />
+    </target>
+    
+    <!-- SAXON, ANT-CONTRIB -->
+    
+    <target name="retrieve" depends="check-ivy, install-ivy">
+        <ivy:retrieve pattern="${dependency.dir}/[type]/[artifact]-[revision].[ext]"/>
+        <ivy:artifactproperty name="[module].[artifact]" value="${dependency.dir}/[type]/[artifact]-[revision].[ext]" />
+        <ivy:artifactproperty name="[artifact].[type]" value="${dependency.dir}/[type]/[artifact]-[revision].[ext]" />
+    </target>
+    
+    <target name="load" depends="retrieve" unless="ant.contrib.loaded">
+        <taskdef resource="net/sf/antcontrib/antlib.xml">
+            <classpath>
+                <pathelement location="${ant-contrib.ant-contrib}" />
+            </classpath>
+        </taskdef>
+        <property name="ant.contrib.loaded" value="true" />
+    </target>
+    
+    <!-- BUILD XML -->
+    
+    <target name="check-input">
+        <sequential>
+            <if>
+                <not>
+                    <and>
+                        <isset property="dev.dir"/>
+                        <available file="${dev.dir.abs}" type="dir"/>
+                    </and>
+                </not>
+                <then>
+                    <fail message="Please set 'dev.dir' to the TestScript dev folder."/>
+                </then>
+            </if>
+            
+            <if>
+                <not>
+                    <and>
+                        <isset property="input.dirs"/>
+                    </and>
+                </not>
+                <then>
+                    <fail message="Please set 'input.dirs' to a comma separated list of input directories."/>
+                </then>
+            </if>
+            
+            <if>
+                <not>
+                    <and>
+                        <isset property="lib.dir"/>
+                    </and>
+                </not>
+                <then>
+                    <fail message="Please set 'lib.dir' to a place where build dependencies may be stored."/>
+                </then>
+            </if>
+            
+        </sequential>
+    </target>
+    
+    <macrodef name="saxon-transform" description="Custom task to run an XSLT transformation using Saxon (HE)">
+        <attribute name="style" description="The path to the stylesheet to use for the transformation"/>
+        <attribute name="in" description="The path to the input file" default="@{style}"/>
+        <attribute name="out" description="The path to the output file"/>
+        <element name="parameters" optional="yes" description="Optionally, a group of 'param' elements as understood by the XSLT task"/>
+
+        <sequential>
+            <xslt force="true" style="@{style}" in="@{in}" out="@{out}">
+                <factory name="net.sf.saxon.TransformerFactoryImpl">
+                    <attribute name="http://saxon.sf.net/feature/recoveryPolicy" value="2"/>
+                </factory>
+                <classpath location="${Saxon-HE.jar}"/>
+                <parameters/>
+            </xslt>
+        </sequential>
+    </macrodef>
+    
+    <target name="build" depends="load, check-input">
+        <for param="project.dir" list="${input.dirs}">
+            <sequential>
+                <local name="project.dir.abs"/> 
+                <local name="output.dir.abs"/>
+                
+                <property name="project.dir.abs" location="${dev.dir.abs}/@{project.dir}"/>
+                <property name="output.dir.abs" location="${project.dir.abs}/_LoadResources"/>
+                
+                <!-- Collect the XML files to transform -->
+                <fileset id="loadResources.files" dir="${project.dir.abs}">
+                    <include name="**/**load-resources-purgecreateupdate*.xml"/>
+                </fileset>
+                
+                <!-- Check if there are files in the fileset. -->
+                <condition property="loadResources.files.available">
+                    <resourcecount count="0" when="gt">
+                        <fileset refid="loadResources.files"/>
+                    </resourcecount>
+                </condition>
+                
+                <!-- Fail if no input files are found -->
+                <if>
+                    <equals arg1="${loadResources.files.available}" arg2="true"/>
+                    <then>
+                        <sequential>
+                            <echo message="Centralizing LoadResources files in @{loadResources.dir}"/>
+                            
+                            <if>
+                                <not>
+                                    <available file="${output.dir.abs}" type="dir"/>
+                                </not>
+                                <then>
+                                    <mkdir dir="${output.dir.abs}"/>
+                                </then>
+                            </if>
+                            
+                            <for param="loadResources.file">
+                                <path>
+                                    <fileset refid="loadResources.files"/>
+                                </path>
+                                
+                                <sequential>
+                                    <!-- All local properties needed -->
+                                    <local name="loadResources.file.dir"/>
+                                    <local name="loadResources.file.reldir"/>
+                                    <local name="loadResources.file.reldir.unix"/>
+                                    <local name="loadResources.file.path"/>
+                                    <local name="loadResources.file.name"/>
+                                    <local name="loadResources.file.newName"/>
+                                    <local name="loadResources.file.newNameAddition"/>
+                                    <local name="loadResources.file.temp"/>
+                                    
+                                    <dirname property="loadResources.file.dir" file="@{loadResources.file}"/>
+                                    
+                                    <!-- If the input file isn't already in the output folder -->
+                                    <if>
+                                        <not>
+                                            <equals arg1="${loadResources.file.dir}" arg2="${output.dir.abs}"/>
+                                        </not>
+                                        <then>
+                                            <property name="loadResources.file.reldir" location="${loadResources.file.dir}" relative="true" basedir="${output.dir.abs}"/>
+                                            <!-- Could not find any other way to convert a relative path to unix slashes -->
+                                            <propertyregex property="loadResources.file.reldir.unix" input="${loadResources.file.reldir}" regexp="\\" replace="/"/>
+                                            
+                                            <!-- Get filename, no pretty ANT way to get this -->
+                                            <pathconvert property="loadResources.file.path" targetos="unix">
+                                                <path path="@{loadResources.file}"/>
+                                            </pathconvert>
+                                            <propertyregex property="loadResources.file.name" input="${loadResources.file.path}" regexp="([^/]*$)" select="\1" />
+                                            
+                                            <!-- If no informative file name exists for the loadscript, build a file name for the new loadscript, based on the folder name. It is assumed that the parent directory of the output folder is the name of the information standard. -->
+                                            <if>
+                                                <equals arg1="${loadResources.file.name}" arg2="load-resources-purgecreateupdate-xml.xml"/>
+                                                <then>
+                                                    <propertyregex property="loadResources.file.temp" input="${loadResources.file.reldir.unix}" regexp="/_LoadResources" replace="" />
+                                                    <propertyregex property="loadResources.file.newNameAddition" input="${loadResources.file.temp}" regexp="../" replace="" />
+                                                    <property name="loadResources.file.newName" value="${loadResources.file.newNameAddition}-${loadResources.file.name}"/>
+                                                </then>
+                                                <else>
+                                                    <property name="loadResources.file.newName" value="${loadResources.file.name}"/>
+                                                </else>
+                                            </if>
+                                            
+                                            <!-- Edit all paths within the loadscript with XSLT -->
+                                            <saxon-transform style="${xslt.dir}/convertLoadResources.xsl" in="@{loadResources.file}" out="${output.dir.abs}/${loadResources.file.newName}">
+                                                <parameters>
+                                                    <param name="relativePath" expression="${loadResources.file.reldir.unix}"/>
+                                                </parameters>
+                                            </saxon-transform>
+                                        </then>
+                                    </if>
+                                </sequential>
+                            </for>
+                        </sequential>
+                    </then>
+                    <else>
+                        <fail message="No input files found in ${input.dir.abs}."/>
+                    </else>
+                </if>
+            </sequential>
+        </for>
+    </target>
+</project>
