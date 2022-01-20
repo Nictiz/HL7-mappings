@@ -1,0 +1,75 @@
+Buildfile: /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/_ant-buildfiles/ant-publish/build-ada2ada-mp-include.xml
+
+main:
+     [echo] parameter is: mg
+
+download-ivy:
+     [echo] installing ivy...
+      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+      [get] To: /home/wim/nictiz/REPS/HL7-mappings/_ant-buildfiles/ant-include/ivy/ivy.jar
+      [get] Not modified - so not downloaded
+
+install-ivy:
+
+fetch-imports:
+[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
+[ivy:resolve] :: loading settings :: file = /home/wim/nictiz/REPS/HL7-mappings/_ant-buildfiles/ant-include/ivysettings.xml
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@linux-laptop [not transitive]
+[ivy:resolve] 	confs: [default]
+[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
+[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
+[ivy:resolve] :: resolution report :: resolve 60ms :: artifacts dl 6ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/3ms)
+[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
+[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
+[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+     [echo] task: main
+     [echo] build.dir: /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/_ant-buildfiles/ant-publish/../..
+     [echo] basedir: /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/_ant-buildfiles/ant-publish
+
+resolve-refs_sub:
+     [echo] task: resolve-refs_sub; item: mg
+     [echo] MG
+     [echo] deleting /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/_ant-buildfiles/ant-publish/../../beschikbaarstellen_medicatiegegevens/ada_instance_converted
+     [echo] Contains all relevant materials to convert valid ADA-REFS instances for Medicatieproces ${is.version} building blocks to valid ADA-FULL instances
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Amaya-907-extra.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Amaya-907-extra.xml
+     [xslt] Loading stylesheet /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/payload/ada_mg_907_to_920.xsl
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Amaya-907.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Amaya-907.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Bourgonje-907.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Bourgonje-907.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Cnossen-907.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Cnossen-907.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Dirksz-907.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Dirksz-907.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Gobee-907.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Gobee-907.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Kilkenny-907.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Kilkenny-907.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Ruys-907.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Ruys-907.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/XXX_Strengersz-907.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/XXX_Strengersz-907.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Patient-999910644.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Patient-999910644.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Patient-999910668.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Patient-999910668.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Patient-999910747.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Patient-999910747.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Patient-999911466.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Patient-999911466.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Patient-999911557.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Patient-999911557.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Patient-999990159.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Patient-999990159.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Patient-999990196.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Patient-999990196.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset0.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset0.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset1.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset1.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset10.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset10.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset2.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset2.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset3.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset3.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset4_a.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset4_a.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset4_b.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset4_b.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset5_a.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset5_a.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset5_b.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset5_b.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset6.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset6.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset7.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset7.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset8.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset8.xml
+     [xslt] Processing /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance/mg-Scenarioset9.xml to /home/wim/nictiz/REPS/HL7-mappings/ada_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_instance_converted/mg-Scenarioset9.xml
+
+BUILD SUCCESSFUL
+Total time: 3 seconds
