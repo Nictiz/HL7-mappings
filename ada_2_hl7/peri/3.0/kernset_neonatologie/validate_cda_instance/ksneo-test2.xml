@@ -39,21 +39,9 @@
    <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/3.0/kernset_neonatologie/cda_instance/ksneo-test2.xml"
                         id="template-2.16.840.1.113883.2.4.6.10.90.901181-2018-11-07T170819"
                         name="Kernset Neonatologie CDA ClinicalDocument"/>
-   <svrl:failed-assert test="count(hl7:effectiveTime[not(@nullFlavor)]) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/perinatologie/peri20-html-20200429T174815/tmp-2.16.840.1.113883.2.4.6.10.90.901181-2018-11-07T170819.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(CDAKsNeoClinicalDocumentNLHeader): element hl7:effectiveTime[not(@nullFlavor)] is mandatory [min 1x].</svrl:text>
-   </svrl:failed-assert>
    <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/3.0/kernset_neonatologie/cda_instance/ksneo-test2.xml"
                         id="template-2.16.840.1.113883.2.4.6.10.90.901181-2018-11-07T170819-closed"
                         name="Kernset Neonatologie CDA ClinicalDocument"/>
-   <svrl:failed-assert test="not(.)"
-                       see="http://decor.nictiz.nl/pub/perinatologie/peri20-html-20200429T174815/tmp-2.16.840.1.113883.2.4.6.10.90.901181-2018-11-07T170819.html"
-                       role="warning"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:effectiveTime[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(CDAKsNeoClinicalDocumentNLHeader)/d41e9623-true-d37117e0: dit element 'effectiveTime' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:realmCode[not(@nullFlavor)] | hl7:typeId[@root = '2.16.840.1.113883.1.3'][@extension = 'POCD_HD000040'] | hl7:templateId | hl7:id[not(@nullFlavor)] | hl7:code[(@code = '118761000146105' and @codeSystem = '2.16.840.1.113883.6.96') or @nullFlavor] | hl7:title | hl7:effectiveTime[not(@nullFlavor)] | hl7:confidentialityCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.1.11.16926-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem)] | hl7:languageCode[@code = 'nl-NL'] | hl7:recordTarget[hl7:patientRole] | hl7:setId[not(@nullFlavor)] | hl7:versionNumber[not(@nullFlavor)] | hl7:author | hl7:custodian[hl7:assignedCustodian] | hl7:authenticator[hl7:signatureCode[@code = doc('include/voc-2.16.840.1.113883.1.11.10282-DYNAMIC.xml')//valueSet[1]/conceptList/*/@code or @nullFlavor]] | hl7:participant[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9174']] | hl7:participant[*/hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.3.10.1.34'] | hl7:participant[*/hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.3.10.35'] | hl7:component[hl7:structuredBody] (rule-reference: d41e9623-true-d37117e0)</svrl:text>
-   </svrl:failed-assert>
    <svrl:failed-assert test="not(.)"
                        see="http://decor.nictiz.nl/pub/perinatologie/peri20-html-20200429T174815/tmp-2.16.840.1.113883.2.4.6.10.90.901109-2018-11-02T113603.html"
                        role="warning"
