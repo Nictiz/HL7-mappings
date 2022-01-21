@@ -8,31 +8,29 @@
     # Parameters
     
     To run it, the following parameters are expected:
-    - dev.dir          : The folder where the input files reside, the dev folder for all TestScripts.
-    - inputs.dir       : A comma separated list of all project subdirs in dev.dir to be included in the centralizeLoadResources build.
-    - lib.dir          : The directory where all build dependency's will be placed. It's a good idea to add this to .gitignore.
+    - input.dir : The folder where the input files reside, usually the dev folder for all TestScripts.
+    - subdirs   : A comma separated list of all subdirs in input.dir to be included in the centralizeLoadResources build.
+    - lib.dir   : The directory where all build dependency's will be placed. It's a good idea to add this to .gitignore.
 
     Additionally, the following optional parameters may be used:
     - outputLevel: the verbosity level of the script output  
 
-    # Project dirs
+    # Subdirs
     
-    Projects should be organized using the following folder structure: 
-        ProjectDir/
-            InputFolder1/ : folder containing TestScripts, fixtures etc. in subfolders
-                _LoadResources/ : subfolder containing a LoadResources TestScript
-                    *load-resources-purgecreateupdate-xml.xml : The LoadResources file
-            InputFolder2/
-                _LoadResources/
-                    *load-resources-purgecreateupdate-xml.xml
-    The output directory will be named '_LoadResources' and will be created at the top level of ProjectDir.
+    Subdirs (the subdirectories of 'input.dir' of which the names are placed as a comma separated list in the property 'subdirs', should be organized using the following folder structure: 
+        Subdir/
+            Folder1/ : folder containing TestScripts, fixtures etc. in subfolders
+                **/*load-resources-purgecreateupdate-xml.xml : A LoadResources file in any subdirectory
+            Folder2/
+                **/*load-resources-purgecreateupdate-xml.xml
+    The output directory will be named '_LoadResources' and will be created at the Subdir level.
 
 -->
 
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="centralizeLoadResources" default="build">
     <!-- Make the directories passed as parameters absolute (except for output.dir.abs, because we first need to
          guarantee that this folder exists. This is done in check-input. -->
-    <property name="dev.dir.abs"            location="${dev.dir}"/>
+    <property name="input.dir.abs" location="${input.dir}"/>
     
     <!-- Set testscripttools.dir if it is not supplied by the including build file. -->
     <dirname property="testscripttools.dir" file="${ant.file.centralizeLoadResources}/.."/>
@@ -102,23 +100,23 @@
             <if>
                 <not>
                     <and>
-                        <isset property="dev.dir"/>
-                        <available file="${dev.dir.abs}" type="dir"/>
+                        <isset property="input.dir"/>
+                        <available file="${input.dir.abs}" type="dir"/>
                     </and>
                 </not>
                 <then>
-                    <fail message="Please set 'dev.dir' to the TestScript dev folder."/>
+                    <fail message="Please set 'input.dir' to the TestScript dev folder."/>
                 </then>
             </if>
             
             <if>
                 <not>
                     <and>
-                        <isset property="input.dirs"/>
+                        <isset property="subdirs"/>
                     </and>
                 </not>
                 <then>
-                    <fail message="Please set 'input.dirs' to a comma separated list of input directories."/>
+                    <fail message="Please set 'subdirs' to a comma separated list of input directories."/>
                 </then>
             </if>
             
@@ -154,17 +152,17 @@
     </macrodef>
     
     <target name="build" depends="load, check-input">
-        <for param="project.dir" list="${input.dirs}">
+        <for param="subdir" list="${subdirs}">
             <sequential>
-                <local name="project.dir.abs"/> 
+                <local name="subdir.abs"/> 
                 <local name="output.dir.abs"/>
                 
-                <property name="project.dir.abs" location="${dev.dir.abs}/@{project.dir}"/>
-                <property name="output.dir.abs" location="${project.dir.abs}/_LoadResources"/>
+                <property name="subdir.abs" location="${input.dir.abs}/@{subdir}"/>
+                <property name="output.dir.abs" location="${subdir.abs}/_LoadResources"/>
                 
                 <!-- Collect the XML files to transform -->
-                <fileset id="loadResources.files" dir="${project.dir.abs}">
-                    <include name="**/**load-resources-purgecreateupdate*.xml"/>
+                <fileset id="loadResources.files" dir="${subdir.abs}">
+                    <include name="**/*load-resources-purgecreateupdate*.xml"/>
                 </fileset>
                 
                 <!-- Check if there are files in the fileset. -->
@@ -179,7 +177,7 @@
                     <equals arg1="${loadResources.files.available}" arg2="true"/>
                     <then>
                         <sequential>
-                            <echo message="Centralizing LoadResources files in @{loadResources.dir}"/>
+                            <echo message="Centralizing LoadResources files in @{subdir}"/>
                             
                             <if>
                                 <not>
