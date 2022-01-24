@@ -11,6 +11,9 @@
     <property name="is.version.short" value="920"/>
     <!-- date.T, currently only used for the examples -->
     <property name="date.T" value="2021-01-01"/>
+    <!-- specify BSN oid for masking BSN identifiers -->
+    <property name="mask.ids" value=""/>
+<!--    <property name="mask.ids" value="2.16.840.1.113883.2.4.6.3"/>-->
 
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
 
@@ -58,6 +61,7 @@
             <param name="xsl.in" value="${xsl.input}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${xsl.output}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
 
         <!-- bundles -->
@@ -68,6 +72,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${xsl.output}"/>
             <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
@@ -98,7 +103,8 @@
             <param name="xsl.in" value="${xsl.input.mo}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${xsl.output.mo}"/>
-        </antcall>-->
+            <param name="param.maskids" value="${mask.ids}"/>
+       </antcall>-->
         
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
@@ -108,6 +114,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${xsl.output.mo}"/>
             <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
         
         
