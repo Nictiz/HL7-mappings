@@ -54,10 +54,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$deZorgaanbieder">
             <representedOrganization>
                 <!--MP CDA Organization id name-->
-                <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
+                <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value | @root][not(@nullFlavor and not(@value))]">
                     <!-- MP CDA Zorgaanbieder identificaties -->
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
+                <!-- if no proper value, still output nullFlavor if applicable -->
+                <xsl:if test="not((zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value | @root][not(@nullFlavor and not(@value))]) and (zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@nullFlavor]">
+                    <!-- MP CDA Zorgaanbieder identificaties -->
+                    <xsl:call-template name="makeIIid"/>
+                </xsl:if>
                 <xsl:for-each select="organisatie_naam[.//(@value | @nullFlavor)]">
                     <xsl:element name="name">
                         <xsl:choose>
@@ -545,6 +550,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </entryRelationship>
             </xsl:for-each>
 
+            <!-- Microorganisme  -->
+            <xsl:for-each select="microorganisme[@code | @nullFlavor]">
+                <entryRelationship typeCode="CAUS">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
+                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeCDValue"/>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+
+            <!-- microorganisme_sepsis_meningitis -->
+            <!-- microorganisme_congenitale_infectie, TODO nieuw template -->
+            <xsl:for-each select="(microorganisme_sepsis_meningitis | microorganisme_congenitale_infectie)[@code | @nullFlavor]">
+                <entryRelationship typeCode="CAUS">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
+                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeCDValue"/>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+
+            <!-- lijnsepsis -->
+            <xsl:for-each select="lijnsepsisq[.//(@value | @code | @nullFlavor)]">
+                <entryRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000_YN">
+                        <xsl:with-param name="code">736152001</xsl:with-param>
+                        <xsl:with-param name="displayName">bloedbaaninfectie gelijktijdig met en door centraal veneuze katheter in situ (aandoening)</xsl:with-param>
+                    </xsl:call-template>
+                </entryRelationship>
+            </xsl:for-each>
 
             <!-- onset -->
             <xsl:for-each select="onset[@value | @code | @nullFlavor]">
@@ -557,38 +594,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </entryRelationship>
             </xsl:for-each>
 
-            <!-- Microorganisme  -->
-            <xsl:for-each select="microorganisme[@code | @nullFlavor]">
-                <entryRelationship typeCode="CAUS">
-                    <observation classCode="OBS" moodCode="EVN">
-                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
-                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                        <xsl:call-template name="makeCDValue"/>
-                    </observation>
-                </entryRelationship>
-            </xsl:for-each>
-
-            <!-- microorganisme_sepsis_meningitis, TODO nieuw template -->
-            <xsl:for-each select="microorganisme_sepsis_meningitis[@code | @nullFlavor]">
-                <entryRelationship typeCode="CAUS">
-                    <observation classCode="OBS" moodCode="EVN">
-                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
-                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                        <xsl:call-template name="makeCDValue"/>
-                    </observation>
-                </entryRelationship>
-            </xsl:for-each>
-
-            <!-- microorganisme_congenitale_infectie, TODO nieuw template -->
-            <xsl:for-each select="microorganisme_sepsis_meningitis[@code | @nullFlavor]">
-                <entryRelationship typeCode="CAUS">
-                    <observation classCode="OBS" moodCode="EVN">
-                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
-                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                        <xsl:call-template name="makeCDValue"/>
-                    </observation>
-                </entryRelationship>
-            </xsl:for-each>
 
         </observation>
     </xsl:template>
@@ -826,10 +831,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <assignedCustodian>
                 <!--Zorgaanbieder-->
                 <representedCustodianOrganization>
-                    <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value | @nullFlavor]">
+                    <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value | @root][not(@nullFlavor and not(@value))]">
                         <!-- MP CDA Zorgaanbieder identificaties -->
                         <xsl:call-template name="makeIIid"/>
                     </xsl:for-each>
+                    <!-- if no proper value, still output nullFlavor if applicable -->
+                    <xsl:if test="not((zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value | @root][not(@nullFlavor and not(@value))]) and (zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@nullFlavor]">
+                        <!-- MP CDA Zorgaanbieder identificaties -->
+                        <xsl:call-template name="makeIIid"/>
+                    </xsl:if>
                     <xsl:for-each select="organisatie_naam[.//(@value | @nullFlavor)]">
                         <xsl:element name="name">
                             <xsl:choose>
@@ -867,9 +877,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>CDA author. Context can be either zorgverlener or zorgaanbieder</xd:desc>
         <xd:param name="authorTime">ada element with author time</xd:param>
+        <xd:param name="authorTime">ada element with softwareName</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.51_20181218141008_za" match="zorgaanbieder" mode="zorgaanbieder2CDAAuthor">
         <xsl:param name="authorTime" as="element()?"/>
+        <xsl:param name="softwareName" as="element()?"/>
 
         <!-- zorgaanbieder -->
         <author>
@@ -888,6 +900,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <assignedAuthor>
                 <!--identificatie required but not applicable when author is organization  -->
                 <id nullFlavor="NI"/>
+                <xsl:for-each select="$softwareName">
+                    <assignedAuthoringDevice>
+                        <softwareName>
+                            <xsl:value-of select="@value"/>
+                        </softwareName>
+                    </assignedAuthoringDevice>
+                </xsl:for-each>
                 <!--Zorgaanbieder-->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000"/>
             </assignedAuthor>

@@ -140,9 +140,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <section>
                             <templateId root="2.16.840.1.113883.2.4.6.10.90.901198"/>
                             <templateId root="2.16.840.1.113883.10.12.701"/>
-                            <code code="58781000146100" displayName="Discharge or transfer of patient (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                            <code code="58781000146100" displayName="ontslag of overplaatsing van patiënt (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                             <title>Gegevens Ontslag / Overplaatsing, Kernset Neonatologie</title>
                             <text/>
+                            <!-- nog opgenomen? -->
+                            <xsl:for-each select="nog_opgenomenq[.//(@value | @code | @nullFlavor)]">
+                                <entry>
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <xsl:if test="@value = 'false'">
+                                            <xsl:attribute name="negationInd">true</xsl:attribute>
+                                        </xsl:if>
+                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901247"/>
+                                        <code displayName="ziekenhuispatiënt (bevinding)" code="266938001" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </entry>
+                            </xsl:for-each>
+                            <!-- bestemming kind -->
+                            <xsl:for-each select="bestemming_kind[.//(@value | @code | @nullFlavor)]">
+                                <entry>
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <xsl:if test="@value = 'false'">
+                                            <xsl:attribute name="negationInd">true</xsl:attribute>
+                                        </xsl:if>
+                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901245"/>
+                                        <code displayName="Patient discharge (procedure)" code="58000006" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <xsl:call-template name="makeCEValue"/>
+                                    </observation>
+                                </entry>
+                            </xsl:for-each>
                             <!-- Lichamelijk onderzoek -->
                             <xsl:for-each select="lichamelijk_onderzoek[.//(@value | @code | @nullFlavor)]">
                                 <entry>
@@ -207,7 +232,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <code code="406194006" displayName="Death characteristics (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
 
                                     <!-- Overlijden binnen 12 uur na opname NICU -->
-                                    <xsl:for-each select="overlijden_lt12_uur_na_opname_nicu[@value | @nullFlavor]">
+                                    <xsl:for-each select="overlijden_lt12_uur_na_opname_nicuq[@value | @nullFlavor]">
                                         <entryRelationship typeCode="COMP">
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
@@ -217,8 +242,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </entryRelationship>
                                     </xsl:for-each>
 
-                                    <!-- Overleden op verloskamer 	peri30-dataelement-90705 -->
-                                    <xsl:for-each select="overleden_op_verloskamer[@value | @nullFlavor]">
+                                    <!-- Overleden op verloskamer peri30-dataelement-90705 -->
+                                    <xsl:for-each select="overleden_op_verloskamerq[@value | @nullFlavor]">
                                         <entryRelationship typeCode="COMP">
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
@@ -240,7 +265,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
 
                                     <!-- Staken IC-behandeling -->
-                                    <xsl:for-each select="staken_icbehandeling[@value | @nullFlavor]">
+                                    <xsl:for-each select="staken_icbehandelingq[@value | @nullFlavor]">
                                         <entryRelationship typeCode="COMP">
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
@@ -272,7 +297,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <code code="406151001" displayName="Post-discharge follow-up (finding)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                         <statusCode code="completed"/>
                                         <!-- O2 op dag 28 -->
-                                        <xsl:for-each select="o2_op_dag_28[@value | @nullFlavor]">
+                                        <xsl:for-each select="o2_op_dag_28q[@value | @nullFlavor]">
                                             <component>
                                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901148_20181106144851"/>
                                             </component>
@@ -379,7 +404,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </participant>
                     </xsl:for-each>
                     <!-- ziekenhuis baring -->
-                    <xsl:for-each select="ziekenhuis_baring//zorgaanbieder[not(zorgaanbieder)][.//(@value | @code | @nullFlavor)]">
+                    <xsl:for-each select="zorgaanbieder[.//(@value | @code | @nullFlavor)]">
                         <participant typeCode="LOC">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901125_20181102172304"/>
                         </participant>
@@ -390,10 +415,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901216_20190531145950"/>
                         </entryRelationship>
                     </xsl:for-each>
-                    <!-- aantal geboren kinderen -->
-                    <xsl:for-each select="omvang_meerlingzwangerschap[@value | @nullFlavor]">
+                    <!-- aantal_geboren_kinderen -->
+                    <xsl:for-each select="aantal_geboren_kinderen[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900358_20161206130005"/>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901246_20200312122852"/>
                         </entryRelationship>
                     </xsl:for-each>
                     <!-- Type partus -->
@@ -424,10 +449,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901125_20181102172304" match="zorgaanbieder" mode="HandleBirthLocation">
         <templateId root="2.16.840.1.113883.2.4.6.10.90.901125"/>
         <participantRole classCode="DSDLOC">
-            <!--  id ziekenhuis -->
-            <xsl:for-each select="zorgaanbieder_identificatienummer[@value | @nullFlavor]">
+             <!--MP CDA Organization id name-->
+            <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value | @root][not(@nullFlavor and not(@value))]">
+                <!-- MP CDA Zorgaanbieder identificaties -->
                 <xsl:call-template name="makeIIid"/>
             </xsl:for-each>
+            <!-- if no proper value, still output nullFlavor if applicable -->
+            <xsl:if test="not((zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value | @root][not(@nullFlavor and not(@value))]) and (zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@nullFlavor]">
+                <!-- MP CDA Zorgaanbieder identificaties -->
+                <xsl:call-template name="makeIIid"/>
+            </xsl:if>           
             <xsl:for-each select="organisatie_type[@code | @nullFlavor]">
                 <xsl:call-template name="makeCode"/>
             </xsl:for-each>
@@ -491,17 +522,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </effectiveTime>
 
                     <!-- IC opname -->
-                    <xsl:for-each select="opname/ic_opname[@value | @nullFlavor]">
+                    <xsl:for-each select="opname/(ic_opnameq | ic_opname)[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
                                 <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.901131</xsl:with-param>
                                 <xsl:with-param name="code">305351004</xsl:with-param>
-                                <xsl:with-param name="displayName">Admission to intensive care unit (procedure)</xsl:with-param>
+                                <xsl:with-param name="displayName">opname op intensive care (verrichting)</xsl:with-param>
                             </xsl:call-template>
                         </entryRelationship>
                     </xsl:for-each>
                     <!-- heropname -->
-                    <xsl:for-each select="opname/heropname[@value | @nullFlavor]">
+                    <xsl:for-each select="opname/(heropname | heropnameq)[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
                                 <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.901132</xsl:with-param>
@@ -512,15 +543,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
 
                     <!-- herkomst kind -->
-                    <xsl:for-each select="opname/herkomst_kind[@code | @nullFlavor]">
+                    <xsl:if test="opname/(herkomst_kind | zorgaanbieder)[.//(@code | @value | @nullFlavor)]">
                         <entryRelationship typeCode="COMP">
                             <observation classCode="OBS" moodCode="EVN">
                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901136"/>
-                                <code code="58881000146108" displayName="Location of child before admission (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
-                                <xsl:call-template name="makeCDValue"/>
+                                <code code="58881000146108" displayName="verblijfplaats van kind voor opname (waarneembare entiteit)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                                <xsl:for-each select="opname/herkomst_kind[@code]">
+                                    <xsl:call-template name="makeCDValue"/>
+                                </xsl:for-each>
+                                <xsl:for-each select="opname/zorgaanbieder[.//(@code | @value | @nullFlavor)]">
+                                    <entryRelationship typeCode="COMP">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <code code="22232009" displayName="ziekenhuis (omgeving)" codeSystem="2.16.840.1.113883.6.96"/>
+                                            <participant typeCode="LOC">
+                                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901125_20181102172304"/>
+                                            </participant>
+                                        </observation>
+                                    </entryRelationship>
+                                </xsl:for-each>
                             </observation>
                         </entryRelationship>
-                    </xsl:for-each>
+                    </xsl:if>
                     <!-- opname indicaties -->
                     <xsl:for-each select="opname/opname_indicatie[@code | @nullFlavor]">
                         <entryRelationship typeCode="RSON">
@@ -610,32 +653,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             </xsl:for-each>
             <!-- antenatale steroïden -->
-            <xsl:for-each select="complicaties_tijdens_zwangerschap/antenatale_steroiden[@value | @code]">
+            <xsl:if test="complicaties_tijdens_zwangerschap/(antenatale_steroiden[@value | @code] | antenatale_steroiden_gegevenq[@value | @nullFlavor])">
                 <entryRelationship typeCode="COMP">
                     <procedure classCode="PROC" moodCode="EVN">
                         <xsl:choose>
-                            <xsl:when test="@code = '260413007'">
+                            <xsl:when test="complicaties_tijdens_zwangerschap/antenatale_steroiden_gegevenq/@value = 'false'">
                                 <!-- Geen antenatale steroïden t.b.v. foetale longrijping -->
                                 <xsl:attribute name="negationInd">true</xsl:attribute>
                             </xsl:when>
-                            <xsl:when test="@codeSystem = $oidHL7NullFlavor">
+                            <xsl:when test="complicaties_tijdens_zwangerschap/antenatale_steroiden_gegevenq/@nullFlavor">
                                 <!-- Onbekend -->
-                                <xsl:attribute name="nullFlavor" select="@code"/>
+                                <xsl:attribute name="nullFlavor" select="complicaties_tijdens_zwangerschap/antenatale_steroiden_gegevenq/@nullFlavor"/>
                             </xsl:when>
                         </xsl:choose>
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901120"/>
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                        <code code="434601000124108" displayName="Steroid therapy for fetal lung maturation (procedure)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
-                        <xsl:choose>
-                            <xsl:when test="not(@code = '260413007')">
-                                <methodCode>
-                                    <xsl:call-template name="makeCodeAttribs"/>
-                                </methodCode>
-                            </xsl:when>
-                        </xsl:choose>
+                        <code code="434601000124108" displayName="behandelen met corticosteroïden voor foetale longrijping (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                        <xsl:for-each select="complicaties_tijdens_zwangerschap/antenatale_steroiden[@value | @code]">
+                            <methodCode>
+                                <xsl:call-template name="makeCodeAttribs"/>
+                            </methodCode>
+                        </xsl:for-each>
                     </procedure>
                 </entryRelationship>
-            </xsl:for-each>
+            </xsl:if>
 
         </observation>
     </xsl:template>
@@ -813,7 +854,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
                         <!-- O2 op dag 28 -->
-                        <xsl:for-each select="o2_op_dag_28[@value | @nullFlavor]">
+                        <xsl:for-each select="(o2_op_dag_28 | o2_op_dag_28q)[@value | @nullFlavor]">
                             <component>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901148_20181106144851"/>
                             </component>
@@ -967,17 +1008,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000"/>
                             </component>
                         </xsl:for-each>
-                        <!-- lijnsepsis -->
-                        <xsl:for-each select="probleem/lijnsepsis[.//(@value | @code | @nullFlavor)]">
-                            <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000_YN">
-                                    <xsl:with-param name="code">736152001</xsl:with-param>
-                                    <xsl:with-param name="displayName">Infection of bloodstream co-occurrent and due to central venous catheter in situ (disorder)</xsl:with-param>
-                                </xsl:call-template>
-                            </component>
-                        </xsl:for-each>
                         <!--  Antibiotica eerste 3 dagen peri30-dataelement-91045 -->
-                        <xsl:for-each select="antibiotica_eerste_3_dagen[@value | @nullFlavor]">
+                        <xsl:for-each select="antibiotica_eerste_3_dagenq[@value | @nullFlavor]">
                             <component>
                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901238"/>
@@ -1080,53 +1112,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
 
-                        <!-- Polycythemie waarvoor partiële wisseltransfusie -->
-                        <xsl:for-each select="polycythemie_waarvoor_partiele_wisseltransfusie[@value | @nullFlavor]">
+                        <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
                             <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                    <xsl:with-param name="code">58931000146101</xsl:with-param>
-                                    <xsl:with-param name="displayName">Neonatal partial exchange transfusion for polycythemia (procedure)</xsl:with-param>
-                                </xsl:call-template>
-                            </component>
-                        </xsl:for-each>
-
-                        <!-- Anemie waarvoor transfusie -->
-                        <xsl:for-each select="anemie_waarvoor_transfusie[@value | @nullFlavor]">
-                            <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                    <xsl:with-param name="code">59071000146107</xsl:with-param>
-                                    <xsl:with-param name="displayName">Transfusion for anemia (procedure)</xsl:with-param>
-                                </xsl:call-template>
-                            </component>
-                        </xsl:for-each>
-
-                        <!-- Trombocytopenie waarvoor behandeling -->
-                        <xsl:for-each select="trombocytopenie_waarvoor_behandeling[@value | @nullFlavor]">
-                            <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                    <xsl:with-param name="code">59091000146106</xsl:with-param>
-                                    <xsl:with-param name="displayName">Treatment for trombocytopenia (procedure)</xsl:with-param>
-                                </xsl:call-template>
-                            </component>
-                        </xsl:for-each>
-
-                        <!-- Veneuze trombose waarvoor behandeling -->
-                        <xsl:for-each select="veneuze_trombose_waarvoor_behandeling[@value | @nullFlavor]">
-                            <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                    <xsl:with-param name="code">59101000146104</xsl:with-param>
-                                    <xsl:with-param name="displayName">Treatment for venous thrombosis (procedure)</xsl:with-param>
-                                </xsl:call-template>
-                            </component>
-                        </xsl:for-each>
-
-                        <!-- Arteriële trombose waarvoor behandeling -->
-                        <xsl:for-each select="arteriele_trombose_waarvoor_behandeling[@value | @nullFlavor]">
-                            <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                    <xsl:with-param name="code">59111000146102</xsl:with-param>
-                                    <xsl:with-param name="displayName">Treatment for arterial thrombosis (procedure)</xsl:with-param>
-                                </xsl:call-template>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                             </component>
                         </xsl:for-each>
                     </organizer>
@@ -1155,36 +1143,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
 
-                        <!-- Hyperglycemie waarvoor insuline - Géén -->
-                        <xsl:for-each select="hyperglycemie_waarvoor_insuline[@value | @nullFlavor]">
+                        <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
                             <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                    <xsl:with-param name="code">109101000146103</xsl:with-param>
-                                    <xsl:with-param name="displayName">Administration of insulin in hyperglycemia (procedure)</xsl:with-param>
-                                </xsl:call-template>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                             </component>
                         </xsl:for-each>
-
-                        <!-- Hypo- of hyperthyreoidie waarvoor medicatie - Géén -->
-                        <xsl:for-each select="hypo_of_hyperthyreoidie_waarvoor_medicatie[@value | @nullFlavor]">
-                            <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                    <xsl:with-param name="code">58791000146103</xsl:with-param>
-                                    <xsl:with-param name="displayName">Drug therapy for hypothyroidism or hyperthyroidism (procedure)</xsl:with-param>
-                                </xsl:call-template>
-                            </component>
-                        </xsl:for-each>
-
-                        <!-- Hypoglycemie waarvoor glucose infuus - Géén -->
-                        <xsl:for-each select="hypoglycemie_waarvoor_glucose_infuus[@value | @nullFlavor]">
-                            <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                    <xsl:with-param name="code">109091000146105</xsl:with-param>
-                                    <xsl:with-param name="displayName">Intravenous infusion of glucose in hypoglycemia (procedure)</xsl:with-param>
-                                </xsl:call-template>
-                            </component>
-                        </xsl:for-each>
-
                     </organizer>
                 </entry>
             </xsl:for-each>
@@ -1254,7 +1217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                         <!-- Chirurgische ingrepen-->
                         <!-- verrichting -->
-                        <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
+                        <xsl:for-each select=".//verrichting[.//(@value | @code | @nullFlavor)]">
                             <component>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                             </component>
@@ -1316,6 +1279,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.51_20181218141008_za">
                     <!-- no dataset item available for authorTime... https://bits.nictiz.nl/browse/GZ-9 -->
                     <!--                <xsl:with-param name="authorTime"/>-->
+                    <xsl:with-param name="softwareName" select="../documentgegevens/software_naam"/>
                 </xsl:call-template>
             </xsl:for-each>
 
@@ -1525,6 +1489,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </procedure>
 
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Aantal geboren kinderen </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901246_20200312122852">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901246"/>
+            <code code="118861000146102" displayName="aantal geboren kinderen uit zwangerschap (waarneembare entiteit)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <!-- Item(s) :: aantal_geboren_kinderen-->
+            <xsl:call-template name="makeINTValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
     </xsl:template>
 
 </xsl:stylesheet>
