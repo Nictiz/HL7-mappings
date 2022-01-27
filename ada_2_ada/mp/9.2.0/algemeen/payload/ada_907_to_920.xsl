@@ -215,6 +215,18 @@
             <xsl:apply-templates select="*[not(self::identificatie | self::afspraakdatum)]"/>
         </xsl:copy>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Gebruiksinstructie/HerhaalperiodeCyclischSchema/@unit=dag (920)
+            Gebruiksinstructie/HerhaalperiodeCyclischSchema/@unit=d (907)
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="herhaalperiode_cyclisch_schema">
+        <xsl:copy>
+            <xsl:attribute name="unit">dag</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
 
 
     <xd:doc>
