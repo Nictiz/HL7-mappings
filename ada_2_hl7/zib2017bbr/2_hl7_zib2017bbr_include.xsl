@@ -460,6 +460,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$theProblem[not(@datatype) or @datatype = 'reference'][@value]">
                             <xsl:sequence select="ancestor::data//(problem | probleem)[@id = $theProblem/@value]"/>
                         </xsl:when>
+                        <xsl:when test="$theProblem[@datatype = 'reference'][not(@value)][@nullFlavor]">
+                            <probleem xmlns="" conceptId="{$theProblem[1]/@conceptId}">
+                                <probleem_naam code="{($theProblem[@datatype = 'reference'][not(@value)][@nullFlavor])[1]/@nullFlavor}" codeSystem="{$oidHL7NullFlavor}"/>
+                            </probleem>
+                        </xsl:when>
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:for-each select="$adaProblem">
