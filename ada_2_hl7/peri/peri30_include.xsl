@@ -1112,6 +1112,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
 
+                        <!-- Zie https://bits.nictiz.nl/browse/GZ-749, probleem miste hier onterecht. Hier alvast toegevoegd. -->
+                        <!-- Probleem -->
+                        <xsl:for-each select="probleem[.//(@value | @code | @nullFlavor)]">
+                            <component>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000"/>
+                            </component>
+                        </xsl:for-each>
+                        
                         <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
                             <component>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
@@ -1459,7 +1467,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <participant typeCode="PRD">
                             <xsl:for-each select="product_type[@code | @nullFlavor]">
                                 <participantRole classCode="MANU">
-                                    <playingDevice>
+                                    <playingDevice classCode="DEV">
                                         <xsl:call-template name="makeCode"/>
                                     </playingDevice>
                                 </participantRole>
