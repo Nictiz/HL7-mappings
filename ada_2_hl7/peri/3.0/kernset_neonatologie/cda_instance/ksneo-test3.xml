@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../../../../../../../../SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/3.0.0/kernset_neonatologie/test_xslt_instance/ksneo-test3.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../SVN/AORTA/trunk/XML/schemas/CDANL_extended.xsd">
+<?xml-model phase="#ALL" href="../../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/PerinataleZorg/DECOR/peri20-runtime-develop/peri20-ksneo-alg-30.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
+<ClinicalDocument xmlns="urn:hl7-org:v3"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:sdtc="urn:hl7-org:sdtc"
+                  xmlns:nf="http://www.nictiz.nl/functions"
+                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../SVN/AORTA/trunk/XML/schemas/CDANL_extended.xsd">
    <realmCode code="NL"/>
    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
    <id extension="ksneo-test3" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
-   <code code="118761000146105" displayName="rapport voor kwaliteitsregistratie over neonaten (gegevensobject)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+   <code code="118761000146105"
+         displayName="rapport voor kwaliteitsregistratie over neonaten (gegevensobject)"
+         codeSystem="2.16.840.1.113883.6.96"
+         codeSystemName="SNOMED CT"/>
    <title>Kernset Neonatologie</title>
-   <effectiveTime value="20220101170000"/>
+   <effectiveTime value="20210101170000"/>
    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
    <languageCode code="nl-NL"/>
    <setId extension="ksneo-test3" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
@@ -16,8 +26,10 @@
       <patientRole>
          <id extension="123" root="1.2.3.999"/>
          <patient>
-            <administrativeGenderCode code="UN" codeSystem="2.16.840.1.113883.5.1" displayName="Ongedifferentieerd"/>
-            <birthTime value="20211017065500"/>
+            <administrativeGenderCode code="UN"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Ongedifferentieerd"/>
+            <birthTime value="20201017065500"/>
             <deceasedInd xmlns="urn:hl7-org:sdtc" value="false"/>
          </patient>
       </patientRole>
@@ -47,18 +59,27 @@
             <section>
                <templateId root="2.16.840.1.113883.2.4.6.10.90.901111"/>
                <templateId root="2.16.840.1.113883.10.12.701"/>
-               <code code="79192-1" displayName="Maternal information section" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+               <code code="79192-1"
+                     displayName="Maternal information section"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"/>
                <title>Maternale gegevens van Kernset Neonatologie</title>
                <text/>
                <entry typeCode="COMP">
                   <observation classCode="OBS" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901113"/>
-                     <code code="364320009" displayName="Pregnancy observable (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                     <code code="364320009"
+                           displayName="Pregnancy observable (observable entity)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901115"/>
                            <templateId root="2.16.840.1.113883.10.12.803"/>
-                           <code code="11996-6" codeSystem="2.16.840.1.113883.6.1" displayName="Graviditeit" codeSystemName="LOINC"/>
+                           <code code="11996-6"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 displayName="Graviditeit"
+                                 codeSystemName="LOINC"/>
                            <value xsi:type="INT" value="4"/>
                         </observation>
                      </entryRelationship>
@@ -66,23 +87,39 @@
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901116"/>
                            <templateId root="2.16.840.1.113883.10.12.803"/>
-                           <code code="11977-6" codeSystem="2.16.840.1.113883.6.1" displayName="Parity" codeSystemName="LOINC"/>
+                           <code code="11977-6"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 displayName="Parity"
+                                 codeSystemName="LOINC"/>
                            <value xsi:type="INT" value="2"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-                           <code code="282291009" displayName="Diagnose" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                           <value xsi:type="CD" code="609496007" codeSystem="2.16.840.1.113883.6.96" displayName="Complication occurring during pregnancy (disorder)" codeSystemName="SNOMED CT"/>
+                           <code code="282291009"
+                                 displayName="Diagnose"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
+                           <value xsi:type="CD"
+                                  code="609496007"
+                                  codeSystem="2.16.840.1.113883.6.96"
+                                  displayName="Complication occurring during pregnancy (disorder)"
+                                  codeSystemName="SNOMED CT"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901120"/>
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                           <code code="434601000124108" displayName="behandelen met corticosteroïden voor foetale longrijping (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                           <methodCode code="255594003434601000124108" codeSystem="2.16.840.1.113883.6.96" displayName="Complete steroid therapy for fetal lung maturation (procedure)" codeSystemName="SNOMED CT"/>
+                           <code code="434601000124108"
+                                 displayName="behandelen met corticosteroïden voor foetale longrijping (verrichting)"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
+                           <methodCode code="255594003434601000124108"
+                                       codeSystem="2.16.840.1.113883.6.96"
+                                       displayName="Complete steroid therapy for fetal lung maturation (procedure)"
+                                       codeSystemName="SNOMED CT"/>
                         </procedure>
                      </entryRelationship>
                   </observation>
@@ -93,39 +130,58 @@
             <section>
                <templateId root="2.16.840.1.113883.2.4.6.10.90.901122"/>
                <templateId root="2.16.840.1.113883.10.12.701"/>
-               <code code="15508-5" displayName="Labor and delivery records" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+               <code code="15508-5"
+                     displayName="Labor and delivery records"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"/>
                <title>Neonatale bevallingsgegevens van Kernset Neonatologie</title>
                <text/>
                <entry>
                   <procedure classCode="ACT" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901123"/>
                      <templateId root="2.16.840.1.113883.10.12.806"/>
-                     <code code="Baring" displayName="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" codeSystemName="PerinatologyProceduresPRN"/>
+                     <code code="Baring"
+                           displayName="Baring"
+                           codeSystem="2.16.840.1.113883.2.4.3.22.1.3"
+                           codeSystemName="PerinatologyProceduresPRN"/>
                      <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901124"/>
                         <participantRole classCode="BIRTHPL">
-                           <code code="56321000146103" codeSystem="2.16.840.1.113883.6.96" displayName="Birth in hospital (finding)"/>
+                           <code code="56321000146103"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 displayName="Birth in hospital (finding)"/>
                         </participantRole>
                      </participant>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901216"/>
-                           <code code="412726003" displayName="Length of gestation at birth" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <code code="412726003"
+                                 displayName="Length of gestation at birth"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
                            <value xsi:type="PQ" value="215" unit="d"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901246"/>
-                           <code code="118861000146102" displayName="aantal geboren kinderen uit zwangerschap (waarneembare entiteit)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <code code="118861000146102"
+                                 displayName="aantal geboren kinderen uit zwangerschap (waarneembare entiteit)"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
                            <value xsi:type="INT" value="1"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
-                           <code code="364336006" codeSystem="2.16.840.1.113883.6.96" displayName="Type partus"/>
-                           <value xsi:type="CE" code="3311000146109" codeSystem="2.16.840.1.113883.6.96" displayName="Vaginale kunstverlossing"/>
+                           <code code="364336006"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 displayName="Type partus"/>
+                           <value xsi:type="CE"
+                                  code="3311000146109"
+                                  codeSystem="2.16.840.1.113883.6.96"
+                                  displayName="Vaginale kunstverlossing"/>
                         </observation>
                      </entryRelationship>
                   </procedure>
@@ -136,43 +192,65 @@
             <section>
                <templateId root="2.16.840.1.113883.2.4.6.10.90.901128"/>
                <templateId root="2.16.840.1.113883.10.12.701"/>
-               <code code="51849-8" displayName="Admission history and physical note" codeSystem="2.16.840.1.113883.1.6" codeSystemName="LOINC"/>
+               <code code="51849-8"
+                     displayName="Admission history and physical note"
+                     codeSystem="2.16.840.1.113883.1.6"
+                     codeSystemName="LOINC"/>
                <title>Gegevens bij opname, Kernset Neonatologie</title>
                <text/>
                <entry typeCode="COMP" contextConductionInd="true">
                   <procedure classCode="PROC" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901129"/>
-                     <code code="305056002" displayName="Admission procedure (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                     <code code="305056002"
+                           displayName="Admission procedure (procedure)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                      <effectiveTime xsi:type="IVL_TS">
-                        <low value="20220101091500"/>
-                        <high value="20220101160000"/>
+                        <low value="20210101091500"/>
+                        <high value="20210101160000"/>
                      </effectiveTime>
                      <entryRelationship typeCode="COMP">
                         <procedure classCode="PROC" moodCode="EVN" negationInd="true">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901131"/>
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                           <code code="305351004" codeSystem="2.16.840.1.113883.6.96" displayName="opname op intensive care (verrichting)" codeSystemName="SNOMED CT"/>
+                           <code code="305351004"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 displayName="opname op intensive care (verrichting)"
+                                 codeSystemName="SNOMED CT"/>
                         </procedure>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901132"/>
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                           <code code="417005" codeSystem="2.16.840.1.113883.6.96" displayName="Hospital re-admission (procedure)" codeSystemName="SNOMED CT"/>
+                           <code code="417005"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 displayName="Hospital re-admission (procedure)"
+                                 codeSystemName="SNOMED CT"/>
                         </procedure>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901136"/>
-                           <code code="58881000146108" displayName="Location of child before admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                           <value xsi:type="CD" code="59141000146101" codeSystem="2.16.840.1.113883.6.96" displayName="Hospital admission from home or birth center (procedure)" codeSystemName="SNOMED CT"/>
+                           <code code="58881000146108"
+                                 displayName="verblijfplaats van kind voor opname (waarneembare entiteit)"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
+                           <value xsi:type="CD"
+                                  code="59141000146101"
+                                  codeSystem="2.16.840.1.113883.6.96"
+                                  displayName="Hospital admission from home or birth center (procedure)"
+                                  codeSystemName="SNOMED CT"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="RSON">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901130"/>
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-                           <code code="59021000146108" displayName="Reason for admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <code code="59021000146108"
+                                 displayName="Reason for admission (observable entity)"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
                            <value xsi:type="CD" nullFlavor="OTH"/>
                         </observation>
                      </entryRelationship>
@@ -180,50 +258,70 @@
                         <procedure classCode="ACT" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901133"/>
                            <templateId root="2.16.840.1.113883.10.12.806"/>
-                           <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <code code="5880005"
+                                 displayName="lichamelijk onderzoek (verrichting)"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
                            <entryRelationship typeCode="COMP">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
-                                 <code code="8302-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Body height"/>
-                                 <effectiveTime value="20220101093000"/>
+                                 <code code="8302-2"
+                                       codeSystem="2.16.840.1.113883.6.1"
+                                       codeSystemName="LOINC"
+                                       displayName="Body height"/>
+                                 <effectiveTime value="20210101093000"/>
                                  <value xsi:type="PQ" value="43" unit="cm"/>
                               </observation>
                            </entryRelationship>
                            <entryRelationship typeCode="COMP">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
-                                 <code code="29463-7" codeSystem="2.16.840.1.113883.6.1" displayName="Body Weight"/>
-                                 <effectiveTime value="20220101093000"/>
+                                 <code code="29463-7"
+                                       codeSystem="2.16.840.1.113883.6.1"
+                                       displayName="Body Weight"/>
+                                 <effectiveTime value="20210101093000"/>
                                  <value xsi:type="PQ" value="1800" unit="g"/>
                               </observation>
                            </entryRelationship>
                            <entryRelationship typeCode="COMP">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.56"/>
-                                 <code code="8310-5" displayName="Body temperature" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                                 <effectiveTime value="20220101093000"/>
+                                 <code code="8310-5"
+                                       displayName="Body temperature"
+                                       codeSystem="2.16.840.1.113883.6.1"
+                                       codeSystemName="LOINC"/>
+                                 <effectiveTime value="20210101093000"/>
                                  <value xsi:type="PQ" value="37.1" unit="Cel"/>
                               </observation>
                            </entryRelationship>
                            <entryRelationship typeCode="COMP">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.55"/>
-                                 <code code="363812007" displayName="Head circumference" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                 <effectiveTime value="20220101093200"/>
+                                 <code code="363812007"
+                                       displayName="Head circumference"
+                                       codeSystem="2.16.840.1.113883.6.96"
+                                       codeSystemName="SNOMED CT"/>
+                                 <effectiveTime value="20210101093200"/>
                                  <value xsi:type="PQ" value="31" unit="cm"/>
                               </observation>
                            </entryRelationship>
                            <entryRelationship typeCode="COMP">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.6.10.90.901139"/>
-                                 <code code="56361000146105" displayName="Umbilical arterial cord pH (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                 <code code="56361000146105"
+                                       displayName="Umbilical arterial cord pH (observable entity)"
+                                       codeSystem="2.16.840.1.113883.6.96"
+                                       codeSystemName="SNOMED CT"/>
                                  <value xsi:type="PQ" value="7.35" unit="[pH]"/>
                               </observation>
                            </entryRelationship>
                            <entryRelationship typeCode="COMP">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.6.10.90.901140"/>
-                                 <code code="56351000146107" displayName="Umbilical arterial cord base excess (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                 <code code="56351000146107"
+                                       displayName="Umbilical arterial cord base excess (observable entity)"
+                                       codeSystem="2.16.840.1.113883.6.96"
+                                       codeSystemName="SNOMED CT"/>
                                  <value xsi:type="PQ" value="0.0" unit="mmol/L"/>
                               </observation>
                            </entryRelationship>
@@ -237,31 +335,55 @@
             <section>
                <templateId root="2.16.840.1.113883.2.4.6.10.90.901141"/>
                <templateId root="2.16.840.1.113883.10.12.701"/>
-               <code code="58741000146107" displayName="Medical section (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+               <code code="58741000146107"
+                     displayName="Medical section (record artifact)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
                <title>Gegevens Problematiek kind, Kernset Neonatologie</title>
                <text/>
                <entry>
                   <organizer classCode="CLUSTER" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901194"/>
-                     <code code="58771000146102" displayName="Congenital disease (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                     <code code="58771000146102"
+                           displayName="Congenital disease (record artifact)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                      <statusCode code="completed"/>
                      <component>
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-                           <code code="282291009" displayName="Diagnose" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                           <value xsi:type="CD" code="66091009" codeSystem="2.16.840.1.113883.6.96" displayName="Congenital disease (disorder)" codeSystemName="SNOMED CT"/>
+                           <code code="282291009"
+                                 displayName="Diagnose"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
+                           <value xsi:type="CD"
+                                  code="66091009"
+                                  codeSystem="2.16.840.1.113883.6.96"
+                                  displayName="Congenital disease (disorder)"
+                                  codeSystemName="SNOMED CT"/>
                         </observation>
                      </component>
                      <component>
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-                           <code code="282291009" displayName="Diagnose" codeSystem="2.16.840.1.113883.6.96"/>
-                           <value xsi:type="CD" code="45744005" codeSystem="2.16.840.1.113883.6.96" displayName="stoornis van mineraalstofwisseling (aandoening)"/>
+                           <code code="282291009"
+                                 displayName="Diagnose"
+                                 codeSystem="2.16.840.1.113883.6.96"/>
+                           <value xsi:type="CD"
+                                  code="45744005"
+                                  codeSystem="2.16.840.1.113883.6.96"
+                                  displayName="stoornis van mineraalstofwisseling (aandoening)"/>
                            <entryRelationship typeCode="SPRT">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
-                                 <code code="408729009" displayName="Finding context (attribute)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                 <value xsi:type="CD" code="410590009" codeSystem="2.16.840.1.113883.6.96" displayName="Differentiaal"/>
+                                 <code code="408729009"
+                                       displayName="Finding context (attribute)"
+                                       codeSystem="2.16.840.1.113883.6.96"
+                                       codeSystemName="SNOMED CT"/>
+                                 <value xsi:type="CD"
+                                        code="410590009"
+                                        codeSystem="2.16.840.1.113883.6.96"
+                                        displayName="Differentiaal"/>
                               </observation>
                            </entryRelationship>
                         </observation>
@@ -274,20 +396,30 @@
             <section>
                <templateId root="2.16.840.1.113883.2.4.6.10.90.901198"/>
                <templateId root="2.16.840.1.113883.10.12.701"/>
-               <code code="58781000146100" displayName="ontslag of overplaatsing van patiënt (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+               <code code="58781000146100"
+                     displayName="ontslag of overplaatsing van patiënt (verrichting)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
                <title>Gegevens Ontslag / Overplaatsing, Kernset Neonatologie</title>
                <text/>
                <entry>
                   <observation classCode="OBS" moodCode="EVN" negationInd="true">
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901247"/>
-                     <code displayName="ziekenhuispatiënt (bevinding)" code="266938001" codeSystem="2.16.840.1.113883.6.96"/>
+                     <code displayName="ziekenhuispatiënt (bevinding)"
+                           code="266938001"
+                           codeSystem="2.16.840.1.113883.6.96"/>
                   </observation>
                </entry>
                <entry>
                   <observation classCode="OBS" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901245"/>
-                     <code displayName="Patient discharge (procedure)" code="58000006" codeSystem="2.16.840.1.113883.6.96"/>
-                     <value xsi:type="CE" code="306689006" codeSystem="2.16.840.1.113883.6.96" displayName="Discharge to home (procedure)"/>
+                     <code displayName="Patient discharge (procedure)"
+                           code="58000006"
+                           codeSystem="2.16.840.1.113883.6.96"/>
+                     <value xsi:type="CE"
+                            code="306689006"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Discharge to home (procedure)"/>
                   </observation>
                </entry>
                <entry>
@@ -297,7 +429,10 @@
                      <product typeCode="PRD">
                         <manufacturedProduct classCode="MANU">
                            <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                              <code code="226789007" codeSystem="2.16.840.1.113883.6.96" displayName="moedermelk (substantie)" codeSystemName="SNOMED CT"/>
+                              <code code="226789007"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="moedermelk (substantie)"
+                                    codeSystemName="SNOMED CT"/>
                            </manufacturedMaterial>
                         </manufacturedProduct>
                      </product>
@@ -306,7 +441,10 @@
                <entry>
                   <procedure classCode="PROC" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901203"/>
-                     <code code="63818009" codeSystem="2.16.840.1.113883.6.96" displayName="monitoren met cardiotachometer (regime/therapie)" codeSystemName="SNOMED CT"/>
+                     <code code="63818009"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           displayName="monitoren met cardiotachometer (regime/therapie)"
+                           codeSystemName="SNOMED CT"/>
                   </procedure>
                </entry>
             </section>
@@ -314,29 +452,44 @@
          <component>
             <section>
                <templateId root="2.16.840.1.113883.2.4.6.10.90.901204"/>
-               <code code="58921000146103" displayName="Mortality (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+               <code code="58921000146103"
+                     displayName="Mortality (record artifact)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
                <title>Gegevens mortaliteit, Kernset Neonatologie</title>
                <text/>
                <entry>
                   <observation classCode="OBS" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901205"/>
-                     <code code="406194006" displayName="Death characteristics (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                     <code code="406194006"
+                           displayName="Death characteristics (observable entity)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN" nullFlavor="NA">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901206"/>
-                           <code code="58991000146100" displayName="Patient died within 12 hours after admission to NICU (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <code code="58991000146100"
+                                 displayName="Patient died within 12 hours after admission to NICU (finding)"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN" negationInd="true">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901208"/>
-                           <code code="59001000146100" displayName="Patient died in delivery room (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <code code="59001000146100"
+                                 displayName="Patient died in delivery room (finding)"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN" nullFlavor="NA">
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901209"/>
-                           <code code="56371000146104" displayName="Intensive care treatment stopped (situation)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <code code="56371000146104"
+                                 displayName="Intensive care treatment stopped (situation)"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
                         </observation>
                      </entryRelationship>
                   </observation>
