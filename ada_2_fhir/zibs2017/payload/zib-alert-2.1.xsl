@@ -108,13 +108,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Alert</xsl:variable>
                 <Flag>
-                    <xsl:if test="exists($logicalId)">
-                        <id value="{$logicalId}"/>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
         
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
         
                     <xsl:for-each select="nf:ada-resolve-reference(conditie/probleem | condition/problem)">

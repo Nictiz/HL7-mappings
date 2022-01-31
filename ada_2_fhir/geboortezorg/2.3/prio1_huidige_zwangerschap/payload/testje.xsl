@@ -13,7 +13,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <!-- <xsl:import href="../../../2_fhir_ketenzorg_include.xsl"/> -->
     <xsl:import href="all-mappings.xsl"/>
-    <xsl:import href="../../zibs2017/payload/all-zibs.xsl"/>
+    <xsl:import href="../../zibs2017/payload/package-1.3.10.xsl"/>
     <xsl:import href="../../ketenzorg/2_fhir_ketenzorg_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>

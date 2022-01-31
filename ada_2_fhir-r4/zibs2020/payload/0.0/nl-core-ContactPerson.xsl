@@ -109,9 +109,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </relationship>
                 </xsl:for-each>
                 
-                <xsl:for-each select="naamgegevens">
-                    <xsl:call-template name="nl-core-NameInformation"/>
-                </xsl:for-each>
+                <!-- We can't add the full name information here, just the name information needed to address the 
+                     contact person -->
+                <xsl:variable name="nameInformation" as="element(f:name)*">
+                    <xsl:for-each select="naamgegevens">
+                        <xsl:call-template name="nl-core-NameInformation"/>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:if test="count($nameInformation) &gt; 0">
+                    <xsl:copy-of select="$nameInformation[1]"/>
+                </xsl:if>
                 
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
@@ -144,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="contactpersoon" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
             <xsl:text>Contact person</xsl:text>
-            <xsl:value-of select="current-group()[1]/normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
+            <xsl:value-of select="nf:renderName(naamgegevens)"/>
 
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
