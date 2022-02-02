@@ -59,8 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="16830007"/>
-                        <display value="onderzoek van visus"/>
+                        <code value="363983007"/>
+                        <display value="visus"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -115,8 +115,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <coding>
                                 <system value="http://snomed.info/sct"/>
-                                <code value="363691001"/>
-                                <display value="verrichting ingedeeld naar hulpmiddel (verrichting)"/>
+                                <code value="421763006" />
+                                <display value="visuskaart"/>
                             </coding>
                         </code>
                         <valueCodeableConcept>
@@ -132,7 +132,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="http://snomed.info/sct"/>
                                 <code value="152731000146106"/>
-                                <display value="distance to visual acuity chart (observable entity)"/>
+                                <display value="afstand tot visuskaart"/>
                             </coding>
                         </code>
                         <valueQuantity>
