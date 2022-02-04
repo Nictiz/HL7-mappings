@@ -336,6 +336,9 @@
         <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
             <xsl:copy-of select="$inclusionParameters"/>
             <xsl:copy-of select="nts:with-parameter"/>
+            <xsl:for-each select="./@*[not(local-name() = ('value', 'scope'))]">
+                <nts:with-parameter name="${local-name(.)}" value="."/>
+            </xsl:for-each>
         </xsl:variable>
         
         <xsl:variable name="document" as="node()*">
@@ -355,6 +358,9 @@
         <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
             <xsl:copy-of select="$inclusionParameters"/>
             <xsl:copy-of select="nts:with-parameter"/>
+            <xsl:for-each select="./@*[not(local-name() = 'href')]">
+                <nts:with-parameter name="{local-name(.)}" value="{.}"/>
+            </xsl:for-each>
         </xsl:variable>
         
         <xsl:variable name="filePath">

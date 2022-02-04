@@ -48,7 +48,7 @@ to refer to a file directly, relative from the input file.
 
 #### Passing parameters
 
-It is possible to pass parameters to included components, using the `nts:with-parameter` element. The syntax is:
+It is possible to pass parameters to included components, using either the `nts:with-parameter` element or attributes. The syntax is:
 
 ```xml
 <nts:include value="..">
@@ -56,6 +56,12 @@ It is possible to pass parameters to included components, using the `nts:with-pa
     <nts:with-parameter name="param2" value="...">
     ...
 </nts:include>
+```
+
+or
+
+```xml
+<nts:include value=".." param1="..." param2="..." />
 ```
 
 In the corresponding component, the variable can be used with the XSL syntax for variables:
