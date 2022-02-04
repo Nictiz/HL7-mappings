@@ -34,6 +34,12 @@
     <xsl:template name="generate" match="f:TestScript">
         <xsl:variable name="scenario" select="@nts:scenario"/>
         
+        <!-- Capture the base path in a variable, because the relative path changes with nested includes, leading to Patient token errors -->
+        <xsl:variable name="basePath">
+            <xsl:variable name="tokenize" select="tokenize(base-uri(), '/')"/>
+            <xsl:value-of select="string-join($tokenize[position() lt last()], '/')"/>
+        </xsl:variable>
+        
         <!-- Sanity check the expectedResponseFormat parameter -->
         <xsl:if test="$expectedResponseFormat != '' and $scenario != 'server'">
             <xsl:message select="'Parameter ''expectedResponseFormat'' only has a meaning when nts:scenario is ''server'''"></xsl:message>
@@ -46,6 +52,7 @@
         <xsl:variable name="expanded">
             <xsl:apply-templates mode="expand" select=".">
                 <xsl:with-param name="scenario" select="$scenario" tunnel="yes"/>
+                <xsl:with-param name="basePath" select="$basePath" tunnel="yes"/>
             </xsl:apply-templates>
         </xsl:variable>
     
@@ -286,13 +293,17 @@
            it using a FHIRPath experssion. --> 
     <xsl:template match="nts:patientTokenFixture" mode="expand">
         <xsl:param name="scenario" tunnel="yes"/>
+        <xsl:param name="basePath" tunnel="yes"/>
+        <xsl:variable name="href" as="xs:string">
+            <xsl:apply-templates select="@href" mode="expand"/>
+        </xsl:variable>
                     
         <xsl:choose>
             <!-- Expand the nts:patientTokenFixture element for 'phr' type scripts -->
             <xsl:when test="$scenario='client'">
                 <fixture id="patient-token-fixture">
                     <resource>
-                        <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
+                        <reference value="{nts:constructFilePath($referenceBase, $href)}"/>
                     </resource>
                 </fixture>
                 <variable>
@@ -304,13 +315,13 @@
             <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
             <xsl:when test="$scenario='server'">
                 <xsl:variable name="patientTokenFixture">
-                    <xsl:copy-of select="document(string-join(($referenceBase, @href), '/'),.)"/>
+                    <xsl:copy-of select="document(string-join(($basePath,$referenceBase, $href), '/'),.)"/>
                 </xsl:variable>
                 <variable>
                     <name value="patient-token-id"/>
                     <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
                     <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
-                        <xsl:comment>patientTokenFixture <xsl:value-of select="string-join(($referenceBase, @href), '/')"/> not available</xsl:comment>
+                        <xsl:comment>patientTokenFixture <xsl:value-of select="string-join(($referenceBase, $href), '/')"/> not available</xsl:comment>
                     </xsl:if>
                     <description value="OAuth Token for current patient"/>
                 </variable>
@@ -319,12 +330,20 @@
     </xsl:template>
     
     <!-- Expand the nts:includeDateT element -->
-    <xsl:template match="nts:includeDateT[@value='yes']" mode="expand">
-        <variable>
-            <name value="T"/>
-            <defaultValue value="${{CURRENTDATE}}"/>
-            <description value="Date that data and queries are expected to be relative to."/>
-        </variable>
+    <xsl:template match="nts:includeDateT" mode="expand">
+        <xsl:variable name="value" as="xs:string">
+            <xsl:apply-templates select="@value" mode="expand"/>
+        </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="$value = 'yes'">
+                <variable>
+                    <name value="T"/>
+                    <defaultValue value="${{CURRENTDATE}}"/>
+                    <description value="Date that data and queries are expected to be relative to."/>
+                </variable>
+            </xsl:when>
+            <xsl:otherwise/>
+        </xsl:choose>
     </xsl:template>
 
     <!-- Expand a nts:include element that uses absolute references with href.
@@ -335,9 +354,15 @@
         
         <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
             <xsl:copy-of select="$inclusionParameters"/>
-            <xsl:copy-of select="nts:with-parameter"/>
-            <xsl:for-each select="./@*[not(local-name() = ('value', 'scope'))]">
-                <nts:with-parameter name="${local-name(.)}" value="."/>
+            <xsl:variable name="attributesAsParameters">
+                <xsl:for-each select="./@*[not(local-name() = ('value', 'scope'))]">
+                    <nts:with-parameter name="${local-name(.)}" value="."/>
+                </xsl:for-each>
+            </xsl:variable>
+            <xsl:for-each select="nts:with-parameter | $attributesAsParameters/nts:with-parameter">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*" mode="expand"/>
+                </xsl:copy>
             </xsl:for-each>
         </xsl:variable>
         
@@ -357,9 +382,15 @@
         
         <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
             <xsl:copy-of select="$inclusionParameters"/>
-            <xsl:copy-of select="nts:with-parameter"/>
-            <xsl:for-each select="./@*[not(local-name() = 'href')]">
-                <nts:with-parameter name="{local-name(.)}" value="{.}"/>
+            <xsl:variable name="attributesAsParameters">
+                <xsl:for-each select="./@*[not(local-name() = 'href')]">
+                    <nts:with-parameter name="{local-name(.)}" value="{.}"/>
+                </xsl:for-each>
+            </xsl:variable>
+            <xsl:for-each select="nts:with-parameter | $attributesAsParameters/nts:with-parameter">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*" mode="expand"/>
+                </xsl:copy>
             </xsl:for-each>
         </xsl:variable>
         

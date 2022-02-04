@@ -101,7 +101,7 @@ Compare the following two examples (the first wil result in a value of 'foo' for
 </nts:component>    
 ```
 
-It is also possible to recursively pass along parameters to other includes, simply by using the `{$...}` expansion in the `value` attribute of the next `<nts:with-parameter ...>` element.
+It is also possible to recursively pass along parameters to other includes, simply by using the `{$...}` expansion in the `value` attribute of the next `<nts:with-parameter ...>` element or, when supplying parameters by attribute, by using `@param1="{$...}"`.
 
 If you use a parameter in a component without passing it from the caller or without specifying a default value, an error will be thrown.
 
