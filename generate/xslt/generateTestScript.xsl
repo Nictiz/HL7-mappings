@@ -427,6 +427,7 @@
     <xsl:template match="@*" mode="expand">
         <xsl:param name="inclusionParameters" as="element(nts:with-parameter)*" tunnel="yes"/>
         <xsl:param name="defaultParameters" as="element(nts:parameter)*" select="ancestor::nts:component[1]/nts:parameter"/>
+        <xsl:variable name="componentName" select="tokenize(base-uri(), '/')[last()]"/>
         
         <xsl:variable name="value">
             <xsl:variable name="regexString" select="concat('\{\$(',$parameterChars,'*)\}')"/>
@@ -438,14 +439,20 @@
                             <xsl:variable name="replacement" select="$inclusionParameters[@name = $paramName]"/>
                             <xsl:variable name="default" select="$defaultParameters[@name=$paramName and @value]"/>
                             <xsl:choose>
+                                <xsl:when test="$paramName != '' and count($replacement) gt 1">
+                                    <xsl:message terminate="yes">Parameter '<xsl:value-of select="$paramName"/>' is available twice in nts:component '<xsl:value-of select="$componentName"/>'. Cool, but not supported at the moment. Please use globally unique variable names.</xsl:message>
+                                </xsl:when>
                                 <xsl:when test="$paramName != '' and count($replacement) = 1">
                                     <xsl:value-of select="$replacement/@value"/>
                                 </xsl:when>
                                 <xsl:when test="$paramName != '' and count($default) ne 0">
                                     <xsl:value-of select="$default[last()]/@value"/>
                                 </xsl:when>
+                                <xsl:when test="$paramName = ''">
+                                    <xsl:message terminate="yes">An empty parameter name is found in nts:component '<xsl:value-of select="$componentName"/>'. Not cool.</xsl:message>
+                                </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:message terminate="yes">You used parameter '<xsl:value-of select="$paramName"/>' but didn't define it. Not cool.</xsl:message>
+                                    <xsl:message terminate="yes">You used parameter '<xsl:value-of select="$paramName"/>' in nts:component '<xsl:value-of select="$componentName"/>', but no value is available. Not cool.</xsl:message> 
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:matching-substring>
