@@ -30,29 +30,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc>
-        <xd:desc>Start conversion. Let's update the periodofuse duration to an end date for a particular MA</xd:desc>
+        <xd:desc>Start conversion. Let's update the periodofuse duration to an end date</xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <xsl:apply-templates select="." mode="preprocess4TS"/>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Start conversion. Let's update the periodofuse duration to an end date for a particular MA</xd:desc>
+        <xd:desc>Let's update the periodofuse duration to an end date for a particular MBH</xd:desc>
     </xd:doc>
-    <xsl:template match="medicatieafspraak[gebruiksperiode/@value]/identificatie[@value = 'MBH_907_QA5_MA-JNK']" mode="preprocess4TS">
-        <!-- let's add the gebruiksperiode_eind in this dirty hack -->
-        <gebruiksperiode_eind value="{'T-44D{23:59:59}'}" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2" datatype="datetime"/>
-        <xsl:copy>
-            <xsl:apply-templates select="@*" mode="preprocess4TS"/>
-        </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Start conversion. Let's update the periodofuse duration to an end date for a particular MA</xd:desc>
-    </xd:doc>
-    <xsl:template match="medicatieafspraak[identificatie/@value = 'MBH_907_QA5_MA-JNK']/gebruiksperiode" mode="preprocess4TS">
-        <!-- do not copy -->
-    </xsl:template>
+    <xsl:template match="medicamenteuze_behandeling[identificatie/@value='MBH_920_QA5']/*/gebruiksperiode/tijds_duur[@value]" mode="preprocess4TS">
+        <!-- let's add the eind_datum_tijd in this very dirty hack -->
+        <eind_datum_tijd value="{'T-44D{23:59:59}'}"  datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>        
+    </xsl:template>  
 
     <xd:doc>
         <xd:desc>Default copy template</xd:desc>

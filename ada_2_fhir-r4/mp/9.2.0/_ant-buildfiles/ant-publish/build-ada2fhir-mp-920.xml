@@ -27,6 +27,31 @@
             <!-- exclude the initating scenario's -->
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
+        
+        <!-- preprocess for Touchstone (update use period to use end date for querying purposes -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_4_TS" includes="*.xml"/>
+        </delete>
+        <sequential>
+            <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance_repo" includes="*Scenarioset0*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl" destdir="${build.dir}/${usecase.mg}/ada_instance_4_TS" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputFiles"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            <move todir="${build.dir}/${usecase.mg}/ada_instance_repo">
+                <fileset dir="${build.dir}/${usecase.mg}/ada_instance_4_TS" includes="*.xml"/>
+            </move>
+        </sequential>
+        <!-- let's cleanup our temp stuff -->
+        <delete dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
+        
+        
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
