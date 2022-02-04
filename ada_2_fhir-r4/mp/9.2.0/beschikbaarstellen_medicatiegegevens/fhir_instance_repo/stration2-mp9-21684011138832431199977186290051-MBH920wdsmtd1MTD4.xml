@@ -3,6 +3,9 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAdministration2"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
+      <valueDateTime value="${DATE, T, D, -16}T20:00:00+02:00"/>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
       <valueCodeableConcept>
          <coding>
@@ -51,11 +54,7 @@
       </identifier>
       <display value="relatie naar toedieningsafspraak met identificatie: "/>
    </supportingInformation>
-   <effectiveDateTime>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
-      </extension>
-   </effectiveDateTime>
+   <effectiveDateTime value="${DATE, T, D, -16}T20:05:00+02:00"/>
    <performer>
       <actor>
          <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-111110000-9100-11110000"/>
@@ -81,6 +80,22 @@
       <display value="relatie naar medicatieafspraak met identificatie: MBH_920_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
    </request>
    <dosage>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedAmount">
+         <valueQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </valueQuantity>
+      </extension>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>

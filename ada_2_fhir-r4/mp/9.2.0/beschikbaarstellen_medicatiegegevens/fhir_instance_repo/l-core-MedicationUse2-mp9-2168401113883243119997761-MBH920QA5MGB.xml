@@ -4,15 +4,7 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 4 maal per dag 2 stuks"/>
-   </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
-      <valueDuration>
-         <value value="7"/>
-         <unit value="dag"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="d"/>
-      </valueDuration>
+      <valueString value="Vanaf T - 50 dagen, tot en met T - 44 dagen, 4 maal per dag 2 stuks, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
       <valueReference>
@@ -61,6 +53,7 @@
    </subject>
    <effectivePeriod>
       <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -44}T23:59:59+02:00"/>
    </effectivePeriod>
    <dateAsserted value="${DATE, T, D, -43}T08:00:00+02:00"/>
    <informationSource>
