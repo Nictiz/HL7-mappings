@@ -46,6 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-DrugUse.xsl"/>
     <xsl:import href="nl-core-Encounter.xsl"/>
     <xsl:import href="nl-core-EpisodeOfcare.xsl"/>
+    <xsl:import href="nl-core-FLACCpainScale.xsl"/>
     <xsl:import href="nl-core-FreedomRestrictingIntervention.xsl"/>
     <xsl:import href="nl-core-FunctionalOrMentalStatus.xsl"/>
     <xsl:import href="nl-core-HeadCircumference.xsl"/>

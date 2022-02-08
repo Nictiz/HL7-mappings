@@ -232,6 +232,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'farmaceutisch_product'">
                 <xsl:apply-templates select="$in" mode="nl-core-PharmaceuticalProduct"/>
             </xsl:when>
+            <xsl:when test="$localName = 'flaccpijn_score'">
+                <xsl:apply-templates select="$in" mode="nl-core-FLACCpainScale">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'functie_horen'">
                 <xsl:apply-templates select="$in" mode="nl-core-HearingFunction">
                     <xsl:with-param name="subject" select="$subject"/>
