@@ -6420,82 +6420,84 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="diagnose">
+            <xsl:for-each select="diagnose/*">
                 <component typeCode="COMP" contextConductionInd="true">
                     <organizer classCode="CONTAINER" moodCode="EVN">
                         <code code="439401001" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="Diagnose"/>
-                        <xsl:for-each select="gynaecologische_aandoening">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Gynaecologische aandoening -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="bloedverliesq">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Bloedverlies? -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20161202142446"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="cervixinsufficientieq">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Cervixinsufficiëntie? -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20161202144215"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="infectie">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Infectie -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900975_20161202144326"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="hyperemesis_gravidarumq">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Hyperemesis gravidarum? -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20161202144436"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="hypertensieve_aandoening">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Hypertensieve aandoening -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="zwangerschapscholestaseq">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Zwangerschapscholestase? -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20161202144715"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="diabetes_gravidarum_met_insulineq">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Diabetes gravidarum met insuline? -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20161202144812"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="afwijkende_groei_foetus">
-                            <component typeCode="COMP" contextConductionInd="false">
-                                <!-- Template :: Afwijkende groei foetus -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20161202144857"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="dreigende_partus_immaturusq">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Dreigende partus immaturus? -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900972_20161202144955"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="dreigende_partus_prematurusq">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Dreigende partus prematurus? -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900973_20161202145105"/>
-                            </component>
-                        </xsl:for-each>
-                        <xsl:for-each select="abruptio_placentaeq">
-                            <component typeCode="COMP" contextConductionInd="true">
-                                <!-- Template :: Abruptio placentae? -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20161202145207"/>
-                            </component>
-                        </xsl:for-each>
+                        <xsl:choose>
+                            <xsl:when test="./local-name() = 'gynaecologische_aandoening'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Gynaecologische aandoening -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'bloedverliesq'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Bloedverlies? -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20161202142446"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'cervixinsufficientieq'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Cervixinsufficiëntie? -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20161202144215"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'infectie'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Infectie -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900975_20161202144326"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'hyperemesis_gravidarumq'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Hyperemesis gravidarum? -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20161202144436"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'hypertensieve_aandoening'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Hypertensieve aandoening -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'zwangerschapscholestaseq'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Zwangerschapscholestase? -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20161202144715"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'diabetes_gravidarum_met_insulineq'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Diabetes gravidarum met insuline? -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20161202144812"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'afwijkende_groei_foetus'">
+                                <component typeCode="COMP" contextConductionInd="false">
+                                    <!-- Template :: Afwijkende groei foetus -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20161202144857"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'dreigende_partus_immaturusq'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Dreigende partus immaturus? -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900972_20161202144955"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'dreigende_partus_prematurusq'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Dreigende partus prematurus? -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900973_20161202145105"/>
+                                </component>
+                            </xsl:when>
+                            <xsl:when test="./local-name() = 'abruptio_placentaeq'">
+                                <component typeCode="COMP" contextConductionInd="true">
+                                    <!-- Template :: Abruptio placentae? -->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20161202145207"/>
+                                </component>
+                            </xsl:when>
+                        </xsl:choose>
                     </organizer>
                 </component>
             </xsl:for-each>
