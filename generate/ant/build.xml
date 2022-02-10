@@ -416,7 +416,10 @@
                                     <dirname property="nts.file.dir" file="@{nts.file}"/>
                                     <pathconvert property="nts.file.reldir" targetos="unix">
                                         <path>
-                                            <dirset dir="${nts.file.dir}"/>
+                                            <dirset dir="${nts.file.dir}">
+                                                <!-- If a subdirectory is present next to NTS-files, an error occurs, because dirset returns current ánd subdirectories in one property. Therefore: exclude subdirs. -->
+                                                <exclude name="*/**/"/>
+                                            </dirset>
                                         </path>
                                         <map from="${input.dir.abs}" to=""/>
                                     </pathconvert>
