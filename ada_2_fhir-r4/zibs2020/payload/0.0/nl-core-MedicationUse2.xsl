@@ -46,10 +46,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-RenderedDosageInstruction"/>
                 </xsl:for-each>
 
-                <xsl:for-each select="gebruiksperiode">
-                    <xsl:call-template name="ext-TimeInterval.Duration"/>
-                </xsl:for-each>
-
                 <xsl:for-each select="$prescriber">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                         <valueReference>
@@ -127,7 +123,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <status>
                     <xsl:attribute name="value">
-                        <xsl:variable name="period" as="element(f:temp)?">
+                        <xsl:variable name="period" as="element()*">
                             <xsl:call-template name="ext-TimeInterval.Period">
                                 <xsl:with-param name="in" select="gebruiksperiode"/>
                                 <xsl:with-param name="wrapIn">temp</xsl:with-param>

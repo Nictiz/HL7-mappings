@@ -63,7 +63,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="gebruiksperiode">
                     <xsl:call-template name="ext-TimeInterval.Period"/>
-                    <xsl:call-template name="ext-TimeInterval.Duration"/>
                 </xsl:for-each>
 
                 <!--herhaalperiode_cyclisch_schema-->
