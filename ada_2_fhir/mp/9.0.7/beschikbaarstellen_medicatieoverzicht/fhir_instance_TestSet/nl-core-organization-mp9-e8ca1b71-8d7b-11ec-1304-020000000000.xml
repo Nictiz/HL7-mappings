@@ -1,0 +1,51 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-mp9-e8ca1b71-8d7b-11ec-1304-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 00001116 (URA)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Huisartsenpraktijk Staden</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Kerkstraat 4, 1234AB Onze Stad (WP)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+      <value value="00001116"/>
+   </identifier>
+   <name value="Huisartsenpraktijk Staden"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Kerkstraat 4">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Kerkstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="4"/>
+         </extension>
+      </line>
+      <city value="Onze Stad"/>
+      <postalCode value="1234AB"/>
+   </address>
+</Organization>
