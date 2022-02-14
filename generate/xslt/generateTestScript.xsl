@@ -422,6 +422,21 @@
         </rule>
     </xsl:template>
     
+    <!-- Include or exclude elements with the nts:ifset and nts:ifnotset attributes, based on whether the specified 
+        parameter is passed in an nts:include. -->
+    <xsl:template match="*[@nts:ifset]" mode="expand">
+        <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
+        <xsl:if test="./@nts:ifset = $inclusionParameters/@name/string()">
+            <xsl:next-match/>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="*[@nts:ifnotset]" mode="expand">
+        <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
+        <xsl:if test="not(./@nts:ifnotset = $inclusionParameters/@name/string())">
+            <xsl:next-match/>
+        </xsl:if>
+    </xsl:template>
+    
     <xsl:variable name="parameterChars" select="'[a-zA-Z_0-9-]'"/>
     
     <xsl:template match="@*" mode="expand">
