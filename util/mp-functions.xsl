@@ -431,7 +431,7 @@
                 
                 <!-- en ten slotte hoort het stoptype ook in de omschrijving -->
                 <xsl:for-each select="../(stoptype | medicatieafspraak_stop_type | toedieningsafspraak_stop_type | medicatiegebruik_stop_type | medicatie_gebruik_stop_type | stop_type | wisselend_doseerschema_stop_type)[@code]">
-                    <xsl:value-of select="$stoptypeMap[@code=current()/@code][@codeSystem=current()/@codeSystem]/@displayName"/>
+                    <xsl:value-of select="$stoptypeMap[@hl7Code=current()/@code][@hl7CodeSystem=current()/@codeSystem]/@displayName"/>
                 </xsl:for-each>                
             </xsl:variable>
             <xsl:value-of select="string-join($theOmschrijving, ', ')"/>
