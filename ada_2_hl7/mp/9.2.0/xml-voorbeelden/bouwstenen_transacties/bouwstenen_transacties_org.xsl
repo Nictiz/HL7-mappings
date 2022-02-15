@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="dateT" as="xs:date?" select="xs:date('2021-03-24')"/>
     <!--    <xsl:param name="dateT" as="xs:date?"/>-->
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
-    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     <!-- param to influence whether to output schematron references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="true()"/>
 
@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210714/mp-xml-20210714T175740/schematron_closed_warnings/mp-mp92_mg_ma.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92_mg_ma.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
             <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9335"/>
@@ -80,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210714/mp-xml-20210714T175740/schematron_closed_warnings/mp-mp92-mg-wds.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92-mg-wds.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
             <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9382"/>
@@ -111,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210714/mp-xml-20210714T175740/schematron_closed_warnings/mp-mp92_mg_vv.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92_mg_vv.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
             <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9366"/>
@@ -142,7 +142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210714/mp-xml-20210714T175740/schematron_closed_warnings/mp-mp92_mg_ta.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92_mg_ta.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
             <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9343"/>
@@ -207,7 +207,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210714/mp-xml-20210714T175740/schematron_closed_warnings/mp-mp92_mg_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92_mg_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
             <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9342"/>
@@ -242,7 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210714/mp-xml-20210714T175740/schematron_closed_warnings/mp-mp92-mg-mtd.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92-mg-mtd.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
             <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9374"/>

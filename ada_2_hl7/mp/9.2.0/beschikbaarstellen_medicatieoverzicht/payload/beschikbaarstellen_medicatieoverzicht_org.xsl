@@ -19,10 +19,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
-        <xsl:param name="dateT" as="xs:date?" select="xs:date('2021-03-24')"/>
-<!--    <xsl:param name="dateT" as="xs:date?"/>-->
+    <xsl:param name="dateT" as="xs:date?" select="xs:date('2021-03-24')"/>
+    <!--    <xsl:param name="dateT" as="xs:date?"/>-->
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
-    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     <!-- param to influence whether to output schematron references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
 
@@ -30,13 +30,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="adaxml/data/beschikbaarstellen_medicatieoverzicht" as="element()*"/>
         <xsl:if test="$schematronRef">
             <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-            <!--                        <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>-->
-            <!--            <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>-->
-            <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp92_mo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
-            <!--<xsl:if test="not(contains($in/@id, 'voorbeeld'))">
-                <xsl:processing-instruction name="xml-model">href="../../../../../../../../../../../SVN/art_decor/trunk/ada-data/ada_2_test-xslt/mp/9.1.0/sturen_medicatievoorschrift/test_xslt_instance/<xsl:value-of select="$in/@id"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-            </xsl:if>-->
-        </xsl:if>    <xsl:choose>
+            <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-mp92_mob.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+        </xsl:if>
+        <xsl:choose>
             <xsl:when test="count($in) gt 1">
                 <batch xmlns="">
                     <xsl:for-each select="$in">
@@ -60,41 +56,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="patient" select="$in/patient"/>
         <xsl:variable name="mbh" select="$in/medicamenteuze_behandeling"/>
         <xsl:variable name="docGeg" select="$in/documentgegevens"/>
-        
-     
+
+
         <xsl:comment>Generated from ada instance with title: "<xsl:value-of select="$mbh/../@title"/>" and id: "<xsl:value-of select="$mbh/../@id"/>".</xsl:comment>
         <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9333"/>
             <code code="129" displayName="Medicatieoverzicht" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
             <statusCode nullFlavor="NI"/>
-            
+
             <!-- Documentdatum -->
             <xsl:call-template name="makeEffectiveTime">
                 <xsl:with-param name="effectiveTime" select="$docGeg/document_datum"/>
             </xsl:call-template>
-            
+
             <!-- Patient -->
             <xsl:for-each select="$patient">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20210701000000"/>
             </xsl:for-each>
-            
+
             <!-- Auteur (=samenstellende organisatie (of patient) van hele overzicht) -->
             <xsl:for-each select="$docGeg/auteur">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9389_20210701000000">
                     <xsl:with-param name="auteur" select="."/>
                 </xsl:call-template>
             </xsl:for-each>
-            
+
             <!-- Verificatie patient -->
             <xsl:for-each select="$docGeg/verificatie_patient">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9179_20170523115538"/>
             </xsl:for-each>
-            
+
             <!-- Verificatie zorgverlener -->
             <xsl:for-each select="$docGeg/verificatie_zorgverlener">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9180_20170523115753"/>
             </xsl:for-each>
-            
+
             <!-- Medicamenteuze behandeling -->
             <xsl:for-each select="$mbh">
                 <!-- Medicatieafspraak -->
@@ -145,7 +141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.19_20210701000000"/>
                 </component>
-            </xsl:for-each>         
+            </xsl:for-each>
         </organizer>
     </xsl:template>
 </xsl:stylesheet>

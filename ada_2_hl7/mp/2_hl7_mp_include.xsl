@@ -2837,7 +2837,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20181205180828">
         <xsl:param name="ada-auteur" as="element()*" select="."/>
-        <xsl:param name="authorTime"/>
+        <xsl:param name="authorTime" as="element()?"/>
 
         <xsl:choose>
             <xsl:when test="$ada-auteur/auteur_is_patient/@value = 'true'">
