@@ -4221,6 +4221,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901054_20161202165703"/>
                 </component>
             </xsl:for-each>
+            <xsl:for-each select="behoefte_aan_pijnbestrijdingq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: behoefte_aan_pijnbestrijdingq -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901254_20220118000000"/>
+                </component>
+            </xsl:for-each>
         </organizer>
     </xsl:template>
     
@@ -7584,7 +7590,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="surmenageq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Surmenage? -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901254_20220118000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901255_20220118000000"/>
                 </component>
             </xsl:for-each>
         </organizer>
@@ -7991,10 +7997,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     
-    <!-- Surmenage -->
+    <!-- behoefte_aan_pijnbestrijdingq -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901254_20220118000000">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901254"/>
+            <code code="30411000146101" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="verzoek van zorgafnemer om pijnbestrijding (situatie)"/>
+            <!-- Item(s) :: behoefte_aan_pijnbestrijdingq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    
+    <!-- Surmenage -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901255_20220118000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901255"/>
             <code code="87228002" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="decompensatie (bevinding)"/>
               <!-- Item(s) :: surmenageq -->
             <xsl:call-template name="makeBLValue">
@@ -8002,6 +8020,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </observation>
     </xsl:template>
+    
+   
 
 
 </xsl:stylesheet>
