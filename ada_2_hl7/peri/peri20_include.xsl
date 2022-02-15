@@ -7581,6 +7581,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900918_20161202160924"/>
                 </component>
             </xsl:for-each>
+            <xsl:for-each select="surmenageq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Surmenage? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901254_20220118000000"/>
+                </component>
+            </xsl:for-each>
         </organizer>
     </xsl:template>
     <!-- Indicatie primaire sectio -->
@@ -7985,6 +7991,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     
+    <!-- Surmenage -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901254_20220118000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901254"/>
+            <code code="87228002" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="decompensatie (bevinding)"/>
+              <!-- Item(s) :: surmenageq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
 
 
 </xsl:stylesheet>
