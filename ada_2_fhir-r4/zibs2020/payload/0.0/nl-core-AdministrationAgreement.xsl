@@ -46,9 +46,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="toedieningsafspraak_aanvullende_informatie">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
-                        <valueCoding>
-                            <xsl:call-template name="code-to-Coding"/>
-                        </valueCoding>
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept"/>
+                        </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
 
