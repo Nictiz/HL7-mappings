@@ -129,7 +129,7 @@
                             <accept value="xml"/>
                             <contentType value="xml"/>
                             <encodeRequestUrl value="true"/>
-                            <params value="/$purge"/>
+                            <params value="{tokenize(substring-before(base-uri(), '-token.xml'), '/')[last()]}/$purge"/>
                             <requestHeader>
                                 <field value="Authorization"/>
                                 <value value="{f:id/@value}"/>
