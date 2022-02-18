@@ -4,11 +4,13 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
-      <valueCoding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"/>
-         <code value="10"/>
-         <display value="Gebruiksinstructie gegeven"/>
-      </valueCoding>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"/>
+            <code value="10"/>
+            <display value="Gebruiksinstructie gegeven"/>
+         </coding>
+      </valueCodeableConcept>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
       <valueDateTime value="${DATE, T, D, -5}T09:15:00+02:00"/>

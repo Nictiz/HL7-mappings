@@ -1,0 +1,115 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="ore-MedicationAgreement-mp9-bae6e256-90d4-11ec-1694-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
+            <code value="1"/>
+            <display value="Bewust hoge dosering"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 4 dagen, tot en met T - 1 dag, 3 maal per dag 1 stuk, Oraal, tijdelijk gestopt"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -4}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -1}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_aanvullendeinformatiewensen"/>
+      </valueIdentifier>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="113381000146106"/>
+            <display value="tijdelijk gestopt met medicatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_920_aanvullendeinformatiewensen_MA_onderbreken"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="voorschrijven"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-17205"/>
+      <type value="Medication"/>
+      <display value="FENETICILLINE CAPSULE 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-C-XXX-Coenen"/>
+      <type value="Patient"/>
+      <display value="Patient, C. XXX_Coenen"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -1}T18:12:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001112-0100-00001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="305335007"/>
+         <display value="Opname in instelling"/>
+      </coding>
+   </reasonCode>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+   <priorPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_920_aanvullendeinformatiewensen_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak: MBH_920_aanvullendeinformatiewensen_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </priorPrescription>
+</MedicationRequest>
