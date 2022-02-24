@@ -1,0 +1,221 @@
+<!--start--><start inputDir="../peri/2.3.6/kernset_geboortezorg/validate_hl7_instance">
+   <validate>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario1-23.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario2_1elijn-23.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario2_2elijn-23.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario3-23.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario4_1elijn-23.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:hl7="urn:hl7-org:v3"
+                                xmlns:cda="urn:hl7-org:v3"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xmlns:peri="urn:nictiz-nl:v3/peri"
+                                xmlns:decor="http://art-decor.org/ns/decor"
+                                xmlns:sdtc="urn:hl7-org:sdtc"
+                                xmlns:hl7nl="urn:hl7-nl:v3"
+                                xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                                xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                                xmlns:pharm="urn:ihe:pharm:medication"
+                                test="(@nullFlavor or @value or *) and not(@nullFlavor and @value)"
+                                see="https://art-decor.org/mediawiki/index.php?title=DTr1_PQ"
+                                role="error"
+                                location="/*:REPC_IN004014NL[namespace-uri()='urn:hl7-org:v3'][1]/*:ControlActProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject[namespace-uri()='urn:hl7-org:v3'][1]/*:registrationProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject2[namespace-uri()='urn:hl7-org:v3'][1]/*:CareProvisionEvent[namespace-uri()='urn:hl7-org:v3'][1]/*:pertinentInformation3[namespace-uri()='urn:hl7-org:v3'][11]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:outboundRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>dtr1-1-PQ: null or value or child element in case of extension</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:hl7="urn:hl7-org:v3"
+                                xmlns:cda="urn:hl7-org:v3"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xmlns:peri="urn:nictiz-nl:v3/peri"
+                                xmlns:decor="http://art-decor.org/ns/decor"
+                                xmlns:sdtc="urn:hl7-org:sdtc"
+                                xmlns:hl7nl="urn:hl7-nl:v3"
+                                xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                                xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                                xmlns:pharm="urn:ihe:pharm:medication"
+                                test="(@nullFlavor or (number(@value)&gt;=0))"
+                                see="http://decor.nictiz.nl/pub/perinatologie/peri20-html-develop/tmp-2.16.840.1.113883.2.4.6.10.90.900236-2016-12-06T114409.html"
+                                role="warning"
+                                location="/*:REPC_IN004014NL[namespace-uri()='urn:hl7-org:v3'][1]/*:ControlActProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject[namespace-uri()='urn:hl7-org:v3'][1]/*:registrationProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject2[namespace-uri()='urn:hl7-org:v3'][1]/*:CareProvisionEvent[namespace-uri()='urn:hl7-org:v3'][1]/*:pertinentInformation3[namespace-uri()='urn:hl7-org:v3'][11]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:outboundRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(ZwangerschapsduurOpDatumOnderzoek): value MOET in bereik [0..] liggen  </svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:hl7="urn:hl7-org:v3"
+                                xmlns:cda="urn:hl7-org:v3"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xmlns:peri="urn:nictiz-nl:v3/peri"
+                                xmlns:decor="http://art-decor.org/ns/decor"
+                                xmlns:sdtc="urn:hl7-org:sdtc"
+                                xmlns:hl7nl="urn:hl7-nl:v3"
+                                xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                                xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                                xmlns:pharm="urn:ihe:pharm:medication"
+                                test="(@nullFlavor or @value or *) and not(@nullFlavor and @value)"
+                                see="https://art-decor.org/mediawiki/index.php?title=DTr1_PQ"
+                                role="error"
+                                location="/*:REPC_IN004014NL[namespace-uri()='urn:hl7-org:v3'][1]/*:ControlActProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject[namespace-uri()='urn:hl7-org:v3'][1]/*:registrationProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject2[namespace-uri()='urn:hl7-org:v3'][1]/*:CareProvisionEvent[namespace-uri()='urn:hl7-org:v3'][1]/*:pertinentInformation3[namespace-uri()='urn:hl7-org:v3'][11]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:outboundRelationship[namespace-uri()='urn:hl7-org:v3'][5]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>dtr1-1-PQ: null or value or child element in case of extension</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:hl7="urn:hl7-org:v3"
+                                xmlns:cda="urn:hl7-org:v3"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xmlns:peri="urn:nictiz-nl:v3/peri"
+                                xmlns:decor="http://art-decor.org/ns/decor"
+                                xmlns:sdtc="urn:hl7-org:sdtc"
+                                xmlns:hl7nl="urn:hl7-nl:v3"
+                                xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                                xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                                xmlns:pharm="urn:ihe:pharm:medication"
+                                test="(@nullFlavor or (number(@value)&gt;=0 and number(@value)&lt;=249.9))"
+                                see="http://decor.nictiz.nl/pub/perinatologie/peri20-html-develop/tmp-2.16.840.1.113883.2.4.6.10.90.900571-2016-12-06T115006.html"
+                                role="warning"
+                                location="/*:REPC_IN004014NL[namespace-uri()='urn:hl7-org:v3'][1]/*:ControlActProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject[namespace-uri()='urn:hl7-org:v3'][1]/*:registrationProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject2[namespace-uri()='urn:hl7-org:v3'][1]/*:CareProvisionEvent[namespace-uri()='urn:hl7-org:v3'][1]/*:pertinentInformation3[namespace-uri()='urn:hl7-org:v3'][11]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:outboundRelationship[namespace-uri()='urn:hl7-org:v3'][5]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(BodyWeight): value MOET in bereik [0..249.9] liggen  </svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario4_2elijn-23.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario5-23.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario6-23.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario7_1elijn-23.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:hl7="urn:hl7-org:v3"
+                                xmlns:cda="urn:hl7-org:v3"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xmlns:peri="urn:nictiz-nl:v3/peri"
+                                xmlns:decor="http://art-decor.org/ns/decor"
+                                xmlns:sdtc="urn:hl7-org:sdtc"
+                                xmlns:hl7nl="urn:hl7-nl:v3"
+                                xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                                xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                                xmlns:pharm="urn:ihe:pharm:medication"
+                                test="(@nullFlavor or @value or *) and not(@nullFlavor and @value)"
+                                see="https://art-decor.org/mediawiki/index.php?title=DTr1_PQ"
+                                role="error"
+                                location="/*:REPC_IN004014NL[namespace-uri()='urn:hl7-org:v3'][1]/*:ControlActProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject[namespace-uri()='urn:hl7-org:v3'][1]/*:registrationProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject2[namespace-uri()='urn:hl7-org:v3'][1]/*:CareProvisionEvent[namespace-uri()='urn:hl7-org:v3'][1]/*:pertinentInformation3[namespace-uri()='urn:hl7-org:v3'][17]/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][6]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>dtr1-1-PQ: null or value or child element in case of extension</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:hl7="urn:hl7-org:v3"
+                                xmlns:cda="urn:hl7-org:v3"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xmlns:peri="urn:nictiz-nl:v3/peri"
+                                xmlns:decor="http://art-decor.org/ns/decor"
+                                xmlns:sdtc="urn:hl7-org:sdtc"
+                                xmlns:hl7nl="urn:hl7-nl:v3"
+                                xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                                xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                                xmlns:pharm="urn:ihe:pharm:medication"
+                                test="(@nullFlavor or (number(@value)&gt;=0))"
+                                see="http://decor.nictiz.nl/pub/perinatologie/peri20-html-develop/tmp-2.16.840.1.113883.2.4.6.10.90.900900-2016-12-06T102207.html"
+                                role="warning"
+                                location="/*:REPC_IN004014NL[namespace-uri()='urn:hl7-org:v3'][1]/*:ControlActProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject[namespace-uri()='urn:hl7-org:v3'][1]/*:registrationProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject2[namespace-uri()='urn:hl7-org:v3'][1]/*:CareProvisionEvent[namespace-uri()='urn:hl7-org:v3'][1]/*:pertinentInformation3[namespace-uri()='urn:hl7-org:v3'][17]/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][6]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(HoeveelheidBloedverlies_2): value MOET in bereik [0..] liggen  </svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings/ada_2_hl7/peri/2.3.6/kernset_geboortezorg/hl7_instance/scenario7_2elijn-23.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:hl7="urn:hl7-org:v3"
+                                xmlns:cda="urn:hl7-org:v3"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xmlns:peri="urn:nictiz-nl:v3/peri"
+                                xmlns:decor="http://art-decor.org/ns/decor"
+                                xmlns:sdtc="urn:hl7-org:sdtc"
+                                xmlns:hl7nl="urn:hl7-nl:v3"
+                                xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                                xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                                xmlns:pharm="urn:ihe:pharm:medication"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/perinatologie/peri20-html-develop/tmp-2.16.840.1.113883.2.4.6.10.90.901093-2018-02-20T170247.html"
+                                role="warning"
+                                location="/*:REPC_IN004014NL[namespace-uri()='urn:hl7-org:v3'][1]/*:ControlActProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject[namespace-uri()='urn:hl7-org:v3'][1]/*:registrationProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject2[namespace-uri()='urn:hl7-org:v3'][1]/*:CareProvisionEvent[namespace-uri()='urn:hl7-org:v3'][1]/*:pertinentInformation3[namespace-uri()='urn:hl7-org:v3'][16]/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][11]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:outboundRelationship[namespace-uri()='urn:hl7-org:v3'][5]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(RegistrationEventACTPeriKernset233)/d56726e5-true-d56770e0: dit element 'value' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.90.900199'] | hl7:code[(@code = '38386-9' and @codeSystem = '2.16.840.1.113883.6.1')] | hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.11.20-2013-01-10T122205.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.11.20-2013-01-10T122205.xml')//valueSet[1]/conceptList/exception/@code] (rule-reference: d56726e5-true-d56770e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:hl7="urn:hl7-org:v3"
+                                xmlns:cda="urn:hl7-org:v3"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xmlns:peri="urn:nictiz-nl:v3/peri"
+                                xmlns:decor="http://art-decor.org/ns/decor"
+                                xmlns:sdtc="urn:hl7-org:sdtc"
+                                xmlns:hl7nl="urn:hl7-nl:v3"
+                                xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                                xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                                xmlns:pharm="urn:ihe:pharm:medication"
+                                test="count(hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.11.20-2013-01-10T122205.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.11.20-2013-01-10T122205.xml')//valueSet[1]/conceptList/exception/@code]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/perinatologie/peri20-html-develop/tmp-2.16.840.1.113883.2.4.6.10.90.900199-2016-12-06T133935.html"
+                                role="error"
+                                location="/*:REPC_IN004014NL[namespace-uri()='urn:hl7-org:v3'][1]/*:ControlActProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject[namespace-uri()='urn:hl7-org:v3'][1]/*:registrationProcess[namespace-uri()='urn:hl7-org:v3'][1]/*:subject2[namespace-uri()='urn:hl7-org:v3'][1]/*:CareProvisionEvent[namespace-uri()='urn:hl7-org:v3'][1]/*:pertinentInformation3[namespace-uri()='urn:hl7-org:v3'][16]/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][11]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:outboundRelationship[namespace-uri()='urn:hl7-org:v3'][5]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(Kleurvruchtwater): element hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.11.20-2013-01-10T122205.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.11.20-2013-01-10T122205.xml')//valueSet[1]/conceptList/exception/@code] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+   </validate>
+</start>
