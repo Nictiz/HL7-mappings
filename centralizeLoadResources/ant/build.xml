@@ -214,14 +214,15 @@
                                         <then>
                                             <property name="loadResources.file.reldir" location="${loadResources.file.dir}" relative="true" basedir="${output.dir.abs}"/>
                                             <!-- Could not find any other way to convert a relative path to unix slashes -->
-                                            <propertyregex property="loadResources.file.reldir.unix" input="${loadResources.file.reldir}" regexp="\\" replace="/"/>
+                                            <propertyregex property="loadResources.file.reldir.unix" input="${loadResources.file.reldir}" regexp="\\" replace="/" defaultValue="${loadResources.file.reldir}"/>
                                             
                                             <!-- Get filename, no pretty ANT way to get this -->
                                             <pathconvert property="loadResources.file.path" targetos="unix">
                                                 <path path="@{loadResources.file}"/>
                                             </pathconvert>
+
                                             <propertyregex property="loadResources.file.name" input="${loadResources.file.path}" regexp="([^/]*$)" select="\1" />
-                                            
+
                                             <!-- If no informative file name exists for the loadscript, build a file name for the new loadscript, based on the folder name. It is assumed that the parent directory of the output folder is the name of the information standard. -->
                                             <if>
                                                 <equals arg1="${loadResources.file.name}" arg2="load-resources-purgecreateupdate-xml.xml"/>
