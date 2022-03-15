@@ -1319,6 +1319,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>    
 
     <xd:doc>
+        <xd:desc>Reden voor wijzigen of staken toedieningsafspraak vanaf 9.2def</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9394_20220315000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9394"/>
+            <code code="112231000146109" displayName="Reason for administration instructions (observable entity)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <xsl:call-template name="makeCode">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="originalText" select="@originalText"/>                
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Voorstel Medicatieafspraak</xd:desc>
         <xd:param name="in">The proposed medication agreement</xd:param>
     </xd:doc>
@@ -2185,12 +2199,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </entryRelationship>
             </xsl:for-each>
 
-            <!-- reden_afspraak -->
-            <xsl:for-each select="reden_afspraak[@value]">
+            <!-- reden_afspraak, with MP-369 name change to toedieningsafspraak_reden_wijzigen_of_staken -->
+            <xsl:for-each select="(reden_afspraak | toedieningsafspraak_reden_wijzigen_of_staken)[@value][not(@code)]">
                 <entryRelationship typeCode="RSON">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9315_20200120125612"/>
                 </entryRelationship>
             </xsl:for-each>
+
+            <!-- reden_afspraak, with MP-370 type change from string to code -->
+            <xsl:for-each select="(reden_afspraak | toedieningsafspraak_reden_wijzigen_of_staken)[@code]">
+                <entryRelationship typeCode="RSON">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9394_20220315000000"/>
+                </entryRelationship>
+            </xsl:for-each>
+            
 
             <!-- aanvullende_instructie -->
             <xsl:for-each select="gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
