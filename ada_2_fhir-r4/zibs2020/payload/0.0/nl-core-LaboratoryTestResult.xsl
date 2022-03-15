@@ -158,7 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$parent/uitvoerder">
                 <performer>
                     <xsl:call-template name="makeReference">
-                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                     </xsl:call-template>
                 </performer>
             </xsl:for-each>
@@ -269,9 +269,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="aanname_datum_tijd">
-                    <xsl:call-template name="format2FHIRDate">
-                        <xsl:with-param name="dateTime" select="./@value"/>
-                    </xsl:call-template>
+                    <receivedTime>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="./@value"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </receivedTime>
                 </xsl:for-each>
                 
                 <xsl:for-each select="$parent">
@@ -319,15 +323,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:variable name="container">
                     <xsl:for-each select="monstervolgnummer">
-                        <identifier>
-                            <use>
-                                <coding>
-                                    <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
-                                    <value value="SNO"/>
-                                </coding>
-                            </use>
-                            <value value="${monstervolgnummer/@value}"/>
-                        </identifier>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
+                            
+                        </extension>
                     </xsl:for-each>
                     
                     <xsl:for-each select="containertype">
@@ -345,7 +343,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
-                            <xsl:attribute name="value" select="toelichting/@value"/>
+                            <xsl:attribute name="value" select="./@value"/>
                         </text>
                     </note>
                 </xsl:for-each>
