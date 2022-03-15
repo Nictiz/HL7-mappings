@@ -69,6 +69,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="code-to-CodeableConcept"/>
                 </code>
             </xsl:for-each>
+            
+            <xsl:for-each select="$subject">
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="wrapIn">subject</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            
             <xsl:for-each select="uitvoerder">
                 <performer>
                     <xsl:call-template name="makeReference">
@@ -101,13 +108,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </Observation>
         
         <xsl:for-each select="laboratorium_test">
-            <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest"/>
+            <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
+                <xsl:with-param name="subject" select="$subject"/>
+            </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
     
     <xsl:template name="_nl-core-LaboratoryTestResult-individualTest" mode="_nl-core-LaboratoryTestResult-individualTest" match="laboratorium_test" as="element(f:Observation)?">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" as="element()?"/>
+        <xsl:param name="subject" select="$in/parent::laboratorium_uitslag/patient/*" as="element()?"/>
         
         <xsl:variable name="parent" select="$in/parent::laboratorium_uitslag"/>
         <Observation>
@@ -130,6 +139,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="code-to-CodeableConcept"/>
                 </code>
             </xsl:for-each>
+            
+            <xsl:for-each select="$subject">
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="wrapIn">subject</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            
             <xsl:for-each select="$in/test_datum_tijd">
                 <effectiveDateTime>
                     <xsl:attribute name="value">
@@ -192,7 +208,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="elemName">low</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="$in/referentie_ondergrens">
+                <xsl:for-each select="$in/referentie_bovengrens">
                     <xsl:call-template name="any-to-value">
                         <xsl:with-param name="elemName">high</xsl:with-param>
                     </xsl:call-template>
