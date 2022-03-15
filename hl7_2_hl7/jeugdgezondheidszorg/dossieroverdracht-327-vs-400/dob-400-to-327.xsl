@@ -4,8 +4,9 @@
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:hl7="urn:hl7-org:v3"
-    exclude-result-prefixes="xs xd hl7 xsi"
-    version="1.1">
+    xmlns:exslt="http://exslt.org/common"
+    exclude-result-prefixes="xs xd hl7 xsi exslt"
+    version="1.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Alexander Henket, Nictiz</xd:p>
@@ -1433,7 +1434,7 @@
                                 </responsibleParty>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:message>careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author/responsibleParty/code. Gevonden: <xsl:value-of select="hl7:code/concat(@code, ' ', @nullFlavor, ' ', @codeSystem, ' ', @displayName)"/></xsl:message>
+                                <xsl:message>careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author/responsibleParty/code. Gevonden: <xsl:value-of select="concat(hl7:code[1]/@code, ' ', hl7:code[1]/@nullFlavor, ' ', hl7:code[1]/@codeSystem, ' ', hl7:code[1]/@displayName)"/></xsl:message>
                                 <xsl:apply-templates select="." mode="dob400"/>
                             </xsl:otherwise>
                         </xsl:choose>
@@ -1517,7 +1518,7 @@
         <xsl:variable name="encounterOriginalText" select="hl7:code/hl7:originalText"/>
         
         <xsl:choose>
-            <xsl:when test="@moodCode = 'INT' or $encounterCode = $W0188_HL7_Contactmomenten//@code or $encounterOriginalText = $W0188_HL7_Contactmomenten//@displayName">
+            <xsl:when test="@moodCode = 'INT' or $encounterCode = exslt:node-set($W0188_HL7_Contactmomenten)//@code or $encounterOriginalText = exslt:node-set($W0188_HL7_Contactmomenten)//@displayName">
                 <encounter xmlns="urn:hl7-org:v3">
                     <xsl:apply-templates select="@moodCode" mode="dob400"/>
                     <xsl:call-template name="rubricCluster18">
@@ -1525,14 +1526,14 @@
                     </xsl:call-template>
                 </encounter>
             </xsl:when>
-            <xsl:when test="$encounterCode = $W0188_HL7_Activiteiten//@code or $encounterOriginalText = $W0188_HL7_Activiteiten//@displayName">
+            <xsl:when test="$encounterCode = exslt:node-set($W0188_HL7_Activiteiten)//@code or $encounterOriginalText = exslt:node-set($W0188_HL7_Activiteiten)//@displayName">
                 <nonEncounterCareActivity xmlns="urn:hl7-org:v3">
                     <xsl:call-template name="rubricCluster18">
                         <xsl:with-param name="parentElement" select="'encounter'"/>
                     </xsl:call-template>
                 </nonEncounterCareActivity>
             </xsl:when>
-            <xsl:when test="$encounterCode = $W0188_HL7_Registratie//@code or $encounterOriginalText = $W0188_HL7_Registratie//@displayName">
+            <xsl:when test="$encounterCode = exslt:node-set($W0188_HL7_Registratie)//@code or $encounterOriginalText = exslt:node-set($W0188_HL7_Registratie)//@displayName">
                 <registrationEvent xmlns="urn:hl7-org:v3">
                     <xsl:call-template name="rubricCluster18">
                         <xsl:with-param name="parentElement" select="'encounter'"/>
@@ -1556,8 +1557,8 @@
     <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.308']" mode="dob400">
         <xsl:variable name="theCode" select="@code"/>
         <xsl:variable name="theNullFlavor" select="@nullFlavor"/>
-        <xsl:variable name="activiteitSoort1" select="$W0188_HL7_Activiteiten//concept[@code = $theCode] | $W0188_HL7_Contactmomenten//concept[@code = $theCode] | $W0188_HL7_Registratie//concept[@code = $theCode]"/>
-        <xsl:variable name="activiteitSoort2" select="$W0188_HL7_Activiteiten//exception[@code = $theNullFlavor] | $W0188_HL7_Contactmomenten//exception[@code = $theNullFlavor] | $W0188_HL7_Registratie//exception[@code = $theNullFlavor]"/>
+        <xsl:variable name="activiteitSoort1" select="exslt:node-set($W0188_HL7_Activiteiten)//concept[@code = $theCode] | exslt:node-set($W0188_HL7_Contactmomenten)//concept[@code = $theCode] | exslt:node-set($W0188_HL7_Registratie)//concept[@code = $theCode]"/>
+        <xsl:variable name="activiteitSoort2" select="exslt:node-set($W0188_HL7_Activiteiten)//exception[@code = $theNullFlavor] | exslt:node-set($W0188_HL7_Contactmomenten)//exception[@code = $theNullFlavor] | exslt:node-set($W0188_HL7_Registratie)//exception[@code = $theNullFlavor]"/>
         <xsl:copy>
             <xsl:choose>
                 <xsl:when test="$activiteitSoort1">
@@ -2620,7 +2621,7 @@
             <xsl:apply-templates select="@*" mode="dob400"/>
             <xsl:attribute name="code"><xsl:value-of select="$theCode"/></xsl:attribute>
             <xsl:attribute name="codeSystem"><xsl:value-of select="$theCodeSystem"/></xsl:attribute>
-            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7//concept[@code = $theCode][@codeSystem = $theCodeSystem]/@displayName"/>
+            <xsl:copy-of select="exslt:node-set($W0639_HL7_W0646_HL7_W0647_HL7)//concept[@code = $theCode][@codeSystem = $theCodeSystem]/@displayName"/>
             <xsl:apply-templates select="node()" mode="dob400"/>
         </xsl:copy>
     </xsl:template>

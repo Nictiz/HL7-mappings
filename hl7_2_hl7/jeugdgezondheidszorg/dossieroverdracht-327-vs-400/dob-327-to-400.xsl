@@ -4,8 +4,9 @@
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:hl7="urn:hl7-org:v3"
-    exclude-result-prefixes="xs xd hl7 xsi"
-    version="1.1">
+    xmlns:exslt="http://exslt.org/common"
+    exclude-result-prefixes="xs xd hl7 xsi exslt"
+    version="1.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Alexander Henket, Nictiz</xd:p>
@@ -1222,7 +1223,7 @@
                 <xsl:for-each select="hl7:subjectOf/hl7:careStatus/hl7:author[hl7:time/hl7:low/@value]">
                     <xsl:variable name="careStatusAuthorAndLow" select="concat(hl7:assignedEntity/hl7:id[1]/@root, hl7:assignedEntity/hl7:id[1]/@extension, hl7:time/hl7:low/@value)"/>
                     <xsl:choose>
-                        <xsl:when test="$authorAndLow//x[. = $careStatusAuthorAndLow]"/>
+                        <xsl:when test="exslt:node-set($authorAndLow)//x[. = $careStatusAuthorAndLow]"/>
                         <xsl:otherwise>
                             <xsl:copy>
                                 <xsl:apply-templates select="@*" mode="dob327"/>
@@ -1234,7 +1235,7 @@
                 <xsl:for-each select="hl7:subjectOf/hl7:careStatus/hl7:author[not(hl7:time/hl7:low/@value)]">
                     <xsl:variable name="careStatusAuthor" select="concat(hl7:assignedEntity/hl7:id[1]/@root, hl7:assignedEntity/hl7:id[1]/@extension)"/>
                     <xsl:choose>
-                        <xsl:when test="$author//x[. = $careStatusAuthor]"/>
+                        <xsl:when test="exslt:node-set($author)//x[. = $careStatusAuthor]"/>
                         <xsl:otherwise>
                             <xsl:copy>
                                 <xsl:apply-templates select="@*" mode="dob327"/>
@@ -1245,7 +1246,7 @@
                 </xsl:for-each>
             </xsl:variable>
             <!-- Add authors in order of contribution. Oldest first -->
-            <xsl:for-each select="$authorsTotal/*">
+            <xsl:for-each select="exslt:node-set($authorsTotal)/*">
                 <xsl:sort select="hl7:time/hl7:low/@value"/>
                 <xsl:copy-of select="."/>
             </xsl:for-each>
@@ -2369,7 +2370,7 @@
             <xsl:apply-templates select="@*" mode="dob327"/>
             <xsl:attribute name="code"><xsl:value-of select="$theCode"/></xsl:attribute>
             <xsl:attribute name="codeSystem"><xsl:value-of select="$theCodeSystem"/></xsl:attribute>
-            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7//concept[@code = $theCode][@codeSystem = $theCodeSystem]/@displayName"/>
+            <xsl:copy-of select="exslt:node-set($W0639_HL7_W0646_HL7_W0647_HL7)//concept[@code = $theCode][@codeSystem = $theCodeSystem]/@displayName"/>
             <xsl:apply-templates select="node()" mode="dob327"/>
         </xsl:copy>
     </xsl:template>
