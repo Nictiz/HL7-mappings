@@ -113,7 +113,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </encounter>
                 </xsl:for-each>
 
-                <xsl:for-each select="verstrekkingsverzoek_datum">
+                <!-- MP-560 name change dataset concept -->
+                <xsl:for-each select="verstrekkingsverzoek_datum | verstrekkingsverzoek_datum_tijd">
                     <authoredOn>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
@@ -122,7 +123,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:attribute>
                     </authoredOn>
                 </xsl:for-each>
-                
+
                 <xsl:variable name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value] | auteur/zorgverlener[*]"/>
                 <xsl:for-each select="$requester">
                     <requester>
@@ -131,7 +132,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </requester>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="$performer">
                     <performer>
                         <xsl:call-template name="makeReference">
