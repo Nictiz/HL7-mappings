@@ -1,0 +1,190 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../sturen_afhandeling_medicatievoorschrift/ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2021-07-29T15:32:13.575+02:00"
+         last-update-date="2021-09-10T12:14:47.604+02:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp920"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.283"
+                                               transactionEffectiveDate="2021-05-12T09:39:14"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="TEST Scenarioset 6 Weekdagen"
+                                               desc="Weekdagen"
+                                               id="av-mp-va-tst-6.8-weekdagen">
+         <scenario-nr value="6.8" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2"/>
+         <screenshot value="Maak screenshot(s) waarop zichtbaar is dat weekdagen gekozen kunnen worden"
+                     conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.3"
+                     datatype="text"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset6a and title: id: TEST REPO Scenarioset 6 a (Doseerschemas)-->
+         <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
+            <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
+               <initialen value="G. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
+                  <achternaam value="XXX_Hemsbergen"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602"
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
+            <geboortedatum value="1963-11-02"
+                           datatype="datetime"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_weekdagen-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_920_weekdagen"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <toedieningsafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
+               <identificatie value="MBH_920_weekdagen_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <toedieningsafspraak_datum_tijd value="T+0D{09:25:00}"
+                                               datatype="datetime"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334" comment="">
+                  <start_datum_tijd value="T+0D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+                  <eind_datum_tijd value="T+70D{23:59:59}"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
+               </gebruiksperiode>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295" comment="">
+                  <zorgaanbieder datatype="reference"
+                                 value="Apotheek_de_Gulle_Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297" comment="">
+                  <farmaceutisch_product datatype="reference"
+                                         value="HPK_IMIQUIMOD_1198521"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+70D{23:59:59}&gt;, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="53"
+                                  displayName="cutaan"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+                  <aanvullende_instructie code="1128"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="voor de nacht"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.300"/>
+                  <aanvullende_instructie code="1018"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="aanbrengen"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.300"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304" comment="">
+                     <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
+                        <toedieningsschema comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
+                           <weekdag conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.328"
+                                    value="1"
+                                    code="307145004"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="maandag"/>
+                           <weekdag conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.328"
+                                    value="3"
+                                    code="307148002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="woensdag"/>
+                           <weekdag conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.328"
+                                    value="5"
+                                    code="307150005"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="vrijdag"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
+                  <identificatie value="MBH_920_weekdagen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346">
+               <identificatie value="MBH_920_weekdagen_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="T+0D{09:25:00}"
+                                                  datatype="datetime"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347" comment="">
+                  <zorgaanbieder datatype="reference"
+                                 value="Apotheek_de_Gulle_Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.348"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358">
+                  <aantal value="30" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.700"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.701"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351" comment="">
+                  <farmaceutisch_product datatype="reference"
+                                         value="HPK_IMIQUIMOD_1198521"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349">
+                  <identificatie value="MBH_920_weekdagen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
+            <farmaceutisch_product id="HPK_IMIQUIMOD_1198521"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment="">
+               <product_code code="1198521"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="ALDARA CREME 50MG/G IN SACHET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="55050"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="IMIQUIMOD 50MG/G CREME"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="109398"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="IMIQUIMOD 50MG/G CREME"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_de_Gulle_Gaper"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
+                           comment="">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
+               <organisatie_naam value="Apotheek de Gulle Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>
