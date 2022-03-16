@@ -1333,6 +1333,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
+        <xd:desc> MP CDA MA Aanvullende informatie </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9401_20220315000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9401"/>
+            <code code="11" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" displayName="Aanvullende informatie Medicatieafspraak"/>
+            <xsl:choose>                
+                 <xsl:when test="@code">
+                    <xsl:call-template name="makeCEValue"/>
+                </xsl:when>
+                <!-- this should not happen in MP9 2.0.0, but let's output whatever was in @value when there is no @code -->
+                <xsl:when test="not(@code) and @value">
+                    <xsl:call-template name="makeSTValue">
+                        <xsl:with-param name="elemName">text</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
+            </xsl:choose>     
+        </observation>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc> MP CDA TA Aanvullende informatie </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9402_20220315000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
+            <code code="12" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" displayName="Aanvullende informatie Medicatieafspraak"/>
+            <xsl:choose>
+                <xsl:when test="not(@code) and @value">
+                    <xsl:call-template name="makeSTValue">
+                        <xsl:with-param name="elemName">text</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
+                <!-- for backward compatibility reasons let's output a code if it's there, should not happen in MP9 2.0.0 -->
+                <xsl:when test="@code">
+                    <xsl:call-template name="makeCEValue"/>
+                </xsl:when>
+            </xsl:choose>            
+        </observation>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Voorstel Medicatieafspraak</xd:desc>
         <xd:param name="in">The proposed medication agreement</xd:param>
     </xd:doc>
@@ -1757,10 +1799,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:for-each>
-            <!-- aanvullende_informatie -->
-            <xsl:for-each select="aanvullende_informatie[.//(@value | @code)]">
+            <!-- aanvullende_informatie, MP-536 new template in MP9 2.0.0 -->
+            <xsl:for-each select="aanvullende_informatie[@value | @code]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9177_20170523084315"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9401_20220315000000"/>
                 </entryRelationship>
             </xsl:for-each>
             <!-- toelichting -->
@@ -2226,7 +2268,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- aanvullende informatie -->
             <xsl:for-each select="(aanvullende_informatie | toedieningsafspraak_aanvullende_informatie)[@value | @code]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9175_20170522171022"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9402_20220315000000"/>
                 </entryRelationship>
             </xsl:for-each>
 
