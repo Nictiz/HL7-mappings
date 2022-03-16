@@ -119,14 +119,6 @@
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
 
-        <!-- sturen_medicatiegebruik copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.mgb}"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-
         <!-- sturen_voorstel_medicatieafspraak copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.vma}"/>
@@ -168,7 +160,6 @@
                 <include name="*${usecase.mv}.xsd"/>
                 <include name="*${usecase.mg}.xsd"/>
                 <include name="*${usecase.mo}.xsd"/>
-                <include name="*${usecase.mgb}.xsd"/>
                 <include name="*${usecase.av}.xsd"/>
                 <include name="*${usecase.vma}.xsd"/>
                 <include name="*${usecase.vvv}.xsd"/>
@@ -189,7 +180,6 @@
                 <include name="*example*.xml"/>
             </fileset>
         </copy>
-
 
         <!-- let's convert to hl7 too while we're at it -->
         <!-- generic stuff for all mp versions -->
@@ -287,15 +277,7 @@
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
 
-        <!-- convert sturen_medicatiegebruik -->
-        <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mgb}"/>
-            <param name="xsl.name" value="../${usecase.mgb}/payload/${usecase.mgb}_org.xsl"/>
-            <param name="xsl.in" value="ada_instance"/>
-            <param name="xsl.out" value="hl7_instance"/>
-        </antcall>
-
-        <!-- convert beschikbaarstellen_medicatieoverzicht -->
+         <!-- convert beschikbaarstellen_medicatieoverzicht -->
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="xsl.name" value="../${usecase.mo}/payload/${usecase.mo}_org.xsl"/>
@@ -380,22 +362,6 @@
             <echo/>
             <echo>${echo.label} ${build.dir}/${usecase.mo}/payload/${usecase.mo}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
             <xslt force="true" style="${build.dir}/${usecase.mo}/payload/${usecase.mo}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
-                <fileset refid="inputfilesMP"/>
-                <param name="generateInstructionText" expression="true"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
-                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
-
-        <!-- medicatiegebruik -->
-        <sequential>
-            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mgb*.xml"/>
-
-            <echo/>
-            <echo>${echo.label} ${build.dir}/${usecase.mgb}/payload/${usecase.mgb}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
-            <xslt force="true" style="${build.dir}/${usecase.mgb}/payload/${usecase.mgb}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
                 <fileset refid="inputfilesMP"/>
                 <param name="generateInstructionText" expression="true"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>
@@ -554,12 +520,6 @@
             <param name="input.dir" value="../${usecase.avvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
-        <!-- sturen_medicatiegebruik -->
-        <antcall target="schematronresults_hl7_920_sub">
-            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mgb}.xml"/>
-            <param name="input.dir" value="../${usecase.mgb}/validate_hl7_instance"/>
-            <param name="input.fileset" value="*.xml"/>
-        </antcall>
         <!-- sturen_medicatievoorschrift hl7 organizer -->
         <antcall target="schematronresults_hl7_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
@@ -642,15 +602,7 @@
             <param name="xsl.mp" value="${validate.dir}/mp-mp92_avvv.xsl"/>
         </antcall>
 
-        <!-- sturen_medicatiegebruik -->
-        <antcall target="validate_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mgb}"/>
-            <param name="xsl.input" value="hl7_instance"/>
-            <param name="xsl.output" value="validate_hl7_instance"/>
-            <param name="xsl.mp" value="${validate.dir}/mp-mp92_mgbs.xsl"/>
-        </antcall>
-
-        <!-- sturen_medicatievoorschrift -->
+         <!-- sturen_medicatievoorschrift -->
         <antcall target="validate_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="xsl.input" value="hl7_instance"/>
@@ -700,11 +652,6 @@
         </xslt>
         <xslt force="true" style="${validate.dir}/mp-mp92_avvv.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="avvv-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp92_mgbs.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="mgb-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
