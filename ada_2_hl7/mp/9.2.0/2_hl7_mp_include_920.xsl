@@ -450,7 +450,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- Auteur / zorgverlener -->
-                <xsl:variable name="vvAfspraakDatumTijd" select="verstrekkingsverzoek_datum | datum" as="element()*"/>
+                <xsl:variable name="vvAfspraakDatumTijd" select="verstrekkingsverzoek_datum | datum | verstrekkingsverzoek_datum_tijd" as="element()*"/>
                 <xsl:variable name="vvAuthor" select="../../bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]" as="element()*"/>
                 <xsl:if test="$vvAuthor | $vvAfspraakDatumTijd">
                     <author>
