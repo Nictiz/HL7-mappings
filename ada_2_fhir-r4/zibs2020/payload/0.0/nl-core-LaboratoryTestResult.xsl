@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Create a nl-core-[zib name] instance as a [resource name] FHIR instance from ADA [ADA instance name].</xd:desc>
+        <xd:desc>Create a single nl-core-LaboratoryTestResult instance as an Observation FHIR instance from ADA laboratorium_uitslag for a singlular test, that is, when it contains a single laboratorium_test.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-LaboratoryTestResult-singular" match="laboratorium_uitslag[count(laboratorium_test) = 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)?">
@@ -45,6 +45,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Create a hierarchy of nl-core-LaboratoryTestResult instances as Observation FHIR instances from ADA laboratorium_uitslag for a panel test, that is, when a single laboratoriunm_uitslag contains multiple laboratorium_test's.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+    </xd:doc>
     <xsl:template name="_nl-core-LaboratoryTestResult-panel" match="laboratorium_uitslag[count(laboratorium_test) &gt; 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)*">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
@@ -95,6 +99,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="monster">
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="wrapIn">specimen</xsl:with-param>
+                    <xsl:with-param name="profile">
+                        <xsl:choose>
+                            <xsl:when test="count(microorganisme) &gt; 0">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
+                            <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
             
@@ -114,10 +124,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>
+            <xd:p>Helper template to create a nl-core-LaboratoryTestResult instance representing a single LaboratoryTest (depending on the situation, this might be one of the tests within a panel or the entire zib).</xd:p>
+            <xd:p>Note that the match is on laboratorium_test, not on laboratorium_uitslag, but that it's assumed that it is passed as part of a laboratorium_uitslag. This mechanism is needed to distinguish different laboratorium_test's withing a single laboratorium_uitslag. This helper template shouldn't be used directly; instead, the public-facing templates should be used.</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template name="_nl-core-LaboratoryTestResult-individualTest" mode="_nl-core-LaboratoryTestResult-individualTest" match="laboratorium_test" as="element(f:Observation)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="$in/parent::laboratorium_uitslag/patient/*" as="element()?"/>
         
+        <!-- The Observation partially represents the root concept of zib LaboratoryTestResult and partially the
+             LaboratoryTest concept. Even when multiple instances are used (in a panel sitution), some data from the
+             root is represented in all instances. -->
         <xsl:variable name="parent" select="$in/parent::laboratorium_uitslag"/>
         <Observation>
             <xsl:call-template name="insertLogicalId"/>
@@ -199,6 +218,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$parent/monster">
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="wrapIn">specimen</xsl:with-param>
+                    <xsl:with-param name="profile">
+                        <xsl:choose>
+                            <xsl:when test="count(microorganisme) &gt; 0">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
+                            <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
             
@@ -219,44 +244,75 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </Observation>
     </xsl:template>
     
-    <xsl:template name="nl-core-LaboratoryTestResult.SpecimenAsMaterial" match="monster[monstermateriaal/@code]" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)*">
+    <xd:doc>
+        <xd:desc>Create a nl-core-LaboratoryTestResult.Specimen instance as a Specimen FHIR instance from ADA laboratorium_uitslag/monster with microorganisme not populated. This results in a single instance of the profile where `Specimen.type` represents monstermateriaal (if present).</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+    </xd:doc>
+<!--    <xsl:template name="nl-core-LaboratoryTestResult.SpecimenAsMaterial" match="monster[not(microorganisme/@code)]" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" as="element()?"/>
-        
+
         <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
             <xsl:with-param name="type" select="monstermateriaal"/>
         </xsl:call-template>
     </xsl:template>
-    
-    <xsl:template name="nl-core-LaboratoryTestResult.SpecimenAsMicroorganism" match="monster[microorganisme/@code]" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)?">
+-->    
+    <xd:doc>
+        <xd:desc>Create one or two nl-core-LaboratoryTestResult.Specimen instances as Specimen FHIR instances from ADA laboratorium_uitslag/monster. Normally, a specimen according to the zib is the source material, not a derivation. However, the zib specifies that the sample may contain a microorganism (isolate) instead of, or in addition to, a source material:
+        * When nothing is specified, an instance is created with `Speciment.type` empty.
+        * When monstermateriaal is populated, an instance is created where `Specimen.type` represents monstermateriaal.
+        * When only microorganisme is populated, an instance is created where `Specimen.type` represents microorganisme.
+        * If both are populated, two instances are created where the "microorganisme" instance refers the "monstermateriaal" instance.
+        </xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+    </xd:doc>
+    <xsl:template name="nl-core-LaboratoryTestResult-asMicroorganism" match="monster" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)*">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" as="element()?"/>
 
-        <xsl:if test="monstermateriaal">
-            <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
-                <xsl:with-param name="type" select="monstermateriaal"/>
-            </xsl:call-template>
-        </xsl:if>
-        <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
-            <xsl:with-param name="type" select="microorganisme"/>
-            <xsl:with-param name="parent" select="."/>
-        </xsl:call-template>
+        <xsl:choose>
+            <xsl:when test="not(monstermateriaal or microorganisme)">
+                <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="(monstermateriaal | microorganisme)">
+                    <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
+                        <xsl:with-param name="in" select="./parent::monster"/>
+                        <xsl:with-param name="type" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Helper template to create a nl-core-LaboratoryTestResult.Specimen instance as Specimen FHIR instance from ADA laboratorium_uitslag/monster. This template can result in two slightly different outputs based on the type parameter:
+        * if type contains ADA element monstermateriaal, `Specimen.type` will contain that code.
+        * if type contains ADA element microorgansime, `Specimen.type` will contain that code. If in contains monstermateriaal, that instance will be referred using `Specimen.parent`.
+        </xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="type">Either the monstermateriaal or microorganisme ADA element.</xd:param>
+    </xd:doc>
     <xsl:template name="_nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" as="element()?"/>
-        <xsl:param name="type" required="yes"/>
-        <xsl:param name="parent" as="element()*"/>
+        <xsl:param name="type" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Specimen>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile">
+                        <xsl:choose>
+                            <xsl:when test="local-name($type) = 'microorganisme'">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
+                            <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
                 </meta>
                 
-                <xsl:for-each select="monsternummer">
+                <xsl:for-each select="$in/monsternummer">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier"/>
                     </identifier>
@@ -268,7 +324,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </type>
                 </xsl:for-each>
                 
-                <xsl:for-each select="aanname_datum_tijd">
+                <xsl:for-each select="$in/aanname_datum_tijd">
                     <receivedTime>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
@@ -278,14 +334,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </receivedTime>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$parent">
+                <!-- If this instance should represent the microorganisme concept, but there's aslo monstermateriaal
+                     defined, refer the monstermateriaal instance through .parent. The input is this very instance of
+                     the monster element. -->
+                <xsl:if test="$type[self::microorganisme] and $in/monstermateriaal">
                     <parent>
-                        <xsl:call-template name="makeReference"/>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile">nl-core-LaboratoryTestResult.Specimen</xsl:with-param>
+                        </xsl:call-template>
                     </parent>
-                </xsl:for-each>
+                </xsl:if>
                 
                 <xsl:variable name="collection" as="element()*">
-                    <xsl:for-each select="afname_datum_tijd">
+                    <xsl:for-each select="$in/afname_datum_tijd">
                         <collectedDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
@@ -297,19 +358,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- TODO: Verzamelperiode -->
                     
-                    <xsl:for-each select="verzamelvolume">
+                    <xsl:for-each select="$in/verzamelvolume">
                         <quantity>
                             <xsl:call-template name="hoeveelheid-to-Quantity"/>
                         </quantity>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="afnameprocedure">
+                    <xsl:for-each select="$in/afnameprocedure">
                         <method>
                             <xsl:call-template name="code-to-CodeableConcept"/>
                         </method>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="anatomische_locatie">
+                    <xsl:for-each select="$in/anatomische_locatie">
                         <bodySite>
                             <xsl:call-template name="nl-core-AnatomicalLocation"/>
                         </bodySite>
@@ -322,13 +383,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 <xsl:variable name="container">
-                    <xsl:for-each select="monstervolgnummer">
+                    <xsl:for-each select="$in/monstervolgnummer">
                         <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
-                            
+                            <value value="{./@value}"/>                            
                         </extension>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="containertype">
+                    <xsl:for-each select="$in/containertype">
                         <type>
                             <xsl:call-template name="code-to-CodeableConcept"/>
                         </type>
@@ -340,7 +401,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </container>
                 </xsl:if>
                 
-                <xsl:for-each select="toelichting">
+                <xsl:for-each select="$in/toelichting">
                     <note>
                         <text>
                             <xsl:attribute name="value" select="./@value"/>
