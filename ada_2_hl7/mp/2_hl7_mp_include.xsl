@@ -3335,16 +3335,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </pharm:code>-->
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc> Reden voor medicatieafspraak vanaf 9 2.0</xd:desc>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9370_20210616112017" match="reden_wijzigen_of_staken" mode="HandleRedenAfspraak91">
-        <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9370"/>
-            <code code="112241000146101" displayName="Reason for prescription" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
-            <xsl:call-template name="makeCEValue"/>
-        </observation>
-    </xsl:template>
+
     <xd:doc>
         <xd:desc>Stoptype</xd:desc>
         <xd:param name="in">Optional. Input ada element, defaults to context.</xd:param>

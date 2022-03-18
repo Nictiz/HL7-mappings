@@ -18,7 +18,9 @@
     <property name="usecase.nt" value="nictiz_test"/>
     
     <property name="ada.project.source.dir" value="${build.dir}/../../../../../../SVN/art_decor/trunk/ada-data/projects/mp-mp920"/>
-    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings"/>
+<!--    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings"/>-->
+    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop"/>
+    
     <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/organizer.xsd"/>
     <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/CDANL_extended.xsd"/>
     
@@ -168,7 +170,8 @@
             </fileset>
         </copy>
         <!-- instances -->
-        <echo/>
+        <!-- not implemented for MP9 2.0.0 yet, we don't touch the ada_instance folder for now -->
+      <!--  <echo/>
         <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
 
         <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
@@ -179,7 +182,7 @@
             <fileset dir="${refs.dir}/xml-voorbeelden/ada_instance">
                 <include name="*example*.xml"/>
             </fileset>
-        </copy>
+        </copy>-->
 
         <!-- let's convert to hl7 too while we're at it -->
         <!-- generic stuff for all mp versions -->
@@ -278,13 +281,14 @@
         </antcall>
 
          <!-- convert beschikbaarstellen_medicatieoverzicht -->
-        <antcall target="convert_ada_2_hl7_sub">
+        <!-- no proper test instances available yet -->
+<!--        <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="xsl.name" value="../${usecase.mo}/payload/${usecase.mo}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
-
+-->
         <!-- sturen_voorstel_medicatieafspraak  -->
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
@@ -323,6 +327,7 @@
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="*.xml"/>
         </delete>
+        
         <!-- medicatievoorschrift -->
         <sequential>
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mv*.xml"/>
@@ -475,6 +480,12 @@
             <param name="validate.schema" value="${schema.organizer}"/>
         </antcall>
 
+        <antcall target="schemavalidate_hl7_sub">
+            <param name="fileset.include" value="**/hl7_instance_repo/*.xml"/>
+            <param name="fileset.exclude" value="nictiz_test/**/*"/>
+            <param name="validate.schema" value="${schema.organizer}"/>
+        </antcall>
+
         <!-- all use cases cda_instance-->
         <antcall target="schemavalidate_hl7_sub">
             <param name="fileset.include" value="**/cda_instance/*.xml"/>
@@ -493,16 +504,17 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="schematronresults_hl7_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
-            <param name="input.dir" value="../${usecase.mg}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${usecase.mg}/validate_hl7_instance_repo"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- beschikbaarstellen_medicatieoverzicht -->
-        <antcall target="schematronresults_hl7_920_sub">
+        <!-- no proper test instances available yet -->
+<!--        <antcall target="schematronresults_hl7_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mo}.xml"/>
             <param name="input.dir" value="../${usecase.mo}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
-        <!-- beschikbaarstellen_medicatieoverzicht cda instance not generated (yet) -->
+-->        <!-- beschikbaarstellen_medicatieoverzicht cda instance not generated (yet) -->
         <!--<antcall target="schematronresults_hl7_920_sub">
             <param name="result.xml" value="${build.dir}/validate/cda_${usecase.mo}.xml"></param>
             <param name="input.dir" value="../${usecase.mo}/validate_cda_instance"/>
@@ -572,12 +584,12 @@
         </antcall>
 
         <!-- beschikbaarstellen_medicatieoverzicht -->
-        <antcall target="validate_hl7_sub">
+   <!--     <antcall target="validate_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="xsl.input" value="hl7_instance"/>
             <param name="xsl.output" value="validate_hl7_instance"/>
             <param name="xsl.mp" value="${validate.dir}/mp-mp92_mob.xsl"/>
-        </antcall>
+        </antcall>-->
         <!-- beschikbaarstellen_medicatieoverzicht cda instance not generated (yet) -->
         <!-- <antcall target="validate_hl7_sub">
           <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
@@ -591,7 +603,7 @@
             <param name="sub.build.dir" value="${build.dir}/${usecase.av}"/>
             <param name="xsl.input" value="hl7_instance"/>
             <param name="xsl.output" value="validate_hl7_instance"/>
-            <param name="xsl.mp" value="${validate.dir}/mp-mp92-av.xsl"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_av.xsl"/>
         </antcall>
 
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
@@ -640,11 +652,11 @@
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp92_mob.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+       <!-- <xslt force="true" style="${validate.dir}/mp-mp92_mob.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="mo-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
-        </xslt>
+        </xslt>-->
         <xslt force="true" style="${validate.dir}/mp-mp92-av.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="av-*.xml"/>
             <factory name="${xsl.saxon.class}"/>

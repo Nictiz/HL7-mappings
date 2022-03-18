@@ -478,7 +478,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- financiële indicatiecode -->
                 <xsl:for-each select="financiele_indicatiecode[@code]">
-                    <entryRelationship typeCode="COMP">
+                    <entryRelationship typeCode="AUTH">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9357_2021002133425"/>
                     </entryRelationship>
                 </xsl:for-each>
@@ -721,6 +721,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             </supply>
         </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc> Reden voor medicatieafspraak vanaf 9 2.0</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9370_20210616112017" match="reden_wijzigen_of_staken" mode="HandleRedenAfspraak91">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9370"/>
+            <code code="160111000146106" displayName="reden voor wijzigen van voorschrift" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
     </xsl:template>
 
     <xd:doc>
@@ -1359,7 +1370,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9402_20220315000000">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
-            <code code="12" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" displayName="Aanvullende informatie Medicatieafspraak"/>
+            <code code="12" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" displayName="Aanvullende informatie Toedieningsafspraak"/>
             <xsl:choose>
                 <xsl:when test="not(@code) and @value">
                     <xsl:call-template name="makeSTValue">
