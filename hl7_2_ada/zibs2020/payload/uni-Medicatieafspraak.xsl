@@ -185,11 +185,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
 
                 <!-- aanvullende_informatie -->
-                <xsl:variable name="ada-elemName">aanvullende_informatie</xsl:variable>
+                <xsl:variable name="templateIdMAAanvullendeInformatie" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9177', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9401'"/>
                 <xsl:call-template name="handleCV">
-                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value"/>
-                    <xsl:with-param name="elemName" select="$ada-elemName"/>
-
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = $templateIdMAAanvullendeInformatie]/hl7:value"/>
+                    <xsl:with-param name="elemName">aanvullende_informatie</xsl:with-param>
                 </xsl:call-template>
 
                 <!-- kopie_indicator -->

@@ -97,8 +97,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
                 
                 <!-- aanvullende_informatie -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9175']/hl7:value">
+                <!-- pre 9.2.0 this was a valueset -->
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9175']/hl7:value[@code]">
                     <xsl:call-template name="handleCV">
+                        <xsl:with-param name="elemName">toedieningsafspraak_aanvullende_informatie</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>                
+                <!-- now it is a free text thing -->
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9402']/hl7:text">
+                    <xsl:call-template name="handleST">
                         <xsl:with-param name="elemName">toedieningsafspraak_aanvullende_informatie</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
