@@ -78,6 +78,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
+        <nm:map ada="laboratorium_uitslag" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
+        <nm:map ada="laboratorium_test" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
+        <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
+        <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen.asMicroorganism"/>
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
@@ -322,6 +326,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
+            </xsl:when>
+            <xsl:when test="$in/self::laboratorium_uitslag">
+                <!-- This will build two variants for each monster; one with the actual canonical 
+                     [...]/nl-core-LaboratoryTestResult.Specimen and one with a faux canonical of
+                     [...]/nl-core-LaboratoryTestResult.Specimen.asMicroorganism (see ada2resourceType). This is
+                     needed because a monster might end up as two instances of the same profile. Yes, it's a hack.
+                -->
+                <xsl:for-each-group select="$in/monster" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                </xsl:for-each-group>
+                <!-- If and only if there is more than one laboratorium_test's, there should be an instance for each
+                     distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
+                     main process. -->
+                <xsl:if test="count($in/laboratorium_test) &gt; 1">
+                    <xsl:for-each-group select="$in/laboratorium_test" group-by="nf:getGroupingKeyDefault(.)">
+                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                    </xsl:for-each-group>
+                </xsl:if>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
