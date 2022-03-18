@@ -51,24 +51,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="_nl-core-LaboratoryTestResult-panel" match="laboratorium_uitslag[count(laboratorium_test) &gt; 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)*">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="subject" select="$in/patient/*" as="element()?"/>
         
         <Observation>
             <xsl:call-template name="insertLogicalId"/>
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
-            <xsl:for-each select="resultaat_status">
+            <xsl:for-each select="$in/resultaat_status">
                 <status>
                     <xsl:call-template name="code-to-code"/>
                 </status>
             </xsl:for-each>
-            <xsl:for-each select="resultaat_type">
+            <xsl:for-each select="$in/resultaat_type">
                 <category>
                     <xsl:call-template name="code-to-CodeableConcept"/>
                 </category>
             </xsl:for-each>
-            <xsl:for-each select="onderzoek">
+            <xsl:for-each select="$in/onderzoek">
                 <code>
                     <xsl:call-template name="code-to-CodeableConcept"/>
                 </code>
@@ -80,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
             
-            <xsl:for-each select="uitvoerder">
+            <xsl:for-each select="$in/uitvoerder">
                 <performer>
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
@@ -88,7 +88,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </performer>
             </xsl:for-each>
                         
-            <xsl:for-each select="toelichting">
+            <xsl:for-each select="$in/toelichting">
                 <note>
                     <text>
                         <xsl:attribute name="value" select="./@value"/>
@@ -96,7 +96,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </note>
             </xsl:for-each>
             
-            <xsl:for-each select="monster">
+            <xsl:for-each select="$in/monster">
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="wrapIn">specimen</xsl:with-param>
                     <xsl:with-param name="profile">
@@ -108,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
             
-            <xsl:for-each select="laboratorium_test">
+            <xsl:for-each select="$in/laboratorium_test">
                 <hasMember>
                     <xsl:call-template name="makeReference"/>
                 </hasMember>
@@ -117,7 +117,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- TODO: derivedFrom, sequelTo -->
         </Observation>
         
-        <xsl:for-each select="laboratorium_test">
+        <xsl:for-each select="$in/laboratorium_test">
             <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
                 <xsl:with-param name="subject" select="$subject"/>
             </xsl:call-template>
@@ -143,6 +143,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <status>
+                <xsl:attribute name="value">
+                    <xsl:choose>
+                        <xsl:when test="$in/test_uitslag_status">
+                            <!-- The test itself has a status. Now there are three possibilities regarding resultaat_status on
+                                 the root:
+                                 * It is absent. In this case we don't need to take care of it.
+                                 * It is present and the same. In this case we don't care about it.
+                                 * It is present and different. In this case it can be:
+                                    * In accordance with this status. This is only possible for cluster tests, and this is
+                                      a subtest, so we don't need to care about it here.
+                                    * Not in accordance with this status. This is not conformant to the zib and we silently
+                                      ignore this situation.
+                                 Bottom line: we don't care about resultaat_status here. -->
+                            <xsl:call-template name="code-to-code">
+                                <xsl:with-param name="in" select="$in/test_uitslag_status"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:when test="$parent/resultaat_status">
+                            <!-- The individual test doesn't have a status, but since resultaat_status on the root should
+                                 always be in accordance with it, we can use it here (both in a singular test and a panel
+                                 situation. -->
+                            <xsl:call-template name="code-to-code">
+                                <xsl:with-param name="in" select="$parent/resultaat_status"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>unknown</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+            </status>
             <xsl:for-each select="$in/test_uitslag_status">
                 <status>
                     <xsl:call-template name="code-to-code"/>
@@ -394,7 +424,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </collection>
                 </xsl:if>
                 
-                <xsl:variable name="container">
+                <xsl:variable name="container" as="element()*">
                     <xsl:for-each select="$in/monstervolgnummer">
                         <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
                             <value value="{./@value}"/>                            
