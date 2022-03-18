@@ -1,0 +1,100 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="ment-mp9-21684011138832431199977160760051-MBH200contactepisodeMA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 20 dagen, tot en met T + 9 dagen, 1 maal per dag 2 stuks, Oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +9}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_200_contactepisode"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare">
+      <valueReference>
+         <type value="EpisodeOfCare"/>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+            <value value="MBH_200_contactepisode_EPISODE1"/>
+         </identifier>
+         <display value="relatie naar zorgepisode met identificatie: MBH_200_contactepisode_EPISODE1 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_200_contactepisode_MA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="voorschrijven"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/l-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-7323"/>
+      <type value="Medication"/>
+      <display value="ACENOCOUMAROL TABLET 1MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-H-XXX-Hoek"/>
+      <type value="Patient"/>
+      <display value="Patient, H. XXX_Hoek"/>
+   </subject>
+   <encounter>
+      <type value="Encounter"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+         <value value="MBH_200_contactepisode_CONTACT1"/>
+      </identifier>
+      <display value="relatie naar contact met identificatie: MBH_200_contactepisode_CONTACT1 || 2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+   </encounter>
+   <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001111-0100-00001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="2"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="2"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationRequest>
