@@ -369,12 +369,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="code-to-CodeableConcept"/>
                         </method>
                     </xsl:for-each>
-                    
-                    <xsl:for-each select="$in/anatomische_locatie">
-                        <bodySite>
+
+                    <xsl:variable name="bodySite" as="element()*">
+                        <xsl:for-each select="morfologie">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-LaboratoryTestResult.Specimen.Morphology">
+                                <valueCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept"/>
+                                </valueCodeableConcept>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select="$in/anatomische_locatie">
                             <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:if test="count($bodySite) &gt; 0">
+                        <bodySite>
+                            <xsl:copy-of select="$bodySite"/>
                         </bodySite>
-                    </xsl:for-each>
+                    </xsl:if>
                 </xsl:variable>
                 <xsl:if test="count($collection) &gt; 0">
                     <collection>
