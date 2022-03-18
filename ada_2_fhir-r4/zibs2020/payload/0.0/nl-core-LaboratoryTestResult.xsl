@@ -257,17 +257,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
             
-            <xsl:if test="$in/referentie_ondergrens or $in/referentie_bovengrens">
-                <xsl:for-each select="$in/referentie_ondergrens">
-                    <xsl:call-template name="any-to-value">
-                        <xsl:with-param name="elemName">low</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <xsl:for-each select="$in/referentie_bovengrens">
-                    <xsl:call-template name="any-to-value">
-                        <xsl:with-param name="elemName">high</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
+            <!-- At the moment, only ondergrens and bovengrens as quantity is implemented -->
+            <xsl:if test="$in/referentie_ondergrens[@datatype = 'quantity'] or $in/referentie_bovengrens[@datatype = 'quantity']">
+                <referenceRange>
+                    <xsl:for-each select="$in/referentie_ondergrens">
+                        <low>
+                            <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                        </low>
+                    </xsl:for-each>
+                    <xsl:for-each select="$in/referentie_bovengrens">
+                        <high>
+                            <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                        </high>
+                    </xsl:for-each>
+                </referenceRange>
             </xsl:if>
             
             <!-- TODO: derivedFrom, sequelTo -->
