@@ -8,7 +8,7 @@
 -->
 <project basedir="." default="convert_ada_2_hl7_920" name="build-ada2hl7-mp-920" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <property name="is.version" value="9.2.0"/>
-    <property name="is.version.short" value="920"/>
+    <property name="is.version.short" value="92"/>
     <property name="date.T" value="2021-01-01"/>
 
     <!-- place import after properties above, otherwise it can't resolve these properties  -->
@@ -17,7 +17,6 @@
     <property name="gen.schematron.ref" value="false"/>
     <property name="usecase.nt" value="nictiz_test"/>
     
-    <property name="ada.project.source.dir" value="${build.dir}/../../../../../../SVN/art_decor/trunk/ada-data/projects/mp-mp920"/>
 <!--    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings"/>-->
     <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop"/>
     
@@ -128,6 +127,14 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
+        <!-- sturen_antwoord_voorstel_medicatieafspraak copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.avma}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        
         <!-- sturen_voorstel_verstrekkingsverzoek copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.vvv}"/>
@@ -183,10 +190,6 @@
                 <include name="*example*.xml"/>
             </fileset>
         </copy>-->
-
-        <!-- let's convert to hl7 too while we're at it -->
-        <!-- generic stuff for all mp versions -->
-        <antcall target="convert_ada_2_hl7_920"/>
 
     </target>
 
@@ -293,6 +296,13 @@
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
             <param name="xsl.name" value="../${usecase.vma}/payload/${usecase.vma}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
+        </antcall>
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
+            <param name="xsl.name" value="../${usecase.avma}/payload/${usecase.avma}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
@@ -526,13 +536,7 @@
             <param name="input.dir" value="../${usecase.av}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
-        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
-        <antcall target="schematronresults_hl7_920_sub">
-            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avvv}.xml"/>
-            <param name="input.dir" value="../${usecase.avvv}/validate_hl7_instance"/>
-            <param name="input.fileset" value="*.xml"/>
-        </antcall>
-        <!-- sturen_medicatievoorschrift hl7 organizer -->
+           <!-- sturen_medicatievoorschrift hl7 organizer -->
         <antcall target="schematronresults_hl7_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
             <param name="input.dir" value="../${usecase.mv}/validate_hl7_instance"/>
@@ -550,13 +554,25 @@
             <param name="input.dir" value="../${usecase.vma}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="schematronresults_hl7_920_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avma}.xml"/>
+            <param name="input.dir" value="../${usecase.avma}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>        
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_hl7_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vvv}.xml"/>
             <param name="input.dir" value="../${usecase.vvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
-
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
+        <antcall target="schematronresults_hl7_920_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avvv}.xml"/>
+            <param name="input.dir" value="../${usecase.avvv}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        
     </target>
 
 
@@ -635,6 +651,13 @@
             <param name="xsl.output" value="validate_hl7_instance"/>
             <param name="xsl.mp" value="${validate.dir}/mp-mp92_vma.xsl"/>
         </antcall>
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_avma.xsl"/>
+        </antcall>
 
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="validate_hl7_sub">
@@ -657,7 +680,7 @@
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>-->
-        <xslt force="true" style="${validate.dir}/mp-mp92-av.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp92_av.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="av-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
@@ -677,6 +700,11 @@
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
+       <!-- <xslt force="true" style="${validate.dir}/mp-mp92_avma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="avma-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>-->
         <xslt force="true" style="${validate.dir}/mp-mp92_vvv.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="vvv-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
