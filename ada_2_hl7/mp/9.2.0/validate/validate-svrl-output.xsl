@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="inputDir" as="xs:string">../sturen_medicatievoorschrift/validate_hl7_instance</xsl:param>
+    <xsl:param name="inputDir" as="xs:string">file:///C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/mp/9.2.0/sturen_medicatievoorschrift/hl7_instance_validate</xsl:param>
     <xsl:param name="inputFileSet" as="xs:string">*.xml</xsl:param>
 
     <xsl:variable name="inputFiles" select="collection(concat($inputDir, '/?select=', $inputFileSet))" as="document-node()*"/>
