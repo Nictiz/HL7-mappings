@@ -76,9 +76,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </verstrekker>
                 </xsl:for-each>
                 
-                <!-- reden afspraak -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9083' or hl7:code[@code = '112231000146109'][@codeSystem = $oidSNOMEDCT]]/hl7:text">
+                <!-- reden afspraak MP9 2beta -->
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = ('2.16.840.1.113883.2.4.3.11.60.20.77.10.9083', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9394') or hl7:code[@code = ('112231000146109','160121000146101')][@codeSystem = $oidSNOMEDCT]]/hl7:text">
                     <reden_afspraak value="{text()}"/>
+                </xsl:for-each>
+                
+                <!-- toedieningsafspraak_reden_wijzigen_of_staken MP9 2.0.0 -->
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = ('2.16.840.1.113883.2.4.3.11.60.20.77.10.9083', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9394') or hl7:code[@code = ('112231000146109','160121000146101')][@codeSystem = $oidSNOMEDCT]]/hl7:value[@code|@nullFlavor]">
+                    <xsl:call-template name="handleCV">
+                        <xsl:with-param name="elemName">toedieningsafspraak_reden_wijzigen_of_staken</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
                 
                 <!-- geneesmiddel_bij_toedieningsafspraak -->
