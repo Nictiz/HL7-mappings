@@ -147,7 +147,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- relatie_voorstel_gegevens -->
-            <xsl:for-each select="$inComponent/hl7:entryRelationship/hl7:organizer[hl7:code[@code = '104'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
+            <xsl:for-each select="$inComponent/hl7:entryRelationship/hl7:organizer[hl7:code[@code = ('104','107')][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
                 <relatie_voorstel_gegevens>
                     <xsl:call-template name="handleII">
                         <xsl:with-param name="in" select="hl7:id"/>
@@ -157,10 +157,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- antwoord_verstrekkingsverzoek -->
-            <xsl:for-each select="$inComponent/hl7:entryRelationship/hl7:observation[hl7:code[@code = '17'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]">
+            <xsl:for-each select="$inComponent[hl7:code[@code = '9'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3']]/hl7:entryRelationship/hl7:observation[hl7:code[@code = '17'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]">
                 <xsl:call-template name="handleCV">
                     <xsl:with-param name="in" select="hl7:value"/>
                     <xsl:with-param name="elemName">antwoord_verstrekkingsverzoek</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            
+            <!-- antwoord_medicatieafspraak -->
+            <xsl:for-each select="$inComponent[hl7:code[@code = '10'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3']]/hl7:entryRelationship/hl7:observation[hl7:code[@code = '17'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]">
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:value"/>
+                    <xsl:with-param name="elemName">antwoord_medicatieafspraak</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
 

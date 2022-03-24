@@ -1,0 +1,1006 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-03-24T16:50:56.352091+01:00"
+         last-update-date="2022-03-24T16:50:56.352091+01:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <beschikbaarstellen_medicatiegegevens app="mp-mp920"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172"
+                                            transactionEffectiveDate="2021-04-02T09:33:39"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="mg-TEST-Scenarioset6b-v20"
+                                            id="mg-TEST-Scenarioset6b-v20">
+         <patient>
+            <naamgegevens>
+               <initialen value="G."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Hemsbergen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-11-02"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_bijzonderekeerdosis"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_200_bijzonderekeerdosis_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd datatype="datetime" value="2021-01-01T08:15:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-29T23:59:59"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d765e31" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 29 jan 2021, 2 maal per dag 0.5 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="0.5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_200_bijzonderekeerdosis_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2021-01-01T08:15:00"/>
+               <auteur>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d765e31" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid value="30"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_bijzonderekeerdosis_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak>
+               <identificatie value="MBH_200_bijzonderekeerdosis_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd datatype="datetime" value="2021-01-01T09:15:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-29T23:59:59"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d765e139" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 29 jan 2021, 2 maal per dag 0.5 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="0.5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_bijzonderekeerdosis_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking>
+               <identificatie value="MBH_200_bijzonderekeerdosis_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2021-01-01T09:15:00"/>
+               <verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid value="30"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="d765e139" datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_200_bijzonderekeerdosis_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatiegebruik>
+               <identificatie value="MBH_200_bijzonderekeerdosis_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <medicatiegebruik_datum_tijd datatype="datetime" value="2021-01-15T23:59:59"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-15T23:59:59"/>
+               </gebruiksperiode>
+               <gebruiksproduct>
+                  <farmaceutisch_product value="d765e31" datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 15 jan 2021, 2 maal per dag 0.5 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="0.5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_bijzonderekeerdosis_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </voorschrijver>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="d765e36" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_variabelehoeveelheid2"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_200_variabelehoeveelheid2_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd datatype="datetime" value="2021-01-01T08:18:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-29T23:59:59"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d765e321" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 29 jan 2021, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL"/>
+                  <toedieningsweg code="34"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="OROMUCOSAAL"/>
+                  <aanvullende_instructie code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="Eerst oplossen in water"/>
+                  <aanvullende_instructie code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="mond spoelen, daarna uitspugen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="10"/>
+                              <maximum_waarde value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    displayName="milliliter"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_200_variabelehoeveelheid2_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2021-01-01T08:18:00"/>
+               <auteur>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d765e321" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="450"/>
+                  <eenheid value="450"
+                           code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="milliliter"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_variabelehoeveelheid2_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak>
+               <identificatie value="MBH_200_variabelehoeveelheid2_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd datatype="datetime" value="2021-01-01T09:18:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-29T23:59:59"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d765e441" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 29 jan 2021, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL"/>
+                  <toedieningsweg code="34"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="OROMUCOSAAL"/>
+                  <aanvullende_instructie code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="Eerst oplossen in water"/>
+                  <aanvullende_instructie code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="mond spoelen, daarna uitspugen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="10"/>
+                              <maximum_waarde value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    displayName="milliliter"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_variabelehoeveelheid2_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking>
+               <identificatie value="MBH_200_variabelehoeveelheid2_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2021-01-01T09:18:00"/>
+               <verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="450"/>
+                  <eenheid value="450"
+                           code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="milliliter"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="d765e441" datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_200_variabelehoeveelheid2_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatiegebruik>
+               <identificatie value="MBH_200_variabelehoeveelheid2_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <medicatiegebruik_datum_tijd datatype="datetime" value="2021-01-22T23:59:59"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-22T23:59:59"/>
+               </gebruiksperiode>
+               <gebruiksproduct>
+                  <farmaceutisch_product value="d765e321" datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 22 jan 2021, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL"/>
+                  <toedieningsweg code="34"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="OROMUCOSAAL"/>
+                  <aanvullende_instructie code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="Eerst oplossen in water"/>
+                  <aanvullende_instructie code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="mond spoelen, daarna uitspugen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="10"/>
+                              <maximum_waarde value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    displayName="milliliter"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_variabelehoeveelheid2_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </voorschrijver>
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="d765e36" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_tijdstippen_flexibel"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_200_tijdstippen_flexibel_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd datatype="datetime" value="2021-01-01T08:24:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-15T23:59:59"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d765e647" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 15 jan 2021, elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00" datatype="time"/>
+                           <toedientijd value="14:00:00" datatype="time"/>
+                           <toedientijd value="20:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_200_tijdstippen_flexibel_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2021-01-01T08:24:00"/>
+               <auteur>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d765e647" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="42"/>
+                  <eenheid value="42"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_tijdstippen_flexibel_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak>
+               <identificatie value="MBH_200_tijdstippen_flexibel_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd datatype="datetime" value="2021-01-01T09:24:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-15T23:59:59"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d765e757" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 15 jan 2021, elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00" datatype="time"/>
+                           <toedientijd value="14:00:00" datatype="time"/>
+                           <toedientijd value="20:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_tijdstippen_flexibel_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking>
+               <identificatie value="MBH_200_tijdstippen_flexibel_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2021-01-01T09:24:00"/>
+               <verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="42"/>
+                  <eenheid value="42"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="d765e757" datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_200_tijdstippen_flexibel_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatiegebruik>
+               <identificatie value="MBH_200_tijdstippen_flexibel_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <medicatiegebruik_datum_tijd datatype="datetime" value="2021-01-15T23:59:59"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-15T23:59:59"/>
+               </gebruiksperiode>
+               <gebruiksproduct>
+                  <farmaceutisch_product value="d765e647" datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 15 jan 2021, elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00" datatype="time"/>
+                           <toedientijd value="14:00:00" datatype="time"/>
+                           <toedientijd value="20:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_tijdstippen_flexibel_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </voorschrijver>
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="d765e36" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_weekdagen" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_200_weekdagen_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd datatype="datetime" value="2021-01-01T08:25:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-03-12T23:59:59"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d765e947" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 12 mar 2021, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
+                  <toedieningsweg code="53"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="cutaan"/>
+                  <aanvullende_instructie code="1128"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="voor de nacht"/>
+                  <aanvullende_instructie code="1018"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="aanbrengen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <toedieningsschema>
+                           <weekdag code="307145004"
+                                    displayName="maandag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <weekdag code="307148002"
+                                    displayName="woensdag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <weekdag code="307150005"
+                                    displayName="vrijdag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_200_weekdagen_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2021-01-01T08:25:00"/>
+               <auteur>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d765e947" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid value="30"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_weekdagen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak>
+               <identificatie value="MBH_200_weekdagen_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd datatype="datetime" value="2021-01-01T09:25:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-03-12T23:59:59"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d765e1061" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 12 mar 2021, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
+                  <toedieningsweg code="53"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="cutaan"/>
+                  <aanvullende_instructie code="1128"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="voor de nacht"/>
+                  <aanvullende_instructie code="1018"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="aanbrengen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <toedieningsschema>
+                           <weekdag code="307145004"
+                                    displayName="maandag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <weekdag code="307148002"
+                                    displayName="woensdag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <weekdag code="307150005"
+                                    displayName="vrijdag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_weekdagen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking>
+               <identificatie value="MBH_200_weekdagen_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2021-01-01T09:25:00"/>
+               <verstrekker>
+                  <zorgaanbieder value="d765e89" datatype="reference"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid value="30"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="d765e1061" datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_200_weekdagen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatiegebruik>
+               <identificatie value="MBH_200_weekdagen_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <medicatiegebruik_datum_tijd datatype="datetime" value="2021-01-15T23:59:59"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-15T23:59:59"/>
+               </gebruiksperiode>
+               <gebruiksproduct>
+                  <farmaceutisch_product value="d765e947" datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2021, tot en met 15 jan 2021, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
+                  <toedieningsweg code="53"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="cutaan"/>
+                  <aanvullende_instructie code="1128"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="voor de nacht"/>
+                  <aanvullende_instructie code="1018"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="aanbrengen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <toedieningsschema>
+                           <weekdag code="307145004"
+                                    displayName="maandag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <weekdag code="307148002"
+                                    displayName="woensdag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <weekdag code="307150005"
+                                    displayName="vrijdag"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_weekdagen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="d765e36" datatype="reference"/>
+               </voorschrijver>
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="d765e36" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d765e31">
+               <product_code code="20850"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="NAPROXEN 500MG TABLET"/>
+               <product_code code="51233"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NAPROXEN 500MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d765e139">
+               <product_code code="1137778"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="NAPROXEN APOTEX TABLET 500MG"/>
+               <product_code code="20850"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="NAPROXEN 500MG TABLET"/>
+               <product_code code="51233"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NAPROXEN 500MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d765e321">
+               <product_code code="72664"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+               <product_code code="119903"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d765e441">
+               <product_code code="261815"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="WATERSTOFPEROXIDE 3% CONC VOOR MONDSP FNA MR"/>
+               <product_code code="72994"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+               <product_code code="119903"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d765e647">
+               <product_code code="1090"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="METFORMINE 500MG TABLET"/>
+               <product_code code="3816"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METFORMINE 500MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d765e757">
+               <product_code code="693332"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="METFORMINE HCL PCH TABLET 500MG"/>
+               <product_code code="1090"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="METFORMINE 500MG TABLET"/>
+               <product_code code="3816"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METFORMINE 500MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d765e947">
+               <product_code code="55050"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="IMIQUIMOD 50MG/G CREME"/>
+               <product_code code="109398"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="IMIQUIMOD 50MG/G CREME"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d765e1061">
+               <product_code code="1198521"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="ALDARA CREME 50MG/G IN SACHET"/>
+               <product_code code="55050"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="IMIQUIMOD 50MG/G CREME"/>
+               <product_code code="109398"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="IMIQUIMOD 50MG/G CREME"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d765e36">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d765e47" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d765e47">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="d765e89">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

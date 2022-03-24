@@ -1,0 +1,111 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-03-24T16:50:59.479699+01:00"
+         last-update-date="2022-03-24T16:50:59.479699+01:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp920"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift_voorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.283"
+                                               transactionEffectiveDate="2021-05-12T09:39:14"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="av-mp-va-tst-3.1b-stoppen-v20"
+                                               id="av-mp-va-tst-3.1b-stoppen-v20">
+         <patient>
+            <naamgegevens>
+               <initialen value="J."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="de "/>
+                  <achternaam value="XXX_Luzac"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1985-10-24"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_stoppen" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak>
+               <identificatie value="MBH_200_stoppen_TA_staken"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd datatype="datetime" value="2020-12-22T19:00:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2020-11-02T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2021-01-01T23:59:59"/>
+               </gebruiksperiode>
+               <toedieningsafspraak_stop_type code="113371000146109"
+                                              codeSystem="2.16.840.1.113883.6.96"
+                                              displayName="definitief gestopt met medicatie"/>
+               <verstrekker>
+                  <zorgaanbieder value="d181e42" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d181e34" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 2 nov 2020, tot en met 1 jan 2021, 1 maal per dag 1 stuk, Oraal, "/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_stoppen_MA_staken"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d181e34">
+               <product_code code="1110837"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <product_code code="49484"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+               <product_code code="103039"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d181e42">
+               <zorgaanbieder_identificatienummer value="99901111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek Jansen en Co"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>
