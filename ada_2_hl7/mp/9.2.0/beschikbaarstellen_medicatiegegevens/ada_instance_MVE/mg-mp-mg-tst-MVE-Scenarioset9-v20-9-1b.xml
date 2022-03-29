@@ -1,26 +1,27 @@
-<!--ada full xml for subscenario nr: 9-1--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--ada full xml for subscenario nr: 9-1b--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2022-02-18T09:22:00.413+01:00"
-         last-update-date="2022-02-18T09:22:00.413+01:00"/>
+         last-update-date="2022-03-29T09:52:01.501+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp92"
                                             shortName="beschikbaarstellen_medicatiegegevens"
                                             formName="medicatiegegevens"
-                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172"
-                                            transactionEffectiveDate="2021-04-02T09:33:39"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="TEST Medicatiegegevens MVE Scenarioset 9 (diversen MVE)"
-                                            desc="Verbruiksduur en aanschrijfdatum"
-                                            id="mg-mp-mg-tst-MVE-Scenarioset9-v20-9-1">
-         <scenario-nr value="9.1" conceptId=""/>
+                                            desc="GDS"
+                                            id="mg-mp-mg-tst-MVE-Scenarioset9-v20-9-1b">
+         <scenario-nr value="9.1b" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
          <systeemrol value="1"
                      code="1"
                      codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
-                     displayName="Beide"/>
+                     displayName="Beide"
+                     conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"/>
          <!--Patient found in instance with id: mg-TEST-Scenarioset9-v20 and title: id: TEST REPO Scenarioset 9 (diversen VV/MVE)-->
          <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
@@ -47,16 +48,16 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_200_logistiekeverbruiksperiode_duur_dagen-->
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_200_logistiekeverbruiksperiode_eind-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen"
+            <identificatie value="MBH_200_logistiekeverbruiksperiode_eind"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatieverstrekking comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346">
-               <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_MVE"
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
-               <medicatieverstrekkings_datum_tijd value="T+0D{12:02:00}"
+               <medicatieverstrekkings_datum_tijd value="T-9D{12:01:00}"
                                                   datatype="datetime"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
                <verstrekker comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347">
@@ -74,37 +75,39 @@
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351">
                   <farmaceutisch_product datatype="reference"
-                                         value="HPK_PARACETAMOL_768901"
+                                         value="HPK_MIZOLASTINE_1101099"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
                </verstrekt_geneesmiddel>
-               <verbruiksduur value="50"
-                              unit="dag"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.356"/>
+               <distributievorm conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.355"
+                                value="1"
+                                code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                displayName="GDS"/>
                <relatie_verstrekkingsverzoek comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349">
-                  <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_VV"
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_VV"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
                </relatie_verstrekkingsverzoek>
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="HPK_PARACETAMOL_768901"
+            <farmaceutisch_product id="HPK_MIZOLASTINE_1101099"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="768901"
+               <product_code code="1101099"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
-                             displayName="PARACETAMOL PCH TABLET 500MG"
+                             displayName="MIZOLLEN TABLET MGA 10MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="67903"
+               <product_code code="48291"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"
                              codeSystemName="G-Standaard PRK"
-                             displayName="PARACETAMOL 500MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="2194"
+               <product_code code="102164"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="PARACETAMOL 500MG TABLET"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <zorgaanbieder id="Apotheek_De_Gulle_Gaper"

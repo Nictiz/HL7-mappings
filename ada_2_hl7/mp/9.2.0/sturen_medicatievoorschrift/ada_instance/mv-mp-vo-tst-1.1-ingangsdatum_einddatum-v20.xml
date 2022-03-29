@@ -4,18 +4,18 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2022-02-18T09:22:39.669+01:00"
-         last-update-date="2022-03-11T15:39:36.09+01:00"/>
+         last-update-date="2022-03-24T16:07:57.816+01:00"/>
    <data>
-      <sturen_medicatievoorschrift app="mp-mp920"
+      <sturen_medicatievoorschrift app="@app"
                                    shortName="sturen_medicatievoorschrift"
                                    formName="sturen_voorschrift"
-                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.271"
-                                   transactionEffectiveDate="2021-05-05T10:25:34"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.322"
+                                   transactionEffectiveDate="2022-02-07T00:00:00"
                                    versionDate=""
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="TEST Scenarioset 1 Gebruiksperiode ingangsdatum en einddatum"
-                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Medicatievoorschrift met een medicatieafspraak gebruiksperiode ingangsdatum en einddatum&lt;/span&gt;&lt;/div&gt;"
+                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Medicatievoorschrift met een medicatieafspraak gebruiksperiode ingangsdatum en einddatum (en criterium)&lt;/span&gt;&lt;/div&gt;"
                                    id="mv-mp-vo-tst-1.1-ingangsdatum_einddatum-v20">
          <scenario-nr value="1.1*" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2"/>
          <systeemrol value="1"
@@ -23,7 +23,7 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5.1.20201207000000"
                      displayName="Beide"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.5"/>
-         <screenshot value="Maak screenshot(s) waarop zichtbaar is dat de gebruiksperiode ingevoerd kan worden (ingangsdatum/ einddatum)."
+         <screenshot value="Maak screenshot(s) waarop zichtbaar is dat de gebruiksperiode ingevoerd kan worden (ingangsdatum/ einddatum/ criterium)."
                      datatype="text"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.3"/>
          <!--Patient found in instance with id: mg-TEST-Scenarioset1-v20 and title: id: TEST REPO Scenarioset 1 (basale inhoud)-->
@@ -61,16 +61,18 @@
                <identificatie value="MBH_200_start_eind_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
-               <medicatieafspraak_datum_tijd value="T-10D{11:20:00}"
+               <medicatieafspraak_datum_tijd value="T{11:20:00}"
                                              datatype="datetime"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
                <gebruiksperiode comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84">
-                  <start_datum_tijd value="T-10D{00:00:00}"
+                  <start_datum_tijd value="T+0D{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
-                  <eind_datum_tijd value="T-5D{23:59:59}"
+                  <eind_datum_tijd value="T+5D{23:59:59}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
+                  <criterium value="3 dagen voor opname stoppen"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1365"/>
                </gebruiksperiode>
                <voorschrijver comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
                   <zorgverlener datatype="reference"
@@ -120,7 +122,7 @@
                <identificatie value="MBH_200_start_eind_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.289"/>
-               <verstrekkingsverzoek_datum_tijd value="T{11:20:00}"
+               <verstrekkingsverzoek_datum_tijd value="T-10D{11:20:00}"
                                                 datatype="datetime"
                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.279"/>
                <auteur comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.290">
@@ -187,6 +189,17 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.159">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.160">
+                     <telefoonnummer value="1645645000"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.161"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   codeSystemName="Address Use"
+                                   displayName="Zakelijk telefoonnummer"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.163"/>
+                  </telefoonnummers>
+               </contactgegevens>
                <zorgaanbieder comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
                   <zorgaanbieder datatype="reference"
                                  value="Huisartsenpraktijk_Pulver_en_Partners"

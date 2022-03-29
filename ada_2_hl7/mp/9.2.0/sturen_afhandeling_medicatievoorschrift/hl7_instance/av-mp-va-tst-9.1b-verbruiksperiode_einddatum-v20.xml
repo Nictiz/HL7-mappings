@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "TEST Scenarioset 9 Verbruiksperiode einddatum" and id: "av-mp-va-tst-9.1b-verbruiksperiode_einddatum-v20".-->
+<!--Generated from ada instance with title: "TEST Scenarioset 9 GDS" and id: "av-mp-va-tst-9.1b-verbruiksperiode_einddatum-v20".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -39,9 +39,9 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 23 dec 2020, tot en met 20 jul 2021, 1 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 1 jan 2021, tot en met 20 jul 2021, 1 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201223000000"/>
+            <low value="20210101000000"/>
             <high value="20210720235959"/>
          </effectiveTime>
          <routeCode code="9"
@@ -69,7 +69,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201223120100"/>
+            <time value="20210101120100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -78,6 +78,14 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="COMP">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9097"/>
+               <code code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                     displayName="GDS"/>
+            </act>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
@@ -134,7 +142,7 @@
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20201223120100"/>
+         <effectiveTime value="20210101120100"/>
          <quantity value="100" unit="1">
             <translation value="100"
                          code="245"

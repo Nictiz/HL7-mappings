@@ -93,14 +93,24 @@
          </author>
          <entryRelationship typeCode="RSON">
             <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9316"/>
-               <code code="112201000146104"
-                     displayName="Medical reason for prescription (observable entity)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="CE" nullFlavor="OTH">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.24"/>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
+               <code code="282291009"
+                     displayName="Diagnose"
+                     codeSystem="2.16.840.1.113883.6.96"/>
+               <value xsi:type="CD" nullFlavor="OTH">
                   <originalText>Reumatoide artritis</originalText>
                </value>
+               <entryRelationship typeCode="REFR" inversionInd="true">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.20"/>
+                     <code code="33999-4"
+                           displayName="Diagnosis status"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <value xsi:type="CD" nullFlavor="NI"/>
+                  </observation>
+               </entryRelationship>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">

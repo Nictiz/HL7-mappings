@@ -31,13 +31,13 @@
    <component typeCode="COMP">
       <supply classCode="SPLY" moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
-         <id extension="MBH_200_logistiekeverbruiksperiode_duur_dagen_MVE"
+         <id extension="MBH_200_logistiekeverbruiksperiode_eind_MVE"
              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
          <code displayName="Verstrekking"
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20210101120200"/>
+         <effectiveTime value="20201223120100"/>
          <quantity value="100" unit="1">
             <translation value="100"
                          code="245"
@@ -45,24 +45,21 @@
                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                          codeSystemName="G-Standaard thesaurus basiseenheden"/>
          </quantity>
-         <expectedUseTime>
-            <width value="50" unit="d"/>
-         </expectedUseTime>
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="768901"
+                  <code code="1101099"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="PARACETAMOL PCH TABLET 500MG"
+                        displayName="MIZOLLEN TABLET MGA 10MG"
                         codeSystemName="G-Standaard HPK">
-                     <translation code="67903"
+                     <translation code="48291"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="PARACETAMOL 500MG TABLET"
+                                  displayName="MIZOLASTINE TABLET MGA  10MG"
                                   codeSystemName="G-Standaard PRK"/>
-                     <translation code="2194"
+                     <translation code="102164"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="PARACETAMOL 500MG TABLET"
+                                  displayName="MIZOLASTINE TABLET MGA  10MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -77,10 +74,18 @@
                </representedOrganization>
             </assignedEntity>
          </performer>
+         <entryRelationship typeCode="COMP">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9097"/>
+               <code code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                     displayName="GDS"/>
+            </act>
+         </entryRelationship>
          <entryRelationship typeCode="REFR">
             <supply classCode="SPLY" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>
-               <id extension="MBH_200_logistiekeverbruiksperiode_duur_dagen_VV"
+               <id extension="MBH_200_logistiekeverbruiksperiode_eind_VV"
                    root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                <code code="52711000146108"
                      displayName="Request to dispense medication to patient"
@@ -92,7 +97,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_logistiekeverbruiksperiode_duur_dagen"/>
+                   extension="MBH_200_logistiekeverbruiksperiode_eind"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
