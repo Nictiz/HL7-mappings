@@ -14,9 +14,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../2_hl7_mp_include.xsl"/>
-    <xsl:import href="../../zib2020bbr/payload/hl7-patient-20210701.xsl"/>
     <xsl:import href="../../zib2020bbr/payload/hl7-Contactpersoon-20210701.xsl"/>
     <xsl:import href="../../zib2020bbr/payload/hl7-Lichaamsgewicht-20210701.xsl"/>
+    <xsl:import href="../../zib2020bbr/payload/hl7-patient-20210701.xsl"/>
+    <xsl:import href="../../zib2020bbr/payload/hl7-ProbleemObservatie-20210701.xsl"/>
 
     <!-- this import leads to multiple imports for util xsl's -->
     <xsl:import href="../../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>
@@ -759,7 +760,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
 
         <!-- statusCode: voor foutcorrectie -->
-        <!-- uitgefaseerd in 9 1.0, maar voor backwards compatibility hier nog niet verwijderd -->
+        <!-- uitgefaseerd in 9 1.0, opnieuw toegevoegd in 9.2.0 -->
         <xsl:if test="geannuleerd_indicator/@value = 'true'">
             <statusCode code="nullified"/>
         </xsl:if>
@@ -1050,7 +1051,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="(reden_wijzigen_of_staken)[.//(@value | @code)]">
                     <entryRelationship typeCode="RSON">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9370_20210616112017"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9404_20220315000000"/>
                     </entryRelationship>
                 </xsl:for-each>
 
@@ -1460,6 +1461,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </observation>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc> Reden voor medicatieafspraak vanaf 9 2.0</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9404_20220315000000" match="reden_wijzigen_of_staken" mode="HandleRedenWijzStakenWDS">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9404"/>
+            <code code="160111000146106" displayName="reden voor wijzigen van voorschrift" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Voorstel Verstrekkingsverzoek</xd:desc>
@@ -1665,9 +1677,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9370_20210616112017"/>
                 </entryRelationship>
             </xsl:for-each>
-            <xsl:for-each select="reden_van_voorschrijven/probleem/probleem_naam[.//(@value | @code | @nullFlavor | @originalText)]">
+            <xsl:for-each select="reden_van_voorschrijven/probleem[probleem_naam[.//(@value | @code | @nullFlavor | @originalText)]]">
                 <entryRelationship typeCode="RSON">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9316_20200120135516"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.24_20210701000000"/>
                 </entryRelationship>
             </xsl:for-each>
             <xsl:for-each select="gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
@@ -2008,6 +2020,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="relatie_zorgepisode/identificatienummer[@value | @nullFlavor]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050"/>
             </xsl:for-each>
+            
+            <!-- gebruiksperiode/criterium -->
+            <xsl:for-each select="gebruiksperiode/criterium[@value]">
+                <precondition>
+                    <criterion>
+                        <text mediaType="plain/text"><xsl:value-of select="@value"/></text>
+                    </criterion>
+                </precondition>
+            </xsl:for-each>
+            
         </xsl:for-each>
     </xsl:template>
 
