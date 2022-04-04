@@ -183,23 +183,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>
                 </xsl:for-each> 
-                <xsl:if test="$startDelivery!=''">
-                    <performedPeriod>
-                        <start value ="{$startDelivery}"/>
-                    </performedPeriod>
-                </xsl:if>
-                <xsl:for-each select="verrichting_start_datum">
-                    <performedPeriod>
-                        <start value ="{@value}">
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                    <xsl:with-param name="precision" select="'DAY'"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </start>
-                    </performedPeriod>
-                </xsl:for-each>
+                <xsl:choose>
+                    <!-- in eerste instantie overnemen uit verrichting start datum -->
+                    <xsl:when test="verrichting_start_datum">
+                        <xsl:for-each select="verrichting_start_datum">
+                            <performedPeriod>
+                                <start value ="{@value}">
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="precision" select="'DAY'"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </start>
+                            </performedPeriod>
+                        </xsl:for-each>                       
+                    </xsl:when>
+                    <!-- indien leeg in geval bevalling datum start actieve ontsluiting -->
+                    <xsl:when test="$startDelivery!=''">
+                        <performedPeriod>
+                            <start value ="{$startDelivery}"/>
+                        </performedPeriod>
+                    </xsl:when>          
+                    <!-- indien leeg in geval geboorte de geboortedatum van het betreffende kind -->
+                    <xsl:when test="$adaChild and name(.)='uitdrijvingsfase'">
+                        <xsl:variable name="kindId" select="patient/@value"/>
+                             <xsl:for-each select="ancestor::*/administratief/patient[@id=$kindId]/geboortedatum">
+                                <effectiveDateTime value="{@value}">
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="precision" select="'DAY'"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </effectiveDateTime>                   
+                            </xsl:for-each>                       
+                        </xsl:when>
+                </xsl:choose>
                 <xsl:variable name="performerId" select="ziekenhuis_baring/zorgaanbieder/@value"/>
                 <xsl:for-each select="ancestor::*/administratief/zorgaanbieder[@id=$performerId]">
                     <performer>

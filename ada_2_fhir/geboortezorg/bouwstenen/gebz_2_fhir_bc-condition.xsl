@@ -109,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <meta>
                     <xsl:variable name="profiles" as="element()*">
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-problem"/>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
                         <xsl:call-template name="bc-profile"/>    
                     </xsl:variable>
                     <xsl:for-each-group select="$profiles" group-by="@value">

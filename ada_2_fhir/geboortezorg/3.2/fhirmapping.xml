@@ -370,7 +370,7 @@
       <ID>peri32-dataelement-750</ID>
       <naam>Contact</naam>
       <mapping>Encounter</mapping>
-      <profile>bc-Encounter/bc-Encounter</profile>
+      <profile>bc-Encounter</profile>
       <in>true</in>
       <zib/>
       <example>https://simplifier.net/geboortezorg-stu3/encounter-example-duplicate-2</example>
@@ -380,7 +380,7 @@
       <ID>peri32-dataelement-751</ID>
       <naam>ContactType</naam>
       <mapping>Encounter.class</mapping>
-      <profile>bc-Encounter/bc-Encounter</profile>
+      <profile>bc-Encounter</profile>
       <in>true</in>
       <zib>NL-CM-15.1.2</zib>
       <example>https://simplifier.net/geboortezorg-stu3/encounter-example-duplicate-2</example>
@@ -390,7 +390,7 @@
       <ID>peri32-dataelement-3690</ID>
       <naam>ContactSoort</naam>
    	<mapping>Encounter.type</mapping>
-   	<profile>bc-Encounter/bc-Encounter</profile>
+   	<profile>bc-Encounter</profile>
       <in/>
       <zib/>
    	<example>https://simplifier.net/geboortezorg-stu3/encounter-example-duplicate-2</example>
@@ -400,7 +400,7 @@
       <ID>peri32-dataelement-752</ID>
       <naam>ContactMet</naam>
       <mapping>Encounter.participant.individual</mapping>
-      <profile>bc-Encounter/bc-Encounter</profile>
+      <profile>bc-Encounter</profile>
       <in>true</in>
       <zib/>
       <example>https://simplifier.net/geboortezorg-stu3/encounter-example-duplicate-2</example>
@@ -459,11 +459,11 @@
    <record>
       <ID>peri32-dataelement-758</ID>
       <naam>RedenContact</naam>
-      <mapping>Encounter.diagnosis</mapping>
+      <mapping>Encounter.reasonReference</mapping>
       <profile>bc-Encounter</profile>
       <in>false</in>
       <zib/>
-   	<example>https://simplifier.net/geboortezorg-stu3/encounter-example-duplicate-2</example>
+   	<example></example>
       <searchurl>GET [base]/Encounter?_include=Encounter:diagnosis:Condition</searchurl>
    </record>
    <record>
@@ -2745,8 +2745,8 @@
    <record>
       <ID>peri32-dataelement-7452</ID>
       <naam>MedicatieGebruik</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2755,8 +2755,8 @@
    <record>
       <ID>peri32-dataelement-7453</ID>
       <naam>Identificatie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.identifier</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2765,8 +2765,8 @@
    <record>
       <ID>peri32-dataelement-7454</ID>
       <naam>Registratiedatum</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.dateAsserted</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2775,8 +2775,8 @@
    <record>
       <ID>peri32-dataelement-7455</ID>
       <naam>GebruikIndicator</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.taken</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2785,8 +2785,8 @@
    <record>
       <ID>peri32-dataelement-7456</ID>
       <naam>Volgens afspraak indicator</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.extension:asAgreedIndicator</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2795,8 +2795,8 @@
    <record>
       <ID>peri32-dataelement-7457</ID>
       <naam>Stoptype</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.status</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2805,8 +2805,8 @@
    <record>
       <ID>peri32-dataelement-7458</ID>
       <naam>Gebruiksperiode</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.effectivePeriod</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2815,8 +2815,8 @@
    <record>
       <ID>peri32-dataelement-7459</ID>
       <naam>GebruiksProduct</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.medicationReference</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2825,8 +2825,8 @@
    <record>
       <ID>peri32-dataelement-7460</ID>
       <naam>Product</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2835,8 +2835,8 @@
    <record>
       <ID>peri32-dataelement-7461</ID>
       <naam>ProductCode</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.code</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2845,8 +2845,8 @@
    <record>
       <ID>peri32-dataelement-7462</ID>
       <naam>ProductSpecificatie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2855,8 +2855,8 @@
    <record>
       <ID>peri32-dataelement-7463</ID>
       <naam>ProductNaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.code.text</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2865,8 +2865,8 @@
    <record>
       <ID>peri32-dataelement-7464</ID>
       <naam>Omschrijving</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.extension:description</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2875,8 +2875,8 @@
    <record>
       <ID>peri32-dataelement-7465</ID>
       <naam>FarmaceutischeVorm</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.form</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2885,8 +2885,8 @@
    <record>
       <ID>peri32-dataelement-7466</ID>
       <naam>Ingredient</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.code</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2895,8 +2895,8 @@
    <record>
       <ID>peri32-dataelement-7467</ID>
       <naam>Sterkte</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.amount</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2905,8 +2905,8 @@
    <record>
       <ID>peri32-dataelement-7468</ID>
       <naam>Hoeveelheid ingrediënt</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.amount.numerator</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2915,8 +2915,8 @@
    <record>
       <ID>peri32-dataelement-7469</ID>
       <naam>Waarde</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.amount.numerator.value</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2925,8 +2925,8 @@
    <record>
       <ID>peri32-dataelement-7470</ID>
       <naam>Eenheid</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.amount.numerator.unit</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2935,8 +2935,8 @@
    <record>
       <ID>peri32-dataelement-7471</ID>
       <naam>Hoeveelheid product</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.amount.denominator</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2945,8 +2945,8 @@
    <record>
       <ID>peri32-dataelement-7472</ID>
       <naam>Waarde</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.amount.denominator.value</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2955,8 +2955,8 @@
    <record>
       <ID>peri32-dataelement-7473</ID>
       <naam>Eenheid</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.amount.denominator.unit</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2965,8 +2965,8 @@
    <record>
       <ID>peri32-dataelement-7474</ID>
       <naam>IngredientCode</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Medication.ingredient.itemCodeableConcept</mapping>
+      <profile>zib-Product</profile>
       <in/>
       <zib/>
       <example/>
@@ -2975,8 +2975,8 @@
    <record>
       <ID>peri32-dataelement-7475</ID>
       <naam>Gebruiksinstructie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.dosage</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2985,8 +2985,8 @@
    <record>
       <ID>peri32-dataelement-7476</ID>
       <naam>Omschrijving</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.text</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -2995,8 +2995,8 @@
    <record>
       <ID>peri32-dataelement-7477</ID>
       <naam>Toedieningsweg</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.route</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3005,8 +3005,8 @@
    <record>
       <ID>peri32-dataelement-7478</ID>
       <naam>Aanvullende instructie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.additionalInstruction</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3015,8 +3015,8 @@
    <record>
       <ID>peri32-dataelement-7479</ID>
       <naam>Herhaalperiode cyclisch schema</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.modifierExtension:repeatPeriodCyclicalSchedule</mapping>
+      <profile>zib-MedicaionUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3025,8 +3025,8 @@
    <record>
       <ID>peri32-dataelement-7480</ID>
       <naam>Doseerinstructie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3035,8 +3035,8 @@
    <record>
       <ID>peri32-dataelement-7481</ID>
       <naam>Volgnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.sequence</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3045,8 +3045,8 @@
    <record>
       <ID>peri32-dataelement-7482</ID>
       <naam>Doseerduur</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.duration/durationUnit</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3055,8 +3055,8 @@
    <record>
       <ID>peri32-dataelement-7483</ID>
       <naam>Dosering</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.dose</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3065,8 +3065,8 @@
    <record>
       <ID>peri32-dataelement-7484</ID>
       <naam>Keerdosis</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.dose</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3075,8 +3075,8 @@
    <record>
       <ID>peri32-dataelement-7485</ID>
       <naam>Aantal</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.dose.doseQuantity</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3085,8 +3085,8 @@
    <record>
       <ID>peri32-dataelement-7486</ID>
       <naam>min</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.dose.doseRange.low</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3095,8 +3095,8 @@
    <record>
       <ID>peri32-dataelement-7487</ID>
       <naam>vaste waarde</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.dose.doseQuantity.value</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3105,8 +3105,8 @@
    <record>
       <ID>peri32-dataelement-7488</ID>
       <naam>max</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.dose.doseRange.max</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3115,8 +3115,8 @@
    <record>
       <ID>peri32-dataelement-7489</ID>
       <naam>Eenheid</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.dose.dose[x].code</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3125,8 +3125,8 @@
    <record>
       <ID>peri32-dataelement-7490</ID>
       <naam>Eenheidsterm</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.dose.dose[x].unit</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3135,8 +3135,8 @@
    <record>
       <ID>peri32-dataelement-7491</ID>
       <naam>Toedieningsschema</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3145,8 +3145,8 @@
    <record>
       <ID>peri32-dataelement-7492</ID>
       <naam>Frequentie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.frequency</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3155,8 +3155,8 @@
    <record>
       <ID>peri32-dataelement-7493</ID>
       <naam>Aantal</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.frequency</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3165,8 +3165,8 @@
    <record>
       <ID>peri32-dataelement-7494</ID>
       <naam>min</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.frequency</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3175,8 +3175,8 @@
    <record>
       <ID>peri32-dataelement-7495</ID>
       <naam>vaste waarde</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.frequency</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3185,8 +3185,8 @@
    <record>
       <ID>peri32-dataelement-7496</ID>
       <naam>max</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.frequencyMax</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3205,8 +3205,8 @@
    <record>
       <ID>peri32-dataelement-7498</ID>
       <naam>Interval</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.period</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3215,8 +3215,8 @@
    <record>
       <ID>peri32-dataelement-7499</ID>
       <naam>Toedientijd</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.timeOfDay</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3225,16 +3225,16 @@
    <record>
       <ID>peri32-dataelement-7500</ID>
       <naam>Weekdag</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.dayOfWeek</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
       <searchurl/>
    </record>
    <record>
-      <ID>peri32-dataelement-7501</ID>
-      <naam>Dagdeel</naam>
+      <mapping>Timing.repeat.when</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <mapping/>
       <profile/>
       <in/>
@@ -3245,8 +3245,8 @@
    <record>
       <ID>peri32-dataelement-7502</ID>
       <naam>Zo nodig</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.asNeededCodeableConcept</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3255,8 +3255,8 @@
    <record>
       <ID>peri32-dataelement-7503</ID>
       <naam>Criterium</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.asNeededCodeableConcept</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3265,8 +3265,8 @@
    <record>
       <ID>peri32-dataelement-7504</ID>
       <naam>Code</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.asNeededCodeableConcept.coding</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3275,8 +3275,8 @@
    <record>
       <ID>peri32-dataelement-7505</ID>
       <naam>Omschrijving</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.asNeededCodeableConcept.text</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3285,8 +3285,8 @@
    <record>
       <ID>peri32-dataelement-7506</ID>
       <naam>Maximale dosering</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3295,8 +3295,8 @@
    <record>
       <ID>peri32-dataelement-7507</ID>
       <naam>Aantal</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod.numerator.value</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3305,8 +3305,8 @@
    <record>
       <ID>peri32-dataelement-7508</ID>
       <naam>Eenheid</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod.numerator.unit</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3315,8 +3315,8 @@
    <record>
       <ID>peri32-dataelement-7509</ID>
       <naam>Tijdseenheid</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod.denominator</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3325,8 +3325,8 @@
    <record>
       <ID>peri32-dataelement-7510</ID>
       <naam>Toedieningssnelheid</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.rate</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3335,8 +3335,8 @@
    <record>
       <ID>peri32-dataelement-7511</ID>
       <naam>Waarde</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3345,8 +3345,8 @@
    <record>
       <ID>peri32-dataelement-7512</ID>
       <naam>min</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod.rateRange.low</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3355,8 +3355,8 @@
    <record>
       <ID>peri32-dataelement-7513</ID>
       <naam>vaste waarde</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod.rateRatio.numerator.value</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3365,8 +3365,8 @@
    <record>
       <ID>peri32-dataelement-7514</ID>
       <naam>max</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod.rateRange.high</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3375,8 +3375,8 @@
    <record>
       <ID>peri32-dataelement-7515</ID>
       <naam>Eenheid</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod.rateRatio.numerator.unit</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3385,8 +3385,8 @@
    <record>
       <ID>peri32-dataelement-7516</ID>
       <naam>Tijdseenheid</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Dosage.maxDosePerPeriod.rateRatio.denominator</mapping>
+      <profile>zib-InstructionsForUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3395,8 +3395,8 @@
    <record>
       <ID>peri32-dataelement-7517</ID>
       <naam>Toedieningsduur</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Timing.repeat.duration</mapping>
+      <profile>zib-AdministrationSchedule</profile>
       <in/>
       <zib/>
       <example/>
@@ -3405,8 +3405,8 @@
    <record>
       <ID>peri32-dataelement-7518</ID>
       <naam>Gerelateerde afspraak</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.derivedFrom</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3415,8 +3415,8 @@
    <record>
       <ID>peri32-dataelement-7519</ID>
       <naam>Identificatie medicatieafspraak</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.derivedFrom.relatedMedicationAgreement</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3425,8 +3425,8 @@
    <record>
       <ID>peri32-dataelement-7520</ID>
       <naam>Identificatie toedieningsafspraak</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.derivedFrom.relatedAdministrationAgreement</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3435,8 +3435,8 @@
    <record>
       <ID>peri32-dataelement-7521</ID>
       <naam>Gerelateerde verstrekking</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.derivedFrom.relatedDispense</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3445,8 +3445,8 @@
    <record>
       <ID>peri32-dataelement-7522</ID>
       <naam>Identificatie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.derivedFrom.relatedDispense</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3455,8 +3455,8 @@
    <record>
       <ID>peri32-dataelement-7523</ID>
       <naam>Voorschrijver</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.extension:prescriber</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3465,8 +3465,8 @@
    <record>
       <ID>peri32-dataelement-7524</ID>
       <naam>Zorgverlener</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.extension:prescriber</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -3475,8 +3475,8 @@
    <record>
       <ID>peri32-dataelement-7525</ID>
       <naam>ZorgverlenerIdentificatieNummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner</mapping>
+      <profile>Practitioner.identifier</profile>
       <in/>
       <zib/>
       <example/>
@@ -3485,8 +3485,8 @@
    <record>
       <ID>peri32-dataelement-7526</ID>
       <naam>Naamgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3495,8 +3495,8 @@
    <record>
       <ID>peri32-dataelement-7527</ID>
       <naam>Naamgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3505,18 +3505,18 @@
    <record>
       <ID>peri32-dataelement-7528</ID>
       <naam>Voornamen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.given</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
       <searchurl/>
    </record>
-   <record>
+  <record>
       <ID>peri32-dataelement-7529</ID>
       <naam>Initialen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.given</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3525,8 +3525,8 @@
    <record>
       <ID>peri32-dataelement-7530</ID>
       <naam>Roepnaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.given</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3535,8 +3535,8 @@
    <record>
       <ID>peri32-dataelement-7531</ID>
       <naam>Naamgebruik</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name:extension:humannameAssemblyOrder</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3545,8 +3545,8 @@
    <record>
       <ID>peri32-dataelement-7532</ID>
       <naam>Geslachtsnaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:extension:humannameOwnName</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3555,8 +3555,8 @@
    <record>
       <ID>peri32-dataelement-7533</ID>
       <naam>Voorvoegsels</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:extension:humannameOwnPrefix</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3565,8 +3565,8 @@
    <record>
       <ID>peri32-dataelement-7534</ID>
       <naam>Achternaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:extension:humanNameOwnName</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3575,8 +3575,8 @@
    <record>
       <ID>peri32-dataelement-7535</ID>
       <naam>GeslachtsnaamPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:extension:humannamePartnerName</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3585,8 +3585,8 @@
    <record>
       <ID>peri32-dataelement-7536</ID>
       <naam>VoorvoegselsPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:extension:humannamePartnerPrefix</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3595,8 +3595,8 @@
    <record>
       <ID>peri32-dataelement-7537</ID>
       <naam>AchternaamPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:extension:humannamePartnerName</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3605,8 +3605,8 @@
    <record>
       <ID>peri32-dataelement-7538</ID>
       <naam>Specialisme</naam>
-      <mapping/>
-      <profile/>
+      <mapping>PractitionerRole.specialty</mapping>
+      <profile>nl-core-practitionerrole</profile>
       <in/>
       <zib/>
       <example/>
@@ -3615,8 +3615,8 @@
    <record>
       <ID>peri32-dataelement-7539</ID>
       <naam>Adresgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.addresss</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3625,8 +3625,8 @@
    <record>
       <ID>peri32-dataelement-7540</ID>
       <naam>Straat</naam>
-      <mapping/>
-      <profile/>
+      <naam>Straat</naam>
+      <mapping>Practitioner.address.line.streetName</mapping>
       <in/>
       <zib/>
       <example/>
@@ -3635,8 +3635,8 @@
    <record>
       <ID>peri32-dataelement-7541</ID>
       <naam>Huisnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line.houseNumber</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3645,8 +3645,8 @@
    <record>
       <ID>peri32-dataelement-7542</ID>
       <naam>Huisnummerletter</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3655,8 +3655,8 @@
    <record>
       <ID>peri32-dataelement-7543</ID>
       <naam>Huisnummertoevoeging</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3665,8 +3665,8 @@
    <record>
       <ID>peri32-dataelement-7544</ID>
       <naam>AanduidingBijNummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line:extension:additionalLocator</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3675,8 +3675,8 @@
    <record>
       <ID>peri32-dataelement-7545</ID>
       <naam>Postcode</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.postalCode</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3685,8 +3685,8 @@
    <record>
       <ID>peri32-dataelement-7546</ID>
       <naam>Woonplaats</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.city</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3695,8 +3695,8 @@
    <record>
       <ID>peri32-dataelement-7547</ID>
       <naam>Gemeente</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.district</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3705,8 +3705,8 @@
    <record>
       <ID>peri32-dataelement-7548</ID>
       <naam>Land</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.country</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3715,8 +3715,8 @@
    <record>
       <ID>peri32-dataelement-7549</ID>
       <naam>AdditioneleInformatie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line.extension</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3725,8 +3725,8 @@
    <record>
       <ID>peri32-dataelement-7550</ID>
       <naam>AdresSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.use/.type (via conceptMap)</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3735,8 +3735,8 @@
    <record>
       <ID>peri32-dataelement-7551</ID>
       <naam>Contactgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3745,8 +3745,8 @@
    <record>
       <ID>peri32-dataelement-7552</ID>
       <naam>Telefoonnummers</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.value</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3755,8 +3755,8 @@
    <record>
       <ID>peri32-dataelement-7553</ID>
       <naam>Telefoonnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.value</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3765,8 +3765,8 @@
    <record>
       <ID>peri32-dataelement-7554</ID>
       <naam>NummerSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.use</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3775,8 +3775,8 @@
    <record>
       <ID>peri32-dataelement-7555</ID>
       <naam>EmailAdressen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.value</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3785,8 +3785,8 @@
    <record>
       <ID>peri32-dataelement-7556</ID>
       <naam>EmailAdres</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.value</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3795,8 +3795,8 @@
    <record>
       <ID>peri32-dataelement-7557</ID>
       <naam>EmailSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.use</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -3805,8 +3805,8 @@
    <record>
       <ID>peri32-dataelement-7558</ID>
       <naam>Zorgaanbieder</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3815,8 +3815,8 @@
    <record>
       <ID>peri32-dataelement-7559</ID>
       <naam>ZorgaanbiederIdentificatieNummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.identifier</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3825,8 +3825,8 @@
    <record>
       <ID>peri32-dataelement-7560</ID>
       <naam>OrganisatieNaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.name</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3835,8 +3835,8 @@
    <record>
       <ID>peri32-dataelement-7561</ID>
       <naam>AfdelingSpecialisme</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization?</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3845,8 +3845,8 @@
    <record>
       <ID>peri32-dataelement-7562</ID>
       <naam>Contactgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3855,8 +3855,8 @@
    <record>
       <ID>peri32-dataelement-7563</ID>
       <naam>Telefoonnummers</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.value</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3865,8 +3865,8 @@
    <record>
       <ID>peri32-dataelement-7564</ID>
       <naam>Telefoonnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.value</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3875,8 +3875,8 @@
    <record>
       <ID>peri32-dataelement-7565</ID>
       <naam>NummerSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.use</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3885,8 +3885,8 @@
    <record>
       <ID>peri32-dataelement-7566</ID>
       <naam>EmailAdressen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3895,8 +3895,8 @@
    <record>
       <ID>peri32-dataelement-7567</ID>
       <naam>EmailAdres</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.value</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3905,8 +3905,8 @@
    <record>
       <ID>peri32-dataelement-7568</ID>
       <naam>EmailSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.use</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3915,8 +3915,8 @@
    <record>
       <ID>peri32-dataelement-7570</ID>
       <naam>Adresgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3925,8 +3925,8 @@
    <record>
       <ID>peri32-dataelement-7571</ID>
       <naam>Straat</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.line.streetName</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3935,8 +3935,8 @@
    <record>
       <ID>peri32-dataelement-7572</ID>
       <naam>Huisnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.line.houseNumber</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3945,8 +3945,8 @@
    <record>
       <ID>peri32-dataelement-7573</ID>
       <naam>Huisnummerletter</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3955,8 +3955,8 @@
    <record>
       <ID>peri32-dataelement-7574</ID>
       <naam>Huisnummertoevoeging</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3965,8 +3965,8 @@
    <record>
       <ID>peri32-dataelement-7575</ID>
       <naam>AanduidingBijNummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.line:extension:additionalLocator</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3975,8 +3975,8 @@
    <record>
       <ID>peri32-dataelement-7576</ID>
       <naam>Postcode</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.postalCode</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3985,8 +3985,8 @@
    <record>
       <ID>peri32-dataelement-7577</ID>
       <naam>Woonplaats</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.city</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -3995,8 +3995,8 @@
    <record>
       <ID>peri32-dataelement-7578</ID>
       <naam>Gemeente</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.district</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -4005,8 +4005,8 @@
    <record>
       <ID>peri32-dataelement-7579</ID>
       <naam>Land</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.country</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -4015,8 +4015,8 @@
    <record>
       <ID>peri32-dataelement-7580</ID>
       <naam>AdditioneleInformatie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.line.extension</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -4025,8 +4025,8 @@
    <record>
       <ID>peri32-dataelement-7581</ID>
       <naam>AdresSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.use/.type (via conceptMap)</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -4035,8 +4035,8 @@
    <record>
       <ID>peri32-dataelement-7582</ID>
       <naam>OrganisatieType</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.type</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -4045,8 +4045,8 @@
    <record>
       <ID>peri32-dataelement-7583</ID>
       <naam>ZorgverlenerRol</naam>
-      <mapping/>
-      <profile/>
+      <mapping>PractitionerRole</mapping>
+      <profile>nl-core-practitionerrole</profile>
       <in/>
       <zib/>
       <example/>
@@ -4055,8 +4055,8 @@
    <record>
       <ID>peri32-dataelement-7584</ID>
       <naam>Informant</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.informationSource</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -4065,8 +4065,8 @@
    <record>
       <ID>peri32-dataelement-7585</ID>
       <naam>Persoon</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.informationSource</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -4075,8 +4075,8 @@
    <record>
       <ID>peri32-dataelement-7586</ID>
       <naam>Adresgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4085,8 +4085,8 @@
    <record>
       <ID>peri32-dataelement-7587</ID>
       <naam>Straat</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line:line.streetName</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4095,8 +4095,8 @@
    <record>
       <ID>peri32-dataelement-7588</ID>
       <naam>Huisnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line:houseNumber</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4105,8 +4105,8 @@
    <record>
       <ID>peri32-dataelement-7589</ID>
       <naam>Huisnummerletter</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4115,8 +4115,8 @@
    <record>
       <ID>peri32-dataelement-7590</ID>
       <naam>Huisnummertoevoeging</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4125,8 +4125,8 @@
    <record>
       <ID>peri32-dataelement-7591</ID>
       <naam>AanduidingBijNummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line.extension:additionalLocator</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4135,8 +4135,8 @@
    <record>
       <ID>peri32-dataelement-7592</ID>
       <naam>Postcode</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line.postalCode</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4145,8 +4145,8 @@
    <record>
       <ID>peri32-dataelement-7593</ID>
       <naam>Woonplaats</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line.city</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4155,8 +4155,8 @@
    <record>
       <ID>peri32-dataelement-7594</ID>
       <naam>Gemeente</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line.district</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4165,8 +4165,8 @@
    <record>
       <ID>peri32-dataelement-7595</ID>
       <naam>Land</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPersonaddress.country</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4175,8 +4175,8 @@
    <record>
       <ID>peri32-dataelement-7596</ID>
       <naam>AdditioneleInformatie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.line.extension:unitID</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4185,8 +4185,8 @@
    <record>
       <ID>peri32-dataelement-7597</ID>
       <naam>AdresSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>RelatedPerson.address.type/.use (via conceptmap)</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4195,8 +4195,8 @@
    <record>
       <ID>peri32-dataelement-7598</ID>
       <naam>Naamgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4205,8 +4205,8 @@
    <record>
       <ID>peri32-dataelement-7599</ID>
       <naam>Voornamen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.given</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4215,8 +4215,8 @@
    <record>
       <ID>peri32-dataelement-7600</ID>
       <naam>Initialen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.given</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4225,8 +4225,8 @@
    <record>
       <ID>peri32-dataelement-7601</ID>
       <naam>Roepnaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.given</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4235,8 +4235,8 @@
    <record>
       <ID>peri32-dataelement-7602</ID>
       <naam>Naamgebruik</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.use</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4245,8 +4245,8 @@
    <record>
       <ID>peri32-dataelement-7603</ID>
       <naam>Geslachtsnaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.family:humannameOwnName</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4255,8 +4255,8 @@
    <record>
       <ID>peri32-dataelement-7604</ID>
       <naam>Voorvoegsels</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.family:humannameOwnPrefix</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4265,8 +4265,8 @@
    <record>
       <ID>peri32-dataelement-7605</ID>
       <naam>Achternaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.family:humannameOwnName</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4275,8 +4275,8 @@
    <record>
       <ID>peri32-dataelement-7606</ID>
       <naam>GeslachtsnaamPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.family:humannamePartnerName</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4285,8 +4285,8 @@
    <record>
       <ID>peri32-dataelement-7607</ID>
       <naam>VoorvoegselsPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.family:humannamePartnerPrefix</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4295,8 +4295,8 @@
    <record>
       <ID>peri32-dataelement-7608</ID>
       <naam>AchternaamPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Relatedperson.name.family:humannamePartnerName</mapping>
+      <profile>nl-core-relatedperson</profile>
       <in/>
       <zib/>
       <example/>
@@ -4305,8 +4305,8 @@
    <record>
       <ID>peri32-dataelement-7609</ID>
       <naam>Rol of Functie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.informationSource.extension:role</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -4315,8 +4315,8 @@
    <record>
       <ID>peri32-dataelement-7610</ID>
       <naam>Informant is patiënt</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.informationSource</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -4325,8 +4325,8 @@
    <record>
       <ID>peri32-dataelement-7611</ID>
       <naam>Informant is zorgverlener</naam>
-      <mapping/>
-      <profile/>
+      <mapping>MedicationStatement.informationSource</mapping>
+      <profile>zib-MedicationUse</profile>
       <in/>
       <zib/>
       <example/>
@@ -4335,8 +4335,8 @@
    <record>
       <ID>peri32-dataelement-7612</ID>
       <naam>Zorgverlener</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4345,8 +4345,8 @@
    <record>
       <ID>peri32-dataelement-7613</ID>
       <naam>ZorgverlenerIdentificatieNummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.identifier</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4355,8 +4355,8 @@
    <record>
       <ID>peri32-dataelement-7614</ID>
       <naam>ZorgverlenerNaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4365,8 +4365,8 @@
    <record>
       <ID>peri32-dataelement-7615</ID>
       <naam>Naamgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4375,8 +4375,8 @@
    <record>
       <ID>peri32-dataelement-7616</ID>
       <naam>Voornamen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.given</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4385,8 +4385,8 @@
    <record>
       <ID>peri32-dataelement-7617</ID>
       <naam>Initialen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.given</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4395,8 +4395,8 @@
    <record>
       <ID>peri32-dataelement-7618</ID>
       <naam>Roepnaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.given</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4405,8 +4405,8 @@
    <record>
       <ID>peri32-dataelement-7619</ID>
       <naam>Naamgebruik</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.use</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4415,8 +4415,8 @@
    <record>
       <ID>peri32-dataelement-7620</ID>
       <naam>Geslachtsnaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:humannameOwnName</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4425,8 +4425,8 @@
    <record>
       <ID>peri32-dataelement-7621</ID>
       <naam>Voorvoegsels</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:humannameOwnPrefix</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4435,8 +4435,8 @@
    <record>
       <ID>peri32-dataelement-7622</ID>
       <naam>Achternaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:humannameOwnName</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4445,8 +4445,8 @@
    <record>
       <ID>peri32-dataelement-7623</ID>
       <naam>GeslachtsnaamPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:humannamePartnerName</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4455,8 +4455,8 @@
    <record>
       <ID>peri32-dataelement-7624</ID>
       <naam>VoorvoegselsPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:humannamePartnerPrefix</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4465,8 +4465,8 @@
    <record>
       <ID>peri32-dataelement-7625</ID>
       <naam>AchternaamPartner</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.name.family:humannamePartnerName</mapping>/>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4475,7 +4475,7 @@
    <record>
       <ID>peri32-dataelement-7626</ID>
       <naam>Specialisme</naam>
-      <mapping/>
+      <mapping>PractitionerRole.specialty</mapping>
       <profile/>
       <in/>
       <zib/>
@@ -4485,8 +4485,8 @@
    <record>
       <ID>peri32-dataelement-7627</ID>
       <naam>Adres</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.addresss</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4495,8 +4495,8 @@
    <record>
       <ID>peri32-dataelement-7628</ID>
       <naam>Adresgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.addresss</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4505,8 +4505,8 @@
    <record>
       <ID>peri32-dataelement-7629</ID>
       <naam>Straat</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line.streetName</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4515,8 +4515,8 @@
    <record>
       <ID>peri32-dataelement-7630</ID>
       <naam>Huisnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line.houseNumber</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4525,8 +4525,8 @@
    <record>
       <ID>peri32-dataelement-7631</ID>
       <naam>Huisnummerletter</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4535,8 +4535,8 @@
    <record>
       <ID>peri32-dataelement-7632</ID>
       <naam>Huisnummertoevoeging</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4545,8 +4545,8 @@
    <record>
       <ID>peri32-dataelement-7633</ID>
       <naam>AanduidingBijNummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line:extension:additionalLocator</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4555,8 +4555,8 @@
    <record>
       <ID>peri32-dataelement-7634</ID>
       <naam>Postcode</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.postalCode</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4565,8 +4565,8 @@
    <record>
       <ID>peri32-dataelement-7635</ID>
       <naam>Woonplaats</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.city</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4575,8 +4575,8 @@
    <record>
       <ID>peri32-dataelement-7636</ID>
       <naam>Gemeente</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.district</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4585,8 +4585,8 @@
    <record>
       <ID>peri32-dataelement-7637</ID>
       <naam>Land</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.country</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4595,8 +4595,8 @@
    <record>
       <ID>peri32-dataelement-7638</ID>
       <naam>AdditioneleInformatie</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.line.extension</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4605,8 +4605,8 @@
    <record>
       <ID>peri32-dataelement-7639</ID>
       <naam>AdresSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.address.use/.type (via conceptMap)</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4615,8 +4615,8 @@
    <record>
       <ID>peri32-dataelement-7640</ID>
       <naam>TelefoonEmail</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4625,8 +4625,8 @@
    <record>
       <ID>peri32-dataelement-7641</ID>
       <naam>Contactgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4635,8 +4635,8 @@
    <record>
       <ID>peri32-dataelement-7642</ID>
       <naam>Telefoonnummers</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.value</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4645,8 +4645,8 @@
    <record>
       <ID>peri32-dataelement-7643</ID>
       <naam>Telefoonnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.value</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4655,8 +4655,8 @@
    <record>
       <ID>peri32-dataelement-7644</ID>
       <naam>NummerSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.use</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4665,8 +4665,8 @@
    <record>
       <ID>peri32-dataelement-7645</ID>
       <naam>EmailAdressen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.value</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4675,8 +4675,8 @@
    <record>
       <ID>peri32-dataelement-7646</ID>
       <naam>EmailAdres</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.value</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4685,8 +4685,8 @@
    <record>
       <ID>peri32-dataelement-7647</ID>
       <naam>EmailSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Practitioner.telecom.use</mapping>
+      <profile>nl-core-practitioner</profile>
       <in/>
       <zib/>
       <example/>
@@ -4699,44 +4699,44 @@
       <profile/>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7649</ID>
       <naam>Zorgaanbieder</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7650</ID>
-      <naam>ZorgaanbiederIdentificatieNummer</naam>
-      <mapping/>
-      <profile/>
+      <naam>ZorgaanbiederIdentificatienummer</naam>
+      <mapping>Organization.identifier</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7651</ID>
       <naam>OrganisatieNaam</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.name</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7652</ID>
       <naam>AfdelingSpecialisme</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization?</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
       <example/>
@@ -4745,221 +4745,221 @@
    <record>
       <ID>peri32-dataelement-7653</ID>
       <naam>TelefoonEmail</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7654</ID>
       <naam>Contactgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7655</ID>
       <naam>Telefoonnummers</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.value</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7656</ID>
       <naam>Telefoonnummer</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.value</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7657</ID>
       <naam>NummerSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.use</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7658</ID>
       <naam>EmailAdressen</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7659</ID>
       <naam>EmailAdres</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.value</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7660</ID>
       <naam>EmailSoort</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.telecom.use</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7661</ID>
       <naam>Adres</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7662</ID>
       <naam>Adresgegevens</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7663</ID>
       <naam>Straat</naam>
-      <mapping/>
-      <profile/>
+      <mapping>Organization.address.line.streetName</mapping>
+      <profile>nl-core-organization</profile>
       <in/>
-      <zib/>
-      <example/>
+      <zib>NL-CM-20.5.2</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7664</ID>
       <naam>Huisnummer</naam>
-      <mapping/>
-      <profile/>
+      <naam>Huisnummer</naam>
+      <mapping>Organization.address.line.houseNumber</mapping>
       <in/>
-      <zib/>
-      <example/>
+      <zib>NL-CM-20.5.12</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7665</ID>
       <naam>Huisnummerletter</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
-      <example/>
+      <mapping>Organization.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
+      <zib>NL-CM-20.5.11</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7666</ID>
       <naam>Huisnummertoevoeging</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
-      <example/>
+      <mapping>Organization.address.line:extension:buildingNumbersuffix</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
+      <zib>NL-CM-20.5.10</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7667</ID>
       <naam>AanduidingBijNummer</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
+      <mapping>Organization.address.line:extension:additionalLocator</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
+      <zib>NL-CM-20.5.9</zib>
       <example/>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7668</ID>
       <naam>Postcode</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
-      <example/>
+      <mapping>Organization.address.postalCode</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
+      <zib>NL-CM-20.5.6</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7669</ID>
       <naam>Woonplaats</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
-      <example/>
+      <mapping>Organization.address.city</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
+      <zib>NL-CM-20.5.3</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7670</ID>
       <naam>Gemeente</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
-      <example/>
+      <mapping>Organization.address.district</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
+      <zib>NL-CM-20.5.4</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7671</ID>
       <naam>Land</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
-      <example/>
+      <mapping>Organization.address.country</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
+      <zib>NL-CM-20.5.5</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7672</ID>
       <naam>AdditioneleInformatie</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
+      <mapping>Organization.address.line.extension</mapping>
+      <profile>nl-core-organization</profile>
+      <in>false</in>
+      <zib>NL-CM-20.5.7</zib>
       <example/>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7673</ID>
       <naam>AdresSoort</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
+      <mapping>Organization.address.use/.type (via conceptMap)</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
+      <zib>NL-CM-20.5.8</zib>
       <example/>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-7674</ID>
       <naam>OrganisatieType</naam>
-      <mapping/>
-      <profile/>
-      <in/>
+      <mapping>Organization.type</mapping>
+      <profile>nl-core-organization</profile>
+      <in>true</in>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/organization-example-duplicate-3</example>
       <searchurl/>
    </record>
    <record>
@@ -8447,6 +8447,7 @@
       <profile>zib-ApgarScore</profile>
       <in/>
       <zib/>
+      <searchurl>GET [base]/Observation?context=EpisodeOfCare/[id for pregnancy episode]&amp;patient=[child-id]{&amp;code=http://loinc.org |9274-2}</searchurl>
    </record>
    <record>
       <ID>peri32-dataelement-9665</ID>
@@ -8463,6 +8464,7 @@
       <profile>zib-ApgarScore</profile>
       <in/>
       <zib/>
+      <searchurl>GET [base]/Observation?context=EpisodeOfCare/[id for pregnancy episode]&amp;patient=[child-id]{&amp;code=http://loinc.org |9271-8}</searchurl>
    </record>
    <record>
       <ID>peri32-dataelement-9674</ID>
@@ -9467,7 +9469,7 @@
       <in>true</in>
       <zib/>
       <example>https://simplifier.net/geboortezorg-stu3/encounter-example-duplicate-3</example>
-      <searchurl>GET [base]/Encounter?type=http://snomed.info/sct |18114009&amp;episodeofcare=EpisodeOfCare/[id for pregnancy episode]&amp;_include=Encounter:participant:Practitioner</searchurl>
+      <searchurl>GET [base]/Encounter?type=http://snomed.info/sct |18114009&amp;episodeofcare=[id for pregnancy episode]&amp;_include=Encounter:participant:Practitioner</searchurl>
    </record>
    <record>
       <ID>peri32-dataelement-1811</ID>
@@ -10307,7 +10309,7 @@
       <in>true</in>
       <zib/>
       <example>https://simplifier.net/geboortezorg-stu3/example-pregnancy-disorder</example>
-      <searchurl>GET [base]/Condition?category=http://snomed.info/sct |173300003&amp;context=EpisodeOfCare/[id for pregnancy episode],Encounter/[prenatal visit id]</searchurl>
+      <searchurl>GET [base]/Condition?category=http://snomed.info/sct |173300003&amp;context=EpisodeOfCare/[id for pregnancy episode]</searchurl>
    </record>
    <record>
       <ID>peri32-dataelement-1181</ID>
@@ -10417,7 +10419,7 @@
       <in>true</in>
       <zib/>
       <example>https://simplifier.net/geboortezorg-stu3/prenataal-onderzoek</example>
-      <searchurl>GET [base]/Procedure?category=http://snomed.info/sct |386637004&amp;context=EpisodeOfCare/[id for pregnancy episode],Encounter/[prenatal visit id]</searchurl>
+      <searchurl>GET [base]/Procedure?category=http://snomed.info/sct |386637004&amp;context=EpisodeOfCare/[id for pregnancy episode]</searchurl>
    </record>
    <record>
       <ID>peri32-dataelement-1191</ID>
@@ -10727,7 +10729,7 @@
       <in>true</in>
       <zib/>
       <example>https://simplifier.net/geboortezorg-stu3/begin-actieve-ontsluiting-wouden-zwanger1</example>
-      <searchurl>GET [base]/Observation?context=EpisodeOfCare/[id for pregnancy episode]{&amp;code=http://snomed.info/sct |249120008}</searchurl>
+      <searchurl>GET [base]/Observation?context=EpisodeOfCare/[id for pregnancy episode]{&amp;code=http://snomed.info/sct |439771001}</searchurl>
    </record>
    <record>
       <ID>peri32-dataelement-4085</ID>
@@ -11212,7 +11214,7 @@
       <ID>peri32-dataelement-39</ID>
       <naam>Uitdrijvingsfase</naam>
       <mapping>Procedure</mapping>
-      <profile>bc-Birth</profile>/>
+      <profile>bc-Birth</profile>
       <in>false</in>
       <zib/>
       <example/>
@@ -13353,7 +13355,7 @@
       <in>true</in>
       <zib/>
       <example>https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-77</example>
-      <searchurl>GET [base]/Observation?context=EpisodeOfCare/[id for pregnancy episode]&amp;patient=[child-id]{&amp;code=http://loinc.org |9274-2}</searchurl>
+      <searchurl>GET [base]/Observation?context=EpisodeOfCare/[id for pregnancy episode]&amp;patient=[child-id]{&amp;code=http://loinc.org |9272-6}</searchurl>
    </record>
    <record>
       <ID>peri32-dataelement-1409</ID>
@@ -15279,37 +15281,37 @@
       <ID>peri32-dataelement-2416</ID>
       <naam>Verrichting (Onderzoek)</naam>
       <mapping>Procedure</mapping>
-      <profile>bc-ObstetricProcedure</profile>
+      <profile>zib-Procedure</profile>
       <in>true</in>
       <zib/>
-      <example/>
-      <searchurl>GET [base]/Procedure?category=http://snomed.info/sct |386637004&amp;context=EpisodeOfCare/[id for pregnancy episode]</searchurl>
+      <example>https://simplifier.net/geboortezorg-stu3/medicalinvestigation</example>
+      <searchurl>GET [base]/Procedure?context=EpisodeOfCare/[id for pregnancy episode]</searchurl>
    </record>
    <record>
       <ID>peri32-dataelement-2417</ID>
       <naam>VerrichtingStartDatum</naam>
       <mapping>Procedure.effectivePeriod.start</mapping>
-      <profile>bc-ObstetricProcedure</profile>
+      <profile>zib-Procedure</profile>
       <in>true</in>
       <zib>NL-CM-14.1.2</zib>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/medicalinvestigation</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-2418</ID>
       <naam>VerrichtingEindDatum</naam>
       <mapping>Procedure.effectivePeriod.end</mapping>
-      <profile>bc-ObstetricProcedure</profile>
+      <profile>zib-Procedure</profile>
       <in>true</in>
       <zib>NL-CM-14.1.3</zib>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/medicalinvestigation</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-2419</ID>
       <naam>VerrichtingAnatomischeLocatie</naam>
       <mapping>Procedure.bodySite</mapping>
-      <profile>bc-ObstetricProcedure</profile>
+      <profile>zib-Procedure</profile>
       <in>true</in>
       <zib>NL-CM-14.1.8</zib>
       <example/>
@@ -15319,7 +15321,7 @@
       <ID>peri32-dataelement-2420</ID>
       <naam>VerrichtingLateraliteit</naam>
       <mapping>Procedure.bodySite.extension:Laterality.valueCodeableConcept</mapping>
-      <profile>bc-ObstetricProcedure</profile>
+      <profile>zib-Procedure</profile>
       <in>true</in>
       <zib>NL-CM-14.1.11</zib>
       <example/>
@@ -15329,7 +15331,7 @@
       <ID>peri32-dataelement-2421</ID>
       <naam>Indicatie</naam>
       <mapping>Procedure.reasonReference</mapping>
-      <profile>bc-ObstetricProcedure</profile>
+      <profile>zib-Procedure</profile>
       <in>true</in>
       <zib>NL-CM-14.1.9</zib>
       <example/>
@@ -23019,7 +23021,7 @@
       <ID>peri32-dataelement-1060</ID>
       <naam>Bloeddruk</naam>
       <mapping/>
-      <profile/>
+      <profile>zib-BloodPressure</profile>
       <in/>
       <zib/>
       <example/>
@@ -23499,7 +23501,7 @@
       <ID>peri32-dataelement-1074</ID>
       <naam>GewichtWaarde</naam>
       <mapping/>
-      <profile/>
+      <profile>zib-BodyWeight</profile>
       <in/>
       <zib/>
       <example/>

@@ -87,7 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <search>
                     <mode value="{$searchMode}"/>
                 </search>
-            </xsl:if>Vr
+            </xsl:if>
         </entry>
     </xsl:template>
  
@@ -107,6 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="elementName" select="name(.)"/>
         <xsl:variable name="parentElemId" select="parent::node()/@id"/>
         <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
+        <xsl:variable name="dateElement" select="(node()|../node())[name(.)='datum_bepaling' or substring(name(.),string-length(name(.)) + 1 - string-length('datum_tijd'), string-length(name(.)))='datum_tijd']"/>
   
         <xsl:for-each select="$in">            
             <Observation>
@@ -138,6 +139,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:if>
                 <status value="final"/>
+                <xsl:if test="name(.)=('bloeddruk','gewicht_waarde','lengte_waarde','schedelomvang_waarde')">
+                    <category>
+                        <coding>
+                            <system value="http://hl7.org/fhir/observation-category" />
+                            <code value="vital-signs" />
+                            <display value="Vital Signs" />
+                        </coding>
+                    </category>
+                </xsl:if>
                 <code>
                     <xsl:call-template name="bc-coding"/>
                 </code>
@@ -185,16 +195,71 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>                         
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:for-each select="(node()|../node())[name(.)='datum_bepaling' or substring(name(.),string-length(name(.)) + 1 - string-length('datum_tijd'), string-length(name(.)))='datum_tijd']">
-                    <effectiveDateTime value="{@value}">
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                <xsl:with-param name="precision" select="'DAY'"/>
-                            </xsl:call-template>
-                        </xsl:attribute>
-                    </effectiveDateTime>
-                </xsl:for-each>
+                <xsl:choose>
+                    <!-- indien een datum element is opgenomen in de observatie, deze overnemen -->
+                    <xsl:when test="$dateElement">
+                        <xsl:for-each select="$dateElement">
+                            <effectiveDateTime value="{@value}">
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="precision" select="'DAY'"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </effectiveDateTime>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <!-- indien geen datum ingevuld dit afleiden uit contact waarbinnen observatie heeft plaatsgevonden -->
+                    <xsl:when test="ancestor::prenatale_controle/datum_prenatale_controle/begin_datum_tijd">
+                        <xsl:for-each select="ancestor::prenatale_controle/datum_prenatale_controle/begin_datum_tijd">
+                            <effectiveDateTime value="{@value}">
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="precision" select="'DAY'"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </effectiveDateTime>                   
+                        </xsl:for-each>
+                    </xsl:when>
+                    <!-- indien niet gekoppeld aan contact voor lichamelijk onderzoek kind bij geboorte de geboortedatum overnemen -->
+                    <xsl:when test="ancestor::lichamelijk_onderzoek_kind">
+                        <xsl:variable name="kindId" select="ancestor::kind/demografische_gegevens/patient/@value"/>
+                        <xsl:for-each select="ancestor::*/administratief/patient[@id=$kindId]/geboortedatum">
+                            <effectiveDateTime value="{@value}">
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="precision" select="'DAY'"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </effectiveDateTime>                   
+                        </xsl:for-each>                       
+                    </xsl:when>
+                    <!-- voor overige observaties waarbij datum verplicht is de periode van de episode invullen -->
+                    <xsl:otherwise>
+                        <xsl:for-each select="ancestor::*/zorgverlening/zorg_episode">
+                            <effectivePeriod>
+                                <start value="{begin_datum/@value}">
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(begin_datum/@value)"/>
+                                            <xsl:with-param name="precision" select="'DAY'"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </start>
+                                <end value="{eind_datum/@value}">
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(eind_datum/@value)"/>
+                                            <xsl:with-param name="precision" select="'DAY'"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </end>                       
+                            </effectivePeriod>
+                        </xsl:for-each>
+                    </xsl:otherwise>
+                </xsl:choose>
                 <!-- voor observaties met componenten value[x] leeglaten -->
                 <xsl:if test="not(name(.)='bloeddruk')">
                     <xsl:for-each select=".">
@@ -210,7 +275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </valueDateTime>
                             </xsl:when>
-                            <xsl:when test="not(@code) and @value castable as xs:integer">
+                            <xsl:when test="not(@code) and (@value castable as xs:integer or @value castable as xs:decimal)">
                                 <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">
                                     <xsl:call-template name="hoeveelheid-to-Quantity">
                                         <xsl:with-param name="in" select="."/>
@@ -266,7 +331,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </valueDateTime>
                             </xsl:when>
-                            <xsl:when test="not(@code) and @value castable as xs:integer">
+                            <xsl:when test="not(@code) and (@value castable as xs:integer or @value castable as xs:decimal)">
                                 <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">
                                     <xsl:call-template name="hoeveelheid-to-Quantity">
                                         <xsl:with-param name="in" select="."/>

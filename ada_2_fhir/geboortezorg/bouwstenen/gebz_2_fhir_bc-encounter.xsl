@@ -114,6 +114,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>                    
                 <status value="finished"/>  
                 <xsl:if test="name(.)='prenatale_controle'">
+                    <class>
+                        <system value="http://hl7.org/fhir/v3/ActCode"/>
+                        <code value="AMB"/>
+                        <display value="ambulatory"/>
+                    </class>
                     <type>
                         <coding>
                             <system value="http://snomed.info/sct"/>
