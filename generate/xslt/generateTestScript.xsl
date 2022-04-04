@@ -424,13 +424,13 @@
     
     <!-- Include or exclude elements with the nts:ifset and nts:ifnotset attributes, based on whether the specified 
         parameter is passed in an nts:include. -->
-    <xsl:template match="*[@nts:ifset]" mode="expand">
+    <xsl:template match="*[@nts:ifset]" mode="expand" priority="2">
         <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
         <xsl:if test="./@nts:ifset = $inclusionParameters/@name/string()">
             <xsl:next-match/>
         </xsl:if>
     </xsl:template>
-    <xsl:template match="*[@nts:ifnotset]" mode="expand">
+    <xsl:template match="*[@nts:ifnotset]" mode="expand" priority="2">
         <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
         <xsl:if test="not(./@nts:ifnotset = $inclusionParameters/@name/string())">
             <xsl:next-match/>
@@ -488,7 +488,7 @@
 
     <!-- Pre-filter in the expand mode to only include elements that are in the target designated using the 'target'
          stylesheet parameter -->
-    <xsl:template match="(f:*|nts:*)" mode="expand" priority="2">
+    <xsl:template match="(f:*|nts:*)" mode="expand" priority="3">
         <xsl:if test=".[$target = tokenize(@nts:in-targets, ' ') or not(@nts:in-targets)]">
             <xsl:next-match/>
         </xsl:if>
