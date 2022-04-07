@@ -4228,7 +4228,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </organizer>
     </xsl:template>
-    
+
     <!-- Reden verwijzing (bevalling) 2.3.3 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901056_20161202173313">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
@@ -4635,7 +4635,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </outboundRelationship>
             </xsl:for-each>
             <!-- Geen kinderarts betrokken, MdG -->
-            <xsl:if test="./kindspecifieke_uitkomstgegevens/kinderarts_betrokkenq/@value='false'">
+            <xsl:if test="./kindspecifieke_uitkomstgegevens/kinderarts_betrokkenq/@value = 'false'">
                 <outboundRelationship typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN" negationInd="true">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901020"/>
@@ -4644,7 +4644,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </outboundRelationship>
             </xsl:if>
             <!-- Geen groep betrokkenheid kinderarts, wel kinderarts betrokken of nullFlavor, MdG -->
-            <xsl:if test="not(./kindspecifieke_uitkomstgegevens/betrokkenheid_kinderarts) and ./kindspecifieke_uitkomstgegevens/kinderarts_betrokkenq[not(@value='false')]">
+            <xsl:if test="not(./kindspecifieke_uitkomstgegevens/betrokkenheid_kinderarts) and ./kindspecifieke_uitkomstgegevens/kinderarts_betrokkenq[not(@value = 'false')]">
                 <outboundRelationship typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN" negationInd="true">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901020"/>
@@ -6796,6 +6796,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <location typeCode="ORG">
                     <healthCareFacility classCode="DSDLOC">
                         <serviceProviderOrganization classCode="ORG" determinerCode="INSTANCE">
+                            <!-- GZ-485, unfortunately the current 2.3.5 template has a requirement for an id with yet another oid -->
+                            <!-- workaround to prevent schematron from raising unnecessary error -->
+                            <!-- AWE: fixed in 2.3.6 -->
+                            <xsl:choose>
+                                <!-- do nothing in 2.3.6 -->
+                                <xsl:when test="ancestor::data/*[@app = 'perinatologie-236']"/>
+                                <!-- apply workaround otherwise -->
+                                <xsl:otherwise>
+                                    <xsl:comment>Workaround for issue https://bits.nictiz.nl/browse/GZ-485, generate unnecessary but mandatory id</xsl:comment>
+                                    <id extension="{generate-id(ancestor::data/*)}" root="2.16.840.1.113883.2.4.3.11.999.60.77.4.84194.1"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <!-- now the proper id's -->
                             <xsl:for-each select="zorginstelling_agbid[@value | @root]">
                                 <id extension="{@value}">
                                     <xsl:attribute name="root">
@@ -6832,9 +6845,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </id>
                             </xsl:for-each>
-                            <!-- GZ-485, unfortunately the current 2.3.5 template has a requirement for an id with yet another oid -->
-                            <!-- workaround to prevent schematron from raising unnecessary error -->
-                            <id extension="{generate-id(ancestor::data/*)}" root="2.16.840.1.113883.2.4.3.11.999.60.77.4.84194.1"/>
+                            <!-- naam -->
+                            <xsl:for-each select="naam_zorginstelling[@value]">
+                                <name>
+                                    <xsl:value-of select="@value"/>
+                                </name>
+                            </xsl:for-each>
                         </serviceProviderOrganization>
                     </healthCareFacility>
                 </location>
@@ -6842,7 +6858,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </observation>
     </xsl:template>
-  
+
     <!-- Vaginale kunstverlossing PRN Kernset -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900999_20161206134830">
         <procedure classCode="PROC" moodCode="EVN" negationInd="false">
@@ -7196,7 +7212,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Betrokkenheid kinderarts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638">
         <!-- context: kindspecifieke_uitkomstgegevens  -->
-        <observation classCode="OBS" moodCode="EVN" negationInd='false'>
+        <observation classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901020"/>
             <code code="KinderartsBetrokken" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Kinderarts betrokken"/>
             <!-- Item(s) :: type_betrokkenheid-->
@@ -7907,7 +7923,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </procedure>
     </xsl:template>
 
-      <xd:doc>
+    <xd:doc>
         <xd:desc>Make observation for gravidity based on ada graviditeit</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901115_20181102132812" match="graviditeit" mode="HandleGravidity">
@@ -7930,7 +7946,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeINTValue"/>
         </observation>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Meerlingzwangerschap </xd:desc>
     </xd:doc>
@@ -7941,7 +7957,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Meconiumhoudend Vruchtwater</xd:desc>
     </xd:doc>
@@ -7951,8 +7967,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <code code="168092006" codeSystem="{$oidSNOMEDCT}" displayName="meconiumhoudend vruchtwater (bevinding)" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
-    </xsl:template>    
-    
+    </xsl:template>
+
     <xd:doc>
         <xd:desc>Serotiniteit </xd:desc>
     </xd:doc>
@@ -7963,7 +7979,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
-    
+
     <!-- behoefte_aan_pijnbestrijdingq -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901254_20220118000000">
         <observation classCode="OBS" moodCode="EVN">
@@ -7975,20 +7991,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+
     <!-- Surmenage -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901255_20220118000000">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901255"/>
             <code code="87228002" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="decompensatie (bevinding)"/>
-              <!-- Item(s) :: surmenageq -->
+            <!-- Item(s) :: surmenageq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
-   
+
+
 
 
 </xsl:stylesheet>
