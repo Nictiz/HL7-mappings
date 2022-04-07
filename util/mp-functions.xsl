@@ -188,7 +188,7 @@
                                 </xsl:choose>
                                 <xsl:choose>
                                     <xsl:when test="not($frequentie)"/>
-                                    <xsl:when test="not($frequentie/tijdseenheid/@value)">keer</xsl:when>
+                                    <xsl:when test="not($frequentie/tijdseenheid/@value)">keer.</xsl:when>
                                     <xsl:otherwise>
                                         <xsl:variable name="frequentie-value">
                                             <xsl:if test="$frequentie/tijdseenheid/@value castable as xs:float and xs:float($frequentie/tijdseenheid/@value) ne 1">
@@ -247,20 +247,14 @@
                                     </xsl:when>
                                 </xsl:choose>
                                 <xsl:if test="$toedieningssnelheid">
-                                    <xsl:variable name="unitString" as="xs:string?">
-                                        <xsl:choose>
-                                            <xsl:when test="$toedieningssnelheid/tijdseenheid/@value ne '1'">
-                                                <xsl:value-of select="concat($toedieningssnelheid/tijdseenheid/@value, ' ', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))"/>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:value-of select="concat('', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:variable>
-                                <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
+                                    <xsl:value-of select="
+                                            concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', if ($toedieningssnelheid/tijdseenheid/@value ne '1') then
+                                                concat($toedieningssnelheid/tijdseenheid/@value, ' ', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))
+                                            else
+                                                '', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))"/>
                                 </xsl:if>
                             </xsl:variable>
-                            <xsl:variable name="toedieningsduur" select="(toedieningsduur | toedieningsduur/tijds_duur)[(@value | @unit)]"/>
+                            <xsl:variable name="toedieningsduur" select="./(toedieningsduur | toedieningsduur/tijds_duur)[@value | @unit]"/>
                             <xsl:variable name="toedieningsduur-string" as="xs:string?">
                                 <xsl:if test="$toedieningsduur">
                                     <xsl:value-of select="concat('gedurende ', $toedieningsduur/@value, ' ', nwf:unit-string($toedieningsduur/@value, $toedieningsduur/@unit))"/>
@@ -282,7 +276,7 @@
                                         <xsl:value-of select="$keerdosis/aantal/(vaste_waarde | nominale_waarde)/@value"/>
                                     </xsl:when>
                                     <!-- min/max -->
-                                    <xsl:when test="$keerdosis/aantal/(min | minimum_waarde | max | maximum_waarde)[@value]">
+                                    <xsl:when test="$keerdosis/aantal/(min | minimum_waarde) | (max | maximum_waarde)[@value]">
                                         <xsl:if test="$keerdosis/aantal/(min | minimum_waarde)/@value and not($keerdosis/aantal/(max | maximum_waarde)/@value)">minimaal</xsl:if>
                                         <xsl:if test="$keerdosis/aantal/(max | maximum_waarde)/@value and not($keerdosis/aantal/(min | minimum_waarde)/@value)">maximaal</xsl:if>
                                         <xsl:if test="$keerdosis/aantal/(min | minimum_waarde)/@value">
@@ -294,7 +288,7 @@
                                         </xsl:if>
                                     </xsl:when>
                                 </xsl:choose>
-                                <xsl:variable name="max-aantal" select="max($keerdosis/aantal/(min | minimum_waarde | vaste_waarde | nominale_waarde | max | maximum_waarde)/@value)"/>
+                                <xsl:variable name="max-aantal" select="max($keerdosis/aantal/((min | minimum_waarde) | (vaste_waarde | nominale_waarde) | (max | maximum_waarde))/@value)"/>
                                 <xsl:value-of select="nwf:unit-string($max-aantal, $keerdosis/eenheid/@displayName)"/>
                             </xsl:variable>
                             <xsl:variable name="dagdeel" select="toedieningsschema/dagdeel[.//(@value | @code)]"/>
@@ -317,7 +311,7 @@
                                 </xsl:if>
                             </xsl:variable>
                             <xsl:variable name="isFlexible" as="xs:string?">
-                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false' or $interval">, let op! Tijden exact aanhouden.</xsl:if>
+                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false' or $interval">- let op, tijden exact aanhouden</xsl:if>
                             </xsl:variable>
 
                             <xsl:value-of select="normalize-space(concat(string-join($zo-nodig, ' '), ' ', string-join($weekdag-string, ' '), ' ', string-join($frequentie-string, ' '), $interval-string, ' ', string-join($toedientijd-string, ' '), ' ', string-join($keerdosis-string, ' '), ' ', string-join($dagdeel-string, ' '), ' ', $toedieningsduur-string, ' ', string-join($toedieningssnelheid-string, ' '), string-join($maxdose-string, ' '), $isFlexible))"/>
