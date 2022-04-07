@@ -6851,6 +6851,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="@value"/>
                                 </name>
                             </xsl:for-each>
+                            <!-- in 2.3 dataset, but not in Kernset -->
+                            <xsl:for-each select="adresgegevens[.//(@value)]">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20170602000000">
+                                    <xsl:with-param name="adres" select="."/>
+                                </xsl:call-template>    
+                            </xsl:for-each>
                         </serviceProviderOrganization>
                     </healthCareFacility>
                 </location>
