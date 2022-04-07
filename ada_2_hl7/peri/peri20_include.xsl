@@ -13,8 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="xs xsl sdtc nf xd" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../zib2017bbr/2_hl7_zib2017bbr_include.xsl"/>
-    <xsl:import href="../zib2017bbr/payload/hl7-toelichting-20180611.xsl"/>
+    <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
     <xsl:import href="peri20_30_shared.xsl"/>
     <xsl:output method="xml" indent="yes"/>
 
@@ -4487,7 +4486,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901063_20161206000000"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./kindspecifieke_maternale_gegevens/ruggeprik_gewenst_niet_gekregenq">
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/(ruggeprik_gewenst_niet_gekregenq | ruggenprik_gewenst_niet_gekregenq)">
                 <outboundRelationship typeCode="COMP">
                     <!-- Template :: Ruggeprik gewenst, niet gekregen -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900992_20161206134140"/>
@@ -7849,38 +7848,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:for-each>
         </xsl:if>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Handles a Yes/No for a problem observation based on ada boolean element</xd:desc>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000_YN" match="element()" mode="HandleProblemObservationYN">
-        <xsl:param name="code" as="xs:string?"/>
-        <xsl:param name="codeSystem" as="xs:string?"/>
-        <xsl:param name="codeSystemName" as="xs:string?"/>
-        <xsl:param name="displayName" as="xs:string?"/>
-
-        <observation classCode="OBS" moodCode="EVN">
-            <xsl:choose>
-                <xsl:when test="@value = 'false'">
-                    <xsl:attribute name="negationInd">true</xsl:attribute>
-                </xsl:when>
-                <xsl:when test="@nullFlavor">
-                    <xsl:attribute name="nullFlavor" select="@nullFlavor"/>
-                </xsl:when>
-            </xsl:choose>
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-            <code code="282291009" displayName="Diagnose" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
-            <value xsi:type="CD" code="{$code}" codeSystem="{$codeSystem}">
-                <xsl:if test="$displayName">
-                    <xsl:attribute name="displayName" select="$displayName"/>
-                </xsl:if>
-                <xsl:if test="$codeSystemName">
-                    <xsl:attribute name="codeSystemName" select="$codeSystemName"/>
-                </xsl:if>
-            </value>
-        </observation>
-
     </xsl:template>
 
     <!-- Vorige uitkomst per kind Kernset PRN 2.3.3 -->
