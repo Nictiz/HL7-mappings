@@ -267,7 +267,7 @@
                 <parameters>
                     <param name="additionalFixtures" expression="${fixtures}" if="fixtures"/>
                     <param name="additionalRules" expression="${rules}" if="rules"/>
-                    <param name="includesDir" expression="${reference.dir.rel}"/>
+                    <param name="includesDir" expression="../_reference/"/>
                 </parameters>
             </saxon-transform>
         </sequential>
@@ -286,12 +286,9 @@
             <for param="fixture" list="${fixtures}" delimiter=";">
                 <sequential>
                     <if>
-                        <and>
-                            <isset property="@{fixture}"/>
-                            <not>
-                                <available file="${input.dir.abs}/_reference/@{fixture}"/>
-                            </not>
-                        </and>
+                        <not>
+                            <available file="${input.dir.abs}/_reference/@{fixture}"/>
+                        </not>
                         <then>
                             <fail message="Fixture '@{fixture}' is referenced but doesn't exist"/>
                         </then>
@@ -309,17 +306,14 @@
             <for param="rule" list="${rules}" delimiter=";">
                 <sequential>
                     <if>
-                        <and>
-                            <isset property="@{rule}"/>
-                            <not>
-                                <available file="${reference.dir}/@{rule}"/>
-                            </not>
-                        </and>
+                        <not>
+                            <available file="${reference.dir}/@{rule}"/>
+                        </not>
                         <then>
                             <if>
                                 <available file="${commoncomponents.dir.abs}/_reference/@{rule}"/>
                                 <then>
-                                    <copy file="${commoncomponents.dir.abs}/_reference/@{rule}" tofile="${reference.dir}/@{rule}"/>
+                                    <copy file="${commoncomponents.dir.abs}/_reference/@{rule}" tofile="${output.dir.abs}/_reference/@{rule}"/>
                                 </then>
                                 <else>
                                     <fail message="Rule '@{rule}' is referenced but doesn't exist in the local or global scope"/>
@@ -459,7 +453,7 @@
                     </for>
                     
                     <!-- Copy over all fixtures and rules -->
-                    <echo message="Copying fixtures"/>
+                    <echo message="Copying fixtures and rules"/>
                     <copy-references references.file="${references.file}"/>
                     <generate-loadresources/>
                 </sequential>
