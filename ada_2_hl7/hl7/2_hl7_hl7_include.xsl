@@ -893,7 +893,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:value-of select="@value"/>
+            <xsl:choose>
+                <xsl:when test="@value">
+                    <xsl:value-of select="@value"/>
+                </xsl:when>
+                <xsl:when test="@nullFlavor">
+                    <xsl:copy-of select="@nullFlavor"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -909,7 +919,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:value-of select="@value"/>
+            <xsl:choose>
+                <xsl:when test="@value">
+                    <xsl:value-of select="@value"/>
+                </xsl:when>
+                <xsl:when test="@nullFlavor">
+                    <xsl:copy-of select="@nullFlavor"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
