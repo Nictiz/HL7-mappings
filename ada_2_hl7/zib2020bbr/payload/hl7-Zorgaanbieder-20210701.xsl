@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
 
     <xd:doc>
-        <xd:desc>Template for zorgaanbieder in representedOrganiztion</xd:desc>
+        <xd:desc>Template for zorgaanbieder in representedOrganization</xd:desc>
         <xd:param name="in">The input ada element for zorgaanbieder, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000" match="zorgaanbieder" mode="handleZorgaanbiederReprOrg">
@@ -76,6 +76,104 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </representedOrganization>
         </xsl:for-each>
 
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Organizer custodian template for zorgaanbieder in participant Level 3. If there is any ward data (afdeling) then ParticipantRole and PlayingEntity are the ward/afdeling scoped by the organization, otherwise the organisation is ParticipantRole and PlayingEntity</xd:desc>
+        <xd:param name="in">The input ada element for zorgaanbieder, defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9032_20141113000000" match="zorgaanbieder" mode="handleZorgaanbiederCDADossierhouder">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="isAfdeling" select="exists(afdeling_specialisme | organisatie_locatie)" as="xs:boolean"/>
+            <xsl:variable name="organisatieId" select="zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer" as="element()*"/>
+            <xsl:variable name="organisatieNaam" select="organisatie_naam[@value | @nullFlavor]" as="element()*"/>
+            <participant typeCode="CST">
+                <participantRole classCode="ASSIGNED">
+                    <xsl:choose>
+                        <xsl:when test="$isAfdeling">
+                            <xsl:for-each select="organisatie_locatie/locatie_nummer">
+                                <xsl:call-template name="makeIIid"/>
+                            </xsl:for-each>
+                            
+                            <xsl:for-each select="afdeling_specialisme">
+                                <code>
+                                    <xsl:call-template name="makeCodeAttribs"/>
+                                </code>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:for-each select="$organisatieId">
+                                <xsl:call-template name="makeIIid"/>
+                            </xsl:for-each>
+                            
+                            <xsl:for-each select="organisatie_type">
+                                <code>
+                                    <xsl:call-template name="makeCodeAttribs"/>
+                                </code>
+                            </xsl:for-each>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    
+                    <xsl:for-each select=".//adresgegevens[not(adresgegevens)][.//(@value | @code | @nullFlavor)]">
+                        <addr>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
+                        </addr>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select=".//contactgegevens[not(contactgegevens)][.//(@value | @code | @nullFlavor)]">
+                        <xsl:call-template name="_CdaTelecom"/>
+                    </xsl:for-each>
+                    
+                    <xsl:choose>
+                        <xsl:when test="$isAfdeling">
+                            <playingEntity classCode="ORG" determinerCode="INSTANCE">
+                                <xsl:for-each select="organisatie_locatie/locatie_naam">
+                                    <xsl:call-template name="makeONValue">
+                                        <xsl:with-param name="xsiType"/>
+                                        <xsl:with-param name="elemName">name</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </playingEntity>
+                            <xsl:if test="$organisatieNaam">
+                                <scopingEntity classCode="ORG" determinerCode="INSTANCE">
+                                    <xsl:for-each select="$organisatieId">
+                                        <xsl:call-template name="makeIIid"/>
+                                    </xsl:for-each>
+                                    
+                                    <xsl:for-each select="organisatie_type">
+                                        <code>
+                                            <xsl:call-template name="makeCodeAttribs"/>
+                                        </code>
+                                    </xsl:for-each>
+                                    
+                                    <xsl:for-each select="$organisatieNaam">
+                                        <xsl:call-template name="makeONValue">
+                                            <xsl:with-param name="xsiType"/>
+                                            <xsl:with-param name="elemName">desc</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </scopingEntity>
+                            </xsl:if>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:if test="$organisatieNaam">
+                                <playingEntity classCode="ORG" determinerCode="INSTANCE">
+                                    <xsl:for-each select="$organisatieNaam">
+                                        <xsl:call-template name="makeONValue">
+                                            <xsl:with-param name="xsiType"/>
+                                            <xsl:with-param name="elemName">name</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </playingEntity>
+                            </xsl:if>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </participantRole>
+            </participant>
+        </xsl:for-each>
+        
     </xsl:template>
 
 </xsl:stylesheet>
