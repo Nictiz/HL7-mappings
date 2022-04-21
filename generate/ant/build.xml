@@ -16,6 +16,7 @@
     - commoncomonents.dir : The directory containing the common components.
     - lib.dir             : The directory where all build dependency's will be placed. It's a good idea to add this to
                             .gitignore.
+    - [components.dir]    : Optional - the directory containing the project components, relative to input.dir. Defaults to '_components'.
 
     Additionally, the following optional parameters may be used:
     - outputLevel: the verbosity level of the script output  
@@ -27,7 +28,7 @@
             build.properties: properties  
             InputFolder1/   : folder containing NTS files (may contain nested folders with more NTS files)
             InputFolder2/   : folder containing NTS files (may contain nested folders with more NTS files)
-            _components/    : the components specific for that project
+            _components/    : the components specific for that project - may be overridden using the components.dir parameter
             _reference/     : the fixtures for that project
     The input folder structure will be recreated in the output directory, together with the _reference folder.
 
@@ -42,6 +43,8 @@
     <!-- Make the directories passed as parameters absolute (except for output.dir.abs, because we first need to
          guarantee that this folder exists. This is done in check-input. -->
     <property name="input.dir.abs"            location="${input.dir}"/>
+    <property name="components.dir"           value="${input.dir}/_components"/>
+    <property name="components.dir.abs"       value="${components.dir}"/>
     <property name="commoncomponents.dir.abs" location="${commoncomponents.dir}"/>
     
     <!-- Try to read all project property's defined in build.properties -->
@@ -361,7 +364,6 @@
     
     <target name="build" depends="load, check-input, cleanBuildDir">
         <property name="reference.dir" location="${input.dir.abs}/_reference"/>
-        <property name="components.dir.abs" location="${input.dir.abs}/_components"/>
         
         <!-- Set default loadresources.exclude to nothing -->
         <property name="loadresources.exclude" value=""/>

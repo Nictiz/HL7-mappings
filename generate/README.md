@@ -233,7 +233,7 @@ For the project build file, a particular folder structure is expected:
 - Project1/          : A project dir
   - build.properties : A file where parameters to the build script may be set (see below).
   - InputFolder1/    : One or more dirs containg NTS files. WARNING: all folder names starting with an underscore are ignored, while all other folders are included!
-  - \_components/    : The components specific for that project
+  - \_components/    : The components specific for that project - may be overridden using the components.dir parameter
   - \_reference/     : The fixtures and rules for that project. This folder is copied verbatim to the output folder. 
 ```
 
@@ -247,7 +247,6 @@ The following build script parameters are required:
 
 The following optional parameters may be used:
 - `outputLevel=<number>`: Increase or decrease verbosity of the build script (default = 1).
-- `reference.dir=/path/to/project/fixtures`: The (base) location for the fixtures for this project. Should be an absolute or relative location, compared to `build.xml`.
 - `components.dir=/path/to/project/components`: An alternative location for project specific NTS components. Should be an absolute or relative path, compared to `build.xml`.
 - `loadresources.exclude`: a relative path to a folder containing the fixtures to be excluded or to specific filenames. Multiple entries can be comma separated. `*` is accepted as a wildcard.
   ```
