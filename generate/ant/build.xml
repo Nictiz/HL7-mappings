@@ -43,8 +43,8 @@
     <!-- Make the directories passed as parameters absolute (except for output.dir.abs, because we first need to
          guarantee that this folder exists. This is done in check-input. -->
     <property name="input.dir.abs"            location="${input.dir}"/>
-    <property name="components.dir"           value="${input.dir}/_components"/>
-    <property name="components.dir.abs"       value="${components.dir}"/>
+    <property name="components.dir"           location="${input.dir}/_components"/>
+    <property name="components.dir.abs"       location="${components.dir}"/>
     <property name="commoncomponents.dir.abs" location="${commoncomponents.dir}"/>
     
     <!-- Try to read all project property's defined in build.properties -->
