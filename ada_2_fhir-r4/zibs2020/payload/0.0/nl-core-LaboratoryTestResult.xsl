@@ -63,6 +63,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="code-to-code"/>
                 </status>
             </xsl:for-each>
+            <category>
+                <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                    <code value="laboratory"/>
+                    <display value="Laboratory"/>
+                </coding>
+            </category>
             <xsl:for-each select="$in/resultaat_type">
                 <category>
                     <xsl:call-template name="code-to-CodeableConcept"/>
@@ -173,11 +180,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:attribute>
             </status>
-            <xsl:for-each select="$in/test_uitslag_status">
-                <status>
-                    <xsl:call-template name="code-to-code"/>
-                </status>
-            </xsl:for-each>
+            <category>
+                <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                    <code value="laboratory"/>
+                    <display value="Laboratory"/>
+                </coding>
+            </category>
             <xsl:for-each select="$parent/resultaat_type">
                 <category>
                     <xsl:call-template name="code-to-CodeableConcept"/>
