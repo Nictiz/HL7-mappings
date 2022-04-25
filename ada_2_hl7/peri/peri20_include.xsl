@@ -2911,7 +2911,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:if>
             <!-- Ruggeprik gewenst, niet gekregen? -->
-            <xsl:for-each select="./kindspecifieke_maternale_gegevens/ruggeprik_gewenst_niet_gekregenq">
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/(ruggeprik_gewenst_niet_gekregenq | ruggenprik_gewenst_niet_gekregenq)">
                 <outboundRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900992_20141104013354"/>
                 </outboundRelationship>
