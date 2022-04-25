@@ -556,7 +556,7 @@
                         <component typeCode="COMP" contextConductionInd="true">
                            <act classCode="COND" moodCode="EVN">
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900357"/>
-                              <id extension="000000" nullFlavor="UNC"/>
+                              <id extension="000000" root="2.16.840.1.113883.2.4.3.11.999.60.7"/>
                               <code code="PartusNr"
                                     codeSystem="2.16.840.1.113883.2.4.4.13"
                                     displayName="Partusnummer"/>
@@ -592,7 +592,8 @@
                                     displayName="Interventie begin baring"/>
                               <methodCode code="80771000146107"
                                           codeSystem="2.16.840.1.113883.6.96"
-                                          displayName="Primaire sectio caesarea"/>
+                                          displayName="Primaire sectio caesarea"
+                                          codeSystemName="SNOMED CT"/>
                               <outboundRelationship typeCode="RSON">
                                  <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900705"/>
@@ -600,7 +601,7 @@
                                     <value xsi:type="CE"
                                            code="1"
                                            codeSystem="2.16.840.1.113883.2.4.3.22.1.2.7"
-                                           displayName="acuut levensbedreigend"/>
+                                           displayName="conditie moeder - acuut levensbedreigend"/>
                                  </observation>
                               </outboundRelationship>
                            </procedure>
@@ -815,9 +816,9 @@
                                           codeSystem="2.16.840.1.113883.6.96"
                                           displayName="Type partus"/>
                                     <value xsi:type="CE"
-                                           code="11466000"
+                                           code="274130007"
                                            codeSystem="2.16.840.1.113883.6.96"
-                                           displayName="Sectio Caesarea"/>
+                                           displayName="Secundair"/>
                                  </observation>
                               </outboundRelationship>
                               <outboundRelationship typeCode="COMP">
@@ -835,9 +836,21 @@
                                           codeSystem="2.16.840.1.113883.6.96"
                                           codeSystemName="SNOMED CT"
                                           displayName="Sectio caesarea"/>
+                                    <outboundRelationship typeCode="FLFS">
+                                       <observation classCode="OBS" moodCode="EVN">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.90.900278"/>
+                                          <code code="SectioBeslisMoment"
+                                                codeSystem="2.16.840.1.113883.2.4.4.13"
+                                                displayName="Beslismoment sectio caesarea"/>
+                                          <value xsi:type="CE"
+                                                 code="2"
+                                                 codeSystem="2.16.840.1.113883.2.4.3.22.1.3.5"
+                                                 displayName="Tijdens ontsluiting besloten"/>
+                                       </observation>
+                                    </outboundRelationship>
                                     <outboundRelationship typeCode="RSON">
                                        <observation classCode="OBS" moodCode="EVN">
-                                          <templateId root="2.16.840.1.113883.2.4.6.10.90.901105"/>
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.90.901090"/>
                                           <code code="SectioCaeInd"
                                                 codeSystem="2.16.840.1.113883.2.4.3.22.1.1"
                                                 displayName="Indicatie sectio"/>
@@ -845,18 +858,6 @@
                                                  code="444433005:246090004=130955003"
                                                  codeSystem="2.16.840.1.113883.6.96"
                                                  displayName="verdenking foetale nood"/>
-                                       </observation>
-                                    </outboundRelationship>
-                                    <outboundRelationship typeCode="RSON">
-                                       <observation classCode="OBS" moodCode="EVN">
-                                          <templateId root="2.16.840.1.113883.2.4.6.10.90.901105"/>
-                                          <code code="SectioCaeInd"
-                                                codeSystem="2.16.840.1.113883.2.4.3.22.1.1"
-                                                displayName="Indicatie sectio"/>
-                                          <value xsi:type="CE"
-                                                 code="418138009"
-                                                 codeSystem="2.16.840.1.113883.6.96"
-                                                 displayName="maternale conditie"/>
                                        </observation>
                                     </outboundRelationship>
                                  </procedure>
