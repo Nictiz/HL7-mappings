@@ -1,6 +1,5 @@
-<xsl:stylesheet xmlns:ucum="http://unitsofmeasure.org/ucum-essence" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
-    <!-- uncomment for development purposes -->
-<!--        <xsl:import href="constants.xsl"/>-->
+<xsl:stylesheet xmlns:ucum="http://unitsofmeasure.org/ucum-essence" xmlns:util="urn:hl7:utilities" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
+
     <xd:doc>
         <xd:desc>Functions for <xd:a href="http://unitsofmeasure.org/ucum.html">UCUM</xd:a> units based on the <xd:a href="http://www.unitsofmeasure.org/ucum-essence.xml">UCUM essence</xd:a> file. This is not a complete file but little is missing.</xd:desc>
     </xd:doc>
@@ -30,6 +29,56 @@
     </prefix>
     -->
     <xsl:key name="prefixcode" match="ucum:prefix" use="@Code"/>
+
+    <xd:doc>
+        <xd:desc>converts UCUM time to ada unit</xd:desc>
+        <xd:param name="UCUM-time"/>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_UCUM2ADA_unit" as="xs:string?">
+        <xsl:param name="UCUM-time" as="xs:string?"/>
+        <xsl:if test="$UCUM-time">
+            <xsl:choose>
+                <xsl:when test="$UCUM-time = 's'">
+                    <xsl:value-of select="$ada-unit-second[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'min'">
+                    <xsl:value-of select="$ada-unit-minute[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'h'">
+                    <xsl:value-of select="$ada-unit-hour[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'd'">
+                    <xsl:value-of select="$ada-unit-day[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'wk'">
+                    <xsl:value-of select="$ada-unit-week[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'mo'">
+                    <xsl:value-of select="$ada-unit-month[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'a'">
+                    <xsl:value-of select="$ada-unit-year[1]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- If all else fails: log message but return the input value -->
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="msg">Onbekende ucum tijdseenheid ('<xsl:value-of select="$UCUM-time"/>') gevonden. Kan niet converteren naar ada eenheid: input = output.</xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:value-of select="$UCUM-time"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Converts an UCUM unit as used in FHIR to ada time unit</xd:desc>
+        <xd:param name="UCUMFHIR">The UCUM unit string</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_UCUM_FHIR2ADA_unit" as="xs:string?">
+        <xsl:param name="UCUMFHIR" as="xs:string?"/>
+        <xsl:value-of select="nf:convertTime_UCUM2ADA_unit($UCUMFHIR)"/>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Return boolean true() or false() on whether or not a UCUM expression is valid expression.</xd:desc>
@@ -297,6 +346,8 @@
         </xsl:choose>
     </xsl:function>
 
+
+
     <xd:doc>
         <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
         <xd:param name="ADAunit"/>
@@ -314,12 +365,12 @@
                 <xsl:when test="$ADAunit = $ada-unit-cl">cl</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-ml">ml</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-ul">ul</xsl:when>
-                
+
                 <xsl:when test="$ADAunit = $ada-unit-druppel">[drp]</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-degrees-celsius">Cel</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-pH">[pH]</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-mmol-l">mmol/L</xsl:when>
-                
+
                 <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))">
                     <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>
                 </xsl:when>
@@ -330,7 +381,7 @@
             </xsl:choose>
         </xsl:if>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Converts ADA time unit 2 UCUM</xd:desc>
         <xd:param name="ADAtime"/>
@@ -352,7 +403,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
-    </xsl:function>    
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Converts an ada time unit to the UCUM unit as used in FHIR</xd:desc>
