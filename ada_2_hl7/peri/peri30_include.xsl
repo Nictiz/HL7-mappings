@@ -1256,7 +1256,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../SVN/AORTA/trunk/XML/schemas/CDANL_extended.xsd">
             <realmCode code="NL"/>
             <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901181"/>
             <xsl:for-each select="documentgegevens/identificatie[@value | @root | @nullFlavor]">
                 <xsl:call-template name="makeIIid"/>
             </xsl:for-each>
