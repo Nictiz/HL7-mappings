@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" name="generateNarratives" default="build">
-    
     <property name="in.dir.absolute" location="${in.dir}"/>
+
+    <dirname property="narrativegenerator.dir" file="${ant.file.generateNarratives}"/>
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
-    <property name="ivy.dep.file" value="${basedir}/ivy.xml" />
+    <property name="ivy.dep.file" value="${narrativegenerator.dir}/_ant-buildfiles/ivy.xml" />
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
 
@@ -55,49 +56,58 @@
     <!-- Actual build targets -->
     
     <target name="get-input-files">
-        <sequential>
-            <if>
-                <not>
+        <if>
+            <not>
+                <or>
                     <isset property="in.dir"/>
-                </not>
-                <then>
-                    <input message="Please enter the folder with XML files (may also be given using '-Din.dir=/path/to/xml/files')" addproperty="project"/>
-                </then>
-            </if>
-            
-            <fileset id="in.files" dir="${in.dir.absolute}">
-                <include name="**/*.xml"/>
-            </fileset>
-            <echo message="${in.dir.absolute}"/>
-        </sequential>
+                    <resourcecount refid="in.dirs" when="greater" count="0"/>
+                </or>
+            </not>
+            <then>
+                <input message="Please enter the folder with XML files (may also be given using '-Din.dir=/path/to/xml/files')" addproperty="project"/>
+            </then>
+        </if>
     </target>
         
-    <target name="create-temp-dir">
-        <tempfile property="temp.dir"/>
+    <macrodef name="run-narrative-generator">
+        <attribute name="in.dir.absolute"/>
+        
+        <sequential>
+            <fileset id="in.files" dir="@{in.dir.absolute}">
+                <include name="**/*.xml"/>
+            </fileset>
+            
+            <tempfile property="temp.dir"/>
+            
+            <xslt force="true" style="${narrativegenerator.dir}/_ant-buildfiles/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false">
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${Saxon-HE.jar}"/>
+                <param name="override" expression="true"/>
+                <outputproperty name="method" value="xml"/>
+                <outputproperty name="omit-xml-declaration" value="yes"/>
+                <outputproperty name="indent" value="yes"/>
+                <fileset refid="in.files"/>
+                <mapper type="identity"/>
+            </xslt>
+            
+            <xslt style="${narrativegenerator.dir}/_ant-buildfiles/formatXML.xsl" basedir="${temp.dir}" destdir="@{in.dir.absolute}">
+                <mapper type="identity"/>
+            </xslt>
+            
+            <delete dir="${temp.dir}"/>
+        </sequential>
+    </macrodef>
+        
+    <target name="build" depends="load-dependencies, get-input-files">
+        <for param="foo">
+            <path>
+                <dirset refid="in.dirs"/>
+            </path>
+            
+            <sequential>
+                <echo message="@{foo}"/>
+                <run-narrative-generator in.dir.absolute="@{foo}"/>
+            </sequential>
+        </for>
     </target>
-    
-    <target name="run-narrative-generator" depends="get-input-files, create-temp-dir">
-        <xslt force="true" style="addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false">
-            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-            <classpath location="${Saxon-HE.jar}"/>
-            <param name="override" expression="true"/>
-            <outputproperty name="method" value="xml"/>
-            <outputproperty name="omit-xml-declaration" value="yes"/>
-            <outputproperty name="indent" value="yes"/>
-            <fileset refid="in.files"/>
-            <mapper type="identity"/>
-        </xslt>
-    </target>
-    
-    <target name="cleanup">
-        <delete dir="${temp.dir}"/>
-    </target>
-    
-    <target name="format-xml">
-        <xslt style="formatXML.xsl" basedir="${temp.dir}" destdir="${in.dir.absolute}">
-            <mapper type="identity"/>
-        </xslt>
-    </target>
-    
-    <target name="build" depends="load-dependencies, run-narrative-generator, format-xml, cleanup"/>
 </project>
