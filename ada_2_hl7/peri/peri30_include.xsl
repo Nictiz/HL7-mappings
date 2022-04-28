@@ -151,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:attribute name="negationInd">true</xsl:attribute>
                                         </xsl:if>
                                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901247"/>
-                                        <code displayName="ziekenhuispatiënt (bevinding)" code="266938001" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <code displayName="ziekenhuispatiënt (bevinding)" code="266938001" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                     </observation>
                                 </entry>
                             </xsl:for-each>
@@ -163,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:attribute name="negationInd">true</xsl:attribute>
                                         </xsl:if>
                                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901245"/>
-                                        <code displayName="Patient discharge (procedure)" code="58000006" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <code displayName="Patient discharge (procedure)" code="58000006" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                         <xsl:call-template name="makeCEValue"/>
                                     </observation>
                                 </entry>
@@ -308,7 +308,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <component>
                                                 <observation classCode="OBS" moodCode="EVN">
                                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901212"/>
-                                                    <code code="67569000" displayName="Bronchopulmonary dysplasia of newborn (disorder)" codeSystem="{$oidSNOMEDCT}"/>
+                                                    <code code="67569000" displayName="Bronchopulmonary dysplasia of newborn (disorder)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                                     <xsl:call-template name="makeCDValue"/>
                                                     <!--                                                <value xsi:type="CD" code="22021000146102" displayName="Bronchopulmonary dysplasia of newborn - grade 1 (disorder)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>-->
                                                 </observation>
@@ -554,7 +554,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:for-each select="opname/zorgaanbieder[.//(@code | @value | @nullFlavor)]">
                                     <entryRelationship typeCode="COMP">
                                         <observation classCode="OBS" moodCode="EVN">
-                                            <code code="22232009" displayName="ziekenhuis (omgeving)" codeSystem="2.16.840.1.113883.6.96"/>
+                                            <code code="22232009" displayName="ziekenhuis (omgeving)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                                             <participant typeCode="LOC">
                                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901125_20181102172304"/>
                                             </participant>
@@ -630,7 +630,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Magnesiumsulfaat  -->
             <xsl:for-each select="complicaties_tijdens_zwangerschap/magnesiumsulfaat[@value | @nullFlavor]">
                 <entryRelationship typeCode="COMP">
-                    <substanceAdministration classCode="SBADM" moodCode="EVN">
+                    <!-- the version of publication 20200429T174815 -->
+                    <!--<substanceAdministration classCode="SBADM" moodCode="EVN">
                         <xsl:choose>
                             <xsl:when test="@value = 'false'">
                                 <xsl:attribute name="negationInd">true</xsl:attribute>
@@ -648,10 +649,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </manufacturedMaterial>
                             </manufacturedProduct>
                         </consumable>
-                    </substanceAdministration>
+                    </substanceAdministration>-->
+                    <!-- new version due to GZ-767 -->
+                    <procedure classCode="PROC" moodCode="EVN">
+                        <xsl:choose>
+                            <xsl:when test="@value = 'false'">
+                                <xsl:attribute name="negationInd">true</xsl:attribute>
+                            </xsl:when>
+                            <xsl:when test="@nullFlavor">
+                                <xsl:attribute name="nullFlavor" select="@nullFlavor"/>
+                            </xsl:when>
+                        </xsl:choose>
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901256"/>
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
+                        <code displayName="intraveneuze toediening van magnesiumsulfaat ante partum" code="107221000146106" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                    </procedure>                    
                 </entryRelationship>
-
             </xsl:for-each>
+            
             <!-- antenatale steroïden -->
             <xsl:if test="complicaties_tijdens_zwangerschap/(antenatale_steroiden[@value | @code] | antenatale_steroiden_gegevenq[@value | @nullFlavor])">
                 <entryRelationship typeCode="COMP">
@@ -670,9 +685,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                         <code code="434601000124108" displayName="behandelen met corticosteroïden voor foetale longrijping (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <xsl:for-each select="complicaties_tijdens_zwangerschap/antenatale_steroiden[@value | @code]">
-                            <methodCode>
-                                <xsl:call-template name="makeCodeAttribs"/>
-                            </methodCode>
+                            <xsl:call-template name="makeCode">
+                                <xsl:with-param name="elemName">methodCode</xsl:with-param>
+                            </xsl:call-template>
                         </xsl:for-each>
                     </procedure>
                 </entryRelationship>
@@ -1164,7 +1179,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <organizer classCode="CLUSTER" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901183"/>
-                        <code code="58941000146109" displayName="Neurological (record artifact)" codeSystem="{$oidSNOMEDCT}"/>
+                        <code code="58941000146109" displayName="Neurological (record artifact)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <statusCode code="completed"/>
                         <!-- problemen aanwezig? -->
                         <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
