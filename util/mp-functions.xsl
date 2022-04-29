@@ -260,7 +260,7 @@
                                 <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
                                 </xsl:if>
                             </xsl:variable>
-                            <xsl:variable name="toedieningsduur" select="(toedieningsduur | toedieningsduur/tijds_duur)[(@value | @unit)]"/>
+                            <xsl:variable name="toedieningsduur" select="./(toedieningsduur | toedieningsduur/tijds_duur)[@value | @unit]"/>
                             <xsl:variable name="toedieningsduur-string" as="xs:string?">
                                 <xsl:if test="$toedieningsduur">
                                     <xsl:value-of select="concat('gedurende ', $toedieningsduur/@value, ' ', nwf:unit-string($toedieningsduur/@value, $toedieningsduur/@unit))"/>
