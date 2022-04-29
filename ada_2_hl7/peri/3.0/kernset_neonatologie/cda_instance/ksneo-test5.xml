@@ -10,7 +10,7 @@
                   xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../SVN/AORTA/trunk/XML/schemas/CDANL_extended.xsd">
    <realmCode code="NL"/>
    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
-   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
+   <templateId root="2.16.840.1.113883.2.4.6.10.90.901181"/>
    <id extension="ksneo-test5" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
    <code code="118761000146105"
          displayName="rapport voor kwaliteitsregistratie over neonaten (gegevensobject)"
@@ -142,20 +142,14 @@
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
-                        <substanceAdministration classCode="SBADM" moodCode="EVN">
-                           <templateId root="2.16.840.1.113883.2.4.6.10.90.901121"/>
-                           <templateId root="2.16.840.1.113883.10.12.808"/>
-                           <consumable>
-                              <manufacturedProduct>
-                                 <manufacturedMaterial>
-                                    <code code="A12CC02"
-                                          displayName="MAGNESIUMSULFAAT"
-                                          codeSystem="2.16.840.1.113883.6.73"
-                                          codeSystemName="ATC"/>
-                                 </manufacturedMaterial>
-                              </manufacturedProduct>
-                           </consumable>
-                        </substanceAdministration>
+                        <procedure classCode="PROC" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.6.10.90.901256"/>
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
+                           <code displayName="intraveneuze toediening van magnesiumsulfaat ante partum"
+                                 code="107221000146106"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
+                        </procedure>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <procedure classCode="PROC" moodCode="EVN">
@@ -613,7 +607,7 @@
                                  <manufacturedMaterial>
                                     <code code="R07AA02"
                                           codeSystem="2.16.840.1.113883.6.73"
-                                          displayName="NATUURLIJKE FOSFOLIPIDEN - &#x9;LONGSURFACTANTS"
+                                          displayName="NATUURLIJKE FOSFOLIPIDEN - LONGSURFACTANTS"
                                           codeSystemName="ATC-NL"/>
                                  </manufacturedMaterial>
                               </manufacturedProduct>
@@ -1001,7 +995,8 @@
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901183"/>
                      <code code="58941000146109"
                            displayName="Neurological (record artifact)"
-                           codeSystem="2.16.840.1.113883.6.96"/>
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                      <statusCode code="completed"/>
                      <component>
                         <observation classCode="OBS" moodCode="EVN">
@@ -1172,7 +1167,8 @@
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901247"/>
                      <code displayName="ziekenhuispatiënt (bevinding)"
                            code="266938001"
-                           codeSystem="2.16.840.1.113883.6.96"/>
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                   </observation>
                </entry>
                <entry>
@@ -1180,7 +1176,8 @@
                      <templateId root="2.16.840.1.113883.2.4.6.10.90.901245"/>
                      <code displayName="Patient discharge (procedure)"
                            code="58000006"
-                           codeSystem="2.16.840.1.113883.6.96"/>
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                      <value xsi:type="CE"
                             code="115851000146108"
                             codeSystem="2.16.840.1.113883.6.96"
@@ -1306,7 +1303,8 @@
                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901212"/>
                            <code code="67569000"
                                  displayName="Bronchopulmonary dysplasia of newborn (disorder)"
-                                 codeSystem="2.16.840.1.113883.6.96"/>
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
                            <value xsi:type="CD"
                                   code="22021000146102"
                                   codeSystem="2.16.840.1.113883.6.96"
