@@ -103,6 +103,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
                 
+                <!-- distributievorm -->
+                <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9097']/hl7:code">
+                    <xsl:variable name="elemName">distributievorm</xsl:variable>
+                    <xsl:call-template name="handleCV">
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                
                 <!-- aanvullende_informatie -->
                 <!-- pre 9.2.0 this was a valueset -->
                 <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9175']/hl7:value[@code]">
