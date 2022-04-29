@@ -2,9 +2,6 @@
     <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2020-04-03T12:34:15.442+02:00" last-update-date="2020-04-17T15:11:19.803+02:00"/>
     <data>
         <beschikbaarstellen_medicatiegegevens app="mp-mp92" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301" transactionEffectiveDate="2022-02-07T00:00:00" prefix="mp-" language="nl-NL" title="MP KWALIFICATIE Medicatiegegevens VV Test VV's" desc="Test geannuleerd indicator" id="mg-example-92-1">
-            <scenario-nr value="99.1" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
-            <systeemrol value="1" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000" displayName="Beide" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"/>
-            <!--Patient found in instance with id: mg-Patient-999911557 and title: id: MP KWALIFICATIE Medicatiegegevens Patient (XXX_Kester)-->
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
                     <initialen value="B. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
@@ -18,7 +15,6 @@
                 <geboortedatum value="1954-08-02" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
                 <geslacht value="2" code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
             </patient>
-            <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_920_mg_example-1-->
             <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
                 <identificatie value="MBH_920_mg_example-1-KST" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
                 <medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43">
@@ -28,14 +24,35 @@
                         <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
                         <eind_datum_tijd value="T+9D{23:59:59}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
                     </gebruiksperiode>
+                    <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.195">
+                        <identificatie value="MBH_920_mg_example-1-MA0" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.196"/>
+                    </relatie_medicatieafspraak>
+                    <relatie_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1328">
+                        <identificatie value="MBH_920_mg_example-1-TA0" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.197"/>
+                    </relatie_toedieningsafspraak>
+                    <relatie_medicatiegebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1327">
+                        <identificatie value="MBH_920_mg_example-1-MGB0" root="2.16.840.1.113883.2.4.3.11.999.77.6.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.198"/>
+                    </relatie_medicatiegebruik>
+                    <relatie_contact conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.199">
+                        <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.845"/>
+                    </relatie_contact>
+                    <relatie_zorgepisode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.843">
+                        <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.844"/>
+                    </relatie_zorgepisode>
                     <voorschrijver comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
                         <zorgverlener datatype="reference" value="UZI-000001111-PeterVanPulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
                     </voorschrijver>
+                    <reden_wijzigen_of_staken code="112251000146103" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="te sterk effect van medicatie" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.89"/>
+                    <reden_van_voorschrijven conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.46">
+                        <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.171">
+                            <probleem_naam code="25064002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="hoofdpijn" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.184"/>
+                        </probleem>
+                    </reden_van_voorschrijven>
                     <afgesproken_geneesmiddel comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
                         <farmaceutisch_product datatype="reference" value="PRK-17469-IBUPROFEN-TABLET-600MG" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
                     </afgesproken_geneesmiddel>
                     <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50">
-                        <omschrijving value="Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 2 maal per dag 1 stuk, oraal" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+                        <omschrijving value="Wordt gegenereerd" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
                         <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" code="9" displayName="oraal" codeSystemName="G-Standaard Toedieningswegen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
                         <doseerinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55">
                             <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58">
@@ -56,6 +73,8 @@
                             </dosering>
                         </doseerinstructie>
                     </gebruiksinstructie>
+                    <aanvullende_informatie code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050" codeSystemName="G-std thesaurus 2050" displayName="Bewust lage dosering" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.90"/>
+                    <toelichting value="voorbeeld toelichting in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.91"/>
                 </medicatieafspraak>
                 <wisselend_doseerschema comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.632">
                     <identificatie value="MBH_920_mg_example-1-WDS1" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
@@ -65,13 +84,22 @@
                         <eind_datum_tijd value="T-7D{23:59:59}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                     </gebruiksperiode>
                     <wisselend_doseerschema_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1171" value="1" code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt met medicatie"/>
-                    <reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.639" value="9" code="58848006" codeSystem="2.16.840.1.113883.6.96" displayName="Gebrek aan geneesmiddeleffect"/>
+                    <reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.639" code="58848006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="geen of onvoldoende effect"/>
                     <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1362" comment="">
                         <farmaceutisch_product value="PRK-17469-IBUPROFEN-TABLET-600MG" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1363"/>
                     </afgesproken_geneesmiddel>
                     <relatie_medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.640">
                         <identificatie value="MBH_920_mg_example-1-MA1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.641"/>
                     </relatie_medicatieafspraak>
+                    <relatie_wisselend_doseerschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1319">
+                        <identificatie value="MBH_920_mg_example-1-WDS0" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.696"/>
+                    </relatie_wisselend_doseerschema>
+                    <relatie_contact conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1341">
+                        <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1342"/>
+                    </relatie_contact>
+                    <relatie_zorgepisode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1343">
+                        <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1344"/>
+                    </relatie_zorgepisode>
                     <auteur comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.642">
                         <zorgverlener value="UZI-000001111-PeterVanPulver" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.643"/>
                     </auteur>
@@ -146,7 +174,7 @@
                             </dosering>
                         </doseerinstructie>
                     </gebruiksinstructie>
-                    <toelichting value="Dosering aangepast i.v.m. te lage INR waarde." conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.694"/>
+                    <toelichting value="Dosering aangepast i.v.m. te lage bloedwaarde" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.694"/>
                 </wisselend_doseerschema>
                 <verstrekkingsverzoek comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.274">
                     <identificatie value="MBH_920_mg_example-1_VV1" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.289"/>
@@ -161,6 +189,7 @@
                         <aantal value="20" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.562"/>
                         <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.563"/>
                     </te_verstrekken_hoeveelheid>
+                    <aantal_herhalingen value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.284"/>
                     <geannuleerd_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1167"/>
                     <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.275">
                         <zorgaanbieder datatype="reference" value="URA-01236578-ApoGulleGaper" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.276"/>
@@ -168,6 +197,12 @@
                     <relatie_medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.292">
                         <identificatie value="MBH_920_mg_example-1-MA1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
                     </relatie_medicatieafspraak>
+                    <relatie_contact conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1345">
+                        <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1346"/>
+                    </relatie_contact>
+                    <relatie_zorgepisode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1347">
+                        <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1348"/>
+                    </relatie_zorgepisode>
                 </verstrekkingsverzoek>
                 <toedieningsafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
                     <identificatie value="MBH_920_mg_example-1-TA1" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
@@ -179,6 +214,7 @@
                     <verstrekker comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
                         <zorgaanbieder datatype="reference" value="URA-01236578-ApoGulleGaper" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
                     </verstrekker>
+                    <toedieningsafspraak_reden_wijzigen_of_staken code="112251000146103" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="te sterk effect van medicatie" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.333"/>
                     <geneesmiddel_bij_toedieningsafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
                         <farmaceutisch_product datatype="reference" value="PRK-17469-IBUPROFEN-TABLET-600MG" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
                     </geneesmiddel_bij_toedieningsafspraak>
@@ -204,6 +240,9 @@
                             </dosering>
                         </doseerinstructie>
                     </gebruiksinstructie>
+                    <distributievorm code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8" codeSystemName="Distributievorm" displayName="Geïndividualiseerd distributiesysteem (GDS)" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1371"/>
+                    <toedieningsafspraak_aanvullende_informatie value="voorbeeld: aanvullend informatie bij TA in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.342"/>
+                    <toelichting value="voorbeeld toelichting in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.343"/>
                     <relatie_medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
                         <identificatie value="MBH_920_mg_example-1-MA1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
                     </relatie_medicatieafspraak>
@@ -211,6 +250,7 @@
                 <medicatieverstrekking comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346">
                     <identificatie value="MBH_920_mg_example-1-MVE1" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
                     <medicatieverstrekkings_datum_tijd value="T+0D{09:12:00}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
+                    <aanschrijf_datum value="T-3D{09:20:00}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.354"/>
                     <verstrekker comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347">
                         <zorgaanbieder datatype="reference" value="URA-01236578-ApoGulleGaper" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.348"/>
                     </verstrekker>
@@ -221,6 +261,10 @@
                     <verstrekt_geneesmiddel comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351">
                         <farmaceutisch_product datatype="reference" value="PRK-17469-IBUPROFEN-TABLET-600MG" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
                     </verstrekt_geneesmiddel>
+                    <afleverlocatie value="Niet bij de buren door de brievenbus (hebben een hond)" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.359"/>
+                    <distributievorm code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8" codeSystemName="Distributievorm" displayName="Geïndividualiseerd distributiesysteem (GDS)" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.355"/>
+                    <medicatieverstrekking_aanvullende_informatie code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052" codeSystemName="G-std thesaurus 2052" displayName="Aantal bewust gewijzigd" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.357"/>
+                    <toelichting value="voorbeeld toelichting in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.360"/>
                     <relatie_verstrekkingsverzoek comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349">
                         <identificatie value="MBH_920_mg_example-1-VV1" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
                     </relatie_verstrekkingsverzoek>
@@ -262,12 +306,26 @@
                     <relatie_toedieningsafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1329">
                         <identificatie value="MBH_920_mg_example-1-TA1" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.415"/>
                     </relatie_toedieningsafspraak>
+                    <relatie_contact conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1349">
+                        <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1350"/>
+                    </relatie_contact>
+                    <relatie_zorgepisode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1351">
+                        <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1352"/>
+                    </relatie_zorgepisode>
                     <voorschrijver comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.363">
                         <zorgverlener value="UZI-000001111-PeterVanPulver" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
                     </voorschrijver>
+                    <informant conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.593">
+                        <informant_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.620"/>
+                    </informant>
                     <auteur comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
-                        <auteur_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.626"/>
+                        <auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627">
+                            <zorgverlener value="UZI-000001111-PeterVanPulver" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.628" datatype="reference"/>
+                        </auteur_is_zorgverlener>
                     </auteur>
+                    <reden_gebruik value="voorbeeld reden gebruik in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.407"/>
+                    <reden_wijzigen_of_stoppen_gebruik code="405613005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="geplande procedure" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.409"/>
+                    <toelichting value="voorbeeld toelichting in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.410"/>
                 </medicatiegebruik>
                 <medicatietoediening comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419">
                     <identificatie value="MBH_920_mg_example-1-MTD1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447" root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
@@ -289,12 +347,19 @@
                     <relatie_wisselend_doseerschema comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1325">
                         <identificatie value="MBH_920_mg_example-1-WDS1" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
                     </relatie_wisselend_doseerschema>
+                    <relatie_contact conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1353">
+                        <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1354"/>
+                    </relatie_contact>
+                    <relatie_zorgepisode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1355">
+                        <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1356"/>
+                    </relatie_zorgepisode>
                     <toediener comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437">
                         <zorgverlener comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.440">
                             <zorgverlener value="UZI-000001111-PeterVanPulver" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.441"/>
                         </zorgverlener>
                     </toediener>
-                    <medicatie_toediening_reden_van_afwijken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.444" value="8" code="153241000146104" codeSystem="2.16.840.1.113883.6.96" displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
+                    <medicatie_toediening_reden_van_afwijken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.444" code="153241000146104" codeSystem="2.16.840.1.113883.6.96" displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
+                    <toelichting value="voorbeeld toelichting in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.446"/>                    
                 </medicatietoediening>
             </medicamenteuze_behandeling>
             <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
@@ -387,10 +452,7 @@
                     <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.432" comment="">
                         <identificatie value="MBH_920_QA1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1168"/>
                     </relatie_medicatieafspraak>
-                    <relatie_wisselend_doseerschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1325" comment="">
-                        <identificatie value="MBH_920_QA1_WDS1" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
-                    </relatie_wisselend_doseerschema>
-                    <toediener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437" comment="">
+                   <toediener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437" comment="">
                         <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.440" comment="">
                             <zorgverlener value="UZI-000001111-PeterVanPulver" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.441"/>
                         </zorgverlener>

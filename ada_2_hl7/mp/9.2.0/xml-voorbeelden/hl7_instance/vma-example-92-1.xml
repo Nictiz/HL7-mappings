@@ -37,10 +37,10 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 12 dec 2020, tot en met 10 jan 2021, 1 maal per 2 dagen 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 12 dec 2021, tot en met 10 jan 2022, 1 maal per 2 dagen 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201212000000"/>
-            <high value="20210110235959"/>
+            <low value="20211212000000"/>
+            <high value="20220110235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -63,7 +63,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20210101115900"/>
+            <time value="20220101115900"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -79,6 +79,16 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="SUBJ" inversionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">voorbeeld toelichting MA in vrije tekst</text>
+            </act>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
@@ -111,7 +121,7 @@
                codeSystem="2.16.840.1.113883.6.1"
                codeSystemName="LOINC"
                displayName="Annotation comment"/>
-         <text mediaType="text/plain">hoge dosis verstoort stoelgang</text>
+         <text mediaType="text/plain">voorbeeld toelichting bij het voorstel in vrije tekst</text>
       </act>
    </component>
    <component typeCode="COMP">
@@ -121,7 +131,7 @@
                codeSystem="2.16.840.1.113883.6.1"
                codeSystemName="LOINC"
                displayName="Body height"/>
-         <effectiveTime value="20210101070500"/>
+         <effectiveTime value="20220101070500"/>
          <value xsi:type="PQ" value="165" unit="cm"/>
       </observation>
    </component>
@@ -131,7 +141,7 @@
          <code code="29463-7"
                codeSystem="2.16.840.1.113883.6.1"
                displayName="Body Weight"/>
-         <effectiveTime value="20210101070500"/>
+         <effectiveTime value="20220101070500"/>
          <value xsi:type="PQ" value="75" unit="kg"/>
       </observation>
    </component>

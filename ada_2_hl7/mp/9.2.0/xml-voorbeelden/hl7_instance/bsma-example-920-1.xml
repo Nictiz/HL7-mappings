@@ -39,10 +39,10 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 12 dec 2020, tot en met 10 jan 2021, 2 maal per dag 1 stuk, oraal</text>
+         <text mediaType="text/plain">Vanaf 12 dec 2021, tot en met 10 jan 2022, 2 maal per dag 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201212000000"/>
-            <high value="20210110235959"/>
+            <low value="20211212000000"/>
+            <high value="20220110235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -65,7 +65,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201212080000"/>
+            <time value="20211212080000"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -92,6 +92,67 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9370"/>
+               <code code="160111000146106"
+                     displayName="reden voor wijzigen van voorschrift"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="112251000146103"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="te sterk effect van medicatie"
+                      codeSystemName="SNOMED CT"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.24"/>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
+               <code code="282291009"
+                     displayName="Diagnose"
+                     codeSystem="2.16.840.1.113883.6.96"/>
+               <value xsi:type="CD"
+                      code="25064002"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="hoofdpijn"
+                      codeSystemName="SNOMED CT"/>
+               <entryRelationship typeCode="REFR" inversionInd="true">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.20"/>
+                     <code code="33999-4"
+                           displayName="Diagnosis status"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <value xsi:type="CD" nullFlavor="NI"/>
+                  </observation>
+               </entryRelationship>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9401"/>
+               <code code="11"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     displayName="Aanvullende informatie Medicatieafspraak"/>
+               <value xsi:type="CE"
+                      code="2"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
+                      displayName="Bewust lage dosering"
+                      codeSystemName="G-std thesaurus 2050"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ" inversionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">voorbeeld toelichting in vrije tekst</text>
+            </act>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
@@ -115,6 +176,42 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_920_mg_example-1-MA0"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
+               <id extension="MBH_920_mg_example-1-TA0"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <code displayName="Toedieningsafspraak"
+                     code="422037009"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9386"/>
+               <id extension="MBH_920_mg_example-1-MGB0"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <code code="422979000"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
@@ -124,6 +221,22 @@
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
             </procedure>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <encounter classCode="ENC" moodCode="EVN">
+               <id extension="MBH_920_mg_example-1-contact0"
+                   root="2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+            </encounter>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <act classCode="ACT" moodCode="EVN">
+               <id extension="MBH_920_mg_example-1-episode0"
+                   root="2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+               <code code="CONC"
+                     codeSystem="2.16.840.1.113883.5.6"
+                     displayName="Concern"
+                     codeSystemName="ActClass"/>
+            </act>
          </entryRelationship>
       </substanceAdministration>
    </component>
@@ -137,9 +250,9 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 2 dec 2020, 1 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 2 dec 2021, 1 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201202000000"/>
+            <low value="20211202000000"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
@@ -163,7 +276,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201202113200"/>
+            <time value="20211202113200"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"

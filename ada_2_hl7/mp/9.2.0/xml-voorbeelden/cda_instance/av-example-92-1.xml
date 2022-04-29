@@ -10,14 +10,14 @@
    <realmCode code="NL"/>
    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9347"/>
-   <id extension="eda3db8c-af60-11ec-1880-020000000000"
+   <id extension="c274a352-b1ad-11ec-8863-020000000000"
        root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9346.1.2.3.999"/>
    <code code="52981000146104"
          codeSystem="2.16.840.1.113883.6.96"
          codeSystemName="SNOMED CT"
          displayName="Medication section (record artifact)"/>
-   <title>Afhandelen voorschrift A. van de XXX_Boschman op 1 jan 2021</title>
-   <effectiveTime value="20210101122000"/>
+   <title>Afhandelen voorschrift A. van de XXX_Boschman op 1 jan 2022</title>
+   <effectiveTime value="20220101122000"/>
    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
    <languageCode code="nl-NL"/>
    <recordTarget>
@@ -35,7 +35,7 @@
       </patientRole>
    </recordTarget>
    <author>
-      <time value="20210101122000"/>
+      <time value="20220101122000"/>
       <assignedAuthor>
          <id nullFlavor="NI"/>
          <representedOrganization>
@@ -67,10 +67,10 @@
                            displayName="Toedieningsafspraak"
                            codeSystem="2.16.840.1.113883.6.96"
                            codeSystemName="SNOMED CT"/>
-                     <text mediaType="text/plain">Vanaf 1 jan 2021, tot en met 6 jan 2021, 1 maal per dag 1 stuk, Oraal</text>
+                     <text mediaType="text/plain">Vanaf 1 jan 2022, tot en met 6 jan 2022, 1 maal per dag 1 stuk, Oraal</text>
                      <effectiveTime xsi:type="IVL_TS">
-                        <low value="20210101000000"/>
-                        <high value="20210106235959"/>
+                        <low value="20220101000000"/>
+                        <high value="20220106235959"/>
                      </effectiveTime>
                      <routeCode code="9"
                                 codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -97,7 +97,7 @@
                         </manufacturedProduct>
                      </consumable>
                      <author>
-                        <time value="20210101122000"/>
+                        <time value="20220101122000"/>
                         <assignedAuthor>
                            <id nullFlavor="NI"/>
                            <representedOrganization>
@@ -106,6 +106,48 @@
                            </representedOrganization>
                         </assignedAuthor>
                      </author>
+                     <entryRelationship typeCode="RSON">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9394"/>
+                           <code code="160121000146101"
+                                 displayName="reden voor wijzigen van toedieningsinstructies"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"/>
+                           <value xsi:type="CE"
+                                  code="159711000146106"
+                                  codeSystem="2.16.840.1.113883.6.96"
+                                  displayName="wens patiënt"
+                                  codeSystemName="SNOMED CT"/>
+                        </observation>
+                     </entryRelationship>
+                     <entryRelationship typeCode="COMP">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9097"/>
+                           <code code="1"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                 displayName="Geïndividualiseerd distributiesysteem (GDS)"
+                                 codeSystemName="Distributievorm"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
+                           <code code="12"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                                 displayName="Aanvullende informatie Toedieningsafspraak"/>
+                           <text xsi:type="ST">voorbeeld: aanvullend informatie bij TA in vrije tekst</text>
+                        </observation>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                           <code code="48767-8"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 codeSystemName="LOINC"
+                                 displayName="Annotation comment"/>
+                           <text mediaType="text/plain">voorbeeld toelichting in vrije tekst</text>
+                        </act>
+                     </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <sequenceNumber value="1"/>
                         <substanceAdministration classCode="SBADM" moodCode="RQO">
@@ -162,7 +204,7 @@
                            code="373784005"
                            codeSystem="2.16.840.1.113883.6.96"
                            codeSystemName="SNOMED CT"/>
-                     <effectiveTime value="20210101122000"/>
+                     <effectiveTime value="20220101122000"/>
                      <quantity value="5" unit="1">
                         <translation value="5"
                                      code="245"
@@ -170,6 +212,9 @@
                                      codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                      codeSystemName="G-Standaard thesaurus basiseenheden"/>
                      </quantity>
+                     <expectedUseTime>
+                        <width value="5" unit="d"/>
+                     </expectedUseTime>
                      <product>
                         <manufacturedProduct>
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
@@ -177,7 +222,7 @@
                               <code code="560308"
                                     codeSystem="2.16.840.1.113883.2.4.4.7"
                                     displayName="METOCLOPRAMIDE HCL PCH TABLET 10MG"
-                                    codeSystemName="G-Standaard HPK">
+                                    codeSystemName="G-Standaar HPK">
                                  <translation code="6947"
                                               codeSystem="2.16.840.1.113883.2.4.4.10"
                                               displayName="METOCLOPRAMIDE TABLET 10MG"
@@ -199,6 +244,56 @@
                            </representedOrganization>
                         </assignedEntity>
                      </performer>
+                     <participant typeCode="DST">
+                        <participantRole classCode="SDLOC">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
+                           <addr>
+                              <desc>bij de buren afgeven mag ook</desc>
+                           </addr>
+                        </participantRole>
+                     </participant>
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9095"/>
+                           <code code="4"
+                                 displayName="Aanschrijfdatum"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                                 codeSystemName="MP Observaties"/>
+                           <value xsi:type="TS" value="20220101092000"/>
+                        </observation>
+                     </entryRelationship>
+                     <entryRelationship typeCode="COMP">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9097"/>
+                           <code code="1"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                 displayName="Geïndividualiseerd distributiesysteem (GDS)"
+                                 codeSystemName="Distributievorm"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9178"/>
+                           <code code="13"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                                 displayName="Aanvullende informatie Verstrekking"/>
+                           <value xsi:type="CE"
+                                  code="1"
+                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"
+                                  displayName="Aantal bewust gewijzigd"
+                                  codeSystemName="G-std thesaurus 2052"/>
+                        </observation>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                           <code code="48767-8"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 codeSystemName="LOINC"
+                                 displayName="Annotation comment"/>
+                           <text mediaType="text/plain">voorbeeld toelichting in vrije tekst</text>
+                        </act>
+                     </entryRelationship>
                      <entryRelationship typeCode="REFR">
                         <supply classCode="SPLY" moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>

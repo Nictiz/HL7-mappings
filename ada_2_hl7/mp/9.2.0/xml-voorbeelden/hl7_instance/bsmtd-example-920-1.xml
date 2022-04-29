@@ -38,7 +38,7 @@
                displayName="toediening van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20201216200500"/>
+         <effectiveTime value="20211216200500"/>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="Oraal"
@@ -99,7 +99,7 @@
          <entryRelationship typeCode="COMP">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20201216200000"/>
+               <effectiveTime value="20211216200000"/>
                <doseQuantity>
                   <center value="1" unit="1">
                      <translation value="1"
@@ -135,6 +135,16 @@
                       displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
             </observation>
          </entryRelationship>
+         <entryRelationship typeCode="SUBJ" inversionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">voorbeeld toelichting in vrije tekst</text>
+            </act>
+         </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
@@ -157,6 +167,22 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
             </procedure>
          </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <encounter classCode="ENC" moodCode="EVN">
+               <id extension="MBH_920_mg_example-1-contact0"
+                   root="2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+            </encounter>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <act classCode="ACT" moodCode="EVN">
+               <id extension="MBH_920_mg_example-1-episode0"
+                   root="2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+               <code code="CONC"
+                     codeSystem="2.16.840.1.113883.5.6"
+                     displayName="Concern"
+                     codeSystemName="ActClass"/>
+            </act>
+         </entryRelationship>
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
@@ -168,7 +194,7 @@
                displayName="toediening van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20201202103000"/>
+         <effectiveTime value="20211202103000"/>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="ORAAL"
@@ -229,7 +255,7 @@
          <entryRelationship typeCode="COMP">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20201202100000"/>
+               <effectiveTime value="20211202100000"/>
                <doseQuantity>
                   <center value="4" unit="1">
                      <translation value="4"
@@ -261,18 +287,6 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_920_QA1_WDS1"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <code code="395067002"
-                     displayName="optimaliseren van dosering van medicatie (verrichting)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
