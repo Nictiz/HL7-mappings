@@ -3,14 +3,20 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AgreementReason">
-      <valueString value="Pantozol niet leverbaar"/>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.ReasonModificationOrDiscontinuation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="182856006"/>
+            <display value="geneesmiddel niet voorradig"/>
+         </coding>
+      </valueCodeableConcept>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
       <valueDateTime value="${DATE, T, D, -50}T12:35:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T - 50 dagen, gedurende 18 dagen, 1 maal per dag 1 stuk, oraal"/>
+      <valueString value="Vanaf T - 50 dagen, gedurende 18 dagen, 2 maal per dag 1 stuk, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
@@ -44,9 +50,9 @@
       </coding>
    </category>
    <medicationReference>
-      <reference value="Medication/core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-7-1163094"/>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-52272"/>
       <type value="Medication"/>
-      <display value="PANTOZOL TABLET MSR 20MG"/>
+      <display value="PANTOPRAZOL TABLET MSR 20MG"/>
    </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-J-deXXX-Luzac"/>
@@ -71,7 +77,7 @@
    <dosageInstruction>
       <timing>
          <repeat>
-            <frequency value="1"/>
+            <frequency value="2"/>
             <period value="1"/>
             <periodUnit value="d"/>
          </repeat>

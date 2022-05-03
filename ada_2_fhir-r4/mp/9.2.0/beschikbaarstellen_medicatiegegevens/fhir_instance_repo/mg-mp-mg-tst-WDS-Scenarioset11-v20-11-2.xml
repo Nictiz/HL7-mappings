@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="83d626d8-a6b9-11ec-2081-020000000000"/>
+   <id value="a84127e6-caec-11ec-1168-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:83d62726-a6b9-11ec-2081-020000000000"/>
+      <fullUrl value="urn:uuid:a8412834-caec-11ec-1168-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="216840111388324311999776321-MBH200wdsmtd1WDStrombosedienst"/>
@@ -48,24 +48,19 @@
                   <display value="optimaliseren van dosering van medicatie"/>
                </coding>
             </category>
-            <medicationCodeableConcept>
-               <coding>
-                  <code>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                        <valueCode value="masked"/>
-                     </extension>
-                  </code>
-               </coding>
-               <text value="zie bijbehorende medicatiebouwstenen in deze medicamenteuze behandeling"/>
-            </medicationCodeableConcept>
+            <medicationReference>
+               <reference value="urn:uuid:a8412852-caec-11ec-1168-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL TABLET 1MG"/>
+            </medicationReference>
             <subject>
-               <reference value="urn:uuid:83d62708-a6b9-11ec-2081-020000000000"/>
+               <reference value="urn:uuid:a8412816-caec-11ec-1168-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <authoredOn value="2020-12-17T14:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:83d62744-a6b9-11ec-2081-020000000000"/>
+               <reference value="urn:uuid:a8412870-caec-11ec-1168-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten"/>
             </requester>
@@ -221,7 +216,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83d62708-a6b9-11ec-2081-020000000000"/>
+      <fullUrl value="urn:uuid:a8412816-caec-11ec-1168-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Pherai"/>
@@ -265,7 +260,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83d62744-a6b9-11ec-2081-020000000000"/>
+      <fullUrl value="urn:uuid:a8412870-caec-11ec-1168-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="222221111-3400-11112222"/>
@@ -273,18 +268,19 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:83d62762-a6b9-11ec-2081-020000000000"/>
+               <reference value="urn:uuid:a841288e-caec-11ec-1168-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Tanja de Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:83d62780-a6b9-11ec-2081-020000000000"/>
+               <reference value="urn:uuid:a84128ac-caec-11ec-1168-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </organization>
             <specialty>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
                   <code value="3400"/>
                   <display value="Trombosediensten"/>
                </coding>
@@ -293,7 +289,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83d62762-a6b9-11ec-2081-020000000000"/>
+      <fullUrl value="urn:uuid:a841288e-caec-11ec-1168-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-222221111"/>
@@ -325,7 +321,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83d62780-a6b9-11ec-2081-020000000000"/>
+      <fullUrl value="urn:uuid:a84128ac-caec-11ec-1168-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-11112222"/>
@@ -361,6 +357,31 @@
                <postalCode value="1332GH"/>
             </address>
          </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:a8412852-caec-11ec-1168-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-7323"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="7323"/>
+                  <display value="ACENOCOUMAROL TABLET 1MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="20303"/>
+                  <display value="ACENOCOUMAROL TABLET 1MG"/>
+               </coding>
+               <text value="ACENOCOUMAROL TABLET 1MG"/>
+            </code>
+         </Medication>
       </resource>
    </entry>
 </Bundle>
