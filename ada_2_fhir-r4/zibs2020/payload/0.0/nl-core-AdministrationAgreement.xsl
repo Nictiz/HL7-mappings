@@ -44,15 +44,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
-                <xsl:for-each select="toedieningsafspraak_aanvullende_informatie">
+                <xsl:for-each select="toedieningsafspraak_aanvullende_informatie[@code | @value]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept"/>
-                        </valueCodeableConcept>
+                        <!-- Issue MP-536 change from code to free text -->
+                        <xsl:choose>
+                            <xsl:when test="@code">
+                                <!-- support for pre MP9 2.0.0 -->
+                                <valueCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept"/>
+                                </valueCodeableConcept>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <valueString>
+                                    <xsl:call-template name="string-to-string"/>
+                                </valueString>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </extension>
                 </xsl:for-each>
 
-                <!-- MP-369 dataset concept name change -->
+                <!-- Issue MP-369 dataset concept name change -->
                 <xsl:for-each select="(reden_afspraak | toedieningsafspraak_reden_wijzigen_of_staken)[@value][not(@code)]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AgreementReason">
                         <valueString>
@@ -61,12 +72,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
-                <!-- MP-370 dataset concept type change from string to codelist -->
+                <!-- Issue MP-370 dataset concept type change from string to codelist -->
                 <xsl:for-each select="(reden_afspraak | toedieningsafspraak_reden_wijzigen_of_staken)[@code]">
-                    <extension url="TODO">
-                        <valueCode>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.ReasonModificationOrDiscontinuation">
+                        <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>
-                        </valueCode>
+                        </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
                 
