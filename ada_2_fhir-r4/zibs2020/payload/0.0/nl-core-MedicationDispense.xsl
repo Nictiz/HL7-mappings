@@ -64,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
 
-                <xsl:for-each select="distributievorm">
+                <xsl:for-each select="distributievorm[@code]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>

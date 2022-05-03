@@ -111,6 +111,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
+                
+                <!-- Issue MP-257: add disribution form to toedieningsafspraak -->
+                <xsl:for-each select="distributievorm[@code]">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept"/>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each>
 
                 <xsl:for-each select="toedieningsafspraak_stop_type">
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
