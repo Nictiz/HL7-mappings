@@ -783,22 +783,6 @@
 
     </target>
 
-    <target name="validate_hl7_sub">
-        <echo>Deleting previous results, if any</echo>
-        <mkdir dir="${sub.build.dir}/${xsl.output}"/>
-        <delete>
-            <fileset dir="${sub.build.dir}/${xsl.output}" includes="*.xml"/>
-        </delete>
-
-        <fileset id="inputfilesMP" dir="${sub.build.dir}/${xsl.input}" includes="*.xml"/>
-
-        <echo/>
-        <echo>${echo.label} ${xsl.mp} input dir ${sub.build.dir}/${xsl.input}</echo>
-        <xslt force="true" style="${xsl.mp}" destdir="${sub.build.dir}/${xsl.output}" extension=".xml" useImplicitFileset="false">
-            <fileset refid="inputfilesMP"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-    </target>
+  
 
 </project>
