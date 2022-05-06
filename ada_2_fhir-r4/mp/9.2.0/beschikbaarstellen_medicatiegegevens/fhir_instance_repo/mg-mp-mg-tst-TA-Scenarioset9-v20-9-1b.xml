@@ -1,16 +1,16 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="a7cecad4-caec-11ec-6341-020000000000"/>
+   <id value="b41736d0-cd46-11ec-8603-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:a7cecb22-caec-11ec-6341-020000000000"/>
+      <fullUrl value="urn:uuid:b417371e-cd46-11ec-8603-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="a7cecaa1-caec-11ec-6341-020000000000"/>
+            <id value="b4173768-cd46-11ec-8603-020000000000"/>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="2020-12-23T12:01:00+01:00"/>
@@ -30,6 +30,15 @@
                   <value value="MBH_200_logistiekeverbruiksperiode_eind"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"/>
+                     <code value="1"/>
+                     <display value="GDS"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_200_logistiekeverbruiksperiode_eind_TA"/>
@@ -43,18 +52,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:a7cecb40-caec-11ec-6341-020000000000"/>
+               <reference value="urn:uuid:b417373c-cd46-11ec-8603-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:a7cecb04-caec-11ec-6341-020000000000"/>
+               <reference value="urn:uuid:b4173700-cd46-11ec-8603-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:a7cecb5e-caec-11ec-6341-020000000000"/>
+                  <reference value="urn:uuid:b417375a-cd46-11ec-8603-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -106,7 +115,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a7cecb04-caec-11ec-6341-020000000000"/>
+      <fullUrl value="urn:uuid:b4173700-cd46-11ec-8603-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Nederveen"/>
@@ -150,7 +159,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a7cecb5e-caec-11ec-6341-020000000000"/>
+      <fullUrl value="urn:uuid:b417375a-cd46-11ec-8603-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -166,7 +175,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a7cecb40-caec-11ec-6341-020000000000"/>
+      <fullUrl value="urn:uuid:b417373c-cd46-11ec-8603-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1101099"/>
