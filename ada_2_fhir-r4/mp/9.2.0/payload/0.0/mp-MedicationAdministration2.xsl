@@ -19,11 +19,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA medicatie_toediening to FHIR MedicationAdministration conforming to profile nl-core-MedicationAdministration2</xd:desc>
+        <xd:desc>Converts ADA medicatie_toediening to FHIR MedicationAdministration conforming to profile mp-MedicationAdministration2</xd:desc>
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Create a nl-core-MedicationAdministration2 instance as a MedicationAdministration FHIR instance from ADA medicatie_toediening.</xd:desc>
+        <xd:desc>Create an mp-MedicationAdministration2 instance as a MedicationAdministration FHIR instance from ADA medicatie_toediening.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationAdministration.subject as ADA element or reference.</xd:param>
         <xd:param name="medicationReference">The MedicationAdministration.medicationReference as ADA element or reference.</xd:param>
@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="request">The MedicationAdministration.request as ADA element or reference.</xd:param>
         <xd:param name="performer">The MedicationAdministration.performer as ADA element or reference.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-MedicationAdministration2" mode="nl-core-MedicationAdministration2" match="medicatie_toediening | medicatietoediening" as="element(f:MedicationAdministration)?">
+    <xsl:template name="mp-MedicationAdministration2" mode="mp-MedicationAdministration2" match="medicatie_toediening | medicatietoediening" as="element(f:MedicationAdministration)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="toedienings_product/farmaceutisch_product" as="element()?"/>

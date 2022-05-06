@@ -19,17 +19,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA medicatie_gebruik to FHIR MedicationStatement conforming to profile nl-core-MedicationUse2</xd:desc>
+        <xd:desc>Converts ADA medicatie_gebruik to FHIR MedicationStatement conforming to profile mp-MedicationUse2</xd:desc>
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Create a nl-core-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_gebruik.</xd:desc>
+        <xd:desc>Create an mp-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_gebruik.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The MedicationStatement.subject as ADA element or reference.</xd:param>
         <xd:param name="medicationReference">The MedicationStatement.medicationReference as ADA element or reference.</xd:param>
         <xd:param name="prescriber">The MedicationStatement.prescriber as ADA element or reference.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-MedicationUse2" mode="nl-core-MedicationUse2" match="medicatie_gebruik | medicatiegebruik" as="element(f:MedicationStatement)?">
+    <xsl:template name="mp-MedicationUse2" mode="mp-MedicationUse2" match="medicatie_gebruik | medicatiegebruik" as="element(f:MedicationStatement)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="gebruiksproduct/farmaceutisch_product" as="element()?"/>
@@ -310,7 +310,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:for-each select="gebruiksinstructie">
-                    <xsl:call-template name="nl-core-InstructionsForUse.DosageInstruction">
+                    <xsl:call-template name="mp-InstructionsForUse.DosageInstruction">
                         <xsl:with-param name="wrapIn">dosage</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>

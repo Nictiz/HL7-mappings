@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../zibs2020/payload/zib_latest_package.xsl"/>
+    <xsl:import href="payload/mp_latest_package.xsl"/>
     <xsl:import href="../../../util/mp-functions.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
-                    <xsl:call-template name="nl-core-MedicationAgreement">
+                    <xsl:call-template name="mp-MedicationAgreement">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient"/>
                         <xsl:with-param name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]"/>
@@ -165,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
-                    <xsl:call-template name="nl-core-VariableDosingRegimen">
+                    <xsl:call-template name="mp-VariableDosingRegimen">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient"/>
                         <xsl:with-param name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]"/>
@@ -185,7 +185,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
-                    <xsl:call-template name="nl-core-DispenseRequest">
+                    <xsl:call-template name="mp-DispenseRequest">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/beoogd_verstrekker/zorgaanbieder/@value]"/>
@@ -204,7 +204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
-                    <xsl:call-template name="nl-core-AdministrationAgreement">
+                    <xsl:call-template name="mp-AdministrationAgreement">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]"/>
@@ -224,7 +224,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
-                    <xsl:call-template name="nl-core-MedicationDispense">
+                    <xsl:call-template name="mp-MedicationDispense">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]"/>
@@ -244,7 +244,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
-                    <xsl:call-template name="nl-core-MedicationUse2">
+                    <xsl:call-template name="mp-MedicationUse2">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
                         <xsl:with-param name="prescriber" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]"/>
@@ -264,7 +264,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
                 <resource>
-                    <xsl:call-template name="nl-core-MedicationAdministration2">
+                    <xsl:call-template name="mp-MedicationAdministration2">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient"/>
                       </xsl:call-template>
@@ -280,7 +280,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xd:doc>
         <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
-        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from, override for default function in nl-core-InstructionsForUse</xd:param>
+        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from, override for default function in mp-InstructionsForUse</xd:param>
     </xd:doc>
     <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiksinstructie" as="element(f:extension)?">
         <xsl:param name="in" as="element()?" select="."/>
