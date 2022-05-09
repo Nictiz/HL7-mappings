@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- TODO: check if we can use same extension as in medicatietoediening, the specific extension for MedicationUse can be made obsolete in that case -->
                 <xsl:for-each select="volgens_afspraak_indicator">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
                         <valueBoolean>
                             <xsl:call-template name="boolean-to-boolean"/>
                         </valueBoolean>
@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- auteur -->
                 <xsl:for-each select="auteur">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                         <valueReference>
                             <xsl:choose>
                                 <xsl:when test="auteur_is_patient[@value = 'true']">
