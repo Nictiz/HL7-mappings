@@ -39,13 +39,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="."/>
             <xsl:with-param name="adaElementName">
                 <xsl:choose>
-                    <xsl:when test="../parent::f:MedicationStatement">
+                    <xsl:when test="../(parent::f:MedicationStatement | parent::f:MedicationUse)">
                         <xsl:value-of select="'medicatie_gebruik_stop_type'"/>
                     </xsl:when>
-                    <xsl:when test="../parent::f:MedicationRequest[f:meta/f:profile/@value eq 'http://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen']">
+                    <xsl:when test="../parent::f:MedicationRequest[f:category/f:coding/f:code/@value = $wdsCode]">
                         <xsl:value-of select="'wisselend_doseerschema_stop_type'"/>
                     </xsl:when>
-                    <xsl:when test="../parent::f:MedicationRequest[f:meta/f:profile/@value eq 'http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement']">
+                    <xsl:when test="../parent::f:MedicationRequest[f:category/f:coding/f:code/@value = $maCode]">
                         <xsl:value-of select="'medicatieafspraak_stop_type'"/>
                     </xsl:when>
                 </xsl:choose>
