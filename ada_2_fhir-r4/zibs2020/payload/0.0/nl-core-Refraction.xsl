@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="251718005"/>
                         <display value="Refractive power (observable entity)"/>
                     </coding>
@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <bodySite>
                         <xsl:call-template name="nl-core-AnatomicalLocation"/>
                         <coding>
-                            <system value="http://snomed.info/sct"/>
+                            <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                             <code value="81745001"/>
                             <display value="structuur van bulbus oculi (lichaamsstructuur)"/>
                         </coding>
@@ -157,7 +157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <component>
             <code>
                 <coding>
-                    <system value="http://snomed.info/sct"/>
+                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                     <code value="{$snomedCode}"/>
                     <display value="{$snomedDisplay}"/>
                 </coding>

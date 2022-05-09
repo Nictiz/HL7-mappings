@@ -45,11 +45,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
 
                 <xsl:for-each select="toedieningsafspraak_aanvullende_informatie[@code | @value | @nullFlavor]">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
+                    <extension url="{$urlExtAdministrationAgreementAdditionalInformation}">
                         <!-- Issue MP-536 change from code to free text -->
                         <xsl:choose>
                             <xsl:when test="@code">
-                                <!-- support for pre MP9 2.0.0 -->
+                                <!-- legacy support -->
                                 <valueCodeableConcept>
                                     <xsl:call-template name="code-to-CodeableConcept"/>
                                 </valueCodeableConcept>
@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="422037009"/>
                         <display value="toedieningsafspraak"/>
                     </coding>

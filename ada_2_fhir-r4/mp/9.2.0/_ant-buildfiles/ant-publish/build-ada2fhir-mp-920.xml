@@ -17,11 +17,12 @@
 
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
     
-    <property name="schema.bundle" value="${build.dir}/fhir-xsd/xsd/R4/bundle.xsd"/>
-    <property name="validate.dir" value="${build.dir}/fhir-xsd/xsd/R4-sch"/>
+    <property name="schema.bundle" value="https://hl7.org/fhir/R4/bundle.xsd"/>
+    
+    <!-- local version of schematron, since we need the svrl xsl -->
+    <property name="validate.dir" value="${build.dir}/fhir-xsd/R4-sch"/>
     <property name="xsl.validate.svrl" value="${build.dir}/../../../validate/validate-svrl-output.xsl"/>
     
-
     <target name="setup_920">
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="setup_sub">
@@ -169,7 +170,7 @@
             <param name="validate.schema" value="${schema.bundle}"/>
         </antcall>-->
         
-        <antcall target="schemavalidate_sub">
+        <antcall target="schemavalidate_sub_url">
             <param name="fileset.include" value="**/fhir_instance_repo/mg-*.xml"/>
             <param name="fileset.exclude" value="nictiz_test/**/*"/>
             <param name="validate.schema" value="${schema.bundle}"/>
@@ -231,6 +232,22 @@
             <param name="inputDir" expression="${input.dir}"/>
             <param name="inputFileSet" expression="${input.fileset}"/>
         </xslt>
+        
+    </target>
+    
+    <target name="schemavalidate_sub_url">
+        
+        <fileset id="inputfiles.validate" dir="${build.dir}">
+            <include name="${fileset.include}"/>
+            <exclude name="${fileset.exclude}"/>
+        </fileset>
+        
+        <echo/>
+        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
+        <schemavalidate warn="true" failonerror="false">
+            <fileset refid="inputfiles.validate"/>
+            <schema namespace="urn:hl7-org:v3" url="${validate.schema}"/>
+        </schemavalidate>
         
     </target>
     

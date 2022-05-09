@@ -129,7 +129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="18629005"/>
                         <display value="toediening van medicatie"/>
                     </coding>
@@ -141,10 +141,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </medicationReference>
                 </xsl:for-each>
 
+                <!-- subject -->
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn">subject</xsl:with-param>
                 </xsl:call-template>
+
+         
 
                 <!-- relatie_contact relatie_zorgepisode in context -->
                 <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
@@ -165,6 +168,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </context>
                 </xsl:if>
 
+                <!-- relatie_toedieningsafspraak -->
                 <xsl:choose>
                     <!-- mp9 dataset -->
                     <xsl:when test="relatie_toedieningsafspraak/identificatie[@value]">
@@ -180,10 +184,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <!-- zib dataset -->
                     <xsl:otherwise>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="$administrationAgreement"/>
-                            <xsl:with-param name="wrapIn">supportingInformation</xsl:with-param>
-                        </xsl:call-template>
+                        <xsl:if test="not(empty($administrationAgreement))">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="$administrationAgreement"/>
+                                <xsl:with-param name="wrapIn">supportingInformation</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
 
@@ -226,18 +232,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- request -->
+                <!-- relatie_medicatieafspraak -->                
+                <!-- relatie_wisselend_doseerschema -->
                 <xsl:choose>
                     <xsl:when test="relatie_medicatieafspraak/identificatie[@value]">
                         <!-- MP9 dataset -->
                         <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
                             <request>
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                                    <!-- Need to become SNOMED 33633005.  
-                                https://github.com/Nictiz/Nictiz-R4-zib2020/issues/221 / https://bits.nictiz.nl/browse/MP-489  -->
-                                    <valueCodeableConcept>
+                                     <valueCodeableConcept>
                                         <coding>
-                                            <system value="http://snomed.info/sct"/>
-                                            <code value="16076005"/>
+                                            <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                                            <code value="{$currentMaCode}"/>
                                             <display value="voorschrijven"/>
                                         </coding>
                                     </valueCodeableConcept>
@@ -257,8 +263,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                                     <valueCodeableConcept>
                                         <coding>
-                                            <system value="http://snomed.info/sct"/>
-                                            <code value="395067002"/>
+                                            <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                                            <code value="{$wsdCode}"/>
                                             <display value="optimaliseren van dosering van medicatie"/>
                                         </coding>
                                     </valueCodeableConcept>
@@ -271,7 +277,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </request>
                         </xsl:for-each>
                     </xsl:when>
-                    
+
                     <xsl:otherwise>
                         <!-- zib dataset -->
                         <xsl:for-each select="$request">
@@ -297,11 +303,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <valueQuantity>
                                 <xsl:call-template name="_buildMedicationQuantity">
                                     <xsl:with-param name="adaValue" select="aantal"/>
-                                    <xsl:with-param name="adaUnit" select="eenheid"/>                                    
+                                    <xsl:with-param name="adaUnit" select="eenheid"/>
                                 </xsl:call-template>
                             </valueQuantity>
                         </extension>
-                    </xsl:for-each>                   
+                    </xsl:for-each>
 
                     <xsl:for-each select="prik_plak_locatie[@value | @nullFlavor]">
                         <site>
@@ -361,8 +367,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <code value="{$UCUM-rate}"/>
                                     </rateQuantity>
                                 </xsl:if>
-                                
-                                
+
+
                             </xsl:otherwise>
                         </xsl:choose>
 

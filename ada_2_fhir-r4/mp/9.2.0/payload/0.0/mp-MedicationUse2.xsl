@@ -150,7 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="422979000"/>
                         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
                     </coding>
@@ -240,7 +240,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 https://github.com/Nictiz/Nictiz-R4-zib2020/issues/221 / https://bits.nictiz.nl/browse/MP-489  -->
                             <valueCodeableConcept>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                     <code value="16076005"/>
                                     <display value="voorschrijven"/>
                                 </coding>
@@ -259,7 +259,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                             <valueCodeableConcept>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                     <code value="422037009"/>
                                     <display value="toedieningsafspraak"/>
                                 </coding>
@@ -278,7 +278,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                             <valueCodeableConcept>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                     <code value="373784005"/>
                                     <display value="verstrekken van medicatie"/>
                                 </coding>

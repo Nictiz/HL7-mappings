@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="16830007"/>
                         <display value="onderzoek van visus"/>
                     </coding>
@@ -88,7 +88,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <bodySite>
                         <xsl:call-template name="nl-core-AnatomicalLocation"/>
                         <coding>
-                            <system value="http://snomed.info/sct"/>
+                            <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                             <code value="81745001"/>
                             <display value="structuur van bulbus oculi (lichaamsstructuur)"/>
                         </coding>
@@ -98,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="16830007"/>
                                 <display value="onderzoek van visus (verrichting)"/>
                             </coding>
@@ -114,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="363691001"/>
                                 <display value="verrichting ingedeeld naar hulpmiddel (verrichting)"/>
                             </coding>
@@ -130,7 +130,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="152731000146106"/>
                                 <display value="distance to visual acuity chart (observable entity)"/>
                             </coding>

@@ -35,7 +35,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="$in/ancestor::*[@app]//farmaceutisch_product[@id= $in/(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product/@value]" as="element()?"/>
         <xsl:param name="requester" select="$in//zorgverlener[@id=$in/voorschrijver/zorgverlener/@value] | $in/voorschrijver/zorgverlener[*]" as="element()?"/>
-        <xsl:param name="reasonReference" select="$in//probleem[@id = $in/reden_van_voorschrijven/probleem/@value]" as="element()?"/>
+        <!-- in the zib there is a reference to problem, in MP9 dataset problem has been inherited directly in reden_van_voorschrijven -->
+        <xsl:param name="reasonReference" select="$in//probleem[@id = $in/reden_van_voorschrijven/probleem/@value] | $in/reden_van_voorschrijven/probleem[*]" as="element()?"/>
 
         <xsl:for-each select="$in">
             <MedicationRequest>
@@ -59,6 +60,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="gebruiksperiode">
                     <xsl:call-template name="ext-TimeInterval.Period"/>
                 </xsl:for-each>
+                
+                <xsl:for-each select="gebruiksperiode/criterium[@value]">
+                    <xsl:call-template name="ext-MedicationAgreement.PeriodOfUse.Condition"/>
+                </xsl:for-each>                
 
                 <!-- pharmaceuticalTreatmentIdentifier -->
                 <xsl:for-each select="../identificatie">
@@ -102,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Issue MP-489: code should be updated to 33633005, but update also needed in FHIR profile -->
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="16076005"/>
                         <display value="voorschrijven"/>
                     </coding>
@@ -172,7 +177,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:for-each select="relatie_medicatiegebruik/identificatie[@value]">
                     <basedOn>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationMedicationUse">
+                        <extension url="{$urlExtMedicationAgreementRelationMedicationUse}">
                             <valueReference>
                                 <type value="MedicationUse"/>
                                 <identifier>
