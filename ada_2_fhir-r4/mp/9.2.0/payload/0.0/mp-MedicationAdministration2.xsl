@@ -264,7 +264,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <valueCodeableConcept>
                                         <coding>
                                             <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                            <code value="{$wsdCode}"/>
+                                            <code value="{$wdsCode}"/>
                                             <display value="optimaliseren van dosering van medicatie"/>
                                         </coding>
                                     </valueCodeableConcept>

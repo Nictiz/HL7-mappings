@@ -27,6 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:import href="ext-AsAgreedIndicator.xsl"/>
     <xsl:import href="ext-PharmaceuticalTreatmentIdentifier.xsl"/>
+    <xsl:import href="ext-MedicationAgreementPeriodOfUseCondition.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
