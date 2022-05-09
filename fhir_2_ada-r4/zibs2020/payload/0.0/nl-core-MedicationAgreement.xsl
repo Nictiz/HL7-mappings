@@ -15,8 +15,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
 	<xsl:variable name="medication-AdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation'"/>
-	<!--xxxwim geen gerelateerde zib of nl_core gevonden-->
-	<xsl:variable name="extRelatedMedicationUse" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse'"/>
 
 	<xd:doc>
 		<xd:desc>Template to convert f:MedicationRequest to ADA medicatieafspraak</xd:desc>
@@ -28,24 +26,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- afspraakdatum -->
 			<xsl:apply-templates select="f:authoredOn" mode="#current"/>
 			<!-- gebruiksperiode -->
-			<xsl:if test="f:extension[@url = $ext-TimeInterval-Period] or f:extension[@url = $ext-TimeInterval-Duration]">
+			<xsl:if test="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)] or f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]">
 				<gebruiksperiode>
-					<xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Period]" mode="ext-TimeInterval-Period"/>
-					<xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Duration]" mode="ext-TimeInterval-Duration"/>
+					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]" mode="urlExtTimeInterval-Period"/>
+					<!-- MP9 2.0.0-bèta version -->
+					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="urlExtTimeInterval-Duration"/>
+					<!-- MP9 2.0.0 version -->
+					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]/f:valuePeriod/f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="urlExtTimeInterval-Duration"/>
+					<!-- criterium -->
+					<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementPeriodOfUseCondition]" mode="urlExtMedicationAgreementPeriodOfUseCondition"/>
 				</gebruiksperiode>
 			</xsl:if>
 			<!-- relatie_contact -->
 			<xsl:apply-templates select="f:encounter[f:type/@value eq 'Encounter']" mode="contextContactEpisodeOfCare"/>
 			<!-- relatie_zorgepisode -->
-			<xsl:apply-templates select="f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
+			<xsl:apply-templates select="f:extension[@url = $urlExtContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
 			<!-- geannuleerd_indicator niet voor MA -->
-<!--			<xsl:apply-templates select="f:status" mode="#current"/>-->
+			<!--			<xsl:apply-templates select="f:status" mode="#current"/>-->
 			<!-- stop_type -->
-		    <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
 			<!-- relatie medicatieafspraak -->
 			<xsl:apply-templates select="f:priorPrescription" mode="#current"/>
 			<!-- relatie_medicatiegebruik -->
-			<xsl:apply-templates select="f:extension[@url = $extRelatedMedicationUse]" mode="#current"/>
+			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse] | f:basedOn/f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse]" mode="#current"/>
 			<!-- voorschrijver -->
 			<xsl:apply-templates select="f:requester" mode="#current"/>
 			<!-- reden_wijzigen_of_staken -->
@@ -61,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- kopie indicator -->
 			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
 			<!-- toelichting -->
-		    <xsl:apply-templates select="f:note" mode="nl-core-Note"/>
+			<xsl:apply-templates select="f:note" mode="nl-core-Note"/>
 		</medicatieafspraak>
 	</xsl:template>
 
@@ -81,7 +84,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc>Template to convert f:extension/relatedMedicationUse to aanvullende_informatie element.</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:extension[@url = $extRelatedMedicationUse]" mode="nl-core-MedicationAgreement">
+	<xsl:template match="f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse]" mode="nl-core-MedicationAgreement">
 		<relatie_medicatiegebruik>
 			<identificatie value="{f:valueReference/f:identifier/f:value/@value}" root="{f:valueReference/f:identifier/f:system/replace(@value, 'urn:oid:', '')}"/>
 		</relatie_medicatiegebruik>
@@ -89,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
 
-<!--	<xd:doc>
+	<!--	<xd:doc>
 		<xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="nl-core-MedicationAgreement">
@@ -106,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     -->
-    <xd:doc>
+	<xd:doc>
 		<xd:desc>Template to resolve priorPrescription.</xd:desc>
 	</xd:doc>
 	<xd:doc>
@@ -158,7 +161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:requester" mode="nl-core-MedicationAgreement">
 		<voorschrijver>
-			<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/> 
+			<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
 		</voorschrijver>
 	</xsl:template>
 

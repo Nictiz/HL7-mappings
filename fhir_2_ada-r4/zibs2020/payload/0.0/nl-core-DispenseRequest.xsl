@@ -12,14 +12,9 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions"
-    xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
-    <xsl:variable name="medication-AdditionalInformation"
-        select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation'"/>
-    <!--xxxwim geen gerelateerde zib of nl_core gevonden-->
-    <xsl:variable name="extRelatedMedicationUse" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse'"/>
+    <xsl:variable name="medication-AdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation'"/>
 
     <xd:doc>
         <xd:desc>Template to convert f:MedicationRequest to ADA medicatieafspraak</xd:desc>
@@ -28,22 +23,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <verstrekkingsverzoek>
             <!-- identificatie -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
-            <!-- afspraakdatum -->
+            <!-- verstrekkingsverzoek_datum_tijd -->
             <xsl:apply-templates select="f:authoredOn" mode="#current"/>
             <!--auteur/zorgverlener-->
             <xsl:apply-templates select="f:requester" mode="#current"/>
             <!-- (ref) te_verstrekken_geneesmiddel -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!--te_verstrekken_hoeveelheid-->
-            <xsl:apply-templates
-                select="f:dispenseRequest/f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']"
-                mode="#current"/>
+            <xsl:apply-templates select="f:dispenseRequest/f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="#current"/>
             <!--aantal_herhalingen-->
             <xsl:apply-templates select="f:dispenseRequest/f:numberOfRepeatsAllowed" mode="#current"/>
             <!-- verbruiksperiode/tijds_duur -->
-            <xsl:apply-templates select="f:dispenseRequest/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration']" mode="#current"/>
+            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod/f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="#current"/>
             <!-- verbruiksperiode/@start_datum_tijd/@value en eind_datum_tijd/@value -->
-            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod" mode="#current"/>
+            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod[f:start | f:end]" mode="#current"/>
             <!--geannuleerd_indicator-->
             <xsl:if test="f:status/@value eq 'cancelled'">
                 <geannuleerd_indicator value="true"/>
@@ -51,33 +44,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!--beoogd_verstrekker/zorgaanbieder-->
             <xsl:apply-templates select="f:performer" mode="#current"/>
             <!--afleverlocatie-->
-            <xsl:apply-templates
-                select="f:dispenseRequest/f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']"
-                mode="#current"/>
+            <xsl:apply-templates select="f:dispenseRequest/f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']" mode="#current"/>
             <!--AanvullendeWensen-->
-            <xsl:apply-templates select="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes']"
-                mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes']" mode="#current"/>
             <!--financiele_indicatiecode-->
-            <xsl:apply-templates select="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode']"
-                mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode']" mode="#current"/>
             <!--toelichting-->
             <xsl:apply-templates select="f:note" mode="nl-core-Note"/>
             <!-- relatie medicatieafspraak -->
-            <xsl:apply-templates select="f:priorPrescription" mode="#current"/>
+            <xsl:apply-templates select="f:basedOn" mode="#current"/>
             <!-- relatie_contact -->
             <xsl:apply-templates select="f:encounter[f:type/@value eq 'Encounter']" mode="contextContactEpisodeOfCare"/>
             <!-- relatie_zorgepisode -->
-            <xsl:apply-templates select="f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
+            <xsl:apply-templates select="f:extension[@url = $urlExtContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
 
 
 
             <!-- geannuleerd_indicator niet voor MA -->
             <!--			<xsl:apply-templates select="f:status" mode="#current"/>-->
             <!-- stop_type -->
-            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']"
-                mode="nl-core-ext-StopType"/>
+            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
             <!-- relatie_medicatiegebruik -->
-            <xsl:apply-templates select="f:extension[@url = $extRelatedMedicationUse]" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse]" mode="#current"/>
             <!-- reden_wijzigen_of_staken -->
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
             <!-- reden_van_voorschrijven -->
@@ -91,10 +79,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--ZZZNEW-->
         <xd:desc>Template to convert f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode'] to financiele_indicatiecode</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode']"
-        mode="nl-core-DispenseRequest">
-        <financiele_indicatiecode code="{f:valueCodeableConcept/f:extension/f:valueCode/@value}" codeSystem="2.16.840.1.113883.5.1008"
-            originalText="{f:valueCodeableConcept/f:text/@value}">
+    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode']" mode="nl-core-DispenseRequest">
+        <financiele_indicatiecode code="{f:valueCodeableConcept/f:extension/f:valueCode/@value}" codeSystem="2.16.840.1.113883.5.1008" originalText="{f:valueCodeableConcept/f:text/@value}">
             <xsl:if test="./f:valueCodeableConcept/f:extension[@value eq 'http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor']">
                 <xsl:attribute name="codeSystemName" select="'NullFlavor'"/>
             </xsl:if>
@@ -112,8 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--ZZZNEW-->
         <xd:desc>Template to convert f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes'] to aanvullende_wensen</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes']"
-        mode="nl-core-DispenseRequest">
+    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes']" mode="nl-core-DispenseRequest">
         <aanvullende_wensen>
             <xsl:call-template name="Coding-to-code">
                 <xsl:with-param name="in" as="element()" select="f:valueCodeableConcept/f:coding"/>
@@ -126,9 +111,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--ZZZNEW-->
         <xd:desc>Template to convert f:extension[url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']  to afleverlocatie</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']"
-        mode="nl-core-DispenseRequest">
-        <afleverlocatie value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/>
+    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation']" mode="nl-core-DispenseRequest">
+        <xsl:variable name="resource" select="nf:resolveRefInBundle(f:valueReference)"/>
+        <afleverlocatie value="{$resource/f:*/f:name/@value}"/>
     </xsl:template>
 
     <xd:doc>
@@ -143,13 +128,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <!--ZZZNEW-->
-        <xd:desc>Template to convert f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration'] to verbruiksperiode/tijdsduur</xd:desc>
+        <xd:desc>Template to convert f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/urlExtTimeInterval-Duration'] to verbruiksperiode/tijdsduur</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration']" mode="nl-core-DispenseRequest">
+    <xsl:template match="f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="nl-core-DispenseRequest">
         <verbruiksperiode>
             <xsl:call-template name="Duration-to-hoeveelheid">
                 <xsl:with-param name="in" select="f:valueDuration"/>
-                <xsl:with-param name="adaElementName">tijdsDuur</xsl:with-param>
+                <xsl:with-param name="adaElementName">tijds_duur</xsl:with-param>
             </xsl:call-template>
         </verbruiksperiode>
     </xsl:template>
@@ -183,12 +168,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--ZZZNEW-->
         <xd:desc>Template to convert f:quantity to te_verstrekken_hoeveelheid</xd:desc>
     </xd:doc>
-    <xsl:template match="f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']"
-        mode="nl-core-DispenseRequest">
+    <xsl:template match="f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="nl-core-DispenseRequest">
         <te_verstrekken_hoeveelheid>
             <aantal value="{f:extension/f:valueQuantity/f:value/@value}"/>
-            <eenheid code="{f:extension/f:valueQuantity/f:code/@value}"
-                codeSystem="{replace(f:extension/f:valueQuantity/f:system/@value, 'urn:oid:', '')}" displayName="{f:unit/@value}"/>
+            <eenheid code="{f:extension/f:valueQuantity/f:code/@value}" codeSystem="{replace(f:extension/f:valueQuantity/f:system/@value, 'urn:oid:', '')}" displayName="{f:unit/@value}"/>
         </te_verstrekken_hoeveelheid>
     </xsl:template>
 
@@ -209,7 +192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:priorPrescription to relatie_medicatieafspraak</xd:desc>
     </xd:doc>
-    <xsl:template match="f:priorPrescription" mode="nl-core-MedicationAgreement">
+    <xsl:template match="f:basedOn" mode="nl-core-DispenseRequest">
         <relatie_medicatieafspraak>
             <xsl:call-template name="Reference-to-identificatie"/>
         </relatie_medicatieafspraak>
@@ -221,9 +204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:extension medication-AdditionalInformation to aanvullende_informatie element.</xd:desc>
         <xd:param name="adaElementName">Optional alternative ADA element name.</xd:param>
     </xd:doc>
-    <xsl:template
-        match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation']"
-        mode="nl-core-MedicationAgreement">
+    <xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation']" mode="nl-core-MedicationAgreement">
         <xsl:param name="adaElementName" tunnel="yes" select="'aanvullende_informatie'"/>
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="f:valueCodeableConcept"/>
@@ -233,10 +214,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension/relatedMedicationUse to aanvullende_informatie element.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $extRelatedMedicationUse]" mode="nl-core-MedicationAgreement">
+    <xsl:template match="f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse]" mode="nl-core-MedicationAgreement">
         <relatie_medicatiegebruik>
-            <identificatie value="{f:valueReference/f:identifier/f:value/@value}"
-                root="{f:valueReference/f:identifier/f:system/replace(@value, 'urn:oid:', '')}"/>
+            <identificatie value="{f:valueReference/f:identifier/f:value/@value}" root="{f:valueReference/f:identifier/f:system/replace(@value, 'urn:oid:', '')}"/>
         </relatie_medicatiegebruik>
     </xsl:template>
 
@@ -285,7 +265,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:authoredOn" mode="nl-core-DispenseRequest">
         <xsl:call-template name="datetime-to-datetime">
-            <xsl:with-param name="adaElementName">verstrekkingsverzoek_datum</xsl:with-param>
+            <xsl:with-param name="adaElementName">verstrekkingsverzoek_datum_tijd</xsl:with-param>
             <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
         </xsl:call-template>
     </xsl:template>

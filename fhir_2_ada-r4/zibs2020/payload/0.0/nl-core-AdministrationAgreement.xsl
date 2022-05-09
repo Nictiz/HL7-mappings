@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="nlcoreAdministrationAgreement" select="'http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement'"/>
     <xsl:variable name="extAdministrationAgreementDateTime">http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime</xsl:variable>
     <xsl:variable name="extAdministrationAgreementAgreementReason">http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AgreementReason</xsl:variable>
-    <xsl:variable name="extAdministrationAgreementAdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation'"/>
+    <xsl:variable name="extAdministrationAgreementModificationDiscontinuationReason">http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.ReasonModificationOrDiscontinuation</xsl:variable>
     <xsl:variable name="extStoptype">http://nictiz.nl/fhir/StructureDefinition/ext-StopType</xsl:variable>
 
     <xd:doc>
@@ -30,10 +30,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- toedieningsafspraak_datum_tijd -->
             <xsl:apply-templates select="f:extension[@url = $extAdministrationAgreementDateTime]" mode="#current"/>
             <!-- gebruiksperiode -->
-            <xsl:if test="f:extension[@url = $ext-TimeInterval-Period] or f:extension[@url = $ext-TimeInterval-Duration]">
+            <xsl:if test="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)] or f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]">
                 <gebruiksperiode>
-                    <xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Period]" mode="ext-TimeInterval-Period"/>
-                    <xsl:apply-templates select="f:extension[@url = $ext-TimeInterval-Duration]" mode="ext-TimeInterval-Duration"/>
+                    <xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]" mode="urlExtTimeInterval-Period"/>
+                    <!-- MP9 2.0.0-bèta version -->
+                    <xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="urlExtTimeInterval-Duration"/>
+                    <!-- MP9 2.0.0 version -->
+                    <xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]/f:valuePeriod/f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="urlExtTimeInterval-Duration"/>
                 </gebruiksperiode>
             </xsl:if>
             <!-- geannuleerd_indicator  -->
@@ -43,13 +46,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- verstrekker -->
             <xsl:apply-templates select="f:performer" mode="#current"/>
             <!-- reden_afspraak -->
-            <xsl:apply-templates select="f:extension[@url = $extAdministrationAgreementAgreementReason]" mode="#current"/>
+            <!-- Issue MP-370 dataset concept type change from string to codelist -->
+            <xsl:apply-templates select="f:extension[@url = ($extAdministrationAgreementAgreementReason, $extAdministrationAgreementModificationDiscontinuationReason)]" mode="#current"/>
             <!-- geneesmiddel_bij_toedieningsafspraak -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
             <xsl:call-template name="nl-core-InstructionsForUse"/>
+            <!-- distributievorm, added as part of MP-257, borrowed from MedicationDispense -->
+            <xsl:apply-templates select="f:extension[@url = $urlExtMedicationMedicationDispenseDistributionForm]" mode="nl-core-MedicationDispense"/>            
             <!-- aanvullende_informatie -->
-            <xsl:apply-templates select="f:extension[@url = $extAdministrationAgreementAdditionalInformation]" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url = $urlExtAdministrationAgreementAdditionalInformation]" mode="#current"/>
             <!-- toelichting -->
             <xsl:apply-templates select="f:note" mode="nl-core-Note"/>
             <!-- kopie indicator -->
@@ -87,13 +93,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="adaElementName">toedieningsafspraak_datum_tijd</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
-       
+
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to convert f:extension[@url = $extAdministrationAgreementAdditionalInformation] to toedieningsafspraak_aanvullende_informatie</xd:desc>
+        <xd:desc>Template to convert f:extension[@url = $urlExtAdministrationAgreementAdditionalInformation] to toedieningsafspraak_aanvullende_informatie</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $extAdministrationAgreementAdditionalInformation]" mode="nl-core-AdministrationAgreement">
+    <xsl:template match="f:extension[@url = $urlExtAdministrationAgreementAdditionalInformation]" mode="nl-core-AdministrationAgreement">
+        <!-- Issue MP-536 dataset concept type change from codelist to string -->
+        <xsl:for-each select="f:valueString">
+            <toedieningsafspraak_aanvullende_informatie value="{@value}"/>
+        </xsl:for-each>
+        <!-- support for legacy instances -->
         <xsl:for-each select="f:valueCoding">
             <toedieningsafspraak_aanvullende_informatie>
                 <xsl:call-template name="Coding-to-code"/>
@@ -135,6 +146,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url = $extAdministrationAgreementAgreementReason]" mode="nl-core-AdministrationAgreement">
         <reden_afspraak value="{f:valueString/@value}"/>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Template to convert f:extension[@url=$extAdministrationAgreementModificationDiscontinuationReason] to toedieningsafspraak_reden_wijzigen_of_staken</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:extension[@url = $extAdministrationAgreementModificationDiscontinuationReason]" mode="nl-core-AdministrationAgreement">
+        <xsl:for-each select="f:valueCodeableConcept">
+            <xsl:call-template name="CodeableConcept-to-code">
+                <xsl:with-param name="adaElementName">toedieningsafspraak_reden_wijzigen_of_staken</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
