@@ -420,6 +420,19 @@
                                         </path>
                                         <map from="${input.dir.abs}" to=""/>
                                     </pathconvert>
+                                    
+                                    <!-- Now extract the root dir of the relative path, where additional targets may be
+                                         defined, and any subpaths following it. -->
+                                    <propertyregex property="nts.file.reldir.root" override="true"
+                                        input="${nts.file.reldir}"
+                                        regexp="(\/[^\/]+)\/"
+                                        select="\1"
+                                        defaultValue="${nts.file.reldir}"/>
+                                    <propertyregex property="nts.file.reldir.leaf" override="true"
+                                        input="${nts.file.reldir}"
+                                        regexp="\/[^\/]+(\/.*)"
+                                        select="\1"
+                                        defaultValue=""/>
                                     <if>
                                         <!-- The default target -->
                                         <equals arg1="@{target.dir}" arg2="#default"/>
@@ -431,18 +444,19 @@
                                         </then>
                                         <elseif>
                                             <!-- An extra defined target -->
-                                            <contains string="/@{target.dir}" substring="${nts.file.reldir}"/>
+                                            <contains string="/@{target.dir}" substring="${nts.file.reldir.root}"/>
                                             <then>
                                                 <sequential>
                                                     <!-- Extract the target name from the relative path name -->
+                                                    <var name="target" unset="true"/>
                                                     <pathconvert property="target" targetos="unix">
                                                         <path location="/@{target.dir}"/>
-                                                        <map from="${nts.file.reldir}-" to=""/>
-                                                        <map from="c:${nts.file.reldir}-" to=""/>
+                                                        <map from="${nts.file.reldir.root}-" to=""/>
+                                                        <map from="c:${nts.file.reldir.root}-" to=""/>
                                                     </pathconvert>
                                                     <transform-NTS-file 
                                                         nts.file="@{nts.file}"
-                                                        output.dir="${output.dir.abs}/@{target.dir}" 
+                                                        output.dir="${output.dir.abs}/@{target.dir}${nts.file.reldir.leaf}" 
                                                         references.file="${references.file}"
                                                         target="${target}"/>
                                                 </sequential>
