@@ -204,7 +204,7 @@
                         <participantRole classCode="BIRTHPL">
                            <code code="56321000146103"
                                  codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="Birth in hospital (finding)"/>
+                                 displayName="geboorte in ziekenhuis (bevinding)"/>
                         </participantRole>
                      </participant>
                      <participant typeCode="LOC">
@@ -267,7 +267,7 @@
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                      <code code="57485005"
                            codeSystem="2.16.840.1.113883.6.96"
-                           displayName="Oxygen therapy (procedure)"/>
+                           displayName="zuurstoftherapie (verrichting)"/>
                   </procedure>
                </entry>
                <entry>
@@ -332,7 +332,7 @@
                            <value xsi:type="CD"
                                   code="59151000146103"
                                   codeSystem="2.16.840.1.113883.6.96"
-                                  displayName="In-hospital admission from obstetrical ward (procedure)"
+                                  displayName="transfer binnen ziekenhuis vanaf afdeling obstetrie (verrichting)"
                                   codeSystemName="SNOMED CT"/>
                         </observation>
                      </entryRelationship>
@@ -347,7 +347,7 @@
                            <value xsi:type="CD"
                                   code="366323009"
                                   codeSystem="2.16.840.1.113883.6.96"
-                                  displayName="Finding of length of gestation (finding)"/>
+                                  displayName="bevinding betreffende zwangerschapsduur (bevinding)"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
@@ -529,7 +529,7 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                            <code code="57485005"
                                  codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="Oxygen therapy (procedure)"/>
+                                 displayName="zuurstoftherapie (verrichting)"/>
                            <effectiveTime xsi:type="IVL_TS">
                               <low value="20201129120000"/>
                               <high value="20201201100000"/>
@@ -578,7 +578,7 @@
                            <value xsi:type="CD"
                                   code="46775006"
                                   codeSystem="2.16.840.1.113883.6.96"
-                                  displayName="Respiratory distress syndrome in the newborn (disorder)"/>
+                                  displayName="'respiratory distress'-syndroom bij pasgeborene (aandoening)"/>
                            <entryRelationship typeCode="SPRT">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
@@ -602,7 +602,7 @@
                                  <value xsi:type="CD"
                                         code="58841000146101"
                                         codeSystem="2.16.840.1.113883.6.96"
-                                        displayName="Health care facility where patient is registered (environment)"/>
+                                        displayName="zorginstelling waar patiënt geregistreerd is (omgeving)"/>
                               </observation>
                            </entryRelationship>
                         </observation>
@@ -685,7 +685,7 @@
                            <value xsi:type="CD"
                                   code="83330001"
                                   codeSystem="2.16.840.1.113883.6.96"
-                                  displayName="Patent ductus arteriosus (disorder)"/>
+                                  displayName="persisterende ductus arteriosus (aandoening)"/>
                            <entryRelationship typeCode="SPRT">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
@@ -706,7 +706,7 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                            <code code="58801000146104"
                                  codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="Drug therapy for patent ductus arteriosus (procedure)"
+                                 displayName="behandeling met geneesmiddel voor persisterende ductus arteriosus (verrichting)"
                                  codeSystemName="SNOMED CT"/>
                         </procedure>
                      </component>
@@ -745,9 +745,9 @@
                               <high value="20201007"/>
                            </effectiveTime>
                            <value xsi:type="CD"
-                                  code="9331000146100"
+                                  code="82353009"
                                   codeSystem="2.16.840.1.113883.6.96"
-                                  displayName="Suspected sepsis (situation)"/>
+                                  displayName="congenitale infectieziekte (aandoening)"/>
                            <entryRelationship typeCode="SPRT">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
@@ -771,7 +771,7 @@
                                  <value xsi:type="CD"
                                         code="58841000146101"
                                         codeSystem="2.16.840.1.113883.6.96"
-                                        displayName="Health care facility where patient is registered (environment)"/>
+                                        displayName="zorginstelling waar patiënt geregistreerd is (omgeving)"/>
                               </observation>
                            </entryRelationship>
                            <entryRelationship typeCode="CAUS">
@@ -853,7 +853,7 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                            <code code="225372007"
                                  codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="Total parenteral nutrition (procedure)"/>
+                                 displayName="totale parenterale voeding (regime/therapie)"/>
                         </procedure>
                      </component>
                   </organizer>
@@ -881,13 +881,30 @@
                         </observation>
                      </component>
                      <component>
-                        <procedure classCode="PROC" moodCode="EVN">
-                           <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                           <code code="59071000146107"
-                                 codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="Transfusion for anemia (procedure)"
-                                 codeSystemName="SNOMED CT"/>
-                        </procedure>
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
+                           <code code="282291009"
+                                 displayName="Diagnose"
+                                 codeSystem="2.16.840.1.113883.6.96"/>
+                           <value xsi:type="CD"
+                                  code="271737000"
+                                  codeSystem="2.16.840.1.113883.6.96"
+                                  displayName="anemie (aandoening)"
+                                  codeSystemName="SNOMED CT"/>
+                           <entryRelationship typeCode="SPRT">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
+                                 <code code="408729009"
+                                       displayName="Finding context (attribute)"
+                                       codeSystem="2.16.840.1.113883.6.96"
+                                       codeSystemName="SNOMED CT"/>
+                                 <value xsi:type="CD"
+                                        code="410605003"
+                                        codeSystem="2.16.840.1.113883.6.96"
+                                        displayName="Bevestigd"/>
+                              </observation>
+                           </entryRelationship>
+                        </observation>
                      </component>
                   </organizer>
                </entry>
@@ -922,7 +939,8 @@
                            <value xsi:type="CD"
                                   code="14783006"
                                   codeSystem="2.16.840.1.113883.6.96"
-                                  displayName="hyperbilirubinemie (aandoening)"/>
+                                  displayName="hyperbilirubinemie (aandoening)"
+                                  codeSystemName="SNOMED CT"/>
                            <entryRelationship typeCode="SPRT">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
@@ -943,7 +961,7 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                            <code code="35683002"
                                  codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="Phototherapy of newborn (procedure)"/>
+                                 displayName="lichttherapie van neonaat (verrichting)"/>
                            <entryRelationship typeCode="RSON">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.19"/>
@@ -953,7 +971,8 @@
                                  <value xsi:type="CD"
                                         code="14783006"
                                         codeSystem="2.16.840.1.113883.6.96"
-                                        displayName="hyperbilirubinemie (aandoening)"/>
+                                        displayName="hyperbilirubinemie (aandoening)"
+                                        codeSystemName="SNOMED CT"/>
                                  <entryRelationship typeCode="REFR" inversionInd="true">
                                     <observation classCode="OBS" moodCode="EVN">
                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.20"/>
@@ -1038,7 +1057,7 @@
                            <value xsi:type="CD"
                                   code="408848001"
                                   codeSystem="2.16.840.1.113883.6.96"
-                                  displayName="Retinopathy of prematurity stage 2 - intraretinal ridge (disorder)"/>
+                                  displayName="prematurenretinopathie stadium 2 (aandoening)"/>
                            <entryRelationship typeCode="SPRT">
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
@@ -1158,7 +1177,7 @@
                      <value xsi:type="CE"
                             code="115851000146108"
                             codeSystem="2.16.840.1.113883.6.96"
-                            displayName="Discharge to other hospital (procedure)"/>
+                            displayName="ontslag naar ander ziekenhuis (verrichting)"/>
                   </observation>
                </entry>
                <entry>
