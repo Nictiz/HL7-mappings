@@ -24,6 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- organisatie_naam -->
             <xsl:apply-templates select="f:name" mode="#current"/>
+            <!-- afdeling_specialisme -->
+            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value=$oidMap[@oid=$oidAGBSpecialismen]/@uri]]" mode="#current"/>
             <!-- contactgegevens -->
             <xsl:if test="f:telecom">
                 <contactgegevens>
@@ -33,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             <!-- organisatie_type -->
-            <xsl:apply-templates select="f:type" mode="#current"/>
+            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidRoleCodeNLOrganizations) or @value=$oidMap[@oid=$oidRoleCodeNLOrganizations]/@uri]]" mode="#current"/>
             <!-- organisatie_locatie TODO -->
         </zorgaanbieder>
     </xsl:template>
