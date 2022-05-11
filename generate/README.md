@@ -257,7 +257,7 @@ The following optional parameters may be used:
   targets.additional=Cert-with-setup
   ```
   The TestScript resources can use the `nts:in-targets` to define which element should be included in a target (see above). Multiple extra targets may be separated using comma's.
-  Note: additional targets may only be defined on input folders, not on subfolders. If there are subfolders in the input folder, each variant of the input folder will contain the full set of input folders (but with slightly different content, of course).  
+  Note: additional targets may only be defined on input folders, not on subfolders. If there are subfolders in the input folder, each variant of the input folder will contain the full set of subfolders (but with slightly different content, of course).  
 - `version.addition`: a string that will be added verbatim to the value in the `TestScript.version` from the input file. If this element is absent, it will be populated with this value. 
 
 ### Building multiple projects
