@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="wrapIn" as="xs:string" select="'valuePeriod'"/>
 
         <xsl:for-each select="$in">
-            <xsl:if test="start_datum_tijd[@value != ''] or eind_datum_tijd[@value != ''] or tijds_duur[@value != '' or @unit != '']">
+            <xsl:if test="start_datum_tijd[@value != ''] or eind_datum_tijd[@value != ''] or tijds_duur[@value != '' or @unit != ''] or criterium[@value != '']">
                         <!-- Convert input to xs datatypes -->
                         <!-- this does not support T-dates -->
                         <xsl:variable name="startDateTime" select="
@@ -120,6 +120,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:if test="string-join($start, '') or $end or $in/tijds_duur">
                             <xsl:element name="{$wrapIn}">
                                 <xsl:call-template name="ext-TimeInterval.Duration"/>
+                                <xsl:for-each select="criterium[@value]">
+                                    <!-- This call a template present in mp/9.2.0. Does this cause non MP-projects to fail? If so, perhaps we should remove the templating here. -->
+                                    <xsl:call-template name="ext-MedicationAgreement.PeriodOfUse.Condition"/>
+                                </xsl:for-each>
                                 <xsl:if test="string-join($start, '')">
                                     <start value="{$start}"/>
                                 </xsl:if>

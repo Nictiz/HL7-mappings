@@ -59,11 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="gebruiksperiode">
                     <xsl:call-template name="ext-TimeInterval.Period"/>
-                </xsl:for-each>
-                
-                <xsl:for-each select="gebruiksperiode/criterium[@value]">
-                    <xsl:call-template name="ext-MedicationAgreement.PeriodOfUse.Condition"/>
-                </xsl:for-each>                
+                </xsl:for-each>              
 
                 <!-- pharmaceuticalTreatmentIdentifier -->
                 <xsl:for-each select="../identificatie">
