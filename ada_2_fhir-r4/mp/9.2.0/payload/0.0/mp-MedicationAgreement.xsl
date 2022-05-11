@@ -108,8 +108,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <category>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="16076005"/>
-                        <display value="voorschrijven"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven van geneesmiddel"/>
                     </coding>
                 </category>
 
