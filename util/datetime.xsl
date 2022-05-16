@@ -87,12 +87,12 @@
 
         <xsl:choose>
             <xsl:when test="empty(timezone-from-dateTime($in))">
-                <!-- Since 1996 DST starts last sunday of March 02:00 and ends last sunday of October at 03:00/02:00 (clock is set backwards) -->
+                <!-- Since 1996 DST starts last Sunday of March 02:00 and ends last Sunday of October at 03:00/02:00 (clock is set backwards) -->
                 <!-- There is one hour in october (from 02 - 03) for which we can't be sure if no timezone is provided in the input, 
                     we default to standard time (+01:00), the correct time will be represented if a timezone was in the input, 
                     otherwise we cannot know in which hour it occured (DST or standard time) -->
-                <xsl:variable name="March21" select="xs:date(concat(year-from-dateTime($in), '-03-31'))"/>
-                <xsl:variable name="DateTime-Start-SummerTime" select="xs:dateTime(concat(year-from-dateTime($in), '-03-', (31 - functx:day-of-week($March21)), 'T02:00:00Z'))"/>
+                <xsl:variable name="March31" select="xs:date(concat(year-from-dateTime($in), '-03-31'))"/>
+                <xsl:variable name="DateTime-Start-SummerTime" select="xs:dateTime(concat(year-from-dateTime($in), '-03-', (31 - functx:day-of-week($March31)), 'T02:00:00Z'))"/>
                 <xsl:variable name="October31" select="xs:date(concat(year-from-dateTime($in), '-10-31'))"/>
                 <xsl:variable name="DateTime-End-SummerTime" select="xs:dateTime(concat(year-from-dateTime($in), '-10-', (31 - functx:day-of-week($October31)), 'T02:00:00Z'))"/>
                 <xsl:choose>
@@ -120,22 +120,26 @@
     <xsl:function name="nf:calculate-t-date" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
         <xsl:param name="inputDateT" as="xs:date?"/>
-        
+
         <xsl:choose>
-            <xsl:when test="starts-with($in, 'T') and $inputDateT castable as xs:date">
-                <xsl:variable name="sign" select="replace($in, 'T([+-])?.*', '$1')"/>
+            <xsl:when test="(starts-with($in, 'T') or starts-with($in, 'DOB')) and $inputDateT castable as xs:date">
+                <xsl:variable name="sign" select="replace($in, '^(T|DOB)([+-])?.*', '$2')"/>
                 <xsl:variable name="amountYearMonth" as="xs:string?">
-                    <xsl:if test="matches($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}')">
-                        <xsl:value-of select="replace($in, 'T[+-]((\d+(\.\d+)?Y)?(\d+(\.\d+)?M)?).*', '$1')"/>
+                    <xsl:if test="matches($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}')">
+                        <xsl:value-of select="replace($in, '^(T|DOB)[+-]((\d+(\.\d+)?Y)?(\d+(\.\d+)?M)?).*', '$2')"/>
                     </xsl:if>
                 </xsl:variable>
                 <xsl:variable name="amountDay" as="xs:string?">
-                    <xsl:if test="matches($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D).*')">
-                        <xsl:value-of select="replace($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D)?.*', '$3')"/>
+                    <xsl:if test="matches($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D).*')">
+                        <xsl:value-of select="replace($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D)?.*', '$4')"/>
                     </xsl:if>
                 </xsl:variable>
-                
-                <xsl:variable name="timePart" select="if (matches($in, 'T[^\{]*\{([^\}]+)\}')) then replace($in, 'T[^\{]*\{([^\}]+)\}', '$1') else ()"/>
+
+                <xsl:variable name="timePart" select="
+                        if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then
+                            replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2')
+                        else
+                            ()"/>
                 <xsl:variable name="time" as="xs:string?">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 2">
@@ -223,9 +227,59 @@
     </xd:doc>
     <xsl:function name="functx:day-of-week" as="xs:integer?">
         <xsl:param name="date" as="xs:date?"/>
-
+        
         <xsl:if test="not(empty($date))">
-            <xsl:value-of select="xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7"/>
+            <!--<xsl:variable name="ancientSunday" select="xs:date('1901-01-06')"/>-->
+            <xsl:variable name="ancientSunday" select="xs:date('0001-01-07')"/>
+            <xsl:choose>
+              <xsl:when test="xs:date($date) ge $ancientSunday">
+                    <xsl:value-of select="xs:integer((xs:date($date) - $ancientSunday) div xs:dayTimeDuration('P1D')) mod 7"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="xs:integer(($ancientSunday - xs:date($date)) div xs:dayTimeDuration('P1D')) mod 7"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:if>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Returns YEAR, MONTH, DAY, HOUR, MINUTE, SECOND or MILLISECOND depending on input string. Empty input -> no output.</xd:desc>
+        <xd:param name="in">input ada (vague) (relative) date(time)</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:determine_date_precision_from_ada_datetime" as="xs:string?">
+        <xsl:param name="in" as="xs:string?"/>
+        <xsl:for-each select="string-length($in) gt 0">
+            <xsl:choose>
+                <xsl:when test="(starts-with($in, 'T') or starts-with($in, 'DOB'))">
+                    <!-- a relative date -->
+                    <!-- let's look if there is a time present -->
+                    <xsl:variable name="timePart" select="
+                        if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then
+                        replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2')
+                        else
+                        ()"/>
+                    <xsl:choose>
+                        <xsl:when test="string-length($timePart) = 2">
+                            <!-- time given in hours -->
+                            <xsl:value-of select="'HOUR'"/>
+                        </xsl:when>
+                        <xsl:when test="string-length($timePart) = 5">
+                            <!-- time given in minutes, let's add 0 seconds -->
+                            <xsl:value-of select="'MINUTE'"/>
+                        </xsl:when>
+                        <!-- no support for milliseconds in relative ada datetime -->
+                        <xsl:otherwise>SECOND</xsl:otherwise>
+                    </xsl:choose>                    
+                </xsl:when>
+                <!-- date or dateTime, which may be vague -->
+                <xsl:when test="string-length($in) = 4">YEAR</xsl:when>
+                <xsl:when test="string-length($in) = 7">MONTH</xsl:when>
+                <xsl:when test="string-length($in) = 10">DAY</xsl:when>
+                <xsl:when test="string-length($in) = 13">HOUR</xsl:when>
+                <xsl:when test="string-length($in) = 16">MINUTE</xsl:when>
+                <xsl:when test="string-length($in) = 19">SECOND</xsl:when>
+                <xsl:when test="string-length($in) gt 19">MILLISECOND</xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
     </xsl:function>
 </xsl:stylesheet>

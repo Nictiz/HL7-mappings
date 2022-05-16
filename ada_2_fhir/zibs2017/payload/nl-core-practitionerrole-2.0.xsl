@@ -37,30 +37,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     $att, '')">-->
         <xsl:for-each-group select="$healthProfessional[.//(@value | @code | @nullFlavor)]" group-by="
             concat(nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
-            nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@value,
+            nf:ada-za-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/normalize-space(@value),
             (specalisme | specialty)/@code)">
             <!-- use grouping key default in second group, we need all of hcim health_professional to determine uniqueness -->
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid as fullUrl and as fhir id from second group onwards, cannot guarantee unique FHIR resource id / filenames otherwise -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <!-- the default is to input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner -->
-                <!-- However, that does not work in a dataset that puts zorgverlener as a separate concept group directly under transaction, and uses ada reference
-                     such as the cio dataset -->
-                <!-- so in that case we take the first element that has a reference to this zorgverlener, which will make a unique xml node for each PractitionerRole -->
-                <xsl:variable name="id" select="./@id"/>
-                <xsl:variable name="node-for-id" select="(//*[@value = $id])[1]"/>
-                <xsl:variable name="input-node-for-uuid" as="element()">
-                    <xsl:choose>
-                        <xsl:when test="$node-for-id">
-                            <xsl:sequence select="$node-for-id"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <!-- parent node contains unique xml element node for PractitionerRole -->
-                            <xsl:sequence select="./.."/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-
+           
                 <unieke-practitionerRole xmlns="">
                     <group-key>
                         <xsl:value-of select="current-grouping-key()"/>
@@ -71,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="current-group()[1]">
                         <xsl:call-template name="practitionerRole-entry">
                             <xsl:with-param name="uuid" select="$uuid"/>
-                            <xsl:with-param name="entryFullUrl" select="nf:get-fhir-uuid($input-node-for-uuid)"/>
+                            <xsl:with-param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
                         </xsl:call-template>
                     </xsl:for-each>
                 </unieke-practitionerRole>
@@ -95,7 +78,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="referenceOrIdentifier" as="element()*">
             <xsl:choose>
                 <xsl:when test="$theGroupElement">
-                    <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                    <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                    <reference value="{$fullUrl}"/>
                 </xsl:when>
                 <xsl:when test="$theIdentifier">
                     <identifier>
@@ -144,19 +128,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(./..)"/>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:choose>
-                    <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:when>
-                    <xsl:when test="nf:getValueAttrPractitionerRole(.)">
-                        <xsl:value-of select="nf:removeSpecialCharacters(nf:getValueAttrPractitionerRole(.))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="$referById">
+                    <xsl:choose>
+                        <xsl:when test="$uuid">
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:when>
+                        <xsl:when test="nf:getValueAttrPractitionerRole(.)">
+                            <xsl:value-of select="nf:removeSpecialCharacters(nf:getValueAttrPractitionerRole(.))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="matches($entryFullUrl, '^https?:')">
+                    <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
+                </xsl:when>
+            </xsl:choose>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
@@ -202,16 +191,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole</xsl:variable>
                 <PractitionerRole>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{$logicalId}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <meta>
-                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <xsl:if test="$practitionerRef">
                         <practitioner>
-                            <xsl:copy-of select="$organizationRef[self::f:extension]"/>
+                            <xsl:copy-of select="$practitionerRef[self::f:extension]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:reference]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:identifier]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:display]"/>
@@ -234,15 +231,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:for-each>-->
                     <xsl:for-each select="specialisme | specialty">
+                        <xsl:variable name="display" select="@displayName[not(. = '')]"/>
                         <specialty>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="codeMap" as="element()*">
+                                    <xsl:for-each select="$uziRoleCodeMap">
+                                        <map>
+                                            <xsl:attribute name="inCode" select="@hl7Code"/>
+                                            <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
+                                            <xsl:attribute name="code" select="@hl7Code"/>
+                                            <xsl:attribute name="codeSystem" select="@hl7CodeSystem"/>
+                                                <!-- reuse original displayName -->
+                                            <xsl:attribute name="displayName" select="($display, @displayName)[1]"/>
+                                        </map>
+                                    </xsl:for-each>
+                                </xsl:with-param>
                             </xsl:call-template>
                         </specialty>
                     </xsl:for-each>
                     <!-- telecom -->
+                    <!-- MM-2693 Filter private contact details -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
                         <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
+                        <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
                     </xsl:call-template>
                 </PractitionerRole>
             </xsl:variable>
@@ -263,7 +275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="personName" select=".//naamgegevens[not(naamgegevens)][1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[not(name_information)][1]//*[not(name() = 'name_usage')]/@value"/>
             <xsl:variable name="theHealthCareProvider" select="naf:resolve-ada-reference(.//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]))"/>
             <xsl:variable name="organizationName" select="$theHealthCareProvider//(organisatie_naam | organization_name)[1]/@value"/>
-            <xsl:variable name="specialty" select=".//(specialisme | specialty)/@displayName"/>
+            <xsl:variable name="specialty" select=".//(specialisme | specialty)[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
             <xsl:variable name="role" select=".//(zorgverleners_rol | health_professional_role)[1]/(@displayName, @code)[1]"/>
 
             <xsl:choose>
@@ -298,6 +310,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:function>
 
+    <xd:doc>
+        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty.
+            There is a specific function for determining uniqueness of healthProfessional, because it also may hold information about the role, which should not be taken into account for determining uniqueness (that information is in FHIR resource practitionerRole)</xd:desc>
+        <xd:param name="healthProfessional"/>
+    </xd:doc>
+    <xsl:function name="nf:get-grouping-key-practitioner" as="xs:string?">
+        <xsl:param name="healthProfessional" as="element()?"/>
+        <xsl:if test="$healthProfessional">
+            <!-- MM-1437 allow for more than one healthProfessional identification / name / address / contact details -->
+            <!-- let's just select the professional and leave out the role, we don't want those to determine uniqueness -->
+            <xsl:variable name="healthPro4Key" as="element()?">
+                <xsl:apply-templates select="$healthProfessional" mode="copy4PractitionerRoleKey"/>
+            </xsl:variable>
+            <xsl:value-of select="nf:getGroupingKeyDefault($healthPro4Key)"/>
+        </xsl:if>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, 
@@ -317,5 +345,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:function>
 
+  
+    <xd:doc>
+        <xd:desc>Default copy Template</xd:desc>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="copy4PractitionerRoleKey">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="copy4PractitionerRoleKey"></xsl:apply-templates>
+        </xsl:copy>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Do not copy the role as it is not in FHIR PractitionerRole resource, so should not be part of duplicate detection</xd:desc>
+    </xd:doc>
+    <xsl:template match="zorgverlener_rol | health_professional_role" mode="copy4PractitionerRoleKey"/>
+    
+    
 
 </xsl:stylesheet>

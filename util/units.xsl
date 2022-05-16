@@ -1,10 +1,11 @@
-<xsl:stylesheet xmlns:ucum="http://unitsofmeasure.org/ucum-essence" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:ucum="http://unitsofmeasure.org/ucum-essence" xmlns:util="urn:hl7:utilities" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
+
     <xd:doc>
         <xd:desc>Functions for <xd:a href="http://unitsofmeasure.org/ucum.html">UCUM</xd:a> units based on the <xd:a href="http://www.unitsofmeasure.org/ucum-essence.xml">UCUM essence</xd:a> file. This is not a complete file but little is missing.</xd:desc>
     </xd:doc>
-    
-    <xsl:variable name="strUcumEssence">ucum-essence.xml</xsl:variable> 
-    <xsl:variable name="docUcumEssence" select="if (doc-available($strUcumEssence)) then doc($strUcumEssence)/ucum:root else ()" as="element(ucum:root)?"/>
+
+    <xsl:variable name="strUcumEssence">ucum-essence.xml</xsl:variable>
+    <xsl:variable name="docUcumEssence" select="doc($strUcumEssence)/ucum:root" as="element(ucum:root)?"/>
     <!--
     <base-unit Code="m" CODE="M" dim="L">
       <name>meter</name>
@@ -28,14 +29,64 @@
     </prefix>
     -->
     <xsl:key name="prefixcode" match="ucum:prefix" use="@Code"/>
-    
+
+    <xd:doc>
+        <xd:desc>converts UCUM time to ada unit</xd:desc>
+        <xd:param name="UCUM-time"/>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_UCUM2ADA_unit" as="xs:string?">
+        <xsl:param name="UCUM-time" as="xs:string?"/>
+        <xsl:if test="$UCUM-time">
+            <xsl:choose>
+                <xsl:when test="$UCUM-time = 's'">
+                    <xsl:value-of select="$ada-unit-second[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'min'">
+                    <xsl:value-of select="$ada-unit-minute[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'h'">
+                    <xsl:value-of select="$ada-unit-hour[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'd'">
+                    <xsl:value-of select="$ada-unit-day[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'wk'">
+                    <xsl:value-of select="$ada-unit-week[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'mo'">
+                    <xsl:value-of select="$ada-unit-month[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'a'">
+                    <xsl:value-of select="$ada-unit-year[1]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- If all else fails: log message but return the input value -->
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="msg">Onbekende ucum tijdseenheid ('<xsl:value-of select="$UCUM-time"/>') gevonden. Kan niet converteren naar ada eenheid: input = output.</xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:value-of select="$UCUM-time"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Converts an UCUM unit as used in FHIR to ada time unit</xd:desc>
+        <xd:param name="UCUMFHIR">The UCUM unit string</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_UCUM_FHIR2ADA_unit" as="xs:string?">
+        <xsl:param name="UCUMFHIR" as="xs:string?"/>
+        <xsl:value-of select="nf:convertTime_UCUM2ADA_unit($UCUMFHIR)"/>
+    </xsl:function>
+
     <xd:doc>
         <xd:desc>Return boolean true() or false() on whether or not a UCUM expression is valid expression.</xd:desc>
         <xd:param name="unit">Unit string. empty string will return false</xd:param>
     </xd:doc>
     <xsl:function name="nf:isValidUCUMUnit" as="xs:boolean">
         <xsl:param name="unit" as="xs:string?"/>
-        
+
         <!-- §6 curly braces 
             1 The full range of characters 33–126 can be used within a pair of curly braces (‘{’ and ‘}’). The material enclosed in curly braces is called annotation.
             2 Annotations do not contribute to the semantics of the unit but are meaningless by definition. 
@@ -46,9 +97,9 @@
             4 An annotation without a leading symbol implies the default unit 1 (the unity).
             5 Curly braces must not be nested. -->
         <xsl:variable name="prunedUnit" select="replace($unit, '\{[^\}]*\}', '')"/>
-        
+
         <xsl:variable name="constituents" select="tokenize($prunedUnit, '/')[not(. = '')]" as="xs:string*"/>
-        
+
         <xsl:variable name="validParts" as="element(part)*">
             <!-- 1 All expressions of The Unified Code for Units of Measure shall be built from characters of the 7-bit US-ASCII character set exclusively.  -->
             <xsl:choose>
@@ -91,7 +142,7 @@
                 <xsl:variable name="pu2" select="substring($cu-np, 1, 2)"/>
                 <!-- residual unit (after first two chars) -->
                 <xsl:variable name="ru2" select="substring($cu-np, 3)"/>
-                
+
                 <xsl:choose>
                     <!--<xsl:when test="$docUcumEssence/key('unitcode', $cu)">
                         <part id="5a" p="{.}">true</part>
@@ -123,12 +174,19 @@
                     <xsl:when test="matches($cu-np, '[^\d][23]\)?$')">
                         <!-- current unit no leading digits -->
                         <xsl:variable name="cu-nd" select="replace($cu-np, '^\d+(\.\d*)?', '')"/>
-                        <part id="11" p="{.}"><xsl:value-of select="nf:isValidUCUMUnit(replace($cu-nd, '[23]$', ''))"/></part>
+                        <part id="11" p="{.}">
+                            <xsl:value-of select="nf:isValidUCUMUnit(replace($cu-nd, '[23]$', ''))"/>
+                        </part>
                     </xsl:when>
                     <xsl:when test="matches($cu-np, '\.')">
                         <!-- Check each part of the multiplication except decimals/integers -->
-                        <xsl:variable name="npuvalid" select="for $npuc in tokenize($cu-np, '\.')[not(matches(., '^\d+(\.\d)$'))] return nf:isValidUCUMUnit($npuc)" as="xs:boolean*"/>
-                        <part id="11" p="{.}"><xsl:value-of select="$npuvalid = true()"/></part>
+                        <xsl:variable name="npuvalid" select="
+                                for $npuc in tokenize($cu-np, '\.')[not(matches(., '^\d+(\.\d)$'))]
+                                return
+                                    nf:isValidUCUMUnit($npuc)" as="xs:boolean*"/>
+                        <part id="11" p="{.}">
+                            <xsl:value-of select="$npuvalid = true()"/>
+                        </part>
                     </xsl:when>
                     <xsl:otherwise>
                         <part id="99" p="{.}">false</part>
@@ -136,17 +194,17 @@
                 </xsl:choose>
             </xsl:for-each>
         </xsl:variable>
-        
+
         <xsl:value-of select="empty($validParts[. = 'false'])"/>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Converts unit from G-Standaard to UCUM</xd:desc>
         <xd:param name="GstdBasiseenheid_code"/>
     </xd:doc>
-    <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string">
+    <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string*">
         <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
-        
+
         <xsl:choose>
             <xsl:when test="$GstdBasiseenheid_code castable as xs:integer">
                 <xsl:choose>
@@ -287,14 +345,97 @@
                 <!-- geen integer meegekregen --> G-standaard code is not an integer. Unsupported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
+
+
+    <xd:doc>
+        <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
+        <xd:param name="ADAunit"/>
+    </xd:doc>
+    <xsl:function name="nf:convert_ADA_unit2UCUM" as="xs:string?">
+        <xsl:param name="ADAunit" as="xs:string?"/>
+        <xsl:if test="$ADAunit">
+            <xsl:choose>
+                <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-gram">g</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-liter">l</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-dl">dl</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-cl">cl</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-ml">ml</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-ul">ul</xsl:when>
+
+                <xsl:when test="$ADAunit = $ada-unit-druppel">[drp]</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-degrees-celsius">Cel</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-pH">[pH]</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-mmol-l">mmol/L</xsl:when>
+
+                <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))">
+                    <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- let's assume it is a valid UCUM code -->
+                    <xsl:value-of select="$ADAunit"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Converts ADA time unit 2 UCUM</xd:desc>
+        <xd:param name="ADAtime"/>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_ADA_unit2UCUM" as="xs:string?">
+        <xsl:param name="ADAtime" as="xs:string?"/>
+        <xsl:if test="$ADAtime">
+            <xsl:choose>
+                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
+                <xsl:otherwise>
+                    <!-- If all else fails: simply return the ada value -->
+                    <xsl:value-of select="$ADAtime"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Converts an ada time unit to the UCUM unit as used in FHIR</xd:desc>
+        <xd:param name="ADAtime">The ada time unit string</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_ADA_unit2UCUM_FHIR" as="xs:string?">
+        <xsl:param name="ADAtime" as="xs:string?"/>
+        <xsl:if test="$ADAtime">
+            <xsl:choose>
+                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
+                <xsl:otherwise>
+                    <!-- If all else fails: wrap in {} to make it an annotation -->
+                    <xsl:value-of select="concat('{', $ADAtime, '}')"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="UCUM"/>
     </xd:doc>
     <xsl:template name="UCUM2GstdBasiseenheid">
         <xsl:param name="UCUM"/>
-        
+
         <xsl:variable name="gstd-code">
             <xsl:choose>
                 <xsl:when test="string-length($UCUM) > 0">
@@ -343,9 +484,10 @@
         </xsl:variable>
         <xsl:attribute name="code" select="$gstd-code"/>
         <xsl:attribute name="codeSystem" select="$oidGStandaardBST902THES2"/>
+        <xsl:attribute name="codeSystemName">G-Standaard thesaurus basiseenheden</xsl:attribute>
         <xsl:attribute name="displayName" select="$gstd-displayname"/>
     </xsl:template>
-    
+
     <!--<xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">
         <xsl:variable name="term" as="element()*">

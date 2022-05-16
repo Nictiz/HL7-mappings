@@ -20,10 +20,14 @@
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
 
+    <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
+    <property name="usecase.avvv" value="sturen_antwoord_voorstel_verstrekkingsverzoek"/>
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
+    <property name="usecase.vma" value="sturen_voorstel_medicatieafspraak"/>
     <property name="usecase.vv" value="beschikbaarstellen_verstrekkingenvertaling"/>
+    <property name="usecase.vvv" value="sturen_voorstel_verstrekkingsverzoek"/>
     
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
@@ -31,7 +35,7 @@
         <!-- sturen_medicatievoorschrift -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="schema.string" value="*${usecase.mv}*"/>
+            <param name="schema.string" value="*${usecase.mv}.xsd"/>
             <param name="fileset.dir" value="cda_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
@@ -40,7 +44,7 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
-            <param name="schema.string" value="*${usecase.mg}*"/>
+            <param name="schema.string" value="*${usecase.mg}.xsd"/>
             <param name="fileset.dir" value="hl7_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
@@ -49,30 +53,15 @@
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
-            <param name="schema.string" value="*${usecase.mo}*"/>
+            <param name="schema.string" value="*${usecase.mo}.xsd"/>
             <param name="fileset.dir" value="hl7_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
-        </antcall>
-        
-        <!-- beschikbaarstellen_verstrekkingenvertaling -->
-        <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.vv}"/>
-            <param name="schema.string" value="*${usecase.vv}*"/>
-            <param name="fileset.dir" value="hl7_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.vv}"/>
-        </antcall>
-
-        <!-- let's convert to ada too while we're at it -->
-        <antcall target="convert_hl7_2_ada"/>
-
+        </antcall>        
+ 
     </target>
     
     <target name="roundtrip_hl7_2_ada_2_hl7">
-        
-        <!-- hl7 2 ada first -->
-        <antcall target="convert_hl7_2_ada"/>
         
         <!-- medicatievoorschrift -->
         <!-- create the temporary hl7_instance_roundtrip, we only need the cda version -->
@@ -88,7 +77,7 @@
         <!-- convert the resulting medicatievoorschrift organizer to CDA -->
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="xsl.name" value="../../../../ada_2_hl7/mp/MP90_Transform_Organizer2CDA.xsl"/>
+            <param name="xsl.name" value="../../../../ada_2_hl7/mp/MP9_Transform_Organizer2CDA.xsl"/>
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="cda_instance_roundtrip"/>
         </antcall>
@@ -105,15 +94,7 @@
         
     </target>
 
-    <target name="convert_hl7_2_ada">
-
-        <!-- convert medicatievoorschrift to ada -->
-        <antcall target="convert_hl7_2_ada_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="xsl.name" value="payload/${usecase.mv}_hl7_2_ada.xsl"/>
-            <param name="xsl.in" value="cda_instance"/>
-            <param name="xsl.out" value="ada_instance"/>
-        </antcall>     
+    <target name="convert_hl7_2_ada">          
 
         <!-- convert medicatiegegevens -->
         <antcall target="convert_hl7_2_ada_sub">
@@ -130,16 +111,6 @@
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>-->
-        
-        <!-- convert beschikbaarstellen_verstrekkingenvertaling -->
-        <antcall target="convert_hl7_2_ada_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.vv}"/>
-            <param name="xsl.name" value="payload/${usecase.vv}_hl7_2_ada.xsl"/>
-            <param name="xsl.in" value="hl7_instance"/>
-            <param name="xsl.out" value="ada_instance"/>
-        </antcall>
-        
-   
     </target>
 
 

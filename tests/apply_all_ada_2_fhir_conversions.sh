@@ -20,31 +20,35 @@ function exitScript {
   exit $1
 }
 
-scriptdir=$(realpath --relative-to $(pwd) $(dirname $0))
+scriptdir=$(dirname $0)
 
 # Create a temporary output dir
 output_dir=$scriptdir/output
 mkdir -p $output_dir
 
+bundleSelfLink=http://example.org
+
 # Iterate over all ADA instances somewhere in the ada_2_fhir folder hierarchy
 ada_instances=$(find $scriptdir/.. -path '*ada_2_fhir/*/ada_instance/*.xml')
 for instance_path in $ada_instances; do
   instance_file=$(basename $instance_path)
-  project_folder=$(realpath --relative-to $(pwd) $(dirname $instance_path)/..)
+  project_folder=$(dirname $instance_path)/..
   
   # Apply all the transformation XSLT's in the corresponding project folder,
   # except for the *_2_fhir_resources.xsl files as the test would take too
   # much time
-  for transformation_path in $(find $project_folder/payload/ -name *2_fhir.xsl); do
-    echo "Transforming $instance_file with $(basename $transformation_path) in $project_folder"
-    java -jar $saxon_path -quit:on -warnings:recover -s:$instance_path -xsl:$transformation_path -o:$output_dir/tmp.xml > /dev/null
-	
-	# Exit on the first error we encounter
-	exit_status=$?
-	if [ $exit_status -ne 0 ]; then
-	  exitScript $exit_status
-	fi
-  done
+  if [ -e $project_folder/payload/ ]; then
+    for transformation_path in $(find $project_folder/payload/ -name *2_fhir.xsl); do
+      echo "Transforming $instance_file with $(basename $transformation_path) in $project_folder"
+      java -jar $saxon_path -quit:on -warnings:recover -s:$instance_path -xsl:$transformation_path -o:$output_dir/tmp.xml bundleSelfLink="${bundleSelfLink}" > /dev/null
+  	
+  	# Exit on the first error we encounter
+  	exit_status=$?
+  	if [ $exit_status -ne 0 ]; then
+  	  exitScript $exit_status
+  	fi
+    done
+  fi
 done
 
 exitScript 0

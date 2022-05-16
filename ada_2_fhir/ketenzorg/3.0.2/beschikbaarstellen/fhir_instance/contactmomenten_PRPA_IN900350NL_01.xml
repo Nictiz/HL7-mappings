@@ -1,17 +1,23 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="f851194c-5da2-11ec-4392-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996625"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.6.6.90000258.4.10-996625"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.10-996625"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Contact. Subject: E. XXX_Zegers. Id: 996625 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10), Status: voltooid</caption>
@@ -27,7 +33,7 @@
                         </tr>
                         <tr>
                            <th>Periode</th>
-                           <td>3 februari 2019</td>
+                           <td>16:45 - 16:51 op 3 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Participant</th>
@@ -50,6 +56,16 @@
             </identifier>
             <status value="finished"/>
             <class>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-14-contactwijze"/>
+                        <version value="v7"/>
+                        <code value="03"/>
+                        <display value="consult"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <system value="http://hl7.org/fhir/v3/ActCode"/>
                <code value="AMB"/>
                <display value="Ambulatory"/>
@@ -63,7 +79,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:4c5c9c24-c033-11ea-1897-020000000000"/>
+               <reference value="urn:uuid:f85128d0-5da2-11ec-4392-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <episodeOfCare>
@@ -84,20 +100,20 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4c5c9c54-c033-11ea-1897-020000000000"/>
+                        <reference value="urn:uuid:f85128e5-5da2-11ec-4392-020000000000"/>
                         <display value="XIS test || Huisarts || Tést Zorginstelling 02"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                   <display value="XIS test"/>
                </individual>
             </participant>
             <period>
-               <start value="2019-02-03"/>
-               <end value="2019-02-03"/>
+               <start value="2019-02-03T16:45:00+01:00"/>
+               <end value="2019-02-03T16:51:00+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:uuid:4c5c9c66-c033-11ea-1897-020000000000"/>
+               <reference value="urn:uuid:f85128ec-5da2-11ec-4392-020000000000"/>
                <display value="Tést Zorginstelling 02"/>
             </serviceProvider>
          </Encounter>
@@ -107,14 +123,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10.996626"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.6.6.90000258.4.10-996626"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.10-996626"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Contact. Subject: E. XXX_Zegers. Id: 996626 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10), Status: voltooid</caption>
@@ -130,7 +147,7 @@
                         </tr>
                         <tr>
                            <th>Periode</th>
-                           <td>6 februari 2019</td>
+                           <td>17:03 - 17:08 op 6 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Participant</th>
@@ -153,6 +170,16 @@
             </identifier>
             <status value="finished"/>
             <class>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-14-contactwijze"/>
+                        <version value="v7"/>
+                        <code value="03"/>
+                        <display value="consult"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <system value="http://hl7.org/fhir/v3/ActCode"/>
                <code value="AMB"/>
                <display value="Ambulatory"/>
@@ -166,7 +193,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:4c5c9c24-c033-11ea-1897-020000000000"/>
+               <reference value="urn:uuid:f85128d0-5da2-11ec-4392-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <episodeOfCare>
@@ -187,20 +214,20 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4c5c9c54-c033-11ea-1897-020000000000"/>
+                        <reference value="urn:uuid:f85128e5-5da2-11ec-4392-020000000000"/>
                         <display value="XIS test || Huisarts || Tést Zorginstelling 02"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                   <display value="XIS test"/>
                </individual>
             </participant>
             <period>
-               <start value="2019-02-06"/>
-               <end value="2019-02-06"/>
+               <start value="2019-02-06T17:03:00+01:00"/>
+               <end value="2019-02-06T17:08:00+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:uuid:4c5c9c66-c033-11ea-1897-020000000000"/>
+               <reference value="urn:uuid:f85128ec-5da2-11ec-4392-020000000000"/>
                <display value="Tést Zorginstelling 02"/>
             </serviceProvider>
          </Encounter>
@@ -210,17 +237,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4c5c9c24-c033-11ea-1897-020000000000"/>
+      <fullUrl value="urn:uuid:f85128d0-5da2-11ec-4392-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), E. XXX_Zegers, Vrouw, 2 augustus 1964</div>
-                  <div>Knolweg 1001, 9999XX STITSWERD, Nederland (Privé Bezoek)</div>
+                  <div>Knolweg 1001, 9999XX STITSWERD, Nederland (officieel Privé (hoofd) Bezoek)</div>
                </div>
             </text>
             <identifier>
@@ -246,11 +273,30 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-08-02"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="HP"/>
+                        <display value="Officieel adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
-                  <valueCode value="true"/>
+                  <valueBoolean value="true"/>
                </extension>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                   <valueCode value="HP"/>
@@ -276,14 +322,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-900014718"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 900014718 (UZI-NR-PERS), XIS test</div>
                </div>
@@ -309,17 +356,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-90000381"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-90000381"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 90000381 (URA)</caption>
+                     <caption>Organisatie. Id: 90000381 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -341,17 +389,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4c5c9c66-c033-11ea-1897-020000000000"/>
+      <fullUrl value="urn:uuid:f85128ec-5da2-11ec-4392-020000000000"/>
       <resource>
          <Organization>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 90000381 (URA)</caption>
+                     <caption>Organisatie. Id: 90000381 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -373,22 +421,24 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4c5c9c54-c033-11ea-1897-020000000000"/>
+      <fullUrl value="urn:uuid:f85128e5-5da2-11ec-4392-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>XIS test</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718">XIS test</a>
+                              </div>
                               <div>Tést Zorginstelling 02</div>
                            </td>
                         </tr>
@@ -403,11 +453,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="XIS test"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:4c5c9c66-c033-11ea-1897-020000000000"/>
+               <reference value="urn:uuid:f85128ec-5da2-11ec-4392-020000000000"/>
                <display value="Tést Zorginstelling 02"/>
             </organization>
             <specialty>

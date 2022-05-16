@@ -17,16 +17,21 @@
                                             desc="Alle verstrekkingsverzoeken van de patiënt, zonder aanvullende filter criteria&#xA;(Antwoord: bericht met 6 verstrekkingsverzoeken)"
                                             id="mg-mgr-mg-VV-Scenarioset0-0-1">
          <scenario-nr value="0.1" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6"
+                     value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"/>
          <!--Patient found in instance with id: mg-Scenarioset0 and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 0 (filterqueries)-->
-         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
-            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
+         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798" comment="">
+            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799" comment="">
                <initialen value="S. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
                <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"
                             value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                             displayName="Eigen geslachtsnaam"/>
-               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804">
+               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804" comment="">
                   <achternaam value="XXX_Jankie"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
                </geslachtsnaam>
@@ -45,25 +50,25 @@
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_QA1-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_QA1"
+            <identificatie value="MBH_907_QA1-JNK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963">
-               <identificatie value="MBH_907_QA1_VV"
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="MBH_907_QA1_VV-JNK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T-20D{08:00:00}"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
                       datatype="datetime"/>
-               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
                      <zorgverlener_identificatie_nummer value="000001111"
                                                         root="2.16.528.1.1007.3.1"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
                            <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130">
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
                               <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
                               <achternaam value="Pulver"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
@@ -71,18 +76,19 @@
                         </naamgegevens>
                      </naamgegevens>
                      <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
                                   code="0100"
                                   codeSystem="2.16.840.1.113883.2.4.6.7"
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   codeSystemVersion="2017-12-14T00:00:00"
                                   displayName="Huisartsen, niet nader gespecificeerd"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
                         <zorgaanbieder_identificatie_nummer value="00001111"
                                                             root="2.16.528.1.1007.3.3"
                                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
                         <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
                            <straat value="Dorpsstraat"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
                            <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
@@ -99,7 +105,7 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </auteur>
-               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964">
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
                   <aantal value="60" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
                            code="245"
@@ -107,8 +113,8 @@
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
-               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
                                    code="17469"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -121,8 +127,8 @@
                                    displayName="IBUPROFEN 600MG TABLET"/>
                   </product>
                </te_verstrekken_geneesmiddel>
-               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
                      <zorgaanbieder_identificatienummer value="01236578"
                                                         root="2.16.528.1.1007.3.3"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
@@ -130,8 +136,8 @@
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
                   </zorgaanbieder>
                </beoogd_verstrekker>
-               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286">
-                  <identificatie value="MBH_907_QA1_MA"
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
+                  <identificatie value="MBH_907_QA1_MA-JNK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
                </relatie_naar_medicatieafspraak>
@@ -139,25 +145,25 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_QA2-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_QA2"
+            <identificatie value="MBH_907_QA2-JNK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963">
-               <identificatie value="MBH_907_QA2_VV"
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="MBH_907_QA2_VV-JNK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T-100D{08:04:00}"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
                       datatype="datetime"/>
-               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
                      <zorgverlener_identificatie_nummer value="000001111"
                                                         root="2.16.528.1.1007.3.1"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
                            <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130">
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
                               <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
                               <achternaam value="Pulver"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
@@ -165,18 +171,19 @@
                         </naamgegevens>
                      </naamgegevens>
                      <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
                                   code="0100"
                                   codeSystem="2.16.840.1.113883.2.4.6.7"
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   codeSystemVersion="2017-12-14T00:00:00"
                                   displayName="Huisartsen, niet nader gespecificeerd"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
                         <zorgaanbieder_identificatie_nummer value="00001111"
                                                             root="2.16.528.1.1007.3.3"
                                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
                         <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
                            <straat value="Dorpsstraat"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
                            <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
@@ -193,7 +200,7 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </auteur>
-               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964">
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
                   <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599" value="300"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -201,8 +208,8 @@
                            code="233"
                            displayName="milliliter"/>
                </te_verstrekken_hoeveelheid>
-               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
                                    code="3379"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -215,8 +222,8 @@
                                    displayName="SENNOSIDEN A+B STROOP 2MG/ML"/>
                   </product>
                </te_verstrekken_geneesmiddel>
-               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
                      <zorgaanbieder_identificatienummer root="2.16.528.1.1007.3.3"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"
                                                         value="01236578"/>
@@ -224,34 +231,34 @@
                                        value="Apotheek de Gulle Gaper"/>
                   </zorgaanbieder>
                </beoogd_verstrekker>
-               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286">
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
                   <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"
-                                 value="MBH_907_QA2_MA"
+                                 value="MBH_907_QA2_MA-JNK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_naar_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_QA3-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_QA3"
+            <identificatie value="MBH_907_QA3-JNK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963">
-               <identificatie value="MBH_907_QA3_VV"
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="MBH_907_QA3_VV-JNK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T-50D{08:10:00}"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
                       datatype="datetime"/>
-               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
                      <zorgverlener_identificatie_nummer value="000001111"
                                                         root="2.16.528.1.1007.3.1"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
                            <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130">
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
                               <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
                               <achternaam value="Pulver"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
@@ -259,18 +266,19 @@
                         </naamgegevens>
                      </naamgegevens>
                      <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
                                   code="0100"
                                   codeSystem="2.16.840.1.113883.2.4.6.7"
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   codeSystemVersion="2017-12-14T00:00:00"
                                   displayName="Huisartsen, niet nader gespecificeerd"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
                         <zorgaanbieder_identificatie_nummer value="00001111"
                                                             root="2.16.528.1.1007.3.3"
                                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
                         <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
                            <straat value="Dorpsstraat"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
                            <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
@@ -287,7 +295,7 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </auteur>
-               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964">
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
                   <aantal value="4000" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
                            code="233"
@@ -295,8 +303,8 @@
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="milliliter"/>
                </te_verstrekken_hoeveelheid>
-               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
                                    code="88749"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -309,8 +317,8 @@
                                    displayName="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
                   </product>
                </te_verstrekken_geneesmiddel>
-               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
                      <zorgaanbieder_identificatienummer value="01236578"
                                                         root="2.16.528.1.1007.3.3"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
@@ -318,8 +326,8 @@
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
                   </zorgaanbieder>
                </beoogd_verstrekker>
-               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286">
-                  <identificatie value="MBH_907_QA3_MA"
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
+                  <identificatie value="MBH_907_QA3_MA-JNK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
                </relatie_naar_medicatieafspraak>
@@ -327,25 +335,25 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_QA4-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_QA4"
+            <identificatie value="MBH_907_QA4-JNK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963">
-               <identificatie value="MBH_907_QA4_VV"
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="MBH_907_QA4_VV-JNK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T-10D{08:12:00}"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
                       datatype="datetime"/>
-               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
                      <zorgverlener_identificatie_nummer value="000001111"
                                                         root="2.16.528.1.1007.3.1"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
                            <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130">
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
                               <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
                               <achternaam value="Pulver"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
@@ -353,18 +361,19 @@
                         </naamgegevens>
                      </naamgegevens>
                      <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
                                   code="0100"
                                   codeSystem="2.16.840.1.113883.2.4.6.7"
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   codeSystemVersion="2017-12-14T00:00:00"
                                   displayName="Huisartsen, niet nader gespecificeerd"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
                         <zorgaanbieder_identificatie_nummer value="00001111"
                                                             root="2.16.528.1.1007.3.3"
                                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
                         <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
                            <straat value="Dorpsstraat"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
                            <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
@@ -381,7 +390,7 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </auteur>
-               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964">
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
                   <aantal value="90" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
                            code="245"
@@ -389,8 +398,8 @@
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
-               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
                                    code="3956"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -403,8 +412,8 @@
                                    displayName="ACETYLSALICYLZUUR TABLET 100MG"/>
                   </product>
                </te_verstrekken_geneesmiddel>
-               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
                      <zorgaanbieder_identificatienummer value="01236578"
                                                         root="2.16.528.1.1007.3.3"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
@@ -412,8 +421,8 @@
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
                   </zorgaanbieder>
                </beoogd_verstrekker>
-               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286">
-                  <identificatie value="MBH_907_QA4_MA"
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
+                  <identificatie value="MBH_907_QA4_MA-JNK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
                </relatie_naar_medicatieafspraak>
@@ -421,25 +430,25 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_QA5-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_QA5"
+            <identificatie value="MBH_907_QA5-JNK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963">
-               <identificatie value="MBH_907_QA5_VV"
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="MBH_907_QA5_VV-JNK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T-50D{08:15:00}"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
                       datatype="datetime"/>
-               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
                      <zorgverlener_identificatie_nummer value="000001111"
                                                         root="2.16.528.1.1007.3.1"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
                            <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130">
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
                               <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
                               <achternaam value="Pulver"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
@@ -447,18 +456,19 @@
                         </naamgegevens>
                      </naamgegevens>
                      <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
                                   code="0100"
                                   codeSystem="2.16.840.1.113883.2.4.6.7"
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   codeSystemVersion="2017-12-14T00:00:00"
                                   displayName="Huisartsen, niet nader gespecificeerd"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
                         <zorgaanbieder_identificatie_nummer value="00001111"
                                                             root="2.16.528.1.1007.3.3"
                                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
                         <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
                            <straat value="Dorpsstraat"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
                            <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
@@ -475,7 +485,7 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </auteur>
-               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964">
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
                   <aantal value="7" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
                            code="245"
@@ -483,8 +493,8 @@
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
-               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
                                    code="7323"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -497,8 +507,8 @@
                                    displayName="ACENOCOUMAROL TABLET 1MG"/>
                   </product>
                </te_verstrekken_geneesmiddel>
-               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
                      <zorgaanbieder_identificatienummer value="01236578"
                                                         root="2.16.528.1.1007.3.3"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
@@ -506,8 +516,8 @@
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
                   </zorgaanbieder>
                </beoogd_verstrekker>
-               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286">
-                  <identificatie value="MBH_907_QA5_MA"
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
+                  <identificatie value="MBH_907_QA5_MA-JNK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
                </relatie_naar_medicatieafspraak>
@@ -515,25 +525,25 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_QA6-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_QA6"
+            <identificatie value="MBH_907_QA6-JNK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963">
-               <identificatie value="MBH_907_QA6_VV"
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="MBH_907_QA6_VV-JNK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T+5D{08:18:00}"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
                       datatype="datetime"/>
-               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
                      <zorgverlener_identificatie_nummer value="000001111"
                                                         root="2.16.528.1.1007.3.1"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
                            <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130">
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
                               <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
                               <achternaam value="Pulver"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
@@ -541,18 +551,19 @@
                         </naamgegevens>
                      </naamgegevens>
                      <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
                                   code="0100"
                                   codeSystem="2.16.840.1.113883.2.4.6.7"
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   codeSystemVersion="2017-12-14T00:00:00"
                                   displayName="Huisartsen, niet nader gespecificeerd"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
                         <zorgaanbieder_identificatie_nummer value="00001111"
                                                             root="2.16.528.1.1007.3.3"
                                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
                         <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
                            <straat value="Dorpsstraat"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
                            <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
@@ -569,7 +580,7 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </auteur>
-               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964">
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
                   <aantal value="28" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
                            code="245"
@@ -577,8 +588,8 @@
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuks"/>
                </te_verstrekken_hoeveelheid>
-               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
                                    code="353"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -591,8 +602,8 @@
                                    displayName="OXAZEPAM TABLET 10MG"/>
                   </product>
                </te_verstrekken_geneesmiddel>
-               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
                      <zorgaanbieder_identificatienummer value="01236578"
                                                         root="2.16.528.1.1007.3.3"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
@@ -600,8 +611,8 @@
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
                   </zorgaanbieder>
                </beoogd_verstrekker>
-               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286">
-                  <identificatie value="MBH_907_QA6_MA"
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
+                  <identificatie value="MBH_907_QA6_MA-JNK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
                </relatie_naar_medicatieafspraak>

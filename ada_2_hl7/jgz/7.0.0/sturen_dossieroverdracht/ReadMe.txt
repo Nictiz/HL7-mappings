@@ -17,7 +17,7 @@ Directory layout:
 * payload - contains the XSL Stylesheets to start the conversion with
 
 Optionally you could have:
-* hl7v3_schematron_closed_warnings_svrl - contains the generated Schematrons from the publication. They were to big for checkin
+* hl7v3_schematron_closed_warnings_svrl - contains the generated Schematrons from the publication. They were too big for checkin
 * hl7v3_instance_svrl - contains Schematron validation results. Relevant when you actually have the folder hl7v3_schematron_closed_warnings_svrl
 
 The folder 'ada_instance' contains sample ada instance files. They are in no way functionally valid (i.e. the situation can probably not be validated in real life). The subfolder result contains the result of the conversion for these two sample files.

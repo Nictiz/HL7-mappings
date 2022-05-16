@@ -13,9 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- import because we want to be able to override the param for macAddress for UUID generation
+	<!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
-    <xsl:import href="../../../2_fhir_mp91_include.xsl"/>
+	<xsl:import href="../../../2_fhir_mp91_include.xsl"/>
 	<xd:doc scope="stylesheet">
 		<xd:desc>
 			<xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -28,20 +28,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xd:p>
 		</xd:desc>
 	</xd:doc>
-	<xsl:output method="xml" indent="yes"/>
+	<xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
 	<xsl:strip-space elements="*"/>
-    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
-    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-    <!-- parameter to determine whether to refer by resource/id -->
-    <!-- should be false when there is no FHIR server available to retrieve the resources -->
-    <xsl:param name="referById" as="xs:boolean" select="true()"/>
-    <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->    
-    <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>    
-    
-	<xsl:variable name="usecase">mp9</xsl:variable>
+	<!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+	<!-- 02-00-00-00-00-00 may not be used in a production situation -->
+	<xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+	<!-- parameter to determine whether to refer by resource/id -->
+	<!-- should be false when there is no FHIR server available to retrieve the resources -->
+	<xsl:param name="referById" as="xs:boolean" select="true()"/>
+	<!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->
+	<xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
+	<!-- use case acronym to be added in resource.id -->
+	<xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
+
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-		<xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $relatedPersons/f:entry , $locations/f:entry , $body-observations/f:entry , $problems/f:entry"/>
+		<xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $relatedPersons/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>
 	</xsl:variable>
 	<xd:doc>
 		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
@@ -71,8 +72,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc/>
 	</xd:doc>
 	<xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-		<xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>
-		<xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
+		<xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, './')[last()]"/>
+		<xsl:result-document href="./{f:id/@value}.xml">
 			<xsl:copy-of select="."/>
 		</xsl:result-document>
 	</xsl:template>

@@ -1,17 +1,22 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="a0a3cfb9-8d8f-11ec-1638-020000000000"/>
    <type value="searchset"/>
    <total value="22"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:b92d8c8f-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3dd25-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -24,7 +29,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>2006-06-29</td>
+                           <td>${DATE, T, D, -500}</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -37,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Gedurende 7 dagen, 4 maal per dag 1 tablet</div>
+                              <div>Tekst: gedurende 7 dagen, 4 maal per dag 1 stuk</div>
                               <div>Timing: <div>4 maal per dag</div>
                               </div>
                               <div>Dosering: 1 Stuk</div>
@@ -48,7 +53,7 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2006-06-29"/>
+               <valueDateTime value="${DATE, T, D, -500}"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
@@ -77,7 +82,7 @@
                <display value="VERAPAMIL HCL CF TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -87,7 +92,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Gedurende 7 dagen, 4 maal per dag 1 tablet"/>
+               <text value="gedurende 7 dagen, 4 maal per dag 1 stuk"/>
                <timing>
                   <repeat>
                      <frequency value="4"/>
@@ -109,14 +114,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d8cbd-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c623-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -129,7 +134,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>2006-02-14</td>
+                           <td>${DATE, T, D, -635}</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -138,7 +143,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: 3 maal per dag 1 zakje</div>
+                              <div>Tekst: 3 maal per dag 1 stuk</div>
                               <div>Timing: <div>3 maal per dag</div>
                               </div>
                               <div>Dosering: 1 Stuk</div>
@@ -149,7 +154,7 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2006-02-14"/>
+               <valueDateTime value="${DATE, T, D, -635}"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
@@ -170,7 +175,7 @@
                <display value="ORS POEDER SACHET 5,4G SAN"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -180,7 +185,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="3 maal per dag 1 zakje"/>
+               <text value="3 maal per dag 1 stuk"/>
                <timing>
                   <repeat>
                      <frequency value="3"/>
@@ -202,14 +207,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d92c9-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c694-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -222,7 +227,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>2007-01-05</td>
+                           <td>${DATE, T, D, -310}</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -235,7 +240,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Gedurende 5 jaar, 2 maal per jaar 1 injectie</div>
+                              <div>Tekst: gedurende 1826 dagen, 2 maal per jaar 1 stuk</div>
                               <div>Timing: <div>2 maal per jaar</div>
                               </div>
                               <div>Dosering: 1 Stuk</div>
@@ -246,7 +251,7 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2007-01-05"/>
+               <valueDateTime value="${DATE, T, D, -310}"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
@@ -275,7 +280,7 @@
                <display value="PROLIA 60 INJVLST 60MG/ML WWSP 1ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -285,7 +290,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Gedurende 5 jaar, 2 maal per jaar 1 injectie"/>
+               <text value="gedurende 1826 dagen, 2 maal per jaar 1 stuk"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -307,14 +312,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d92f8-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c704-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -327,7 +332,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>2007-05-20</td>
+                           <td>${DATE, T, D, -175}</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -340,7 +345,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Gedurende 60 dagen, 1 maal per dag een kwart tablet</div>
+                              <div>Tekst: gedurende 60 dagen, 1 maal per dag 0.25 stuk</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Dosering: 0.25 Stuk</div>
@@ -351,7 +356,7 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2007-05-20"/>
+               <valueDateTime value="${DATE, T, D, -175}"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
@@ -380,7 +385,7 @@
                <display value="IBUPROFEN PCH TABLET 200MG CLICKER"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -390,7 +395,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Gedurende 60 dagen, 1 maal per dag een kwart tablet"/>
+               <text value="gedurende 60 dagen, 1 maal per dag 0.25 stuk"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -412,14 +417,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d932b-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c77d-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -432,7 +437,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>2007-06-20</td>
+                           <td>${DATE, T, D, -144}</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -445,7 +450,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Gedurende 3 weken, 1 maal per week 15 ml</div>
+                              <div>Tekst: gedurende 21 dagen, 1 maal per week 15 ml</div>
                               <div>Timing: <div>eenmalig per week</div>
                               </div>
                               <div>Dosering: 15 Milliliter</div>
@@ -456,7 +461,7 @@
                </div>
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2007-06-20"/>
+               <valueDateTime value="${DATE, T, D, -144}"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
@@ -485,7 +490,7 @@
                <display value="KENACORT A 40 INJECTIESUSPENSIE 40MG/ML FLACON 5ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -495,7 +500,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Gedurende 3 weken, 1 maal per week 15 ml"/>
+               <text value="gedurende 21 dagen, 1 maal per week 15 ml"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -517,14 +522,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d935d-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c7f3-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -555,7 +560,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T-650, gedurende 7 dagen, 2 maal per dag 1 druppel</div>
+                              <div>Tekst: Vanaf T - 650 dagen, gedurende 7 dagen, 2 maal per dag 1 druppel</div>
                               <div>Timing: <div>2 maal per dag</div>
                               </div>
                               <div>Dosering: 1 Druppel</div>
@@ -600,7 +605,7 @@
                <display value="TRUSOPT OOGDRUPPELS 20MG/ML FLACON 5ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -610,7 +615,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Vanaf T-650, gedurende 7 dagen, 2 maal per dag 1 druppel"/>
+               <text value="Vanaf T - 650 dagen, gedurende 7 dagen, 2 maal per dag 1 druppel"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -632,14 +637,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d9390-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c86c-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -665,7 +670,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T-287D, 2 maal per dag 5 gram</div>
+                              <div>Tekst: Vanaf T - 287 dagen, 2 maal per dag 5 gram</div>
                               <div>Timing: <div>2 maal per dag</div>
                               </div>
                               <div>Dosering: 5 Gram</div>
@@ -702,7 +707,7 @@
                <display value="RESONIUM A POEDER"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -712,7 +717,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Vanaf T-287D, 2 maal per dag 5 gram"/>
+               <text value="Vanaf T - 287 dagen, 2 maal per dag 5 gram"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -734,14 +739,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d93c2-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c8e3-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -767,7 +772,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T-287D tot en met T+149D 23:59, 2 maal per dag 2 inhalaties</div>
+                              <div>Tekst: Vanaf T - 71 dagen, tot en met T + 149 dagen, 2 maal per dag 2 doses</div>
                               <div>Timing: <div>2 maal per dag</div>
                               </div>
                               <div>Dosering: 2 Dosis</div>
@@ -805,7 +810,7 @@
                <display value="SEREVENT DISKUS INHPDR 50MCG 60DO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -815,7 +820,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Vanaf T-287D tot en met T+149D 23:59, 2 maal per dag 2 inhalaties"/>
+               <text value="Vanaf T - 71 dagen, tot en met T + 149 dagen, 2 maal per dag 2 doses"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -837,14 +842,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d93f5-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c95c-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -870,7 +875,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Gedurende 18 dagen, 1 maal per 3 dagen 2 pleisters</div>
+                              <div>Tekst: gedurende 18 dagen, 1 maal per 3 dagen 2 stuks</div>
                               <div>Timing: <div>eenmalig per 3 dagen</div>
                               </div>
                               <div>Dosering: 2 Stuk</div>
@@ -910,7 +915,7 @@
                <display value="DUROGESIC 100 MATRIXPLEISTER 16,8MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -920,7 +925,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Gedurende 18 dagen, 1 maal per 3 dagen 2 pleisters"/>
+               <text value="gedurende 18 dagen, 1 maal per 3 dagen 2 stuks"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -942,14 +947,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d9427-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3c9d2-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -975,7 +980,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Gedurende 30 dagen, gebruik volgens afspraak</div>
+                              <div>Tekst: gedurende 30 dagen, gebruik volgens afspraak</div>
                               <div>Instructie: gebruik volgens afspraak</div>
                            </td>
                         </tr>
@@ -1013,7 +1018,7 @@
                <display value="Carvedilol CF tablet 6,25mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1023,7 +1028,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="Gedurende 30 dagen, gebruik volgens afspraak"/>
+               <text value="gedurende 30 dagen, gebruik volgens afspraak"/>
                <additionalInstruction>
                   <coding>
                      <system value="http://hl7.org/fhir/v3/NullFlavor"/>
@@ -1040,14 +1045,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d9453-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3ca34-8d8f-11ec-1638-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
@@ -1073,7 +1078,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: vanaf $T$ 1 week 6 stuks per dag; vanaf $T + 1wk$ 1 week 5 stuks per dag; vanaf $T + 2wk$ 1 week 4 stuks per dag; vanaf $T + 3wk$ 1 week 3 stuks per dag; vanaf $T + 4wk$ 1 week 2 stuks per dag; vanaf $T + 5wk$} 1 week 1 stuks per dag</div>
+                              <div>Tekst: Vanaf T, tot en met T + 42 dagen, eerst 1 week 6 stuks per dag; vanaf T + 1wk, gedurende 1 week 5 stuks per dag; vanaf T + 2 weken, gedurende 1 week 4 stuks per dag; vanaf T + 3 weken, gedurende 1 week 3 stuks per dag; vanaf T + 4 weken, gedurende 1 week 2 stuks per dag; vanaf T + 5 weken, gedurende 1 week 1 stuks per dag</div>
                               <div>Instructie: eerst 1 week 6 stuks per dag; vanaf T + 1wk, gedurende 1 week 5 stuks per dag; vanaf T + 2 weken, gedurende 1 week 4 stuks per dag; vanaf T + 3 weken, gedurende 1 week 3 stuks per dag; vanaf T + 4 weken, gedurende 1 week 2 stuks per dag; vanaf T + 5 weken, gedurende 1 week 1 stuks per dag</div>
                            </td>
                         </tr>
@@ -1109,7 +1114,7 @@
                <display value="Diazepam PCH tablet 5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1119,7 +1124,7 @@
                </actor>
             </performer>
             <dosageInstruction>
-               <text value="vanaf $T$ 1 week 6 stuks per dag; vanaf $T + 1wk$ 1 week 5 stuks per dag; vanaf $T + 2wk$ 1 week 4 stuks per dag; vanaf $T + 3wk$ 1 week 3 stuks per dag; vanaf $T + 4wk$ 1 week 2 stuks per dag; vanaf $T + 5wk$} 1 week 1 stuks per dag"/>
+               <text value="Vanaf T, tot en met T + 42 dagen, eerst 1 week 6 stuks per dag; vanaf T + 1wk, gedurende 1 week 5 stuks per dag; vanaf T + 2 weken, gedurende 1 week 4 stuks per dag; vanaf T + 3 weken, gedurende 1 week 3 stuks per dag; vanaf T + 4 weken, gedurende 1 week 2 stuks per dag; vanaf T + 5 weken, gedurende 1 week 1 stuks per dag"/>
                <additionalInstruction>
                   <coding>
                      <system value="http://hl7.org/fhir/v3/NullFlavor"/>
@@ -1143,7 +1148,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 1f5eebe0-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1202,7 +1207,7 @@
                <display value="VERAPAMIL HCL CF TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1236,7 +1241,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 47f39010-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1299,7 +1304,7 @@
                <display value="ORS POEDER SACHET 5,4G SAN"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1339,7 +1344,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 4d5128b0-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1402,7 +1407,7 @@
                <display value="PROLIA 60 INJVLST 60MG/ML WWSP 1ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1442,7 +1447,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 52c41e10-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1505,7 +1510,7 @@
                <display value="IBUPROFEN PCH TABLET 200MG CLICKER"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1545,7 +1550,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 59df4530-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1604,7 +1609,7 @@
                <display value="KENACORT A 40 INJECTIESUSPENSIE 40MG/ML FLACON 5ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1638,7 +1643,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 5ed2f870-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1697,7 +1702,7 @@
                <display value="TRUSOPT OOGDRUPPELS 20MG/ML FLACON 5ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1731,7 +1736,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 63c23ee0-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1790,7 +1795,7 @@
                <display value="RESONIUM A POEDER"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1824,7 +1829,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 6898f440-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1883,7 +1888,7 @@
                <display value="SEREVENT DISKUS INHPDR 50MCG 60DO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -1917,7 +1922,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 6da7a990-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -1976,7 +1981,7 @@
                <display value="DUROGESIC 100 MATRIXPLEISTER 16,8MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -2010,7 +2015,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 721def70-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -2069,7 +2074,7 @@
                <display value="Carvedilol CF tablet 6,25mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -2103,7 +2108,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>MedicationDispense. Subject: Carel C. Creiens. Id: 78074d50-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
@@ -2162,7 +2167,7 @@
                <display value="Diazepam PCH tablet 5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+               <reference value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
                <display value="Carel C. Creiens"/>
             </subject>
             <performer>
@@ -2189,14 +2194,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b92d841c-bd3e-11ea-1663-020000000000"/>
+      <fullUrl value="urn:uuid:a0a3cfc1-8d8f-11ec-1638-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Carel C. Creiens, Man, 1 juni 1950</div>
                </div>
@@ -2229,7 +2234,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1950-06-01"/>
          </Patient>
       </resource>
@@ -2245,10 +2260,10 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 01234567 (URA)</caption>
+                     <caption>Organisatie. Id: 01234567 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -2272,11 +2287,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.14303841"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-14303841"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2309,11 +2325,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.14565277"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-14565277"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2350,11 +2367,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.15654486"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-15654486"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2387,11 +2405,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.14765233"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-14765233"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2432,11 +2451,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.12128198"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-12128198"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2477,11 +2497,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.13906550"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-13906550"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2522,11 +2543,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.13650203"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-13650203"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2567,11 +2589,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.14039303"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-14039303"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2612,11 +2635,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.13878956"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-13878956"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2657,11 +2681,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.14933349"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-14933349"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -2699,11 +2724,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.13908790"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.8-13908790"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>

@@ -73,8 +73,12 @@
             <echo/>
             <echo>${echo.label} ${xsl_allergyintolerance}</echo>
             <xslt force="true" style="${xsl_allergyintolerance}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesAllergieIntoleranties"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -83,8 +87,12 @@
             <echo/>
             <echo>${echo.label} ${xsl_episodes}</echo>
             <xslt force="true" style="${xsl_episodes}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesEpisodes"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -94,8 +102,12 @@
             <echo>${echo.label} ${xsl_contactverslagen}</echo>
             <xslt force="true" style="${xsl_contactverslagen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="dojournalentries" expression="SOEP"/>-->
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesContactverslagen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -104,8 +116,12 @@
             <echo/>
             <echo>${echo.label} ${xsl_diagnbepalingen}</echo>
             <xslt force="true" style="${xsl_diagnbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesDiagnBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -114,8 +130,12 @@
             <echo/>
             <echo>${echo.label} ${xsl_labbepalingen}</echo>
             <xslt force="true" style="${xsl_labbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesLabBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -124,8 +144,12 @@
             <echo/>
             <echo>${echo.label} ${xsl_algemene_bepalingen}</echo>
             <xslt force="true" style="${xsl_algemene_bepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesAlgemeneBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -134,8 +158,12 @@
             <echo/>
             <echo>${echo.label} ${xsl_alerts}</echo>
             <xslt force="true" style="${xsl_alerts}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="https://example.org/fhir/Bundle"/>
                 <fileset refid="inputfilesAlerts"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -144,8 +172,12 @@
             <echo/>
             <echo>${echo.label} ${xsl_encounters}</echo>
             <xslt force="true" style="${xsl_encounters}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesEncounters"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -154,8 +186,12 @@
             <echo/>
             <echo>${echo.label} ${xsl_medicationagreements}</echo>
             <xslt force="true" style="${xsl_medicationagreements}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="referById" expression="false"/>
+                <param name="separateResources" expression="false"/>
+                <param name="baseUrl" expression="https://example.org/fhir"/>
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <fileset refid="inputfilesMedicationAgreements"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>

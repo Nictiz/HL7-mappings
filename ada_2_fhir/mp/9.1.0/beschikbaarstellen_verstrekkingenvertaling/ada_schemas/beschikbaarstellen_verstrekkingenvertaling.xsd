@@ -645,7 +645,7 @@
          <xs:element name="ingredient_code"
                      type="ingredient_code_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22298"
                      minOccurs="0"
-                     maxOccurs="1"/>
+                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -1637,7 +1637,7 @@
          <xs:element name="ingredient_code"
                      type="ingredient_code_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22691"
                      minOccurs="0"
-                     maxOccurs="1"/>
+                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -2550,7 +2550,7 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: IngredientCode - 0..1 C</xs:documentation>
+      <xs:documentation>Type for concept item: IngredientCode - 0..* C</xs:documentation>
    </xs:annotation>
    <xs:complexType name="ingredient_code_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22298">
       <xs:sequence>
@@ -3618,7 +3618,7 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: IngredientCode - 0..1 C</xs:documentation>
+      <xs:documentation>Type for concept item: IngredientCode - 0..* C</xs:documentation>
    </xs:annotation>
    <xs:complexType name="ingredient_code_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22691">
       <xs:sequence>
@@ -3808,12 +3808,12 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeDate">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T([+\-]\d+(\.\d+)?[YMD])?"/>
+         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="RelativeDateTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T(([+\-]\d+(\.\d+)?[YMD])?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
+         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="DateYear">

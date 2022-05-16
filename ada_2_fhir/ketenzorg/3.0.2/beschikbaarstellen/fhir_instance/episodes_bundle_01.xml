@@ -1,25 +1,31 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="f2b3327c-5da2-11ec-1847-020000000000"/>
    <type value="searchset"/>
    <total value="4"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:4878a3d6-c033-11ea-1581-020000000000"/>
+      <fullUrl value="https://example.org/fhir/EpisodeOfCare/2.16.528.1.1007.3.3.765332.1.12-hc657498ft562.9895"/>
       <resource>
          <EpisodeOfCare>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-hc657498ft562.9895"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgepisode. Patiënt: urn:uuid:4878a3cd-c033-11ea-1581-020000000000. Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: actief</caption>
+                     <caption>Zorgepisode. Patiënt: urn:uuid:f2b332bc-5da2-11ec-1847-020000000000. Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Type</th>
                            <td>
-                              <span title="Condition (64572001 - SNOMED CT)">Condition</span>
+                              <span title="aandoening (64572001 - SNOMED CT)">aandoening</span>
                               <div>Diabetes Mellitus type II</div>
                            </td>
                         </tr>
@@ -29,11 +35,15 @@
                         </tr>
                         <tr>
                            <th>Zorgmanager</th>
-                           <td>Huisarts de Jong ZAB</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Huisarts de Jong ZAB</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Diagnose</th>
-                           <td>Diabetes Mellitus type II</td>
+                           <td>
+                              <a href="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111">Diabetes Mellitus type II</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -61,20 +71,20 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="64572001"/>
-                  <display value="Condition"/>
+                  <display value="aandoening"/>
                </coding>
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:4878a3de-c033-11ea-1581-020000000000"/>
+                  <reference value="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111"/>
                   <display value="Diabetes Mellitus type II"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:4878a3cd-c033-11ea-1581-020000000000"/>
+               <reference value="urn:uuid:f2b332bc-5da2-11ec-1847-020000000000"/>
             </patient>
             <managingOrganization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Huisarts de Jong ZAB"/>
             </managingOrganization>
             <period>
@@ -87,22 +97,23 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4878a3f1-c033-11ea-1581-020000000000"/>
+      <fullUrl value="https://example.org/fhir/EpisodeOfCare/2.16.528.1.1007.3.3.765332.1.12-hc657498ft562.9895"/>
       <resource>
          <EpisodeOfCare>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-hc657498ft562.9895"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgepisode. Patiënt: urn:uuid:4878a3cd-c033-11ea-1581-020000000000. Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: actief</caption>
+                     <caption>Zorgepisode. Patiënt: urn:uuid:f2b332bc-5da2-11ec-1847-020000000000. Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Type</th>
                            <td>
-                              <span title="Condition (64572001 - SNOMED CT)">Condition</span>
+                              <span title="aandoening (64572001 - SNOMED CT)">aandoening</span>
                               <div>Diabetes Mellitus type II</div>
                            </td>
                         </tr>
@@ -112,11 +123,15 @@
                         </tr>
                         <tr>
                            <th>Zorgmanager</th>
-                           <td>Huisarts de Jong ZAB</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Huisarts de Jong ZAB</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Diagnose</th>
-                           <td>Diabetes Mellitus type II</td>
+                           <td>
+                              <a href="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111">Diabetes Mellitus type II</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -144,20 +159,20 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="64572001"/>
-                  <display value="Condition"/>
+                  <display value="aandoening"/>
                </coding>
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:4878a3de-c033-11ea-1581-020000000000"/>
+                  <reference value="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111"/>
                   <display value="Diabetes Mellitus type II"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:4878a3cd-c033-11ea-1581-020000000000"/>
+               <reference value="urn:uuid:f2b332bc-5da2-11ec-1847-020000000000"/>
             </patient>
             <managingOrganization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Huisarts de Jong ZAB"/>
             </managingOrganization>
             <period>
@@ -170,22 +185,23 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4878a6e9-c033-11ea-1581-020000000000"/>
+      <fullUrl value="https://example.org/fhir/EpisodeOfCare/2.16.528.1.1007.3.3.765332.1.12-hc657498ft562.9895"/>
       <resource>
          <EpisodeOfCare>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-hc657498ft562.9895"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgepisode. Patiënt: urn:uuid:4878a3cd-c033-11ea-1581-020000000000. Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: actief</caption>
+                     <caption>Zorgepisode. Patiënt: urn:uuid:f2b332bc-5da2-11ec-1847-020000000000. Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Type</th>
                            <td>
-                              <span title="Condition (64572001 - SNOMED CT)">Condition</span>
+                              <span title="aandoening (64572001 - SNOMED CT)">aandoening</span>
                               <div>Diabetes Mellitus type II</div>
                            </td>
                         </tr>
@@ -195,11 +211,15 @@
                         </tr>
                         <tr>
                            <th>Zorgmanager</th>
-                           <td>Huisarts Prins ZAB</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00003131">Huisarts Prins ZAB</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Diagnose</th>
-                           <td>Diabetes Mellitus type II</td>
+                           <td>
+                              <a href="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111">Diabetes Mellitus type II</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -227,20 +247,20 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="64572001"/>
-                  <display value="Condition"/>
+                  <display value="aandoening"/>
                </coding>
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:4878a3de-c033-11ea-1581-020000000000"/>
+                  <reference value="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111"/>
                   <display value="Diabetes Mellitus type II"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:4878a3cd-c033-11ea-1581-020000000000"/>
+               <reference value="urn:uuid:f2b332bc-5da2-11ec-1847-020000000000"/>
             </patient>
             <managingOrganization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.3131"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00003131"/>
                <display value="Huisarts Prins ZAB"/>
             </managingOrganization>
             <period>
@@ -253,22 +273,23 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4878a704-c033-11ea-1581-020000000000"/>
+      <fullUrl value="https://example.org/fhir/EpisodeOfCare/2.16.528.1.1007.3.3.765332.1.12-hc657498ft562.9895"/>
       <resource>
          <EpisodeOfCare>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-hc657498ft562.9895"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgepisode. Patiënt: urn:uuid:4878a3cd-c033-11ea-1581-020000000000. Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: actief</caption>
+                     <caption>Zorgepisode. Patiënt: urn:uuid:f2b332bc-5da2-11ec-1847-020000000000. Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Type</th>
                            <td>
-                              <span title="Condition (64572001 - SNOMED CT)">Condition</span>
+                              <span title="aandoening (64572001 - SNOMED CT)">aandoening</span>
                               <div>Diabetes Mellitus type II</div>
                            </td>
                         </tr>
@@ -278,11 +299,15 @@
                         </tr>
                         <tr>
                            <th>Zorgmanager</th>
-                           <td>Huisarts Prins ZAB</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00003131">Huisarts Prins ZAB</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Diagnose</th>
-                           <td>Diabetes Mellitus type II</td>
+                           <td>
+                              <a href="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111">Diabetes Mellitus type II</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -310,20 +335,20 @@
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="64572001"/>
-                  <display value="Condition"/>
+                  <display value="aandoening"/>
                </coding>
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:4878a3de-c033-11ea-1581-020000000000"/>
+                  <reference value="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111"/>
                   <display value="Diabetes Mellitus type II"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:4878a3cd-c033-11ea-1581-020000000000"/>
+               <reference value="urn:uuid:f2b332bc-5da2-11ec-1847-020000000000"/>
             </patient>
             <managingOrganization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.3131"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00003131"/>
                <display value="Huisarts Prins ZAB"/>
             </managingOrganization>
             <period>
@@ -336,14 +361,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4878a3cd-c033-11ea-1581-020000000000"/>
+      <fullUrl value="urn:uuid:f2b332bc-5da2-11ec-1847-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN)</div>
                </div>
@@ -363,17 +388,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-00002727"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00002727 (URA)</caption>
+                     <caption>Organisatie. Id: 00002727 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -381,7 +407,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Rotterdam ()</td>
+                           <td>Rotterdam</td>
                         </tr>
                      </tbody>
                   </table>
@@ -402,17 +428,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.3131"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00003131"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-00003131"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00003131 (URA)</caption>
+                     <caption>Organisatie. Id: 00003131 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -420,7 +447,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Rotterdam ()</td>
+                           <td>Rotterdam</td>
                         </tr>
                      </tbody>
                   </table>
@@ -441,17 +468,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4878a3de-c033-11ea-1581-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Condition/2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111"/>
       <resource>
          <Condition>
+            <id value="2.16.528.1.1007.3.3.765332.1.12-po3564b7c0-2111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Aandoening. Subject: urn:uuid:4878a3cd-c033-11ea-1581-020000000000. Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief</caption>
+                     <caption>Aandoening. Subject: urn:uuid:f2b332bc-5da2-11ec-1847-020000000000. Id: po3564b7c0-2111 (urn:oid:2.16.528.1.1007.3.3.765332.1.12), Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Code</th>
@@ -467,7 +495,21 @@
                   </table>
                </div>
             </text>
-            <clinicalStatus value="active"/>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="po3564b7c0-2111"/>
+            </identifier>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="55561003"/>
+                        <display value="Active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -483,7 +525,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:4878a3cd-c033-11ea-1581-020000000000"/>
+               <reference value="urn:uuid:f2b332bc-5da2-11ec-1847-020000000000"/>
             </subject>
             <onsetPeriod>
                <start value="2007-04-02"/>
@@ -491,7 +533,7 @@
          </Condition>
       </resource>
       <search>
-         <mode value="match"/>
+         <mode value="include"/>
       </search>
    </entry>
 </Bundle>

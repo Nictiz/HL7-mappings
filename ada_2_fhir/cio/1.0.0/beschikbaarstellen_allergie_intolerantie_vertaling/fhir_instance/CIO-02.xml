@@ -1,21 +1,25 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="8dd940d9-1086-11ec-2043-020000000000"/>
    <type value="searchset"/>
    <total value="4"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:06168280-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd9481f-1086-11ec-2043-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
+                     <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
                      </caption>
                      <tfoot>
                         <tr>
@@ -31,11 +35,11 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>13:15:00, 17 mei 2020 - M.P.H. Mike XXX_Smits</td>
+                           <td>13:15:00, 9 augustus 2021 - M.P.H. Mike XXX_Smits</td>
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2020-04-27</td>
+                           <td>20 juli 2021</td>
                         </tr>
                      </tbody>
                   </table>
@@ -56,11 +60,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -80,22 +80,23 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:061675df-afe3-11ea-4554-020000000000"/>
+               <reference value="urn:uuid:8dd940e1-1086-11ec-2043-020000000000"/>
                <display value="M.P.H. Mike XXX_Smits"/>
             </patient>
-            <onsetDateTime value="2020-04-27"/>
-            <assertedDate value="2020-05-17T13:15:00+02:00"/>
+            <onsetDateTime value="2021-07-20"/>
+            <assertedDate value="2021-08-09T13:15:00+02:00"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:06168288-afe3-11ea-4554-020000000000"/>
+                     <reference value="urn:uuid:8dd94101-1086-11ec-2043-020000000000"/>
                      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
-               <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.111111112"/>
+               <display value="I.N. ter Nist"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:061675df-afe3-11ea-4554-020000000000"/>
+               <reference value="urn:uuid:8dd940e1-1086-11ec-2043-020000000000"/>
                <display value="M.P.H. Mike XXX_Smits"/>
             </asserter>
             <note>
@@ -108,18 +109,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:06168292-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd9407c-1086-11ec-2043-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_02 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: inactief / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
+                     <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_02 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: inactief / weerlegd<span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
                      </caption>
                      <tfoot>
                         <tr>
@@ -135,11 +135,11 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>2020-04-17 - I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</td>
+                           <td>10 juli 2021 - I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</td>
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2020-03-08</td>
+                           <td>31 mei 2021</td>
                         </tr>
                      </tbody>
                   </table>
@@ -160,11 +160,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="refuted"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -184,28 +180,30 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:061675df-afe3-11ea-4554-020000000000"/>
+               <reference value="urn:uuid:8dd940e1-1086-11ec-2043-020000000000"/>
                <display value="M.P.H. Mike XXX_Smits"/>
             </patient>
-            <onsetDateTime value="2020-03-08"/>
-            <assertedDate value="2020-04-17"/>
+            <onsetDateTime value="2021-05-31"/>
+            <assertedDate value="2021-07-10"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:06168288-afe3-11ea-4554-020000000000"/>
+                     <reference value="urn:uuid:8dd94101-1086-11ec-2043-020000000000"/>
                      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
-               <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.111111112"/>
+               <display value="I.N. ter Nist"/>
             </recorder>
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:06168288-afe3-11ea-4554-020000000000"/>
+                     <reference value="urn:uuid:8dd94101-1086-11ec-2043-020000000000"/>
                      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
-               <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.111111112"/>
+               <display value="I.N. ter Nist"/>
             </asserter>
             <note>
                <text value="Betreft nu Ciprofloxacine. Leidt tot paarse vlekjes op de huid en jeuk."/>
@@ -217,18 +215,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:061682a4-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd940a9-1086-11ec-2043-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: opgelost / <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Ingevoerd door: S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum</span>
+                     <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: opgelost / bevestigd<span style="display: block;">Ingevoerd door: S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum</span>
                      </caption>
                      <tfoot>
                         <tr>
@@ -244,7 +241,7 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>2020-03-18 - S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum</td>
+                           <td>10 juni 2021 - S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum</td>
                         </tr>
                      </tbody>
                   </table>
@@ -265,11 +262,7 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
+            <verificationStatus value="confirmed"/>
             <category value="medication">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -289,27 +282,29 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:061675df-afe3-11ea-4554-020000000000"/>
+               <reference value="urn:uuid:8dd940e1-1086-11ec-2043-020000000000"/>
                <display value="M.P.H. Mike XXX_Smits"/>
             </patient>
-            <assertedDate value="2020-03-18"/>
+            <assertedDate value="2021-06-10"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:061682a9-afe3-11ea-4554-020000000000"/>
+                     <reference value="urn:uuid:8dd94157-1086-11ec-2043-020000000000"/>
                      <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
-               <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333334"/>
+               <display value="S. Calpel"/>
             </recorder>
             <asserter>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:061682a9-afe3-11ea-4554-020000000000"/>
+                     <reference value="urn:uuid:8dd94157-1086-11ec-2043-020000000000"/>
                      <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
-               <display value="S. Calpel || Medisch specialisten, chirurgie || Test Medisch Centrum"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.333333334"/>
+               <display value="S. Calpel"/>
             </asserter>
             <note>
                <text value="Geconstateerd tijdens operatie en leidt tot jeuk."/>
@@ -321,14 +316,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:061682b5-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd940d3-1086-11ec-2043-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Allergie/intolerantie. Patiënt: M.P.H. Mike XXX_Smits. Id: CIO_02_04 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: foutieve invoer<span style="display: block;">Ingevoerd door: O. Orthopeed || Medisch specialisten, orthopedie || Test Medisch Centrum</span>
@@ -347,11 +342,11 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>2020-02-17 - Meike M.G.J. van Hoof</td>
+                           <td>11 mei 2021 - Meike M.G.J. van Hoof</td>
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>2019-11-29</td>
+                           <td>20 februari 2021</td>
                         </tr>
                      </tbody>
                   </table>
@@ -381,22 +376,23 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:061675df-afe3-11ea-4554-020000000000"/>
+               <reference value="urn:uuid:8dd940e1-1086-11ec-2043-020000000000"/>
                <display value="M.P.H. Mike XXX_Smits"/>
             </patient>
-            <onsetDateTime value="2019-11-29"/>
-            <assertedDate value="2020-02-17"/>
+            <onsetDateTime value="2021-02-20"/>
+            <assertedDate value="2021-05-11"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:061682bd-afe3-11ea-4554-020000000000"/>
+                     <reference value="urn:uuid:8dd9412d-1086-11ec-2043-020000000000"/>
                      <display value="O. Orthopeed || Medisch specialisten, orthopedie || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
-               <display value="O. Orthopeed || Medisch specialisten, orthopedie || Test Medisch Centrum"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.222222223"/>
+               <display value="O. Orthopeed"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:06168b3d-afe3-11ea-4554-020000000000"/>
+               <reference value="urn:uuid:8dd9419a-1086-11ec-2043-020000000000"/>
                <display value="Meike M.G.J. van Hoof"/>
             </asserter>
             <note>
@@ -409,24 +405,28 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:061675df-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd940e1-1086-11ec-2043-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999911223 (BSN), M.P.H. XXX_Smits (Mike), Man, 30 juli 1964</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), M.P.H. XXX_Smits (Mike), Man, 30 juli 1964</div>
                   <div>
                      <a href="tel:06-12345678">06-12345678</a> (Tel Mobiel)</div>
-                  <div>Knolweg 1000 f, 9999 XA Stitswerd (Privé Bezoek)</div>
+                  <div>Knolweg 1000 f, 9999XA Stitswerd (Bezoek)</div>
                </div>
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999911223"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -473,9 +473,28 @@
                   </extension>
                </use>
             </telecom>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-07-30"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="PHYS"/>
+                        <display value="Woon-/verblijfadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                   <valueCode value="PHYS"/>
                </extension>
@@ -493,7 +512,7 @@
                   </extension>
                </line>
                <city value="Stitswerd"/>
-               <postalCode value="9999 XA"/>
+               <postalCode value="9999XA"/>
             </address>
          </Patient>
       </resource>
@@ -509,10 +528,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 111111112 (UZI-NR-PERS), I.N. ter Nist</div>
-                  <div>Valkendael 45 1 hoog, 6245 HK Maastricht (Werk)</div>
+                  <div>Valkendael 45 1 hoog, 6245HK Maastricht (WP)</div>
                </div>
             </text>
             <identifier>
@@ -538,6 +557,15 @@
                </given>
             </name>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Valkendael 45 1 hoog">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -551,7 +579,7 @@
                   </extension>
                </line>
                <city value="Maastricht"/>
-               <postalCode value="6245 HK"/>
+               <postalCode value="6245HK"/>
             </address>
          </Practitioner>
       </resource>
@@ -567,10 +595,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 222222223 (UZI-NR-PERS), O. Orthopeed</div>
-                  <div>Valkendael 45 2 hoog, 6245 HK Maastricht (Werk)</div>
+                  <div>Valkendael 45 2 hoog, 6245HK Maastricht (WP)</div>
                </div>
             </text>
             <identifier>
@@ -593,6 +621,15 @@
                </given>
             </name>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Valkendael 45 2 hoog">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -606,7 +643,7 @@
                   </extension>
                </line>
                <city value="Maastricht"/>
-               <postalCode value="6245 HK"/>
+               <postalCode value="6245HK"/>
             </address>
          </Practitioner>
       </resource>
@@ -622,10 +659,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 333333334 (UZI-NR-PERS), S. Calpel</div>
-                  <div>Valkendael 45 3 hoog, 6245 HK Maastricht (Werk)</div>
+                  <div>Valkendael 45 3 hoog, 6245HK Maastricht (WP)</div>
                </div>
             </text>
             <identifier>
@@ -648,6 +685,15 @@
                </given>
             </name>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Valkendael 45 3 hoog">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -661,7 +707,7 @@
                   </extension>
                </line>
                <city value="Maastricht"/>
-               <postalCode value="6245 HK"/>
+               <postalCode value="6245HK"/>
             </address>
          </Practitioner>
       </resource>
@@ -677,10 +723,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 03999999 (URA)</caption>
+                     <caption>Organisatie. Id: 03999999 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -689,12 +735,12 @@
                         <tr>
                            <th>Type</th>
                            <td>
-                              <span title="Zelfstandig behandelcentrum (Z4 - RoleCodeNL Zorgaanbiedertype)">Zelfstandig behandelcentrum</span>
+                              <span title="Zelfstandig behandelcentrum (Z4 - organization-type)">Zelfstandig behandelcentrum</span>
                            </td>
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Valkendael 45, 6245 HK Maastricht (Werk)</td>
+                           <td>Valkendael 45, 6245HK Maastricht (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -706,13 +752,22 @@
             </identifier>
             <type>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.15.1060"/>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
                   <code value="Z4"/>
                   <display value="Zelfstandig behandelcentrum"/>
                </coding>
             </type>
             <name value="Test Medisch Centrum"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Valkendael 45">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -723,7 +778,7 @@
                   </extension>
                </line>
                <city value="Maastricht"/>
-               <postalCode value="6245 HK"/>
+               <postalCode value="6245HK"/>
             </address>
          </Organization>
       </resource>
@@ -732,17 +787,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:06168288-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd94101-1086-11ec-2043-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
@@ -784,17 +839,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:061682bd-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd9412d-1086-11ec-2043-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
@@ -836,17 +891,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:061682a9-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd94157-1086-11ec-2043-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
@@ -888,19 +943,19 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:06168b3d-afe3-11ea-4554-020000000000"/>
+      <fullUrl value="urn:uuid:8dd9419a-1086-11ec-2043-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Meike M.G.J. van Hoof</div>
                   <div>
                      <a href="tel:06-12345678">06-12345678</a> (Tel Mobiel), <a href="mailto:m.vanhoof@werkmail.nl">m.vanhoof@werkmail.nl</a> (E-mail Werk)</div>
-                  <div>Heuvellaan 10 b, 9999 XX Ons Dorp (Privé Bezoek)</div>
+                  <div>Heuvellaan 10 b, 9999XX Ons Dorp (Bezoek)</div>
                   <div>
                      <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span> van M.P.H. Mike XXX_Smits</div>
                </div>
@@ -915,7 +970,7 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:061675df-afe3-11ea-4554-020000000000"/>
+               <reference value="urn:uuid:8dd940e1-1086-11ec-2043-020000000000"/>
                <display value="M.P.H. Mike XXX_Smits"/>
             </patient>
             <name>
@@ -982,6 +1037,15 @@
                </use>
             </telecom>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="PHYS"/>
+                        <display value="Woon-/verblijfadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                   <valueCode value="PHYS"/>
                </extension>
@@ -999,7 +1063,7 @@
                   </extension>
                </line>
                <city value="Ons Dorp"/>
-               <postalCode value="9999 XX"/>
+               <postalCode value="9999XX"/>
             </address>
          </RelatedPerson>
       </resource>

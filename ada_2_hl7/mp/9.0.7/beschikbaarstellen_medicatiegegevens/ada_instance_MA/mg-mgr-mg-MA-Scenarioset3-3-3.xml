@@ -17,6 +17,11 @@
                                             desc="Wijziging medicatieafspraak, met reden wijziging (stop-ma + nieuwe ma)&#xA;LET OP: wijziging medicatieafspraak van scenario 2.3"
                                             id="mg-mgr-mg-MA-Scenarioset3-3-3">
          <scenario-nr value="3.3" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6"
+                     value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"/>
          <screenshot value="Maak screenshot(s) waarin de samenhang en actualiteit van de bouwstenen/de medicamenteuze behandeling inzichtelijk wordt"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.3"/>
          <!--Patient found in instance with id: mg-Scenarioset2 and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 2-->
@@ -47,7 +52,7 @@
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_redenvanvoorschrijven-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_redenvanvoorschrijven"
+            <identificatie value="MBH_907_redenvanvoorschrijven-VNK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
@@ -58,7 +63,7 @@
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"
                                      datatype="datetime"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
-                              value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV"
+                              value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-VNK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <afspraakdatum value="T-1D{08:10:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
@@ -112,6 +117,15 @@
                                          code="6"
                                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
                                          displayName="Te sterk effect"/>
+               <reden_van_voorschrijven conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23133" comment="">
+                  <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23134" comment="">
+                     <probleem_naam code="OTH"
+                                    codeSystem="2.16.840.1.113883.5.1008"
+                                    originalText="Reumatoide artritis"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23136"
+                                    displayName="overig"/>
+                  </probleem>
+               </reden_van_voorschrijven>
                <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
                   <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
@@ -167,7 +181,7 @@
                <gebruiksperiode_eind value="T-2D{23:59:59}"
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"
                                      datatype="datetime"/>
-               <identificatie value="MBH_907_redenvanvoorschrijven_MA_techstaken"
+               <identificatie value="MBH_907_redenvanvoorschrijven_MA_techstaken-VNK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
                <afspraakdatum value="T-1D{08:10:00}"
@@ -179,7 +193,7 @@
                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                          displayName="Definitief"/>
                <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
-                  <identificatie value="MBH_907_redenvanvoorschrijven_MA"
+                  <identificatie value="MBH_907_redenvanvoorschrijven_MA-VNK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
                </relatie_naar_afspraak_of_gebruik>
@@ -227,6 +241,15 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </voorschrijver>
+               <reden_van_voorschrijven conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23133" comment="">
+                  <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23134" comment="">
+                     <probleem_naam code="OTH"
+                                    codeSystem="2.16.840.1.113883.5.1008"
+                                    originalText="Reumatoide artritis"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23136"
+                                    displayName="overig"/>
+                  </probleem>
+               </reden_van_voorschrijven>
                <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
                   <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"

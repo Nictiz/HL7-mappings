@@ -591,6 +591,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.51"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g083_niet_gespecificeerde_gegevens_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_83">
@@ -4485,6 +4486,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.12"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g019_erfelijke_factoren_in_de_familie_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_19">
@@ -4765,6 +4767,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.13"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r014_zwangerschap_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_14">
@@ -5682,6 +5685,16 @@
                      type="begeleider_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_731"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
+         <xs:element name="gekoppeldeActiviteit-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="gekoppeldeActiviteit"
+                     type="gekoppeldeActiviteit_type_2_16_840_1_113883_2_4_3_11_999_60_11_1_19798_1"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -5748,6 +5761,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.52"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g074_melding_verwijsindex_risicojongeren_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_74">
@@ -6358,6 +6372,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.19"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g087_opname_ziekenhuis_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_87">
@@ -6558,6 +6573,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.20"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r021_functioneren_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_21">
@@ -6908,6 +6924,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.21"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r022_huidhaarnagels_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_22">
@@ -6960,6 +6977,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.22"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r023_hoofdhals_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_23">
@@ -7096,6 +7114,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.23"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g023_hoofd_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_23">
@@ -7224,6 +7243,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.24"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r025_bewegingsapparaat_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_25">
@@ -7394,6 +7414,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.25"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g024_wervelkolom_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_24">
@@ -7756,6 +7777,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.26"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r027_groei_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_27">
@@ -7858,6 +7880,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.27"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r030_psychosociaal_en_cognitief_functioneren_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_30">
@@ -7922,6 +7945,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.30"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r031_motorisch_functioneren_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_31">
@@ -8028,6 +8052,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.31"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r032_spraak_en_taalontwikkeling_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_32">
@@ -8136,6 +8161,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.32"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g036_taal_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_36">
@@ -8310,6 +8336,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.34"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r036_voorlichting_advies_instructie_en_begeleiding_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_36">
@@ -8338,6 +8365,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.36"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g042_voorlichting_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_42">
@@ -8502,6 +8530,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.37"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r038_visus_en_oogonderzoek_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_38">
@@ -8527,6 +8556,16 @@
          </xs:element>
          <xs:element name="brillenzen_dragend"
                      type="brillenzen_dragend_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_831"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="groep_g117_visus-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.2.117"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="groep_g117_visus"
+                     type="groep_g117_visus_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_117"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="apkkaart_uitslag_rechts-start" minOccurs="0" maxOccurs="1">
@@ -8619,16 +8658,6 @@
          </xs:element>
          <xs:element name="apktovkaart_3_meter_uitslag_links"
                      type="apktovkaart_3_meter_uitslag_links_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_834"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="groep_g117_visus-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.2.117"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="groep_g117_visus"
-                     type="groep_g117_visus_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_117"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="lhkaart_uitslag_rechts-start" minOccurs="0" maxOccurs="1">
@@ -8832,6 +8861,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.38"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g117_visus_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_117">
@@ -9012,6 +9042,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.39"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g044_geruis_intensiteit_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_44">
@@ -9518,6 +9549,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.40"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r041_rijksvaccinatieprogramma_en_andere_vaccinaties_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_41">
@@ -9612,6 +9644,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.41"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g076_vaccinatie_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_76">
@@ -11696,6 +11729,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.42"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r043_bfmt_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_43">
@@ -12158,6 +12192,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.43"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r054_screening_psychosociale_problemen_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_54">
@@ -12250,6 +12285,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.54"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r045_sdq_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_45">
@@ -12724,6 +12760,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.45"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="r047_conclusies_en_vervolgstappen_type_2_16_840_1_113883_2_4_3_11_60_100_2_1_47">
@@ -12784,6 +12821,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.47"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="groep_g058_indicatie_en_interventie_type_2_16_840_1_113883_2_4_3_11_60_100_2_2_58">
@@ -12964,6 +13002,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.1.49"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
@@ -13790,6 +13829,7 @@
       <xs:attribute name="value" type="VariableDateTime"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="id" fixed="DOB"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Geboortedatum: string</xs:documentation>
@@ -27917,80 +27957,385 @@
                </xs:enumeration>
                <xs:enumeration value="15">
                   <xs:annotation>
-                     <xs:documentation>other</xs:documentation>
+                     <xs:documentation>Huisbezoek 2 weken</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="16">
                   <xs:annotation>
-                     <xs:documentation>W0188 Soort activiteit (BDS)</xs:documentation>
+                     <xs:documentation>Contactmoment 4 weken</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="17">
                   <xs:annotation>
-                     <xs:documentation>Neonatale gehoorscreening</xs:documentation>
+                     <xs:documentation>Contactmoment 8 weken</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="18">
                   <xs:annotation>
-                     <xs:documentation>Contact 4-7 dagen</xs:documentation>
+                     <xs:documentation>Contactmoment 3 maanden</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="19">
                   <xs:annotation>
-                     <xs:documentation>Contact week 2 t/m 6 maanden</xs:documentation>
+                     <xs:documentation>Contactmoment 4 maanden</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="20">
                   <xs:annotation>
-                     <xs:documentation>Contact 7-12 maanden</xs:documentation>
+                     <xs:documentation>Contactmoment 6 maanden</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="21">
                   <xs:annotation>
-                     <xs:documentation>Contact 1 tot 4 jaar</xs:documentation>
+                     <xs:documentation>Contactmoment 7,5 maand</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="22">
                   <xs:annotation>
-                     <xs:documentation>Contact 4 tot 12 jaar</xs:documentation>
+                     <xs:documentation>Contactmoment 9 maanden</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="23">
                   <xs:annotation>
-                     <xs:documentation>Contact 12 tot 18 jaar</xs:documentation>
+                     <xs:documentation>Contactmoment 11 maanden</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="24">
                   <xs:annotation>
-                     <xs:documentation>Contact speciaal onderwijs 0-18 jaar</xs:documentation>
+                     <xs:documentation>Contactmoment 14 maanden</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="25">
                   <xs:annotation>
-                     <xs:documentation>Consultatie ivm meldcode</xs:documentation>
+                     <xs:documentation>Contactmoment 18 maanden</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="26">
                   <xs:annotation>
-                     <xs:documentation>Contact op indicatie</xs:documentation>
+                     <xs:documentation>Contactmoment 2 jaar</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="27">
                   <xs:annotation>
-                     <xs:documentation>Contact met derden-bilateraal</xs:documentation>
+                     <xs:documentation>Contactmoment 3 jaar</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="28">
                   <xs:annotation>
-                     <xs:documentation>Contact met derden-multidisciplinair</xs:documentation>
+                     <xs:documentation>Contactmoment 3,9 jaar</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="29">
                   <xs:annotation>
-                     <xs:documentation>Overdracht dossier</xs:documentation>
+                     <xs:documentation>Contactmoment groep 2</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="30">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment groep 7</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="31">
+                  <xs:annotation>
+                     <xs:documentation>Massavaccinatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="32">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment klas 2</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="33">
+                  <xs:annotation>
+                     <xs:documentation>Huisbezoek op indicatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="34">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment op verzoek</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="35">
+                  <xs:annotation>
+                     <xs:documentation>Telefonisch contactmoment</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="36">
+                  <xs:annotation>
+                     <xs:documentation>Spreekuur (0-19)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="37">
+                  <xs:annotation>
+                     <xs:documentation>Groepsbijeenkomst (of groepsvoorlichting)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="38">
+                  <xs:annotation>
+                     <xs:documentation>Intake nieuwkomers</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="39">
+                  <xs:annotation>
+                     <xs:documentation>Consultatie/inlichtingen vragen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="40">
+                  <xs:annotation>
+                     <xs:documentation>Bespreking zorgstructuur</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="41">
+                  <xs:annotation>
+                     <xs:documentation>Melding</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="42">
+                  <xs:annotation>
+                     <xs:documentation>Terugkoppeling verwijzing</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="43">
+                  <xs:annotation>
+                     <xs:documentation>Zorgcoördinatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="44">
+                  <xs:annotation>
+                     <xs:documentation>Uitvoering hielprik/vaccinatie buiten de organisatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="45">
+                  <xs:annotation>
+                     <xs:documentation>other</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="46">
+                  <xs:annotation>
+                     <xs:documentation>W0188 Soort activiteit (BDS)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="47">
+                  <xs:annotation>
+                     <xs:documentation>Neonatale gehoorscreening</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="48">
+                  <xs:annotation>
+                     <xs:documentation>Contact 4-7 dagen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="49">
+                  <xs:annotation>
+                     <xs:documentation>Contact week 2 t/m 6 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="50">
+                  <xs:annotation>
+                     <xs:documentation>Contact 7-12 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="51">
+                  <xs:annotation>
+                     <xs:documentation>Contact 1 tot 4 jaar</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="52">
+                  <xs:annotation>
+                     <xs:documentation>Contact 4 tot 12 jaar</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="53">
+                  <xs:annotation>
+                     <xs:documentation>Contact 12 tot 18 jaar</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="54">
+                  <xs:annotation>
+                     <xs:documentation>Contact speciaal onderwijs 0-18 jaar</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="55">
+                  <xs:annotation>
+                     <xs:documentation>Consultatie ivm meldcode</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="56">
+                  <xs:annotation>
+                     <xs:documentation>Contact op indicatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="57">
+                  <xs:annotation>
+                     <xs:documentation>Contact met derden-bilateraal</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="58">
+                  <xs:annotation>
+                     <xs:documentation>Contact met derden-multidisciplinair</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="59">
+                  <xs:annotation>
+                     <xs:documentation>Overdracht dossier</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="60">
+                  <xs:annotation>
+                     <xs:documentation>Huisbezoek 2 weken</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="61">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 4 weken</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="62">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 8 weken</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="63">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 3 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="64">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 4 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="65">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 6 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="66">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 7,5 maand</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="67">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 9 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="68">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 11 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="69">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 14 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="70">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 18 maanden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="71">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 2 jaar</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="72">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 3 jaar</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="73">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment 3,9 jaar</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="74">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment groep 2</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="75">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment groep 7</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="76">
+                  <xs:annotation>
+                     <xs:documentation>Massavaccinatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="77">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment klas 2</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="78">
+                  <xs:annotation>
+                     <xs:documentation>Huisbezoek op indicatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="79">
+                  <xs:annotation>
+                     <xs:documentation>Contactmoment op verzoek</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="80">
+                  <xs:annotation>
+                     <xs:documentation>Telefonisch contactmoment</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="81">
+                  <xs:annotation>
+                     <xs:documentation>Spreekuur (0-19)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="82">
+                  <xs:annotation>
+                     <xs:documentation>Groepsbijeenkomst (of groepsvoorlichting)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="83">
+                  <xs:annotation>
+                     <xs:documentation>Intake nieuwkomers</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="84">
+                  <xs:annotation>
+                     <xs:documentation>Consultatie/inlichtingen vragen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="85">
+                  <xs:annotation>
+                     <xs:documentation>Bespreking zorgstructuur</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="86">
+                  <xs:annotation>
+                     <xs:documentation>Melding</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="87">
+                  <xs:annotation>
+                     <xs:documentation>Terugkoppeling verwijzing</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="88">
+                  <xs:annotation>
+                     <xs:documentation>Zorgcoördinatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="89">
+                  <xs:annotation>
+                     <xs:documentation>Uitvoering hielprik/vaccinatie buiten de organisatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="90">
+                  <xs:annotation>
+                     <xs:documentation>Ander contactmoment</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="91">
                   <xs:annotation>
                      <xs:documentation>Andere activiteit</xs:documentation>
                   </xs:annotation>
@@ -28633,140 +28978,390 @@
                </xs:enumeration>
                <xs:enumeration value="27">
                   <xs:annotation>
-                     <xs:documentation>other</xs:documentation>
+                     <xs:documentation>Uitstraling/indruk</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="28">
                   <xs:annotation>
-                     <xs:documentation>W0619 Indicatie (BDS)</xs:documentation>
+                     <xs:documentation>Huid</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="29">
                   <xs:annotation>
-                     <xs:documentation>Algemene (lichamelijke) klachten</xs:documentation>
+                     <xs:documentation>Extremiteiten</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="30">
                   <xs:annotation>
-                     <xs:documentation>Bewegingsapparaat</xs:documentation>
+                     <xs:documentation>Genitalia</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="31">
                   <xs:annotation>
-                     <xs:documentation>Cognitieve ontwikkeling</xs:documentation>
+                     <xs:documentation>Psychosociale/emotionele ontwikkeling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="32">
                   <xs:annotation>
-                     <xs:documentation>Excessief huilen</xs:documentation>
+                     <xs:documentation>Enuresis/defecatie-problemen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="33">
                   <xs:annotation>
-                     <xs:documentation>Genitalia/puberteitsontwikkeling</xs:documentation>
+                     <xs:documentation>Gedrag</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="34">
                   <xs:annotation>
-                     <xs:documentation>Gewicht</xs:documentation>
+                     <xs:documentation>Opvoedingsproblematiek/slapen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="35">
                   <xs:annotation>
-                     <xs:documentation>Hoofd/hals</xs:documentation>
+                     <xs:documentation>Leerproblemen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="36">
                   <xs:annotation>
-                     <xs:documentation>Huid/haar/nagels</xs:documentation>
+                     <xs:documentation>Syndromale afwijking</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="37">
                   <xs:annotation>
-                     <xs:documentation>Leefstijl</xs:documentation>
+                     <xs:documentation>Amblyopie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="38">
                   <xs:annotation>
-                     <xs:documentation>Lengte</xs:documentation>
+                     <xs:documentation>Oogpathologie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="39">
                   <xs:annotation>
-                     <xs:documentation>Motorische ontwikkeling</xs:documentation>
+                     <xs:documentation>Visusafwijkingen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="40">
                   <xs:annotation>
-                     <xs:documentation>Nieuwkomer</xs:documentation>
+                     <xs:documentation>Niet scrotale testes</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="41">
                   <xs:annotation>
-                     <xs:documentation>Nonbereik</xs:documentation>
+                     <xs:documentation>Pathologische hartafwijking</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="42">
                   <xs:annotation>
-                     <xs:documentation>Ogen en visus</xs:documentation>
+                     <xs:documentation>Houdingsafwijkingen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="43">
                   <xs:annotation>
-                     <xs:documentation>Opvoeding</xs:documentation>
+                     <xs:documentation>Heupdysplasie/luxatie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="44">
                   <xs:annotation>
-                     <xs:documentation>Oren en gehoor</xs:documentation>
+                     <xs:documentation>Hydro-/microcephalus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="45">
                   <xs:annotation>
-                     <xs:documentation>Psychosociale ontwikkeling en functioneren</xs:documentation>
+                     <xs:documentation>Voedingsallergie/intolerantie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="46">
                   <xs:annotation>
-                     <xs:documentation>Romp</xs:documentation>
+                     <xs:documentation>Perceptie doofheid</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="47">
                   <xs:annotation>
-                     <xs:documentation>Seksualiteit</xs:documentation>
+                     <xs:documentation>(Kinder)Psychiatrische aandoening</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="48">
                   <xs:annotation>
-                     <xs:documentation>Spraak- taalontwikkeling</xs:documentation>
+                     <xs:documentation>(Vermoeden) Kindermishandeling in de brede zin</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="49">
                   <xs:annotation>
-                     <xs:documentation>Vaccinaties</xs:documentation>
+                     <xs:documentation>Onveilige situatie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="50">
                   <xs:annotation>
-                     <xs:documentation>Veiligheid kind</xs:documentation>
+                     <xs:documentation>Stevig Ouderschap</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="51">
                   <xs:annotation>
-                     <xs:documentation>Verzuim</xs:documentation>
+                     <xs:documentation>VGV</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="52">
                   <xs:annotation>
-                     <xs:documentation>Voeding en eetgedrag</xs:documentation>
+                     <xs:documentation>other</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="53">
                   <xs:annotation>
-                     <xs:documentation>Zindelijkheid</xs:documentation>
+                     <xs:documentation>W0619 Indicatie (BDS)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="54">
+                  <xs:annotation>
+                     <xs:documentation>Algemene (lichamelijke) klachten</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="55">
+                  <xs:annotation>
+                     <xs:documentation>Bewegingsapparaat</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="56">
+                  <xs:annotation>
+                     <xs:documentation>Cognitieve ontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="57">
+                  <xs:annotation>
+                     <xs:documentation>Excessief huilen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="58">
+                  <xs:annotation>
+                     <xs:documentation>Genitalia/puberteitsontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="59">
+                  <xs:annotation>
+                     <xs:documentation>Gewicht</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="60">
+                  <xs:annotation>
+                     <xs:documentation>Hoofd/hals</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="61">
+                  <xs:annotation>
+                     <xs:documentation>Huid/haar/nagels</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="62">
+                  <xs:annotation>
+                     <xs:documentation>Leefstijl</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="63">
+                  <xs:annotation>
+                     <xs:documentation>Lengte</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="64">
+                  <xs:annotation>
+                     <xs:documentation>Motorische ontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="65">
+                  <xs:annotation>
+                     <xs:documentation>Nieuwkomer</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="66">
+                  <xs:annotation>
+                     <xs:documentation>Nonbereik</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="67">
+                  <xs:annotation>
+                     <xs:documentation>Ogen en visus</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="68">
+                  <xs:annotation>
+                     <xs:documentation>Opvoeding</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="69">
+                  <xs:annotation>
+                     <xs:documentation>Oren en gehoor</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="70">
+                  <xs:annotation>
+                     <xs:documentation>Psychosociale ontwikkeling en functioneren</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="71">
+                  <xs:annotation>
+                     <xs:documentation>Romp</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="72">
+                  <xs:annotation>
+                     <xs:documentation>Seksualiteit</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="73">
+                  <xs:annotation>
+                     <xs:documentation>Spraak- taalontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="74">
+                  <xs:annotation>
+                     <xs:documentation>Vaccinaties</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="75">
+                  <xs:annotation>
+                     <xs:documentation>Veiligheid kind</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="76">
+                  <xs:annotation>
+                     <xs:documentation>Verzuim</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="77">
+                  <xs:annotation>
+                     <xs:documentation>Voeding en eetgedrag</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="78">
+                  <xs:annotation>
+                     <xs:documentation>Zindelijkheid</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="79">
+                  <xs:annotation>
+                     <xs:documentation>Uitstraling/indruk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="80">
+                  <xs:annotation>
+                     <xs:documentation>Huid</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="81">
+                  <xs:annotation>
+                     <xs:documentation>Extremiteiten</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="82">
+                  <xs:annotation>
+                     <xs:documentation>Genitalia</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="83">
+                  <xs:annotation>
+                     <xs:documentation>Psychosociale/emotionele ontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="84">
+                  <xs:annotation>
+                     <xs:documentation>Enuresis/defecatie-problemen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="85">
+                  <xs:annotation>
+                     <xs:documentation>Gedrag</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="86">
+                  <xs:annotation>
+                     <xs:documentation>Opvoedingsproblematiek/slapen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="87">
+                  <xs:annotation>
+                     <xs:documentation>Leerproblemen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="88">
+                  <xs:annotation>
+                     <xs:documentation>Syndromale afwijking</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="89">
+                  <xs:annotation>
+                     <xs:documentation>Amblyopie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="90">
+                  <xs:annotation>
+                     <xs:documentation>Oogpathologie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="91">
+                  <xs:annotation>
+                     <xs:documentation>Visusafwijkingen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="92">
+                  <xs:annotation>
+                     <xs:documentation>Niet scrotale testes</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="93">
+                  <xs:annotation>
+                     <xs:documentation>Pathologische hartafwijking</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="94">
+                  <xs:annotation>
+                     <xs:documentation>Houdingsafwijkingen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="95">
+                  <xs:annotation>
+                     <xs:documentation>Heupdysplasie/luxatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="96">
+                  <xs:annotation>
+                     <xs:documentation>Hydro-/microcephalus</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="97">
+                  <xs:annotation>
+                     <xs:documentation>Voedingsallergie/intolerantie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="98">
+                  <xs:annotation>
+                     <xs:documentation>Perceptie doofheid</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="99">
+                  <xs:annotation>
+                     <xs:documentation>(Kinder)Psychiatrische aandoening</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="100">
+                  <xs:annotation>
+                     <xs:documentation>(Vermoeden) Kindermishandeling in de brede zin</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="101">
+                  <xs:annotation>
+                     <xs:documentation>Onveilige situatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="102">
+                  <xs:annotation>
+                     <xs:documentation>Stevig Ouderschap</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="103">
+                  <xs:annotation>
+                     <xs:documentation>VGV</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="104">
                   <xs:annotation>
                      <xs:documentation>Anders</xs:documentation>
                   </xs:annotation>
@@ -29304,6 +29899,26 @@
          <xs:maxLength value="2"/>
       </xs:restriction>
    </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Gekoppelde activiteit - 0..* R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="gekoppeldeActiviteit_type_2_16_840_1_113883_2_4_3_11_999_60_11_1_19798_1">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Aanmelder UZI Verwijsindex risicojongeren - 0..1 C</xs:documentation>
    </xs:annotation>
@@ -42087,6 +42702,457 @@
       </xs:restriction>
    </xs:simpleType>
    <xs:annotation>
+      <xs:documentation>Type for concept item: Soort visuskaart - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="soort_visuskaart_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_1590">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.3.1590"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>W0682 Soort visuskaart (BDS)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>LEA 4 meter</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>LEA 5 meter</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>E-haken 4 meter</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="5">
+                  <xs:annotation>
+                     <xs:documentation>E-haken 5 meter</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>W0682 Soort visuskaart (HL7)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
+                  <xs:annotation>
+                     <xs:documentation>LEA 4 meter</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="8">
+                  <xs:annotation>
+                     <xs:documentation>LEA 5 meter</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="9">
+                  <xs:annotation>
+                     <xs:documentation>E-haken 4 meter</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="10">
+                  <xs:annotation>
+                     <xs:documentation>E-haken 5 meter</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Soort visuskaart: code</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="soort_visuskaart_1_datatype_2_16_840_1_113883_2_4_3_11_60_100_2_3_1590">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="2"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Uitslag visus rechts - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="uitslag_visus_rechts_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_1591">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.3.1591"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>W0683 Uitslag visus (HL7)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>0,1</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>0,12</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>0,16</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="5">
+                  <xs:annotation>
+                     <xs:documentation>0,2</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>0,25</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
+                  <xs:annotation>
+                     <xs:documentation>0,32</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="8">
+                  <xs:annotation>
+                     <xs:documentation>0,4</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="9">
+                  <xs:annotation>
+                     <xs:documentation>0,5</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="10">
+                  <xs:annotation>
+                     <xs:documentation>0,63</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="11">
+                  <xs:annotation>
+                     <xs:documentation>0,8</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="12">
+                  <xs:annotation>
+                     <xs:documentation>1,0</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="13">
+                  <xs:annotation>
+                     <xs:documentation>temporarily unavailable</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="14">
+                  <xs:annotation>
+                     <xs:documentation>W0683 Uitslag visus (BDS)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="15">
+                  <xs:annotation>
+                     <xs:documentation>0,1</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="16">
+                  <xs:annotation>
+                     <xs:documentation>0,12</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="17">
+                  <xs:annotation>
+                     <xs:documentation>0,16</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="18">
+                  <xs:annotation>
+                     <xs:documentation>0,2</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="19">
+                  <xs:annotation>
+                     <xs:documentation>0,25</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="20">
+                  <xs:annotation>
+                     <xs:documentation>0,32</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="21">
+                  <xs:annotation>
+                     <xs:documentation>0,4</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="22">
+                  <xs:annotation>
+                     <xs:documentation>0,5</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="23">
+                  <xs:annotation>
+                     <xs:documentation>0,63</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="24">
+                  <xs:annotation>
+                     <xs:documentation>0,8</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="25">
+                  <xs:annotation>
+                     <xs:documentation>1,0</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="26">
+                  <xs:annotation>
+                     <xs:documentation>Niet gelukt</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Uitslag visus rechts: code</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="uitslag_visus_rechts_1_datatype_2_16_840_1_113883_2_4_3_11_60_100_2_3_1591">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="2"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Uitslag visus links - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="uitslag_visus_links_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_1592">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.3.1592"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>W0683 Uitslag visus (HL7)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>0,1</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>0,12</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>0,16</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="5">
+                  <xs:annotation>
+                     <xs:documentation>0,2</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>0,25</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
+                  <xs:annotation>
+                     <xs:documentation>0,32</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="8">
+                  <xs:annotation>
+                     <xs:documentation>0,4</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="9">
+                  <xs:annotation>
+                     <xs:documentation>0,5</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="10">
+                  <xs:annotation>
+                     <xs:documentation>0,63</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="11">
+                  <xs:annotation>
+                     <xs:documentation>0,8</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="12">
+                  <xs:annotation>
+                     <xs:documentation>1,0</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="13">
+                  <xs:annotation>
+                     <xs:documentation>temporarily unavailable</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="14">
+                  <xs:annotation>
+                     <xs:documentation>W0683 Uitslag visus (BDS)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="15">
+                  <xs:annotation>
+                     <xs:documentation>0,1</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="16">
+                  <xs:annotation>
+                     <xs:documentation>0,12</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="17">
+                  <xs:annotation>
+                     <xs:documentation>0,16</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="18">
+                  <xs:annotation>
+                     <xs:documentation>0,2</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="19">
+                  <xs:annotation>
+                     <xs:documentation>0,25</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="20">
+                  <xs:annotation>
+                     <xs:documentation>0,32</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="21">
+                  <xs:annotation>
+                     <xs:documentation>0,4</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="22">
+                  <xs:annotation>
+                     <xs:documentation>0,5</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="23">
+                  <xs:annotation>
+                     <xs:documentation>0,63</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="24">
+                  <xs:annotation>
+                     <xs:documentation>0,8</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="25">
+                  <xs:annotation>
+                     <xs:documentation>1,0</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="26">
+                  <xs:annotation>
+                     <xs:documentation>Niet gelukt</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Uitslag visus links: code</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="uitslag_visus_links_1_datatype_2_16_840_1_113883_2_4_3_11_60_100_2_3_1592">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="2"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:annotation>
       <xs:documentation>Type for concept item: APK-kaart uitslag rechts - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="apkkaart_uitslag_rechts_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_692">
@@ -43218,457 +44284,6 @@
       <xs:documentation>simpleType for valueDomain: APK-TOV-kaart 3 meter uitslag links: code</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="apktovkaart_3_meter_uitslag_links_1_datatype_2_16_840_1_113883_2_4_3_11_60_100_2_3_834">
-      <xs:restriction base="xs:string">
-         <xs:maxLength value="2"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Soort visuskaart - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="soort_visuskaart_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_1590">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.3.1590"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="1">
-                  <xs:annotation>
-                     <xs:documentation>W0682 Soort visuskaart (BDS)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="2">
-                  <xs:annotation>
-                     <xs:documentation>LEA 4 meter</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="3">
-                  <xs:annotation>
-                     <xs:documentation>LEA 5 meter</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="4">
-                  <xs:annotation>
-                     <xs:documentation>E-haken 4 meter</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="5">
-                  <xs:annotation>
-                     <xs:documentation>E-haken 5 meter</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="6">
-                  <xs:annotation>
-                     <xs:documentation>W0682 Soort visuskaart (HL7)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="7">
-                  <xs:annotation>
-                     <xs:documentation>LEA 4 meter</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="8">
-                  <xs:annotation>
-                     <xs:documentation>LEA 5 meter</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="9">
-                  <xs:annotation>
-                     <xs:documentation>E-haken 4 meter</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="10">
-                  <xs:annotation>
-                     <xs:documentation>E-haken 5 meter</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
-      <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="displayName" type="xs:string"/>
-      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
-      <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Soort visuskaart: code</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="soort_visuskaart_1_datatype_2_16_840_1_113883_2_4_3_11_60_100_2_3_1590">
-      <xs:restriction base="xs:string">
-         <xs:maxLength value="2"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Uitslag visus rechts - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="uitslag_visus_rechts_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_1591">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.3.1591"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="1">
-                  <xs:annotation>
-                     <xs:documentation>W0683 Uitslag visus (HL7)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="2">
-                  <xs:annotation>
-                     <xs:documentation>0,1</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="3">
-                  <xs:annotation>
-                     <xs:documentation>0,12</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="4">
-                  <xs:annotation>
-                     <xs:documentation>0,16</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="5">
-                  <xs:annotation>
-                     <xs:documentation>0,2</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="6">
-                  <xs:annotation>
-                     <xs:documentation>0,25</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="7">
-                  <xs:annotation>
-                     <xs:documentation>0,32</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="8">
-                  <xs:annotation>
-                     <xs:documentation>0,4</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="9">
-                  <xs:annotation>
-                     <xs:documentation>0,5</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="10">
-                  <xs:annotation>
-                     <xs:documentation>0,63</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="11">
-                  <xs:annotation>
-                     <xs:documentation>0,8</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="12">
-                  <xs:annotation>
-                     <xs:documentation>1,0</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="13">
-                  <xs:annotation>
-                     <xs:documentation>temporarily unavailable</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="14">
-                  <xs:annotation>
-                     <xs:documentation>W0683 Uitslag visus (BDS)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="15">
-                  <xs:annotation>
-                     <xs:documentation>0,1</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="16">
-                  <xs:annotation>
-                     <xs:documentation>0,12</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="17">
-                  <xs:annotation>
-                     <xs:documentation>0,16</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="18">
-                  <xs:annotation>
-                     <xs:documentation>0,2</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="19">
-                  <xs:annotation>
-                     <xs:documentation>0,25</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="20">
-                  <xs:annotation>
-                     <xs:documentation>0,32</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="21">
-                  <xs:annotation>
-                     <xs:documentation>0,4</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="22">
-                  <xs:annotation>
-                     <xs:documentation>0,5</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="23">
-                  <xs:annotation>
-                     <xs:documentation>0,63</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="24">
-                  <xs:annotation>
-                     <xs:documentation>0,8</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="25">
-                  <xs:annotation>
-                     <xs:documentation>1,0</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="26">
-                  <xs:annotation>
-                     <xs:documentation>Niet gelukt</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
-      <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="displayName" type="xs:string"/>
-      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
-      <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Uitslag visus rechts: code</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="uitslag_visus_rechts_1_datatype_2_16_840_1_113883_2_4_3_11_60_100_2_3_1591">
-      <xs:restriction base="xs:string">
-         <xs:maxLength value="2"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Uitslag visus links - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="uitslag_visus_links_type_2_16_840_1_113883_2_4_3_11_60_100_2_3_1592">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.100.2.3.1592"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="1">
-                  <xs:annotation>
-                     <xs:documentation>W0683 Uitslag visus (HL7)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="2">
-                  <xs:annotation>
-                     <xs:documentation>0,1</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="3">
-                  <xs:annotation>
-                     <xs:documentation>0,12</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="4">
-                  <xs:annotation>
-                     <xs:documentation>0,16</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="5">
-                  <xs:annotation>
-                     <xs:documentation>0,2</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="6">
-                  <xs:annotation>
-                     <xs:documentation>0,25</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="7">
-                  <xs:annotation>
-                     <xs:documentation>0,32</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="8">
-                  <xs:annotation>
-                     <xs:documentation>0,4</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="9">
-                  <xs:annotation>
-                     <xs:documentation>0,5</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="10">
-                  <xs:annotation>
-                     <xs:documentation>0,63</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="11">
-                  <xs:annotation>
-                     <xs:documentation>0,8</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="12">
-                  <xs:annotation>
-                     <xs:documentation>1,0</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="13">
-                  <xs:annotation>
-                     <xs:documentation>temporarily unavailable</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="14">
-                  <xs:annotation>
-                     <xs:documentation>W0683 Uitslag visus (BDS)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="15">
-                  <xs:annotation>
-                     <xs:documentation>0,1</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="16">
-                  <xs:annotation>
-                     <xs:documentation>0,12</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="17">
-                  <xs:annotation>
-                     <xs:documentation>0,16</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="18">
-                  <xs:annotation>
-                     <xs:documentation>0,2</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="19">
-                  <xs:annotation>
-                     <xs:documentation>0,25</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="20">
-                  <xs:annotation>
-                     <xs:documentation>0,32</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="21">
-                  <xs:annotation>
-                     <xs:documentation>0,4</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="22">
-                  <xs:annotation>
-                     <xs:documentation>0,5</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="23">
-                  <xs:annotation>
-                     <xs:documentation>0,63</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="24">
-                  <xs:annotation>
-                     <xs:documentation>0,8</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="25">
-                  <xs:annotation>
-                     <xs:documentation>1,0</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="26">
-                  <xs:annotation>
-                     <xs:documentation>Niet gelukt</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
-      <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="displayName" type="xs:string"/>
-      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
-      <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Uitslag visus links: code</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="uitslag_visus_links_1_datatype_2_16_840_1_113883_2_4_3_11_60_100_2_3_1592">
       <xs:restriction base="xs:string">
          <xs:maxLength value="2"/>
       </xs:restriction>
@@ -69345,140 +69960,390 @@
                </xs:enumeration>
                <xs:enumeration value="27">
                   <xs:annotation>
-                     <xs:documentation>other</xs:documentation>
+                     <xs:documentation>Uitstraling/indruk</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="28">
                   <xs:annotation>
-                     <xs:documentation>W0619 Indicatie (BDS)</xs:documentation>
+                     <xs:documentation>Huid</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="29">
                   <xs:annotation>
-                     <xs:documentation>Algemene (lichamelijke) klachten</xs:documentation>
+                     <xs:documentation>Extremiteiten</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="30">
                   <xs:annotation>
-                     <xs:documentation>Bewegingsapparaat</xs:documentation>
+                     <xs:documentation>Genitalia</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="31">
                   <xs:annotation>
-                     <xs:documentation>Cognitieve ontwikkeling</xs:documentation>
+                     <xs:documentation>Psychosociale/emotionele ontwikkeling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="32">
                   <xs:annotation>
-                     <xs:documentation>Excessief huilen</xs:documentation>
+                     <xs:documentation>Enuresis/defecatie-problemen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="33">
                   <xs:annotation>
-                     <xs:documentation>Genitalia/puberteitsontwikkeling</xs:documentation>
+                     <xs:documentation>Gedrag</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="34">
                   <xs:annotation>
-                     <xs:documentation>Gewicht</xs:documentation>
+                     <xs:documentation>Opvoedingsproblematiek/slapen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="35">
                   <xs:annotation>
-                     <xs:documentation>Hoofd/hals</xs:documentation>
+                     <xs:documentation>Leerproblemen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="36">
                   <xs:annotation>
-                     <xs:documentation>Huid/haar/nagels</xs:documentation>
+                     <xs:documentation>Syndromale afwijking</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="37">
                   <xs:annotation>
-                     <xs:documentation>Leefstijl</xs:documentation>
+                     <xs:documentation>Amblyopie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="38">
                   <xs:annotation>
-                     <xs:documentation>Lengte</xs:documentation>
+                     <xs:documentation>Oogpathologie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="39">
                   <xs:annotation>
-                     <xs:documentation>Motorische ontwikkeling</xs:documentation>
+                     <xs:documentation>Visusafwijkingen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="40">
                   <xs:annotation>
-                     <xs:documentation>Nieuwkomer</xs:documentation>
+                     <xs:documentation>Niet scrotale testes</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="41">
                   <xs:annotation>
-                     <xs:documentation>Nonbereik</xs:documentation>
+                     <xs:documentation>Pathologische hartafwijking</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="42">
                   <xs:annotation>
-                     <xs:documentation>Ogen en visus</xs:documentation>
+                     <xs:documentation>Houdingsafwijkingen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="43">
                   <xs:annotation>
-                     <xs:documentation>Opvoeding</xs:documentation>
+                     <xs:documentation>Heupdysplasie/luxatie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="44">
                   <xs:annotation>
-                     <xs:documentation>Oren en gehoor</xs:documentation>
+                     <xs:documentation>Hydro-/microcephalus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="45">
                   <xs:annotation>
-                     <xs:documentation>Psychosociale ontwikkeling en functioneren</xs:documentation>
+                     <xs:documentation>Voedingsallergie/intolerantie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="46">
                   <xs:annotation>
-                     <xs:documentation>Romp</xs:documentation>
+                     <xs:documentation>Perceptie doofheid</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="47">
                   <xs:annotation>
-                     <xs:documentation>Seksualiteit</xs:documentation>
+                     <xs:documentation>(Kinder)Psychiatrische aandoening</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="48">
                   <xs:annotation>
-                     <xs:documentation>Spraak- taalontwikkeling</xs:documentation>
+                     <xs:documentation>(Vermoeden) Kindermishandeling in de brede zin</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="49">
                   <xs:annotation>
-                     <xs:documentation>Vaccinaties</xs:documentation>
+                     <xs:documentation>Onveilige situatie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="50">
                   <xs:annotation>
-                     <xs:documentation>Veiligheid kind</xs:documentation>
+                     <xs:documentation>Stevig Ouderschap</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="51">
                   <xs:annotation>
-                     <xs:documentation>Verzuim</xs:documentation>
+                     <xs:documentation>VGV</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="52">
                   <xs:annotation>
-                     <xs:documentation>Voeding en eetgedrag</xs:documentation>
+                     <xs:documentation>other</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="53">
                   <xs:annotation>
-                     <xs:documentation>Zindelijkheid</xs:documentation>
+                     <xs:documentation>W0619 Indicatie (BDS)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="54">
+                  <xs:annotation>
+                     <xs:documentation>Algemene (lichamelijke) klachten</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="55">
+                  <xs:annotation>
+                     <xs:documentation>Bewegingsapparaat</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="56">
+                  <xs:annotation>
+                     <xs:documentation>Cognitieve ontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="57">
+                  <xs:annotation>
+                     <xs:documentation>Excessief huilen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="58">
+                  <xs:annotation>
+                     <xs:documentation>Genitalia/puberteitsontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="59">
+                  <xs:annotation>
+                     <xs:documentation>Gewicht</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="60">
+                  <xs:annotation>
+                     <xs:documentation>Hoofd/hals</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="61">
+                  <xs:annotation>
+                     <xs:documentation>Huid/haar/nagels</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="62">
+                  <xs:annotation>
+                     <xs:documentation>Leefstijl</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="63">
+                  <xs:annotation>
+                     <xs:documentation>Lengte</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="64">
+                  <xs:annotation>
+                     <xs:documentation>Motorische ontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="65">
+                  <xs:annotation>
+                     <xs:documentation>Nieuwkomer</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="66">
+                  <xs:annotation>
+                     <xs:documentation>Nonbereik</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="67">
+                  <xs:annotation>
+                     <xs:documentation>Ogen en visus</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="68">
+                  <xs:annotation>
+                     <xs:documentation>Opvoeding</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="69">
+                  <xs:annotation>
+                     <xs:documentation>Oren en gehoor</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="70">
+                  <xs:annotation>
+                     <xs:documentation>Psychosociale ontwikkeling en functioneren</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="71">
+                  <xs:annotation>
+                     <xs:documentation>Romp</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="72">
+                  <xs:annotation>
+                     <xs:documentation>Seksualiteit</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="73">
+                  <xs:annotation>
+                     <xs:documentation>Spraak- taalontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="74">
+                  <xs:annotation>
+                     <xs:documentation>Vaccinaties</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="75">
+                  <xs:annotation>
+                     <xs:documentation>Veiligheid kind</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="76">
+                  <xs:annotation>
+                     <xs:documentation>Verzuim</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="77">
+                  <xs:annotation>
+                     <xs:documentation>Voeding en eetgedrag</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="78">
+                  <xs:annotation>
+                     <xs:documentation>Zindelijkheid</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="79">
+                  <xs:annotation>
+                     <xs:documentation>Uitstraling/indruk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="80">
+                  <xs:annotation>
+                     <xs:documentation>Huid</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="81">
+                  <xs:annotation>
+                     <xs:documentation>Extremiteiten</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="82">
+                  <xs:annotation>
+                     <xs:documentation>Genitalia</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="83">
+                  <xs:annotation>
+                     <xs:documentation>Psychosociale/emotionele ontwikkeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="84">
+                  <xs:annotation>
+                     <xs:documentation>Enuresis/defecatie-problemen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="85">
+                  <xs:annotation>
+                     <xs:documentation>Gedrag</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="86">
+                  <xs:annotation>
+                     <xs:documentation>Opvoedingsproblematiek/slapen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="87">
+                  <xs:annotation>
+                     <xs:documentation>Leerproblemen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="88">
+                  <xs:annotation>
+                     <xs:documentation>Syndromale afwijking</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="89">
+                  <xs:annotation>
+                     <xs:documentation>Amblyopie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="90">
+                  <xs:annotation>
+                     <xs:documentation>Oogpathologie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="91">
+                  <xs:annotation>
+                     <xs:documentation>Visusafwijkingen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="92">
+                  <xs:annotation>
+                     <xs:documentation>Niet scrotale testes</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="93">
+                  <xs:annotation>
+                     <xs:documentation>Pathologische hartafwijking</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="94">
+                  <xs:annotation>
+                     <xs:documentation>Houdingsafwijkingen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="95">
+                  <xs:annotation>
+                     <xs:documentation>Heupdysplasie/luxatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="96">
+                  <xs:annotation>
+                     <xs:documentation>Hydro-/microcephalus</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="97">
+                  <xs:annotation>
+                     <xs:documentation>Voedingsallergie/intolerantie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="98">
+                  <xs:annotation>
+                     <xs:documentation>Perceptie doofheid</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="99">
+                  <xs:annotation>
+                     <xs:documentation>(Kinder)Psychiatrische aandoening</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="100">
+                  <xs:annotation>
+                     <xs:documentation>(Vermoeden) Kindermishandeling in de brede zin</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="101">
+                  <xs:annotation>
+                     <xs:documentation>Onveilige situatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="102">
+                  <xs:annotation>
+                     <xs:documentation>Stevig Ouderschap</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="103">
+                  <xs:annotation>
+                     <xs:documentation>VGV</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="104">
                   <xs:annotation>
                      <xs:documentation>Anders</xs:documentation>
                   </xs:annotation>
@@ -69562,40 +70427,70 @@
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>other</xs:documentation>
+                     <xs:documentation>Voorlichting</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>W0620 Interventie (BDS)</xs:documentation>
+                     <xs:documentation>Advies</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
                   <xs:annotation>
-                     <xs:documentation>Extra voorlichting &amp; advies</xs:documentation>
+                     <xs:documentation>Begeleiding</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>Consultatie/inlichtingen vragen</xs:documentation>
+                     <xs:documentation>other</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Contact op indicatie</xs:documentation>
+                     <xs:documentation>W0620 Interventie (BDS)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Melding</xs:documentation>
+                     <xs:documentation>Extra voorlichting &amp; advies</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Verwijzing</xs:documentation>
+                     <xs:documentation>Consultatie/inlichtingen vragen</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
+                  <xs:annotation>
+                     <xs:documentation>Contact op indicatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="15">
+                  <xs:annotation>
+                     <xs:documentation>Melding</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="16">
+                  <xs:annotation>
+                     <xs:documentation>Verwijzing</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="17">
+                  <xs:annotation>
+                     <xs:documentation>Voorlichting</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="18">
+                  <xs:annotation>
+                     <xs:documentation>Advies</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="19">
+                  <xs:annotation>
+                     <xs:documentation>Begeleiding</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="20">
                   <xs:annotation>
                      <xs:documentation>Anders</xs:documentation>
                   </xs:annotation>
@@ -69729,90 +70624,250 @@
                </xs:enumeration>
                <xs:enumeration value="17">
                   <xs:annotation>
-                     <xs:documentation>other</xs:documentation>
+                     <xs:documentation>Kinderarts</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="18">
                   <xs:annotation>
-                     <xs:documentation>W0621 Verwijzing naar (BDS)</xs:documentation>
+                     <xs:documentation>Maatschappelijk werk</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="19">
                   <xs:annotation>
-                     <xs:documentation>Huisarts</xs:documentation>
+                     <xs:documentation>Bureau Jeugdzorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="20">
                   <xs:annotation>
-                     <xs:documentation>(Kinder)fysiotherapeut/oefentherapeut</xs:documentation>
+                     <xs:documentation>GGZ</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="21">
                   <xs:annotation>
-                     <xs:documentation>Logopedist</xs:documentation>
+                     <xs:documentation>Opvoedbureau/pedagoog</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="22">
                   <xs:annotation>
-                     <xs:documentation>Veilig Thuis</xs:documentation>
+                     <xs:documentation>Home Start (Humanitas)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="23">
                   <xs:annotation>
-                     <xs:documentation>Jeugdzorg, vrij toegankelijk</xs:documentation>
+                     <xs:documentation>Peutergym/sportclub</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="24">
                   <xs:annotation>
-                     <xs:documentation>Jeugdzorg, basis, niet vrij toegankelijk</xs:documentation>
+                     <xs:documentation>KNO-arts</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="25">
                   <xs:annotation>
-                     <xs:documentation>Jeugdzorg, gespecialiseerd, niet vrij toegankelijk</xs:documentation>
+                     <xs:documentation>Cursus/groepsbehandeling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="26">
                   <xs:annotation>
-                     <xs:documentation>Integrale vroeghulp</xs:documentation>
+                     <xs:documentation>Dermatoloog</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="27">
                   <xs:annotation>
-                     <xs:documentation>VVE</xs:documentation>
+                     <xs:documentation>Oogarts/optometrist/opticiën/orthoptist</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="28">
                   <xs:annotation>
-                     <xs:documentation>Audiologisch Centrum</xs:documentation>
+                     <xs:documentation>Orthopeed</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="29">
                   <xs:annotation>
-                     <xs:documentation>Andere medisch specialist</xs:documentation>
+                     <xs:documentation>Psycholoog</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="30">
                   <xs:annotation>
-                     <xs:documentation>Lactatiekundige</xs:documentation>
+                     <xs:documentation>Psz/KDV/BSO</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="31">
                   <xs:annotation>
-                     <xs:documentation>Diëtist</xs:documentation>
+                     <xs:documentation>Radioloog</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="32">
                   <xs:annotation>
-                     <xs:documentation>Opticiën</xs:documentation>
+                     <xs:documentation>Video Home Training (extern)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="33">
                   <xs:annotation>
-                     <xs:documentation>Tandarts</xs:documentation>
+                     <xs:documentation>other</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="34">
+                  <xs:annotation>
+                     <xs:documentation>W0621 Verwijzing naar (BDS)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="35">
+                  <xs:annotation>
+                     <xs:documentation>Huisarts</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="36">
+                  <xs:annotation>
+                     <xs:documentation>(Kinder)fysiotherapeut/oefentherapeut</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="37">
+                  <xs:annotation>
+                     <xs:documentation>Logopedist</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="38">
+                  <xs:annotation>
+                     <xs:documentation>Veilig Thuis</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="39">
+                  <xs:annotation>
+                     <xs:documentation>Jeugdzorg, vrij toegankelijk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="40">
+                  <xs:annotation>
+                     <xs:documentation>Jeugdzorg, basis, niet vrij toegankelijk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="41">
+                  <xs:annotation>
+                     <xs:documentation>Jeugdzorg, gespecialiseerd, niet vrij toegankelijk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="42">
+                  <xs:annotation>
+                     <xs:documentation>Integrale vroeghulp</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="43">
+                  <xs:annotation>
+                     <xs:documentation>VVE</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="44">
+                  <xs:annotation>
+                     <xs:documentation>Audiologisch Centrum</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="45">
+                  <xs:annotation>
+                     <xs:documentation>Andere medisch specialist</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="46">
+                  <xs:annotation>
+                     <xs:documentation>Lactatiekundige</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="47">
+                  <xs:annotation>
+                     <xs:documentation>Diëtist</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="48">
+                  <xs:annotation>
+                     <xs:documentation>Opticiën</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="49">
+                  <xs:annotation>
+                     <xs:documentation>Tandarts</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="50">
+                  <xs:annotation>
+                     <xs:documentation>Kinderarts</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="51">
+                  <xs:annotation>
+                     <xs:documentation>Maatschappelijk werk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="52">
+                  <xs:annotation>
+                     <xs:documentation>Bureau Jeugdzorg</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="53">
+                  <xs:annotation>
+                     <xs:documentation>GGZ</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="54">
+                  <xs:annotation>
+                     <xs:documentation>Opvoedbureau/pedagoog</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="55">
+                  <xs:annotation>
+                     <xs:documentation>Home Start (Humanitas)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="56">
+                  <xs:annotation>
+                     <xs:documentation>Peutergym/sportclub</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="57">
+                  <xs:annotation>
+                     <xs:documentation>KNO-arts</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="58">
+                  <xs:annotation>
+                     <xs:documentation>Cursus/groepsbehandeling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="59">
+                  <xs:annotation>
+                     <xs:documentation>Dermatoloog</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="60">
+                  <xs:annotation>
+                     <xs:documentation>Oogarts/optometrist/opticiën/orthoptist</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="61">
+                  <xs:annotation>
+                     <xs:documentation>Orthopeed</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="62">
+                  <xs:annotation>
+                     <xs:documentation>Psycholoog</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="63">
+                  <xs:annotation>
+                     <xs:documentation>Psz/KDV/BSO</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="64">
+                  <xs:annotation>
+                     <xs:documentation>Radioloog</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="65">
+                  <xs:annotation>
+                     <xs:documentation>Video Home Training (extern)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="66">
                   <xs:annotation>
                      <xs:documentation>Anders</xs:documentation>
                   </xs:annotation>
@@ -70859,12 +71914,12 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeDate">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
+         <xs:pattern value="(T|DOB)([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="RelativeDateTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
+         <xs:pattern value="(T|DOB)([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="DateYear">
@@ -70898,7 +71953,7 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T(([+\-]\d+(\.\d+)?[HMS])?(\{:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
+         <xs:pattern value="(T|DOB)(([+\-]\d+(\.\d+)?[HMS])?(\{:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="TimeHourOptionalMinutesSeconds">

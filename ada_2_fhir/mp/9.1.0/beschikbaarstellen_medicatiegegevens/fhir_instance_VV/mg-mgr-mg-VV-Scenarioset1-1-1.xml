@@ -1,30 +1,35 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="c46f1acc-4d3d-11ec-8823-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:dad61ec3-bd3e-11ea-1558-020000000000"/>
+      <fullUrl value="urn:uuid:c46f1bdb-4d3d-11ec-8823-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Toedieningsverzoek. Subject: A. van de XXX_Boschman. Id: MBH_910_chronisch_VV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Toedieningsverzoek. Subject: A. van de XXX_Boschman. Id: MBH_910_chronisch_VV-BSC (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_910_chronisch (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_910_chronisch-BSC (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
-                           <td>Relatie naar medicatieafspraak, id = MBH_910_chronisch_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_910_chronisch_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                           <td>Relatie naar medicatieafspraak, id = MBH_910_chronisch_MA-BSC || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_910_chronisch_MA-BSC (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -49,20 +54,20 @@
                <valueReference>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_910_chronisch_MA"/>
+                     <value value="MBH_910_chronisch_MA-BSC"/>
                   </identifier>
-                  <display value="Relatie naar medicatieafspraak, id = MBH_910_chronisch_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_910_chronisch_MA-BSC || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_910_chronisch"/>
+                  <value value="MBH_910_chronisch-BSC"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_910_chronisch_VV"/>
+               <value value="MBH_910_chronisch_VV-BSC"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -78,7 +83,7 @@
                <display value="APACOF 250/250/50MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dad61a0f-bd3e-11ea-1558-020000000000"/>
+               <reference value="urn:uuid:c46f1ad3-4d3d-11ec-8823-020000000000"/>
                <display value="A. van de XXX_Boschman"/>
             </subject>
             <authoredOn value="${DATE, T, D, -30}T11:32:00+02:00"/>
@@ -86,7 +91,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:dad61ec5-bd3e-11ea-1558-020000000000"/>
+                        <reference value="urn:uuid:c46f1bde-4d3d-11ec-8823-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -113,27 +118,27 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dad61ee6-bd3e-11ea-1558-020000000000"/>
+      <fullUrl value="urn:uuid:c46f1bfe-4d3d-11ec-8823-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Toedieningsverzoek. Subject: A. van de XXX_Boschman. Id: MBH_910_chronisch_VV_extraVVbestaandeMA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Toedieningsverzoek. Subject: A. van de XXX_Boschman. Id: MBH_910_chronisch_VV_extraVVbestaandeMA-BSC (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_910_chronisch (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_910_chronisch-BSC (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
-                           <td>Relatie naar medicatieafspraak, id = MBH_910_chronisch_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_910_chronisch_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                           <td>Relatie naar medicatieafspraak, id = MBH_910_chronisch_MA-BSC || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_910_chronisch_MA-BSC (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -158,20 +163,20 @@
                <valueReference>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_910_chronisch_MA"/>
+                     <value value="MBH_910_chronisch_MA-BSC"/>
                   </identifier>
-                  <display value="Relatie naar medicatieafspraak, id = MBH_910_chronisch_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_910_chronisch_MA-BSC || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_910_chronisch"/>
+                  <value value="MBH_910_chronisch-BSC"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_910_chronisch_VV_extraVVbestaandeMA"/>
+               <value value="MBH_910_chronisch_VV_extraVVbestaandeMA-BSC"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -187,7 +192,7 @@
                <display value="APACOF 250/250/50MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dad61a0f-bd3e-11ea-1558-020000000000"/>
+               <reference value="urn:uuid:c46f1ad3-4d3d-11ec-8823-020000000000"/>
                <display value="A. van de XXX_Boschman"/>
             </subject>
             <authoredOn value="${DATE, T, D, -10}T11:35:00+02:00"/>
@@ -195,7 +200,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:dad61ec5-bd3e-11ea-1558-020000000000"/>
+                        <reference value="urn:uuid:c46f1bde-4d3d-11ec-8823-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -222,14 +227,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dad61a0f-bd3e-11ea-1558-020000000000"/>
+      <fullUrl value="urn:uuid:c46f1ad3-4d3d-11ec-8823-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), A. van de XXX_Boschman, Man, 8 januari 1964</div>
                </div>
@@ -260,7 +265,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-01-08"/>
          </Patient>
       </resource>
@@ -276,7 +291,7 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001111 (UZI-NR-PERS), Peter van Pulver</div>
                </div>
@@ -314,10 +329,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00001111 (URA)</caption>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -325,7 +340,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -337,6 +352,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -363,10 +387,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 01236578 (URA)</caption>
+                     <caption>Organisatie. Id: 01236578 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -388,17 +412,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dad61ec5-bd3e-11ea-1558-020000000000"/>
+      <fullUrl value="urn:uuid:c46f1bde-4d3d-11ec-8823-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
@@ -443,11 +467,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.3891"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-3891"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>

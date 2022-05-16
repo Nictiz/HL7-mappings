@@ -1,10 +1,12 @@
 <ada xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://decor.nictiz.nl/ada/core/ada.xsd">
-    <project prefix="jgz-7.0.0-" language="nl-NL" versionDate="">
+    <project prefix="jgz-7.0.0-" language="nl-NL" versionDate="2020-09-14T00:18:44">
         <release baseUri="http://decor.nictiz.nl/decor/services/RetrieveTransaction"/>
     </project>
     <applications>
         <params>
             <param name="overrideDatatypeDateTimeAsString" value="true"/>
+            <param name="overrideDatatypeTextAsString" value="true"/>
+            <param name="overrideContainsAsIdentifier" value="false"/>
         </params>
         <application version="1">
             <views>
@@ -27,8 +29,83 @@
                 <view id="2" type="crud" target="xforms" transactionId="2.16.840.1.113883.2.4.3.11.60.100.4.20" transactionEffectiveDate="2013-07-09T12:00:00" addComments="true">
                     <name>Versturen JGZ-dossieroverdrachtverzoek v02 BDS 3.2.6</name>
                     <concepts include="all">
+                        <!-- Geboortedatum -->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.20" dobId="true"/>
                         <!-- Rubriek 18 Activiteiten -->
                         <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" adaId="true"/>
+
+                        <!-- BDS element 1351 "Contact met" is het laatste element in rubriek 18 dus activiteiten hebben dan 'onderaan' de koppelingen met de betreffende activiteiten -->
+                        <concept following-ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.1351">
+                            <concept  id="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1" effectiveDate="2013-07-09T12:00:00" statusCode="draft" type="item" minimumMultiplicity="0" maximumMultiplicity="*" conformance="R" isMandatory="false">
+                                <implementation shortName="gekoppeldeActiviteit"/>
+                                <name language="nl-NL">Gekoppelde activiteit</name>
+                                <desc language="nl-NL">Dit pseudo-bds element verzorgt de koppeling met contactgebonden activiteiten welke in de BDS naast de rubriek 18 Activiteiten staan. Op deze manier weet je wat er bij een activiteit hoort.</desc>
+                                <contains ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" flexibility="2012-06-08T12:42:06" prefix="jgz-"/>
+                                <valueDomain type="string"/>
+                            </concept>
+                        </concept>
+
+                        <!-- Alle contactgebonden activiteiten dienen een id te kunnen hebben -->
+                        <!--R051: Niet-gespecificeerde gegevens-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.51" adaId="true"/>
+                        <!--R012: Erfelijke belasting en ouderkenmerken-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.12" adaId="true"/>
+                        <!--R013: Bedreigingen uit de directe omgeving-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.13" adaId="true"/>
+                        <!--R018: Activiteit-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" adaId="true"/>
+                        <!--R052: Meldingen-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.52" adaId="true"/>
+                        <!--R019: Terugkerende anamnese-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.19" adaId="true"/>
+                        <!--R020: Algemene indruk-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.20" adaId="true"/>
+                        <!--R021: Functioneren-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.21" adaId="true"/>
+                        <!--R022: Huid/haar/nagels-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.22" adaId="true"/>
+                        <!--R023: Hoofd/hals-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.23" adaId="true"/>
+                        <!--R024: Romp-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.24" adaId="true"/>
+                        <!--R025: Bewegingsapparaat-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.25" adaId="true"/>
+                        <!--R026: Genitalia/puberteitsontwikkeling-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.26" adaId="true"/>
+                        <!--R027: Groei-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.27" adaId="true"/>
+                        <!--R030: Psychosociaal en cognitief functioneren-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.30" adaId="true"/>
+                        <!--R031: Motorisch functioneren-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.31" adaId="true"/>
+                        <!--R032: Spraak- en taalontwikkeling-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.32" adaId="true"/>
+                        <!--R034: Inschatten verhouding draaglast-draagkracht-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.34" adaId="true"/>
+                        <!--R036: Voorlichting, advies, instructie en begeleiding-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.36" adaId="true"/>
+                        <!--R037: Hielprik pasgeborene-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.37" adaId="true"/>
+                        <!--R038: Visus- en oogonderzoek-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.38" adaId="true"/>
+                        <!--R039: Hartonderzoek-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.39" adaId="true"/>
+                        <!--R040: Gehooronderzoek-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.40" adaId="true"/>
+                        <!--R041: Rijksvaccinatieprogramma en andere vaccinaties-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.41" adaId="true"/>
+                        <!--R042: Van Wiechen ontwikkelingsonderzoek-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.42" adaId="true"/>
+                        <!--R043: BFMT-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.43" adaId="true"/>
+                        <!--R054: Screening psychosociale problemen-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.54" adaId="true"/>
+                        <!--R045: SDQ-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.45" adaId="true"/>
+                        <!--R047: Conclusies en vervolgstappen-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.47" adaId="true"/>
+                        <!--R049: Screening logopedie-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.49" adaId="true"/>
                     </concepts>
                 </view>
                 <!-- Opvragen Vaccinatiestatus          http://decor.nictiz.nl/decor/services/RetrieveTransaction?id=2.16.840.1.113883.2.4.3.11.60.100.4.17&effectiveDate=2012-06-08T12:42:06&language=nl-NL&version=2018-08-07T16:06:50&format=html&hidecolumns=45ghijklmno -->
@@ -40,6 +117,8 @@
                 <view id="4" type="crud" target="xforms" transactionId="2.16.840.1.113883.2.4.3.11.60.100.4.18" transactionEffectiveDate="2012-06-08T12:42:06" addComments="true">
                     <name>Opleveren vaccinatiestatus</name>
                     <concepts include="all">
+                        <!-- Geboortedatum -->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.20" dobId="true"/>
                         <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" adaId="true"/>
                     </concepts>
                 </view>
@@ -56,6 +135,8 @@
                         <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.6" minimumMultiplicity="0"/>
                         <!-- Voorvoegsel geslachtsnaam -->
                         <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.3" minimumMultiplicity="0"/>
+                        <!-- Geboortedatum -->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.20" dobId="true"/>
                         <!-- Bezwaar -->
                         <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.683" minimumMultiplicity="0"/>
                         <!-- Partijnummer -->
@@ -92,8 +173,83 @@
                 <view id="8" type="crud" target="xforms" transactionId="2.16.840.1.113883.2.4.3.11.60.100.4.34" transactionEffectiveDate="2020-05-27T00:00:00" addComments="true">
                     <name>Versturen JGZ-dossieroverdrachtverzoek v03 BDS 4.0.0</name>
                     <concepts include="all">
+                        <!-- Geboortedatum -->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.20" dobId="true"/>
                         <!-- Rubriek 18 Activiteiten -->
                         <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" adaId="true"/>
+                        
+                        <!-- BDS element 731 "Begeleider" is het laatste element in rubriek 18 dus activiteiten hebben dan 'onderaan' de koppelingen met de betreffende activiteiten -->
+                        <concept following-ref="2.16.840.1.113883.2.4.3.11.60.100.2.3.731">
+                            <concept  id="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1" effectiveDate="2020-05-27T00:00:00" statusCode="draft" type="item" minimumMultiplicity="0" maximumMultiplicity="*" conformance="R" isMandatory="false">
+                                <implementation shortName="gekoppeldeActiviteit"/>
+                                <name language="nl-NL">Gekoppelde activiteit</name>
+                                <desc language="nl-NL">Dit pseudo-bds element verzorgt de koppeling met contactgebonden activiteiten welke in de BDS naast de rubriek 18 Activiteiten staan. Op deze manier weet je wat er bij een activiteit hoort.</desc>
+                                <contains ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" flexibility="2020-05-27T00:00:00" prefix="jgz-"/>
+                                <valueDomain type="string"/>
+                            </concept>
+                        </concept>
+                        
+                        <!-- Alle contactgebonden activiteiten dienen een id te kunnen hebben -->
+                        <!--R051: Niet-gespecificeerde gegevens-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.51" adaId="true"/>
+                        <!--R012: Erfelijke belasting en ouderkenmerken-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.12" adaId="true"/>
+                        <!--R013: Bedreigingen uit de directe omgeving-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.13" adaId="true"/>
+                        <!--R018: Activiteit-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" adaId="true"/>
+                        <!--R052: Meldingen-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.52" adaId="true"/>
+                        <!--R019: Terugkerende anamnese-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.19" adaId="true"/>
+                        <!--R020: Algemene indruk-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.20" adaId="true"/>
+                        <!--R021: Functioneren-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.21" adaId="true"/>
+                        <!--R022: Huid/haar/nagels-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.22" adaId="true"/>
+                        <!--R023: Hoofd/hals-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.23" adaId="true"/>
+                        <!--R024: Romp-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.24" adaId="true"/>
+                        <!--R025: Bewegingsapparaat-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.25" adaId="true"/>
+                        <!--R026: Genitalia/puberteitsontwikkeling-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.26" adaId="true"/>
+                        <!--R027: Groei-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.27" adaId="true"/>
+                        <!--R030: Psychosociaal en cognitief functioneren-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.30" adaId="true"/>
+                        <!--R031: Motorisch functioneren-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.31" adaId="true"/>
+                        <!--R032: Spraak- en taalontwikkeling-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.32" adaId="true"/>
+                        <!--R034: Inschatten verhouding draaglast-draagkracht-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.34" adaId="true"/>
+                        <!--R036: Voorlichting, advies, instructie en begeleiding-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.36" adaId="true"/>
+                        <!--R037: Hielprik pasgeborene-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.37" adaId="true"/>
+                        <!--R038: Visus- en oogonderzoek-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.38" adaId="true"/>
+                        <!--R039: Hartonderzoek-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.39" adaId="true"/>
+                        <!--R040: Gehooronderzoek-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.40" adaId="true"/>
+                        <!--R041: Rijksvaccinatieprogramma en andere vaccinaties-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.41" adaId="true"/>
+                        <!--R042: Van Wiechen ontwikkelingsonderzoek-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.42" adaId="true"/>
+                        <!--R043: BFMT-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.43" adaId="true"/>
+                        <!--R054: Screening psychosociale problemen-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.54" adaId="true"/>
+                        <!--R045: SDQ-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.45" adaId="true"/>
+                        <!--R047: Conclusies en vervolgstappen-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.47" adaId="true"/>
+                        <!--R049: Screening logopedie-->
+                        <concept ref="2.16.840.1.113883.2.4.3.11.60.100.2.1.49" adaId="true"/>
                     </concepts>
                 </view>
             </views>

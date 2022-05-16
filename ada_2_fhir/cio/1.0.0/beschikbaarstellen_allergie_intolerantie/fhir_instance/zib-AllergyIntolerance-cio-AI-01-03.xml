@@ -1,0 +1,143 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-cio-AI-01-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Véronique V. Véronique XXX-TEST-D. Id: AI_01_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: M. Boot || Allergoloog (gesloten register)</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Prednisolon oraal (3158 - G-Standaard Bestand 725)">Prednisolon oraal</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>M. Boot || Allergoloog (gesloten register)</td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -150}</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>${DATE, T, D, -150}</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
+                           </div>
+                           <div>
+                              <span title="Exantheem (271807003 - SNOMED CT)">Exantheem</span>
+                           </div>
+                           <div>Vlekken en bultjes op de huid</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="AI_01_03"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op geneesmiddel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24484000"/>
+               <display value="ernstig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.725"/>
+         <code value="3158"/>
+         <display value="Prednisolon oraal"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -150}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-cio-33333334301-002"/>
+            <display value="M. Boot || Allergoloog (gesloten register)"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-cio-2-16-528-1-1007-3-1-333333343"/>
+      <display value="M. Boot"/>
+   </recorder>
+   <asserter>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-cio-33333334301-002"/>
+            <display value="M. Boot || Allergoloog (gesloten register)"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-cio-2-16-528-1-1007-3-1-333333343"/>
+      <display value="M. Boot"/>
+   </asserter>
+   <lastOccurrence value="${DATE, T, D, -150}"/>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="271807003"/>
+            <display value="Exantheem"/>
+         </coding>
+      </manifestation>
+      <description value="Vlekken en bultjes op de huid"/>
+      <severity value="severe">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="24484000"/>
+                  <display value="Ernstig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
+</AllergyIntolerance>

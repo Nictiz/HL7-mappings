@@ -1,0 +1,263 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+    <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2020-10-26T12:15:38.733+01:00"
+         last-update-date="2020-11-09T16:28:06.854+01:00"/>
+    <data>
+        <sturen_medicatievoorschrift app="mp-mp907"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_voorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95"
+                                   transactionEffectiveDate="2015-12-01T10:32:15"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="TESTSUITE Medicatievoorschriften Scenarioset Patient"
+                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Medicatievoorschrift met diverse patiëntgegevens:&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Naamgegevens (&lt;/span&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Voornaam, Initialen, Roepnaam, &lt;em&gt;Naamgebruik&lt;/em&gt; (Eigen geslachtsnaam), Geslachtsnaam, Geslachtsnaampartner), Identificatienummer, Geboortedatum, Geslacht, Meerlingindicator.&lt;/span&gt;&lt;/div&gt;"
+                                   id="mv-mvr-Testset1P-patienttest">
+         <scenario-nr value="1P.0" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5"
+                     value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5.1.20201207000000"
+                     displayName="Beide"/>
+         <!--Patient found in instance with id: mg-TestsetPatientTEST-999990081 and title: id: TESTSUITE Medicatiegegevens PatientGegevensTest (XXX-GBZ-Smoketest-D)-->
+         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798" comment="">
+            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799" comment="">
+               <voornamen value="Hannelore"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
+               <initialen value="H.F." conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
+               <roepnaam value="Hannie"
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19802"/>
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"
+                            value="3"
+                            code="NL3"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
+               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804" comment="">
+                  <achternaam value="XXX-GBZ-Smoketest-D"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
+               </geslachtsnaam>
+               <geslachtsnaam_partner conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19807" comment="">
+                  <voorvoegsels_partner value="de " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19808"/>
+                  <achternaam_partner value="Poort" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19809"/>
+               </geslachtsnaam_partner>
+            </naamgegevens>
+            <identificatienummer value="999990081"
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"/>
+            <geboortedatum value="1950-08-02"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830"
+                           datatype="datetime"/>
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831"
+                      value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+            <meerling_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-tsMBH_907_start_eind-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
+            <identificatie value="tsMBH_907_start_eind-GSD"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"
+                                      datatype="datetime"/>
+               <gebruiksperiode_eind value="T+7D{23:59:59}"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"
+                                     datatype="datetime"/>
+               <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
+                              value="tsMBH_907_start_eind_MA-GSD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T{11:20:00}"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
+                              datatype="datetime"/>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835" comment="">
+                     <zorgverlener_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"
+                                                       value="000001116"
+                                                       root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838" comment="">
+                           <voornamen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19839"
+                                      value="Pieter"/>
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843" comment="">
+                              <voorvoegsels value="de " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19844"/>
+                              <achternaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845" value="Plat"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"
+                                  code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871" comment="">
+                        <zorgaanbieder_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19873"
+                                                           value="00001116"
+                                                           root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19874"
+                                          value="Huisartsenpraktijk Staden"/>
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19885" comment="">
+                           <straat value="kerkstraat"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19886"/>
+                           <huisnummer value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19887"/>
+                           <postcode value="1234AB"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19891"/>
+                           <woonplaats value="Onze Stad"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19892"/>
+                           <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19896"
+                                        value="5"
+                                        code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
+                     <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
+                                   code="49484"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
+                                   code="103039"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
+                  <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
+                                value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+7D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245" comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248" comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249" comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250" comment="">
+                              <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252" value="1"/>
+                           </aantal>
+                           <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="stuk"
+                                    code="245"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256" comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257" comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258" comment="">
+                                 <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260" value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"
+                                            value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
+               <identificatie value="tsMBH_907_start_eind_VV-GSD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
+               <datum value="T{11:20:00}"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"
+                      datatype="datetime"/>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122" comment="">
+                     <zorgverlener_identificatie_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"
+                                                        value="000001116"
+                                                        root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125" comment="">
+                           <voornamen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"
+                                      value="Pieter"/>
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130" comment="">
+                              <voorvoegsels conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131" value="de "/>
+                              <achternaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132" value="Plat"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                                  value="2"
+                                  code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158" comment="">
+                        <zorgaanbieder_identificatie_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"
+                                                            value="00001116"
+                                                            root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"
+                                          value="Huisartsenpraktijk Staden"/>
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22172" comment="">
+                           <straat value="Kerkstraat"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22173"/>
+                           <huisnummer value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22174"/>
+                           <postcode value="1234AB"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22178"/>
+                           <woonplaats value="Onze Stad"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22179"/>
+                           <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22183"
+                                        value="5"
+                                        code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964" comment="">
+                  <aantal value="7" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
+                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250" comment="">
+                     <product_code code="49484"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"
+                                   codeSystemName="G-Standaard PRK"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"/>
+                     <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
+                                   code="103039"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966" comment="">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034" comment="">
+                     <zorgaanbieder_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"
+                                                        value="01236579"
+                                                        root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"
+                                       value="Apotheek De Sleutel"/>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
+                  <identificatie value="tsMBH_907_start_eind_MA-GSD"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+      </sturen_medicatievoorschrift>
+    </data>
+</adaxml>

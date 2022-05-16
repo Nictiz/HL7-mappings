@@ -1,0 +1,426 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="b1e6bc88-8d8f-11ec-3654-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
+   <entry>
+      <fullUrl value="urn:uuid:b1e6c24c-8d8f-11ec-3654-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsverzoek. Subject: F. XXX-GBZ-Smoketest-B. Id: tsMBH_907_magistraal90miljoennr_VV-GSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Pieter de Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>tsMBH_907_magistraal90miljoennr-GSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>Relatie naar medicatieafspraak, id = tsMBH_907_magistraal90miljoennr_MA-GSB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: tsMBH_907_magistraal90miljoennr_MA-GSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>Eigen artikel: Zinkoxidecreme</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, +0}T12:08:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Toedieningsverzoek</th>
+                           <td>
+                              <div>Hoeveelheid: </div>
+                              <div>Uitvoerende: Apotheek De Sleutel</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="tsMBH_907_magistraal90miljoennr_MA-GSB"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = tsMBH_907_magistraal90miljoennr_MA-GSB || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="tsMBH_907_magistraal90miljoennr-GSB"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="tsMBH_907_magistraal90miljoennr_VV-GSB"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+               <text value="Verstrekkingsverzoek"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111.90000004"/>
+               <display value="Eigen artikel: Zinkoxidecreme"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:b1e6c22e-8d8f-11ec-3654-020000000000"/>
+               <display value="F. XXX-GBZ-Smoketest-B"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, +0}T12:08:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:b1e6c252-8d8f-11ec-3654-020000000000"/>
+                        <display value="Pieter de Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1116"/>
+                  <display value="Pieter de Plat"/>
+               </agent>
+            </requester>
+            <dispenseRequest>
+               <quantity>
+                  <value value="100"/>
+                  <unit value="gram"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="215"/>
+               </quantity>
+               <performer>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236579"/>
+                  <display value="Apotheek De Sleutel"/>
+               </performer>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b1e6c22e-8d8f-11ec-3654-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), F. XXX-GBZ-Smoketest-B, Vrouw, 6 februari 1950</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX-GBZ-Smoketest-B">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX-GBZ-Smoketest-B"/>
+                  </extension>
+               </family>
+               <given value="F.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1950-02-06"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1116"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 000001116 (UZI-NR-PERS), Pieter de Plat</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001116"/>
+            </identifier>
+            <name>
+               <family value="de Plat">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Plat"/>
+                  </extension>
+               </family>
+               <given value="Pieter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1116"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00001116 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Staden</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Kerkstraat 4, 1234AB Onze Stad (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001116"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Staden"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Kerkstraat 4">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Kerkstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="4"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234AB"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1236579"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 01236579 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Apotheek De Sleutel</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236579"/>
+            </identifier>
+            <name value="Apotheek De Sleutel"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b1e6c252-8d8f-11ec-3654-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Pieter de Plat</div>
+                              <div>Huisartsenpraktijk Staden</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1116"/>
+               <display value="Pieter de Plat"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.1116"/>
+               <display value="Huisartsenpraktijk Staden"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2017-12-14T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111.90000004"/>
+      <resource>
+         <Medication>
+            <id value="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111-90000004"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="Eigen artikel: Zinkoxidecreme (90000004 - 2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111)">Eigen artikel: Zinkoxidecreme</span>
+                           </td>
+                           <th>Ingredients</th>
+                           <td>
+                              <ul>
+                                 <li>
+                                    <span title="ZINKOXIDE (265225 - G-Standaard HPK)">ZINKOXIDE</span> 
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
+               <valueString value="Titel: Zinkoxide 10% in hydrocortisoncrème FNA 100 gr           Regel: zinkoxide 10gr           Regel: hydrocortisoncrème FNA 100gr"/>
+            </extension>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"/>
+                  <code value="90000004"/>
+                  <display value="Eigen artikel: Zinkoxidecreme"/>
+                  <userSelected value="true"/>
+               </coding>
+               <text value="Eigen artikel: Zinkoxidecreme"/>
+            </code>
+            <ingredient>
+               <itemCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                     <code value="265225"/>
+                     <display value="ZINKOXIDE"/>
+                  </coding>
+               </itemCodeableConcept>
+               <amount>
+                  <numerator>
+                     <value value="10"/>
+                     <unit value="gram"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="215"/>
+                  </numerator>
+                  <denominator>
+                     <value value="100"/>
+                     <unit value="gram"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="215"/>
+                  </denominator>
+               </amount>
+            </ingredient>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

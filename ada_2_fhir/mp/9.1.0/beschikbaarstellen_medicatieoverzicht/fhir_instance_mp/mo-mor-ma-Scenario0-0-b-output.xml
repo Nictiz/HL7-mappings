@@ -4,10 +4,15 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
+   <id value="c5f1bc19-4d3d-11ec-1297-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:dc842912-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1caf3-4d3d-11ec-1297-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -32,14 +37,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:dc8421fb-bd3e-11ea-6418-020000000000"/>
+               <reference value="urn:uuid:c5f1bc1f-4d3d-11ec-1297-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="urn:uuid:dc842916-bd3e-11ea-6418-020000000000"/>
+                     <reference value="urn:uuid:c5f1caf7-4d3d-11ec-1297-020000000000"/>
                      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
@@ -47,31 +52,31 @@
             </source>
             <entry>
                <item>
-                  <reference value="urn:uuid:dc8430cb-bd3e-11ea-6418-020000000000"/>
+                  <reference value="urn:uuid:c5f1cba4-4d3d-11ec-1297-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_910_QA1_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:dc8430f8-bd3e-11ea-6418-020000000000"/>
+                  <reference value="urn:uuid:c5f1cbd1-4d3d-11ec-1297-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_910_QA3_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:dc84288d-bd3e-11ea-6418-020000000000"/>
+                  <reference value="urn:uuid:c5f1ca6e-4d3d-11ec-1297-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_910_QA4_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:dc8428ba-bd3e-11ea-6418-020000000000"/>
+                  <reference value="urn:uuid:c5f1ca9b-4d3d-11ec-1297-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_910_QA5_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:dc8428e8-bd3e-11ea-6418-020000000000"/>
+                  <reference value="urn:uuid:c5f1cac9-4d3d-11ec-1297-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_910_QA6_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
@@ -82,14 +87,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8430cb-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1cba4-4d3d-11ec-1297-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_910_QA1_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -106,7 +111,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>T-20D{08:00:00}</td>
+                           <td>${DATE, T, D, -20}T08:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
@@ -139,7 +144,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 1 maal per dag 2 stuks, oraal"/>
+               <valueString value="Vanaf T - 20 dagen, tot en met T + 9 dagen, 1 maal per dag 2 stuks, Oraal"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -159,15 +164,15 @@
                <display value="IBUPROFEN TABLET 600MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dc8421fb-bd3e-11ea-6418-020000000000"/>
+               <reference value="urn:uuid:c5f1bc1f-4d3d-11ec-1297-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
-            <authoredOn value="T-20D{08:00:00}"/>
+            <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:dc8430d0-bd3e-11ea-6418-020000000000"/>
+                        <reference value="urn:uuid:c5f1cbaa-4d3d-11ec-1297-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -204,14 +209,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8430f8-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1cbd1-4d3d-11ec-1297-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_910_QA3_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -228,7 +233,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>T-50D{08:10:00}</td>
+                           <td>${DATE, T, D, -50}T08:10:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
@@ -261,7 +266,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf &lt;T-50D{00:00:00}&gt;t/m &lt;T-11D{23:59:59}&gt;, 2 maal per dag 50 ml, oraal"/>
+               <valueString value="Vanaf T - 50 dagen, tot en met T - 11 dagen, 2 maal per dag 50 ml, oraal"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -281,15 +286,15 @@
                <display value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dc8421fb-bd3e-11ea-6418-020000000000"/>
+               <reference value="urn:uuid:c5f1bc1f-4d3d-11ec-1297-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
-            <authoredOn value="T-50D{08:10:00}"/>
+            <authoredOn value="${DATE, T, D, -50}T08:10:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:dc8430d0-bd3e-11ea-6418-020000000000"/>
+                        <reference value="urn:uuid:c5f1cbaa-4d3d-11ec-1297-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -326,14 +331,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc84288d-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1ca6e-4d3d-11ec-1297-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_910_QA4_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -350,7 +355,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>T-10D{08:12:00}</td>
+                           <td>${DATE, T, D, -10}T08:12:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
@@ -383,7 +388,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+19D{23:59:59}&gt;, 1 keer per dag 3 stuks, oraal"/>
+               <valueString value="Vanaf T - 10 dagen, tot en met T + 19 dagen, 1 maal per dag 3 stuks, oraal"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -403,15 +408,15 @@
                <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dc8421fb-bd3e-11ea-6418-020000000000"/>
+               <reference value="urn:uuid:c5f1bc1f-4d3d-11ec-1297-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
-            <authoredOn value="T-10D{08:12:00}"/>
+            <authoredOn value="${DATE, T, D, -10}T08:12:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:dc8430d0-bd3e-11ea-6418-020000000000"/>
+                        <reference value="urn:uuid:c5f1cbaa-4d3d-11ec-1297-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -448,14 +453,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8428ba-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1ca9b-4d3d-11ec-1297-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_910_QA5_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -472,7 +477,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>T-50D{08:15:00}</td>
+                           <td>${DATE, T, D, -50}T08:15:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
@@ -517,7 +522,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk"/>
+               <valueString value="Vanaf T - 50 dagen, gedurende 7 dagen, 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -537,15 +542,15 @@
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dc8421fb-bd3e-11ea-6418-020000000000"/>
+               <reference value="urn:uuid:c5f1bc1f-4d3d-11ec-1297-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
-            <authoredOn value="T-50D{08:15:00}"/>
+            <authoredOn value="${DATE, T, D, -50}T08:15:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:dc8430d0-bd3e-11ea-6418-020000000000"/>
+                        <reference value="urn:uuid:c5f1cbaa-4d3d-11ec-1297-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -582,14 +587,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8428e8-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1cac9-4d3d-11ec-1297-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_910_QA6_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -606,7 +611,7 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>T-5D{08:18:00}</td>
+                           <td>${DATE, T, D, -5}T08:18:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
@@ -639,7 +644,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+1D{23:59:59}&gt;, 2 maal per dag 2 stuk"/>
+               <valueString value="Vanaf T - 5 dagen, tot en met T + 1 dag, 2 maal per dag 2 stuks, oraal"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -659,15 +664,15 @@
                <display value="OXAZEPAM TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dc8421fb-bd3e-11ea-6418-020000000000"/>
+               <reference value="urn:uuid:c5f1bc1f-4d3d-11ec-1297-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
-            <authoredOn value="T-5D{08:18:00}"/>
+            <authoredOn value="${DATE, T, D, -5}T08:18:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:dc8430d0-bd3e-11ea-6418-020000000000"/>
+                        <reference value="urn:uuid:c5f1cbaa-4d3d-11ec-1297-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -704,21 +709,25 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8421fb-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1bc1f-4d3d-11ec-1297-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999910437 (BSN), S. XXX_Jankie, Vrouw, 8 mei 1954</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), S. XXX_Jankie, Vrouw, 8 mei 1954</div>
                </div>
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999910437"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -735,7 +744,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-05-08"/>
          </Patient>
       </resource>
@@ -751,7 +770,7 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001111 (UZI-NR-PERS), Peter van Pulver</div>
                </div>
@@ -789,10 +808,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00001111 (URA)</caption>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -800,7 +819,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -812,6 +831,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -831,17 +859,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc842916-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1caf7-4d3d-11ec-1297-020000000000"/>
       <resource>
          <Organization>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00001111 (URA)</caption>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -854,7 +882,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -870,6 +898,15 @@
                <value value="099-12345678"/>
             </telecom>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -889,17 +926,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8430d0-bd3e-11ea-6418-020000000000"/>
+      <fullUrl value="urn:uuid:c5f1cbaa-4d3d-11ec-1297-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
@@ -944,11 +981,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.17469"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-17469"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -986,11 +1024,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.88749"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-88749"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -1028,11 +1067,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.3956"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-3956"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -1070,11 +1110,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.7323"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-7323"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -1112,11 +1153,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.353"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-353"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>

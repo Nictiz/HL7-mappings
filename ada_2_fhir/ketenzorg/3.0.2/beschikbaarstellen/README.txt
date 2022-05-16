@@ -22,6 +22,55 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-12-14
+* MM-2740 Fixed handling of organizations with multiple ids (e.g. AGB, UZI)
+2021-12-03
+* MM-2606 Reset references to fullUrl instead of making those relative. Reset referById parameter from default true() to default false()
+* Added missing display on Observation.referenceRange.type "Normal display"
+2021-12-01
+* MM-2651 Fix for XPath 2 compatibility. Replaced || syntax with concat()
+* MM-2606 Improved references by making them relative instead of absolute
+* MM-2693 AVG: Filter address/contactinformation marked private from Practitioner(Role) and Organization. Contact information marked "Emergency Number" is also filtered (V3: EC)
+2021-11-30
+* MM-2606 Enhance mapping Huisartsgegevens <> Ketenzorg with resource.id. Keeps fullURL, Resource.id and references to them in sync
+  * NOTE: GP Data/Ketenzorg **now requires new parameter baseId** that allows creation of fullURL [baseId]/[type]/[id] where [id] matches Resource.id. Its value SHALL be the generic fhir endpoint and SHALL NOT end with a forward slash. Example: https://example.org/fhir 
+  * Fixed nf:removeSpecialCharacters() function. Now keeps the dot instead replacing it because it is perfectly valid. Smarter handling of diacriticals
+* MM-2559 Fixed Condition.clinicalStatus so it defaults to 'active' instead an illegal extension dataAbsentReason
+* Fixed Laboratory results where the second and latter groups of results would always get uuid. This should have been second or latter instance within a group
+* Fixed narrative block when separator is br. This should have lead to but came out textual 'br'
+2021-08-16
+* MM-2235 Revised mapping for AllergyIntolerance.verificationStatus to always produce a valid @value
+2021-08-04
+* Add a check for valid booleans based on input where value=0 was sent. Will terminate processing if invalid boolean is found
+2021-08-03
+* MM-2323 Touchstone : Assert CodeableConcept HA 2020.1. Add display on PractitionerRole.speciality, Observation.category, Observation.referenceRange.type
+2021-05-25
+* MM-1453 Updated population of Encounter.period. In absence of an Encounter.period.end, substitute Encounter.period.start
+* MM-1521 Support EpisodeOfCare in dedicated Resource.extension
+2021-01-19
+* MM-1698 Corrected display for SNOMED CT 64572001 from Condition to aandoening
+* MM-1751 Add Bundle.id
+* MM-1682 Add parameter for Bundle.link (bundleSelfLink)
+2020-12-09
+* MM-1558 Fixed address extensions. Implemented newer extension http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType and changed http://fhir.nl/fhir/StructureDefinition/nl-core-address-official from valueCode to valueBoolean
+2020-11-06
+* MM-1559 Fixed empty Encounter.class and added implementation of code-specification to preserve the original NHG Table 14 code as specified in the profile
+2020-09-22
+* MM-1437 Fixed an issue for input where multiple ids are present on a healthcare professional
+2020-09-21
+* MM-1451 Make Condition search mode include in the EpisodeOfcare bundle
+2020-09-02
+* Add support for Composition.event.detail containing the episode reference
+* Improved Composition.section.text generation for empty journal entries with ICPC code. Now uses ICPC as fallback text.
+2020-08-15
+* Identifiers. Terminates upon detection of an OID with leading zeroes in a node
+* Diagnostic Results and Lab Results, now properly converts HCIM codes (SNOMED CT) to the required HL7v2 Table 0078 codes. 
+* Fixed issues with div tags in table/caption that FHIR has declared illegal
+2020-07-16 -
+* Fixed an issue where duplicates Encounter were not de-duplicated 
+2020-07-14 - 
+* Add support for Composition.section.entry episodeofcare link as suggested by the profile and as present in the input
+* Change Composition.section.text.status from additional to generated. Additional suggests it contains unqiue data compared to the entries and has separate value
 2020-06-30 - 
 * Add support for Encounter.episodeOfCare 
 2020-06-28 - 
@@ -41,7 +90,7 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 * HL7-123 Normalize-space() on Address, Name and Contact parts. FHIR does not allow leading or trailing spaces
 * HL7-123 NarrativeGenerator will use div instead of br tags to avoid conversion to JSON issues in some reference frameworks
 * NarrativeGenerator
-  * Replaced table.caption.div with equivalent span style="diplay: block;"
+  * Replaced table.caption.div with equivalent span style="display: block;"
   * Fixed separator usage when calling DoDT
   * Fixed Observation.comment - used wrong datatype and would thus not be rendered
   * Add support for Observation.specimen and Observation.issued
@@ -59,7 +108,6 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
   * Add support for RelatedPerson http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role
   * Add support for Patient.active (only if false)
   * Harmonized date handling. Now always emits dd mmm yyyy
-  
 2020-04-09 -
 * MM-1056 Improved display on codes in AllergyIntolerance.category and .criticality. The previous fix introduced an error which is now fixed
 2020-04-07 -

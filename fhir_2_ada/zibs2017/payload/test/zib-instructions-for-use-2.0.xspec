@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../zib-instructions-for-use-2.0.xsl">
+    
+    <x:scenario label="zib-instructions-for-use-2.0">
+        <x:scenario label="template match 'f:dosageInstruction' mode 'zib-instructions-for-use-2.0'">
+            <x:context mode="zib-instructions-for-use-2.0" select="f:MedicationRequest/f:dosageInstruction">
+                <MedicationRequest xmlns="http://hl7.org/fhir">
+                    <modifierExtension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+                        <valueDuration>
+                            <value value="28"/>
+                            <unit value="d"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="d"/>
+                        </valueDuration>
+                    </modifierExtension>
+                    <dosageInstruction>
+                        <sequence/>
+                        <text value="Vanaf &lt;T-20D{{00:00:00}}&gt;t/m &lt;T+9D{{23:59:59}}&gt;, 1 maal per dag 2 stuks, oraal"/>
+                        <additionalInstruction xmlns="http://hl7.org/fhir">
+                            <coding>
+                                <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                                <code value="1018"/>
+                                <display value="aanbrengen"/>
+                            </coding>
+                        </additionalInstruction>
+                        <timing>
+                            <repeat>
+                                <boundsDuration>
+                                    <value value="2"/>
+                                    <unit value="week"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="wk"/>
+                                </boundsDuration>
+                                <duration value="16"/>
+                                <durationUnit value="h"/>
+                                <frequency value="1"/>
+                                <period value="1"/>
+                                <periodUnit value="d"/>
+                                <dayOfWeek value="mon"/>
+                                <timeOfDay value="08:00:00"/>
+                                <when value="EVE"/>
+                            </repeat>
+                        </timing>
+                        <asNeededCodeableConcept>
+                            <coding>
+                                <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                                <code value="1387"/>
+                                <display value="bij hoest"/>
+                            </coding>
+                            <text value="Testomschrijving"/>
+                        </asNeededCodeableConcept>
+                        <route>
+                            <coding>
+                                <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                                <code value="9"/>
+                                <display value="Oraal"/>
+                            </coding>
+                        </route>
+                        <doseQuantity/>
+                        <doseRange/>
+                        <maxDosePerPeriod>
+                            <numerator>
+                                <value value="6"/>
+                                <unit value="stuk"/>
+                                <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                <code value="245"/>
+                            </numerator>
+                            <denominator>
+                                <value value="1"/>
+                                <unit value="dag"/>
+                                <system value="http://unitsofmeasure.org"/>
+                                <code value="d"/>
+                            </denominator>
+                        </maxDosePerPeriod>
+                        <rateRange>
+                            <low>
+                                <value value="0.2"/>
+                                <unit value="ml/h"/>
+                                <system value="http://unitsofmeasure.org"/>
+                                <code value="ml/h"/>
+                            </low>
+                            <high>
+                                <value value="0.5"/>
+                                <unit value="ml/h"/>
+                                <system value="http://unitsofmeasure.org"/>
+                                <code value="ml/h"/>
+                            </high>
+                        </rateRange>
+                    </dosageInstruction>
+                </MedicationRequest>
+            </x:context>
+            <x:expect label="'gebruiksinstructie' element with children">
+                <gebruiksinstructie>
+                    <omschrijving
+                        value="Vanaf &lt;T-20D{{00:00:00}}&gt;t/m &lt;T+9D{{23:59:59}}&gt;, 1 maal per dag 2 stuks, oraal"/>
+                    <toedieningsweg code="9"
+                        codeSystem="2.16.840.1.113883.2.4.4.9"
+                        codeSystemName="G-Standaard TH007 Toedieningswegen"
+                        displayName="Oraal"/>
+                    <aanvullende_instructie code="1018" codeSystem="2.16.840.1.113883.2.4.4.5" codeSystemName="NHG Tabel 25 B Codes (numeriek)" displayName="aanbrengen"/>
+                    <herhaalperiode_cyclisch_schema unit="dag" value="28"/>
+                    <doseerinstructie>
+                        <volgnummer value="..."/>
+                        <doseerduur unit="week" value="2"/>
+                        <dosering>
+                            <keerdosis>...</keerdosis>
+                            <toedieningsschema>
+                                <frequentie>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <tijdseenheid value="1" unit="dag"/>
+                                </frequentie>
+                                <toedientijd value="08:00:00" datatype="datetime"/>
+                                <weekdag code="307145004"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="maandag"/>
+                                <dagdeel code="3157002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="'s avonds"/>
+                            </toedieningsschema>
+                            <zo_nodig>
+                                <criterium>
+                                    <code code="1387" codeSystem="2.16.840.1.113883.2.4.4.5" codeSystemName="NHG Tabel 25 B Codes (numeriek)" displayName="bij hoest"/>
+                                    <omschrijving value="Testomschrijving"/>
+                                </criterium>
+                                <maximale_dosering>
+                                    <aantal value="6"/>
+                                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+                                    <tijdseenheid unit="dag" value="1"/>
+                                </maximale_dosering>
+                            </zo_nodig>
+                            <toedieningssnelheid>
+                                <waarde>
+                                    <min value="0.2"/>
+                                    <max value="0.5"/>
+                                </waarde>
+                                <eenheid code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="milliliter" codeSystemName="G-Standaard Bestand 902 Thesaurus 2"/>
+                                <tijdseenheid value="1"
+                                    unit="uur"/>
+                            </toedieningssnelheid>
+                            <toedieningsduur value="16" unit="uur"/>
+                        </dosering>
+                    </doseerinstructie>
+                </gebruiksinstructie>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="multiple 'f:dosageInstruction's">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <dosageInstruction xmlns="http://hl7.org/fhir">
+                    <sequence value="1"/>
+                    <timing/>
+                    <route/>
+                    <doseQuantity/>
+                </dosageInstruction>
+                <dosageInstruction xmlns="http://hl7.org/fhir">
+                    <sequence value="2"/>
+                    <timing/>
+                    <route/>
+                    <doseQuantity/>
+                </dosageInstruction>
+            </x:context>
+            <x:expect label="one 'gebruiksinstructie' element with multiple 'doseerinstructie' children">
+                <gebruiksinstructie>
+                    <doseerinstructie>
+                        <volgnummer value="1"/>
+                        <dosering>
+                            <keerdosis>...</keerdosis>
+                            <toedieningsschema/>
+                        </dosering>
+                    </doseerinstructie>
+                    <doseerinstructie>
+                        <volgnummer value="2"/>
+                        <dosering>
+                            <keerdosis>...</keerdosis>
+                            <toedieningsschema/>
+                        </dosering>
+                    </doseerinstructie>
+                </gebruiksinstructie>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template match 'f:doseQuantity' mode 'zib-instructions-for-use-2.0'">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <doseQuantity xmlns="http://hl7.org/fhir">
+                    <value value="2"/>
+                    <unit value="stuk"/>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                    <code value="245"/>
+                </doseQuantity>
+            </x:context>
+            <x:expect label="'aantal' element with 'vaste_waarde' and 'eenheid' element">
+                <aantal>
+                    <vaste_waarde value="2"/>
+                </aantal>
+                <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template match 'f:doseRange' mode 'zib-instructions-for-use-2.0'">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <doseRange xmlns="http://hl7.org/fhir">
+                    <low>
+                        <value value="1"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                    </low>
+                    <high>
+                        <value value="2"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                    </high>
+                </doseRange>
+            </x:context>
+            <x:expect label="'aantal' element with 'min' and 'max', and 'eenheid' element">
+                <aantal>
+                    <min value="1"/>
+                    <max value="2"/>
+                </aantal>
+                <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template match 'f:repeat' (with 'f:frequencyMax') mode 'zib-instructions-for-use-2.0'">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <repeat xmlns="http://hl7.org/fhir">
+                    <frequency value="1"/>
+                    <frequencyMax value="2"/>
+                </repeat>
+            </x:context>
+            <x:expect label="'frequentie' element with 'aantal/min' and 'aantal/max'">
+                <frequentie>
+                    <aantal>
+                        <min value="1"/>
+                        <max value="2"/>
+                    </aantal>
+                </frequentie>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template match 'f:repeat' (with 'f:period' and 'f:periodUnit', without 'f:frequency') mode 'zib-instructions-for-use-2.0'">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <repeat xmlns="http://hl7.org/fhir">
+                    <period value="1"/>
+                    <periodUnit value="d"/>
+                </repeat>
+            </x:context>
+            <x:expect label="'frequentie' element with 'aantal/min' and 'aantal/max'">
+                <interval unit="dag" value="1"/>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template match 'f:rateRatio' (with ...) mode 'zib-instructions-for-use-2.0'">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <rateRatio xmlns="http://hl7.org/fhir">
+                    <numerator>
+                        <value value="0.5"/>
+                        <unit value="milliliter"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="233"/>
+                    </numerator>
+                    <denominator>
+                        <value value="1"/>
+                        <unit value="uur"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="h"/>
+                    </denominator>
+                </rateRatio>
+            </x:context>
+            <x:expect label="'toedieningssnelheid' with 'waarde/vaste_waarde'">
+                <waarde>
+                    <vaste_waarde value="0.5"/>
+                </waarde>
+                <eenheid code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="milliliter"/>
+                <tijdseenheid unit="uur" value="1"/>
+            </x:expect>
+        </x:scenario>
+        
+    </x:scenario>
+    
+</x:description>

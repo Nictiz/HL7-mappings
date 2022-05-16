@@ -1,12 +1,12 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
-   <meta status="new"
+    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2020-03-21T00:00:00.000+01:00"
-         last-update-date="2020-04-09T08:53:45.846+02:00"/>
-   <data>
-      <sturen_medicatievoorschrift app="mp-mp907"
+         last-update-date="2020-07-14T14:43:59.688+02:00"/>
+    <data>
+        <sturen_medicatievoorschrift app="mp-mp907"
                                    shortName="sturen_medicatievoorschrift"
                                    formName="sturen_voorschrift"
                                    transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95"
@@ -17,8 +17,15 @@
                                    title="MP KWALIFICATIE Medicatievoorschriften Scenarioset 1 - MBH_907_start_duur2"
                                    desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;Medicatievoorschrift met een medicatieafspraak gebruiksperiode ingangsdatum en duur (dagen)&lt;/span&gt;&lt;/div&gt;"
                                    id="mv-mvr-Scenarioset1-MBH_907_start_duur2-5">
-         <scenario-nr value="1.2b optioneel"
+         <scenario-nr value="1.2b*"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5"
+                     value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5.1.20201207000000"
+                     displayName="Beide"/>
+         <screenshot value="Maak screenshot(s) waarop zichtbaar is dat de gebruiksperiode ingevoerd kan worden (ingangsdatum/ duur)."
+                     conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.3"/>
          <!--Patient found in instance with id: mg-Scenarioset1 and title: id: MP KWALIFICATIE Medicatiegegevens Scenarioset 1-->
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798" comment="">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799" comment="">
@@ -49,14 +56,14 @@
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_start_duur2-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_start_duur2"
+            <identificatie value="MBH_907_start_duur2-BSC"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
                <gebruiksperiode_start value="T+0D{00:00:00}"
                                       datatype="datetime"
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"/>
-               <identificatie value="MBH_907_start_duur2_MA"
+               <identificatie value="MBH_907_start_duur2_MA-BSC"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
                <afspraakdatum value="T{11:30:00}"
@@ -157,7 +164,7 @@
                </gebruiksinstructie>
             </medicatieafspraak>
             <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963" comment="">
-               <identificatie value="MBH_907_start_duur2_VV"
+               <identificatie value="MBH_907_start_duur2_VV-BSC"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
                <datum value="T{11:30:00}"
@@ -240,12 +247,12 @@
                   </zorgaanbieder>
                </beoogd_verstrekker>
                <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286" comment="">
-                  <identificatie value="MBH_907_start_duur2_MA"
+                  <identificatie value="MBH_907_start_duur2_MA-BSC"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
                </relatie_naar_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
       </sturen_medicatievoorschrift>
-   </data>
+    </data>
 </adaxml>

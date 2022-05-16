@@ -14,13 +14,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 <!--    <xsl:import href="_zib2017.xsl"/>-->
+<!--    <xsl:import href="../../hl7/hl7_2_ada_hl7_include.xsl"/>-->
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
     <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-    <!-- de schema (xsd) parameter bevat het ada xsd om de juiste conceptId's te vinden voor de ADA xml, ada xsd verschilt per ad transactie -->
-    <!-- indien niet gevuld, heeft de ada output geen conceptId's -->
-    <xsl:param name="schema"/>
 
     <xd:doc>
         <xd:desc>Mapping of HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.7.10.31 to zib nl.zorg.LaboratoriumUitslag 4.1 concept in ADA. 
@@ -39,23 +38,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>laboratory_test_result</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName))"/>
-
         <xsl:for-each select="$in">
             <xsl:element name="{$elemName}">
-                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-
-                <!-- laboratory_test -->
+                               <!-- laboratory_test -->
                 <xsl:variable name="elemName">
                     <xsl:choose>
                         <xsl:when test="$language = 'nl-NL'">laboratorium_test</xsl:when>
                         <xsl:otherwise>laboratory_test</xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, $elemName))"/>
                 <xsl:element name="{$elemName}">
-                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-
                     <!-- zibroot -->
                     <xsl:copy-of select="$zibroot"/>
 
@@ -71,8 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="in" select="hl7:code"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
-                    </xsl:call-template>
+                      </xsl:call-template>
 
                     <!-- test_method -->
                     <xsl:variable name="elemName">
@@ -84,7 +75,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="in" select="hl7:methodCode"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                     </xsl:call-template>
 
                     <!-- test_datum_tijd -->
@@ -96,8 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     <xsl:call-template name="handleTS">
                         <xsl:with-param name="in" select="hl7:effectiveTime[@value | @nullFlavor] | hl7:effectiveTime/hl7:low"/>
-                        <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                        <xsl:with-param name="elemName" select="$elemName"/>                        
                     </xsl:call-template>
 
                     <!-- test_uitslag -->
@@ -110,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="handleANY">
                         <xsl:with-param name="in" select="hl7:value"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                        
                         <xsl:with-param name="dodatatype" select="true()"/>
                         <!-- mapping into itself relevant to get the @value attributes which is required in the schema -->
                         <xsl:with-param name="codeMap" as="element(map)*">
@@ -137,16 +126,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$labResultStatusObservation">
                             <xsl:call-template name="handleCV">
                                 <xsl:with-param name="in" select="$labResultStatusObservation/hl7:value"/>
-                                <xsl:with-param name="elemName" select="$elemName"/>
-                                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                                <xsl:with-param name="elemName" select="$elemName"/>                                
                             </xsl:call-template>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="handleCS">
                                 <xsl:with-param name="in" select="hl7:statusCode"/>
                                 <xsl:with-param name="codeSystem" select="$oidHL7ActStatus"/>
-                                <xsl:with-param name="elemName" select="$elemName"/>
-                                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                                <xsl:with-param name="elemName" select="$elemName"/>                                
                                 <xsl:with-param name="codeMap" as="element(map)*">
                                     <map inCode="completed" inCodeSystem="{$oidHL7ActStatus}" value="3" code="final" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" displayName="Final"/>
                                 </xsl:with-param>
@@ -158,8 +145,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- referentie_ondergrens -->
                     <!-- zie ook https://bits.nictiz.nl/browse/ZIB-981, unclear which datatypes to support... -->
                     <!-- however, IVL_PQ must be supported -->
-                    <xsl:if test="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[@xsi:type = 'IVL_PQ']">
-                        <xsl:for-each select="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[@xsi:type = 'IVL_PQ']/hl7:high">
+                    <xsl:if test="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_PQ']">
+                        <xsl:for-each select="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_PQ']/hl7:high">
                             <xsl:variable name="elemName">
                                 <xsl:choose>
                                     <xsl:when test="$language = 'nl-NL'">referentie_bovengrens</xsl:when>
@@ -167,12 +154,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:variable>
                             <xsl:call-template name="handlePQ">
-                                <xsl:with-param name="elemName" select="$elemName"/>
-                                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                                <xsl:with-param name="elemName" select="$elemName"/>                                
                                 <xsl:with-param name="datatype">quantity</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <xsl:for-each select="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[@xsi:type = 'IVL_PQ']/hl7:low">
+                        <xsl:for-each select="hl7:referenceRange/hl7:observationRange[hl7:interpretationCode/@code = 'N']/hl7:value[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_PQ']/hl7:low">
                             <xsl:variable name="elemName">
                                 <xsl:choose>
                                     <xsl:when test="$language = 'nl-NL'">referentie_ondergrens</xsl:when>
@@ -180,8 +166,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:variable>
                             <xsl:call-template name="handlePQ">
-                                <xsl:with-param name="elemName" select="$elemName"/>
-                                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                                <xsl:with-param name="elemName" select="$elemName"/>                                
                                 <xsl:with-param name="datatype">quantity</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
@@ -197,13 +182,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                         </xsl:variable>
                         <xsl:call-template name="handleCV">
-                            <xsl:with-param name="elemName" select="$elemName"/>
-                            <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                            <xsl:with-param name="elemName" select="$elemName"/>                            
                             <xsl:with-param name="codeMap" as="element(map)*">
                                 <!-- choice for language dependent displayNames -->
                                 <xsl:choose>
                                     <xsl:when test="$language = 'nl-NL'">
-                                        <map inCode="H" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008"  codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="Boven referentiewaarde" />
+                                        <map inCode="H" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281302008" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="Boven referentiewaarde"/>
                                         <map inCode="L" inCodeSystem="{$oidHL7ObservationInterpretation}" code="281300000" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="Onder referentiewaarde"/>
                                         <map inCode="I" inCodeSystem="{$oidHL7ObservationInterpretation}" code="11896004" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="Intermediair"/>
                                         <map inCode="R" inCodeSystem="{$oidHL7ObservationInterpretation}" code="30714006" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="Resistent"/>
@@ -231,8 +215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     <xsl:call-template name="handleST">
                         <xsl:with-param name="in" select="hl7:entryRelationship/hl7:act[hl7:code[@code = '48767-8'][@codeSystem = $oidLOINC]]/hl7:text"/>
-                        <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                        <xsl:with-param name="elemName" select="$elemName"/>                        
                     </xsl:call-template>
 
                 </xsl:element>

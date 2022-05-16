@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <xsl:import href="../../../2_fhir_ketenzorg_include.xsl"/>
     <xd:doc scope="stylesheet">
@@ -29,12 +29,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
+    <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
+         See: https://www.hl7.org/fhir/stu3/search.html#conformance -->
+    <xsl:param name="bundleSelfLink" as="xs:string?"/>
+     <!-- This is a required parameter and matches the [base] of a FHIR server. Expects *not* to end in / so we can make fullUrls like ${baseUrl}/Observation/[id] -->
+     <xsl:param name="baseUrl" as="xs:string"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- if false produces a Bundle. if true produces separate resources -->
+    <xsl:param name="separateResources" as="xs:boolean" select="$referById"/>
     
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
     <xsl:param name="mask-ids" select="$oidBurgerservicenummer" as="xs:string"/>
@@ -59,18 +66,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:copy-of select="$bouwstenen"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
-            <xsl:if test="$bouwstenen"><xsl:copy-of select="$commonEntries"/></xsl:if>
+            <xsl:if test="$bouwstenen">
+                <xsl:apply-templates select="$commonEntries" mode="updateSearchMode">
+                    <xsl:with-param name="mode">include</xsl:with-param>
+                </xsl:apply-templates>
+            </xsl:if>
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test="$referById = true()">
+            <xsl:when test="$separateResources">
                 <xsl:apply-templates select="$entries//f:resource/*" mode="doResourceInResultdoc"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
                 <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+                    <id value="{nf:get-uuid(*[1])}"/>
                     <type value="searchset"/>
                     <total value="{count($bouwstenen)}"/>
+                    <xsl:choose>
+                        <xsl:when test="$bundleSelfLink[not(. = '')]">
+                            <link>
+                                <relation value="self"/>
+                                <url value="{$bundleSelfLink}"/>
+                            </link>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="false()"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:copy-of select="$entries"/>
                 </Bundle>
             </xsl:otherwise>

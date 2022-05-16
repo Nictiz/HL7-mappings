@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2020-07-07T11:21:42.565+02:00"
-         last-update-date="2020-07-07T11:21:42.565+02:00"/>
+         creation-date="2021-12-15T13:31:31.293291+01:00"
+         last-update-date="2021-12-15T13:31:31.293291+01:00"/>
    <data>
       <lab_results_response app="ketenzorg3.0"
                             shortName="lab_results_response"
@@ -16,7 +16,7 @@
                             prefix="kz-"
                             language="en-US"
                             title="Generated Through Conversion"
-                            id="453c100b-c033-11ea-6772-020000000000">
+                            id="eeba96e7-5da2-11ec-9653-020000000000">
          <bundle>
             <type code="26436-6"
                   codeSystem="2.16.840.1.113883.6.1"
@@ -59,6 +59,8 @@
             </subject>
          </bundle>
          <laboratory_test_result>
+            <encounter value="996624" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            <episode value="hc657498ft562.9895" root="2.16.528.1.1007.3.3.765332.1.12"/>
             <laboratory_test>
                <hcimroot>
                   <identification_number value="21120" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
@@ -113,10 +115,6 @@
                                    displayName="Final"/>
                <reference_range_upper_limit datatype="quantity" value="99" unit="%"/>
                <reference_range_lower_limit datatype="quantity" value="95" unit="%"/>
-               <result_flags code="N"
-                             codeSystem="2.16.840.1.113883.5.83"
-                             codeSystemName="HL7 ObservationInterpretation"
-                             displayName="Normal"/>
             </laboratory_test>
          </laboratory_test_result>
          <laboratory_test_result>
@@ -174,10 +172,6 @@
                                    displayName="Final"/>
                <reference_range_upper_limit datatype="quantity" value="8" unit="mmol/L"/>
                <reference_range_lower_limit datatype="quantity" value="4" unit="mmol/L"/>
-               <result_flags code="N"
-                             codeSystem="2.16.840.1.113883.5.83"
-                             codeSystemName="HL7 ObservationInterpretation"
-                             displayName="Normal"/>
             </laboratory_test>
          </laboratory_test_result>
          <laboratory_test_result>
@@ -206,10 +200,63 @@
                                    displayName="Final"/>
                <reference_range_upper_limit datatype="quantity" value="99" unit="%"/>
                <reference_range_lower_limit datatype="quantity" value="95" unit="%"/>
-               <result_flags code="N"
-                             codeSystem="2.16.840.1.113883.5.83"
-                             codeSystemName="HL7 ObservationInterpretation"
-                             displayName="Normal"/>
+            </laboratory_test>
+         </laboratory_test_result>
+         <laboratory_test_result>
+            <laboratory_test>
+               <hcimroot>
+                  <identification_number value="21132" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                  <author>
+                     <health_professional>
+                        <health_professional_identification_number value="900014718" root="2.16.528.1.1007.3.1"/>
+                        <health_professional_role code="RESP"
+                                                  codeSystem="2.16.840.1.113883.5.90"
+                                                  displayName="Responsible Party"/>
+                     </health_professional>
+                  </author>
+               </hcimroot>
+               <test_code code="2680"
+                          codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                          codeSystemName="Codes diagnostische bepalingen"
+                          codeSystemVersion="v29"
+                          displayName="zuurstofsaturatie (pulsoximeter)"/>
+               <test_date_time value="2019-02-02"/>
+               <test_result datatype="quantity" value="90" unit="%"/>
+               <test_result_status value="3"
+                                   code="final"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                   displayName="Final"/>
+               <reference_range_upper_limit datatype="quantity" value="99" unit="%"/>
+               <reference_range_lower_limit datatype="quantity" value="95" unit="%"/>
+               <result_flags code="281300000"
+                             codeSystem="2.16.840.1.113883.6.96"
+                             displayName="Below reference range"/>
+            </laboratory_test>
+         </laboratory_test_result>
+         <laboratory_test_result>
+            <laboratory_test>
+               <hcimroot>
+                  <identification_number value="21123" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
+                  <author>
+                     <health_professional>
+                        <health_professional_identification_number value="900014718" root="2.16.528.1.1007.3.1"/>
+                        <health_professional_role code="RESP"
+                                                  codeSystem="2.16.840.1.113883.5.90"
+                                                  displayName="Responsible Party"/>
+                     </health_professional>
+                  </author>
+               </hcimroot>
+               <test_code code="3333333333"
+                          codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                          codeSystemName="Codes diagnostische bepalingen"
+                          codeSystemVersion="v29"
+                          displayName="boolean test"/>
+               <test_date_time value="2019-02-03"/>
+               <test_result datatype="boolean" value="true"/>
+               <test_result_status value="3"
+                                   code="final"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                   displayName="Final"/>
             </laboratory_test>
          </laboratory_test_result>
       </lab_results_response>

@@ -23,8 +23,6 @@
     <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for ${is.name} to  ${echo.label.out}"/>
     <property name="project.prefix" value="${is.abbreviation}_${is.version}"/>
     <property name="dummy.output.dir" value="../../dummy"/>
-    
-    
 
     <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
 
@@ -42,6 +40,7 @@
         <echo/>
         <echo>Setup ${sub.build.dir} containing refreshed ada schemas (${schema.string})</echo>
         
+        <mkdir dir="${sub.build.dir}/ada_schemas"/>
         <delete>
             <fileset dir="${sub.build.dir}/ada_schemas" includes="*.xsd"/>
         </delete>
@@ -60,6 +59,7 @@
         <echo/>
         <echo>Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.include})</echo>
 
+        <mkdir dir="${sub.build.dir}/${fileset.dir}"/>
         <delete>
             <fileset dir="${sub.build.dir}/${fileset.dir}" includes="${fileset.include}"/>
         </delete>
@@ -79,6 +79,7 @@
         <property name="xsl.output" value="${sub.build.dir}/${xsl.out}"/>
         
         <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${xsl.output}"/>
         <delete>
             <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
@@ -90,6 +91,7 @@
             <echo>${echo.label} ${xsl.hl72ada} input dir ${xsl.input}</echo>
             <xslt force="true" style="${xsl.hl72ada}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesMP"/>
+                <param name="outputSchemaRef" expression="${output.ada.schemaref}" if="output.ada.schemaref"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>

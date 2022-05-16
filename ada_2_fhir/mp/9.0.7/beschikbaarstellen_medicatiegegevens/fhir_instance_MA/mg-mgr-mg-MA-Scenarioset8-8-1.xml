@@ -1,17 +1,22 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="7e21c6ae-8d8f-11ec-2115-020000000000"/>
    <type value="searchset"/>
    <total value="0"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:b5080d0b-bd3e-11ea-3633-020000000000"/>
+      <fullUrl value="urn:uuid:7e21bc5a-8d8f-11ec-2115-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), H. van XXX_Zutphen, Man, 8 juni 1954</div>
                </div>
@@ -42,7 +47,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-06-08"/>
          </Patient>
       </resource>
@@ -58,7 +73,7 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001115 (UZI-NR-PERS), Marcha van Partners</div>
                </div>
@@ -96,10 +111,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00005111 (URA)</caption>
+                     <caption>Organisatie. Id: 00005111 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -107,7 +122,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Langelaan 1, 1234ZZ Onze Stad (Werk)</td>
+                           <td>Langelaan 1, 1234ZZ Onze Stad (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -119,6 +134,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Itis"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Langelaan 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -138,17 +162,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b507f7bf-bd3e-11ea-3633-020000000000"/>
+      <fullUrl value="urn:uuid:7e21bc84-8d8f-11ec-2115-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
@@ -193,11 +217,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.8052"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-8052"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>

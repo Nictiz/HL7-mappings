@@ -14,18 +14,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_fhir_mp90_include.xsl"/>
-    <xsl:output method="xml" indent="yes"/>
+    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
+    <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
             <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR instances, based on agreed profiles.</xd:p>
-            <xd:p>
-                <xd:b>History:</xd:b>
-                <xd:ul>
-                    <xd:li>2018-06-12 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
-                </xd:ul>
-            </xd:p>
         </xd:desc>
     </xd:doc>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
@@ -36,11 +31,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
     <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
-    <xsl:param name="logLevel" select="$logDEBUG" as="xs:string"/>
-    <!-- whether or not to output kopie bouwstenen, defaults to true if not set -->
+    <xsl:param name="logLevel" select="$logWARN" as="xs:string"/>
+    <!-- whether or not to output kopie bouwstenen -->
     <xsl:param name="outputKopieBouwstenen" as="xs:boolean?" select="false()"/>
+    <!-- only give dateT a value if you want conversion of relative T dates to actual dates, otherwise a Touchstone relative T-date string will be generated -->
+    <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
+<!--        <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>-->
+    <xsl:param name="dateT" as="xs:date?"/>
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
     
-    <xsl:variable name="usecase">mp9</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $relatedPersons/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>
     </xsl:variable>
@@ -65,17 +68,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:copy-of select="$commonEntries"/>
         </xsl:variable>
 
+         <!-- and output the resource in a file -->
         <xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
-    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>
-        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
-            <xsl:copy-of select="."/>
-        </xsl:result-document>
     </xsl:template>
 
 </xsl:stylesheet>

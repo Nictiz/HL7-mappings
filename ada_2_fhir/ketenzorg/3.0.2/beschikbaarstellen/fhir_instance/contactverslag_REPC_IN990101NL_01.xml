@@ -1,21 +1,28 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="f37772a4-5da2-11ec-1760-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1.996625"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.840.1.113883.2.4.6.6.90000258.4.1-996625"/>
       <resource>
          <Composition>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.1-996625"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Emfyseem/COPD</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: E. XXX_Zegers. Status: definitief<span style="display: block;">Auteur: Responsible Party</span>
+                     <caption>Samengestelde informatie. Subject: E. XXX_Zegers. Id: 996625 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1), Status: definitief<span style="display: block;">Auteur: <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718">Huisarts 1</a>
+                        </span>
                      </caption>
                      <tbody>
                         <tr>
@@ -30,12 +37,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10 (Id: 996625 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10))</td>
+                           <td>Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10 (Id: 996625 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10))</td>
+                        </tr>
+                        <tr>
+                           <th>Gebeurtenis</th>
+                           <td>Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6 (Id: 1826 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+               <value value="996625"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -45,7 +60,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <encounter>
@@ -53,14 +68,23 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
                   <value value="996625"/>
                </identifier>
-               <display value="Contactmoment: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </encounter>
             <date value="2019-01-30T16:45:00+01:00"/>
             <author>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
-               <display value="Responsible Party"/>
-               </author>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
+               <display value="Huisarts 1"/>
+            </author>
             <title value="Emfyseem/COPD"/>
+            <event>
+               <detail>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+               </detail>
+            </event>
             <section>
                <code>
                   <coding>
@@ -70,12 +94,19 @@
                   </coding>
                </code>
                <text>
-                  <status value="additional"/>
+                  <status value="generated"/>
                   <div xmlns="http://www.w3.org/1999/xhtml">Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:490ab242-c033-11ea-4134-020000000000"/>
+                  <reference value="urn:uuid:f3778252-5da2-11ec-1760-020000000000"/>
                   <display value="S: Subjectief - Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB."/>
+               </entry>
+               <entry>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
                </entry>
             </section>
             <section>
@@ -87,12 +118,19 @@
                   </coding>
                </code>
                <text>
-                  <status value="additional"/>
+                  <status value="generated"/>
                   <div xmlns="http://www.w3.org/1999/xhtml">Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:490ab249-c033-11ea-4134-020000000000"/>
+                  <reference value="urn:uuid:f3778255-5da2-11ec-1760-020000000000"/>
                   <display value="O: Objectief - Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb."/>
+               </entry>
+               <entry>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
                </entry>
             </section>
             <section>
@@ -113,12 +151,19 @@
                   </coding>
                </code>
                <text>
-                  <status value="additional"/>
+                  <status value="generated"/>
                   <div xmlns="http://www.w3.org/1999/xhtml">COPD, beterend</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:490aa9b9-c033-11ea-4134-020000000000"/>
+                  <reference value="urn:uuid:f3778258-5da2-11ec-1760-020000000000"/>
                   <display value="E: Evaluatie - COPD, beterend"/>
+               </entry>
+               <entry>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
                </entry>
             </section>
             <section>
@@ -130,12 +175,19 @@
                   </coding>
                </code>
                <text>
-                  <status value="additional"/>
+                  <status value="generated"/>
                   <div xmlns="http://www.w3.org/1999/xhtml">Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:490aa9d0-c033-11ea-4134-020000000000"/>
+                  <reference value="urn:uuid:f3778262-5da2-11ec-1760-020000000000"/>
                   <display value="P: Plan - Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin."/>
+               </entry>
+               <entry>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
                </entry>
             </section>
          </Composition>
@@ -145,18 +197,20 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1.996626"/>
+      <fullUrl value="https://example.org/fhir/Composition/2.16.840.1.113883.2.4.6.6.90000258.4.1-996626"/>
       <resource>
          <Composition>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.1-996626"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <b>Emfyseem/COPD</b>
                   <table>
-                     <caption>Samengestelde informatie. Subject: E. XXX_Zegers. Status: definitief<span style="display: block;">Auteur: Responsible Party</span>
+                     <caption>Samengestelde informatie. Subject: E. XXX_Zegers. Id: 996626 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1), Status: definitief<span style="display: block;">Auteur: <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718">Huisarts 1</a>
+                        </span>
                      </caption>
                      <tbody>
                         <tr>
@@ -171,12 +225,20 @@
                         </tr>
                         <tr>
                            <th>Contact</th>
-                           <td>Contactmoment: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10 (Id: 996626 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10))</td>
+                           <td>Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10 (Id: 996626 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10))</td>
+                        </tr>
+                        <tr>
+                           <th>Gebeurtenis</th>
+                           <td>Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6 (Id: 1826 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6))</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+               <value value="996626"/>
+            </identifier>
             <status value="final"/>
             <type>
                <coding>
@@ -186,7 +248,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <encounter>
@@ -194,14 +256,23 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
                   <value value="996626"/>
                </identifier>
-               <display value="Contactmoment: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
             </encounter>
             <date value="2019-02-02T17:03:00+01:00"/>
             <author>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
-               <display value="Responsible Party"/>
-               </author>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
+               <display value="Huisarts 1"/>
+            </author>
             <title value="Emfyseem/COPD"/>
+            <event>
+               <detail>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+               </detail>
+            </event>
             <section>
                <code>
                   <coding>
@@ -211,12 +282,19 @@
                   </coding>
                </code>
                <text>
-                  <status value="additional"/>
+                  <status value="generated"/>
                   <div xmlns="http://www.w3.org/1999/xhtml">Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:490aa9ef-c033-11ea-4134-020000000000"/>
+                  <reference value="urn:uuid:f37780f0-5da2-11ec-1760-020000000000"/>
                   <display value="S: Subjectief - Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel."/>
+               </entry>
+               <entry>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
                </entry>
             </section>
             <section>
@@ -228,12 +306,19 @@
                   </coding>
                </code>
                <text>
-                  <status value="additional"/>
+                  <status value="generated"/>
                   <div xmlns="http://www.w3.org/1999/xhtml">Longen VAG crep+, piep iets, rhonchi+.  Percussie gb.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:490aa9f6-c033-11ea-4134-020000000000"/>
+                  <reference value="urn:uuid:f37780f3-5da2-11ec-1760-020000000000"/>
                   <display value="O: Objectief - Longen VAG crep+, piep iets, rhonchi+. Percussie gb."/>
+               </entry>
+               <entry>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
                </entry>
             </section>
             <section>
@@ -254,12 +339,19 @@
                   </coding>
                </code>
                <text>
-                  <status value="additional"/>
+                  <status value="generated"/>
                   <div xmlns="http://www.w3.org/1999/xhtml">COPD, exacerbatie</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:490aa9fe-c033-11ea-4134-020000000000"/>
+                  <reference value="urn:uuid:f37780f6-5da2-11ec-1760-020000000000"/>
                   <display value="E: Evaluatie - COPD, exacerbatie"/>
+               </entry>
+               <entry>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
                </entry>
             </section>
             <section>
@@ -271,12 +363,19 @@
                   </coding>
                </code>
                <text>
-                  <status value="additional"/>
+                  <status value="generated"/>
                   <div xmlns="http://www.w3.org/1999/xhtml">AB starten, ventolin 3-4 dgs.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:490aaa15-c033-11ea-4134-020000000000"/>
+                  <reference value="urn:uuid:f3778100-5da2-11ec-1760-020000000000"/>
                   <display value="P: Plan - AB starten, ventolin 3-4 dgs."/>
+               </entry>
+               <entry>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                     <value value="1826"/>
+                  </identifier>
+                  <display value="Episode: 1826 2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
                </entry>
             </section>
          </Composition>
@@ -286,17 +385,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), E. XXX_Zegers, Vrouw, 2 augustus 1964</div>
-                  <div>Knolweg 1001, 9999XX STITSWERD, Nederland (Privé Bezoek)</div>
+                  <div>Knolweg 1001, 9999XX STITSWERD, Nederland (officieel Privé (hoofd) Bezoek)</div>
                </div>
             </text>
             <identifier>
@@ -322,11 +421,30 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-08-02"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="HP"/>
+                        <display value="Officieel adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
-                  <valueCode value="true"/>
+                  <valueBoolean value="true"/>
                </extension>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                   <valueCode value="HP"/>
@@ -352,22 +470,33 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-900014718"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 900014718 (UZI-NR-PERS)</div>
+                  <div>Id 900014718 (UZI-NR-PERS), Huisarts 1</div>
                </div>
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
                <value value="900014718"/>
             </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Huisarts 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Huisarts 1"/>
+                  </extension>
+               </family>
+            </name>
          </Practitioner>
       </resource>
       <search>
@@ -375,17 +504,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-90000381"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-90000381"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 90000381 (URA)</caption>
+                     <caption>Organisatie. Id: 90000381 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -407,22 +537,69 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490ab231-c033-11ea-4134-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
+      <resource>
+         <Organization>
+            <id value="2.16.528.1.1007.3.3-00002727"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00002727 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Gezondheidscentrum Aesculaap</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00002727"/>
+            </identifier>
+            <name value="Gezondheidscentrum Aesculaap"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f377823c-5da2-11ec-1760-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>Responsible Party</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718">Huisarts 1</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <div>
+                                 <a href="tel:030-6963207">030-6963207</a> (Tel Werk)</div>
+                              <div>
+                                 <a href="tel:06-12345678">06-12345678</a> (Tel Mobiel)</div>
                            </td>
                         </tr>
                      </tbody>
@@ -430,9 +607,53 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
-               <display value="Responsible Party"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
+               <display value="Huisarts 1"/>
             </practitioner>
+            <organization>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
+               <display value="Gezondheidscentrum Aesculaap"/>
+            </organization>
+            <telecom>
+               <system value="phone"/>
+               <value value="030-6963207"/>
+               <use value="work">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                           <code value="WP"/>
+                           <display value="Work place"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </use>
+            </telecom>
+            <telecom>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                           <code value="MC"/>
+                           <display value="Mobiele telefoon"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
+               <value value="06-12345678"/>
+               <use value="mobile">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                           <code value="WP"/>
+                           <display value="Work place"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </use>
+            </telecom>
          </PractitionerRole>
       </resource>
       <search>
@@ -440,14 +661,118 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490ab242-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f3778269-5da2-11ec-1760-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718">Huisarts 1</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <div>
+                                 <a href="tel:030-6963207">030-6963207</a> (Tel Werk)</div>
+                              <div>
+                                 <a href="tel:06-12345678">06-12345678</a> (Tel Mobiel)</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
+               <display value="Huisarts 1"/>
+            </practitioner>
+            <organization>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
+               <display value="Gezondheidscentrum Aesculaap"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.015"/>
+                  <display value="Huisarts"/>
+               </coding>
+            </specialty>
+            <telecom>
+               <system value="phone"/>
+               <value value="030-6963207"/>
+               <use value="work">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                           <code value="WP"/>
+                           <display value="Work place"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </use>
+            </telecom>
+            <telecom>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                           <code value="MC"/>
+                           <display value="Mobiele telefoon"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
+               <value value="06-12345678"/>
+               <use value="mobile">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                           <code value="WP"/>
+                           <display value="Work place"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </use>
+            </telecom>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f3778252-5da2-11ec-1760-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Status: definitief</caption>
@@ -479,7 +804,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -497,14 +822,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490ab249-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f3778255-5da2-11ec-1760-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Status: definitief</caption>
@@ -536,7 +861,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -554,14 +879,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490aa9b9-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f3778258-5da2-11ec-1760-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Status: definitief</caption>
@@ -601,7 +926,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -635,14 +960,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490aa9d0-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f3778262-5da2-11ec-1760-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Status: definitief</caption>
@@ -674,7 +999,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -692,14 +1017,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490aa9ef-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f37780f0-5da2-11ec-1760-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Status: definitief</caption>
@@ -731,7 +1056,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -749,14 +1074,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490aa9f6-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f37780f3-5da2-11ec-1760-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Status: definitief</caption>
@@ -788,7 +1113,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -806,14 +1131,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490aa9fe-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f37780f6-5da2-11ec-1760-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Status: definitief</caption>
@@ -853,7 +1178,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>
@@ -887,14 +1212,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:490aaa15-c033-11ea-4134-020000000000"/>
+      <fullUrl value="urn:uuid:f3778100-5da2-11ec-1760-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: E. XXX_Zegers. Status: definitief</caption>
@@ -926,7 +1251,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:490ab204-c033-11ea-4134-020000000000"/>
+               <reference value="urn:uuid:f3778228-5da2-11ec-1760-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <context>

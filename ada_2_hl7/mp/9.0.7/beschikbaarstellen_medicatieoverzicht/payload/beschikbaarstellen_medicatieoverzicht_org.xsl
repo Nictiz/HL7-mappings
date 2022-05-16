@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<!-- param to influence whether to output schematron references, typically only needed for test instances -->
 	<xsl:param name="schematronRef" as="xs:boolean" select="true()"/>
 
-	<xsl:template match="/">
+	<xsl:template match="/" name="baseMedicatieoverzicht">
 		<xsl:param name="in" select="adaxml/data/beschikbaarstellen_medicatieoverzicht" as="element()*"/>
 		<xsl:if test="$schematronRef">
 			<xsl:processing-instruction name="xml-model">href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20181220/mp-xml-20181220T121121/schematron_closed_warnings/mp-MP90_mo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>

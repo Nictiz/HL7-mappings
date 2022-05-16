@@ -28,15 +28,6 @@
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
 
-        <!-- sturen_medicatievoorschrift -->
-        <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
-            <param name="schema.string" value="*${usecase.mv}*"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
-        </antcall>
-
         <!-- beschikbaarstellen_medicatiegegevens -->
         <!-- beschikbaarstellen_medicatiegegevens MA -->
         <antcall target="setup_sub">
@@ -44,84 +35,231 @@
             <param name="schema.string" value="*${usecase.mg}*"/>
             <param name="fileset.dir" value="ada_instance_MA"/>
             <param name="fileset.include" value="*MA*.xml"/>
+            <!-- exclude the initating scenario's -->
+            <param name="fileset.exclude" value="*8i*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens VV -->
-        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_VV"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_VV" includes="*VV*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg}/ada_instance_VV" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance">
-                <include name="*VV*.xml"/>
-            </fileset>
-        </copy>
-        <!-- beschikbaarstellen_medicatiegegevens medmij stuff -->
-        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg}/ada_instance" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg}/ada_instance" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance">
-                <include name="XXX_*.xml"/>
-                <exclude name="*v2.xml"/>
-                <exclude name="*MO*.xml"/>
-                <exclude name="XXX_Jangi*.xml"/>
-            </fileset>
-        </copy>           
-
+        <antcall target="setup_sub_instances">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="fileset.dir" value="ada_instance_VV"/>
+            <param name="fileset.include" value="*VV*.xml"/>
+            <!-- exclude the initating scenario's -->
+            <param name="fileset.exclude" value="*8i*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
+            <param name="ada.refs.dir" value="ada_instance"/>
+        </antcall>
+               
+        <!-- preprocess for Touchstone (update use period to use end date for querying purposes -->
+        <antcall target="preprocess4Touchstone">
+            <param name="base.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="ada.dir" value="ada_instance_MA"/>
+            <param name="fileset.include" value="mg-mgr-mg-MA-Scenarioset0*.xml"/>
+        </antcall>        
+  
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="schema.string" value="*${usecase.mo}*"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
+            <param name="fileset.dir" value="ada_instance_mp"/>
+            <param name="fileset.include" value="*output.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
         </antcall>
-        <!-- copy output ada instances to ada_instance_mp -->
-        <mkdir dir="${build.dir}/${usecase.mo}/ada_instance_mp"/>
-        <!-- delete previous results, if any -->
+        
+        <!-- xml voorbeelden -->
+        <!-- schemas -->
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
         <delete>
-            <fileset dir="${build.dir}/${usecase.mo}/ada_instance_mp" includes="*.xml"/>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_schemas" includes="*.xsd"/>
         </delete>
-        <copy todir="${build.dir}/${usecase.mo}/ada_instance_mp">
-            <fileset dir="${build.dir}/${usecase.mo}/ada_instance">
-                <include name="*output.xml"/>
-            </fileset>            
+        <copy todir="${build.dir}/xml-voorbeelden/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="*${usecase.mg}.xsd"/>
+                <include name="*${usecase.mo}.xsd"/>
+                <include name="*${usecase.vv}.xsd"/>
+                <include name="ada_meta.xsd"/>
+            </fileset>
         </copy>
-
-        <!-- beschikbaarstellen_verstrekkingenvertaling -->
-        <antcall target="setup_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.vv}"/>
-            <param name="schema.string" value="*${usecase.vv}*"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.vv}"/>
-        </antcall>
+        <!-- instances -->
+        <echo/>
+        <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
+        
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*example*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/xml-voorbeelden/ada_instance" failonerror="true">
+            <fileset dir="${refs.dir}/xml-voorbeelden/ada_instance">
+                <include name="mg*example*.xml"/>
+                <include name="mo*example*.xml"/>
+                <include name="vv*example*.xml"/>
+            </fileset>
+        </copy>        
 
     </target>
 
     <target name="convert_ada_2_fhir">
 
         <!-- beschikbaarstellen_medicatiegegevens -->
-        <antcall target="convert_ada_2_fhir_sub">
+        <antcall target="convert_ada_2_fhir_sub_mp">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_MA"/>
             <param name="xsl.out" value="fhir_instance_MA"/>
         </antcall>
-        <antcall target="convert_ada_2_fhir_sub">
+        <antcall target="convert_ada_2_fhir_sub_mp">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_VV"/>
             <param name="xsl.out" value="fhir_instance_VV"/>
         </antcall>
       
         <!-- beschikbaarstellen_medicatieoverzicht -->
-        <antcall target="convert_ada_2_fhir_sub">
+        <antcall target="convert_ada_2_fhir_sub_mp">
             <param name="usecase" value="${usecase.mo}"/>
             <param name="xsl.in" value="ada_instance_mp"/>
             <param name="xsl.out" value="fhir_instance_mp"/>
         </antcall>
         
+        <!-- also do the examples -->
+        <antcall target="convert_ada_2_fhir_examples"/>        
+        
     </target>
+    
+    <target name="convert_ada_2_fhir_sub_mp">
+        
+        <property name="xsl.ada2fhir" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir.xsl"/>
+        <property name="xsl.ada2fhir.resources" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir_resources.xsl"/>
+        
+        <property name="xsl.input" value="${build.dir}/${usecase}/${xsl.in}"/>
+        <property name="xsl.output" value="${build.dir}/${usecase}/${xsl.out}"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.*"/>
+        </delete>
+        
+        <sequential>
+            <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir.resources}</echo>
+            <xslt force="true" style="${xsl.ada2fhir.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputFiles"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir}</echo>
+            <xslt force="true" style="${xsl.ada2fhir}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputFiles"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+    </target>
+    
+    
+    <target name="convert_ada_2_fhir_examples">
+        <!-- examples -->
+        <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${build.dir}/xml-voorbeelden/fhir_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/fhir_instance" includes="*.xml"/>
+        </delete>
+        
+       <!-- medicatiegegevens -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mg-*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+        </sequential>
+        
+          
+        <!-- medicatieoverzicht -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mo*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir_resources.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mo}/payload/${usecase.mo}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>   
+        
+    
+          
+    </target>
+    
+    <target name="preprocess4Touchstone">
+        <!-- input params base.dir ada.in.dir fileset.include -->
+        <!-- preprocess for Touchstone (update use period to use end date for querying purposes -->
+        <mkdir dir="${base.dir}/${ada.dir}_4_TS"/>
+        <delete>
+            <fileset dir="${base.dir}/${ada.dir}_4_TS" includes="*.xml"/>
+        </delete>
+        <sequential>
+            <fileset id="inputFiles" dir="${base.dir}/${ada.dir}" includes="${fileset.include}"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${base.dir}/${ada.dir}, to be converted with: ${base.dir}/payload/preprocess_ada_4_Touchstone.xsl</echo>
+            <xslt force="true" style="${base.dir}/payload/preprocess_ada_4_Touchstone.xsl" destdir="${base.dir}/${ada.dir}_4_TS" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputFiles"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            <move todir="${base.dir}/${ada.dir}">
+                <fileset dir="${base.dir}/${ada.dir}_4_TS" includes="*.xml"/>
+            </move>
+        </sequential>
+        
+        <!-- let's cleanup our temp stuff -->
+        <delete dir="${base.dir}/${ada.dir}_4_TS"/>
+        
+    </target>
+    
+    
 
 </project>

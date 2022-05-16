@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apache ANT build file that sets up (target = setup) or by default converts transaction with references to full ada xml (target = resolve-refs)
+    Apache ANT is based on Java and may be found here: https://ant.apache.org/
+    run on command line or from a batch file: 
+        ant [-f build.xml] [target]
+        
+    If you just run ant, it expects a build.xml in the working dir and runs the default target.
+-->
+<project basedir="../.." default="convert_fhir_2_ada" name="ada2fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property name="xsl.saxon" value="${saxon.path}"/>
+    <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
+
+    <property name="echo.label.in" value="FHIR"/>
+    <property name="echo.label.out" value="ADA"/>
+    <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
+
+    <property name="project.title" value="${echo.label} for Medicatieproces 9.0.7"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.prefix" value="mp_9.0.7"/>
+    <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for Medicatieproces building blocks to valid ${echo.label.out} instances"/>
+    <property name="project.author" value="Nictiz"/>
+    <property name="project.website" value="http://www.nictiz.nl/"/>
+    <property name="project.status" value="beta"/>
+    <property name="project.license" value="GNU-LGPL"/>
+    <property name="project.copyright" value="true"/>
+
+    <property name="build.dir" value="."/>
+    <property name="dummy.output.dir" value="dummy"/>
+    
+    <target name="convert_fhir_2_ada">
+        <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
+        <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
+        <property name="usecase-vv" value="beschikbaarstellen_verstrekkingenvertaling"/>
+        
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="build.dir" value="${usecase-mg}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- beschikbaarstellen_medicatieoverzicht -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="build.dir" value="${usecase-mo}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- beschikbaarstellen_verstrekkingenvertaling -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="build.dir" value="${usecase-vv}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+    </target>
+
+    <target name="convert_fhir_2_ada_sub">
+        <property name="xsl_mp" value="${build.dir}/payload/${build.dir}_2_ada.xsl"/>
+
+        <property name="xsl.input" value="${build.dir}/${xsl.in}"/>
+        <property name="xsl.output" value="${build.dir}/${xsl.out}"/>
+
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.*"/>
+        </delete>
+
+        <sequential>
+            <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${xsl_mp}</echo>
+            <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMP"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="C:/SaxonHE9-9-1-7J/saxon9he.jar"/>
+            </xslt>
+            
+        </sequential>
+    </target>
+
+
+</project>

@@ -1,17 +1,22 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="f92386b6-5da2-11ec-1345-020000000000"/>
    <type value="searchset"/>
    <total value="5"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:4cf745eb-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f92384dd-5da2-11ec-1345-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: J. XXX_Amaya. Id: MBH_513_1_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, Status: foutieve invoer<span style="display: block;">Intentie: aanvraag</span>
@@ -24,7 +29,9 @@
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>ACETYLSALICYLZUUR TABLETMSR 100MG</td>
+                           <td>
+                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-49484">ACETYLSALICYLZUUR TABLETMSR 100MG</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
@@ -89,11 +96,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.49484"/>
+               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-49484"/>
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-09-02T11:25:00+02:00"/>
@@ -101,11 +108,11 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4cf745f8-c033-11ea-3504-020000000000"/>
+                        <reference value="urn:uuid:f92384e2-5da2-11ec-1345-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001111"/>
                   <display value="Peter van Pulver"/>
                </agent>
             </requester>
@@ -140,14 +147,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74d65-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f923850c-5da2-11ec-1345-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: J. XXX_Amaya. Id: MBH_513_1_MA_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -160,7 +167,9 @@
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>ACETYLSALICYLZUUR TABLETMSR 100MG</td>
+                           <td>
+                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-49484">ACETYLSALICYLZUUR TABLETMSR 100MG</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
@@ -224,11 +233,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.49484"/>
+               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-49484"/>
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-09-03T09:00:00+02:00"/>
@@ -236,11 +245,11 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4cf74d6f-c033-11ea-3504-020000000000"/>
+                        <reference value="urn:uuid:f9238510-5da2-11ec-1345-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001112"/>
                   <display value="Bertine van Doorn"/>
                </agent>
             </requester>
@@ -275,14 +284,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74dd5-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f9239927-5da2-11ec-1345-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: J. XXX_Amaya. Id: MBH_513_2_MA_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -304,7 +313,9 @@
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>FUROSEMIDE TABLET 40MG</td>
+                           <td>
+                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-5967">FUROSEMIDE TABLET 40MG</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
@@ -370,11 +381,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-5967"/>
                <display value="FUROSEMIDE TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-09-03T14:32:00+02:00"/>
@@ -382,11 +393,11 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4cf74de5-c033-11ea-3504-020000000000"/>
+                        <reference value="urn:uuid:f923992c-5da2-11ec-1345-020000000000"/>
                         <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-999001112"/>
                   <display value="Hans van Doorn"/>
                </agent>
             </requester>
@@ -431,14 +442,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74e4e-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f9239958-5da2-11ec-1345-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: J. XXX_Amaya. Id: MBH_513_3_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -455,7 +466,9 @@
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>METHOTREXAAT TABLET 2,5MG</td>
+                           <td>
+                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-6009">METHOTREXAAT TABLET 2,5MG</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
@@ -539,11 +552,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
+               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-6009"/>
                <display value="METHOTREXAAT TABLET 2,5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-09-03T14:32:00+02:00"/>
@@ -551,11 +564,11 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4cf74de5-c033-11ea-3504-020000000000"/>
+                        <reference value="urn:uuid:f923992c-5da2-11ec-1345-020000000000"/>
                         <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-999001112"/>
                   <display value="Hans van Doorn"/>
                </agent>
             </requester>
@@ -567,7 +580,7 @@
                </coding>
             </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:4cf74e91-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f9239973-5da2-11ec-1345-020000000000"/>
                <display value="Andere maligniteit bloed/lymfestelsel"/>
             </reasonReference>
             <dosageInstruction>
@@ -601,14 +614,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74ece-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f923998c-5da2-11ec-1345-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: J. XXX_Amaya. Id: MBH_513_4_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
@@ -626,7 +639,9 @@
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>FENETICILLINE CAPSULE 500MG</td>
+                           <td>
+                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-17205">FENETICILLINE CAPSULE 500MG</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Ondersteunende informatie</th>
@@ -709,19 +724,19 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
+               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-17205"/>
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <supportingInformation>
-               <reference value="urn:uuid:4cf74f38-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92399b6-5da2-11ec-1345-020000000000"/>
                <display value="Lengte: 155 cm. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
             </supportingInformation>
             <supportingInformation>
-               <reference value="urn:uuid:4cf74f3f-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92399b9-5da2-11ec-1345-020000000000"/>
                <display value="Gewicht: 54 kg. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
             </supportingInformation>
             <authoredOn value="2018-08-29T09:35:00+02:00"/>
@@ -729,11 +744,11 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4cf745f8-c033-11ea-3504-020000000000"/>
+                        <reference value="urn:uuid:f92384e2-5da2-11ec-1345-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001111"/>
                   <display value="Peter van Pulver"/>
                </agent>
             </requester>
@@ -771,14 +786,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), J. XXX_Amaya, Man, 6 augustus 1964</div>
                </div>
@@ -806,7 +821,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-08-06"/>
          </Patient>
       </resource>
@@ -815,14 +840,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001111"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-000001111"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001111 (UZI-NR-PERS), Peter van Pulver</div>
                </div>
@@ -856,14 +882,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1112"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001112"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-000001112"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001112 (UZI-NR-PERS), Bertine van Doorn</div>
                </div>
@@ -897,14 +924,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-999001112"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-999001112"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 999001112 (UZI-NR-PERS), Hans van Doorn</div>
                </div>
@@ -938,17 +966,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00001111"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-00001111"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00001111 (URA)</caption>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -956,7 +985,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -968,6 +997,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -987,17 +1025,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.99901111"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-99901111"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-99901111"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 99901111 (URA)</caption>
+                     <caption>Organisatie. Id: 99901111 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -1005,7 +1044,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -1017,6 +1056,15 @@
             </identifier>
             <name value="Ziekenhuis Stitswerd"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -1036,23 +1084,27 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf745f8-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f92384e2-5da2-11ec-1345-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>Peter van Pulver</div>
-                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001111">Peter van Pulver</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00001111">Huisartsenpraktijk Pulver &amp; Partners</a>
+                              </div>
                            </td>
                         </tr>
                         <tr>
@@ -1066,11 +1118,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001111"/>
                <display value="Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00001111"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>
@@ -1087,23 +1139,27 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74d6f-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f9238510-5da2-11ec-1345-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>Bertine van Doorn</div>
-                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001112">Bertine van Doorn</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00001111">Huisartsenpraktijk Pulver &amp; Partners</a>
+                              </div>
                            </td>
                         </tr>
                         <tr>
@@ -1117,11 +1173,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-000001112"/>
                <display value="Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00001111"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>
@@ -1138,23 +1194,27 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74de5-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f923992c-5da2-11ec-1345-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>Hans van Doorn</div>
-                              <div>Ziekenhuis Stitswerd</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-999001112">Hans van Doorn</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-99901111">Ziekenhuis Stitswerd</a>
+                              </div>
                            </td>
                         </tr>
                         <tr>
@@ -1168,11 +1228,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-999001112"/>
                <display value="Hans van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.99901111"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-99901111"/>
                <display value="Ziekenhuis Stitswerd"/>
             </organization>
             <specialty>
@@ -1189,14 +1249,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.49484"/>
+      <fullUrl value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-49484"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-49484"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -1231,14 +1292,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+      <fullUrl value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-5967"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-5967"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -1273,14 +1335,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
+      <fullUrl value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-6009"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-6009"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -1315,14 +1378,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
+      <fullUrl value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-17205"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-17205"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -1357,14 +1421,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74f38-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f92399b6-5da2-11ec-1345-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: J. XXX_Amaya. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief<span style="display: block;">Uitvoerende: onbekend</span>
@@ -1404,7 +1468,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <effectiveDateTime value="2018-08-29T09:35:00+02:00"/>
@@ -1427,14 +1491,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74f3f-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f92399b9-5da2-11ec-1345-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Observatie/bepaling. Subject: J. XXX_Amaya. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief<span style="display: block;">Uitvoerende: onbekend</span>
@@ -1474,7 +1538,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <effectiveDateTime value="2018-08-29T09:35:00+02:00"/>
@@ -1497,18 +1561,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4cf74e91-c033-11ea-3504-020000000000"/>
+      <fullUrl value="urn:uuid:f9239973-5da2-11ec-1345-020000000000"/>
       <resource>
          <Condition>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Aandoening. Subject: J. XXX_Amaya. Status: <i>onbekend (ontbrekend gegeven)</i>
-                     </caption>
+                     <caption>Aandoening. Subject: J. XXX_Amaya. Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Code</th>
@@ -1520,11 +1583,7 @@
                   </table>
                </div>
             </text>
-            <clinicalStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </clinicalStatus>
+            <clinicalStatus value="active"/>
             <code>
                <coding>
                   <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
@@ -1533,7 +1592,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:4cf745d2-c033-11ea-3504-020000000000"/>
+               <reference value="urn:uuid:f92386ba-5da2-11ec-1345-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
          </Condition>

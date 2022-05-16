@@ -30,39 +30,39 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
-         <id extension="MBH_907_interval_MA"
+         <id extension="MBH_907_interval_MA-MSZ"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="16076005"
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf &lt;T+0D{00:00:00}&gt;, exact iedere 12 uur 16 IE, subcutaan</text>
+         <text mediaType="text/plain">Vanaf 13 nov 2020, exact iedere 8 uur 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20200324000000"/>
+            <low value="20201113000000"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
-         <routeCode code="21"
+         <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="subcutaan"
+                    displayName="Oraal"
                     codeSystemName="G-Standaard Toedieningswegen"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="34851"
+                  <code code="68519"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="INSULINE ISOFAAN 100IE/ML"
+                        displayName="AMOXICILLINE DISPERTABLET 500MG"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="111325"
+                     <translation code="117080"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="INSULINE ISOFAAN 100IE/ML"
+                                  displayName="AMOXICILLINE DISPERTABLET 500MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20200324080400"/>
+            <time value="20201113080400"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -96,14 +96,14 @@
                <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="false">
                   <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
-                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="12" unit="h"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="8" unit="h"/>
                   </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
-                  <center value="16" unit="[iU]">
-                     <translation value="16"
-                                  code="217"
-                                  displayName="internationale eenheid"
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
@@ -115,7 +115,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_907_interval"/>
+                   extension="MBH_907_interval-MSZ"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

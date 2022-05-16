@@ -22,6 +22,21 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-11-28
+* MM-2475 XSLT error: Cannot determine the datatype based. Handle datatype IVL_TS with @value or @nullFlavor the same as TS
+2021-09-03
+* MM-2385 Fixed issue with Medicamenteuze behandel-id with a nullFlavor in V3
+2021-08-04
+* Add a check for valid booleans based on input where value=0 was sent. Will terminate processing if invalid boolean is found
+2021-06-30
+* MM-2251 Fixed a problem in handling multiple telecom elements of the same type (phone or email)
+2021-05-25
+* MM-1453 Updated conversion of HL7 TS to ISO 8601. Now substitutes 00 for seconds if TS is specified to minutes to avoid loosing time entirely
+2021-01-19
+* MM-1733 - Missing AllergieIntolerantie: BeginDatumTijd
+2020-08-15
+* HL7 V3 Instance Identifier - Terminates upon detection of an OID with leading zeroes in a node
+* Diagnostic Results and Lab Results, now properly converts HL7 V3 Observation Interpretation codes to HCIM codes. Skips code N(ormal)
 2020-06-26 -
 * Add support for combined bundle containing both encounter reports and encounters
 2020-06-24 - 

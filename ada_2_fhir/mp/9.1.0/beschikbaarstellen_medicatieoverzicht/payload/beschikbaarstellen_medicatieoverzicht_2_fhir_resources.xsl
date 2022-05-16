@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:output method="xml" indent="yes"/>
+    <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 and may not be used in a production situation -->
@@ -36,8 +36,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
-    <xsl:variable name="usecase">mp9</xsl:variable>
-
+    <!-- use case acronym to be added in resource.id -->
+    <xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
+    
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
     </xsl:variable>
@@ -65,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:variable name="medicatieoverzicht-list" as="element(f:entry)*">
             <xsl:for-each select="$mbh[1]/../documentgegevens">
-                <xsl:call-template name="medicatieoverzicht-9.0.6">
+                <xsl:call-template name="medicatieoverzicht-9.0.7">
                     <xsl:with-param name="documentgegevens" select="."/>
                     <xsl:with-param name="entries" select="$entries"/>
                 </xsl:call-template>
@@ -91,6 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
                 </meta>
+                <id value="{nf:get-uuid(*[1])}"/>
                 <type value="searchset"/>
                 <!-- one extra: the List entry for medicatieoverzicht  -->
                 <!-- FIXME Expectation: one List object only. If there are more: we should worry -->
@@ -123,8 +125,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
     </xd:doc>
     <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>
-        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
+        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, './')[last()]"/>
+        <xsl:result-document href="./{f:id/@value}.xml">
             <xsl:copy-of select="."/>
         </xsl:result-document>
     </xsl:template>

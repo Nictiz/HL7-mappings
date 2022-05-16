@@ -1,26 +1,35 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <id value="7cc12214-8d8f-11ec-9052-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:b4ba2061-bd3e-11ea-8298-020000000000"/>
+      <fullUrl value="urn:uuid:7cc12278-8d8f-11ec-9052-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_redenvanvoorschrijven (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_907_redenvanvoorschrijven-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA-VNK || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_redenvanvoorschrijven_MA-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -33,7 +42,12 @@
                         <tr>
                            <th>Reden</th>
                            <td>
-                              <span title="Te sterk effect (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Te sterk effect</span>
+                              <ul>
+                                 <li>
+                                    <span title="Te sterk effect (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Te sterk effect</span>
+                                 </li>
+                                 <li>Reumatoide artritis overig</li>
+                              </ul>
                            </td>
                         </tr>
                         <tr>
@@ -43,7 +57,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-1D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 4 stuks, oraal</div>
+                              <div>Tekst: Vanaf T - 1 dag, tot en met T + 14 dagen, 1 maal per week 4 stuks, Oraal</div>
                               <div>Timing: <div>eenmalig per week</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -64,12 +78,21 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_redenvanvoorschrijven"/>
+                  <value value="MBH_907_redenvanvoorschrijven-VNK"/>
                </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_907_redenvanvoorschrijven_MA-VNK"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA-VNK || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV"/>
+               <value value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-VNK"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -85,7 +108,7 @@
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b4ba2717-bd3e-11ea-8298-020000000000"/>
+               <reference value="urn:uuid:7cc12256-8d8f-11ec-9052-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
@@ -93,7 +116,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:b4ba2066-bd3e-11ea-8298-020000000000"/>
+                        <reference value="urn:uuid:7cc12284-8d8f-11ec-9052-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -108,8 +131,12 @@
                   <display value="Te sterk effect"/>
                </coding>
             </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:7cc124a7-8d8f-11ec-9052-020000000000"/>
+               <display value="Reumatoide artritis overig"/>
+            </reasonReference>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-1D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 4 stuks, oraal"/>
+               <text value="Vanaf T - 1 dag, tot en met T + 14 dagen, 1 maal per week 4 stuks, Oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -138,17 +165,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b4ba208c-bd3e-11ea-8298-020000000000"/>
+      <fullUrl value="urn:uuid:7cc124e2-8d8f-11ec-9052-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_redenvanvoorschrijven_MA_techstaken (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_redenvanvoorschrijven_MA_techstaken-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -158,11 +185,11 @@
                         </tr>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_redenvanvoorschrijven (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_907_redenvanvoorschrijven-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
-                           <td>relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_redenvanvoorschrijven_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                           <td>relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA-VNK || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_redenvanvoorschrijven_MA-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
@@ -173,13 +200,17 @@
                            <td>${DATE, T, D, -1}T08:10:00+02:00</td>
                         </tr>
                         <tr>
+                           <th>Reden</th>
+                           <td>Reumatoide artritis overig</td>
+                        </tr>
+                        <tr>
                            <th>Gebruiksduur</th>
                            <td>${DATE, T, D, -13}T00:00:00+02:00 - ${DATE, T, D, -2}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-13D{00:00:00}&gt; t/m &lt;T-2D{23:59:59}&gt;, 1 maal per week 5 stuks, oraal</div>
+                              <div>Tekst: Vanaf T - 13 dagen, tot en met T - 2 dagen, 1 maal per week 5 stuks, Oraal, definitief gestopt</div>
                               <div>Timing: <div>eenmalig per week</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -200,16 +231,16 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_redenvanvoorschrijven"/>
+                  <value value="MBH_907_redenvanvoorschrijven-VNK"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
                <valueReference>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_907_redenvanvoorschrijven_MA"/>
+                     <value value="MBH_907_redenvanvoorschrijven_MA-VNK"/>
                   </identifier>
-                  <display value="relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <display value="relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA-VNK || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </valueReference>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
@@ -223,7 +254,7 @@
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_redenvanvoorschrijven_MA_techstaken"/>
+               <value value="MBH_907_redenvanvoorschrijven_MA_techstaken-VNK"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -239,7 +270,7 @@
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:b4ba2717-bd3e-11ea-8298-020000000000"/>
+               <reference value="urn:uuid:7cc12256-8d8f-11ec-9052-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
@@ -247,7 +278,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:b4ba2066-bd3e-11ea-8298-020000000000"/>
+                        <reference value="urn:uuid:7cc12284-8d8f-11ec-9052-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -255,8 +286,12 @@
                   <display value="Bertine van Doorn"/>
                </agent>
             </requester>
+            <reasonReference>
+               <reference value="urn:uuid:7cc124a7-8d8f-11ec-9052-020000000000"/>
+               <display value="Reumatoide artritis overig"/>
+            </reasonReference>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-13D{00:00:00}&gt; t/m &lt;T-2D{23:59:59}&gt;, 1 maal per week 5 stuks, oraal"/>
+               <text value="Vanaf T - 13 dagen, tot en met T - 2 dagen, 1 maal per week 5 stuks, Oraal, definitief gestopt"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -285,14 +320,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b4ba2717-bd3e-11ea-8298-020000000000"/>
+      <fullUrl value="urn:uuid:7cc12256-8d8f-11ec-9052-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), C. XXX_Vonker, Man, 8 februari 1954</div>
                </div>
@@ -320,7 +355,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-02-08"/>
          </Patient>
       </resource>
@@ -336,7 +381,7 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001112 (UZI-NR-PERS), Bertine van Doorn</div>
                </div>
@@ -374,10 +419,10 @@
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>OrganisatieId: 00001111 (URA)</caption>
+                     <caption>Organisatie. Id: 00001111 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -385,7 +430,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -397,6 +442,15 @@
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <use value="work"/>
                <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -416,17 +470,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b4ba2066-bd3e-11ea-8298-020000000000"/>
+      <fullUrl value="urn:uuid:7cc12284-8d8f-11ec-9052-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgverlenerrol</caption>
+                     <caption>Zorgverlenerrol. </caption>
                      <tbody>
                         <tr>
                            <th>Zorgverlener</th>
@@ -471,11 +525,12 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.141631"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-141631"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <text>
-               <status value="generated"/>
+               <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <tbody>
@@ -507,6 +562,44 @@
       </resource>
       <search>
          <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:7cc124a7-8d8f-11ec-9052-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Aandoening. Subject: C. XXX_Vonker. Status: actief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>Reumatoide artritis</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <clinicalStatus value="active"/>
+            <code>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Reumatoide artritis"/>
+            </code>
+            <subject>
+               <reference value="urn:uuid:7cc12256-8d8f-11ec-9052-020000000000"/>
+               <display value="C. XXX_Vonker"/>
+            </subject>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="match"/>
       </search>
    </entry>
 </Bundle>

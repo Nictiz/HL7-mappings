@@ -4,13 +4,13 @@
     run on command line: 
         ant -f build-huisartswaarneemgegevens-6.10.1.3.xml
 -->
-<project basedir="../.." default="huisartswaarneemgegevens-6.10.1.3" name="ADA">
+<project basedir="." default="huisartswaarneemgegevens-6.10.1.3" name="ADA">
     <property name="project.title" value="Huisartswaarneemgegevens 6.10.1.3 HL7v3 to HL7v3 to FHIR"/>
     <property name="project.app" value="huisartswaarneemgegevens-6.10.1.3-hl7v3_2_fhir"/>
     <property name="project.version" value="1.0.0"/>
     <property name="project.uri" value="https://decor.nictiz.nl/pub/ketenzorg/kz-html-20190110T164948/index.html"/>
     <property name="build.dir" value="${project.title}"/>
-    <property name="build.dir.pub" value="../../../tags/mappings"/>
+    <property name="build.dir.pub" value="../../_tags"/>
     
     <ant antfile="build-hl72fhir-huisartswaarneemgegevens-61013.xml" inheritall="false" target="convert_hl7v3_2_fhir"/>
     
@@ -23,14 +23,14 @@
             <format property="TODAY_YYYYMMDD" pattern="yyyyMMdd" locale="nl,NL"/>
         </tstamp>
         
-        <loadfile property="readme1" srcfile="hl7_2_fhir/huisartswaarneemgegevens/6.10.1.3/professionele_samenvatting/README.txt"/>
+        <loadfile property="readme1" srcfile="../../hl7_2_fhir/huisartswaarneemgegevens/6.10.1.3/professionele_samenvatting/README.txt"/>
         <echo file="${build.dir}/README.txt" append="false">${project.title} version ${project.version} date ${TODAY_DD-MM-YYYY}
 
 ${readme1}</echo>
         
         <!-- Copy util dir with all contents -->
         <copy todir="${build.dir}/util">
-            <fileset dir="util">
+            <fileset dir="../../util">
                 <include name="**"/>
                 <exclude name="**/*.bash"/>
                 <exclude name="**/build.xml"/>
@@ -40,7 +40,7 @@ ${readme1}</echo>
         
         <!-- Copy ada_2_fhir/fhir dir with all contents, except any *.bash, build.xml or .DS_Store (macOS specific) file -->
         <copy todir="${build.dir}/ada_2_fhir/fhir">
-            <fileset dir="ada_2_fhir/fhir">
+            <fileset dir="../../ada_2_fhir/fhir">
                 <include name="**"/>
                 <exclude name="**/*.bash"/>
                 <exclude name="**/build.xml"/>
@@ -50,7 +50,7 @@ ${readme1}</echo>
         
         <!-- Copy hl7v3_2_fhir/huisartswaarneemgegevens dir the files that live there and the 6.10.1.3 directory, except any *.bash, build.xml or .DS_Store (macOS specific) file -->
         <copy todir="${build.dir}/hl7_2_fhir/huisartswaarneemgegevens">
-            <fileset dir="hl7_2_fhir/huisartswaarneemgegevens">
+            <fileset dir="../../hl7_2_fhir/huisartswaarneemgegevens">
                 <include name="*.xsl"/>
                 <include name="*.md"/>
                 <include name="*.txt"/>

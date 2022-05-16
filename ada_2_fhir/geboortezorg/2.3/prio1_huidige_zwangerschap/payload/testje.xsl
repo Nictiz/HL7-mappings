@@ -13,7 +13,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <!-- <xsl:import href="../../../2_fhir_ketenzorg_include.xsl"/> -->
     <xsl:import href="all-mappings.xsl"/>
-    <xsl:import href="../../zibs2017/payload/all-zibs.xsl"/>
+    <xsl:import href="../../zibs2017/payload/package-1.3.10.xsl"/>
     <xsl:import href="../../ketenzorg/2_fhir_ketenzorg_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -51,6 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="patient|vrouw">
         <xsl:result-document href="../fhir_instance/Patients.xml" indent="yes" method="xml" omit-xml-declaration="yes"> 
             <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+                <id value="{nf:get-uuid(*[1])}"/>
                 <type value="searchset"/>
                 <!--<total value="{count($bouwstenen)}"/>-->
                 <xsl:call-template name="patientEntry"/>
