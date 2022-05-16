@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="e2fe5122-cfa8-11ec-6766-020000000000"/>
+   <id value="32864c2e-d4fc-11ec-1492-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:e2fe5170-cfa8-11ec-6766-020000000000"/>
+      <fullUrl value="urn:uuid:32864c7c-d4fc-11ec-1492-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200ToedieningswegTA"/>
@@ -46,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e2fe518e-cfa8-11ec-6766-020000000000"/>
+               <reference value="urn:uuid:32864c9a-d4fc-11ec-1492-020000000000"/>
                <type value="Medication"/>
                <display value="SOFRADEX OORDRUPPELS"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e2fe5152-cfa8-11ec-6766-020000000000"/>
+               <reference value="urn:uuid:32864c5e-d4fc-11ec-1492-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:e2fe51ac-cfa8-11ec-6766-020000000000"/>
+                  <reference value="urn:uuid:32864cb8-d4fc-11ec-1492-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -72,9 +72,11 @@
             </authorizingPrescription>
             <dosageInstruction>
                <additionalInstruction>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                     <valueCode value="OTH"/>
-                  </extension>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
                   <text value="In het rechter oog"/>
                </additionalInstruction>
                <timing>
@@ -115,7 +117,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e2fe5152-cfa8-11ec-6766-020000000000"/>
+      <fullUrl value="urn:uuid:32864c5e-d4fc-11ec-1492-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Coenen"/>
@@ -159,7 +161,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e2fe51ac-cfa8-11ec-6766-020000000000"/>
+      <fullUrl value="urn:uuid:32864cb8-d4fc-11ec-1492-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -175,7 +177,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e2fe518e-cfa8-11ec-6766-020000000000"/>
+      <fullUrl value="urn:uuid:32864c9a-d4fc-11ec-1492-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-644781"/>

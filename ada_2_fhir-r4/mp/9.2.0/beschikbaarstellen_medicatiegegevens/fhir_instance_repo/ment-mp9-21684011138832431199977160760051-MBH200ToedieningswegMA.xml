@@ -36,8 +36,8 @@
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="16076005"/>
-         <display value="voorschrijven"/>
+         <code value="33633005"/>
+         <display value="voorschrijven van geneesmiddel"/>
       </coding>
    </category>
    <medicationReference>
@@ -58,9 +58,11 @@
    </requester>
    <dosageInstruction>
       <additionalInstruction>
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-            <valueCode value="OTH"/>
-         </extension>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
          <text value="In het rechter oog"/>
       </additionalInstruction>
       <timing>

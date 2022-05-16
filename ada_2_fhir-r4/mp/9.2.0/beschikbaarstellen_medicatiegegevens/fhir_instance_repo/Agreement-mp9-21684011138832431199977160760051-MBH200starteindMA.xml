@@ -8,12 +8,12 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.PeriodOfUse.Condition">
+            <valueString value="3 dagen voor opname stoppen"/>
+         </extension>
          <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
          <end value="${DATE, T, D, -5}T23:59:59+02:00"/>
       </valuePeriod>
-   </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.PeriodOfUse.Condition">
-      <valueString value="3 dagen voor opname stoppen"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
       <valueIdentifier>
@@ -30,8 +30,8 @@
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="16076005"/>
-         <display value="voorschrijven"/>
+         <code value="33633005"/>
+         <display value="voorschrijven van geneesmiddel"/>
       </coding>
    </category>
    <medicationReference>
