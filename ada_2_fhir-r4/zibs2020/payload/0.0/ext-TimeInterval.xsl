@@ -132,7 +132,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$wrapIn}">
                                 <xsl:call-template name="ext-TimeInterval.Duration"/>
                                 <xsl:for-each select="criterium[@value]">
-                                    <!-- This call a template present in mp/9.2.0. Does this cause non MP-projects to fail? If so, perhaps we should remove the templating here. -->
+                                    <!-- This calls a template present in mp/9.2.0. Does this cause non MP-projects to fail? If so, perhaps we should remove the template and just build the extension here (although strange for an 'mp-extension'). -->
                                     <xsl:call-template name="ext-MedicationAgreement.PeriodOfUse.Condition"/>
                                 </xsl:for-each>
                                 <xsl:if test="string-join($start, '')">
