@@ -26,6 +26,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     <xsl:param name="searchModeParam" as="xs:string?">match</xsl:param>
+    <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
+    <xsl:param name="metaTag" as="xs:string?"/>
+    
 
     <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
@@ -148,6 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="mp-MedicationAgreement">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="metaTag" select="$metaTag"/>
                         <xsl:with-param name="subject" select="../../patient"/>
                         <xsl:with-param name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]"/>
                     </xsl:call-template>
@@ -188,6 +192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="mp-DispenseRequest">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="metaTag" select="$metaTag"/>
                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/beoogd_verstrekker/zorgaanbieder/@value]"/>
                     </xsl:call-template>
@@ -207,6 +212,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="mp-AdministrationAgreement">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="metaTag" select="$metaTag"/>
                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]"/>
                     </xsl:call-template>
@@ -227,6 +233,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="mp-MedicationDispense">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="metaTag" select="$metaTag"/>
                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]"/>
                     </xsl:call-template>

@@ -25,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a mp-MedicationAgreement instance as a MedicationRequest FHIR instance from ADA medicatieafspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="metaTag">The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes.</xd:param>
         <xd:param name="subject">The MedicationRequest.subject as ADA element or reference.</xd:param>
         <xd:param name="medicationReference">The MedicationRequest.medicationReference as ADA element or reference.</xd:param>
         <xd:param name="requester">The MedicationRequest.requester as ADA element or reference.</xd:param>
@@ -32,6 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="mp-MedicationAgreement" mode="mp-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="metaTag" as="xs:string?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="$in/ancestor::*[@app]//farmaceutisch_product[@id= $in/(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product/@value]" as="element()?"/>
         <xsl:param name="requester" select="$in//zorgverlener[@id=$in/voorschrijver/zorgverlener/@value] | $in/voorschrijver/zorgverlener[*]" as="element()?"/>
@@ -43,6 +45,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
+                    <xsl:if test="string-length($metaTag) gt 0">
+                        <tag>
+                            <system value="http://hl7.org/fhir/ValueSet/common-tags" />
+                            <code value="$tag" />
+                        </tag>
+                    </xsl:if>                    
                 </meta>
 
                 <xsl:for-each select="(medicatieafspraak_aanvullende_informatie | aanvullende_informatie)">
@@ -94,17 +102,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="id-to-Identifier"/>
                     </identifier>
                 </xsl:for-each>
-
-                <!-- we do not know the current status of this instance -->
-                <status value="unknown"/>
-
-                <intent value="order"/>
-
-                <!-- Issue MP-489: code should be updated to 33633005, but update also needed in FHIR profile -->
+                
+                <xsl:choose>
+                    <xsl:when test="ancestor::sturen_medicatievoorschrift">
+                        <status value="active"/>
+                        <intent value="order"/>
+                    </xsl:when>
+                    <xsl:when test="ancestor::*[contains(local-name(), 'voorstel')]">
+                        <status value="active"/>
+                        <intent value="plan"/>
+                    </xsl:when>
+                        <xsl:otherwise>
+                        <!-- we do not know the current status of this instance -->
+                        <status value="unknown"/>
+                        <intent value="order"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                
+                <!-- Issue MP-489: code updated to 33633005 -->
                 <category>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="33633005"/>
+                        <code value="{$maCodeMP920}"/>
                         <display value="voorschrijven van geneesmiddel"/>
                     </coding>
                 </category>

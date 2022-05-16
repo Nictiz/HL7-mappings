@@ -10,7 +10,7 @@
 
     <!-- mp constants -->
     <xsl:variable name="maCode" as="xs:string*" select="('16076005', '33633005')"/>
-    <xsl:variable name="currentMaCode" as="xs:string">33633005</xsl:variable>
+    <xsl:variable name="maCodeMP920" as="xs:string">33633005</xsl:variable>
     <xsl:variable name="wdsCode" as="xs:string*" select="('395067002')"/>
     <xsl:variable name="vvCode" as="xs:string*" select="('52711000146108')"/>
     <xsl:variable name="taCode" as="xs:string*" select="('422037009')"/>

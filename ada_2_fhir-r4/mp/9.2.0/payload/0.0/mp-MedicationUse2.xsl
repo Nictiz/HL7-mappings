@@ -236,12 +236,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
                     <derivedFrom>
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                            <!-- Need to become SNOMED 33633005.  
-                                https://github.com/Nictiz/Nictiz-R4-zib2020/issues/221 / https://bits.nictiz.nl/browse/MP-489  -->
                             <valueCodeableConcept>
                                 <coding>
                                     <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="16076005"/>
+                                    <code value="{$maCodeMP920}"/>
                                     <display value="voorschrijven"/>
                                 </coding>
                             </valueCodeableConcept>

@@ -52,7 +52,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
     <!-- empty searchModeParam, since this is a push message -->
     <xsl:param name="searchModeParam" as="xs:string?"/>
-
+    <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
+    <xsl:param name="metaTag" as="xs:string?">actionable</xsl:param>
+    
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
 
@@ -65,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
+        <xd:desc>Build a FHIR Bundle</xd:desc>
         <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
     </xd:doc>
     <xsl:template name="medicatievoorschriftAfhandeling920">

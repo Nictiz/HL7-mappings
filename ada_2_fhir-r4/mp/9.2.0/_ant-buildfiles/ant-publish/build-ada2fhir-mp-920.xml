@@ -82,6 +82,32 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.amv}"/>
         </antcall>        
         
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
+            <param name="schema.string" value="*${usecase.vma}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.vma}"/>
+        </antcall>   
+        
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
+            <param name="schema.string" value="*${usecase.avma}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.avma}"/>
+        </antcall>   
+        
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vvv}"/>
+            <param name="schema.string" value="*${usecase.vvv}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.vvv}"/>
+        </antcall>   
     </target>
 
     <target name="convert_ada_2_fhir_920">
@@ -161,6 +187,48 @@
             <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>     
+        
+        <echo>sturen_voorstel_medicatieafspraak</echo>
+        <property name="xsl.input.vma" value="${build.dir}/${usecase.vma}/ada_instance"/>
+        <property name="xsl.output.vma" value="${build.dir}/${usecase.vma}/fhir_instance"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output.vma}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output.vma}" includes="*.*"/>
+        </delete>
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.vma}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.vma}/payload/${usecase.vma}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${xsl.input.vma}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${xsl.output.vma}"/>
+            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>     
+        
+        <echo>sturen_voorstel_verstrekkingsverzoek</echo>
+        <property name="xsl.input.vvv" value="${build.dir}/${usecase.vvv}/ada_instance"/>
+        <property name="xsl.output.vvv" value="${build.dir}/${usecase.vvv}/fhir_instance"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output.vvv}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output.vvv}" includes="*.*"/>
+        </delete>
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.vvv}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.vvv}/payload/${usecase.vvv}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${xsl.input.vvv}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${xsl.output.vvv}"/>
+            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>     
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMPServe</echo>
@@ -173,6 +241,8 @@
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_repo"/>
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.amv}/fhir_instance"/>
+            <fileset dir="${build.dir}/${usecase.vma}/fhir_instance"/>
+            <fileset dir="${build.dir}/${usecase.vvv}/fhir_instance"/>
         </copy>
 
         <!-- beschikbaarstellen_medicatieoverzicht not actively tested / used in kickstart, no test instances available yet -->
@@ -275,6 +345,24 @@
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
         </antcall>
         
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="validate_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
+            <param name="include" value="*.xml"/>
+            <param name="xsl.input" value="fhir_instance"/>
+            <param name="xsl.output" value="validate_fhir_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
+        </antcall>
+        
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="validate_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vvv}"/>
+            <param name="include" value="*.xml"/>
+            <param name="xsl.input" value="fhir_instance"/>
+            <param name="xsl.output" value="validate_fhir_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
+        </antcall>
+        
     </target>
 
     <target name="validate_fhir_sub">
@@ -314,6 +402,18 @@
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.amv}.xml"/>
             <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.amv}/validate_fhir_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="schematronresults_fhir_920_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vma}.xml"/>
+            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.vma}/validate_fhir_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="schematronresults_fhir_920_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vvv}.xml"/>
+            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.vvv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 

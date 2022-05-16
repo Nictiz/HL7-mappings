@@ -62,15 +62,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:call-template name="medicatievoorschrift920">
-            <xsl:with-param name="mbh" select="//sturen_medicatievoorschrift/medicamenteuze_behandeling"/>
+        <xsl:call-template name="voorstelVerstrekkingsverzoek920">
+            <xsl:with-param name="mbh" select="//sturen_voorstel_verstrekkingsverzoek/medicamenteuze_behandeling"/>
         </xsl:call-template>
     </xsl:template>
     <xd:doc>
         <xd:desc>Build a FHIR Bundle</xd:desc>
         <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
     </xd:doc>
-    <xsl:template name="medicatievoorschrift920">
+    <xsl:template name="voorstelVerstrekkingsverzoek920">
         <xsl:param name="mbh"/>
 
         <xsl:if test="$schematronXsdLinkInOutput">

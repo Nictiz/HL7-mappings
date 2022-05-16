@@ -25,12 +25,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an mp-DispenseRequest instance as a MedicationRequest FHIR instance from ADA verstrekkingsverzoek.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="metaTag">The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes.</xd:param>
         <xd:param name="subject">The MedicationRequest.subject as ADA element or reference.</xd:param>
         <xd:param name="medicationReference">The MedicationRequest.medicationReference as ADA element or reference.</xd:param>
         <xd:param name="performer">The MedicationDispense.performer as ADA element or reference.</xd:param>
     </xd:doc>
     <xsl:template name="mp-DispenseRequest" mode="mp-DispenseRequest" match="verstrekkingsverzoek" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="metaTag" as="xs:string?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="te_verstrekken_geneesmiddel/farmaceutisch_product" as="element()?"/>
         <xsl:param name="performer" select="beoogd_verstrekker/zorgaanbieder" as="element()?"/>
@@ -40,6 +42,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
+                    <xsl:if test="string-length($metaTag) gt 0">
+                        <tag>
+                            <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                            <code value="$tag"/>
+                        </tag>
+                    </xsl:if>
                 </meta>
 
                 <xsl:for-each select="aanvullende_wensen">
@@ -75,17 +83,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
 
-                <!-- There's no mapping from the dataset to the status except for geannuleerd_indicator, so we'll default to unknown unless it was cancelled -->
                 <status>
                     <xsl:attribute name="value">
                         <xsl:choose>
                             <xsl:when test="geannuleerd_indicator/@value = 'true'">entered-in-error</xsl:when>
+                            <!-- There's no mapping from the dataset to the status except for geannuleerd_indicator, 
+                            but we'll default to active in sturen_medicatievoorschrift and voorstel transacations -->
+                            <xsl:when test="ancestor::sturen_medicatievoorschrift or ancestor::*[contains(local-name(), 'voorstel')]">active</xsl:when>
+                            <!-- otherwise we don't know the status and can't make it up -->
                             <xsl:otherwise>unknown</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
                 </status>
 
-                <intent value="order"/>
+                <xsl:choose>
+                    <xsl:when test="ancestor::sturen_medicatievoorschrift">
+                        <intent value="order"/>
+                    </xsl:when>
+                    <xsl:when test="ancestor::*[contains(local-name(), 'voorstel')]">
+                        <intent value="plan"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <intent value="order"/>
+                    </xsl:otherwise>
+                </xsl:choose>
 
                 <category>
                     <coding>

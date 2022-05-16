@@ -25,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an mp-MedicationDispense instance as a MedicationDispense FHIR instance from ADA medicatieverstrekking.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="metaTag">The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes.</xd:param>
         <xd:param name="subject">The MedicationDispense.subject as ADA element or reference.</xd:param>
         <xd:param name="medicationReference">The MedicationDispense.medicationReference as ADA element or reference.</xd:param>
         <xd:param name="performer">The MedicationDispense.requester as ADA element or reference.</xd:param>
@@ -32,6 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="mp-MedicationDispense" mode="mp-MedicationDispense" match="medicatieverstrekking" as="element(f:MedicationDispense)?">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="metaTag" as="xs:string?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="verstrekt_geneesmiddel/farmaceutisch_product" as="element()?"/>
         <xsl:param name="performer" select="verstrekker/zorgaanbieder" as="element()?"/>
@@ -42,6 +44,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
+                    <xsl:if test="string-length($metaTag) gt 0">
+                        <tag>
+                            <system value="http://hl7.org/fhir/ValueSet/common-tags" />
+                            <code value="$tag" />
+                        </tag>
+                    </xsl:if>                    
                 </meta>
 
                 <xsl:for-each select="medicatieverstrekking_aanvullende_informatie">
