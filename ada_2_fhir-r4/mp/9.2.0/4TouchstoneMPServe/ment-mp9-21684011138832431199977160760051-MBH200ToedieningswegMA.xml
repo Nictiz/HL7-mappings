@@ -1,0 +1,99 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="ment-mp9-21684011138832431199977160760051-MBH200ToedieningswegMA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
+            <code value="3"/>
+            <display value="Bewust afwijkende toedieningsweg"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 5 dagen, tot en met T + 2 dagen, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +2}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_200_Toedieningsweg"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_200_Toedieningsweg_MA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="33633005"/>
+         <display value="voorschrijven van geneesmiddel"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-80691"/>
+      <type value="Medication"/>
+      <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-C-XXX-Coenen"/>
+      <type value="Patient"/>
+      <display value="Patient, C. XXX_Coenen"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -5}T08:15:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001112-0100-00001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <dosageInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="In het rechter oog"/>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="2"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="7"/>
+            <display value="oculair"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="Druppel"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="303"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="Druppel"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="[drp]"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationRequest>
