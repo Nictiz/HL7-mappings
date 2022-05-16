@@ -50,7 +50,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
-
+    <!-- whether or nog to output schema / schematron links -->
+    <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
+    
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
     </xd:doc>
@@ -65,9 +67,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="Medicatiegegevens_90">
         <xsl:param name="mbh"/>
-
+        <xsl:if test="$schematronXsdLinkInOutput">            
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-        <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
+        </xsl:if>
+        <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
+            <xsl:if test="$schematronXsdLinkInOutput">
+                <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
+            </xsl:if>
             <id value="{nf:get-uuid(*[1])}"/>
             <type value="searchset"/>
             <total value="{count($bouwstenen-920)}"/>

@@ -129,8 +129,7 @@
             <param name="xsl.out" value="${xsl.output.mv}"/>
             <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
-        </antcall>
-        
+        </antcall>        
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMPServe</echo>
@@ -140,6 +139,7 @@
             <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_repo"/>
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
         </copy>
 
