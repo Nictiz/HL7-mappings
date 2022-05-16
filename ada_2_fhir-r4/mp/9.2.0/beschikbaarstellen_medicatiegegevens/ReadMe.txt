@@ -1,4 +1,4 @@
-This is a preliminary version of converting "beschikbaarstellen medicatiegegevens" from a relatively simple dataset xml format ("ADA-format" to a HL7 FHIR XML. It is based on publication 20-dec-2018 12:11 (https://decor.nictiz.nl/medicatieproces/mp-html-20181220T121121/project.html).
+This is a preliminary version of converting "beschikbaarstellen medicatiegegevens" from a relatively simple dataset xml format ("ADA-format" to a HL7 FHIR XML. 
 
 It only converts the payload, since all dataset elements end up in the payload. 
 

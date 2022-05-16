@@ -13,16 +13,16 @@
     <property name="date.T" value="2021-01-01"/>
     <!-- specify BSN oid for masking BSN identifiers -->
     <property name="mask.ids" value=""/>
-<!--    <property name="mask.ids" value="2.16.840.1.113883.2.4.6.3"/>-->
+    <!--    <property name="mask.ids" value="2.16.840.1.113883.2.4.6.3"/>-->
 
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
-    
+
     <property name="schema.bundle" value="https://hl7.org/fhir/R4/bundle.xsd"/>
-    
+
     <!-- local version of schematron, since we need the svrl xsl -->
     <property name="validate.dir" value="${build.dir}/fhir-xsd/R4-sch"/>
     <property name="xsl.validate.svrl" value="${build.dir}/../../../validate/validate-svrl-output.xsl"/>
-    
+
     <target name="setup_920">
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="setup_sub">
@@ -30,33 +30,30 @@
             <param name="schema.string" value="*${usecase.mg}.xsd"/>
             <param name="fileset.dir" value="ada_instance_repo"/>
             <param name="fileset.include" value="*.xml"/>
-            <!-- exclude the initating scenario's -->
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
-        
-        <!-- preprocess for Touchstone (update use period to use end date for querying purposes -->
+
+         <!-- preprocess for Touchstone beschikbaarstellen_medicatiegegevens (update use period to use end date for querying purposes -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
         <delete>
             <fileset dir="${build.dir}/${usecase.mg}/ada_instance_4_TS" includes="*.xml"/>
         </delete>
-        <sequential>
-            <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance_repo" includes="*Scenarioset0*.xml"/>
-            
-            <echo/>
-            <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl</echo>
-            <xslt force="true" style="${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl" destdir="${build.dir}/${usecase.mg}/ada_instance_4_TS" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputFiles"/>
-                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-            <move todir="${build.dir}/${usecase.mg}/ada_instance_repo">
-                <fileset dir="${build.dir}/${usecase.mg}/ada_instance_4_TS" includes="*.xml"/>
-            </move>
-        </sequential>
+        <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance_repo" includes="*Scenarioset0*.xml"/>
+
+        <echo/>
+        <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl</echo>
+        <xslt force="true" style="${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl" destdir="${build.dir}/${usecase.mg}/ada_instance_4_TS" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputFiles"/>
+            <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <move todir="${build.dir}/${usecase.mg}/ada_instance_repo">
+            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_4_TS" includes="*.xml"/>
+        </move>
         <!-- let's cleanup our temp stuff -->
         <delete dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
-        
+
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
@@ -66,31 +63,39 @@
             <!-- exclude the initating scenario's -->
             <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
         </antcall>
-   
+
+        <!-- sturen_medicatievoorschrift -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="schema.string" value="*${usecase.mv}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
+        </antcall>        
+        
     </target>
 
     <target name="convert_ada_2_fhir_920">
 
-        <!-- the MP specific stuff for version 9.2.0 -->
-        <echo>the MP specific stuff for version 9.2.0</echo>
+        <echo>the MP stuff for version 9.2.0</echo>
         <echo/>
         <echo>beschikbaarstellen_medicatiegegevens</echo>
-        <property name="xsl.input" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
-        <property name="xsl.output" value="${build.dir}/${usecase.mg}/fhir_instance_repo"/>
+        <property name="xsl.input.mg" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
+        <property name="xsl.output.mg" value="${build.dir}/${usecase.mg}/fhir_instance_repo"/>
 
         <!-- make dir if it does not exist (anymore) -->
-        <mkdir dir="${xsl.output}"/>
+        <mkdir dir="${xsl.output.mg}"/>
         <echo>Deleting previous results, if any</echo>
         <delete>
-            <fileset dir="${xsl.output}" includes="*.*"/>
+            <fileset dir="${xsl.output.mg}" includes="*.*"/>
         </delete>
         <!-- resources for Touchstone -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl"/>
-            <param name="xsl.in" value="${xsl.input}"/>
+            <param name="xsl.in" value="${xsl.input.mg}"/>
             <param name="xsl.in.include" value="*.xml"/>
-            <param name="xsl.out" value="${xsl.output}"/>
+            <param name="xsl.out" value="${xsl.output.mg}"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
 
@@ -98,12 +103,34 @@
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
-            <param name="xsl.in" value="${xsl.input}"/>
+            <param name="xsl.in" value="${xsl.input.mg}"/>
             <param name="xsl.in.include" value="*.xml"/>
-            <param name="xsl.out" value="${xsl.output}"/>
+            <param name="xsl.out" value="${xsl.output.mg}"/>
             <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
+        
+        <echo>sturen_medicatievoorschrift</echo>
+        <property name="xsl.input.mv" value="${build.dir}/${usecase.mv}/ada_instance"/>
+        <property name="xsl.output.mv" value="${build.dir}/${usecase.mv}/fhir_instance"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output.mv}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output.mv}" includes="*.*"/>
+        </delete>
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mv}/payload/${usecase.mv}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${xsl.input.mv}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${xsl.output.mv}"/>
+            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMPServe</echo>
@@ -113,11 +140,11 @@
             <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_repo" excludes="mg-mp-mg-*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
         </copy>
-        
+
         <!-- beschikbaarstellen_medicatieoverzicht not actively tested / used in kickstart, no test instances available yet -->
-<!--        <echo>beschikbaarstellen_medicatieoverzicht</echo>
+        <!--        <echo>beschikbaarstellen_medicatieoverzicht</echo>
         <property name="xsl.input.mo" value="${build.dir}/${usecase.mo}/ada_instance"/>
         <property name="xsl.output.mo" value="${build.dir}/${usecase.mo}/fhir_instance"/>
         
@@ -147,40 +174,48 @@
             <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>-->
-        
+
     </target>
-    
-    
+
+
     <target name="schematronvalidate_fhir_920">
-        
+
         <!-- first the schematrons per instance -->
         <antcall target="validate_fhir_920"/>
         <!-- then summarize the results per use case -->
         <antcall target="schematronresults_fhir_920"/>
-        
+
     </target>
-    
-    
+
+
     <target name="schemavalidate_fhir_920">
-        
+
         <!-- all use cases hl7_instance-->
-<!--        <antcall target="schemavalidate_sub">
+        <!--        <antcall target="schemavalidate_sub">
             <param name="fileset.include" value="**/fhir_instance/mg-*.xml"/>
             <param name="fileset.exclude" value="nictiz_test/**/*"/>
             <param name="validate.schema" value="${schema.bundle}"/>
         </antcall>-->
-        
+
+        <echo>**/fhir_instance_repo/mg-*.xml</echo>
         <antcall target="schemavalidate_sub_url">
             <param name="fileset.include" value="**/fhir_instance_repo/mg-*.xml"/>
             <param name="fileset.exclude" value="nictiz_test/**/*"/>
             <param name="validate.schema" value="${schema.bundle}"/>
         </antcall>
         
-        
+        <echo>**/fhir_instance/*.xml, but not beschikbaarstellen_medicatiegegevens/**/*</echo>
+        <antcall target="schemavalidate_sub_url">
+            <param name="fileset.include" value="**/fhir_instance/*.xml"/>
+            <param name="fileset.exclude" value="beschikbaarstellen_medicatiegegevens/**/*"/>
+            <param name="fileset.exclude2" value="nictiz_test/**/*"/>
+            <param name="validate.schema" value="${schema.bundle}"/>
+        </antcall>
+
     </target>
-    
+
     <target name="validate_fhir_920">
-        
+
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="validate_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
@@ -190,17 +225,26 @@
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
         </antcall>
         
+        <!-- sturen_medicatievoorschrift -->
+        <antcall target="validate_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="include" value="*.xml"/>
+            <param name="xsl.input" value="fhir_instance"/>
+            <param name="xsl.output" value="validate_fhir_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
+        </antcall>
+
     </target>
-    
+
     <target name="validate_fhir_sub">
         <echo>Deleting previous results, if any</echo>
         <mkdir dir="${sub.build.dir}/${xsl.output}"/>
         <delete>
             <fileset dir="${sub.build.dir}/${xsl.output}" includes="${include}"/>
         </delete>
-        
+
         <fileset id="inputfiles" dir="${sub.build.dir}/${xsl.input}" includes="${include}"/>
-        
+
         <echo/>
         <echo>${echo.label} ${xsl.mp} input dir ${sub.build.dir}/${xsl.input}</echo>
         <xslt force="true" style="${xsl.mp}" destdir="${sub.build.dir}/${xsl.output}" extension=".xml" useImplicitFileset="false">
@@ -208,22 +252,22 @@
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-    </target>     
-    
-    <target name="schematronresults_fhir_920">        
-        
+    </target>
+
+    <target name="schematronresults_fhir_920">
+
         <!-- look at the results from target schematronvalidate_hl7_920 for conclusions -->
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
             <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mg}/validate_fhir_instance_repo"/>
             <param name="input.fileset" value="*.xml"/>
-        </antcall>        
-        
+        </antcall>
+
     </target>
-    
+
     <target name="schematronresults_fhir_920_sub">
-        
+
         <echo/>
         <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
         <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/../../../validate/default_input.xml" out="${result.xml}">
@@ -232,25 +276,26 @@
             <param name="inputDir" expression="${input.dir}"/>
             <param name="inputFileSet" expression="${input.fileset}"/>
         </xslt>
-        
+
     </target>
-    
+
     <target name="schemavalidate_sub_url">
-        
+
         <fileset id="inputfiles.validate" dir="${build.dir}">
             <include name="${fileset.include}"/>
-            <exclude name="${fileset.exclude}"/>
+            <exclude name="${fileset.exclude}" if="fileset.exclude"/>
+            <exclude name="${fileset.exclude2}" if="fileset.exclude2"/>
         </fileset>
-        
+
         <echo/>
         <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
         <schemavalidate warn="true" failonerror="false">
             <fileset refid="inputfiles.validate"/>
             <schema namespace="urn:hl7-org:v3" url="${validate.schema}"/>
         </schemavalidate>
-        
+
     </target>
-    
-    
+
+
 
 </project>

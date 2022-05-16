@@ -376,7 +376,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             </xsl:variable>
 
-            <xsl:if test="count($content) &gt; 0">
+            <xsl:if test="count($content/*) &gt; 0">
                 <xsl:choose>
                     <xsl:when test="$wrapIn != ''">
                         <xsl:for-each select="$content">

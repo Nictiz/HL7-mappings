@@ -25,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+    <xsl:param name="searchModeParam" as="xs:string?">match</xsl:param>
 
     <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
@@ -137,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
 
     <xsl:variable name="bouwstenen-920" as="element(f:entry)*">
-        <xsl:variable name="searchMode" as="xs:string">match</xsl:variable>
+        <xsl:variable name="searchMode" as="xs:string?" select="$searchModeParam"/>
 
         <!-- medicatieafspraken -->
         <xsl:for-each select="//medicatieafspraak">
