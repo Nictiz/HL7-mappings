@@ -1,0 +1,254 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="d21ec675-d51a-11ec-1792-020000000000"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:d21ec70a-d51a-11ec-1792-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <id value="216840111388324311999774220370091-MBH200toedieningssnelheidTA"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+               <valueDateTime value="2022-01-01T09:47:00+01:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf 1 jan 2022, tot en met 9 jan 2022, toedieningssnelheid: maximaal 0.2 à 0.5 ml per uur, parenteraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="2022-01-01T00:00:00+01:00"/>
+                  <end value="2022-01-09T23:59:59+01:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_200_toedieningssnelheid"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_200_toedieningssnelheid_TA"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="toedieningsafspraak"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:d21ec746-d51a-11ec-1792-020000000000"/>
+               <type value="Medication"/>
+               <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:d21ec6ec-d51a-11ec-1792-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Hemsbergen"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:d21ec764-d51a-11ec-1792-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_200_toedieningssnelheid_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_200_toedieningssnelheid_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="10"/>
+                     <display value="parenteraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <rateRange>
+                     <low>
+                        <value value="0.2"/>
+                        <unit value="ml/h"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="ml/h"/>
+                     </low>
+                     <high>
+                        <value value="0.5"/>
+                        <unit value="ml/h"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="ml/h"/>
+                     </high>
+                  </rateRange>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d21ec728-d51a-11ec-1792-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <id value="216840111388324311999773737840051-MBH200toedieningssnelheidMVE"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_200_toedieningssnelheid"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_200_toedieningssnelheid_MVE"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="verstrekken van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:d21ec746-d51a-11ec-1792-020000000000"/>
+               <type value="Medication"/>
+               <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:d21ec6ec-d51a-11ec-1792-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Hemsbergen"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:d21ec764-d51a-11ec-1792-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_200_toedieningssnelheid_VV"/>
+               </identifier>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_200_toedieningssnelheid_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
+            <quantity>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                  <valueQuantity>
+                     <value value="100"/>
+                     <unit value="milliliter"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="233"/>
+                  </valueQuantity>
+               </extension>
+               <value value="100"/>
+               <unit value="milliliter"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml"/>
+            </quantity>
+            <whenHandedOver value="2022-01-01T09:47:00+01:00"/>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d21ec6ec-d51a-11ec-1792-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="G.XXX-Hemsbergen"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999900602"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="G. XXX_Hemsbergen"/>
+               <family value="XXX_Hemsbergen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Hemsbergen"/>
+                  </extension>
+               </family>
+               <given value="G.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1963-11-02"/>
+         </Patient>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d21ec764-d51a-11ec-1792-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="2.16.528.1.1007.3.3-01236578"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek de Gulle Gaper"/>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d21ec746-d51a-11ec-1792-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="2.16.840.1.113883.2.4.4.7-779288"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="779288"/>
+                  <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="94692"/>
+                  <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="134538"/>
+                  <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
+               </coding>
+               <text value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+            </code>
+         </Medication>
+      </resource>
+   </entry>
+</Bundle>
