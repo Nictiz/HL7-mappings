@@ -10,7 +10,7 @@
     <property name="is.version" value="9.2.0"/>
     <property name="is.version.short" value="92"/>
     <!-- date.T, currently only used for the examples -->
-    <property name="date.T" value="2021-01-01"/>
+    <property name="date.T" value="2022-01-01"/>
     <!-- specify BSN oid for masking BSN identifiers -->
     <property name="mask.ids" value=""/>
     <!--    <property name="mask.ids" value="2.16.840.1.113883.2.4.6.3"/>-->
@@ -73,6 +73,15 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
         </antcall>        
         
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.amv}"/>
+            <param name="schema.string" value="*${usecase.amv}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.amv}"/>
+        </antcall>        
+        
     </target>
 
     <target name="convert_ada_2_fhir_920">
@@ -96,6 +105,7 @@
             <param name="xsl.in" value="${xsl.input.mg}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${xsl.output.mg}"/>
+            <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
 
@@ -129,7 +139,28 @@
             <param name="xsl.out" value="${xsl.output.mv}"/>
             <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
-        </antcall>        
+        </antcall>      
+        
+        <echo>sturen_afhandeling_medicatievoorschrift</echo>
+        <property name="xsl.input.amv" value="${build.dir}/${usecase.amv}/ada_instance"/>
+        <property name="xsl.output.amv" value="${build.dir}/${usecase.amv}/fhir_instance"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output.amv}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output.amv}" includes="*.*"/>
+        </delete>
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.amv}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.amv}/payload/${usecase.amv}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${xsl.input.amv}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${xsl.output.amv}"/>
+            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>     
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMPServe</echo>
@@ -234,6 +265,15 @@
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
         </antcall>
 
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="validate_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.amv}"/>
+            <param name="include" value="*.xml"/>
+            <param name="xsl.input" value="fhir_instance"/>
+            <param name="xsl.output" value="validate_fhir_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
+        </antcall>
+        
     </target>
 
     <target name="validate_fhir_sub">
@@ -267,6 +307,12 @@
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
             <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mv}/validate_fhir_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="schematronresults_fhir_920_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.amv}.xml"/>
+            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.amv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
