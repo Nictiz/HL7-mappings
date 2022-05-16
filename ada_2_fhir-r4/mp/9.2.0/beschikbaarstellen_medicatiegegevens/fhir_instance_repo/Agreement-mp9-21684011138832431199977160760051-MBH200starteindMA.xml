@@ -4,15 +4,15 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 1 maal per dag 1 stuk, oraal"/>
+      <valueString value="Vanaf 22 dec 2021, tot en met 27 dec 2021, 1 maal per dag 1 stuk, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.PeriodOfUse.Condition">
             <valueString value="3 dagen voor opname stoppen"/>
          </extension>
-         <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
-         <end value="${DATE, T, D, -5}T23:59:59+02:00"/>
+         <start value="2021-12-22T00:00:00+01:00"/>
+         <end value="2021-12-27T23:59:59+01:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -44,7 +44,7 @@
       <type value="Patient"/>
       <display value="Patient, C. XXX_Brugge"/>
    </subject>
-   <authoredOn value="${DATE, T, D, -10}T11:20:00+02:00"/>
+   <authoredOn value="2021-12-22T11:20:00+01:00"/>
    <requester>
       <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001111-0100-00001111"/>
       <type value="PractitionerRole"/>
