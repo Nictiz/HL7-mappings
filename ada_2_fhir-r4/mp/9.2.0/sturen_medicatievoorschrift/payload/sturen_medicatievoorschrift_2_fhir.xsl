@@ -98,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:copy-of select="$bouwstenen-920"/>
-            <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
+            <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, observations -->
             <xsl:copy-of select="$commonEntries"/>
         </Bundle>
     </xsl:template>

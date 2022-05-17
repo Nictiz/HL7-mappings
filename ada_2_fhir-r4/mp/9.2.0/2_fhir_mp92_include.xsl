@@ -138,6 +138,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/lichaamslengte" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for Observation -->
+            <xsl:variable name="obsKey" select="current-grouping-key()"/>
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Observation'][nm:group-key/text() = $obsKey]/nm:full-url/text()}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-BodyHeight">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="/adaxml/data/*/patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/lichaamsgewicht" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for Observation -->
+            <xsl:variable name="obsKey" select="current-grouping-key()"/>
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Observation'][nm:group-key/text() = $obsKey]/nm:full-url/text()}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-BodyWeight">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="/adaxml/data/*/patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
     </xsl:variable>
 
     <xsl:variable name="bouwstenen-920" as="element(f:entry)*">
@@ -397,6 +423,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </xsl:for-each>
         </xsl:for-each>
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc> override date xslt template to allow for T-dates, TODO temp solution, should be done outside of normal xslt's </xd:desc>
+        <xd:param name="in">the ada date(time) element, may have any name but should have ada datatype date(time)</xd:param>
+        <xd:param name="inputDateT" as="xs:date">The T date (if applicable) that <xd:ref name="in" type="parameter"/> is relative to</xd:param>
+    </xd:doc>
+    <xsl:template name="date-to-datetime">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="inputDateT" as="xs:date?"/>
+        
+        <xsl:attribute name="value">
+            <xsl:call-template name="format2FHIRDate">
+                <xsl:with-param name="dateTime" select="$in/@value"/>
+            </xsl:call-template>
+        </xsl:attribute>
     </xsl:template>
 
 </xsl:stylesheet>
