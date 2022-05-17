@@ -1,0 +1,64 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="mp-MedicationDispense-mp9-12ec6846-d5de-11ec-7738-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_200_geen_gebruik_volgens_afspraak"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+      <value value="MBH_200_geen_gebruik_volgens_afspraak_MVE"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="verstrekken van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-7-2530104"/>
+      <type value="Medication"/>
+      <display value="HYDROCHLOORTHIAZIDE APOTEX TABLET 12,5MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-M-XXX-Raamsdonk"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Raamsdonk"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/HealthcareProvider-Organization-mp9-2-16-528-1-1007-3-3-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+         <value value="MBH_200_geen_gebruik_volgens_afspraak_VV"/>
+      </identifier>
+      <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_200_geen_gebruik_volgens_afspraak_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+   </authorizingPrescription>
+   <quantity>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+         <valueQuantity>
+            <value value="90"/>
+            <unit value="stuk"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </valueQuantity>
+      </extension>
+      <value value="90"/>
+      <unit value="stuk"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="1"/>
+   </quantity>
+   <whenHandedOver value="2021-09-23T09:00:00+02:00"/>
+</MedicationDispense>
