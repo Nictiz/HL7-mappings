@@ -6,7 +6,7 @@
     <xsl:template name="ext-AsAgreedIndicator" match="*" as="element()?" mode="ext-AsAgreedIndicator">
         <xsl:param name="in" as="element()?" select="."/>
         <!-- TODO: use correct extension, this is not an existing extension at the moment -->
-        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Medication.AsAgreedIndicator">
+        <extension url="{$urlExtAsAgreedIndicator}">
             <valueBoolean>
                 <xsl:call-template name="boolean-to-boolean"/>
             </valueBoolean>
