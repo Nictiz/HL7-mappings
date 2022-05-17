@@ -1,0 +1,99 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-05-17T16:16:01.297525+02:00"
+         last-update-date="2022-05-17T16:16:01.297525+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp92"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="G. XXX_Hess"/>
+               <initialen value="G."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Hess"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900614" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-03" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_magistraal90miljoennr"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekking>
+               <identificatie value="MBH_200_magistraal90miljoennr_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-01-01T13:08:00+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-67ac2a1a-d5e8-11ec-1059-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="100"/>
+                  <eenheid code="215"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="gram"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-67ac29fc-d5e8-11ec-1059-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_200_magistraal90miljoennr_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-67ac29fc-d5e8-11ec-1059-020000000000">
+               <product_code code="90000001"
+                             codeSystem="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"
+                             displayName="Eigen artikel: ureumzalf"/>
+               <product_specificatie>
+                  <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+                  <omschrijving value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
+                  <ingredient>
+                     <ingredient_code code="1042467"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      codeSystemName="G-Standaard HPK"
+                                      displayName="UREUM ZALF 10% FAGRON"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="10"/>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="100"/>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <zorgaanbieder id="urn-uuid-67ac2a1a-d5e8-11ec-1059-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

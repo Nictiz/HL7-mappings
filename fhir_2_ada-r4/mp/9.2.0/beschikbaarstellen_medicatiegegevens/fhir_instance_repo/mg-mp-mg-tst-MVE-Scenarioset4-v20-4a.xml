@@ -1,0 +1,167 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="678bb746-d5e8-11ec-2132-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:678bb794-d5e8-11ec-2132-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <id value="216840111388324311999773737840051-MBH200LengteGewichtMVE1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_200_Lengte_Gewicht"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_200_Lengte_Gewicht_MVE_1"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="verstrekken van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:678bb7b2-d5e8-11ec-2132-020000000000"/>
+               <type value="Medication"/>
+               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:678bb776-d5e8-11ec-2132-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:678bb7d0-d5e8-11ec-2132-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_200_Lengte_Gewicht_VV_1"/>
+               </identifier>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_200_Lengte_Gewicht_VV_1 || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
+            <quantity>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                  <valueQuantity>
+                     <value value="180"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </valueQuantity>
+               </extension>
+               <value value="180"/>
+               <unit value="stuk"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="1"/>
+            </quantity>
+            <whenHandedOver value="2021-01-01T08:05:00+01:00"/>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:678bb776-d5e8-11ec-2132-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="E.XXX-Doppen"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999900511"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="E. XXX_Doppen"/>
+               <family value="XXX_Doppen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Doppen"/>
+                  </extension>
+               </family>
+               <given value="E.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1963-10-24"/>
+         </Patient>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:678bb7d0-d5e8-11ec-2132-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="2.16.528.1.1007.3.3-01236578"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:678bb7b2-d5e8-11ec-2132-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="2.16.840.1.113883.2.4.4.7-1110837"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1110837"/>
+                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="49484"/>
+                  <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="103039"/>
+                  <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+               </coding>
+               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+            </code>
+         </Medication>
+      </resource>
+   </entry>
+</Bundle>

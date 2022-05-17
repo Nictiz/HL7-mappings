@@ -1,0 +1,117 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-05-17T16:16:02.823866+02:00"
+         last-update-date="2022-05-17T16:16:02.823866+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp92"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="C. XXX_Coenen"/>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Coenen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900420" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-17" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_toelichting"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_200_toelichting_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="2021-12-11T08:02:00+01:00" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener value="urn-uuid-682a19e8-d5e8-11ec-5450-020000000000"
+                                datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-682a19ca-d5e8-11ec-5450-020000000000"
+                                         datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-682a1a60-d5e8-11ec-5450-020000000000"/>
+               </beoogd_verstrekker>
+               <toelichting value="Extra verstrekkingsverzoek omdat patient medicatie is kwijtgeraakt"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_toelichting_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-682a19ca-d5e8-11ec-5450-020000000000">
+               <product_code code="5967"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="FUROSEMIDE 40MG TABLET"
+                             preferred="true"/>
+               <product_code code="16810"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FUROSEMIDE 40MG TABLET"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-682a19e8-d5e8-11ec-5450-020000000000">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Bertine van Doorn"/>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-682a1a24-d5e8-11ec-5450-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-682a1a24-d5e8-11ec-5450-020000000000">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="urn-uuid-682a1a60-d5e8-11ec-5450-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
