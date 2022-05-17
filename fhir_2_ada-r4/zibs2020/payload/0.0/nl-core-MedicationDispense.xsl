@@ -61,9 +61,9 @@ TODO
 
     <xd:doc>
         <!--ZZZNEW-->
-        <xd:desc>Template to f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier'] to identificatie indirect</xd:desc>
+        <xd:desc>Template to f:extension[@url eq $urlExtPharmaceuticalTreatmentIdentifier] to identificatie indirect</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier']" mode="nl-core-MedicationDispense">
+    <xsl:template match="f:extension[@url eq $urlExtPharmaceuticalTreatmentIdentifier]" mode="nl-core-MedicationDispense">
         <identificatie value="{replace(f:valueIdentifier/f:value/@value, 'urn:oid:', '')}" root="{replace(f:valueIdentifier/f:system/@value, 'urn:oid:', '')}"/>
     </xsl:template>
 

@@ -22,9 +22,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template match="f:MedicationRequest" mode="nl-core-MedicationAgreement">
 		<medicatieafspraak>
 			<!-- identificatie -->
-			<xsl:apply-templates select="f:identifier" mode="#current"/>
+			<xsl:apply-templates select=".[f:intent/@value = 'order']/f:identifier" mode="#current"/>
 			<!-- afspraakdatum -->
-			<xsl:apply-templates select="f:authoredOn" mode="#current"/>
+			<xsl:apply-templates select=".[f:intent/@value = 'order']/f:authoredOn" mode="#current"/>
 			<!-- gebruiksperiode -->
 			<xsl:if test="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)] or f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]">
 				<gebruiksperiode>
@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- relatie_medicatiegebruik -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse] | f:basedOn/f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse]" mode="#current"/>
 			<!-- voorschrijver -->
-			<xsl:apply-templates select="f:requester" mode="#current"/>
+			<xsl:apply-templates select=".[f:intent/@value = 'order']/f:requester" mode="#current"/>
 			<!-- reden_wijzigen_of_staken -->
 			<xsl:apply-templates select="f:reasonCode" mode="#current"/>
 			<!-- reden_van_voorschrijven -->

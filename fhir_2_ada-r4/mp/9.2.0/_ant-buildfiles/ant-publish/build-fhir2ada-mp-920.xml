@@ -71,6 +71,15 @@
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.vma}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+
     </target>
 
     <target name="convert_fhir_2_ada_sub">
@@ -122,6 +131,14 @@
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>
+  
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="setup_sub">
+            <param name="usecase"  value="${usecase.vma}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+        
   
     </target>
 

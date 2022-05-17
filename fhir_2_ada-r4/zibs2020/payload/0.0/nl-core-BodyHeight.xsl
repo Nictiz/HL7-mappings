@@ -50,6 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:effectiveDateTime" mode="nl-core-BodyHeight">
         <xsl:call-template name="datetime-to-datetime">
             <xsl:with-param name="adaElementName">lengte_datum_tijd</xsl:with-param>
+            <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
