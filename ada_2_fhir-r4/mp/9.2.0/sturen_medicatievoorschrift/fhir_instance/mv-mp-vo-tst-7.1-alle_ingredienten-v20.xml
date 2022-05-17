@@ -1,13 +1,17 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="1fdf1777-d519-11ec-1203-020000000000"/>
+   <id value="35a24c8f-d5d4-11ec-1229-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:1fdf180c-d519-11ec-1203-020000000000"/>
+      <fullUrl value="urn:uuid:35a24d24-d5d4-11ec-1229-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="1fdf0ab1-d519-11ec-1203-020000000000"/>
+            <id value="35a23fc9-d5d4-11ec-1229-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+               <tag>
+                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <code value="$tag"/>
+               </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 1 jan 2022, tot en met 1 feb 2022, Zo nodig, cutaan"/>
@@ -28,7 +32,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_200_magistraalalleingredienten_MA"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="active"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -38,18 +42,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:1fdf1848-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24d60-d5d4-11ec-1229-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1fdf17ee-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24d06-d5d4-11ec-1229-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <authoredOn value="2022-01-01T12:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:1fdf1866-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24d7e-d5d4-11ec-1229-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -73,12 +77,16 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1fdf182a-d519-11ec-1203-020000000000"/>
+      <fullUrl value="urn:uuid:35a24d42-d5d4-11ec-1229-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="1fdf0ac3-d519-11ec-1203-020000000000"/>
+            <id value="35a23fdb-d5d4-11ec-1229-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+               <tag>
+                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <code value="$tag"/>
+               </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
@@ -90,7 +98,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                <value value="MBH_200_magistraalalleingredienten_VV"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="active"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -100,23 +108,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:1fdf1848-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24d60-d5d4-11ec-1229-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1fdf17ee-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24d06-d5d4-11ec-1229-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <authoredOn value="2022-01-01T12:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:1fdf1866-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24d7e-d5d4-11ec-1229-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:1fdf18de-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24df6-d5d4-11ec-1229-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -148,7 +156,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1fdf17ee-d519-11ec-1203-020000000000"/>
+      <fullUrl value="urn:uuid:35a24d06-d5d4-11ec-1229-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hess"/>
@@ -192,7 +200,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1fdf1866-d519-11ec-1203-020000000000"/>
+      <fullUrl value="urn:uuid:35a24d7e-d5d4-11ec-1229-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -200,12 +208,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:1fdf1884-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24d9c-d5d4-11ec-1229-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:1fdf18a2-d519-11ec-1203-020000000000"/>
+               <reference value="urn:uuid:35a24dba-d5d4-11ec-1229-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -226,7 +234,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1fdf1884-d519-11ec-1203-020000000000"/>
+      <fullUrl value="urn:uuid:35a24d9c-d5d4-11ec-1229-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -263,7 +271,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1fdf18a2-d519-11ec-1203-020000000000"/>
+      <fullUrl value="urn:uuid:35a24dba-d5d4-11ec-1229-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -301,7 +309,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1fdf18de-d519-11ec-1203-020000000000"/>
+      <fullUrl value="urn:uuid:35a24df6-d5d4-11ec-1229-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -317,10 +325,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1fdf1848-d519-11ec-1203-020000000000"/>
+      <fullUrl value="urn:uuid:35a24d60-d5d4-11ec-1229-020000000000"/>
       <resource>
          <Medication>
-            <id value="1fdf0ad2-d519-11ec-1203-020000000000"/>
+            <id value="35a23fea-d5d4-11ec-1229-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
