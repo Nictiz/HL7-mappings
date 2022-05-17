@@ -1,11 +1,9 @@
-<?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="e1df2032-cfa8-11ec-2098-020000000000"/>
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="17734512-d5de-11ec-1736-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:e1df2080-cfa8-11ec-2098-020000000000"/>
+      <fullUrl value="urn:uuid:17734560-d5de-11ec-1736-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH200ToedieningswegMA"/>
@@ -22,12 +20,12 @@
                </valueCodeableConcept>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 27 dec 2020, tot en met 3 jan 2021, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+               <valueString value="Vanaf 27 dec 2021, tot en met 3 jan 2022, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2020-12-27T00:00:00+01:00"/>
-                  <end value="2021-01-03T23:59:59+01:00"/>
+                  <start value="2021-12-27T00:00:00+01:00"/>
+                  <end value="2022-01-03T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -45,31 +43,33 @@
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="voorschrijven"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e1df209e-cfa8-11ec-2098-020000000000"/>
+               <reference value="urn:uuid:1773457e-d5de-11ec-1736-020000000000"/>
                <type value="Medication"/>
                <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e1df2062-cfa8-11ec-2098-020000000000"/>
+               <reference value="urn:uuid:17734542-d5de-11ec-1736-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
-            <authoredOn value="2020-12-27T08:15:00+01:00"/>
+            <authoredOn value="2021-12-27T08:15:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:e1def9ac-cfa8-11ec-2098-020000000000"/>
+               <reference value="urn:uuid:17731e8c-d5de-11ec-1736-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <dosageInstruction>
                <additionalInstruction>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                     <valueCode value="OTH"/>
-                  </extension>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
                   <text value="In het rechter oog"/>
                </additionalInstruction>
                <timing>
@@ -110,7 +110,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1df2062-cfa8-11ec-2098-020000000000"/>
+      <fullUrl value="urn:uuid:17734542-d5de-11ec-1736-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Coenen"/>
@@ -154,7 +154,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1def9ac-cfa8-11ec-2098-020000000000"/>
+      <fullUrl value="urn:uuid:17731e8c-d5de-11ec-1736-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -162,12 +162,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:e1def9ca-cfa8-11ec-2098-020000000000"/>
+               <reference value="urn:uuid:17731eaa-d5de-11ec-1736-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:e1def9e8-cfa8-11ec-2098-020000000000"/>
+               <reference value="urn:uuid:17731ec8-d5de-11ec-1736-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -183,7 +183,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1def9ca-cfa8-11ec-2098-020000000000"/>
+      <fullUrl value="urn:uuid:17731eaa-d5de-11ec-1736-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -215,7 +215,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1def9e8-cfa8-11ec-2098-020000000000"/>
+      <fullUrl value="urn:uuid:17731ec8-d5de-11ec-1736-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -253,7 +253,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1df209e-cfa8-11ec-2098-020000000000"/>
+      <fullUrl value="urn:uuid:1773457e-d5de-11ec-1736-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-80691"/>

@@ -1,11 +1,9 @@
-<?xml-model href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd">
-   <id value="e28e7f5a-cfa8-11ec-1644-020000000000"/>
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="18c4e768-d5de-11ec-5961-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:e28e7fa8-cfa8-11ec-1644-020000000000"/>
+      <fullUrl value="urn:uuid:18c4e7b6-d5de-11ec-5961-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="2168401113883243119997761-MBH200redenvanvoorschrijvenMGB"/>
@@ -13,16 +11,16 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 27 dec 2020, tot en met 30 dec 2020, geneesmiddel niet in gebruik, tijdelijk gestopt"/>
+               <valueString value="Vanaf 27 dec 2021, tot en met 30 dec 2021, geneesmiddel niet in gebruik, tijdelijk gestopt"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:e28e7fe4-cfa8-11ec-1644-020000000000"/>
+                  <reference value="urn:uuid:18c4e7f2-d5de-11ec-5961-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
                </valueReference>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
                <valueBoolean value="false"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -31,9 +29,9 @@
                   <value value="MBH_200_redenvanvoorschrijven"/>
                </valueIdentifier>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:e28e7fe4-cfa8-11ec-1644-020000000000"/>
+                  <reference value="urn:uuid:18c4e7f2-d5de-11ec-5961-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
                </valueReference>
@@ -67,22 +65,22 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e28e7fc6-cfa8-11ec-1644-020000000000"/>
+               <reference value="urn:uuid:18c4e7d4-d5de-11ec-5961-020000000000"/>
                <type value="Medication"/>
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e28e7f8a-cfa8-11ec-1644-020000000000"/>
+               <reference value="urn:uuid:18c4e798-d5de-11ec-5961-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <effectivePeriod>
-               <start value="2020-12-27T00:00:00+01:00"/>
-               <end value="2020-12-30T23:59:59+01:00"/>
+               <start value="2021-12-27T00:00:00+01:00"/>
+               <end value="2021-12-30T23:59:59+01:00"/>
             </effectivePeriod>
-            <dateAsserted value="2021-01-01T15:05:00+01:00"/>
+            <dateAsserted value="2022-01-01T15:05:00+01:00"/>
             <informationSource>
-               <reference value="urn:uuid:e28e7f8a-cfa8-11ec-1644-020000000000"/>
+               <reference value="urn:uuid:18c4e798-d5de-11ec-5961-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </informationSource>
@@ -91,7 +89,7 @@
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="16076005"/>
+                        <code value="33633005"/>
                         <display value="voorschrijven"/>
                      </coding>
                   </valueCodeableConcept>
@@ -102,7 +100,6 @@
                </identifier>
                <display value="relatie naar medicatieafspraak"/>
             </derivedFrom>
-            <dosage/>
          </MedicationStatement>
       </resource>
       <search>
@@ -110,7 +107,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e28e7f8a-cfa8-11ec-1644-020000000000"/>
+      <fullUrl value="urn:uuid:18c4e798-d5de-11ec-5961-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hess"/>
@@ -154,7 +151,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e28e7fe4-cfa8-11ec-1644-020000000000"/>
+      <fullUrl value="urn:uuid:18c4e7f2-d5de-11ec-5961-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -162,12 +159,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:e28e8002-cfa8-11ec-1644-020000000000"/>
+               <reference value="urn:uuid:18c4e810-d5de-11ec-5961-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:e28e8020-cfa8-11ec-1644-020000000000"/>
+               <reference value="urn:uuid:18c4e82e-d5de-11ec-5961-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -183,7 +180,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e28e8002-cfa8-11ec-1644-020000000000"/>
+      <fullUrl value="urn:uuid:18c4e810-d5de-11ec-5961-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -215,7 +212,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e28e8020-cfa8-11ec-1644-020000000000"/>
+      <fullUrl value="urn:uuid:18c4e82e-d5de-11ec-5961-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -253,7 +250,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e28e7fc6-cfa8-11ec-1644-020000000000"/>
+      <fullUrl value="urn:uuid:18c4e7d4-d5de-11ec-5961-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-141631"/>
