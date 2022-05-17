@@ -16,7 +16,7 @@
    <attentionLine>
       <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
-             extension="999902192"
+             extension="999902179"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
    <receiver>
@@ -57,7 +57,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent>
-                  <id extension="12345678" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.1"/>
+                  <id extension="123456" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.1"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
                         displayName="certified public health and general preventive medicine care"/>
@@ -65,21 +65,20 @@
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
-                        <id extension="999902192" root="2.16.840.1.113883.2.4.6.3"/>
+                        <id extension="999902179" root="2.16.840.1.113883.2.4.6.3"/>
                         <addr use="PHYS">
                            <streetName>Knolweg</streetName>
-                           <houseNumber>1000</houseNumber>
-                           <postalCode>9999 XA</postalCode>
+                           <houseNumber>1002</houseNumber>
+                           <postalCode>9999 ZZ</postalCode>
                            <city>Stitswerd</city>
                            <country code="6030" codeSystem="2.16.840.1.113883.2.4.4.16.34">Nederland</country>
                         </addr>
-                        <telecom use="HP" value="tel:050-7656634"/>
+                        <telecom use="HP" value="tel:050-7656633"/>
                         <statusCode code="active"/>
                         <patientPerson>
                            <name use="OR">
-                              <given>Greet</given>
-                              <prefix qualifier="VV BR">van</prefix>
-                              <family qualifier="BR">XXX_Liere</family>
+                              <given>Froukje</given>
+                              <family qualifier="BR">XXX_Waterman</family>
                            </name>
                            <administrativeGenderCode xsi:type="CV"
                                                      code="F"
@@ -90,6 +89,10 @@
                      </patient>
                   </subject>
                   <author typeCode="AUT">
+                     <time xsi:type="IVL_TS">
+                        <low value="20210102"/>
+                        <high value="20241001"/>
+                     </time>
                      <assignedEntity classCode="ASSIGNED">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
                         <id extension="{$orgId}" root="2.16.528.1.1007.3.3"/>
@@ -98,6 +101,16 @@
                         </assignedOrganization>
                      </assignedEntity>
                   </author>
+                  <appendage typeCode="APND">
+                     <document classCode="DOC" moodCode="EVN">
+                        <code code="01"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.303"
+                              displayName="Integraal dossier JGZ"/>
+                        <text mediaType="application/pdf" representation="B64">QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n                         ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpXLiBFdXJv                         cGUgU3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDMwMDAw                         DQpUWk9GRlNFVEZST006KzAyMDANClRaT0ZGU0VUVE86KzAxMDANClJSVUxFOkZSRVE9WUVBUkxZ                         O0lOVEVSVkFMPTE7QllEQVk9LTFTVTtCWU1PTlRIPTEwDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRB                         WUxJR0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOiswMTAwDQpUWk9G                         RlNFVFRPOiswMjAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPS0xU1U7QllN                         T05USD0zDQpFTkQ6REFZTElHSFQNCkVORDpWVElNRVpPTkUNCkJFR0lOOlZFVkVOVA0KT1JHQU5J                         WkVSO0NOPU1hcnRlbiBTbWl0czpNQUlMVE86c21pdHNAbmljdGl6Lm5sDQpBVFRFTkRFRTtST0xF                         PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPUFsZXhh                         bmRlciANCiBIZW5rZXQ6TUFJTFRPOmhlbmtldEBuaWN0aXoubmwNCkRFU0NSSVBUSU9OO0xBTkdV                         QUdFPWVuLVVTOkhvaSFcbg0KUlJVTEU6RlJFUT1EQUlMWTtDT1VOVD0xMDtJTlRFUlZBTD0xDQpV                         SUQ6MDQwMDAwMDA4MjAwRTAwMDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDEwNzUyNkExNzcwQ0Qz                         MDEwMDAwMDAwMDAwMDAwMDANCiAwMTAwMDAwMDA3RTFDNkQ0RTUxNzFENDQ5QjVDOTMxODM3MTQx                         QjcyNw0KU1VNTUFSWTtMQU5HVUFHRT1lbi1VUzpUZXN0DQpEVFNUQVJUO1RaSUQ9Vy4gRXVyb3Bl                         IFN0YW5kYXJkIFRpbWU6MjAxNzA4MDJUMDMzMDAwDQpEVEVORDtUWklEPVcuIEV1cm9wZSBTdGFu                         ZGFyZCBUaW1lOjIwMTcwODAyVDA0MDAwMA0KQ0xBU1M6UFVCTElDDQpQUklPUklUWTo1DQpEVFNU                         QU1QOjIwMTcwODAzVDE0NDMyNloNClRSQU5TUDpPUEFRVUUNClNUQVRVUzpDT05GSVJNRUQNClNF                         UVVFTkNFOjANCkxPQ0FUSU9OO0xBTkdVQUdFPWVuLVVTOg0KWC1NSUNST1NPRlQtQ0RPLUFQUFQt                         U0VRVUVOQ0U6MA0KWC1NSUNST1NPRlQtQ0RPLU9XTkVSQVBQVElEOjIwMzY1NjU5ODUNClgtTUlD                         Uk9TT0ZULUNETy1CVVNZU1RBVFVTOlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVE                         U1RBVFVTOkJVU1kNClgtTUlDUk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NP                         RlQtQ0RPLUlNUE9SVEFOQ0U6MQ0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjENClgtTUlDUk9T                         T0ZULURJU0FMTE9XLUNPVU5URVI6RkFMU0UNCkJFR0lOOlZBTEFSTQ0KREVTQ1JJUFRJT046UkVN                         SU5ERVINClRSSUdHRVI7UkVMQVRFRD1TVEFSVDotUFQxNU0NCkFDVElPTjpESVNQTEFZDQpFTkQ6                         VkFMQVJNDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=<reference value="file:///IntegraalDossier.pdf"/>
+                        </text>
+                        <effectiveTime value="20241001"/>
+                     </document>
+                  </appendage>
                   <authorization typeCode="AUTH" contextConductionInd="false">
                      <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
                         <code code="469"
@@ -106,7 +119,7 @@
                         <author typeCode="AUT">
                            <time value="20210506"/>
                            <assignedEntity1 classCode="ASSIGNED">
-                              <id extension="987654321" root="2.16.528.1.1007.3.1"/>
+                              <id nullFlavor="NI"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
                                  <name>Jeugdarts</name>
                               </assignedPerson>
@@ -116,7 +129,7 @@
                   </authorization>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-10" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="10" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="10"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -127,18 +140,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-2" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
-                        <code xsi:type="CV"
-                              code="02"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Huisbezoek 2 weken"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="20210115"/>
-                     </encounter>
-                  </component7>
-                  <component7>
-                     <encounter moodCode="EVN">
-                        <id extension="02192-11" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="11" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="11"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -149,7 +151,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-12" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="12" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="12"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -160,7 +162,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-3" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="3" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="03"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -171,7 +173,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-13" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="13" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="13"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -182,7 +184,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-5" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="2" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code xsi:type="CV"
+                              code="02"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Huisbezoek 2 weken"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20210104"/>
+                     </encounter>
+                  </component7>
+                  <component7>
+                     <encounter moodCode="EVN">
+                        <id extension="5" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="05"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -193,7 +206,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-14" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="14" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="14"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -204,7 +217,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-6" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="6" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="06"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -215,7 +228,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-4" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="4" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="04"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -226,7 +239,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-7" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="7" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="07"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -237,7 +250,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-8" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="8" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="08"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -248,7 +261,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-1" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="1" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="35"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -259,7 +272,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-9" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="9" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="09"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -296,13 +309,13 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-                        <effectiveTime value="20210101"/>
+                        <effectiveTime value="20241001"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
                                     displayName="Overdracht naar een andere JGZ-organisatie"/>
                         <author typeCode="AUT">
                            <time xsi:type="IVL_TS">
-                              <high value="20210101"/>
+                              <high value="20241001"/>
                            </time>
                            <assignedEntity classCode="ASSIGNED">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>

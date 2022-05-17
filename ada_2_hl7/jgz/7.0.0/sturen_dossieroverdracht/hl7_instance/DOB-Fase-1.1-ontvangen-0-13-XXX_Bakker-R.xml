@@ -16,7 +16,7 @@
    <attentionLine>
       <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
-             extension="999902192"
+             extension="999904723"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
    <receiver>
@@ -57,7 +57,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent>
-                  <id extension="12345678" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.1"/>
+                  <id extension="123456789" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.1"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
                         displayName="certified public health and general preventive medicine care"/>
@@ -65,27 +65,30 @@
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
-                        <id extension="999902192" root="2.16.840.1.113883.2.4.6.3"/>
+                        <id extension="999904723" root="2.16.840.1.113883.2.4.6.3"/>
                         <addr use="PHYS">
                            <streetName>Knolweg</streetName>
-                           <houseNumber>1000</houseNumber>
-                           <postalCode>9999 XA</postalCode>
+                           <houseNumber>1001</houseNumber>
+                           <postalCode>9999 ZZ</postalCode>
                            <city>Stitswerd</city>
                            <country code="6030" codeSystem="2.16.840.1.113883.2.4.4.16.34">Nederland</country>
                         </addr>
-                        <telecom use="HP" value="tel:050-7656634"/>
+                        <telecom use="HP" value="tel:0387-656633"/>
                         <statusCode code="active"/>
                         <patientPerson>
                            <name use="OR">
-                              <given>Greet</given>
+                              <given>Roderik</given>
                               <prefix qualifier="VV BR">van</prefix>
-                              <family qualifier="BR">XXX_Liere</family>
+                              <family qualifier="BR">XXX_Bakker</family>
+                           </name>
+                           <name use="L">
+                              <given qualifier="CL">Rick</given>
                            </name>
                            <administrativeGenderCode xsi:type="CV"
-                                                     code="F"
+                                                     code="M"
                                                      codeSystem="2.16.840.1.113883.5.1"
-                                                     displayName="Vrouwelijk"/>
-                           <birthTime value="20170401"/>
+                                                     displayName="Mannelijk"/>
+                           <birthTime value="20071101"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -106,9 +109,9 @@
                         <author typeCode="AUT">
                            <time value="20210506"/>
                            <assignedEntity1 classCode="ASSIGNED">
-                              <id extension="987654321" root="2.16.528.1.1007.3.1"/>
+                              <id nullFlavor="NI"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name>Jeugdarts</name>
+                                 <name>jeugdarts</name>
                               </assignedPerson>
                            </assignedEntity1>
                         </author>
@@ -116,7 +119,7 @@
                   </authorization>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-10" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-10" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="10"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -127,7 +130,29 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-2" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-18" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <code xsi:type="CV"
+                              code="17"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contactmoment groep 7"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20320101"/>
+                     </encounter>
+                  </component7>
+                  <component7>
+                     <encounter moodCode="EVN">
+                        <id extension="04723-19" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <code xsi:type="CV"
+                              code="19"
+                              codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.188"
+                              displayName="Contactmoment klas 2"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20340101"/>
+                     </encounter>
+                  </component7>
+                  <component7>
+                     <encounter moodCode="EVN">
+                        <id extension="04723-2" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="02"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -138,7 +163,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-11" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-11" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="11"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -149,7 +174,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-12" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-12" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="12"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -160,7 +185,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-3" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-3" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="03"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -171,7 +196,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-13" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-13" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="13"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -182,7 +207,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-5" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-5" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="05"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -192,19 +217,52 @@
                      </encounter>
                   </component7>
                   <component7>
-                     <encounter moodCode="EVN">
-                        <id extension="02192-14" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                     <encounter moodCode="INT">
+                        <id extension="04723-14" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="14"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 3 jaar"/>
-                        <statusCode code="completed"/>
+                        <statusCode code="cancelled"/>
                         <effectiveTime value="20240101"/>
                      </encounter>
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-6" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-15" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <code xsi:type="CV"
+                              code="14"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contactmoment 3 jaar"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20240401"/>
+                     </encounter>
+                  </component7>
+                  <component7>
+                     <encounter moodCode="EVN">
+                        <id extension="04723-16" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <code xsi:type="CV"
+                              code="15"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contactmoment 3,9 jaar"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20241001"/>
+                     </encounter>
+                  </component7>
+                  <component7>
+                     <encounter moodCode="EVN">
+                        <id extension="04723-1" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <code xsi:type="CV"
+                              code="35"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Neonatale gehoorscreening"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20210105"/>
+                     </encounter>
+                  </component7>
+                  <component7>
+                     <encounter moodCode="EVN">
+                        <id extension="04723-6" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="06"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -215,7 +273,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-4" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-4" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="04"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -226,7 +284,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-7" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-17" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <code xsi:type="CV"
+                              code="16"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contactmoment groep 2"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20260101"/>
+                     </encounter>
+                  </component7>
+                  <component7>
+                     <encounter moodCode="EVN">
+                        <id extension="04723-7" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="07"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -237,7 +306,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-8" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-8" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="08"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -248,18 +317,7 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="02192-1" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
-                        <code xsi:type="CV"
-                              code="35"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Neonatale gehoorscreening"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="20210108"/>
-                     </encounter>
-                  </component7>
-                  <component7>
-                     <encounter moodCode="EVN">
-                        <id extension="02192-9" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="04723-9" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
                         <code xsi:type="CV"
                               code="09"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
@@ -280,6 +338,52 @@
                         <author typeCode="AUT">
                            <time xsi:type="IVL_TS">
                               <low value="20210102"/>
+                           </time>
+                           <assignedEntity classCode="ASSIGNED">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                              <id extension="{$orgId}" root="2.16.528.1.1007.3.3"/>
+                              <assignedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                 <name>GGD Groningen</name>
+                              </assignedOrganization>
+                           </assignedEntity>
+                        </author>
+                     </careStatus>
+                  </subjectOf>
+                  <subjectOf typeCode="SUBJ" contextConductionInd="false">
+                     <careStatus classCode="STC" moodCode="EVN">
+                        <code code="1197"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Status in zorg"/>
+                        <effectiveTime value="20241001"/>
+                        <reasonCode code="03"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.376"
+                                    displayName="Alleen vaccinaties"/>
+                        <author typeCode="AUT">
+                           <time xsi:type="IVL_TS">
+                              <low value="20241001"/>
+                           </time>
+                           <assignedEntity classCode="ASSIGNED">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                              <id extension="{$orgId}" root="2.16.528.1.1007.3.3"/>
+                              <assignedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                 <name>GGD Groningen</name>
+                              </assignedOrganization>
+                           </assignedEntity>
+                        </author>
+                     </careStatus>
+                  </subjectOf>
+                  <subjectOf typeCode="SUBJ" contextConductionInd="false">
+                     <careStatus classCode="STC" moodCode="EVN">
+                        <code code="487"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Zorgbeëindiging"/>
+                        <effectiveTime value="20241001"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.82"
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
+                        <author typeCode="AUT">
+                           <time xsi:type="IVL_TS">
+                              <high value="20241001"/>
                            </time>
                            <assignedEntity classCode="ASSIGNED">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
