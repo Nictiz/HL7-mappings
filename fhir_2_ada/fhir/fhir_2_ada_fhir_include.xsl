@@ -221,6 +221,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Quantity">Quantity</xd:a> to ada element of type hoeveelheid</xd:desc>
+        <xd:param name="adaElementName">Optional string to provide the name of one of the ada output element. Defaults to 'hoeveelheid'.</xd:param>
+    </xd:doc>
+    <xsl:template name="Quantity-to-hoeveelheid" as="element()*">
+        <xsl:param name="adaElementName" as="xs:string">hoeveelheid</xsl:param>
+
+        <xsl:element name="{$adaElementName}">
+            <xsl:choose>
+                <xsl:when test="f:extension/@url = $urlExtHL7NullFlavor">
+                    <xsl:attribute name="nullFlavor" select="(f:extension[@url = $urlExtHL7NullFlavor]/f:valueCode/@value, 'NI')[1]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="value" select="f:value/@value"/>
+                    <xsl:attribute name="unit" select="f:code/@value"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:element>
+
+    </xsl:template>
+
+
+    <xd:doc>
         <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Quantity">Quantity</xd:a> to ada waarde and eenheid elements</xd:desc>
         <xd:param name="adaWaarde">Optional string to provide the name of one of the ada output elements. Default (empty string) leads to 'aantal' or 'waarde' element.</xd:param>
         <xd:param name="adaEenheid">Optional string to provide the name of one of the ada output elements. Default is 'eenheid'.</xd:param>
@@ -282,6 +304,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
 
     </xsl:template>
+
+
 
     <xd:doc>
         <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Ratio">Ratio</xd:a> to ada complex 'hoeveelheid'</xd:desc>

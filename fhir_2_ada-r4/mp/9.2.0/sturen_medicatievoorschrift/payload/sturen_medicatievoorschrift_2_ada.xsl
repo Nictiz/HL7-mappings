@@ -29,13 +29,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:PractitionerRole" mode="resolve-HealthProfessional-PractitionerRole"/>
 			<!-- zorgaanbieder -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Organization" mode="nl-core-HealthcareProvider-Organization"/>
+			<!-- lichaamslengte -->
+			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Observation[f:code/f:coding/f:code/@value=$bodyHeightLOINCcode]" mode="nl-core-BodyHeight"/>
+			<!-- lichaamsgewicht -->
+			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Observation[f:code/f:coding/f:code/@value=$bodyWeightLOINCcode]" mode="nl-core-BodyWeight"/>
 		</xsl:variable>
 
 		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
 			<meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>
 			<data>
-				<beschikbaarstellen_medicatiegegevens app="mp-mp92" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301" transactionEffectiveDate="2022-02-07T00:00:00" prefix="mp-" language="nl-NL">
-					<xsl:attribute name="title">Generated from HL7 FHIR medicatiegegevens</xsl:attribute>
+				<sturen_medicatievoorschrift app="mp-mp92" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.322" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
+					<xsl:attribute name="title">Generated from HL7 FHIR sturen_medicatievoorschrift</xsl:attribute>
 					<xsl:attribute name="id">DUMMY</xsl:attribute>
 
 					<xsl:choose>
@@ -66,19 +70,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value = $mgbCode]" mode="nl-core-MedicationUse2"/>
 							<!-- medicatietoediening -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationAdministration]" mode="nl-core-MedicationAdministration"/>
-
 						</medicamenteuze_behandeling>
 					</xsl:for-each-group>
-					<!--xxxwim bouwstenen -->
-					<xsl:if test="$bouwstenen/element()">
+					<xsl:if test="$bouwstenen/*">
 						<bouwstenen>
-							<xsl:for-each select="$bouwstenen">
-								<xsl:copy-of select="."/>
-							</xsl:for-each>
+							<xsl:copy-of select="$bouwstenen"/>
 						</bouwstenen>
 					</xsl:if>
 
-				</beschikbaarstellen_medicatiegegevens>
+				</sturen_medicatievoorschrift>
 			</data>
 		</adaxml>
 	</xsl:template>

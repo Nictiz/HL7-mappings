@@ -46,14 +46,21 @@
     <property name="usecase.vvv" value="sturen_voorstel_verstrekkingsverzoek"/>
 
     <target name="convert_fhir_2_ada">
-        <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
 
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance_repo"/>
+            <param name="xsl.out" value="ada_instance_repo"/>
+        </antcall>
+        
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="build.dir" value="${build.dir}"/>
             <param name="xsl.in" value="fhir_instance"/>
-            <param name="xsl.out" value="ada_instance_converted"/>
+            <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
     </target>
@@ -88,37 +95,32 @@
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
 
         <!-- beschikbaarstellen_medicatiegegevens -->
-        <antcall target="setup_sub_schemas">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
-            <param name="schema.string" value="*${usecase.mg}.xsd"/>
+        <antcall target="setup_sub">
+            <param name="usecase"  value="${usecase.mg}"/>
+            <param name="folder.name" value="fhir_instance_repo"/>
+            <param name="include.files" value="mg*.xml"/>
         </antcall>
-        <!-- copy instances from ada_2_fhir-r4 -->
-
-        <echo/>
-        <echo>Setup ${build.dir}/${usecase.mg} containing refreshed hl7 instances (hl7_instance)</echo>
-
-        <!-- beschikbaarstellen_medicatiegegevens -->
-        <mkdir dir="${build.dir}/${usecase.mg}/fhir_instance"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg}/fhir_instance" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg}/fhir_instance_repo">
-                <include name="mg*.xml"/>
-            </fileset>
-        </copy>
-
+        
+        <!-- sturen_medicatievoorschrift -->
+        <antcall target="setup_sub">
+            <param name="usecase"  value="${usecase.mv}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+  
     </target>
 
-    <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
+    <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
 
         <antcall target="setup_sub_schemas">
-            <param name="schema.string" value="${schema.string}"/>
+            <param name="sub.build.dir" value="${build.dir}/${usecase}"/>
+            <param name="schema.string" value="*${usecase}.xsd"/>
         </antcall>
 
         <antcall target="setup_sub_instances">
-            <param name="fileset.dir" value="${fileset.dir}"/>
             <param name="usecase" value="${usecase}"/>
+            <param name="folder.name" value="${folder.name}"/>
+            <param name="include.files" value="${include.files}"/>
         </antcall>
 
     </target>
@@ -141,18 +143,18 @@
 
     </target>
 
-    <target name="setup_sub_instances" description="Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.dir})">
+    <target name="setup_sub_instances" description="Setup ${build.dir}/${usecase} containing refreshed hl7 instances (${fileset.dir})">
 
         <echo/>
-        <echo>Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.dir})</echo>
-
-        <mkdir dir="${sub.build.dir}/${fileset.dir}"/>
+        <echo>Setup ${build.dir}/${usecase} containing refreshed fhir instances</echo>
+        
+        <mkdir dir="${build.dir}/${usecase}/${folder.name}"/>
         <delete>
-            <fileset dir="${sub.build.dir}/${fileset.dir}" includes="*.xml"/>
+            <fileset dir="${build.dir}/${usecase}/${folder.name}" includes="*.xml"/>
         </delete>
-        <copy todir="${sub.build.dir}/${fileset.dir}" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase}/${fileset.dir}">
-                <include name="${fileset.include}"/>
+        <copy todir="${build.dir}/${usecase}/${folder.name}" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase}/${folder.name}">
+                <include name="${include.files}"/>
             </fileset>
         </copy>
 

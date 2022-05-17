@@ -55,10 +55,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             <!-- contactgegevens -->
-            <xsl:if test="f:telephoneNumbers | f:emailAddresses">
+            <xsl:if test="f:telecom">
                 <contactgegevens>
-                    <xsl:apply-templates select="f:telephoneNumbers" mode="nl-core-ContactInformation-TelephoneNumbers"/>
-                    <xsl:apply-templates select="f:emailAddresses" mode="nl-core-ContactInformation-EmailAddresses"/>
+                    <xsl:apply-templates select="f:telecom" mode="nl-core-ContactInformation"/>
                 </contactgegevens>
             </xsl:if>
             
