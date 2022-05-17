@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<!-- MP9 2.0.0 version -->
 					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]/f:valuePeriod/f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="urlExtTimeInterval-Duration"/>
 					<!-- criterium -->
-					<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementPeriodOfUseCondition]" mode="urlExtMedicationAgreementPeriodOfUseCondition"/>
+					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]/f:valuePeriod/f:extension[@url = $urlExtMedicationAgreementPeriodOfUseCondition]" mode="urlExtMedicationAgreementPeriodOfUseCondition"/>
 				</gebruiksperiode>
 			</xsl:if>
 			<!-- relatie_contact -->

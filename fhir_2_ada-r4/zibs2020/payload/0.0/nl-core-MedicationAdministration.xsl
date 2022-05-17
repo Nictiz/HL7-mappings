@@ -20,8 +20,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:variable name="extMedicationAdministrationReasonForDeviation">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation</xsl:variable>
 
 
-	<!-- TODO, this extAsAgreed is not yet implemented in FHIR profiles! -->
-	<xsl:variable name="extAsAgreed">http://nictiz.nl/fhir/StructureDefinition/ext-Medication.AsAgreedIndicator</xsl:variable>
 
 
 	<xd:doc>
@@ -47,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:dosage/f:extension[@url = $extMedicationAdministrationAgreedAmount]/f:valueQuantity" mode="#current"/>
 			<!-- volgens_afspraak_indicator -->
 			<!-- TODO: should be updated in FHIR profile -->
-			<xsl:apply-templates select="f:extension[@url = $extAsAgreed]" mode="#current"/>
+			<xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
 			<!-- toedieningsweg -->
 			<xsl:apply-templates select="f:dosage/f:route" mode="nl-core-InstructionsForUse"/>
 			<!-- toedieningssnelheid -->
@@ -78,9 +76,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 
 	<xd:doc>
-		<xd:desc>Template to convert f:extension $extAsAgreed to volgens_afspraak_indicator element.</xd:desc>
+		<xd:desc>Template to convert f:extension $urlExtAsAgreedIndicator to volgens_afspraak_indicator element.</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:extension[@url = $extAsAgreed]" mode="nl-core-MedicationAdministration">
+	<xsl:template match="f:extension[@url = $urlExtAsAgreedIndicator]" mode="nl-core-MedicationAdministration">
 		<volgens_afspraak_indicator>
 			<xsl:call-template name="boolean-to-boolean">
 				<xsl:with-param name="in" select="f:valueBoolean"/>

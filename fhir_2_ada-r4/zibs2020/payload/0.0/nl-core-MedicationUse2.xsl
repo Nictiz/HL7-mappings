@@ -16,8 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="extStoptype">http://nictiz.nl/fhir/StructureDefinition/ext-StopType</xsl:variable>
     <xsl:variable name="extMedicationUse2Prescriber" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber'"/>
-    <xsl:variable name="ext-MedicationUse-Author" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author'"/>
-    <xsl:variable name="ext-MedicationUse2.AsAgreedIndicator" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator'"/>
+    <xsl:variable name="ext-MedicationUse-Author" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author'"/>
 
     <xd:doc>
         <xd:desc>Template to convert f:MedicationStatement to ADA medicatie_gebruik</xd:desc>
@@ -27,15 +26,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!--ext-StopType-->
             <!-- identificatie  -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
-            <!-- registratiedatum -->
+            <!-- medicatiegebruik_datum_tijd -->
             <xsl:apply-templates select="f:dateAsserted" mode="#current"/>
-            <!-- gebruiksperiode -->
+            <!-- gebruik_indicator -->
             <xsl:apply-templates select="f:status" mode="#current"/>
-            <!-- reden_wijzigen_of_stoppen_gebruik -->
-            <xsl:apply-templates select="f:extension[@url = $ext-MedicationUse2.AsAgreedIndicator]" mode="#current"/>
+            <!-- volgens_afspraak_indicator -->
+            <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
             <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
-            <!-- volgens_afspraak_indicator -->
+             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_product -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
@@ -427,7 +426,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url "$asAgreedIndicator-url" to volgens_afspraak_indicator</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $ext-MedicationUse2.AsAgreedIndicator]" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:extension[@url = $urlExtAsAgreedIndicator]" mode="nl-core-MedicationUse2">
         <volgens_afspraak_indicator>
             <xsl:attribute name="value" select="f:valueBoolean/@value"/>
         </volgens_afspraak_indicator>
