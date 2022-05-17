@@ -1,16 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="6db90767-d5e8-11ec-9723-020000000000"/>
+   <id value="edbfa2ef-d5fc-11ec-6669-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:6db90806-d5e8-11ec-9723-020000000000"/>
+      <fullUrl value="urn:uuid:edbfa38e-d5fc-11ec-6669-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="6db91d42-d5e8-11ec-9723-020000000000"/>
+            <id value="edbfb8ca-d5fc-11ec-6669-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
                   <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
-                  <code value="$tag"/>
+                  <code value="actionable"/>
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
@@ -27,6 +27,10 @@
                   <value value="MBH_200_chronisch"/>
                </valueIdentifier>
             </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
+               <value value="MBH_200_chronisch_VMA"/>
+            </identifier>
             <status value="active"/>
             <intent value="plan"/>
             <category>
@@ -37,20 +41,26 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6db90824-d5e8-11ec-9723-020000000000"/>
+               <reference value="urn:uuid:edbfa3ac-d5fc-11ec-6669-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6db907e8-d5e8-11ec-9723-020000000000"/>
+               <reference value="urn:uuid:edbfa370-d5fc-11ec-6669-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
+            <authoredOn value="2022-01-01T08:00:00+01:00"/>
+            <requester>
+               <reference value="urn:uuid:edbfa3ca-d5fc-11ec-6669-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd"/>
+            </requester>
             <dosageInstruction>
                <timing>
                   <repeat>
                      <frequency value="1"/>
-                     <period value="1"/>
+                     <period value="2"/>
                      <periodUnit value="d"/>
                   </repeat>
                </timing>
@@ -82,7 +92,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6db907e8-d5e8-11ec-9723-020000000000"/>
+      <fullUrl value="urn:uuid:edbfa370-d5fc-11ec-6669-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Brugge"/>
@@ -126,7 +136,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6db90842-d5e8-11ec-9723-020000000000"/>
+      <fullUrl value="urn:uuid:edbfa3ca-d5fc-11ec-6669-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001115-0100-00005111"/>
@@ -134,12 +144,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:6db90860-d5e8-11ec-9723-020000000000"/>
+               <reference value="urn:uuid:edbfa3e8-d5fc-11ec-6669-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Marcha van Partners"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:6db9087e-d5e8-11ec-9723-020000000000"/>
+               <reference value="urn:uuid:edbfa406-d5fc-11ec-6669-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Itis "/>
             </organization>
@@ -155,7 +165,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6db90860-d5e8-11ec-9723-020000000000"/>
+      <fullUrl value="urn:uuid:edbfa3e8-d5fc-11ec-6669-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001115"/>
@@ -187,7 +197,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6db9087e-d5e8-11ec-9723-020000000000"/>
+      <fullUrl value="urn:uuid:edbfa406-d5fc-11ec-6669-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00005111"/>
@@ -203,7 +213,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6db90824-d5e8-11ec-9723-020000000000"/>
+      <fullUrl value="urn:uuid:edbfa3ac-d5fc-11ec-6669-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-26638"/>

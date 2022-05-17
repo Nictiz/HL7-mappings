@@ -1,16 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="6dbe86a1-d5e8-11ec-1504-020000000000"/>
+   <id value="edc3ea7b-d5fc-11ec-1420-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:6dbe8736-d5e8-11ec-1504-020000000000"/>
+      <fullUrl value="urn:uuid:edc3eb10-d5fc-11ec-1420-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="6dbea050-d5e8-11ec-1504-020000000000"/>
+            <id value="edc40538-d5fc-11ec-1420-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
                   <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
-                  <code value="$tag"/>
+                  <code value="actionable"/>
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
@@ -28,6 +28,10 @@
                   <value value="MBH_200_start_eind"/>
                </valueIdentifier>
             </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
+               <value value="MBH_200_start_eind_VMA"/>
+            </identifier>
             <status value="active"/>
             <intent value="plan"/>
             <category>
@@ -38,20 +42,26 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6dbe8754-d5e8-11ec-1504-020000000000"/>
+               <reference value="urn:uuid:edc3eb2e-d5fc-11ec-1420-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6dbe8718-d5e8-11ec-1504-020000000000"/>
+               <reference value="urn:uuid:edc3eaf2-d5fc-11ec-1420-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
+            <authoredOn value="2022-01-01T07:10:00+01:00"/>
+            <requester>
+               <reference value="urn:uuid:edc3eb4c-d5fc-11ec-1420-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd"/>
+            </requester>
             <dosageInstruction>
                <timing>
                   <repeat>
                      <frequency value="1"/>
-                     <period value="1"/>
+                     <period value="2"/>
                      <periodUnit value="d"/>
                   </repeat>
                </timing>
@@ -83,7 +93,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6dbe8718-d5e8-11ec-1504-020000000000"/>
+      <fullUrl value="urn:uuid:edc3eaf2-d5fc-11ec-1420-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Brugge"/>
@@ -127,7 +137,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6dbe8772-d5e8-11ec-1504-020000000000"/>
+      <fullUrl value="urn:uuid:edc3eb4c-d5fc-11ec-1420-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001115-0100-00005111"/>
@@ -135,12 +145,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:6dbe8790-d5e8-11ec-1504-020000000000"/>
+               <reference value="urn:uuid:edc3eb6a-d5fc-11ec-1420-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Marcha van Partners"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:6dbe87ae-d5e8-11ec-1504-020000000000"/>
+               <reference value="urn:uuid:edc3eb88-d5fc-11ec-1420-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
             </organization>
@@ -156,7 +166,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6dbe8790-d5e8-11ec-1504-020000000000"/>
+      <fullUrl value="urn:uuid:edc3eb6a-d5fc-11ec-1420-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001115"/>
@@ -188,7 +198,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6dbe87ae-d5e8-11ec-1504-020000000000"/>
+      <fullUrl value="urn:uuid:edc3eb88-d5fc-11ec-1420-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00005111"/>
@@ -204,7 +214,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6dbe8754-d5e8-11ec-1504-020000000000"/>
+      <fullUrl value="urn:uuid:edc3eb2e-d5fc-11ec-1420-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-6947"/>
@@ -229,10 +239,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6dbe87f4-d5e8-11ec-1504-020000000000"/>
+      <fullUrl value="urn:uuid:edc3ebce-d5fc-11ec-1420-020000000000"/>
       <resource>
          <Observation>
-            <id value="6dbe87ea-d5e8-11ec-1504-020000000000"/>
+            <id value="edc3ebc4-d5fc-11ec-1420-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight"/>
             </meta>
@@ -252,7 +262,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:6dbe8718-d5e8-11ec-1504-020000000000"/>
+               <reference value="urn:uuid:edc3eaf2-d5fc-11ec-1420-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
@@ -267,10 +277,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6dbe881c-d5e8-11ec-1504-020000000000"/>
+      <fullUrl value="urn:uuid:edc3ebf6-d5fc-11ec-1420-020000000000"/>
       <resource>
          <Observation>
-            <id value="6dbe8812-d5e8-11ec-1504-020000000000"/>
+            <id value="edc3ebec-d5fc-11ec-1420-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyWeight"/>
             </meta>
@@ -290,7 +300,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:6dbe8718-d5e8-11ec-1504-020000000000"/>
+               <reference value="urn:uuid:edc3eaf2-d5fc-11ec-1420-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
