@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apache ANT build file that sets up (target = setup) or by default converts transaction with references to full ada xml (target = resolve-refs)
+    Apache ANT is based on Java and may be found here: https://ant.apache.org/
+    run on command line or from a batch file: 
+        ant [-f build.xml] [target]
+        
+    If you just run ant, it expects a build.xml in the working dir and runs the default target.
+-->
+<project basedir="." default="convert_ada_2_hl7_700" name="build-ada2hl7-jpg-700" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property name="is.version" value="7.0.0"/>
+    <property name="is.version.short" value="700"/>
+    <property name="date.T" value="2021-01-01"/>
+
+    <!-- place import after properties above, otherwise it can't resolve these properties  -->
+    <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-jgz-include.xml"/>
+
+    <property name="gen.schematron.ref" value="false"/>
+    <property name="usecase.nt" value="nictiz_test"/>
+    
+    <property name="ada.project.source.dir" value="${build.dir}/../../../../../SVN/art_decor/trunk/ada-data/projects/jpg-7.0.0"/>
+    <property name="validate.dir" value="${build.dir}/../../../../../SVN/aorta/branches/Onderhoud_JGZ_v612/XML/schematron_closed_warnings"/>
+    <property name="schema.dob" value="${build.dir}/../../../../../SVN/aorta/branches/Onderhoud_JGZ_v612/XML/schemas_codeGen_flat/REPC_IN902120NL03.xsd"/>
+    
+    <target name="setup_jgz700" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
+
+        <!-- nictiz_test copies appropriate ada instances from refs.dir -->
+        <!-- not yet implemented there is no ada project for 9 2.0 yet -->
+        <!--<antcall target="setup_sub_instances">
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+            <param name="usecase" value="${usecase.nt}"/>
+        </antcall>-->
+        <!-- at the moment only schemas for nictiz test -->
+        <antcall target="setup_sub_schemas">
+            <param name="usecase" value="${usecase.nt}"/>
+            <param name="schema.string" value="*${usecase.mv}.xsd"/>
+        </antcall>
+
+        <!-- beschikbaarstellen_medicatiegegevens copies schemas for project dir and appropriate ada instances from refs.dir for MA-->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.dob}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="DOB*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+
+        <!-- let's convert to hl7 too while we're at it -->
+        <!-- generic stuff for all mp versions -->
+        <antcall target="convert_ada_2_hl7_700"/>
+
+    </target>
+
+    <target name="convert_ada_2_hl7_700">
+
+        <!-- convert sturen_dossieroverdracht -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.dob}"/>
+            <param name="xsl.name" value="../${usecase.dob}/payload/${usecase.dob}_2_hl7v3.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
+        </antcall>
+
+        <!-- also do the examples -->
+        <!--<antcall target="convert_ada_2_hl7_examples_700"/>-->
+
+    </target>
+
+    <target name="convert_ada_2_hl7_examples_700">
+        <!-- examples -->
+        <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${build.dir}/xml-voorbeelden/hl7_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
+        </delete>
+        <mkdir dir="${build.dir}/xml-voorbeelden/cda_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="*.xml"/>
+        </delete>
+        <!-- medicatievoorschrift -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mv*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mv}/payload/${usecase.mv}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mv}/payload/${usecase.mv}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- medicatiegegevens -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mg-*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mg}/payload/${usecase.mg}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mg}/payload/${usecase.mg}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- medicatieoverzicht -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mo*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mo}/payload/${usecase.mo}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mo}/payload/${usecase.mo}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- medicatiegebruik -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mgb*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.mgb}/payload/${usecase.mgb}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.mgb}/payload/${usecase.mgb}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- afhandelen medicatievoorschrift -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="av*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.av}/payload/${usecase.av}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.av}/payload/${usecase.av}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- voorstel ma -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vma*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.vma}/payload/${usecase.vma}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vma}/payload/${usecase.vma}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- voorstel vv -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vvv*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.vvv}/payload/${usecase.vvv}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.vvv}/payload/${usecase.vvv}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- antwoord voorstel vv -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="avvv*.xml"/>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.avvv}/payload/${usecase.avvv}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.avvv}/payload/${usecase.avvv}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- everything also to CDA-->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
+            <echo/>
+            <echo>${echo.label} ${build.dir}/../${organizer.to.cda.xsl} input dir ${build.dir}/xml-voorbeelden/hl7_instance</echo>
+            <xslt force="true" style="${build.dir}/../${organizer.to.cda.xsl}" destdir="${build.dir}/xml-voorbeelden/cda_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+        <!-- bouwstenen transactions, we don't want cda for those -->
+        <sequential>
+
+            <echo/>
+            <echo>${echo.label} ${build.dir}/xml-voorbeelden/bouwstenen_transacties/bouwstenen_transacties_org.xsl input files in ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/xml-voorbeelden/bouwstenen_transacties/bouwstenen_transacties_org.xsl" in="${build.dir}/xml-voorbeelden/bouwstenen_transacties/dummy.xml" out="${build.dir}/xml-voorbeelden/bouwstenen_transacties/dummy-out.xml" useimplicitfileset="false">
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+
+    </target>
+
+    <target name="schemavalidate_hl7_700">
+
+        <!-- all use cases hl7_instance-->
+        <antcall target="schemavalidate_hl7_sub">
+            <param name="fileset.include" value="**/hl7_instance/*.xml"/>
+            <param name="fileset.exclude" value="nictiz_test/**/*"/>
+            <param name="validate.schema" value="${schema.dob}"/>
+        </antcall>
+    </target>
+
+    <target name="schematronvalidate_hl7_700">
+
+        <!-- first the schematrons per instance -->
+        <antcall target="validate_hl7_700"/>
+
+        <!-- now look at the results for conclusions -->
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mg}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- beschikbaarstellen_medicatieoverzicht -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mo}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mo}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- beschikbaarstellen_medicatieoverzicht cda instance not generated (yet) -->
+        <!--<antcall target="schematronresults_hl7_700_sub">
+            <param name="result.xml" value="${build.dir}/validate/cda_${usecase.mo}.xml"></param>
+            <param name="input.dir" value="../${usecase.mo}/validate_cda_instance"/>
+            <param name="input.fileset" value="*.xml"/>            
+        </antcall>  -->
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.av}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.av}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avvv}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.avvv}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_medicatiegebruik -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mgb}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mgb}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_medicatievoorschrift hl7 organizer -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mv}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_medicatievoorschrift cda -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/cda_${usecase.mv}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mv}/validate_cda_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vma}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.vma}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="schematronresults_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vvv}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.vvv}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+
+    </target>
+
+    <target name="validate_hl7_700">
+
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.input" value="hl7_instance_repo"/>
+            <param name="xsl.output" value="validate_hl7_instance_repo"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_mgb.xsl"/>
+        </antcall>
+
+        <!-- beschikbaarstellen_medicatieoverzicht -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_mob.xsl"/>
+        </antcall>
+        <!-- beschikbaarstellen_medicatieoverzicht cda instance not generated (yet) -->
+        <!-- <antcall target="validate_hl7_sub">
+          <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
+          <param name="xsl.input" value="cda_instance"/>
+          <param name="xsl.output" value="validate_cda_instance"/>
+          <param name="xsl.mp" value="${validate.dir}/mp-mp92_mob.xsl"/>
+      </antcall>-->
+
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.av}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92-av.xsl"/>
+        </antcall>
+
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.avvv}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_avvv.xsl"/>
+        </antcall>
+
+        <!-- sturen_medicatiegebruik -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mgb}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_mgbs.xsl"/>
+        </antcall>
+
+        <!-- sturen_medicatievoorschrift -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_vos.xsl"/>
+        </antcall>
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.input" value="cda_instance"/>
+            <param name="xsl.output" value="validate_cda_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_vos.xsl"/>
+        </antcall>
+
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_vma.xsl"/>
+        </antcall>
+
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vvv}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp92_vvv.xsl"/>
+        </antcall>
+
+        <!-- xml-voorbeelden -->
+        <echo/>
+        <echo>${echo.label} xml-voorbeelden</echo>
+        <xslt force="true" style="${validate.dir}/mp-mp92_mgb.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="mg-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <xslt force="true" style="${validate.dir}/mp-mp92_mob.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="mo-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <xslt force="true" style="${validate.dir}/mp-mp92-av.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="av-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <xslt force="true" style="${validate.dir}/mp-mp92_avvv.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="avvv-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <xslt force="true" style="${validate.dir}/mp-mp92_mgbs.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="mgb-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <xslt force="true" style="${validate.dir}/mp-mp92_vos.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="mv-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <xslt force="true" style="${validate.dir}/mp-mp92_vma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="vma-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <xslt force="true" style="${validate.dir}/mp-mp92_vvv.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="vvv-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+
+    </target>
+
+
+    <target name="validate_hl7_sub">
+        <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${sub.build.dir}/${xsl.output}"/>
+        <delete>
+            <fileset dir="${sub.build.dir}/${xsl.output}" includes="*.xml"/>
+        </delete>
+
+        <fileset id="inputfilesMP" dir="${sub.build.dir}/${xsl.input}" includes="*.xml"/>
+
+        <echo/>
+        <echo>${echo.label} ${xsl.mp} input dir ${sub.build.dir}/${xsl.input}</echo>
+        <xslt force="true" style="${xsl.mp}" destdir="${sub.build.dir}/${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfilesMP"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+    </target>
+
+</project>
