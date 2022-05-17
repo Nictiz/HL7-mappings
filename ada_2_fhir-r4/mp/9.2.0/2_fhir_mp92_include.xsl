@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="searchModeParam" as="xs:string?">match</xsl:param>
     <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
     <xsl:param name="metaTag" as="xs:string?"/>
-    
+
 
     <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="patient" select="../../patient"/>
                     </xsl:call-template>
                 </resource>
-            </entry>           
+            </entry>
         </xsl:for-each-group>
         <xsl:for-each-group select="/adaxml/data/*/bouwstenen/zorgverlener" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for practitionerrole -->
@@ -275,7 +275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="mp-MedicationAdministration2">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient"/>
-                      </xsl:call-template>
+                    </xsl:call-template>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
                     <search>
@@ -284,7 +284,93 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </entry>
         </xsl:for-each>
-        
+
+        <!-- antwoord voorstelgegevens in resource Communication -->
+        <xsl:for-each select="//voorstel_gegevens/antwoord">
+            <entry>
+                <fullUrl value="urn:uuid:{nf:get-uuid(.)}"/>
+                <resource>
+                    <Communication xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
+                        <id value="{nf:get-uuid(*[1])}"/>
+                        <meta>
+                            <xsl:choose>
+                                <xsl:when test="antwoord_medicatieafspraak[@code]">
+                                    <profile value="{concat($urlBaseNictizProfile, '/mp-ReplyProposalMedicationAgreement')}"/>
+                                </xsl:when>
+                                <xsl:when test="antwoord_verstrekkingsverzoek[@code]">
+                                    <profile value="{concat($urlBaseNictizProfile, '/mp-ReplyProposalDispenseRequest')}"/>
+                                </xsl:when>
+                            </xsl:choose>
+                            <xsl:if test="string-length($metaTag) gt 0">
+                                <tag>
+                                    <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                                    <code value="{$metaTag}"/>
+                                </tag>
+                            </xsl:if>
+                        </meta>
+
+                        <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
+                            <identifier>
+                                <xsl:call-template name="id-to-Identifier"/>
+                            </identifier>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="relatie_voorstel_gegevens/identificatie[@value | @root | @nullFlavor]">
+                            <basedOn>
+                                <type value="MedicationRequest"/>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier"/>
+                                </identifier>
+                                <display value="relatie naar voorstelgegevens: {string-join((@value, @root, @nullFlavor), ' || ')}"/>
+                            </basedOn>
+                        </xsl:for-each>
+
+                        <status value="completed"/>
+
+                        <xsl:for-each select="../../patient">
+                            <subject>
+                                <xsl:call-template name="makeReference"/>
+                            </subject>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="antwoord_datum[@value]">
+                            <sent>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="@value"/>
+                                        <xsl:with-param name="dateT" select="$dateT"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </sent>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="..//zorgverlener[@id = current()/auteur/zorgverlener/@value]">
+                            <sender>
+                                <xsl:call-template name="makeReference">
+                                    <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                                </xsl:call-template>
+                            </sender>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="antwoord_medicatieafspraak | antwoord_verstrekkingsverzoek">
+
+                            <payload>
+                                <contentString>
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Communication.Payload.ContentCodeableConcept">
+                                        <valueCodeableConcept>
+                                            <xsl:call-template name="code-to-CodeableConcept"/>
+                                        </valueCodeableConcept>
+                                    </extension>
+                                </contentString>
+                            </payload>
+                        </xsl:for-each>
+
+
+                    </Communication>
+                </resource>
+            </entry>
+        </xsl:for-each>
+
     </xsl:variable>
     <xd:doc>
         <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>

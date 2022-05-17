@@ -218,7 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
 
-                <xsl:for-each select="relatie_medicatieafspraak/identificatie[.//@value]">
+                <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value | @root | @nullFlavor]">
                     <priorPrescription>
                         <type value="MedicationRequest"/>
                         <identifier>
