@@ -1,0 +1,60 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-DispenseRequest-mp9-65453d0e-d5e8-11ec-1852-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_200_logistiekeverbruiksperiode_start_eind"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+      <value value="MBH_200_logistiekeverbruiksperiode_start_eind_VV"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="52711000146108"/>
+         <display value="verstrekkingsverzoek"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/-core-PharmaceuticalProduct-mp9-2-16-840-1-113883-2-4-4-10-49484"/>
+      <type value="Medication"/>
+      <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-M-XXX-Nederveen"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Nederveen"/>
+   </subject>
+   <authoredOn value="2022-01-01T11:00:00+01:00"/>
+   <requester>
+      <reference value="PractitionerRole/-HealthProfessional-PractitionerRole-mp9-000001112-0100-00001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <performer>
+      <reference value="Organization/HealthcareProvider-Organization-mp9-2-16-528-1-1007-3-3-01236578"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+   </performer>
+   <basedOn>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_200_logistiekeverbruiksperiode_start_eind_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak  met identificatie: MBH_200_logistiekeverbruiksperiode_start_eind_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </basedOn>
+   <dispenseRequest>
+      <validityPeriod>
+         <start value="2022-01-01T00:00:00+01:00"/>
+         <end value="2023-01-01T23:59:59+01:00"/>
+      </validityPeriod>
+   </dispenseRequest>
+</MedicationRequest>

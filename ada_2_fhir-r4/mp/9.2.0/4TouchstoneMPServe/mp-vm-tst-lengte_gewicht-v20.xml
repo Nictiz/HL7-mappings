@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="206034a9-d5de-11ec-4061-020000000000"/>
+   <id value="6dbe86a1-d5e8-11ec-1504-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:2060353e-d5de-11ec-4061-020000000000"/>
+      <fullUrl value="urn:uuid:6dbe8736-d5e8-11ec-1504-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="20604e58-d5de-11ec-4061-020000000000"/>
+            <id value="6dbea050-d5e8-11ec-1504-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
@@ -38,12 +38,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:2060355c-d5de-11ec-4061-020000000000"/>
+               <reference value="urn:uuid:6dbe8754-d5e8-11ec-1504-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:20603520-d5de-11ec-4061-020000000000"/>
+               <reference value="urn:uuid:6dbe8718-d5e8-11ec-1504-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
@@ -83,7 +83,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:20603520-d5de-11ec-4061-020000000000"/>
+      <fullUrl value="urn:uuid:6dbe8718-d5e8-11ec-1504-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Brugge"/>
@@ -127,7 +127,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2060357a-d5de-11ec-4061-020000000000"/>
+      <fullUrl value="urn:uuid:6dbe8772-d5e8-11ec-1504-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001115-0100-00005111"/>
@@ -135,12 +135,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:20603598-d5de-11ec-4061-020000000000"/>
+               <reference value="urn:uuid:6dbe8790-d5e8-11ec-1504-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Marcha van Partners"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:206035b6-d5de-11ec-4061-020000000000"/>
+               <reference value="urn:uuid:6dbe87ae-d5e8-11ec-1504-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
             </organization>
@@ -156,7 +156,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:20603598-d5de-11ec-4061-020000000000"/>
+      <fullUrl value="urn:uuid:6dbe8790-d5e8-11ec-1504-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001115"/>
@@ -188,7 +188,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:206035b6-d5de-11ec-4061-020000000000"/>
+      <fullUrl value="urn:uuid:6dbe87ae-d5e8-11ec-1504-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00005111"/>
@@ -204,7 +204,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2060355c-d5de-11ec-4061-020000000000"/>
+      <fullUrl value="urn:uuid:6dbe8754-d5e8-11ec-1504-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-6947"/>
@@ -226,6 +226,82 @@
                <text value="METOCLOPRAMIDE TABLET 10MG"/>
             </code>
          </Medication>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:6dbe87f4-d5e8-11ec-1504-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="6dbe87ea-d5e8-11ec-1504-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight"/>
+            </meta>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="vital-signs"/>
+                  <display value="Vital Signs"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="8302-2"/>
+                  <display value="Body height"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:6dbe8718-d5e8-11ec-1504-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Brugge"/>
+            </subject>
+            <effectiveDateTime value="2022-01-01T07:05:00+01:00"/>
+            <valueQuantity>
+               <value value="165"/>
+               <unit value="cm"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="cm"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:6dbe881c-d5e8-11ec-1504-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="6dbe8812-d5e8-11ec-1504-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyWeight"/>
+            </meta>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="vital-signs"/>
+                  <display value="Vital Signs"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="29463-7"/>
+                  <display value="Body weight"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:6dbe8718-d5e8-11ec-1504-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Brugge"/>
+            </subject>
+            <effectiveDateTime value="2022-01-01T07:05:00+01:00"/>
+            <valueQuantity>
+               <value value="75"/>
+               <unit value="kg"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="kg"/>
+            </valueQuantity>
+         </Observation>
       </resource>
    </entry>
 </Bundle>
