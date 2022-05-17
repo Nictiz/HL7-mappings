@@ -6,7 +6,7 @@
     </xd:doc>
     <xsl:template name="ext-PharmaceuticalTreatmentIdentifier" match="*" as="element()?" mode="ext-PharmaceuticalTreatmentIdentifier">
         <xsl:param name="in" as="element()?" select="."/>
-        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+        <extension url="{$urlExtPharmaceuticalTreatmentIdentifier}">
             <valueIdentifier>
                 <xsl:call-template name="id-to-Identifier">
                     <xsl:with-param name="in" select="."/>

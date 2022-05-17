@@ -35,8 +35,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="metaTag" as="xs:string?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="medicationReference" select="$in/ancestor::*[@app]//farmaceutisch_product[@id= $in/(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product/@value]" as="element()?"/>
-        <xsl:param name="requester" select="$in//zorgverlener[@id=$in/voorschrijver/zorgverlener/@value] | $in/voorschrijver/zorgverlener[*]" as="element()?"/>
+        <xsl:param name="medicationReference" select="$in/ancestor::*[@app]//farmaceutisch_product[@id = $in/(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product/@value]" as="element()?"/>
+        <xsl:param name="requester" select="$in//zorgverlener[@id = $in/voorschrijver/zorgverlener/@value] | $in/voorschrijver/zorgverlener[*]" as="element()?"/>
         <!-- in the zib there is a reference to problem, in MP9 dataset problem has been inherited directly in reden_van_voorschrijven -->
         <xsl:param name="reasonReference" select="$in//probleem[@id = $in/reden_van_voorschrijven/probleem/@value] | $in/reden_van_voorschrijven/probleem[*]" as="element()?"/>
 
@@ -47,10 +47,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                     <xsl:if test="string-length($metaTag) gt 0">
                         <tag>
-                            <system value="http://hl7.org/fhir/ValueSet/common-tags" />
-                            <code value="$tag" />
+                            <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                            <code value="{$metaTag}"/>
                         </tag>
-                    </xsl:if>                    
+                    </xsl:if>
                 </meta>
 
                 <xsl:for-each select="(medicatieafspraak_aanvullende_informatie | aanvullende_informatie)">
@@ -67,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="gebruiksperiode">
                     <xsl:call-template name="ext-TimeInterval.Period"/>
-                </xsl:for-each>              
+                </xsl:for-each>
 
                 <!-- pharmaceuticalTreatmentIdentifier -->
                 <xsl:for-each select="../identificatie">
@@ -79,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
                     <xsl:call-template name="ext-CopyIndicator"/>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
                     <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                 </xsl:for-each>
@@ -97,12 +97,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </modifierExtension>
                 </xsl:for-each>
 
-                <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
+                <xsl:for-each select="(identificatie | ../../voorstel_gegevens/voorstel/identificatie)[@value | @root | @nullFlavor]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier"/>
                     </identifier>
                 </xsl:for-each>
-                
+
                 <xsl:choose>
                     <xsl:when test="ancestor::sturen_medicatievoorschrift">
                         <status value="active"/>
@@ -112,13 +112,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <status value="active"/>
                         <intent value="plan"/>
                     </xsl:when>
-                        <xsl:otherwise>
+                    <xsl:otherwise>
                         <!-- we do not know the current status of this instance -->
                         <status value="unknown"/>
                         <intent value="order"/>
                     </xsl:otherwise>
                 </xsl:choose>
-                
+
                 <!-- Issue MP-489: code updated to 33633005 -->
                 <category>
                     <coding>
@@ -146,7 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </encounter>
                 </xsl:for-each>
 
-                <xsl:for-each select="medicatieafspraak_datum_tijd">
+                <xsl:for-each select="(medicatieafspraak_datum_tijd | ../../voorstel_gegevens/voorstel/voorstel_datum)[@value | @nullFlavor]">
                     <authoredOn>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
@@ -159,7 +159,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$requester">
                     <requester>
                         <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                            <xsl:with-param name="profile">
+                                <xsl:choose>
+                                    <xsl:when test="self::zorgverlener">nl-core-HealthProfessional-PractitionerRole</xsl:when>
+                                    <xsl:when test="self::zorgaanbieder">nl-core-HealthcareProvider-Organization</xsl:when>
+                                </xsl:choose>
+                            </xsl:with-param>
                         </xsl:call-template>
                     </requester>
                 </xsl:for-each>
@@ -175,7 +180,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="makeReference"/>
                     </reasonReference>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value]">
                     <basedOn>
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationAdministrationAgreement">
@@ -189,7 +194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </basedOn>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie_medicatiegebruik/identificatie[@value]">
                     <basedOn>
                         <extension url="{$urlExtMedicationAgreementRelationMedicationUse}">
@@ -202,7 +207,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </valueReference>
                         </extension>
                     </basedOn>
-                </xsl:for-each>               
+                </xsl:for-each>
 
                 <xsl:for-each select="toelichting">
                     <note>
@@ -275,7 +280,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts, ' ')"/>
             </xsl:otherwise>
-        </xsl:choose>       
-        
+        </xsl:choose>
+
     </xsl:template>
 </xsl:stylesheet>

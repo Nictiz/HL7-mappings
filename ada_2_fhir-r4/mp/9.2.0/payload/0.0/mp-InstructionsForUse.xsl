@@ -449,11 +449,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$maxWaarde[@value]">
                     <frequencyMax value="{$maxWaarde/@value}"/>
                 </xsl:if>
-                <period value="1"/>
+                <period value="{(frequentie/*[@unit])[1]/@value}"/>
                 <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR((frequentie/*[@unit]/@unit)[1])}"/>
             </xsl:if>
             <xsl:if test="interval[@value and @unit]">
-                <frequency value="1"/>
+                <frequency value="{(frequentie/*[@unit])[1]/@value}"/>
                 <period value="{interval/@value}"/>
                 <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(interval/@unit)}"/>
             </xsl:if>

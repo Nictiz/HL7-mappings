@@ -179,7 +179,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="metaTag" select="$metaTag"/>
                         <xsl:with-param name="subject" select="../../patient"/>
-                        <xsl:with-param name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]"/>
+                        <xsl:with-param name="requester" as="element()?">
+                            <xsl:choose>
+                                <xsl:when test="voorschrijver/zorgverlener/@value">
+                                    <xsl:sequence select="(ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value])[1]"/>
+                                </xsl:when>
+                                <xsl:when test="voorschrijver//zorgverlener[not(zorgverlener)][*]">
+                                    <xsl:sequence select="voorschrijver//zorgverlener[not(zorgverlener)]"/>
+                                </xsl:when>
+                                <!-- voorstel stuff -->
+                                <xsl:when test="../../voorstel_gegevens/voorstel/auteur/*">
+                                    <xsl:for-each select="../../voorstel_gegevens/voorstel/auteur">
+                                        <xsl:choose>
+                                            <xsl:when test="auteur_is_zorgverlener/zorgverlener[@value]">
+                                                <xsl:sequence select="(ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/auteur_is_zorgverlener/zorgverlener/@value])[1]"/>
+                                            </xsl:when>
+                                            <xsl:when test="auteur_is_zorgaanbieder/zorgaanbieder[@value]">
+                                                <xsl:sequence select="(ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value])[1]"/>
+                                            </xsl:when>
+                                            <xsl:when test="auteur_is_patient[@value = 'true']">
+                                                <xsl:sequence select="(ancestor::*[patient[*]]/patient)[1]"/>
+                                            </xsl:when>
+                                        </xsl:choose>
+                                    </xsl:for-each>
+                                </xsl:when>
+
+                                <xsl:otherwise>
+                                    <!-- assume a normal MA -->
+                                    <xsl:sequence select="(ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value])[1]"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
@@ -434,7 +464,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="date-to-datetime">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="inputDateT" as="xs:date?"/>
-        
+
         <xsl:attribute name="value">
             <xsl:call-template name="format2FHIRDate">
                 <xsl:with-param name="dateTime" select="$in/@value"/>

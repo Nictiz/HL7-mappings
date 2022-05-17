@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="string-length($metaTag) gt 0">
                         <tag>
                             <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
-                            <code value="$tag"/>
+                            <code value="{$metaTag}"/>
                         </tag>
                     </xsl:if>
                 </meta>
