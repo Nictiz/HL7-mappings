@@ -35,11 +35,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Observation[f:code/f:coding/f:code/@value=$bodyWeightLOINCcode]" mode="nl-core-BodyWeight"/>
 		</xsl:variable>
 
-		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
 			<meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>
 			<data>
-				<sturen_medicatievoorschrift app="mp-mp92" shortName="sturen_medicatievoorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.322" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
-					<xsl:attribute name="title">Generated from HL7 FHIR sturen_medicatievoorschrift</xsl:attribute>
+				<sturen_afhandeling_medicatievoorschrift app="mp-mp92" shortName="sturen_afhandeling_medicatievoorschrift" formName="afhandelen_medicatievoorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.334" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
+					<xsl:attribute name="title">Generated from HL7 FHIR sturen_afhandeling_medicatievoorschrift</xsl:attribute>
 					<xsl:attribute name="id">DUMMY</xsl:attribute>
 
 					<xsl:choose>
@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</bouwstenen>
 					</xsl:if>
 
-				</sturen_medicatievoorschrift>
+				</sturen_afhandeling_medicatievoorschrift>
 			</data>
 		</adaxml>
 	</xsl:template>

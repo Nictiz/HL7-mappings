@@ -55,9 +55,17 @@
             <param name="xsl.out" value="ada_instance_repo"/>
         </antcall>
         
-        <!-- beschikbaarstellen_medicatiegegevens -->
+        <!-- sturen_medicatievoorschrift -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.mv}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.av}"/>
             <param name="build.dir" value="${build.dir}"/>
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
@@ -104,6 +112,13 @@
         <!-- sturen_medicatievoorschrift -->
         <antcall target="setup_sub">
             <param name="usecase"  value="${usecase.mv}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+        
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="setup_sub">
+            <param name="usecase"  value="${usecase.av}"/>
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>
