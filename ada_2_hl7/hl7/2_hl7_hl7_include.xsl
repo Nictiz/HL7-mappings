@@ -55,6 +55,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="starts-with($inputDateTime, 'T')">
                     <xsl:value-of select="nf:calculate-t-date($inputDateTime, $inputDateT)"/>
                 </xsl:when>
+                <!-- relative Date when first character is 'DOB' -->
+                <xsl:when test="starts-with($inputDateTime, 'DOB')">
+                    <xsl:value-of select="nf:calculate-t-date($inputDateTime, $inputDateT)"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$inputDateTime"/>
                 </xsl:otherwise>

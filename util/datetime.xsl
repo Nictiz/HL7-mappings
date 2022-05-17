@@ -124,22 +124,218 @@
         <xsl:choose>
             <xsl:when test="(starts-with($in, 'T') or starts-with($in, 'DOB')) and $inputDateT castable as xs:date">
                 <xsl:variable name="sign" select="replace($in, '^(T|DOB)([+-])?.*', '$2')"/>
-                <xsl:variable name="amountYearMonth" as="xs:string?">
-                    <xsl:if test="matches($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}')">
-                        <xsl:value-of select="replace($in, '^(T|DOB)[+-]((\d+(\.\d+)?Y)?(\d+(\.\d+)?M)?).*', '$2')"/>
-                    </xsl:if>
+                <xsl:variable name="amountYearMonth" as="xs:string*">
+                    <!--<x>
+                        <x1>DOB</x1>
+                        <x2>-</x2>
+                        <x3>8Y</x3>
+                        <x4>8</x4>
+                        <x5/>
+                        <x6>Y</x6>
+                        <x7>7.5M</x7>
+                        <x8>7</x8>
+                        <x9>.5</x9>
+                        <x10>M</x10>
+                    </x>-->
+                    <xsl:analyze-string select="$in" regex="^(T|DOB)([+\-])((\d+)(\.\d+)?([YM]))((\d+)(\.\d+)?([YM]))?">
+                        <xsl:matching-substring>
+                            <xsl:if test="regex-group(6) = regex-group(10)">
+                                <xsl:message>Variable dateTime "<xsl:value-of select="$in"/>" found with duplicate specification of <xsl:value-of select="regex-group(6)"/></xsl:message>
+                            </xsl:if>
+                            
+                            <!--<x1><xsl:value-of select="regex-group(1)"/></x1>
+                            <x2><xsl:value-of select="regex-group(2)"/></x2>
+                            <x3><xsl:value-of select="regex-group(3)"/></x3>
+                            <x4><xsl:value-of select="regex-group(4)"/></x4>
+                            <x5><xsl:value-of select="regex-group(5)"/></x5>
+                            <x6><xsl:value-of select="regex-group(6)"/></x6>
+                            <x7><xsl:value-of select="regex-group(7)"/></x7>
+                            <x8><xsl:value-of select="regex-group(8)"/></x8>
+                            <x9><xsl:value-of select="regex-group(9)"/></x9>
+                            <x10><xsl:value-of select="regex-group(10)"/></x10>
+                            <x11><xsl:value-of select="regex-group(11)"/></x11>
+                            <x12><xsl:value-of select="regex-group(12)"/></x12>
+                            <x13><xsl:value-of select="regex-group(13)"/></x13>
+                            <x14><xsl:value-of select="regex-group(14)"/></x14>
+                            <x15><xsl:value-of select="regex-group(15)"/></x15>
+                            <x16><xsl:value-of select="regex-group(16)"/></x16>-->
+                            
+                            <!-- If someone sends in 7.5 year, recalculate into months. round into full months -->
+                            <xsl:variable name="partMonth" as="xs:integer?">
+                                <xsl:choose>
+                                    <xsl:when test="regex-group(6) = 'Y' and regex-group(6) = regex-group(10) and regex-group(5) castable as xs:double and regex-group(9) castable as xs:double">
+                                        <xsl:value-of select="round(12 * (xs:double(regex-group(5)) + xs:double(regex-group(9))))"/>
+                                    </xsl:when>
+                                    <xsl:when test="regex-group(6) = 'Y' and regex-group(6) = regex-group(10) and regex-group(5) castable as xs:double">
+                                        <xsl:value-of select="round(12 * xs:double(regex-group(5)))"/>
+                                    </xsl:when>
+                                    <xsl:when test="regex-group(6) = 'Y' and regex-group(6) = regex-group(10) and regex-group(10) castable as xs:double">
+                                        <xsl:value-of select="round(12 * xs:double(regex-group(10)))"/>
+                                    </xsl:when>
+                                    <xsl:when test="regex-group(6) = 'Y' and regex-group(5) castable as xs:double">
+                                        <xsl:value-of select="round(12 * xs:double(regex-group(5)))"/>
+                                    </xsl:when>
+                                    <xsl:when test="regex-group(10) = 'Y' and regex-group(9) castable as xs:double">
+                                        <xsl:value-of select="round(12 * xs:double(regex-group(9)))"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>0</xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:variable>
+                            
+                            <!--<xsl:text>P</xsl:text>
+                            <xsl:if test="regex-group(2) = '-'">
+                                <xsl:value-of select="regex-group(2)"/>
+                            </xsl:if>-->
+                            <xsl:choose>
+                                <xsl:when test="regex-group(6) = regex-group(10) and regex-group(6) = 'Y'">
+                                    <xsl:value-of select="xs:integer(regex-group(4)) + xs:integer(regex-group(8))"/>
+                                    <xsl:value-of select="regex-group(6)"/>
+                                </xsl:when>
+                                <xsl:when test="regex-group(6) = regex-group(10) and regex-group(6) = 'M'">
+                                    <xsl:value-of select="xs:integer(regex-group(4)) + xs:integer(regex-group(8)) + $partMonth"/>
+                                    <xsl:value-of select="regex-group(6)"/>
+                                </xsl:when>
+                                <xsl:when test="regex-group(6) = 'Y'">
+                                    <!-- year count -->
+                                    <xsl:value-of select="regex-group(4)"/>
+                                    <!-- year marker -->
+                                    <xsl:value-of select="regex-group(6)"/>
+                                    <xsl:choose>
+                                        <xsl:when test="regex-group(10) = 'M'">
+                                            <!-- month count -->
+                                            <xsl:value-of select="xs:integer(regex-group(8)) + $partMonth"/>
+                                            <!-- month marker -->
+                                            <xsl:text>M</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="$partMonth">
+                                            <!-- month count -->
+                                            <xsl:value-of select="$partMonth"/>
+                                            <!-- month marker -->
+                                            <xsl:text>M</xsl:text>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                </xsl:when>
+                                <xsl:when test="regex-group(10) = 'Y'">
+                                    <!-- year count -->
+                                    <xsl:value-of select="regex-group(8)"/>
+                                    <!-- year marker -->
+                                    <xsl:value-of select="regex-group(10)"/>
+                                    <xsl:choose>
+                                        <xsl:when test="regex-group(6) = 'M'">
+                                            <!-- month count -->
+                                            <xsl:value-of select="xs:integer(regex-group(4)) + $partMonth"/>
+                                            <!-- month marker -->
+                                            <xsl:text>M</xsl:text>
+                                        </xsl:when>
+                                        <xsl:when test="$partMonth gt 0">
+                                            <!-- month count -->
+                                            <xsl:value-of select="$partMonth"/>
+                                            <!-- month marker -->
+                                            <xsl:text>M</xsl:text>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <!-- month count -->
+                                    <xsl:value-of select="xs:integer(regex-group(4)) + $partMonth"/>
+                                    <!-- month marker -->
+                                    <xsl:text>M</xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
                 </xsl:variable>
-                <xsl:variable name="amountDay" as="xs:string?">
-                    <xsl:if test="matches($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D).*')">
-                        <xsl:value-of select="replace($in, '^(T|DOB)[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D)?.*', '$4')"/>
-                    </xsl:if>
+                <xsl:variable name="amountDay" as="xs:string*">
+                    <!--<x>
+                        <x1>DOB</x1>
+                        <x2>-</x2>
+                        <x3>0.75Y</x3>
+                        <x4>0</x4>
+                        <x5>.75</x5>
+                        <x6>Y</x6>
+                        <x7>5.5M</x7>
+                        <x8>5</x8>
+                        <x9>.5</x9>
+                        <x10>M</x10>
+                        <x11>12D</x11>
+                        <x12>12</x12>
+                        <x13/>
+                        <x14>D</x14>
+                        <x15/>
+                        <x16/>
+                    </x>-->
+                    <xsl:analyze-string select="$in" regex="^(T|DOB)([+\-])((\d+)(\.\d+)?([YM]))?((\d+)(\.\d+)?([YM]))?((\d+)(\.\d+)?(D))">
+                        <xsl:matching-substring>
+                            <!--<x1><xsl:value-of select="regex-group(1)"/></x1>
+                            <x2><xsl:value-of select="regex-group(2)"/></x2>
+                            <x3><xsl:value-of select="regex-group(3)"/></x3>
+                            <x4><xsl:value-of select="regex-group(4)"/></x4>
+                            <x5><xsl:value-of select="regex-group(5)"/></x5>
+                            <x6><xsl:value-of select="regex-group(6)"/></x6>
+                            <x7><xsl:value-of select="regex-group(7)"/></x7>
+                            <x8><xsl:value-of select="regex-group(8)"/></x8>
+                            <x9><xsl:value-of select="regex-group(9)"/></x9>
+                            <x10><xsl:value-of select="regex-group(10)"/></x10>
+                            <x11><xsl:value-of select="regex-group(11)"/></x11>
+                            <x12><xsl:value-of select="regex-group(12)"/></x12>
+                            <x13><xsl:value-of select="regex-group(13)"/></x13>
+                            <x14><xsl:value-of select="regex-group(14)"/></x14>
+                            <x15><xsl:value-of select="regex-group(15)"/></x15>
+                            <x16><xsl:value-of select="regex-group(16)"/></x16>-->
+                            
+                            <!-- If someone sends in .5 month, recalculate into day. round into full day -->
+                            <xsl:variable name="partDay" as="xs:integer?">
+                                <xsl:choose>
+                                    <xsl:when test="regex-group(6) = 'M' and regex-group(6) = regex-group(10) and regex-group(5) castable as xs:double and regex-group(9) castable as xs:double">
+                                        <xsl:value-of select="round(30 * (xs:double(regex-group(5)) + xs:double(regex-group(9))))"/>
+                                    </xsl:when>
+                                    <xsl:when test="regex-group(6) = 'M' and regex-group(6) = regex-group(10) and regex-group(5) castable as xs:double">
+                                        <xsl:value-of select="round(30 * xs:double(regex-group(5)))"/>
+                                    </xsl:when>
+                                    <xsl:when test="regex-group(6) = 'M' and regex-group(6) = regex-group(10) and regex-group(10) castable as xs:double">
+                                        <xsl:value-of select="round(30 * xs:double(regex-group(10)))"/>
+                                    </xsl:when>
+                                    <xsl:when test="regex-group(6) = 'M' and regex-group(5) castable as xs:double">
+                                        <xsl:value-of select="round(30 * xs:double(regex-group(5)))"/>
+                                    </xsl:when>
+                                    <xsl:when test="regex-group(10) = 'M' and regex-group(9) castable as xs:double">
+                                        <xsl:value-of select="round(30 * xs:double(regex-group(9)))"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>0</xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:variable>
+                            
+                            <xsl:choose>
+                                <xsl:when test="regex-group(6) = 'D'">
+                                    <!-- day count -->
+                                    <xsl:value-of select="xs:integer(regex-group(4)) + $partDay"/>
+                                    <!-- day marker -->
+                                    <xsl:text>D</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="regex-group(10) = 'D'">
+                                    <!-- day count -->
+                                    <xsl:value-of select="xs:integer(regex-group(8)) + $partDay"/>
+                                    <!-- day marker -->
+                                    <xsl:text>D</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="regex-group(14) = 'D'">
+                                    <!-- day count -->
+                                    <xsl:value-of select="xs:integer(regex-group(12)) + $partDay"/>
+                                    <!-- day marker -->
+                                    <xsl:text>D</xsl:text>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
                 </xsl:variable>
 
-                <xsl:variable name="timePart" select="
-                        if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then
-                            replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2')
-                        else
-                            ()"/>
+                <xsl:variable name="timePart" as="xs:string?">
+                    <xsl:analyze-string select="$in" regex="^(T|DOB)[^\{{]*\{{([^\}}]+)\}}">
+                        <xsl:matching-substring>
+                            <xsl:value-of select="regex-group(2)"/>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
+                </xsl:variable>
                 <xsl:variable name="time" as="xs:string?">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 2">
@@ -157,11 +353,11 @@
                 </xsl:variable>
                 <xsl:variable name="calculatedYearMonth" as="xs:date">
                     <xsl:choose>
-                        <xsl:when test="$sign = '+' and string-length($amountYearMonth) gt 0">
-                            <xsl:value-of select="$inputDateT + xs:yearMonthDuration(concat('P', $amountYearMonth))"/>
+                        <xsl:when test="$sign = '+' and string-length(string-join($amountYearMonth, '')) gt 0">
+                            <xsl:value-of select="$inputDateT + xs:yearMonthDuration(concat('P', string-join($amountYearMonth, '')))"/>
                         </xsl:when>
-                        <xsl:when test="$sign = '-' and string-length($amountYearMonth) gt 0">
-                            <xsl:value-of select="$inputDateT - xs:yearMonthDuration(concat('P', $amountYearMonth))"/>
+                        <xsl:when test="$sign = '-' and string-length(string-join($amountYearMonth, '')) gt 0">
+                            <xsl:value-of select="$inputDateT - xs:yearMonthDuration(concat('P', string-join($amountYearMonth, '')))"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:copy-of select="$inputDateT"/>
@@ -170,11 +366,11 @@
                 </xsl:variable>
                 <xsl:variable name="calculatedDay" as="xs:date">
                     <xsl:choose>
-                        <xsl:when test="$sign = '+' and string-length($amountDay) gt 0">
-                            <xsl:value-of select="$calculatedYearMonth + xs:dayTimeDuration(concat('P', $amountDay))"/>
+                        <xsl:when test="$sign = '+' and string-length(string-join($amountDay, '')) gt 0">
+                            <xsl:value-of select="$calculatedYearMonth + xs:dayTimeDuration(concat('P', string-join($amountDay, '')))"/>
                         </xsl:when>
-                        <xsl:when test="$sign = '-' and string-length($amountDay) gt 0">
-                            <xsl:value-of select="$calculatedYearMonth - xs:dayTimeDuration(concat('P', $amountDay))"/>
+                        <xsl:when test="$sign = '-' and string-length(string-join($amountDay, '')) gt 0">
+                            <xsl:value-of select="$calculatedYearMonth - xs:dayTimeDuration(concat('P', string-join($amountDay, '')))"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:copy-of select="$calculatedYearMonth"/>
