@@ -29,17 +29,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:PractitionerRole" mode="resolve-HealthProfessional-PractitionerRole"/>
 			<!-- zorgaanbieder -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Organization" mode="nl-core-HealthcareProvider-Organization"/>
-			<!-- lichaamslengte -->
-			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Observation[f:code/f:coding/f:code/@value=$bodyHeightLOINCcode]" mode="nl-core-BodyHeight"/>
-			<!-- lichaamsgewicht -->
-			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Observation[f:code/f:coding/f:code/@value=$bodyWeightLOINCcode]" mode="nl-core-BodyWeight"/>
 		</xsl:variable>
 
-		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_verstrekkingsverzoek.xsd">
 			<meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>
 			<data>
-				<sturen_afhandeling_medicatievoorschrift app="mp-mp92" shortName="sturen_afhandeling_medicatievoorschrift" formName="afhandelen_medicatievoorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.334" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
-					<xsl:attribute name="title">Generated from HL7 FHIR sturen_afhandeling_medicatievoorschrift</xsl:attribute>
+				<sturen_voorstel_verstrekkingsverzoek app="mp-mp92" shortName="sturen_voorstel_verstrekkingsverzoek" formName="sturen_voorstel_verstrekkingsverzoek" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.328" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
+					<xsl:attribute name="title">Generated from HL7 FHIR sturen_voorstel_verstrekkingsverzoek</xsl:attribute>
 					<xsl:attribute name="id">DUMMY</xsl:attribute>
 
 					<xsl:choose>
@@ -50,35 +46,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-Patient"/>
 						</xsl:otherwise>
 					</xsl:choose>
-					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement | f:MedicationAdministration)" group-by="f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
-						<medicamenteuze_behandeling>
+					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/f:MedicationRequest" group-by="f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
+						<medicamenteuze_behandeling id="{f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/f:value/@value}">
 							<identificatie>
 								<xsl:attribute name="value" select="f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/f:value/@value"/>
 								<xsl:attribute name="root" select="local:getOid(f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/f:system/@value)"/>
 							</identificatie>
-							<!-- medicatieafspraak -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $maCode]" mode="nl-core-MedicationAgreement"/>
-							<!--WisselendDoseerschema in f:MedicationRequest-->
-							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $wdsCode]" mode="nl-core-VariableDosingRegimen"/>
 							<!-- verstrekkingsverzoek -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $vvCode]" mode="nl-core-DispenseRequest"/>
-							<!-- toedieningsafspraak -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value = $taCode]" mode="nl-core-AdministrationAgreement"/>
-							<!-- verstrekking -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value = $mveCode]" mode="nl-core-MedicationDispense"/>
-							<!-- medicatie_gebruik -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value = $mgbCode]" mode="nl-core-MedicationUse2"/>
-							<!-- medicatietoediening -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationAdministration]" mode="nl-core-MedicationAdministration"/>
 						</medicamenteuze_behandeling>
 					</xsl:for-each-group>
+					<xsl:if test="f:Bundle/f:entry/f:resource/f:MedicationRequest[not(f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier])]">
+						<medicamenteuze_behandeling id="NIEUW">							
+							<!-- verstrekkingsverzoek -->
+							<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:MedicationRequest[not(f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier])]" mode="nl-core-DispenseRequest"/>
+						</medicamenteuze_behandeling>						
+					</xsl:if>
+
 					<xsl:if test="$bouwstenen/*">
 						<bouwstenen>
 							<xsl:copy-of select="$bouwstenen"/>
 						</bouwstenen>
 					</xsl:if>
+					<xsl:if test="f:Bundle/f:entry/f:resource/f:MedicationRequest[f:intent/@value = 'plan']">
+						<voorstel_gegevens>
+							<!-- should be only one proposal MedicationRequest -->
+							<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:MedicationRequest[f:intent/@value = 'plan']" mode="mp-voorstel"/>
+						</voorstel_gegevens>
+					</xsl:if>
 
-				</sturen_afhandeling_medicatievoorschrift>
+				</sturen_voorstel_verstrekkingsverzoek>
 			</data>
 		</adaxml>
 	</xsl:template>

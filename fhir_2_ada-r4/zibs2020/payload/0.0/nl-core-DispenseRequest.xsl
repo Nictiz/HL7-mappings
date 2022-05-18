@@ -22,11 +22,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:MedicationRequest" mode="nl-core-DispenseRequest">
         <verstrekkingsverzoek>
             <!-- identificatie -->
-            <xsl:apply-templates select="f:identifier" mode="#current"/>
+            <xsl:apply-templates select=".[f:intent/@value = 'order']/f:identifier" mode="#current"/>
             <!-- verstrekkingsverzoek_datum_tijd -->
-            <xsl:apply-templates select="f:authoredOn" mode="#current"/>
+            <xsl:apply-templates select=".[f:intent/@value = 'order']/f:authoredOn" mode="#current"/>
             <!--auteur/zorgverlener-->
-            <xsl:apply-templates select="f:requester" mode="#current"/>
+            <xsl:apply-templates select=".[f:intent/@value = 'order']/f:requester" mode="#current"/>
             <!-- (ref) te_verstrekken_geneesmiddel -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!--te_verstrekken_hoeveelheid-->
@@ -57,8 +57,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:encounter[f:type/@value eq 'Encounter']" mode="contextContactEpisodeOfCare"/>
             <!-- relatie_zorgepisode -->
             <xsl:apply-templates select="f:extension[@url = $urlExtContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
-
-
 
             <!-- geannuleerd_indicator niet voor MA -->
             <!--			<xsl:apply-templates select="f:status" mode="#current"/>-->
