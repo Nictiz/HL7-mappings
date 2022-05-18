@@ -363,7 +363,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </sent>
                         </xsl:for-each>
 
-                        <xsl:for-each select="..//zorgverlener[@id = current()/auteur/zorgverlener/@value]">
+                        <xsl:for-each select="ancestor::*[bouwstenen]/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]">
                             <sender>
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
@@ -375,7 +375,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                             <payload>
                                 <contentString>
-                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Communication.Payload.ContentCodeableConcept">
+                                    <extension url="{$urlExtCommunicationPayloadContentCodeableConcept}">
                                         <valueCodeableConcept>
                                             <xsl:call-template name="code-to-CodeableConcept"/>
                                         </valueCodeableConcept>
