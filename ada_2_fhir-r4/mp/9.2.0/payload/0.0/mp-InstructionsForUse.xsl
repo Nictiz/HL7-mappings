@@ -354,6 +354,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <!-- code , which is MP dataset -->
                                             <xsl:call-template name="code-to-CodeableConcept">
                                                 <xsl:with-param name="in" select="."/>
+                                                <!-- OTH is part of ValueSet, binding is 'required', so no other nullFlavors allowed -->
+                                                <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
                                             </xsl:call-template>
                                         </xsl:when>
                                         <xsl:otherwise>
