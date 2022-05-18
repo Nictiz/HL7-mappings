@@ -455,7 +455,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR((frequentie/*[@unit]/@unit)[1])}"/>
             </xsl:if>
             <xsl:if test="interval[@value and @unit]">
-                <frequency value="{(frequentie/*[@unit])[1]/@value}"/>
+                <frequency value="{((frequentie/*[@unit])[1]/@value, '1')[1]}"/>
                 <period value="{interval/@value}"/>
                 <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(interval/@unit)}"/>
             </xsl:if>
