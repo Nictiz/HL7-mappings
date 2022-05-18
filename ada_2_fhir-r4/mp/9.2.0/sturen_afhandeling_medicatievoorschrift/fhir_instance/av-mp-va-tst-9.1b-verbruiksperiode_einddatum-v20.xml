@@ -1,11 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec8348ff-d5fc-11ec-1443-020000000000"/>
+   <id value="10061a7f-d6a5-11ec-4105-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec834994-d5fc-11ec-1443-020000000000"/>
+      <fullUrl value="urn:uuid:10061b14-d6a5-11ec-4105-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ec833075-d5fc-11ec-1443-020000000000"/>
+            <id value="1006024f-d6a5-11ec-4105-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -53,18 +56,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec8349d0-d5fc-11ec-1443-020000000000"/>
+               <reference value="urn:uuid:10061b50-d6a5-11ec-4105-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec834976-d5fc-11ec-1443-020000000000"/>
+               <reference value="urn:uuid:10061af6-d6a5-11ec-4105-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec8349ee-d5fc-11ec-1443-020000000000"/>
+                  <reference value="urn:uuid:10061b6e-d6a5-11ec-4105-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -111,12 +114,16 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec8349b2-d5fc-11ec-1443-020000000000"/>
+      <fullUrl value="urn:uuid:10061b32-d6a5-11ec-4105-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ec833090-d5fc-11ec-1443-020000000000"/>
+            <id value="1006026a-d6a5-11ec-4105-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -152,18 +159,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec8349d0-d5fc-11ec-1443-020000000000"/>
+               <reference value="urn:uuid:10061b50-d6a5-11ec-4105-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec834976-d5fc-11ec-1443-020000000000"/>
+               <reference value="urn:uuid:10061af6-d6a5-11ec-4105-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec8349ee-d5fc-11ec-1443-020000000000"/>
+                  <reference value="urn:uuid:10061b6e-d6a5-11ec-4105-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -193,9 +200,13 @@
             <whenHandedOver value="2022-01-01T12:01:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec834976-d5fc-11ec-1443-020000000000"/>
+      <fullUrl value="urn:uuid:10061af6-d6a5-11ec-4105-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Nederveen"/>
@@ -237,9 +248,13 @@
             <birthDate value="1985-10-28"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec8349ee-d5fc-11ec-1443-020000000000"/>
+      <fullUrl value="urn:uuid:10061b6e-d6a5-11ec-4105-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -253,9 +268,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec8349d0-d5fc-11ec-1443-020000000000"/>
+      <fullUrl value="urn:uuid:10061b50-d6a5-11ec-4105-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1101099"/>
@@ -283,5 +302,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

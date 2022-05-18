@@ -1,11 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="f03dd541-d5fc-11ec-5660-020000000000"/>
+   <id value="1253213d-d6a5-11ec-1773-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalDispenseRequest"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:f03dd5d6-d5fc-11ec-5660-020000000000"/>
+      <fullUrl value="urn:uuid:125321d2-d6a5-11ec-1773-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="f03deb09-d5fc-11ec-5660-020000000000"/>
+            <id value="125339d5-d6a5-11ec-1773-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
                <tag>
@@ -19,6 +22,13 @@
                   <value value="MBH_200_start_eind"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+               <valueString value="Te weinig voorraad voor het komende weekend"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.2"/>
+               <value value="MBH_200_start_eind_VVV"/>
+            </identifier>
             <status value="active"/>
             <intent value="plan"/>
             <category>
@@ -29,17 +39,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:f03dd5f4-d5fc-11ec-5660-020000000000"/>
+               <reference value="urn:uuid:125321f0-d6a5-11ec-1773-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:f03dd5b8-d5fc-11ec-5660-020000000000"/>
+               <reference value="urn:uuid:125321b4-d6a5-11ec-1773-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. van de XXX_Brugge"/>
             </subject>
+            <authoredOn value="2022-01-01T13:24:00+01:00"/>
+            <requester>
+               <reference value="urn:uuid:1253220e-d6a5-11ec-1773-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Johan van Vliet, Verpleegkundigen, niet nader gespecificeerd"/>
+            </requester>
             <performer>
-               <reference value="urn:uuid:f03dd64e-d5fc-11ec-5660-020000000000"/>
+               <reference value="urn:uuid:1253224a-d6a5-11ec-1773-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -69,9 +85,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f03dd5b8-d5fc-11ec-5660-020000000000"/>
+      <fullUrl value="urn:uuid:125321b4-d6a5-11ec-1773-020000000000"/>
       <resource>
          <Patient>
             <id value="C.vandeXXX-Brugge"/>
@@ -116,9 +136,13 @@
             <birthDate value="1963-10-16"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f03dd612-d5fc-11ec-5660-020000000000"/>
+      <fullUrl value="urn:uuid:1253220e-d6a5-11ec-1773-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="987654321-9100-87654321"/>
@@ -126,12 +150,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:f03dd630-d5fc-11ec-5660-020000000000"/>
+               <reference value="urn:uuid:1253222c-d6a5-11ec-1773-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Johan van Vliet"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:f03dd68a-d5fc-11ec-5660-020000000000"/>
+               <reference value="urn:uuid:12532286-d6a5-11ec-1773-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Thuiszorg Samen Uit"/>
             </organization>
@@ -145,9 +169,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f03dd630-d5fc-11ec-5660-020000000000"/>
+      <fullUrl value="urn:uuid:1253222c-d6a5-11ec-1773-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-987654321"/>
@@ -177,9 +205,13 @@
             </name>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f03dd64e-d5fc-11ec-5660-020000000000"/>
+      <fullUrl value="urn:uuid:1253224a-d6a5-11ec-1773-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -193,9 +225,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f03dd68a-d5fc-11ec-5660-020000000000"/>
+      <fullUrl value="urn:uuid:12532286-d6a5-11ec-1773-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-87654321"/>
@@ -209,9 +245,13 @@
             <name value="Thuiszorg Samen Uit"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f03dd5f4-d5fc-11ec-5660-020000000000"/>
+      <fullUrl value="urn:uuid:125321f0-d6a5-11ec-1773-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-560308"/>
@@ -239,5 +279,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

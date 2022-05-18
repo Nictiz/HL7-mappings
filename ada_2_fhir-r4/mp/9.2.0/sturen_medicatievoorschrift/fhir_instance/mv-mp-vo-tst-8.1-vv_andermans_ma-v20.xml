@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ea22d7e7-d5fc-11ec-4998-020000000000"/>
+   <id value="0d46c36b-d6a5-11ec-1672-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ea22b16c-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c400-d6a5-11ec-1672-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH200VVandermansMAMA"/>
@@ -45,18 +48,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ea22b1a8-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c43c-d6a5-11ec-1672-020000000000"/>
                <type value="Medication"/>
                <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ea22b14e-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c3e2-d6a5-11ec-1672-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <authoredOn value="2021-12-18T09:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:ea22b1c6-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c45a-d6a5-11ec-1672-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -94,9 +97,13 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b18a-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c41e-d6a5-11ec-1672-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977527110001461081-MBH200VVandermansMAVV"/>
@@ -127,23 +134,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ea22b1a8-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c43c-d6a5-11ec-1672-020000000000"/>
                <type value="Medication"/>
                <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ea22b14e-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c3e2-d6a5-11ec-1672-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <authoredOn value="2022-01-01T09:00:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:ea22b202-d5fc-11ec-4998-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
             <performer>
-               <reference value="urn:uuid:ea22b2b6-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c54a-d6a5-11ec-1672-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -173,9 +175,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b14e-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c3e2-d6a5-11ec-1672-020000000000"/>
       <resource>
          <Patient>
             <id value="L.vanXXX-Meijs"/>
@@ -220,9 +226,13 @@
             <birthDate value="1985-10-26"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b1c6-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c45a-d6a5-11ec-1672-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001115-0100-00005111"/>
@@ -230,12 +240,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ea22b1e4-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c478-d6a5-11ec-1672-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Marcha van Partners"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:ea22b23e-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c4d2-d6a5-11ec-1672-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
             </organization>
@@ -249,9 +259,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b1e4-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c478-d6a5-11ec-1672-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001115"/>
@@ -281,9 +295,13 @@
             </name>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b202-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c496-d6a5-11ec-1672-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -291,12 +309,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ea22b220-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c4b4-d6a5-11ec-1672-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:ea22b27a-d5fc-11ec-4998-020000000000"/>
+               <reference value="urn:uuid:0d46c50e-d6a5-11ec-1672-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -315,9 +333,13 @@
             </telecom>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b220-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c4b4-d6a5-11ec-1672-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -352,9 +374,13 @@
             </telecom>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b23e-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c4d2-d6a5-11ec-1672-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00005111"/>
@@ -390,9 +416,13 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b27a-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c50e-d6a5-11ec-1672-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -428,9 +458,13 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b2b6-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c54a-d6a5-11ec-1672-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -444,9 +478,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea22b1a8-d5fc-11ec-4998-020000000000"/>
+      <fullUrl value="urn:uuid:0d46c43c-d6a5-11ec-1672-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-8052"/>
@@ -469,5 +507,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ebff8a97-d5fc-11ec-1675-020000000000"/>
+   <id value="0f8e3e29-d6a5-11ec-1130-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ebff8b2c-d5fc-11ec-1675-020000000000"/>
+      <fullUrl value="urn:uuid:0f8e3ebe-d6a5-11ec-1130-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200stoppenTAstaken"/>
@@ -53,18 +56,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebff8b4a-d5fc-11ec-1675-020000000000"/>
+               <reference value="urn:uuid:0f8e3edc-d6a5-11ec-1130-020000000000"/>
                <type value="Medication"/>
                <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebff8b0e-d5fc-11ec-1675-020000000000"/>
+               <reference value="urn:uuid:0f8e3ea0-d6a5-11ec-1130-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebff8b68-d5fc-11ec-1675-020000000000"/>
+                  <reference value="urn:uuid:0f8e3efa-d6a5-11ec-1130-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek Jansen en Co"/>
                </actor>
@@ -111,9 +114,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebff8b0e-d5fc-11ec-1675-020000000000"/>
+      <fullUrl value="urn:uuid:0f8e3ea0-d6a5-11ec-1130-020000000000"/>
       <resource>
          <Patient>
             <id value="J.deXXX-Luzac"/>
@@ -158,9 +165,13 @@
             <birthDate value="1985-10-24"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebff8b68-d5fc-11ec-1675-020000000000"/>
+      <fullUrl value="urn:uuid:0f8e3efa-d6a5-11ec-1130-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-99901111"/>
@@ -174,9 +185,13 @@
             <name value="Apotheek Jansen en Co"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebff8b4a-d5fc-11ec-1675-020000000000"/>
+      <fullUrl value="urn:uuid:0f8e3edc-d6a5-11ec-1130-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1110837"/>
@@ -204,5 +219,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

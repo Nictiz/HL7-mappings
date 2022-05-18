@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec6bdb61-d5fc-11ec-2871-020000000000"/>
+   <id value="0ff6b66b-d6a5-11ec-4998-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec6bdbf6-d5fc-11ec-2871-020000000000"/>
+      <fullUrl value="urn:uuid:0ff6b700-d6a5-11ec-4998-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200MVEandermansTATA"/>
@@ -44,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec6bdc32-d5fc-11ec-2871-020000000000"/>
+               <reference value="urn:uuid:0ff6b73c-d6a5-11ec-4998-020000000000"/>
                <type value="Medication"/>
                <display value="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec6bdbd8-d5fc-11ec-2871-020000000000"/>
+               <reference value="urn:uuid:0ff6b6e2-d6a5-11ec-4998-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec6bdc50-d5fc-11ec-2871-020000000000"/>
+                  <reference value="urn:uuid:0ff6b75a-d6a5-11ec-4998-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -102,9 +105,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec6bdc14-d5fc-11ec-2871-020000000000"/>
+      <fullUrl value="urn:uuid:0ff6b71e-d6a5-11ec-4998-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200MVEandermansTAMVE"/>
@@ -134,18 +141,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec6bdc32-d5fc-11ec-2871-020000000000"/>
+               <reference value="urn:uuid:0ff6b73c-d6a5-11ec-4998-020000000000"/>
                <type value="Medication"/>
                <display value="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec6bdbd8-d5fc-11ec-2871-020000000000"/>
+               <reference value="urn:uuid:0ff6b6e2-d6a5-11ec-4998-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec6bdc50-d5fc-11ec-2871-020000000000"/>
+                  <reference value="urn:uuid:0ff6b75a-d6a5-11ec-4998-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -175,9 +182,13 @@
             <whenHandedOver value="2022-01-01T10:00:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec6bdbd8-d5fc-11ec-2871-020000000000"/>
+      <fullUrl value="urn:uuid:0ff6b6e2-d6a5-11ec-4998-020000000000"/>
       <resource>
          <Patient>
             <id value="L.vanXXX-Meijs"/>
@@ -222,9 +233,13 @@
             <birthDate value="1985-10-26"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec6bdc50-d5fc-11ec-2871-020000000000"/>
+      <fullUrl value="urn:uuid:0ff6b75a-d6a5-11ec-4998-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -238,9 +253,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec6bdc32-d5fc-11ec-2871-020000000000"/>
+      <fullUrl value="urn:uuid:0ff6b73c-d6a5-11ec-4998-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-594253"/>
@@ -268,5 +287,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

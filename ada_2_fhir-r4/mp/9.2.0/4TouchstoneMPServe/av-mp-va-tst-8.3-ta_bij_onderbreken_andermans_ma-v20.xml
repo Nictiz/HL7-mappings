@@ -1,11 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec72be4f-d5fc-11ec-1113-020000000000"/>
+   <id value="0ffde6bb-d6a5-11ec-2907-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec72bee4-d5fc-11ec-1113-020000000000"/>
+      <fullUrl value="urn:uuid:0ffde750-d6a5-11ec-2907-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ec72bff3-d5fc-11ec-1113-020000000000"/>
+            <id value="0ffde8b9-d6a5-11ec-2907-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -53,18 +56,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec72bf20-d5fc-11ec-1113-020000000000"/>
+               <reference value="urn:uuid:0ffde78c-d6a5-11ec-2907-020000000000"/>
                <type value="Medication"/>
                <display value="APC APOTEX TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec72bec6-d5fc-11ec-1113-020000000000"/>
+               <reference value="urn:uuid:0ffde732-d6a5-11ec-2907-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec72bf3e-d5fc-11ec-1113-020000000000"/>
+                  <reference value="urn:uuid:0ffde7aa-d6a5-11ec-2907-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -111,12 +114,16 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec72bf02-d5fc-11ec-1113-020000000000"/>
+      <fullUrl value="urn:uuid:0ffde76e-d6a5-11ec-2907-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ec72c00e-d5fc-11ec-1113-020000000000"/>
+            <id value="0ffde8d4-d6a5-11ec-2907-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -143,18 +150,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec72bf20-d5fc-11ec-1113-020000000000"/>
+               <reference value="urn:uuid:0ffde78c-d6a5-11ec-2907-020000000000"/>
                <type value="Medication"/>
                <display value="APC APOTEX TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec72bec6-d5fc-11ec-1113-020000000000"/>
+               <reference value="urn:uuid:0ffde732-d6a5-11ec-2907-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec72bf3e-d5fc-11ec-1113-020000000000"/>
+                  <reference value="urn:uuid:0ffde7aa-d6a5-11ec-2907-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -184,9 +191,13 @@
             <whenHandedOver value="2021-11-02T10:00:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec72bec6-d5fc-11ec-1113-020000000000"/>
+      <fullUrl value="urn:uuid:0ffde732-d6a5-11ec-2907-020000000000"/>
       <resource>
          <Patient>
             <id value="L.vanXXX-Meijs"/>
@@ -231,9 +242,13 @@
             <birthDate value="1985-10-26"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec72bf3e-d5fc-11ec-1113-020000000000"/>
+      <fullUrl value="urn:uuid:0ffde7aa-d6a5-11ec-2907-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -247,9 +262,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec72bf20-d5fc-11ec-1113-020000000000"/>
+      <fullUrl value="urn:uuid:0ffde78c-d6a5-11ec-2907-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-795097"/>
@@ -277,5 +296,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

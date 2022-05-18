@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ebe41d43-d5fc-11ec-1462-020000000000"/>
+   <id value="0f71e823-d6a5-11ec-2913-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ebe41dd8-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:0f71e8b8-d6a5-11ec-2913-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200wdsmtd1TA"/>
@@ -43,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebe41e14-d5fc-11ec-1462-020000000000"/>
+               <reference value="urn:uuid:0f71e8f4-d6a5-11ec-2913-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebe41dba-d5fc-11ec-1462-020000000000"/>
+               <reference value="urn:uuid:0f71e89a-d6a5-11ec-2913-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebe41e32-d5fc-11ec-1462-020000000000"/>
+                  <reference value="urn:uuid:0f71e912-d6a5-11ec-2913-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -84,9 +87,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe41df6-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:0f71e8d6-d6a5-11ec-2913-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200wdsmtd1MVE"/>
@@ -116,18 +123,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebe41e14-d5fc-11ec-1462-020000000000"/>
+               <reference value="urn:uuid:0f71e8f4-d6a5-11ec-2913-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebe41dba-d5fc-11ec-1462-020000000000"/>
+               <reference value="urn:uuid:0f71e89a-d6a5-11ec-2913-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebe41e32-d5fc-11ec-1462-020000000000"/>
+                  <reference value="urn:uuid:0f71e912-d6a5-11ec-2913-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -157,9 +164,13 @@
             <whenHandedOver value="2022-01-01T09:00:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe41dba-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:0f71e89a-d6a5-11ec-2913-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Pherai"/>
@@ -201,9 +212,13 @@
             <birthDate value="1985-11-01"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe41e32-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:0f71e912-d6a5-11ec-2913-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -217,9 +232,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe41e14-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:0f71e8f4-d6a5-11ec-2913-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-856126"/>
@@ -247,5 +266,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

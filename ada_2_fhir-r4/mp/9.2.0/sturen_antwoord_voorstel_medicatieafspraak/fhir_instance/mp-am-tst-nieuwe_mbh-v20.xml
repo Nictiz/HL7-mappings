@@ -1,11 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ef07a5d9-d5fc-11ec-2151-020000000000"/>
+   <id value="11dee87b-d6a5-11ec-9266-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ReplyProposalMedicationAgreement"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ef07a5d9-d5fc-11ec-2151-020000000000"/>
+      <fullUrl value="urn:uuid:11dee87b-d6a5-11ec-9266-020000000000"/>
       <resource>
          <Communication>
-            <id value="ef07a5da-d5fc-11ec-2151-020000000000"/>
+            <id value="11dee87c-d6a5-11ec-9266-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition//mp-ReplyProposalMedicationAgreement"/>
                <tag>
@@ -27,7 +30,7 @@
             </basedOn>
             <status value="completed"/>
             <subject>
-               <reference value="urn:uuid:ef079882-d5fc-11ec-2151-020000000000"/>
+               <reference value="urn:uuid:11dedaca-d6a5-11ec-9266-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
@@ -47,9 +50,13 @@
             </payload>
          </Communication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Communication"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ef079882-d5fc-11ec-2151-020000000000"/>
+      <fullUrl value="urn:uuid:11dedaca-d6a5-11ec-9266-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Brugge"/>
@@ -91,9 +98,13 @@
             <birthDate value="1963-10-16"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ef0798a0-d5fc-11ec-2151-020000000000"/>
+      <fullUrl value="urn:uuid:11dedae8-d6a5-11ec-9266-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -101,12 +112,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ef0798be-d5fc-11ec-2151-020000000000"/>
+               <reference value="urn:uuid:11dedb06-d6a5-11ec-9266-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:ef0798dc-d5fc-11ec-2151-020000000000"/>
+               <reference value="urn:uuid:11dedb24-d6a5-11ec-9266-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -120,9 +131,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ef0798be-d5fc-11ec-2151-020000000000"/>
+      <fullUrl value="urn:uuid:11dedb06-d6a5-11ec-9266-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -152,9 +167,13 @@
             </name>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ef0798dc-d5fc-11ec-2151-020000000000"/>
+      <fullUrl value="urn:uuid:11dedb24-d6a5-11ec-9266-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -190,5 +209,9 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
 </Bundle>

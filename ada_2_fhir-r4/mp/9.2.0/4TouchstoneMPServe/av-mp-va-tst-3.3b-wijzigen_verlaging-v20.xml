@@ -1,11 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec0e3a51-d5fc-11ec-1667-020000000000"/>
+   <id value="0f9fd87d-d6a5-11ec-1815-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec0e3ae6-d5fc-11ec-1667-020000000000"/>
+      <fullUrl value="urn:uuid:0f9fd912-d6a5-11ec-1815-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ec0e452d-d5fc-11ec-1667-020000000000"/>
+            <id value="0f9fe3b3-d6a5-11ec-1815-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -44,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec0e3b22-d5fc-11ec-1667-020000000000"/>
+               <reference value="urn:uuid:0f9fd94e-d6a5-11ec-1815-020000000000"/>
                <type value="Medication"/>
                <display value="FERROFUMARAAT TEVA TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec0e3ac8-d5fc-11ec-1667-020000000000"/>
+               <reference value="urn:uuid:0f9fd8f4-d6a5-11ec-1815-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec0e3b40-d5fc-11ec-1667-020000000000"/>
+                  <reference value="urn:uuid:0f9fd96c-d6a5-11ec-1815-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek Jansen en Co"/>
                </actor>
@@ -102,12 +105,16 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec0e3b04-d5fc-11ec-1667-020000000000"/>
+      <fullUrl value="urn:uuid:0f9fd930-d6a5-11ec-1815-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ec0e4547-d5fc-11ec-1667-020000000000"/>
+            <id value="0f9fe3cd-d6a5-11ec-1815-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -155,18 +162,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec0e3b22-d5fc-11ec-1667-020000000000"/>
+               <reference value="urn:uuid:0f9fd94e-d6a5-11ec-1815-020000000000"/>
                <type value="Medication"/>
                <display value="FERROFUMARAAT TEVA TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec0e3ac8-d5fc-11ec-1667-020000000000"/>
+               <reference value="urn:uuid:0f9fd8f4-d6a5-11ec-1815-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec0e3b40-d5fc-11ec-1667-020000000000"/>
+                  <reference value="urn:uuid:0f9fd96c-d6a5-11ec-1815-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek Jansen en Co"/>
                </actor>
@@ -213,9 +220,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec0e3ac8-d5fc-11ec-1667-020000000000"/>
+      <fullUrl value="urn:uuid:0f9fd8f4-d6a5-11ec-1815-020000000000"/>
       <resource>
          <Patient>
             <id value="J.deXXX-Luzac"/>
@@ -260,9 +271,13 @@
             <birthDate value="1985-10-24"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec0e3b40-d5fc-11ec-1667-020000000000"/>
+      <fullUrl value="urn:uuid:0f9fd96c-d6a5-11ec-1815-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-99901111"/>
@@ -276,9 +291,13 @@
             <name value="Apotheek Jansen en Co"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec0e3b22-d5fc-11ec-1667-020000000000"/>
+      <fullUrl value="urn:uuid:0f9fd94e-d6a5-11ec-1815-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-869244"/>
@@ -306,5 +325,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

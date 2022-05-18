@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec3e8b9d-d5fc-11ec-1540-020000000000"/>
+   <id value="0fcb527d-d6a5-11ec-2396-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec3e8c32-d5fc-11ec-1540-020000000000"/>
+      <fullUrl value="urn:uuid:0fcb5312-d6a5-11ec-2396-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200intervalTA"/>
@@ -43,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec3e8c6e-d5fc-11ec-1540-020000000000"/>
+               <reference value="urn:uuid:0fcb534e-d6a5-11ec-2396-020000000000"/>
                <type value="Medication"/>
                <display value="AMOXICILLINE DISPER SANDOZ TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec3e8c14-d5fc-11ec-1540-020000000000"/>
+               <reference value="urn:uuid:0fcb52f4-d6a5-11ec-2396-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec3e8c8c-d5fc-11ec-1540-020000000000"/>
+                  <reference value="urn:uuid:0fcb536c-d6a5-11ec-2396-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -104,9 +107,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec3e8c50-d5fc-11ec-1540-020000000000"/>
+      <fullUrl value="urn:uuid:0fcb5330-d6a5-11ec-2396-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200intervalMVE"/>
@@ -136,18 +143,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec3e8c6e-d5fc-11ec-1540-020000000000"/>
+               <reference value="urn:uuid:0fcb534e-d6a5-11ec-2396-020000000000"/>
                <type value="Medication"/>
                <display value="AMOXICILLINE DISPER SANDOZ TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec3e8c14-d5fc-11ec-1540-020000000000"/>
+               <reference value="urn:uuid:0fcb52f4-d6a5-11ec-2396-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec3e8c8c-d5fc-11ec-1540-020000000000"/>
+                  <reference value="urn:uuid:0fcb536c-d6a5-11ec-2396-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -177,9 +184,13 @@
             <whenHandedOver value="2022-01-01T09:04:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec3e8c14-d5fc-11ec-1540-020000000000"/>
+      <fullUrl value="urn:uuid:0fcb52f4-d6a5-11ec-2396-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hemsbergen"/>
@@ -221,9 +232,13 @@
             <birthDate value="1963-11-02"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec3e8c8c-d5fc-11ec-1540-020000000000"/>
+      <fullUrl value="urn:uuid:0fcb536c-d6a5-11ec-2396-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -237,9 +252,13 @@
             <name value="Apotheek de Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec3e8c6e-d5fc-11ec-1540-020000000000"/>
+      <fullUrl value="urn:uuid:0fcb534e-d6a5-11ec-2396-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-802891"/>
@@ -267,5 +286,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

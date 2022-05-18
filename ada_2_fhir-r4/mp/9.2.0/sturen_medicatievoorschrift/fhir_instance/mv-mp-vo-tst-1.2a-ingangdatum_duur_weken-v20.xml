@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="e958205b-d5fc-11ec-1991-020000000000"/>
+   <id value="0c7dfcb5-d6a5-11ec-8634-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:e95820f0-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfd4a-d6a5-11ec-8634-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH200startduurMA"/>
@@ -49,18 +52,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e958212c-d5fc-11ec-1991-020000000000"/>
+               <reference value="urn:uuid:0c7dfd86-d6a5-11ec-8634-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e95820d2-d5fc-11ec-1991-020000000000"/>
+               <reference value="urn:uuid:0c7dfd2c-d6a5-11ec-8634-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <authoredOn value="2022-01-01T11:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:e9582168-d5fc-11ec-1991-020000000000"/>
+               <reference value="urn:uuid:0c7dfdc2-d6a5-11ec-8634-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -98,9 +101,13 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e958210e-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfd68-d6a5-11ec-8634-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977527110001461081-MBH200startduurVV"/>
@@ -131,23 +138,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e958214a-d5fc-11ec-1991-020000000000"/>
+               <reference value="urn:uuid:0c7dfda4-d6a5-11ec-8634-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL SANDOZ TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e95820d2-d5fc-11ec-1991-020000000000"/>
+               <reference value="urn:uuid:0c7dfd2c-d6a5-11ec-8634-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <authoredOn value="2022-01-01T11:30:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:e9582168-d5fc-11ec-1991-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
             <performer>
-               <reference value="urn:uuid:e95821e0-d5fc-11ec-1991-020000000000"/>
+               <reference value="urn:uuid:0c7dfe3a-d6a5-11ec-8634-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -177,9 +179,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e95820d2-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfd2c-d6a5-11ec-8634-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Brugge"/>
@@ -221,9 +227,13 @@
             <birthDate value="1963-10-16"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e9582168-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfdc2-d6a5-11ec-8634-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -231,12 +241,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:e9582186-d5fc-11ec-1991-020000000000"/>
+               <reference value="urn:uuid:0c7dfde0-d6a5-11ec-8634-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:e95821a4-d5fc-11ec-1991-020000000000"/>
+               <reference value="urn:uuid:0c7dfdfe-d6a5-11ec-8634-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -255,9 +265,13 @@
             </telecom>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e9582186-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfde0-d6a5-11ec-8634-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -292,9 +306,13 @@
             </telecom>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e95821a4-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfdfe-d6a5-11ec-8634-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -330,9 +348,13 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e95821e0-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfe3a-d6a5-11ec-8634-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -346,9 +368,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e958212c-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfd86-d6a5-11ec-8634-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-26638"/>
@@ -371,9 +397,13 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e958214a-d5fc-11ec-1991-020000000000"/>
+      <fullUrl value="urn:uuid:0c7dfda4-d6a5-11ec-8634-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1506773"/>
@@ -401,5 +431,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec187ab1-d5fc-11ec-9463-020000000000"/>
+   <id value="0faa6199-d6a5-11ec-6884-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec187b46-d5fc-11ec-9463-020000000000"/>
+      <fullUrl value="urn:uuid:0faa622e-d6a5-11ec-6884-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200TAwijzigenTAstart"/>
@@ -51,18 +54,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec187b82-d5fc-11ec-9463-020000000000"/>
+               <reference value="urn:uuid:0faa626a-d6a5-11ec-6884-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec187b28-d5fc-11ec-9463-020000000000"/>
+               <reference value="urn:uuid:0faa6210-d6a5-11ec-6884-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec187ba0-d5fc-11ec-9463-020000000000"/>
+                  <reference value="urn:uuid:0faa6288-d6a5-11ec-6884-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -109,9 +112,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec187b64-d5fc-11ec-9463-020000000000"/>
+      <fullUrl value="urn:uuid:0faa624c-d6a5-11ec-6884-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200TAwijzigenMVE"/>
@@ -141,18 +148,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec187b82-d5fc-11ec-9463-020000000000"/>
+               <reference value="urn:uuid:0faa626a-d6a5-11ec-6884-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec187b28-d5fc-11ec-9463-020000000000"/>
+               <reference value="urn:uuid:0faa6210-d6a5-11ec-6884-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec187ba0-d5fc-11ec-9463-020000000000"/>
+                  <reference value="urn:uuid:0faa6288-d6a5-11ec-6884-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -182,9 +189,13 @@
             <whenHandedOver value="2022-01-01T12:30:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec187b28-d5fc-11ec-9463-020000000000"/>
+      <fullUrl value="urn:uuid:0faa6210-d6a5-11ec-6884-020000000000"/>
       <resource>
          <Patient>
             <id value="J.deXXX-Luzac"/>
@@ -229,9 +240,13 @@
             <birthDate value="1985-10-24"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec187ba0-d5fc-11ec-9463-020000000000"/>
+      <fullUrl value="urn:uuid:0faa6288-d6a5-11ec-6884-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -245,9 +260,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec187b82-d5fc-11ec-9463-020000000000"/>
+      <fullUrl value="urn:uuid:0faa626a-d6a5-11ec-6884-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-878421"/>
@@ -275,5 +294,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

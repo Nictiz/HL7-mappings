@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ebd469b1-d5fc-11ec-2051-020000000000"/>
+   <id value="0f68780b-d6a5-11ec-1116-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ebd46a46-d5fc-11ec-2051-020000000000"/>
+      <fullUrl value="urn:uuid:0f6878a0-d6a5-11ec-1116-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200dosisstuksTA"/>
@@ -44,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebd46a82-d5fc-11ec-2051-020000000000"/>
+               <reference value="urn:uuid:0f6878dc-d6a5-11ec-1116-020000000000"/>
                <type value="Medication"/>
                <display value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebd46a28-d5fc-11ec-2051-020000000000"/>
+               <reference value="urn:uuid:0f687882-d6a5-11ec-1116-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebd46aa0-d5fc-11ec-2051-020000000000"/>
+                  <reference value="urn:uuid:0f6878fa-d6a5-11ec-1116-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -102,9 +105,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebd46a64-d5fc-11ec-2051-020000000000"/>
+      <fullUrl value="urn:uuid:0f6878be-d6a5-11ec-1116-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200dosisstuksMVE"/>
@@ -134,18 +141,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebd46a82-d5fc-11ec-2051-020000000000"/>
+               <reference value="urn:uuid:0f6878dc-d6a5-11ec-1116-020000000000"/>
                <type value="Medication"/>
                <display value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebd46a28-d5fc-11ec-2051-020000000000"/>
+               <reference value="urn:uuid:0f687882-d6a5-11ec-1116-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebd46aa0-d5fc-11ec-2051-020000000000"/>
+                  <reference value="urn:uuid:0f6878fa-d6a5-11ec-1116-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -175,9 +182,13 @@
             <whenHandedOver value="2022-01-01T12:35:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebd46a28-d5fc-11ec-2051-020000000000"/>
+      <fullUrl value="urn:uuid:0f687882-d6a5-11ec-1116-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Brugge"/>
@@ -219,9 +230,13 @@
             <birthDate value="1963-10-16"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebd46aa0-d5fc-11ec-2051-020000000000"/>
+      <fullUrl value="urn:uuid:0f6878fa-d6a5-11ec-1116-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -235,9 +250,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebd46a82-d5fc-11ec-2051-020000000000"/>
+      <fullUrl value="urn:uuid:0f6878dc-d6a5-11ec-1116-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1029754"/>
@@ -265,5 +284,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

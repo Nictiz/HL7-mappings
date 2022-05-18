@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec52ec37-d5fc-11ec-1067-020000000000"/>
+   <id value="0fdf0557-d6a5-11ec-1503-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec52eccc-d5fc-11ec-1067-020000000000"/>
+      <fullUrl value="urn:uuid:0fdf05ec-d6a5-11ec-1503-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200tijdstippenflexibelTA"/>
@@ -44,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec52ed08-d5fc-11ec-1067-020000000000"/>
+               <reference value="urn:uuid:0fdf0628-d6a5-11ec-1503-020000000000"/>
                <type value="Medication"/>
                <display value="METFORMINE HCL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec52ecae-d5fc-11ec-1067-020000000000"/>
+               <reference value="urn:uuid:0fdf05ce-d6a5-11ec-1503-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec52ed26-d5fc-11ec-1067-020000000000"/>
+                  <reference value="urn:uuid:0fdf0646-d6a5-11ec-1503-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -105,9 +108,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec52ecea-d5fc-11ec-1067-020000000000"/>
+      <fullUrl value="urn:uuid:0fdf060a-d6a5-11ec-1503-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200tijdstippenflexibelMVE"/>
@@ -137,18 +144,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec52ed08-d5fc-11ec-1067-020000000000"/>
+               <reference value="urn:uuid:0fdf0628-d6a5-11ec-1503-020000000000"/>
                <type value="Medication"/>
                <display value="METFORMINE HCL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec52ecae-d5fc-11ec-1067-020000000000"/>
+               <reference value="urn:uuid:0fdf05ce-d6a5-11ec-1503-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec52ed26-d5fc-11ec-1067-020000000000"/>
+                  <reference value="urn:uuid:0fdf0646-d6a5-11ec-1503-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -178,9 +185,13 @@
             <whenHandedOver value="2022-01-01T09:24:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec52ecae-d5fc-11ec-1067-020000000000"/>
+      <fullUrl value="urn:uuid:0fdf05ce-d6a5-11ec-1503-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hemsbergen"/>
@@ -222,9 +233,13 @@
             <birthDate value="1963-11-02"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec52ed26-d5fc-11ec-1067-020000000000"/>
+      <fullUrl value="urn:uuid:0fdf0646-d6a5-11ec-1503-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -238,9 +253,13 @@
             <name value="Apotheek de Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec52ed08-d5fc-11ec-1067-020000000000"/>
+      <fullUrl value="urn:uuid:0fdf0628-d6a5-11ec-1503-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-693332"/>
@@ -268,5 +287,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

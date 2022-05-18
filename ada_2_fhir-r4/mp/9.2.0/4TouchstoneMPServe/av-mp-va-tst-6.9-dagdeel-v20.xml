@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec5c4327-d5fc-11ec-9451-020000000000"/>
+   <id value="0fec0743-d6a5-11ec-6955-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec5c43bc-d5fc-11ec-9451-020000000000"/>
+      <fullUrl value="urn:uuid:0fec07d8-d6a5-11ec-6955-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200dagdeelTA"/>
@@ -43,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec5c43f8-d5fc-11ec-9451-020000000000"/>
+               <reference value="urn:uuid:0fec0814-d6a5-11ec-6955-020000000000"/>
                <type value="Medication"/>
                <display value="INEGY TABLET 10/20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec5c439e-d5fc-11ec-9451-020000000000"/>
+               <reference value="urn:uuid:0fec07ba-d6a5-11ec-6955-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec5c4416-d5fc-11ec-9451-020000000000"/>
+                  <reference value="urn:uuid:0fec0832-d6a5-11ec-6955-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -99,9 +102,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec5c43da-d5fc-11ec-9451-020000000000"/>
+      <fullUrl value="urn:uuid:0fec07f6-d6a5-11ec-6955-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200dagdeelMVE"/>
@@ -131,18 +138,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec5c43f8-d5fc-11ec-9451-020000000000"/>
+               <reference value="urn:uuid:0fec0814-d6a5-11ec-6955-020000000000"/>
                <type value="Medication"/>
                <display value="INEGY TABLET 10/20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec5c439e-d5fc-11ec-9451-020000000000"/>
+               <reference value="urn:uuid:0fec07ba-d6a5-11ec-6955-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec5c4416-d5fc-11ec-9451-020000000000"/>
+                  <reference value="urn:uuid:0fec0832-d6a5-11ec-6955-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -172,9 +179,13 @@
             <whenHandedOver value="2022-01-01T09:27:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec5c439e-d5fc-11ec-9451-020000000000"/>
+      <fullUrl value="urn:uuid:0fec07ba-d6a5-11ec-6955-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hemsbergen"/>
@@ -216,9 +227,13 @@
             <birthDate value="1963-11-02"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec5c4416-d5fc-11ec-9451-020000000000"/>
+      <fullUrl value="urn:uuid:0fec0832-d6a5-11ec-6955-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -232,9 +247,13 @@
             <name value="Apotheek de Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec5c43f8-d5fc-11ec-9451-020000000000"/>
+      <fullUrl value="urn:uuid:0fec0814-d6a5-11ec-6955-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1719785"/>
@@ -262,5 +281,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

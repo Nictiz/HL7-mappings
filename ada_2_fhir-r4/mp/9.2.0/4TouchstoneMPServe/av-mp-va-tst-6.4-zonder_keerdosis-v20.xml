@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec488517-d5fc-11ec-1684-020000000000"/>
+   <id value="0fd35a63-d6a5-11ec-9610-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec4885ac-d5fc-11ec-1684-020000000000"/>
+      <fullUrl value="urn:uuid:0fd35af8-d6a5-11ec-9610-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200zonderkeerdosisTA"/>
@@ -44,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec4885e8-d5fc-11ec-1684-020000000000"/>
+               <reference value="urn:uuid:0fd35b34-d6a5-11ec-9610-020000000000"/>
                <type value="Medication"/>
                <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec48858e-d5fc-11ec-1684-020000000000"/>
+               <reference value="urn:uuid:0fd35ada-d6a5-11ec-9610-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec488606-d5fc-11ec-1684-020000000000"/>
+                  <reference value="urn:uuid:0fd35b52-d6a5-11ec-9610-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -93,9 +96,13 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec4885ca-d5fc-11ec-1684-020000000000"/>
+      <fullUrl value="urn:uuid:0fd35b16-d6a5-11ec-9610-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200zonderkeerdosisMVE"/>
@@ -125,18 +132,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec4885e8-d5fc-11ec-1684-020000000000"/>
+               <reference value="urn:uuid:0fd35b34-d6a5-11ec-9610-020000000000"/>
                <type value="Medication"/>
                <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec48858e-d5fc-11ec-1684-020000000000"/>
+               <reference value="urn:uuid:0fd35ada-d6a5-11ec-9610-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec488606-d5fc-11ec-1684-020000000000"/>
+                  <reference value="urn:uuid:0fd35b52-d6a5-11ec-9610-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -166,9 +173,13 @@
             <whenHandedOver value="2022-01-01T09:12:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec48858e-d5fc-11ec-1684-020000000000"/>
+      <fullUrl value="urn:uuid:0fd35ada-d6a5-11ec-9610-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hemsbergen"/>
@@ -210,9 +221,13 @@
             <birthDate value="1963-11-02"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec488606-d5fc-11ec-1684-020000000000"/>
+      <fullUrl value="urn:uuid:0fd35b52-d6a5-11ec-9610-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -226,9 +241,13 @@
             <name value="Apotheek de Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec4885e8-d5fc-11ec-1684-020000000000"/>
+      <fullUrl value="urn:uuid:0fd35b34-d6a5-11ec-9610-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1205943"/>
@@ -256,5 +275,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

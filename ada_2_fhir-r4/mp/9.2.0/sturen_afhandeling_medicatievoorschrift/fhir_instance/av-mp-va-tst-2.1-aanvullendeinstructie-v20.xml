@@ -1,11 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ebe7ef9f-d5fc-11ec-6093-020000000000"/>
+   <id value="0f77af51-d6a5-11ec-1526-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ebe7f034-d5fc-11ec-6093-020000000000"/>
+      <fullUrl value="urn:uuid:0f77afe6-d6a5-11ec-1526-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ebe7f7be-d5fc-11ec-6093-020000000000"/>
+            <id value="0f77b7ca-d6a5-11ec-1526-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -44,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebe7f070-d5fc-11ec-6093-020000000000"/>
+               <reference value="urn:uuid:0f77b022-d6a5-11ec-1526-020000000000"/>
                <type value="Medication"/>
                <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebe7f016-d5fc-11ec-6093-020000000000"/>
+               <reference value="urn:uuid:0f77afc8-d6a5-11ec-1526-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebe7f08e-d5fc-11ec-6093-020000000000"/>
+                  <reference value="urn:uuid:0f77b040-d6a5-11ec-1526-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -110,12 +113,16 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe7f052-d5fc-11ec-6093-020000000000"/>
+      <fullUrl value="urn:uuid:0f77b004-d6a5-11ec-1526-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ebe7f7d9-d5fc-11ec-6093-020000000000"/>
+            <id value="0f77b7e5-d6a5-11ec-1526-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -142,18 +149,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebe7f070-d5fc-11ec-6093-020000000000"/>
+               <reference value="urn:uuid:0f77b022-d6a5-11ec-1526-020000000000"/>
                <type value="Medication"/>
                <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebe7f016-d5fc-11ec-6093-020000000000"/>
+               <reference value="urn:uuid:0f77afc8-d6a5-11ec-1526-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebe7f08e-d5fc-11ec-6093-020000000000"/>
+                  <reference value="urn:uuid:0f77b040-d6a5-11ec-1526-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -183,9 +190,13 @@
             <whenHandedOver value="2022-01-01T09:00:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe7f016-d5fc-11ec-6093-020000000000"/>
+      <fullUrl value="urn:uuid:0f77afc8-d6a5-11ec-1526-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Coenen"/>
@@ -227,9 +238,13 @@
             <birthDate value="1963-10-17"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe7f08e-d5fc-11ec-6093-020000000000"/>
+      <fullUrl value="urn:uuid:0f77b040-d6a5-11ec-1526-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -243,9 +258,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe7f070-d5fc-11ec-6093-020000000000"/>
+      <fullUrl value="urn:uuid:0f77b022-d6a5-11ec-1526-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1110837"/>
@@ -273,5 +292,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

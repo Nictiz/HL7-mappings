@@ -1,8 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ea3c70f3-d5fc-11ec-1598-020000000000"/>
+   <id value="0d6251b7-d6a5-11ec-2139-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ea3c7188-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d62524c-d6a5-11ec-2139-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH200afleverlocatieMA"/>
@@ -42,18 +45,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ea3c71e2-d5fc-11ec-1598-020000000000"/>
+               <reference value="urn:uuid:0d6252a6-d6a5-11ec-2139-020000000000"/>
                <type value="Medication"/>
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ea3c716a-d5fc-11ec-1598-020000000000"/>
+               <reference value="urn:uuid:0d62522e-d6a5-11ec-2139-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2022-01-01T11:07:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:ea3c7200-d5fc-11ec-1598-020000000000"/>
+               <reference value="urn:uuid:0d6252c4-d6a5-11ec-2139-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -91,9 +94,13 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3c71a6-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d62526a-d6a5-11ec-2139-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977527110001461081-MBH200afleverlocatieVV"/>
@@ -124,23 +131,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ea3c71e2-d5fc-11ec-1598-020000000000"/>
+               <reference value="urn:uuid:0d6252a6-d6a5-11ec-2139-020000000000"/>
                <type value="Medication"/>
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ea3c716a-d5fc-11ec-1598-020000000000"/>
+               <reference value="urn:uuid:0d62522e-d6a5-11ec-2139-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2022-01-01T11:07:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:ea3c7200-d5fc-11ec-1598-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
             <performer>
-               <reference value="urn:uuid:ea3c7278-d5fc-11ec-1598-020000000000"/>
+               <reference value="urn:uuid:0d62533c-d6a5-11ec-2139-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -155,7 +157,7 @@
             <dispenseRequest>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation">
                   <valueReference>
-                     <reference value="urn:uuid:ea3c71c4-d5fc-11ec-1598-020000000000"/>
+                     <reference value="urn:uuid:0d625288-d6a5-11ec-2139-020000000000"/>
                      <type value="Location"/>
                      <display value="afleverlocatie"/>
                   </valueReference>
@@ -177,9 +179,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3c716a-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d62522e-d6a5-11ec-2139-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Nederveen"/>
@@ -221,9 +227,13 @@
             <birthDate value="1985-10-28"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3c7200-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d6252c4-d6a5-11ec-2139-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -231,12 +241,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ea3c721e-d5fc-11ec-1598-020000000000"/>
+               <reference value="urn:uuid:0d6252e2-d6a5-11ec-2139-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:ea3c723c-d5fc-11ec-1598-020000000000"/>
+               <reference value="urn:uuid:0d625300-d6a5-11ec-2139-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -255,9 +265,13 @@
             </telecom>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3c721e-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d6252e2-d6a5-11ec-2139-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -292,9 +306,13 @@
             </telecom>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3c723c-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d625300-d6a5-11ec-2139-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -330,9 +348,13 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3c7278-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d62533c-d6a5-11ec-2139-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -346,9 +368,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3c71e2-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d6252a6-d6a5-11ec-2139-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-17205"/>
@@ -371,14 +397,22 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3c71c4-d5fc-11ec-1598-020000000000"/>
+      <fullUrl value="urn:uuid:0d625288-d6a5-11ec-2139-020000000000"/>
       <resource>
          <Location>
             <id value="Dorpsrand2001256ZZOnsDorp"/>
             <name value="Dorpsrand 200,1256ZZ Ons Dorp"/>
          </Location>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Location"/>
+      </request>
    </entry>
 </Bundle>
