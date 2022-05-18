@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ea1fedbb-d5fc-11ec-6866-020000000000"/>
+   <id value="f42723b1-d6aa-11ec-9887-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ea1fee50-d5fc-11ec-6866-020000000000"/>
+      <fullUrl value="urn:uuid:f4272446-d6aa-11ec-9887-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH200magistraal90miljoennrMA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -42,18 +45,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ea1fee8c-d5fc-11ec-6866-020000000000"/>
+               <reference value="urn:uuid:f4272482-d6aa-11ec-9887-020000000000"/>
                <type value="Medication"/>
                <display value="Eigen artikel: ureumzalf"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ea1fee32-d5fc-11ec-6866-020000000000"/>
+               <reference value="urn:uuid:f4272428-d6aa-11ec-9887-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <authoredOn value="2022-01-01T12:08:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:ea1feeaa-d5fc-11ec-6866-020000000000"/>
+               <reference value="urn:uuid:f42724a0-d6aa-11ec-9887-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -75,16 +78,20 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea1fee6e-d5fc-11ec-6866-020000000000"/>
+      <fullUrl value="urn:uuid:f4272464-d6aa-11ec-9887-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="ea1fddc1-d5fc-11ec-6866-020000000000"/>
+            <id value="f4270fe3-d6aa-11ec-9887-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -108,23 +115,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ea1fee8c-d5fc-11ec-6866-020000000000"/>
+               <reference value="urn:uuid:f4272482-d6aa-11ec-9887-020000000000"/>
                <type value="Medication"/>
                <display value="Eigen artikel: ureumzalf"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ea1fee32-d5fc-11ec-6866-020000000000"/>
+               <reference value="urn:uuid:f4272428-d6aa-11ec-9887-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <authoredOn value="2022-01-01T12:08:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:ea1feeaa-d5fc-11ec-6866-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
             <performer>
-               <reference value="urn:uuid:ea1fef22-d5fc-11ec-6866-020000000000"/>
+               <reference value="urn:uuid:f4272518-d6aa-11ec-9887-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -154,9 +156,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea1fee32-d5fc-11ec-6866-020000000000"/>
+      <fullUrl value="urn:uuid:f4272428-d6aa-11ec-9887-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hess"/>
@@ -198,9 +204,13 @@
             <birthDate value="1963-11-03"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea1feeaa-d5fc-11ec-6866-020000000000"/>
+      <fullUrl value="urn:uuid:f42724a0-d6aa-11ec-9887-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -208,12 +218,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ea1feec8-d5fc-11ec-6866-020000000000"/>
+               <reference value="urn:uuid:f42724be-d6aa-11ec-9887-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:ea1feee6-d5fc-11ec-6866-020000000000"/>
+               <reference value="urn:uuid:f42724dc-d6aa-11ec-9887-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -232,9 +242,13 @@
             </telecom>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea1feec8-d5fc-11ec-6866-020000000000"/>
+      <fullUrl value="urn:uuid:f42724be-d6aa-11ec-9887-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -269,9 +283,13 @@
             </telecom>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea1feee6-d5fc-11ec-6866-020000000000"/>
+      <fullUrl value="urn:uuid:f42724dc-d6aa-11ec-9887-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -307,9 +325,13 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea1fef22-d5fc-11ec-6866-020000000000"/>
+      <fullUrl value="urn:uuid:f4272518-d6aa-11ec-9887-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -323,9 +345,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea1fee8c-d5fc-11ec-6866-020000000000"/>
+      <fullUrl value="urn:uuid:f4272482-d6aa-11ec-9887-020000000000"/>
       <resource>
          <Medication>
             <id value="2168401113883243119999779000000011111-90000001"/>
@@ -384,5 +410,9 @@
             </ingredient>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

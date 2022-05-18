@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="edca7f5d-d5fc-11ec-1981-020000000000"/>
+   <id value="f6eabbfd-d6aa-11ec-5217-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalMedicationAgreement"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:edca7ff2-d5fc-11ec-1981-020000000000"/>
+      <fullUrl value="urn:uuid:f6eabc92-d6aa-11ec-5217-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="edca7c74-d5fc-11ec-1981-020000000000"/>
+            <id value="f6eab96e-d6aa-11ec-5217-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -35,6 +38,9 @@
                   <value value="MBH_200_start_duur"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+               <valueString value="keerdosis 2 stuks wenselijk voor betere werking"/>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
                <value value="MBH_200_start_duur_VMA"/>
@@ -49,18 +55,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:edca8010-d5fc-11ec-1981-020000000000"/>
+               <reference value="urn:uuid:f6eabcb0-d6aa-11ec-5217-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:edca7fd4-d5fc-11ec-1981-020000000000"/>
+               <reference value="urn:uuid:f6eabc74-d6aa-11ec-5217-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <authoredOn value="2022-01-01T10:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:edca802e-d5fc-11ec-1981-020000000000"/>
+               <reference value="urn:uuid:f6eabcce-d6aa-11ec-5217-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </requester>
@@ -114,9 +120,13 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:edca7fd4-d5fc-11ec-1981-020000000000"/>
+      <fullUrl value="urn:uuid:f6eabc74-d6aa-11ec-5217-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Brugge"/>
@@ -158,9 +168,13 @@
             <birthDate value="1963-10-16"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:edca802e-d5fc-11ec-1981-020000000000"/>
+      <fullUrl value="urn:uuid:f6eabcce-d6aa-11ec-5217-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -174,9 +188,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:edca8010-d5fc-11ec-1981-020000000000"/>
+      <fullUrl value="urn:uuid:f6eabcb0-d6aa-11ec-5217-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-26638"/>
@@ -199,5 +217,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

@@ -1,0 +1,89 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_antwoord_voorstel_medicatieafspraak.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-05-18T15:29:16.615449+02:00"
+         last-update-date="2022-05-18T15:29:16.615449+02:00"/>
+   <data>
+      <sturen_antwoord_voorstel_medicatieafspraak app="mp-mp92"
+                                                  shortName="sturen_antwoord_voorstel_medicatieafspraak"
+                                                  formName="sturen_antwoord_voorstel_medicatieafspraak"
+                                                  transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.373"
+                                                  transactionEffectiveDate="2022-03-02T00:00:00"
+                                                  versionDate=""
+                                                  prefix="mp-"
+                                                  language="nl-NL"
+                                                  title="Generated from HL7 FHIR sturen_antwoord_voorstel_medicatieafspraak"
+                                                  id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="C. XXX_Brugge"/>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-16" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <bouwstenen>
+            <zorgverlener id="urn-uuid-f7be692a-d6aa-11ec-4158-020000000000">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Peter van Pulver"/>
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-f7be6966-d6aa-11ec-4158-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-f7be6966-d6aa-11ec-4158-020000000000">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <antwoord>
+               <identificatie value="MBH_200_start_duur_AVMA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.3"/>
+               <antwoord_datum value="2022-01-01T09:45:00+01:00" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener value="urn-uuid-f7be692a-d6aa-11ec-4158-020000000000"
+                                datatype="reference"/>
+               </auteur>
+               <relatie_voorstel_gegevens>
+                  <identificatie value="MBH_200_start_duur_VMA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
+               </relatie_voorstel_gegevens>
+               <antwoord_medicatieafspraak code="101"
+                                           codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.17"
+                                           displayName="Ja, medicatieafspraak volgt"/>
+            </antwoord>
+         </voorstel_gegevens>
+      </sturen_antwoord_voorstel_medicatieafspraak>
+   </data>
+</adaxml>

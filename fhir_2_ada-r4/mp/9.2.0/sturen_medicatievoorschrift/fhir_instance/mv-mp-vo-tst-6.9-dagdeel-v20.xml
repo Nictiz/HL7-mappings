@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ea16c5e7-d5fc-11ec-1301-020000000000"/>
+   <id value="f41b26c9-d6aa-11ec-1644-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ea16c67c-d5fc-11ec-1301-020000000000"/>
+      <fullUrl value="urn:uuid:f41b275e-d6aa-11ec-1644-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH200dagdeelMA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -41,18 +44,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ea16c6b8-d5fc-11ec-1301-020000000000"/>
+               <reference value="urn:uuid:f41b279a-d6aa-11ec-1644-020000000000"/>
                <type value="Medication"/>
                <display value="EZETIMIB/SIMVASTATINE 10/20"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ea16c65e-d5fc-11ec-1301-020000000000"/>
+               <reference value="urn:uuid:f41b2740-d6aa-11ec-1644-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2022-01-01T08:27:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:ea16c6d6-d5fc-11ec-1301-020000000000"/>
+               <reference value="urn:uuid:f41b27b8-d6aa-11ec-1644-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -88,16 +91,20 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea16c69a-d5fc-11ec-1301-020000000000"/>
+      <fullUrl value="urn:uuid:f41b277c-d6aa-11ec-1644-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977527110001461081-MBH200dagdeelVV"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -121,23 +128,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ea16c6b8-d5fc-11ec-1301-020000000000"/>
+               <reference value="urn:uuid:f41b279a-d6aa-11ec-1644-020000000000"/>
                <type value="Medication"/>
                <display value="EZETIMIB/SIMVASTATINE 10/20"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ea16c65e-d5fc-11ec-1301-020000000000"/>
+               <reference value="urn:uuid:f41b2740-d6aa-11ec-1644-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2022-01-01T08:27:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:ea16c6d6-d5fc-11ec-1301-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
             <performer>
-               <reference value="urn:uuid:ea16c74e-d5fc-11ec-1301-020000000000"/>
+               <reference value="urn:uuid:f41b2830-d6aa-11ec-1644-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
             </performer>
@@ -167,9 +169,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea16c65e-d5fc-11ec-1301-020000000000"/>
+      <fullUrl value="urn:uuid:f41b2740-d6aa-11ec-1644-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hemsbergen"/>
@@ -211,9 +217,13 @@
             <birthDate value="1963-11-02"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea16c6d6-d5fc-11ec-1301-020000000000"/>
+      <fullUrl value="urn:uuid:f41b27b8-d6aa-11ec-1644-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -221,12 +231,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ea16c6f4-d5fc-11ec-1301-020000000000"/>
+               <reference value="urn:uuid:f41b27d6-d6aa-11ec-1644-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:ea16c712-d5fc-11ec-1301-020000000000"/>
+               <reference value="urn:uuid:f41b27f4-d6aa-11ec-1644-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -245,9 +255,13 @@
             </telecom>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea16c6f4-d5fc-11ec-1301-020000000000"/>
+      <fullUrl value="urn:uuid:f41b27d6-d6aa-11ec-1644-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -282,9 +296,13 @@
             </telecom>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea16c712-d5fc-11ec-1301-020000000000"/>
+      <fullUrl value="urn:uuid:f41b27f4-d6aa-11ec-1644-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -320,9 +338,13 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea16c74e-d5fc-11ec-1301-020000000000"/>
+      <fullUrl value="urn:uuid:f41b2830-d6aa-11ec-1644-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -336,9 +358,13 @@
             <name value="Apotheek de Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea16c6b8-d5fc-11ec-1301-020000000000"/>
+      <fullUrl value="urn:uuid:f41b279a-d6aa-11ec-1644-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-77038"/>
@@ -361,5 +387,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>
