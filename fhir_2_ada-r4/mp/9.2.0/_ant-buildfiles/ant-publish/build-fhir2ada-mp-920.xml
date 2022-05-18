@@ -45,6 +45,27 @@
     <property name="usecase.vv" value="beschikbaarstellen_verstrekkingenvertaling"/>
     <property name="usecase.vvv" value="sturen_voorstel_verstrekkingsverzoek"/>
     <property name="usecase.avvv" value="sturen_antwoord_voorstel_verstrekkingsverzoek"/>
+
+    <!-- date.T, currently only used for roundtrip testing -->
+    <property name="date.T" value="2022-01-01"/>
+    
+    <!-- for roundtrip testing -->
+    <target name="convert_ada_2_fhir_sub">
+        
+        <fileset id="inputFiles" dir="${xsl.in}" includes="${xsl.in.include}"/>
+        
+        <echo/>
+        <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
+        <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputFiles"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+            <param name="generateInstructionText" expression="true"/>
+            <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
+            <param name="mask-ids" expression="${param.maskids}" if="param.maskids"/>
+        </xslt>
+        
+    </target>
     
     <target name="convert_fhir_2_ada">
 
@@ -55,7 +76,7 @@
             <param name="xsl.in" value="fhir_instance_repo"/>
             <param name="xsl.out" value="ada_instance_repo"/>
         </antcall>
-        
+
         <!-- sturen_medicatievoorschrift -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.mv}"/>
@@ -63,7 +84,7 @@
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-        
+
         <!-- sturen_afhandeling_medicatievoorschrift -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.av}"/>
@@ -79,7 +100,7 @@
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-        
+
         <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.avma}"/>
@@ -87,7 +108,7 @@
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-        
+
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.vvv}"/>
@@ -95,7 +116,7 @@
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-        
+
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.avvv}"/>
@@ -103,7 +124,6 @@
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-        
 
     </target>
 
@@ -133,59 +153,80 @@
         </sequential>
     </target>
 
+    <target name="roundtrip_fhir_2_ada_2_fhir">
+
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance_repo"/>
+            <param name="xsl.out" value="ada_instance_repo"/>
+        </antcall>
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.2.0/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.mg}/roundtrip_fhir_instance_repo"/>
+            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+    </target>
+
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
 
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="setup_sub">
-            <param name="usecase"  value="${usecase.mg}"/>
+            <param name="usecase" value="${usecase.mg}"/>
             <param name="folder.name" value="fhir_instance_repo"/>
             <param name="include.files" value="mg*.xml"/>
         </antcall>
-        
+
         <!-- sturen_medicatievoorschrift -->
         <antcall target="setup_sub">
-            <param name="usecase"  value="${usecase.mv}"/>
+            <param name="usecase" value="${usecase.mv}"/>
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>
-        
+
         <!-- sturen_afhandeling_medicatievoorschrift -->
         <antcall target="setup_sub">
-            <param name="usecase"  value="${usecase.av}"/>
+            <param name="usecase" value="${usecase.av}"/>
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>
-  
+
         <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="setup_sub">
-            <param name="usecase"  value="${usecase.vma}"/>
+            <param name="usecase" value="${usecase.vma}"/>
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>
-        
+
         <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="setup_sub">
-            <param name="usecase"  value="${usecase.avma}"/>
+            <param name="usecase" value="${usecase.avma}"/>
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
-        </antcall>        
-        
+        </antcall>
+
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="setup_sub">
-            <param name="usecase"  value="${usecase.vvv}"/>
+            <param name="usecase" value="${usecase.vvv}"/>
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>
-        
+
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="setup_sub">
-            <param name="usecase"  value="${usecase.avvv}"/>
+            <param name="usecase" value="${usecase.avvv}"/>
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>
-        
-  
+
+
     </target>
 
     <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
@@ -225,7 +266,7 @@
 
         <echo/>
         <echo>Setup ${build.dir}/${usecase} containing refreshed fhir instances</echo>
-        
+
         <mkdir dir="${build.dir}/${usecase}/${folder.name}"/>
         <delete>
             <fileset dir="${build.dir}/${usecase}/${folder.name}" includes="*.xml"/>
