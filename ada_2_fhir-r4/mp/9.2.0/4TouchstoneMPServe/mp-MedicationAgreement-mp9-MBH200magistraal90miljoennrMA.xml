@@ -1,0 +1,66 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-MedicationAgreement-mp9-MBH200magistraal90miljoennrMA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf 1 jan 2022, tot en met 31 jan 2022, 1 maal per dag, cutaan"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="2022-01-01T00:00:00+01:00"/>
+         <end value="2022-01-31T23:59:59+01:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_200_magistraal90miljoennr"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_200_magistraal90miljoennr_MA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="33633005"/>
+         <display value="voorschrijven van geneesmiddel"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/uticalProduct-mp9-2168401113883243119999779000000011111-90000001"/>
+      <type value="Medication"/>
+      <display value="Eigen artikel: ureumzalf"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-G-XXX-Hess"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Hess"/>
+   </subject>
+   <authoredOn value="2022-01-01T12:08:00+01:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PractitionerRole-mp9-000001111-0100-00001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="53"/>
+            <display value="cutaan"/>
+         </coding>
+      </route>
+   </dosageInstruction>
+</MedicationRequest>
