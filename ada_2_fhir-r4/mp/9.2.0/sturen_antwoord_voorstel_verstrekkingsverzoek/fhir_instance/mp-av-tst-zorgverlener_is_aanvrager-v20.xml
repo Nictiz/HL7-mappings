@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="f139fba0-d5fc-11ec-2193-020000000000"/>
+   <id value="f8dbdeb0-d6aa-11ec-1303-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ReplyProposalDispenseRequest"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:f139fba0-d5fc-11ec-2193-020000000000"/>
+      <fullUrl value="urn:uuid:f8dbdeb0-d6aa-11ec-1303-020000000000"/>
       <resource>
          <Communication>
-            <id value="f139fba1-d5fc-11ec-2193-020000000000"/>
+            <id value="f8dbdeb1-d6aa-11ec-1303-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition//mp-ReplyProposalDispenseRequest"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -27,11 +30,16 @@
             </basedOn>
             <status value="completed"/>
             <subject>
-               <reference value="urn:uuid:f139eb6e-d5fc-11ec-2193-020000000000"/>
+               <reference value="urn:uuid:f8dbcc08-d6aa-11ec-1303-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. van de XXX_Brugge"/>
             </subject>
             <sent value="2022-01-01T16:25:00+01:00"/>
+            <sender>
+               <reference value="urn:uuid:f8dbcc26-d6aa-11ec-1303-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+            </sender>
             <payload>
                <contentString>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Communication.Payload.ContentCodeableConcept">
@@ -47,9 +55,13 @@
             </payload>
          </Communication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Communication"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f139eb6e-d5fc-11ec-2193-020000000000"/>
+      <fullUrl value="urn:uuid:f8dbcc08-d6aa-11ec-1303-020000000000"/>
       <resource>
          <Patient>
             <id value="C.vandeXXX-Brugge"/>
@@ -94,9 +106,13 @@
             <birthDate value="1963-10-16"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f139eb8c-d5fc-11ec-2193-020000000000"/>
+      <fullUrl value="urn:uuid:f8dbcc26-d6aa-11ec-1303-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -104,12 +120,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:f139ebaa-d5fc-11ec-2193-020000000000"/>
+               <reference value="urn:uuid:f8dbcc44-d6aa-11ec-1303-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:f139ebc8-d5fc-11ec-2193-020000000000"/>
+               <reference value="urn:uuid:f8dbcc62-d6aa-11ec-1303-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -123,9 +139,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f139ebaa-d5fc-11ec-2193-020000000000"/>
+      <fullUrl value="urn:uuid:f8dbcc44-d6aa-11ec-1303-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -155,9 +175,13 @@
             </name>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f139ebc8-d5fc-11ec-2193-020000000000"/>
+      <fullUrl value="urn:uuid:f8dbcc62-d6aa-11ec-1303-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -193,5 +217,9 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
 </Bundle>

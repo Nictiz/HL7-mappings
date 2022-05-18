@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="e9c4c4f9-d5fc-11ec-1372-020000000000"/>
+   <id value="f3cadd4f-d6aa-11ec-1441-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:e9c4c58e-d5fc-11ec-1372-020000000000"/>
+      <fullUrl value="urn:uuid:f3cadde4-d6aa-11ec-1441-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="e9c4cd74-d5fc-11ec-1372-020000000000"/>
+            <id value="f3caf92a-d6aa-11ec-1441-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -42,18 +45,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e9c4c5ca-d5fc-11ec-1372-020000000000"/>
+               <reference value="urn:uuid:f3cade20-d6aa-11ec-1441-020000000000"/>
                <type value="Medication"/>
                <display value="FERROFUMARAAT TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e9c4c570-d5fc-11ec-1372-020000000000"/>
+               <reference value="urn:uuid:f3caddc6-d6aa-11ec-1441-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <authoredOn value="2022-01-01T08:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:e9c4c5e8-d5fc-11ec-1372-020000000000"/>
+               <reference value="urn:uuid:f3cade3e-d6aa-11ec-1441-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -106,16 +109,20 @@
             </priorPrescription>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e9c4c5ac-d5fc-11ec-1372-020000000000"/>
+      <fullUrl value="urn:uuid:f3cade02-d6aa-11ec-1441-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="e9c4cd8f-d5fc-11ec-1372-020000000000"/>
+            <id value="f3caf945-d6aa-11ec-1441-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -157,18 +164,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e9c4c5ca-d5fc-11ec-1372-020000000000"/>
+               <reference value="urn:uuid:f3cade20-d6aa-11ec-1441-020000000000"/>
                <type value="Medication"/>
                <display value="FERROFUMARAAT TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e9c4c570-d5fc-11ec-1372-020000000000"/>
+               <reference value="urn:uuid:f3caddc6-d6aa-11ec-1441-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <authoredOn value="2022-01-01T08:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:e9c4c5e8-d5fc-11ec-1372-020000000000"/>
+               <reference value="urn:uuid:f3cade3e-d6aa-11ec-1441-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -214,9 +221,13 @@
             </priorPrescription>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e9c4c570-d5fc-11ec-1372-020000000000"/>
+      <fullUrl value="urn:uuid:f3caddc6-d6aa-11ec-1441-020000000000"/>
       <resource>
          <Patient>
             <id value="J.deXXX-Luzac"/>
@@ -261,9 +272,13 @@
             <birthDate value="1985-10-24"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e9c4c5e8-d5fc-11ec-1372-020000000000"/>
+      <fullUrl value="urn:uuid:f3cade3e-d6aa-11ec-1441-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -271,12 +286,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:e9c4c606-d5fc-11ec-1372-020000000000"/>
+               <reference value="urn:uuid:f3cade5c-d6aa-11ec-1441-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:e9c4c624-d5fc-11ec-1372-020000000000"/>
+               <reference value="urn:uuid:f3cade7a-d6aa-11ec-1441-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -295,9 +310,13 @@
             </telecom>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e9c4c606-d5fc-11ec-1372-020000000000"/>
+      <fullUrl value="urn:uuid:f3cade5c-d6aa-11ec-1441-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -332,9 +351,13 @@
             </telecom>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e9c4c624-d5fc-11ec-1372-020000000000"/>
+      <fullUrl value="urn:uuid:f3cade7a-d6aa-11ec-1441-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -370,9 +393,13 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e9c4c5ca-d5fc-11ec-1372-020000000000"/>
+      <fullUrl value="urn:uuid:f3cade20-d6aa-11ec-1441-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-42293"/>
@@ -395,5 +422,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

@@ -37,14 +37,15 @@
     <property name="refs.dir" value="${build.dir}/../../../ada_2_fhir-r4/${is.abbreviation}/${is.version}"/>
 
     <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
-    <property name="usecase.avvv" value="sturen_antwoord_voorstel_verstrekkingsverzoek"/>
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
     <property name="usecase.vma" value="sturen_voorstel_medicatieafspraak"/>
+    <property name="usecase.avma" value="sturen_antwoord_voorstel_medicatieafspraak"/>
     <property name="usecase.vv" value="beschikbaarstellen_verstrekkingenvertaling"/>
     <property name="usecase.vvv" value="sturen_voorstel_verstrekkingsverzoek"/>
-
+    <property name="usecase.avvv" value="sturen_antwoord_voorstel_verstrekkingsverzoek"/>
+    
     <target name="convert_fhir_2_ada">
 
         <!-- beschikbaarstellen_medicatiegegevens -->
@@ -74,6 +75,30 @@
         <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.vma}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.avma}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.vvv}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.avvv}"/>
             <param name="build.dir" value="${build.dir}"/>
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
@@ -135,6 +160,27 @@
         <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="setup_sub">
             <param name="usecase"  value="${usecase.vma}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+        
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="setup_sub">
+            <param name="usecase"  value="${usecase.avma}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>        
+        
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="setup_sub">
+            <param name="usecase"  value="${usecase.vvv}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+        
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
+        <antcall target="setup_sub">
+            <param name="usecase"  value="${usecase.avvv}"/>
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>

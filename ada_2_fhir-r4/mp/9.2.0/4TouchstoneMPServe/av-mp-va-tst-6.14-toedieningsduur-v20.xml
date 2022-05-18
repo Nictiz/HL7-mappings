@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec35fc49-d5fc-11ec-7685-020000000000"/>
+   <id value="f5cc6253-d6aa-11ec-1824-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec35fcde-d5fc-11ec-7685-020000000000"/>
+      <fullUrl value="urn:uuid:f5cc62e8-d6aa-11ec-1824-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200toedieningsduurTA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -43,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec35fd1a-d5fc-11ec-7685-020000000000"/>
+               <reference value="urn:uuid:f5cc6324-d6aa-11ec-1824-020000000000"/>
                <type value="Medication"/>
                <display value="DEPONIT T 5 PLEISTER TRANSDERMAAL 18,7MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec35fcc0-d5fc-11ec-7685-020000000000"/>
+               <reference value="urn:uuid:f5cc62ca-d6aa-11ec-1824-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec35fd38-d5fc-11ec-7685-020000000000"/>
+                  <reference value="urn:uuid:f5cc6342-d6aa-11ec-1824-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -103,16 +106,20 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec35fcfc-d5fc-11ec-7685-020000000000"/>
+      <fullUrl value="urn:uuid:f5cc6306-d6aa-11ec-1824-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200toedieningsduurMVE"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -135,18 +142,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec35fd1a-d5fc-11ec-7685-020000000000"/>
+               <reference value="urn:uuid:f5cc6324-d6aa-11ec-1824-020000000000"/>
                <type value="Medication"/>
                <display value="DEPONIT T 5 PLEISTER TRANSDERMAAL 18,7MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec35fcc0-d5fc-11ec-7685-020000000000"/>
+               <reference value="urn:uuid:f5cc62ca-d6aa-11ec-1824-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec35fd38-d5fc-11ec-7685-020000000000"/>
+                  <reference value="urn:uuid:f5cc6342-d6aa-11ec-1824-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -176,9 +183,13 @@
             <whenHandedOver value="2022-01-01T09:49:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec35fcc0-d5fc-11ec-7685-020000000000"/>
+      <fullUrl value="urn:uuid:f5cc62ca-d6aa-11ec-1824-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hemsbergen"/>
@@ -220,9 +231,13 @@
             <birthDate value="1963-11-02"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec35fd38-d5fc-11ec-7685-020000000000"/>
+      <fullUrl value="urn:uuid:f5cc6342-d6aa-11ec-1824-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -236,9 +251,13 @@
             <name value="Apotheek de Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec35fd1a-d5fc-11ec-7685-020000000000"/>
+      <fullUrl value="urn:uuid:f5cc6324-d6aa-11ec-1824-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-1013602"/>
@@ -266,5 +285,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

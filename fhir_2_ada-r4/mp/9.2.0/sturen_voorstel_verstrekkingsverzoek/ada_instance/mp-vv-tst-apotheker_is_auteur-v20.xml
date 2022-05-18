@@ -1,0 +1,117 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_verstrekkingsverzoek.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-05-18T15:29:17.29676+02:00"
+         last-update-date="2022-05-18T15:29:17.29676+02:00"/>
+   <data>
+      <sturen_voorstel_verstrekkingsverzoek app="mp-mp92"
+                                            shortName="sturen_voorstel_verstrekkingsverzoek"
+                                            formName="sturen_voorstel_verstrekkingsverzoek"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.328"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            versionDate=""
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR sturen_voorstel_verstrekkingsverzoek"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="C. van de XXX_Brugge"/>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van de"/>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-16" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling id="MBH_200_start_eind">
+            <identificatie value="MBH_200_start_eind"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <verstrekkingsverzoek>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-f84ceb3c-d6aa-11ec-1966-020000000000"
+                                         datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="5"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-f84ceb96-d6aa-11ec-1966-020000000000"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_start_eind_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-f84ceb3c-d6aa-11ec-1966-020000000000">
+               <product_code code="6947"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="METOCLOPRAMIDE TABLET 10MG"/>
+               <product_code code="19429"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METOCLOPRAMIDE TABLET 10MG"/>
+               <product_code code="560308"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="METOCLOPRAMIDE HCL PCH TABLET 10MG"
+                             preferred="true"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-f84ceb5a-d6aa-11ec-1966-020000000000">
+               <zorgverlener_identificatienummer value="000001116" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Victor de Verstrekker"/>
+                  <voornamen value="Victor"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="de"/>
+                     <achternaam value="Verstrekker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0200"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Apothekers"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-f84ceb96-d6aa-11ec-1966-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-f84ceb96-d6aa-11ec-1966-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <voorstel>
+               <identificatie value="MBH_200_start_eind_VVV_apotheker"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.2"/>
+               <voorstel_datum value="2022-01-01T13:24:00+01:00" datatype="datetime"/>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="urn-uuid-f84ceb5a-d6aa-11ec-1966-020000000000"
+                                   datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <medicamenteuze_behandeling value="MBH_200_start_eind" datatype="reference"/>
+               <toelichting value="Te weinig voorraad voor het komende weekend"/>
+            </voorstel>
+         </voorstel_gegevens>
+      </sturen_voorstel_verstrekkingsverzoek>
+   </data>
+</adaxml>

@@ -154,9 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="(medicatieafspraak_datum_tijd | ancestor::*[voorstel_gegevens]/voorstel_gegevens/voorstel/voorstel_datum)[@value | @nullFlavor]">
                     <authoredOn>
                         <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="./@value"/>
-                            </xsl:call-template>
+                            <xsl:call-template name="date-to-datetime"/>                            
                         </xsl:attribute>
                     </authoredOn>
                 </xsl:for-each>

@@ -29,7 +29,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
     <xsl:param name="metaTag" as="xs:string?"/>
 
-
     <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
     </xd:doc>
@@ -167,7 +166,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
 
     <xsl:variable name="bouwstenen-920" as="element(f:entry)*">
-        <xsl:variable name="searchMode" as="xs:string?" select="$searchModeParam"/>
 
         <!-- medicatieafspraken -->
         <xsl:for-each select="//medicatieafspraak">
@@ -212,11 +210,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:with-param>
                     </xsl:call-template>
                 </resource>
-                <xsl:if test="string-length($searchMode) gt 0">
-                    <search>
-                        <mode value="{$searchMode}"/>
-                    </search>
-                </xsl:if>
             </entry>
         </xsl:for-each>
 
@@ -232,11 +225,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="requester" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]"/>
                     </xsl:call-template>
                 </resource>
-                <xsl:if test="string-length($searchMode) gt 0">
-                    <search>
-                        <mode value="{$searchMode}"/>
-                    </search>
-                </xsl:if>
             </entry>
         </xsl:for-each>
 
@@ -253,11 +241,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/beoogd_verstrekker/zorgaanbieder/@value]"/>
                     </xsl:call-template>
                 </resource>
-                <xsl:if test="string-length($searchMode) gt 0">
-                    <search>
-                        <mode value="{$searchMode}"/>
-                    </search>
-                </xsl:if>
             </entry>
         </xsl:for-each>
 
@@ -273,11 +256,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]"/>
                     </xsl:call-template>
                 </resource>
-                <xsl:if test="string-length($searchMode) gt 0">
-                    <search>
-                        <mode value="{$searchMode}"/>
-                    </search>
-                </xsl:if>
             </entry>
         </xsl:for-each>
 
@@ -294,11 +272,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="performer" select="ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]"/>
                     </xsl:call-template>
                 </resource>
-                <xsl:if test="string-length($searchMode) gt 0">
-                    <search>
-                        <mode value="{$searchMode}"/>
-                    </search>
-                </xsl:if>
             </entry>
         </xsl:for-each>
 
@@ -314,11 +287,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="prescriber" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]"/>
                     </xsl:call-template>
                 </resource>
-                <xsl:if test="string-length($searchMode) gt 0">
-                    <search>
-                        <mode value="{$searchMode}"/>
-                    </search>
-                </xsl:if>
             </entry>
         </xsl:for-each>
 
@@ -333,11 +301,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="subject" select="../../patient"/>
                     </xsl:call-template>
                 </resource>
-                <xsl:if test="string-length($searchMode) gt 0">
-                    <search>
-                        <mode value="{$searchMode}"/>
-                    </search>
-                </xsl:if>
             </entry>
         </xsl:for-each>
 
@@ -400,7 +363,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </sent>
                         </xsl:for-each>
 
-                        <xsl:for-each select="..//zorgverlener[@id = current()/auteur/zorgverlener/@value]">
+                        <xsl:for-each select="ancestor::*[bouwstenen]/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]">
                             <sender>
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
@@ -412,7 +375,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                             <payload>
                                 <contentString>
-                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Communication.Payload.ContentCodeableConcept">
+                                    <extension url="{$urlExtCommunicationPayloadContentCodeableConcept}">
                                         <valueCodeableConcept>
                                             <xsl:call-template name="code-to-CodeableConcept"/>
                                         </valueCodeableConcept>
@@ -471,5 +434,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:attribute>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Basis copy template in mode addBundleEntrySearchOrRequest</xd:desc>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="addBundleEntrySearchOrRequest">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="#current"/>
+        </xsl:copy>
+    </xsl:template>
+
 
 </xsl:stylesheet>

@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="e99d8169-d5fc-11ec-3383-020000000000"/>
+   <id value="f3b2a1c1-d6aa-11ec-7001-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:e99d81fe-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a256-d6aa-11ec-7001-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH200redenvanvoorschrijvenMA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -42,23 +45,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e99d8258-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a2b0-d6aa-11ec-7001-020000000000"/>
                <type value="Medication"/>
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e99d81e0-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a238-d6aa-11ec-7001-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <authoredOn value="2022-01-01T08:05:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:e99d8276-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a2ce-d6aa-11ec-7001-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <reasonReference>
-               <reference value="urn:uuid:e99d821c-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a274-d6aa-11ec-7001-020000000000"/>
                <type value="Condition"/>
                <display value="Problem"/>
             </reasonReference>
@@ -96,16 +99,20 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e99d823a-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a292-d6aa-11ec-7001-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="e99d8364-d5fc-11ec-3383-020000000000"/>
+            <id value="f3b2976e-d6aa-11ec-7001-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -129,23 +136,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e99d8258-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a2b0-d6aa-11ec-7001-020000000000"/>
                <type value="Medication"/>
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e99d81e0-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a238-d6aa-11ec-7001-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <authoredOn value="2022-01-01T08:05:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:e99d8276-d5fc-11ec-3383-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
             <performer>
-               <reference value="urn:uuid:e99d82ee-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a346-d6aa-11ec-7001-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -175,9 +177,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e99d81e0-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a238-d6aa-11ec-7001-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Coenen"/>
@@ -219,9 +225,13 @@
             <birthDate value="1963-10-17"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e99d8276-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a2ce-d6aa-11ec-7001-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001112-0100-00001111"/>
@@ -229,12 +239,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:e99d8294-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a2ec-d6aa-11ec-7001-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:e99d82b2-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a30a-d6aa-11ec-7001-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -253,9 +263,13 @@
             </telecom>
          </PractitionerRole>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e99d8294-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a2ec-d6aa-11ec-7001-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001112"/>
@@ -290,9 +304,13 @@
             </telecom>
          </Practitioner>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e99d82b2-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a30a-d6aa-11ec-7001-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
@@ -328,9 +346,13 @@
             </address>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e99d82ee-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a346-d6aa-11ec-7001-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -344,9 +366,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e99d8258-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a2b0-d6aa-11ec-7001-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.10-141631"/>
@@ -369,12 +395,16 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e99d821c-d5fc-11ec-3383-020000000000"/>
+      <fullUrl value="urn:uuid:f3b2a274-d6aa-11ec-7001-020000000000"/>
       <resource>
          <Condition>
-            <id value="e99d8352-d5fc-11ec-3383-020000000000"/>
+            <id value="f3b2975c-d6aa-11ec-7001-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
             </meta>
@@ -385,11 +415,15 @@
                <text value="Reumatoide artritis"/>
             </code>
             <subject>
-               <reference value="urn:uuid:e99d81e0-d5fc-11ec-3383-020000000000"/>
+               <reference value="urn:uuid:f3b2a238-d6aa-11ec-7001-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
          </Condition>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Condition"/>
+      </request>
    </entry>
 </Bundle>

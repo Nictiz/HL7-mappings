@@ -67,9 +67,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaTransaction" as="element()*"/>
         
         <xsl:variable name="entries" as="element(f:entry)*">
-            <xsl:copy-of select="$bouwstenen-920"/>
+            <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
-            <xsl:copy-of select="$commonEntries"/>
+            <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
         </xsl:variable>
         
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>

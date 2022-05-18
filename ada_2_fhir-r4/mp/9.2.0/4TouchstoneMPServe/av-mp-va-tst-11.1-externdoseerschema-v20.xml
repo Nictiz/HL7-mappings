@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ebe41d43-d5fc-11ec-1462-020000000000"/>
+   <id value="f590f3e9-d6aa-11ec-3820-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ebe41dd8-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:f590f47e-d6aa-11ec-3820-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH200wdsmtd1TA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -43,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebe41e14-d5fc-11ec-1462-020000000000"/>
+               <reference value="urn:uuid:f590f4ba-d6aa-11ec-3820-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebe41dba-d5fc-11ec-1462-020000000000"/>
+               <reference value="urn:uuid:f590f460-d6aa-11ec-3820-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebe41e32-d5fc-11ec-1462-020000000000"/>
+                  <reference value="urn:uuid:f590f4d8-d6aa-11ec-3820-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -69,9 +72,11 @@
             </authorizingPrescription>
             <dosageInstruction>
                <additionalInstruction>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                     <valueCode value="OTH"/>
-                  </extension>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
                   <text value="Volgens schema trombosedienst"/>
                </additionalInstruction>
                <route>
@@ -84,16 +89,20 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe41df6-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:f590f49c-d6aa-11ec-3820-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH200wdsmtd1MVE"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -116,18 +125,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebe41e14-d5fc-11ec-1462-020000000000"/>
+               <reference value="urn:uuid:f590f4ba-d6aa-11ec-3820-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ebe41dba-d5fc-11ec-1462-020000000000"/>
+               <reference value="urn:uuid:f590f460-d6aa-11ec-3820-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ebe41e32-d5fc-11ec-1462-020000000000"/>
+                  <reference value="urn:uuid:f590f4d8-d6aa-11ec-3820-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -157,9 +166,13 @@
             <whenHandedOver value="2022-01-01T09:00:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe41dba-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:f590f460-d6aa-11ec-3820-020000000000"/>
       <resource>
          <Patient>
             <id value="M.XXX-Pherai"/>
@@ -201,9 +214,13 @@
             <birthDate value="1985-11-01"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe41e32-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:f590f4d8-d6aa-11ec-3820-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -217,9 +234,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebe41e14-d5fc-11ec-1462-020000000000"/>
+      <fullUrl value="urn:uuid:f590f4ba-d6aa-11ec-3820-020000000000"/>
       <resource>
          <Medication>
             <id value="2.16.840.1.113883.2.4.4.7-856126"/>
@@ -247,5 +268,9 @@
             </code>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

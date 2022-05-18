@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
     <xsl:import href="mp-voorstel.xsl"/>
+    <xsl:import href="mp-antwoord.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>

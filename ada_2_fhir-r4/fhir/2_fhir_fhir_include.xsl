@@ -82,6 +82,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport-Observation"/>
+        <nm:map ada="sturen_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescription-Bundle"/>
+        <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
+        <nm:map ada="sturen_antwoord_voorstel_medicatieafspraak" resource="Bundle" profile="mp-ReplyProposalMedicationAgreement"/>
+        <nm:map ada="sturen_antwoord_voorstel_verstrekkingsverzoek" resource="Bundle" profile="mp-ReplyProposalDispenseRequest"/>
+        <nm:map ada="sturen_voorstel_medicatieafspraak" resource="Bundle" profile="mp-ProposalMedicationAgreement"/>
+        <nm:map ada="sturen_voorstel_verstrekkingsverzoek" resource="Bundle" profile="mp-ProposalDispenseRequest"/>
+        <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
+        <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
+        <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
         <nm:map ada="tabak_gebruik" resource="Observation" profile="nl-core-TobaccoUse"/>
         <nm:map ada="tekst_uitslag" resource="DiagnosticReport" profile="nl-core-TextResult"/>
         <nm:map ada="toedieningsafspraak" resource="MedicationDispense" profile="mp-AdministrationAgreement"/>

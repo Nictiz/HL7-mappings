@@ -1,15 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ec645d19-d5fc-11ec-2125-020000000000"/>
+   <id value="f5ef9caf-d6aa-11ec-9233-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
+   </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ec645dae-d5fc-11ec-2125-020000000000"/>
+      <fullUrl value="urn:uuid:f5ef9d44-d6aa-11ec-9233-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ec6476d6-d5fc-11ec-2125-020000000000"/>
+            <id value="f5efb6c6-d6aa-11ec-9233-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -44,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec645dea-d5fc-11ec-2125-020000000000"/>
+               <reference value="urn:uuid:f5ef9d80-d6aa-11ec-9233-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec645d90-d5fc-11ec-2125-020000000000"/>
+               <reference value="urn:uuid:f5ef9d26-d6aa-11ec-9233-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec645e08-d5fc-11ec-2125-020000000000"/>
+                  <reference value="urn:uuid:f5ef9d9e-d6aa-11ec-9233-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -86,16 +89,20 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec645dcc-d5fc-11ec-2125-020000000000"/>
+      <fullUrl value="urn:uuid:f5ef9d62-d6aa-11ec-9233-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="ec6476ec-d5fc-11ec-2125-020000000000"/>
+            <id value="f5efb6dc-d6aa-11ec-9233-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -118,18 +125,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ec645dea-d5fc-11ec-2125-020000000000"/>
+               <reference value="urn:uuid:f5ef9d80-d6aa-11ec-9233-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ec645d90-d5fc-11ec-2125-020000000000"/>
+               <reference value="urn:uuid:f5ef9d26-d6aa-11ec-9233-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ec645e08-d5fc-11ec-2125-020000000000"/>
+                  <reference value="urn:uuid:f5ef9d9e-d6aa-11ec-9233-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -159,9 +166,13 @@
             <whenHandedOver value="2022-01-01T13:05:00+01:00"/>
          </MedicationDispense>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec645d90-d5fc-11ec-2125-020000000000"/>
+      <fullUrl value="urn:uuid:f5ef9d26-d6aa-11ec-9233-020000000000"/>
       <resource>
          <Patient>
             <id value="G.XXX-Hess"/>
@@ -203,9 +214,13 @@
             <birthDate value="1963-11-03"/>
          </Patient>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec645e08-d5fc-11ec-2125-020000000000"/>
+      <fullUrl value="urn:uuid:f5ef9d9e-d6aa-11ec-9233-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-01236578"/>
@@ -219,12 +234,16 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec645dea-d5fc-11ec-2125-020000000000"/>
+      <fullUrl value="urn:uuid:f5ef9d80-d6aa-11ec-9233-020000000000"/>
       <resource>
          <Medication>
-            <id value="ec6476f9-d5fc-11ec-2125-020000000000"/>
+            <id value="f5efb6e9-d6aa-11ec-9233-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
@@ -278,5 +297,9 @@
             </ingredient>
          </Medication>
       </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

@@ -49,6 +49,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</xsl:choose>
 				</auteur>
 			</xsl:for-each>
+			
+			<!-- medicamenteuze_behandeling -->
 			<xsl:choose>
 				<xsl:when test="f:extension[@url=$urlExtPharmaceuticalTreatmentIdentifier]">
 					<xsl:for-each select="f:extension[@url=$urlExtPharmaceuticalTreatmentIdentifier]">
@@ -59,6 +61,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<medicamenteuze_behandeling value="NIEUW" datatype="reference"/>					
 				</xsl:otherwise>
 			</xsl:choose>
+			
+			<!-- toelichting -->
+			<xsl:for-each select="f:extension[@url=$urlExtComment]">
+				<toelichting value="{f:valueString/@value}"/>
+			</xsl:for-each>
+			
 			
 		</voorstel>
 
