@@ -1,18 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="11da1eef-d6a5-11ec-4373-020000000000"/>
+   <id value="f7be7c17-d6aa-11ec-4158-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ReplyProposalMedicationAgreement"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:11da1eef-d6a5-11ec-4373-020000000000"/>
+      <fullUrl value="urn:uuid:f7be7c17-d6aa-11ec-4158-020000000000"/>
       <resource>
          <Communication>
-            <id value="11da1ef0-d6a5-11ec-4373-020000000000"/>
+            <id value="f7be7c18-d6aa-11ec-4158-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition//mp-ReplyProposalMedicationAgreement"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -30,11 +30,16 @@
             </basedOn>
             <status value="completed"/>
             <subject>
-               <reference value="urn:uuid:11da0cf2-d6a5-11ec-4373-020000000000"/>
+               <reference value="urn:uuid:f7be690c-d6aa-11ec-4158-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <sent value="2022-01-01T09:45:00+01:00"/>
+            <sender>
+               <reference value="urn:uuid:f7be692a-d6aa-11ec-4158-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+            </sender>
             <payload>
                <contentString>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Communication.Payload.ContentCodeableConcept">
@@ -56,7 +61,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:11da0cf2-d6a5-11ec-4373-020000000000"/>
+      <fullUrl value="urn:uuid:f7be690c-d6aa-11ec-4158-020000000000"/>
       <resource>
          <Patient>
             <id value="C.XXX-Brugge"/>
@@ -104,7 +109,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:11da0d10-d6a5-11ec-4373-020000000000"/>
+      <fullUrl value="urn:uuid:f7be692a-d6aa-11ec-4158-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -112,12 +117,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:11da0d2e-d6a5-11ec-4373-020000000000"/>
+               <reference value="urn:uuid:f7be6948-d6aa-11ec-4158-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:11da0d4c-d6a5-11ec-4373-020000000000"/>
+               <reference value="urn:uuid:f7be6966-d6aa-11ec-4158-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -137,7 +142,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:11da0d2e-d6a5-11ec-4373-020000000000"/>
+      <fullUrl value="urn:uuid:f7be6948-d6aa-11ec-4158-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -173,7 +178,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:11da0d4c-d6a5-11ec-4373-020000000000"/>
+      <fullUrl value="urn:uuid:f7be6966-d6aa-11ec-4158-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>

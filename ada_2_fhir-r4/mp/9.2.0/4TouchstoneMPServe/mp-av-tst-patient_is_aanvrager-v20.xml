@@ -1,18 +1,18 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="12cf6108-d6a5-11ec-9204-020000000000"/>
+   <id value="f8da505e-d6aa-11ec-2044-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ReplyProposalDispenseRequest"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:12cf6108-d6a5-11ec-9204-020000000000"/>
+      <fullUrl value="urn:uuid:f8da505e-d6aa-11ec-2044-020000000000"/>
       <resource>
          <Communication>
-            <id value="12cf6109-d6a5-11ec-9204-020000000000"/>
+            <id value="f8da505f-d6aa-11ec-2044-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition//mp-ReplyProposalDispenseRequest"/>
                <tag>
-                  <system value="http://hl7.org/fhir/ValueSet/common-tags"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
@@ -30,11 +30,16 @@
             </basedOn>
             <status value="completed"/>
             <subject>
-               <reference value="urn:uuid:12cf4eb0-d6a5-11ec-9204-020000000000"/>
+               <reference value="urn:uuid:f8da3cf8-d6aa-11ec-2044-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. van de XXX_Brugge"/>
             </subject>
             <sent value="2022-01-01T16:25:00+01:00"/>
+            <sender>
+               <reference value="urn:uuid:f8da3d16-d6aa-11ec-2044-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+            </sender>
             <payload>
                <contentString>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Communication.Payload.ContentCodeableConcept">
@@ -56,7 +61,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:12cf4eb0-d6a5-11ec-9204-020000000000"/>
+      <fullUrl value="urn:uuid:f8da3cf8-d6aa-11ec-2044-020000000000"/>
       <resource>
          <Patient>
             <id value="C.vandeXXX-Brugge"/>
@@ -107,7 +112,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:12cf4ece-d6a5-11ec-9204-020000000000"/>
+      <fullUrl value="urn:uuid:f8da3d16-d6aa-11ec-2044-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111-0100-00001111"/>
@@ -115,12 +120,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:12cf4eec-d6a5-11ec-9204-020000000000"/>
+               <reference value="urn:uuid:f8da3d34-d6aa-11ec-2044-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:12cf4f0a-d6a5-11ec-9204-020000000000"/>
+               <reference value="urn:uuid:f8da3d52-d6aa-11ec-2044-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -140,7 +145,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:12cf4eec-d6a5-11ec-9204-020000000000"/>
+      <fullUrl value="urn:uuid:f8da3d34-d6aa-11ec-2044-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2.16.528.1.1007.3.1-000001111"/>
@@ -176,7 +181,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:12cf4f0a-d6a5-11ec-9204-020000000000"/>
+      <fullUrl value="urn:uuid:f8da3d52-d6aa-11ec-2044-020000000000"/>
       <resource>
          <Organization>
             <id value="2.16.528.1.1007.3.3-00001111"/>
