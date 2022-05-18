@@ -83,6 +83,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
                     <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                 </xsl:for-each>
+                
+                <!-- voorstel toelichting -->
+                <xsl:for-each select="ancestor::*[voorstel_gegevens]/voorstel_gegevens/voorstel/toelichting">
+                    <xsl:call-template name="ext-Comment"/>
+                </xsl:for-each>                
 
                 <!--herhaalperiode_cyclisch_schema-->
                 <xsl:for-each select="gebruiksinstructie">
@@ -97,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </modifierExtension>
                 </xsl:for-each>
 
-                <xsl:for-each select="(identificatie | ../../voorstel_gegevens/voorstel/identificatie)[@value | @root | @nullFlavor]">
+                <xsl:for-each select="(identificatie | ancestor::*[voorstel_gegevens]/voorstel_gegevens/voorstel/identificatie)[@value | @root | @nullFlavor]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier"/>
                     </identifier>
@@ -146,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </encounter>
                 </xsl:for-each>
 
-                <xsl:for-each select="(medicatieafspraak_datum_tijd | ../../voorstel_gegevens/voorstel/voorstel_datum)[@value | @nullFlavor]">
+                <xsl:for-each select="(medicatieafspraak_datum_tijd | ancestor::*[voorstel_gegevens]/voorstel_gegevens/voorstel/voorstel_datum)[@value | @nullFlavor]">
                     <authoredOn>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">

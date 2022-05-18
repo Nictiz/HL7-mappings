@@ -116,6 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="urlBaseNictizProfile">http://nictiz.nl/fhir/StructureDefinition/</xsl:variable>
     <xsl:variable name="urlExtAdministrationAgreementAdditionalInformation"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AdministrationAgreement.AdditionalInformation</xsl:variable>
     <xsl:variable name="urlExtAsAgreedIndicator"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AsAgreedIndicator</xsl:variable>
+    <xsl:variable name="urlExtComment"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Comment</xsl:variable>
     <xsl:variable name="urlExtContextEpisodeOfCare"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Context-EpisodeOfCare</xsl:variable>
     <xsl:variable name="urlExtNLCodeSpecification"><xsl:value-of select="$urlBaseNictizProfile"/>code-specification</xsl:variable>
     <xsl:variable name="urlExtNLMissingTypeReference"><xsl:value-of select="$urlBaseNictizProfile"/>missing-type-reference</xsl:variable>
