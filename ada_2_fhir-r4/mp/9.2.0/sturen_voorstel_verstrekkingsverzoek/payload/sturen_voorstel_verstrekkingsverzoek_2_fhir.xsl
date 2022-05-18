@@ -14,6 +14,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../2_fhir_mp92_include.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_BundleEntryRequest.xsl"/>
+
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -62,16 +64,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:call-template name="voorstelVerstrekkingsverzoek920">
-            <xsl:with-param name="mbh" select="//sturen_voorstel_verstrekkingsverzoek/medicamenteuze_behandeling"/>
-        </xsl:call-template>
+        <xsl:call-template name="voorstelVerstrekkingsverzoek920"/>
+        
     </xsl:template>
     <xd:doc>
         <xd:desc>Build a FHIR Bundle</xd:desc>
-        <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
     </xd:doc>
     <xsl:template name="voorstelVerstrekkingsverzoek920">
-        <xsl:param name="mbh"/>
 
         <xsl:if test="$schematronXsdLinkInOutput">
             <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
@@ -81,7 +80,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
             </xsl:if>
             <id value="{nf:get-uuid(*[1])}"/>
-            <type value="transaction"/>
+            <meta>
+                <profile value="{nf:get-full-profilename-from-adaelement(.//sturen_voorstel_verstrekkingsverzoek[1])}"/>                
+            </meta>    <type value="transaction"/>
             <xsl:choose>
                 <xsl:when test="$bundleSelfLink[not(. = '')]">
                     <link>
@@ -97,9 +98,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:copy-of select="$bouwstenen-920"/>
+            <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
-            <xsl:copy-of select="$commonEntries"/>
+            <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
         </Bundle>
     </xsl:template>
 </xsl:stylesheet>

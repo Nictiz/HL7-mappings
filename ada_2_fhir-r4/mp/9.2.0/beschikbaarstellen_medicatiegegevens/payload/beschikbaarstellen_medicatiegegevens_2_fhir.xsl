@@ -14,6 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../2_fhir_mp92_include.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_BundleEntrySearch.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -31,7 +32,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
-
 
     <!-- only give dateT a value if you want conversion of relative T dates to actual dates, otherwise a Touchstone relative T-date string will be generated -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
-    
+
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
     </xd:doc>
@@ -67,8 +67,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="Medicatiegegevens_90">
         <xsl:param name="mbh"/>
-        <xsl:if test="$schematronXsdLinkInOutput">            
-        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+        <xsl:if test="$schematronXsdLinkInOutput">
+            <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         </xsl:if>
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
             <xsl:if test="$schematronXsdLinkInOutput">
@@ -92,9 +92,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:copy-of select="$bouwstenen-920"/>
+            <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
-            <xsl:copy-of select="$commonEntries"/>
+            <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
         </Bundle>
     </xsl:template>
 </xsl:stylesheet>
