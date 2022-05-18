@@ -403,7 +403,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="boundsDuration" as="element(f:boundsDuration)?"/>
 
         <xsl:for-each select="toedieningsschema">
-            <xsl:if test="interval[@value]">
+            <xsl:if test="interval[@value] and not(is_flexibel[@value])">
                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                     <valueBoolean value="true"/>
                 </extension>
