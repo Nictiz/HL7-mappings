@@ -220,7 +220,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$profile = $profileNameHealthProfessionalPractitioner">
                     <xsl:choose>
                         <xsl:when test="zorgverlener_identificatienummer[@value | @root]">
-                            <xsl:value-of select="upper-case(nf:assure-logicalid-chars(nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/concat(@root, '-', @value)))"/>
+                            <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                            <xsl:for-each select="(zorgverlener_identificatienummer[@value | @root])[1]">
+                                <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                            </xsl:for-each>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:next-match/>

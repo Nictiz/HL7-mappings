@@ -20,16 +20,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Usecasename for resource id. Optional, no default.</xd:desc>
     </xd:doc>
     <xsl:param name="usecase" as="xs:string?"/>   
+    
+    <xd:doc>
+        <xd:desc>Helper template for creating logicalId for Touchstone. Adheres to requirements in MM-1752. Profilename-usecase-uniquestring.</xd:desc>
+        <xd:param name="in">The ada element for which to create a logical id. Optional. Used to find profileName. Defaults to context.</xd:param>
+        <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
+        <xd:param name="profileName">Ability to override the default in case you have two ada element names which may end up in different FHIR profiles</xd:param>
+    </xd:doc>
+    <xsl:template name="generateLogicalIdWithProfile">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="uniqueString" as="xs:string?"/>
+        <!-- NOTE: this does not work if you have two ada element names which may end up in different FHIR profiles, the function simply selects the first one found -->
+        <xsl:param name="profileName" as="xs:string?" select="nf:get-profilename-from-adaelement($in)"/>        
+        
+        <xsl:variable name="logicalIdStartString" as="xs:string*">
+            <xsl:value-of select="$profileName"/>
+            <xsl:value-of select="$usecase"/>
+        </xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="string-length($uniqueString) le $maxLengthFHIRLogicalId - 2 and string-length($uniqueString) gt 0">
+                <xsl:value-of select="replace(nf:assure-logicalid-length(nf:assure-logicalid-chars(concat(string-join($logicalIdStartString, '-'), '-', $uniqueString))), '\.', '-')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                <xsl:value-of select="nf:assure-logicalid-length(nf:assure-logicalid-chars(concat(string-join($logicalIdStartString, '-'), '-', uuid:get-uuid(.))))"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
   
      <xd:doc>
         <xd:desc>Helper template for creating logicalId for Touchstone. Adheres to requirements in MM-1752. Profilename-usecase-uniquestring.</xd:desc>
         <xd:param name="in">The ada element for which to create a logical id. Optional. Used to find profileName. Defaults to context.</xd:param>
         <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
-    </xd:doc>
+      </xd:doc>
     <xsl:template name="generateLogicalId">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="uniqueString" as="xs:string?"/>
-        
         <!-- NOTE: this does not work if you have two ada element names which may end up in different FHIR profiles, the function simply selects the first one found -->
         <xsl:variable name="profileName" as="xs:string?" select="nf:get-profilename-from-adaelement($in)"/>        
         

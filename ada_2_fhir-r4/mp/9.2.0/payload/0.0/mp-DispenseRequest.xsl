@@ -291,7 +291,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="afleverlocatie" mode="_generateId">
+    <xsl:template match="verstrekkingsverzoek/afleverlocatie" mode="_generateId">
         <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="@value">

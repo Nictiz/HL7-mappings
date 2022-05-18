@@ -181,13 +181,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="product_code[@codeSystem = ($oidGStandaardZInummer, $oidGStandaardHPK, $oidGStandaardPRK, $oidGStandaardGPK, $oidGStandaardSNK, $oidGStandaardSSK)][@code]">
                     <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
-                    <xsl:value-of select="concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code)"/>
+                    <xsl:value-of select="concat(replace($most-specific-product-code/@codeSystem, '\.', ''), '-', $most-specific-product-code/@code)"/>
                 </xsl:when>
                 <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
                     <!-- own 90-million product-code which will fit in a logicalId -->
                     <xsl:variable name="productCode" select="product_code[not(@codeSystem = $oidHL7NullFlavor)][1]" as="element(product_code)?"/>
-                    <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
-                    <xsl:value-of select="concat(replace($productCode/@codeSystem, '\.', ''), '-', replace($productCode/@code, '_', ''))"/>
+                    <!-- we remove '.' in codeSystem to enlarge the chance of staying in 64 chars -->
+                    <xsl:value-of select="concat(replace($productCode/@codeSystem, '\.', ''), '-', $productCode/@code)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
