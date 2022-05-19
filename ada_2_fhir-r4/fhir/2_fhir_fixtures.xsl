@@ -240,6 +240,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="profileName" select="replace(nf:get-profilename-from-adaelement(.), 'PharmaceuticalProduct', 'PhPrd')"/>
         </xsl:call-template>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc> Generates a timestamp of the amount of 100 nanosecond intervals from 15 October 1582, in UTC time.
+        Override this function here to use a stable timestamp in order to create stable uuids</xd:desc>
+        <xd:param name="node"/>
+    </xd:doc>
+    <xsl:function name="uuid:generate-timestamp">
+        <xsl:param name="node"/>
+        <!-- date calculation automatically goes correct when you add the timezone information, in this case that is UTC. -->
+        <xsl:variable name="duration-from-1582" as="xs:dayTimeDuration">
+            <xsl:sequence select="xs:dateTime('2022-01-01T00:00:00.000Z') - xs:dateTime('1582-10-15T00:00:00.000Z')"/>
+        </xsl:variable>
+        <xsl:variable name="random-offset" as="xs:integer">
+            <xsl:sequence select="uuid:next-nr($node) mod 10000"/>
+        </xsl:variable>
+        <!-- do the math to get the 100 nano second intervals -->
+        <xsl:sequence select="(days-from-duration($duration-from-1582) * 24 * 60 * 60 + hours-from-duration($duration-from-1582) * 60 * 60 + minutes-from-duration($duration-from-1582) * 60 + seconds-from-duration($duration-from-1582)) * 1000 * 10000 + $random-offset"/>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
