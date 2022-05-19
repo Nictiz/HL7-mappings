@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="2e81e0ca-4889-11ec-1621-020000000000"/>
+   <id value="f2ab77c6-5da2-11ec-1827-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,9 +9,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:2e81e618-4889-11ec-1621-020000000000"/>
+      <fullUrl value="https://example.org/fhir/EpisodeOfCare/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-concern-S74.01"/>
       <resource>
          <EpisodeOfCare>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-concern-S74.01"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
             </meta>
@@ -19,7 +20,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Zorgepisode. Patiënt: H. XXX_Mulders. Id: MedMijHG_concern_S74.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: actief</caption>
+                     <caption>Zorgepisode. Patiënt: H. XXX_Mulders. Id: MedMijHG-concern-S74.01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Type</th>
@@ -34,7 +35,9 @@
                         </tr>
                         <tr>
                            <th>Zorgmanager</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                         <tr>
                            <th>Diagnose</th>
@@ -49,7 +52,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_concern_S74.01"/>
+               <value value="MedMijHG-concern-S74.01"/>
             </identifier>
             <status value="active">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -71,16 +74,16 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:2e81e61c-4889-11ec-1621-020000000000"/>
+                  <reference value="urn:uuid:f2ab7edc-5da2-11ec-1827-020000000000"/>
                   <display value="Tinea Pedis"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:2e81e608-4889-11ec-1621-020000000000"/>
+               <reference value="urn:uuid:f2ab7ec6-5da2-11ec-1827-020000000000"/>
                <display value="H. XXX_Mulders"/>
             </patient>
             <managingOrganization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </managingOrganization>
             <period>
@@ -93,7 +96,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2e81e608-4889-11ec-1621-020000000000"/>
+      <fullUrl value="urn:uuid:f2ab7ec6-5da2-11ec-1827-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -161,9 +164,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-00002727"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -193,7 +197,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2e81e61c-4889-11ec-1621-020000000000"/>
+      <fullUrl value="urn:uuid:f2ab7edc-5da2-11ec-1827-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -203,7 +207,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Aandoening. Subject: H. XXX_Mulders. Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief</caption>
+                     <caption>Aandoening. Subject: H. XXX_Mulders. Id: MedMijHG-concern-S74.01-diagnose (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Code</th>
@@ -219,6 +223,10 @@
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
+               <value value="MedMijHG-concern-S74.01-diagnose"/>
+            </identifier>
             <clinicalStatus value="active">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -245,7 +253,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:2e81e608-4889-11ec-1621-020000000000"/>
+               <reference value="urn:uuid:f2ab7ec6-5da2-11ec-1827-020000000000"/>
                <display value="H. XXX_Mulders"/>
             </subject>
             <onsetPeriod>
