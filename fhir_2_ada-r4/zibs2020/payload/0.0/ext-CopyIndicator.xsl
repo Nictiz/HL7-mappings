@@ -30,4 +30,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </kopie_indicator>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Template to convert f:extension zib-Medication-CopyIndicator to kopie_indicator element.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:reportedBoolean" mode="ext-CopyIndicator">
+        <kopie_indicator>
+            <xsl:attribute name="value" select="@value"/>
+        </kopie_indicator>
+    </xsl:template>
+    
 </xsl:stylesheet>

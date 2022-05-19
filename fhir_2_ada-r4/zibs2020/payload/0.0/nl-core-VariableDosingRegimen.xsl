@@ -60,7 +60,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 			<!-- gebruiksinstructie -->
 			<xsl:call-template name="nl-core-InstructionsForUse"/>
 			<!-- kopie indicator -->
-			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
+			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator] | f:reportedBoolean" mode="ext-CopyIndicator"/>
 			<!-- toelichting -->
 			<xsl:apply-templates select="f:note" mode="#current"/>
 		</wisselend_doseerschema>

@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 	<xsl:variable name="nlcoreMedicationAdministration">http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAdministration</xsl:variable>
 	<xsl:variable name="extMedicationAdministration2AgreedDateTime">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime</xsl:variable>
-	<xsl:variable name="extMedicationAdministrationAgreedAmount">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedAmount</xsl:variable>
+	<xsl:variable name="extMedicationAdministrationAgreedAmount">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount</xsl:variable>
 	<xsl:variable name="extMedicationAdministrationReasonForDeviation">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation</xsl:variable>
 
 

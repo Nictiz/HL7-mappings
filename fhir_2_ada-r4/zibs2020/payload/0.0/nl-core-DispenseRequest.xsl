@@ -197,59 +197,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
 
-    <!--xxxwim:-->
-    <xd:doc>
-        <xd:desc>Template to convert f:extension medication-AdditionalInformation to aanvullende_informatie element.</xd:desc>
-        <xd:param name="adaElementName">Optional alternative ADA element name.</xd:param>
-    </xd:doc>
-    <xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation']" mode="nl-core-MedicationAgreement">
-        <xsl:param name="adaElementName" tunnel="yes" select="'aanvullende_informatie'"/>
-        <xsl:call-template name="CodeableConcept-to-code">
-            <xsl:with-param name="in" select="f:valueCodeableConcept"/>
-            <xsl:with-param name="adaElementName" select="$adaElementName"/>
-        </xsl:call-template>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc>Template to convert f:extension/relatedMedicationUse to aanvullende_informatie element.</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse]" mode="nl-core-MedicationAgreement">
-        <relatie_medicatiegebruik>
-            <identificatie value="{f:valueReference/f:identifier/f:value/@value}" root="{f:valueReference/f:identifier/f:system/replace(@value, 'urn:oid:', '')}"/>
-        </relatie_medicatiegebruik>
-    </xsl:template>
-
-
-
-    <!--	<xd:doc>
-		<xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="nl-core-MedicationAgreement">
-		<xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
-	</xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:valueCodeableConcept" mode="nl-core-MedicationAgreement">
-        <xsl:call-template name="CodeableConcept-to-code">
-            <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="adaElementName" select="'medicatieafspraak_stop_type'"/>
-        </xsl:call-template>
-    </xsl:template>
-    -->
-
-
-    <xd:doc>
-        <!--ZZZNEW-->
-        <xd:desc>Template to convert f:identifier to identificatie</xd:desc>
+         <xd:desc>Template to convert f:identifier to identificatie</xd:desc>
     </xd:doc>
     <xsl:template match="f:identifier" mode="nl-core-DispenseRequest">
         <xsl:call-template name="Identifier-to-identificatie"/>
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
-        <xd:desc>Template to convert f:medicationReference to afgesproken_geneesmiddel</xd:desc>
+           <xd:desc>Template to convert f:medicationReference to afgesproken_geneesmiddel</xd:desc>
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="nl-core-DispenseRequest">
         <te_verstrekken_geneesmiddel>
@@ -258,8 +215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
-        <xd:desc>Template to convert f:authoredOn to afspraakdatum</xd:desc>
+         <xd:desc>Template to convert f:authoredOn to afspraakdatum</xd:desc>
     </xd:doc>
     <xsl:template match="f:authoredOn" mode="nl-core-DispenseRequest">
         <xsl:call-template name="datetime-to-datetime">
@@ -267,35 +223,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to convert f:status to geannuleerd_indicator. Only the FHIR status value 'entered-in-error' is used in this mapping.</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:status" mode="nl-core-MedicationAgreement">
-        <xsl:if test="@value = 'entered-in-error'">
-            <geannuleerd_indicator value="true"/>
-        </xsl:if>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to convert f:reasonCode to reden_wijzigen_of_staken</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:reasonCode" mode="nl-core-MedicationAgreement">
-        <xsl:call-template name="CodeableConcept-to-code">
-            <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_staken'"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to convert f:reasonReference to reden_van_voorschrijven</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:reasonReference" mode="nl-core-MedicationAgreement">
-        <xsl:variable name="resource" select="nf:resolveRefInBundle(.)"/>
-        <reden_van_voorschrijven>
-            <xsl:apply-templates select="$resource/f:*" mode="nl-core-Problem"/>
-        </reden_van_voorschrijven>
-    </xsl:template>
-
-
+  
 </xsl:stylesheet>
