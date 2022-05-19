@@ -204,7 +204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <basedOn>
                         <extension url="{$urlExtMedicationAgreementRelationMedicationUse}">
                             <valueReference>
-                                <type value="MedicationUse"/>
+                                <type value="MedicationStatement"/>
                                 <identifier>
                                     <xsl:call-template name="id-to-Identifier"/>
                                 </identifier>
