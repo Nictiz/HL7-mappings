@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:variable>
 
 		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
-			<meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>
+			<meta status="new" created-by="generated" last-update-by="generated"/>
 			<data>
 				<sturen_afhandeling_medicatievoorschrift app="mp-mp92" shortName="sturen_afhandeling_medicatievoorschrift" formName="afhandelen_medicatievoorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.334" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
 					<xsl:attribute name="title">Generated from HL7 FHIR sturen_afhandeling_medicatievoorschrift</xsl:attribute>

@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:variable>
 
 		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
-			<meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>
+			<meta status="new" created-by="generated" last-update-by="generated"/>
 			<data>
 				<beschikbaarstellen_medicatiegegevens app="mp-mp92" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301" transactionEffectiveDate="2022-02-07T00:00:00" prefix="mp-" language="nl-NL">
 					<xsl:attribute name="title">Generated from HL7 FHIR medicatiegegevens</xsl:attribute>

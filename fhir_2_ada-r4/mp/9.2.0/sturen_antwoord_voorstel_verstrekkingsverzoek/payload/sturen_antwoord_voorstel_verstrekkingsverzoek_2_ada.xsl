@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:variable>
 
 		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_antwoord_voorstel_verstrekkingsverzoek.xsd">
-			<meta status="new" created-by="generated" last-update-by="generated" creation-date="{current-dateTime()}" last-update-date="{current-dateTime()}"/>
+			<meta status="new" created-by="generated" last-update-by="generated"/>
 			<data>
 				<sturen_antwoord_voorstel_verstrekkingsverzoek app="mp-mp92" shortName="sturen_antwoord_voorstel_verstrekkingsverzoek" formName="sturen_antwoord_voorstel_verstrekkingsverzoek" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.331" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
 					<xsl:attribute name="title">Generated from HL7 FHIR sturen_antwoord_voorstel_verstrekkingsverzoek</xsl:attribute>
