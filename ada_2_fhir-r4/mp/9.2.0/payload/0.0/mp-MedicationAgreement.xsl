@@ -76,10 +76,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
 
-                <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
-                    <xsl:call-template name="ext-CopyIndicator"/>
-                </xsl:for-each>
-
                 <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
                     <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                 </xsl:for-each>
@@ -132,6 +128,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="voorschrijven van geneesmiddel"/>
                     </coding>
                 </category>
+                
+                <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
+                    <reportedBoolean>
+                        <xsl:call-template name="boolean-to-boolean"/>
+                    </reportedBoolean>
+                </xsl:for-each>
 
                 <xsl:for-each select="$medicationReference">
                     <medicationReference>
