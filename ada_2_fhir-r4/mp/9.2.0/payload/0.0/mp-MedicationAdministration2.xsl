@@ -299,7 +299,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="dosage">
                     <!--  afgesproken_hoeveelheid -->
                     <xsl:for-each select="afgesproken_hoeveelheid">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedAmount">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount">
                             <valueQuantity>
                                 <xsl:call-template name="_buildMedicationQuantity">
                                     <xsl:with-param name="adaValue" select="aantal"/>
