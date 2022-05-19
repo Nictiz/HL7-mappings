@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="228273003"/>
                         <display value="bevinding betreffende alcoholgebruik"/>
                     </coding>
@@ -102,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="897148007"/>
                                 <display value="inname van alcoholische drank"/>
                             </coding>

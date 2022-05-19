@@ -12,25 +12,16 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:f="http://hl7.org/fhir"
-    xmlns:local="urn:fhir:stu3:functions"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    exclude-result-prefixes="#all"
-    version="2.0">
-    
-    <xsl:variable name="ext-TimeInterval-Duration">http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration</xsl:variable>
-    
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
+
     <xd:doc>
-        <xd:desc>Template to convert f:extension ext-TimeInterval-Duration to tijdsduur element.</xd:desc>
+        <xd:desc>Template to convert f:extension urlExtTimeInterval-Duration to tijdsduur element.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url=$ext-TimeInterval-Duration]" mode="ext-TimeInterval-Duration">
+    <xsl:template match="f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="urlExtTimeInterval-Duration">
         <xsl:call-template name="Duration-to-hoeveelheid">
             <xsl:with-param name="in" select="f:valueDuration"/>
             <xsl:with-param name="adaElementName">tijds_duur</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
-    
+
 </xsl:stylesheet>

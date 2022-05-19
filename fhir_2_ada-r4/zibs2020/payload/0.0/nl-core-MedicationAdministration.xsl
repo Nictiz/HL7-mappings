@@ -17,12 +17,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:variable name="nlcoreMedicationAdministration">http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAdministration</xsl:variable>
 	<xsl:variable name="extMedicationAdministration2AgreedDateTime">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime</xsl:variable>
 	<xsl:variable name="extMedicationAdministrationAgreedAmount">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedAmount</xsl:variable>
-	<xsl:variable name="extContextEpisodeOfCare">http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare</xsl:variable>
 	<xsl:variable name="extMedicationAdministrationReasonForDeviation">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation</xsl:variable>
 
 
-	<!-- TODO, this extAsAgreed is not yet implemented in FHIR profiles! -->
-	<xsl:variable name="extAsAgreed">http://nictiz.nl/fhir/StructureDefinition/ext-Medication.AsAgreedIndicator</xsl:variable>
 
 
 	<xd:doc>
@@ -48,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:dosage/f:extension[@url = $extMedicationAdministrationAgreedAmount]/f:valueQuantity" mode="#current"/>
 			<!-- volgens_afspraak_indicator -->
 			<!-- TODO: should be updated in FHIR profile -->
-			<xsl:apply-templates select="f:extension[@url = $extAsAgreed]" mode="#current"/>
+			<xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
 			<!-- toedieningsweg -->
 			<xsl:apply-templates select="f:dosage/f:route" mode="nl-core-InstructionsForUse"/>
 			<!-- toedieningssnelheid -->
@@ -56,15 +53,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- prik_plak_locatie -->
 			<xsl:apply-templates select="f:dosage/f:site/f:text" mode="#current"/>
 			<!-- relatie medicatieafspraak -->
-			<xsl:apply-templates select="f:request" mode="#current"/>
+			<xsl:apply-templates select="f:request" mode="#current">
+				<xsl:with-param name="outputMaOrWds">ma</xsl:with-param>
+			</xsl:apply-templates>
 			<!-- relatie_toedieningsafspraak -->
 			<xsl:apply-templates select="f:supportingInformation" mode="#current"/>
 			<!-- relatie_wisselend_doseerschema -->
-			<!-- TODO relatie_wisselend_doseerschema: where in FHIR? -->
+			<xsl:apply-templates select="f:request" mode="#current">
+				<xsl:with-param name="outputMaOrWds">wds</xsl:with-param>				
+			</xsl:apply-templates>
 			<!-- relatie_contact of relatie_zorgepisode -->
 			<xsl:apply-templates select="f:context[f:reference | f:identifier]" mode="contextContactEpisodeOfCare"/>
-			<!-- relatie_zorgepisode wanneer ook relatie_contact-->
-			<xsl:apply-templates select="f:context/f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare"/>
 			<!-- toediener -->
 			<xsl:apply-templates select="f:performer" mode="#current"/>
 			<!-- medicatie_toediening_reden_van_afwijken -->
@@ -77,9 +76,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 
 	<xd:doc>
-		<xd:desc>Template to convert f:extension $extAsAgreed to volgens_afspraak_indicator element.</xd:desc>
+		<xd:desc>Template to convert f:extension $urlExtAsAgreedIndicator to volgens_afspraak_indicator element.</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:extension[@url = $extAsAgreed]" mode="nl-core-MedicationAdministration">
+	<xsl:template match="f:extension[@url = $urlExtAsAgreedIndicator]" mode="nl-core-MedicationAdministration">
 		<volgens_afspraak_indicator>
 			<xsl:call-template name="boolean-to-boolean">
 				<xsl:with-param name="in" select="f:valueBoolean"/>
@@ -219,12 +218,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 
 	<xd:doc>
-		<xd:desc>Template to convert f:request to relatie_medicatieafspraak</xd:desc>
+		<xd:desc>Template to convert f:request to relatie_medicatieafspraak or relatie_wisselend_doseerschema. Due to sequence in dataset we output one based on param</xd:desc>
+		<xd:param name="outputMaOrWds">Whether to output relatie_medicatieafspraak ('ma') or relatie_wisselend_doseerschema ('wds'). Defaults to 'ma'</xd:param>
 	</xd:doc>
 	<xsl:template match="f:request" mode="nl-core-MedicationAdministration">
-		<relatie_medicatieafspraak>
-			<xsl:call-template name="Reference-to-identificatie"/>
-		</relatie_medicatieafspraak>
+		<xsl:param name="outputMaOrWds" as="xs:string">ma</xsl:param>
+		
+		<xsl:variable name="resourceCategory" select="f:extension[@url = $urlExtResourceCategory]/f:valueCodeableConcept/f:coding[f:system/@value = $oidMap[@oid = $oidSNOMEDCT]/@uri]/f:code/@value"/>
+				
+		<xsl:choose>
+			<xsl:when test="$outputMaOrWds = 'ma' and $resourceCategory = $maCode">
+				<relatie_medicatieafspraak>
+					<xsl:call-template name="Reference-to-identificatie"/>
+				</relatie_medicatieafspraak>
+			</xsl:when>
+			<xsl:when test="$outputMaOrWds = 'wds' and $resourceCategory = $wdsCode">
+				<relatie_wisselend_doseerschema>
+					<xsl:call-template name="Reference-to-identificatie"/>
+				</relatie_wisselend_doseerschema>
+			</xsl:when>
+			<xsl:when test="$outputMaOrWds = 'ma' and empty($resourceCategory)">
+				<!-- default to MA -->
+				<relatie_medicatieafspraak>
+					<xsl:call-template name="Reference-to-identificatie"/>
+				</relatie_medicatieafspraak>
+			</xsl:when>
+			<xsl:when test="$outputMaOrWds = 'ma' and $resourceCategory = $wdsCode"/>
+			<xsl:when test="$outputMaOrWds = 'wds' and $resourceCategory = $maCode"/>					
+			<xsl:otherwise>
+				<xsl:call-template name="util:logMessage">
+					<xsl:with-param name="level" select="$logWARN"/>
+					<xsl:with-param name="msg">Encountered a medicationAdministration.request that could not be mapped to an ada element. Please investigate.</xsl:with-param>
+					<xsl:with-param name="terminate" select="false()"/>					
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>		
+		
 	</xsl:template>
 
 	<xd:doc>

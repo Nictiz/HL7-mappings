@@ -14,12 +14,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:util="urn:hl7:utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
 
-    <xsl:variable name="extContextEpisodeOfCare">http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare</xsl:variable>
-
     <xd:doc>
-        <xd:desc>Template to convert f:context to relatie_contact or relatie_zorgepisode based on identifier or reference.</xd:desc>
+        <xd:desc>Template to convert f:context to relatie_contact and/or relatie_zorgepisode based on identifier or reference.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:context | f:encounter | f:extension[@url = $extContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare">
+    <xsl:template match="f:context | f:encounter | f:extension[@url = $urlExtContextEpisodeOfCare]/f:valueReference" mode="contextContactEpisodeOfCare">
         <!-- relatie_contact -  resource: Encounter -->
         <!-- relatie_zorgepisode - resource: EpisodeOfCare -->
 
@@ -54,6 +52,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:otherwise>            
         </xsl:choose>
+        
+        <!-- call this template recursive for underlying extension -->
+        <xsl:apply-templates select="f:extension/f:valueReference" mode="#current"/>
       
     </xsl:template>
 

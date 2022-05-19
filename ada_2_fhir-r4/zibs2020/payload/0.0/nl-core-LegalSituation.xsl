@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="303186005"/>
                         <display value="juridische status van patiënt"/>
                     </coding>
@@ -128,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="151701000146105"/>
                         <display value="Type of guardian"/>
                     </coding>

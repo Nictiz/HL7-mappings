@@ -9,7 +9,14 @@
     <xsl:param name="dateT" as="xs:date?"/>
 
     <!-- mp constants -->
-    
+    <xsl:variable name="maCode" as="xs:string*" select="('16076005', '33633005')"/>
+    <xsl:variable name="maCodeMP920" as="xs:string">33633005</xsl:variable>
+    <xsl:variable name="wdsCode" as="xs:string*" select="('395067002')"/>
+    <xsl:variable name="vvCode" as="xs:string*" select="('52711000146108')"/>
+    <xsl:variable name="taCode" as="xs:string*" select="('422037009')"/>
+    <xsl:variable name="mveCode" as="xs:string*" select="('373784005')"/>
+    <xsl:variable name="mgbCode" as="xs:string*" select="('422979000')"/>
+    <xsl:variable name="mtdCode" as="xs:string*" select="('18629005')"/>
     
     <xsl:variable name="daypartMap" as="element()+">
         <map xmlns="" dayPart="night" fhirWhen="NIGHT" hl7PIVLPhaseLow="1970010100" hl7PIVLPhaseHigh="1970010106" code="2546009" codeSystem="{$oidSNOMEDCT}" displayName="'s nachts" codeSystemName="SNOMED CT"/>

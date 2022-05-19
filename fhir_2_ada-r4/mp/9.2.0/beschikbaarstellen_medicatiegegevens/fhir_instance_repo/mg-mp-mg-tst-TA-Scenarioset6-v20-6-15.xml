@@ -1,0 +1,212 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="f137f730-d6aa-11ec-1475-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:f137f77e-d6aa-11ec-1475-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <id value="216840111388324311999774220370091-MBH200zonodigTA"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+               <valueDateTime value="2022-01-01T09:57:00+01:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf 1 jan 2022, tot en met 28 jan 2022, Zo nodig 1 maal per dag 1 stuk, Oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="2022-01-01T00:00:00+01:00"/>
+                  <end value="2022-01-28T23:59:59+01:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_200_zonodig"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_200_zonodig_TA"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="toedieningsafspraak"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:f137f79c-d6aa-11ec-1475-020000000000"/>
+               <type value="Medication"/>
+               <display value="ASPIRINE TABLET 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:f137f760-d6aa-11ec-1475-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Hemsbergen"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:f137f7ba-d6aa-11ec-1475-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_200_zonodig_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_200_zonodig_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="Zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f137f760-d6aa-11ec-1475-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="G.XXX-Hemsbergen"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999900602"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="G. XXX_Hemsbergen"/>
+               <family value="XXX_Hemsbergen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Hemsbergen"/>
+                  </extension>
+               </family>
+               <given value="G.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1963-11-02"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f137f7ba-d6aa-11ec-1475-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="2.16.528.1.1007.3.3-01236578"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek de Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f137f79c-d6aa-11ec-1475-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="2.16.840.1.113883.2.4.4.7-202681"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="202681"/>
+                  <display value="ASPIRINE TABLET 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="3956"/>
+                  <display value="ACETYLSALICYLZUUR 100MG TAB"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="12548"/>
+                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+               </coding>
+               <text value="ASPIRINE TABLET 100MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+</Bundle>

@@ -21,9 +21,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
         <xd:param name="fhirVersion">Some constants depend on the FHIR version used, so this parameter can be used to select either 'STU3' (default) or 'R4'.</xd:param>
     </xd:doc>
-    
+
     <xsl:param name="fhirVersion" select="'STU3'"/>
-    
+
     <xsl:variable name="maxLengthFHIRLogicalId" as="xs:integer">64</xsl:variable>
     <xsl:variable name="ada-unit-second" select="('seconde', 's', 'sec', 'second')"/>
     <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
@@ -42,9 +42,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada-unit-cl" select="('centiliter', 'cl')"/>
     <xsl:variable name="ada-unit-ml" select="('milliliter', 'ml')"/>
     <xsl:variable name="ada-unit-ul" select="('microliter', 'ul')"/>
-    
+
     <xsl:variable name="ada-unit-druppel" select="('druppel', 'drp', '[drp]', 'druppels', 'drops')"/>
-    
+
     <xsl:variable name="ada-unit-degrees-celsius" select="('Cel', 'graden Celsius', 'graden celsius', 'degrees Celsius', 'degrees celsius', 'Celsius', 'celsius')"/>
     <xsl:variable name="ada-unit-pH" select="('pH', '[pH]')"/>
     <xsl:variable name="ada-unit-mmol-l" select="('mmol/L', 'mmol/l', 'mmol per liter')"/>
@@ -97,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidQuestionnaireItemUIControlCodes">2.16.840.1.113883.4.642.1.849</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemType">2.16.840.1.113883.4.642.1.438</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemUsageMode">2.16.840.1.113883.4.642.1.855</xsl:variable>
-    <xsl:variable name="oidQuestionnaireResponseStatus">2.16.840.1.113883.4.642.1.441</xsl:variable>    
+    <xsl:variable name="oidQuestionnaireResponseStatus">2.16.840.1.113883.4.642.1.441</xsl:variable>
     <xsl:variable name="oidQuestionnaireTextCategories">2.16.840.1.113883.4.642.1.853</xsl:variable>
     <xsl:variable name="oidRoleCodeNLOrganizations">2.16.840.1.113883.2.4.15.1060</xsl:variable>
     <xsl:variable name="oidSNOMEDCT">2.16.840.1.113883.6.96</xsl:variable>
@@ -109,24 +109,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
     <xsl:variable name="oidZIBLaboratoriumUitslagTestUitslagStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
- 
+
+    <xsl:variable name="oidsGstandaardMedication" as="xs:string*" select="($oidGStandaardSSK, $oidGStandaardSNK, $oidGStandaardGPK, $oidGStandaardPRK, $oidGStandaardHPK, $oidGStandaardZInummer)"/>
+
+    <!-- FHIR profile / extension naming -->
     <xsl:variable name="urlBaseNictizProfile">http://nictiz.nl/fhir/StructureDefinition/</xsl:variable>
+    <xsl:variable name="urlExtAdministrationAgreementAdditionalInformation"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AdministrationAgreement.AdditionalInformation</xsl:variable>
+    <xsl:variable name="urlExtAsAgreedIndicator"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AsAgreedIndicator</xsl:variable>
+    <xsl:variable name="urlExtComment"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Comment</xsl:variable>
+    <xsl:variable name="urlExtCommunicationPayloadContentCodeableConcept"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Communication.Payload.ContentCodeableConcept</xsl:variable>
+    <xsl:variable name="urlExtContextEpisodeOfCare"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Context-EpisodeOfCare</xsl:variable>
     <xsl:variable name="urlExtNLCodeSpecification"><xsl:value-of select="$urlBaseNictizProfile"/>code-specification</xsl:variable>
     <xsl:variable name="urlExtNLMissingTypeReference"><xsl:value-of select="$urlBaseNictizProfile"/>missing-type-reference</xsl:variable>
     <xsl:variable name="urlExtNLPractitionerRoleReference"><xsl:value-of select="$urlBaseNictizProfile"/>practitionerrole-reference</xsl:variable>
     <xsl:variable name="urlExtHL7DataAbsentReason">http://hl7.org/fhir/StructureDefinition/data-absent-reason</xsl:variable>
     <xsl:variable name="urlExtHL7NullFlavor">http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor</xsl:variable>
+    <xsl:variable name="urlExtMedicationAgreementPeriodOfUseCondition"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.PeriodOfUse.Condition</xsl:variable>
+    <xsl:variable name="urlExtMedicationAgreementRelationMedicationUse"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.RelationMedicationUse</xsl:variable>
+    <xsl:variable name="urlExtMedicationMedicationDispenseDistributionForm"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationDispense.DistributionForm</xsl:variable>
+    <xsl:variable name="urlExtPharmaceuticalTreatmentIdentifier"><xsl:value-of select="$urlBaseNictizProfile"/>ext-PharmaceuticalTreatment.Identifier</xsl:variable>
     <xsl:variable name="urlExtRepeatPeriodCyclical"><xsl:value-of select="$urlBaseNictizProfile"/>zib-Medication-RepeatPeriodCyclicalSchedule</xsl:variable>
+    <xsl:variable name="urlExtResourceCategory"><xsl:value-of select="$urlBaseNictizProfile"/>ext-ResourceCategory</xsl:variable>
+    <!-- MP9 2.0.0-bèta version -->
+    <xsl:variable name="urlExtTimeInterval-Period"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval-Period</xsl:variable>
+    <xsl:variable name="urlExtTimeInterval-Duration"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval-Duration</xsl:variable>
+    <!-- proper version -->
+    <xsl:variable name="urlExtTimeIntervalPeriod"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval.Period</xsl:variable>
+    <xsl:variable name="urlExtTimeIntervalDuration"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval.Duration</xsl:variable>
     <xsl:variable name="urlTimingExact">http://hl7.org/fhir/StructureDefinition/timing-exact</xsl:variable>
-    
-    
+
     <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
 
     <xsl:variable name="genderMap" as="element()+">
         <map hl7Code="M" hl7CodeSystem="2.16.840.1.113883.5.1" fhirCode="male" displayName="man" displayNameEN="male"/>
         <map hl7Code="F" hl7CodeSystem="2.16.840.1.113883.5.1" fhirCode="female" displayName="vrouw" displayNameEN="female"/>
         <map hl7Code="UN" hl7CodeSystem="2.16.840.1.113883.5.1" fhirCode="other" displayName="ongedifferentieerd" displayNameEN="undifferentatiated"/>
-        <map hl7Code="UNK" hl7CodeSystem="{$oidHL7NullFlavor}" fhirCode="unknown" displayName="onbekend" displayNameEN="unknown"/>
+        <map hl7Code="UNK" hl7CodeSystem="2.16.840.1.113883.5.1008" fhirCode="unknown" displayName="onbekend" displayNameEN="unknown"/>
     </xsl:variable>
 
     <xsl:variable name="hl7NullFlavorMap" as="element()+">
@@ -151,13 +169,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
 
     <xsl:variable name="hl7ActStatusMap" as="element()+">
-        <map hl7Code="active" hl7CodeSystem="2.16.840.1.113883.5.14" displayName="actief" displayNameEN="active"/>
-        <map hl7Code="suspended" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="onderbroken" displayNameEN="suspended"/>
-        <map hl7Code="aborted" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="afgebroken" displayNameEN="aborted"/>
-        <map hl7Code="completed" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="voltooid" displayNameEN="completed"/>
-        <map hl7Code="cancelled" hl7CodeSystem="2.16.840.1.113883.5.14"  displayName="niet gestart" displayNameEN="cancelled"/>
+        <map hl7Code="active" hl7CodeSystem="{$oidHL7ActStatus}" displayName="actief" displayNameEN="active"/>
+        <map hl7Code="suspended" hl7CodeSystem="{$oidHL7ActStatus}" displayName="onderbroken" displayNameEN="suspended"/>
+        <map hl7Code="aborted" hl7CodeSystem="{$oidHL7ActStatus}" displayName="afgebroken" displayNameEN="aborted"/>
+        <map hl7Code="completed" hl7CodeSystem="{$oidHL7ActStatus}" displayName="voltooid" displayNameEN="completed"/>
+        <map hl7Code="cancelled" hl7CodeSystem="{$oidHL7ActStatus}" displayName="niet gestart" displayNameEN="cancelled"/>
     </xsl:variable>
-    
+
     <xsl:variable name="uziRoleCodeMap" as="element()+">
         <map hl7Code="01.000" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Arts"/>
         <map hl7Code="01.002" hl7CodeSystem="2.16.840.1.113883.2.4.15.111" displayName="Allergoloog (gesloten register)"/>
@@ -279,7 +297,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="oidMap" as="element()+">
         <map oid="{$oidAGB}" uri="http://fhir.nl/fhir/NamingSystem/agb-z" displayName="AGB-Z"/>
-        <map oid="{$oidAGBSpecialismen}" displayName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"/>
+        <map oid="{$oidAGBSpecialismen}" displayName="Vektis AGB-medische specialismen"/>
         <map oid="{$oidBIGregister}" uri="http://fhir.nl/fhir/NamingSystem/big" displayName="BIG"/>
         <map oid="{$oidBurgerservicenummer}" uri="http://fhir.nl/fhir/NamingSystem/bsn" displayName="BSN"/>
         <map oid="{$oidGStandaardHPK}" displayName="G-Standaard HPK"/>
@@ -287,12 +305,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidGStandaardGPK}" displayName="G-Standaard GPK"/>
         <map oid="{$oidGStandaardSNK}" displayName="G-Standaard SNK"/>
         <map oid="{$oidGStandaardSSK}" displayName="G-Standaard SSK"/>
-        <map oid="{$oidGStandaardZInummer}" displayName="G-Standaard ZI-nummer"/>
-        <map oid="{$oidGStandaardTH007Toedieningswegen}" displayName="G-Standaard TH007 Toedieningswegen"/>
+        <map oid="{$oidGStandaardTH007Toedieningswegen}" displayName="G-Standaard Toedieningswegen (tabel 7)"/>
         <map oid="{$oidGStandaardTH040ContraIndicaties}" displayName="G-Standaard TH040 Contraindicaties"/>
         <map oid="{$oidGStandaardTH122OngewensteGroepen}" displayName="G-Standaard TH122 Ongewenste groepen"/>
         <map oid="{$oidGStandaardBST361}" displayName="G-Standaard Bestand 361 a-tabel (eenheid gebruiksadvies)"/>
-        <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard Bestand 902 Thesaurus 2"/>
+        <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard thesaurus basiseenheden"/>
         <map oid="{$oidGStandaardFarmaceutischeVormen}" displayName="G-Standaard Farmaceutische vormen (tabel 6)"/>
         <map oid="{$oidICPC1NL}" uri="http://hl7.org/fhir/sid/icpc-1-nl" displayName="ICPC-1NL"/>
         <map oid="{$oidISO3166}" uri="urn:iso:std:iso:3166" displayName="ISO 3166-1 (alpha-2)"/>
@@ -316,7 +333,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidUZIRoleCode}" uri="http://fhir.nl/fhir/NamingSystem/uzi-rolcode" displayName="UZI Rolcodes"/>
         <map oid="{$oidUZISystems}" uri="http://fhir.nl/fhir/NamingSystem/uzi-nr-sys" displayName="UZI Systemen"/>
         <xsl:choose>
-            <xsl:when test="$fhirVersion='STU3'">
+            <xsl:when test="$fhirVersion = 'STU3'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://hl7.org/fhir/choice-list-orientation" displayName="ChoiceListOrientation"/>
                 <map oid="{$oidFHIRObservationCategory}" uri="http://hl7.org/fhir/observation-category" displayName="ObservationCategory"/>
                 <map oid="{$oidHL7ActCode}" uri="http://hl7.org/fhir/v3/ActCode" displayName="HL7 ActCode"/>
@@ -331,7 +348,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://hl7.org/fhir/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
                 <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
             </xsl:when>
-            <xsl:when test="$fhirVersion='R4'">
+            <xsl:when test="$fhirVersion = 'R4'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://terminology.hl7.org/CodeSystem/choice-list-orientation" displayName="ChoiceListOrientation"/>
                 <map oid="{$oidFHIRObservationCategory}" uri="http://terminology.hl7.org/CodeSystem/observation-category" displayName="ObservationCategory"/>
                 <map oid="{$oidHL7ActCode}" uri="http://terminology.hl7.org/CodeSystem/v3-ActCode" displayName="HL7 ActCode"/>
@@ -359,7 +376,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="OIDpattern" select="'^[0-2](\.(0|[1-9]\d*))*$'"/>
     <!-- official UUID pattern -->
     <xsl:variable name="UUIDpattern" select="'^[A-Fa-f\d]{8}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{12}$'"/>
-    
+
     <!-- http://hl7.org/fhir/v3/ObservationInterpretation/cs.html -->
     <!-- https://zibs.nl/wiki/LaboratoryTestResult-v4.1(2017EN)#ResultFlagsCodelist -->
     <xsl:variable name="hl7v3ObservationInterpretation_to_zibInterpretatieVlaggen" as="element(map)">
@@ -428,7 +445,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <map inCode="WR" inCodeSystem="{$oidHL7ObservationInterpretation}" code="" codeSystem="{$oidSNOMEDCT}" displayName=""/>-->
         </map>
     </xsl:variable>
-    
+
     <!-- https://zibs.nl/wiki/LaboratoryTestResult-v4.1(2017EN)#ResultFlagsCodelist -->
     <!-- http://hl7.org/fhir/v2/0078/index.html -->
     <xsl:variable name="zibInterpretatieVlaggen_to_hl7v2Table0078AbnormalFlags" as="element(map)">
@@ -445,7 +462,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <map inCode="131196009" inCodeSystem="{$oidSNOMEDCT}" code="S" codeSystem="http://hl7.org/fhir/v2/0078" displayName="Susceptible"/>
         </map>
     </xsl:variable>
-    
+
     <!-- mp constants -->
     <xsl:variable name="daypartMap" as="element()+">
         <map xmlns="" dayPart="night" fhirWhen="NIGHT" hl7PIVLPhaseLow="1970010100" hl7PIVLPhaseHigh="1970010106" code="2546009" codeSystem="{$oidSNOMEDCT}" displayName="'s nachts" codeSystemName="SNOMED CT"/>
@@ -453,7 +470,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map xmlns="" dayPart="afternoon" fhirWhen="AFT" hl7PIVLPhaseLow="1970010112" hl7PIVLPhaseHigh="1970010118" code="255213009" codeSystem="{$oidSNOMEDCT}" displayName="'s middags" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayPart="evening" fhirWhen="EVE" hl7PIVLPhaseLow="1970010118" hl7PIVLPhaseHigh="1970010200" code="3157002" codeSystem="{$oidSNOMEDCT}" displayName="'s avonds" codeSystemName="SNOMED CT"/>
     </xsl:variable>
-    
+
     <xsl:variable name="stoptypeMap" as="element()+">
         <map code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt"/>
         <map code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt"/>
@@ -461,7 +478,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7Code="1" hl7CodeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
         <map hl7Code="2" hl7CodeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
     </xsl:variable>
-    
+
     <xsl:variable name="weekdayMap" as="element()+">
         <map xmlns="" dayOfWeek="1" weekday="monday" fhirDayOfWeek="mon" hl7PIVLPhaseLow="19700601" code="307145004" codeSystem="{$oidSNOMEDCT}" displayName="maandag" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayOfWeek="2" weekday="tuesday" fhirDayOfWeek="tue" hl7PIVLPhaseLow="19700602" code="307147007" codeSystem="{$oidSNOMEDCT}" displayName="dinsdag" codeSystemName="SNOMED CT"/>
@@ -470,5 +487,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map xmlns="" dayOfWeek="5" weekday="friday" fhirDayOfWeek="fri" hl7PIVLPhaseLow="19700605" code="307150005" codeSystem="{$oidSNOMEDCT}" displayName="vrijdag" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayOfWeek="6" weekday="saturday" fhirDayOfWeek="sat" hl7PIVLPhaseLow="19700606" code="307151009" codeSystem="{$oidSNOMEDCT}" displayName="zaterdag" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayOfWeek="0" weekday="sunday" fhirDayOfWeek="sun" hl7PIVLPhaseLow="19700607" code="307146003" codeSystem="{$oidSNOMEDCT}" displayName="zondag" codeSystemName="SNOMED CT"/>
-    </xsl:variable> 
+    </xsl:variable>
 </xsl:stylesheet>

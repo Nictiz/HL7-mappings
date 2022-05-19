@@ -37,11 +37,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="wrapIn" as="xs:string" select="''"/>
 
         <xsl:for-each select="$in">
-            <xsl:if test="start_datum_tijd[@value != ''] or eind_datum_tijd[@value != '']">
+            <xsl:if test="start_datum_tijd[@value != ''] or eind_datum_tijd[@value != ''] or tijds_duur[@value != '' or @unit != ''] or criterium[@value != '']">
                 <xsl:choose>
                     <!-- If no wrapIn is given, write out the extension element and iteratively call this template. -->
                     <xsl:when test="$wrapIn = ''">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period">
+                        <extension url="{$urlExtTimeIntervalPeriod}">
                             <xsl:call-template name="ext-TimeInterval.Period">
                                 <xsl:with-param name="wrapIn">valuePeriod</xsl:with-param>
                             </xsl:call-template>
@@ -126,10 +126,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>
-
-                        <!-- Write out the element, if we have any input -->
-                        <xsl:if test="string-join($start, '') or $end">
+                        
+                        <!-- Write out the element, if we have any input, or if only a duration is known -->
+                        <xsl:if test="string-join($start, '') or $end or $in/tijds_duur">
                             <xsl:element name="{$wrapIn}">
+                                <xsl:call-template name="ext-TimeInterval.Duration"/>
+                                <xsl:for-each select="criterium[@value]">
+                                    <!-- This calls a template present in mp/9.2.0. Does this cause non MP-projects to fail? If so, perhaps we should remove the template and just build the extension here (although strange for an 'mp-extension'). -->
+                                    <xsl:call-template name="ext-MedicationAgreement.PeriodOfUse.Condition"/>
+                                </xsl:for-each>
                                 <xsl:if test="string-join($start, '')">
                                     <start value="{$start}"/>
                                 </xsl:if>
@@ -166,7 +171,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
                             <xsl:call-template name="ext-TimeInterval.Duration">
                                 <xsl:with-param name="wrapIn">valueDuration</xsl:with-param>
                             </xsl:call-template>

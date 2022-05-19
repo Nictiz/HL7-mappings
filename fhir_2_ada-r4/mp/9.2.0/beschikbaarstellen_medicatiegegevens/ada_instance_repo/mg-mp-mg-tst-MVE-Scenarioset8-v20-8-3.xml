@@ -1,0 +1,107 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-05-18T16:29:00.02422+02:00"
+         last-update-date="2022-05-18T16:29:00.02422+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp92"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="L. van XXX_Meijs"/>
+               <initialen value="L."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van"/>
+                  <achternaam value="XXX_Meijs"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900808" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-26" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_VVandermansMA"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekking>
+               <identificatie value="MBH_200_MVEandermansTA_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-01-01T10:00:00+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-f0c5cf1e-d6aa-11ec-1490-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="6"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-f0c5cf00-d6aa-11ec-1490-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_200_VVandermansMA_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatieverstrekking>
+               <identificatie value="MBH_200_MVEandermansTA_andermansMVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2021-12-18T10:00:00+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-f0c5cf1e-d6aa-11ec-1490-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="21"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-f0c5cf00-d6aa-11ec-1490-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_200_VVandermansMA_andermansVV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-f0c5cf00-d6aa-11ec-1490-020000000000">
+               <product_code code="594253"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"
+                             preferred="true"/>
+               <product_code code="8052"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
+               <product_code code="22268"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="urn-uuid-f0c5cf1e-d6aa-11ec-1490-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

@@ -27,44 +27,104 @@
 
     <property name="build.dir" value="../.."/>
     <property name="dummy.output.dir" value="dummy"/>
-    
+
     <property name="is.name" value="Medicatieproces"/>
     <property name="is.abbreviation" value="mp"/>
     <property name="is.version" value="9.2.0"/>
-    <property name="is.version.short" value="920"/>
-    
-     <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
+    <property name="is.version.short" value="92"/>
+
+    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
     <property name="refs.dir" value="${build.dir}/../../../ada_2_fhir-r4/${is.abbreviation}/${is.version}"/>
-    
+
     <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
-    <property name="usecase.avvv" value="sturen_antwoord_voorstel_verstrekkingsverzoek"/>
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
     <property name="usecase.vma" value="sturen_voorstel_medicatieafspraak"/>
+    <property name="usecase.avma" value="sturen_antwoord_voorstel_medicatieafspraak"/>
     <property name="usecase.vv" value="beschikbaarstellen_verstrekkingenvertaling"/>
     <property name="usecase.vvv" value="sturen_voorstel_verstrekkingsverzoek"/>
+    <property name="usecase.avvv" value="sturen_antwoord_voorstel_verstrekkingsverzoek"/>
+
+    <!-- date.T, currently only used for roundtrip testing -->
+    <property name="date.T" value="2022-01-01"/>
+    
+    <!-- for roundtrip testing -->
+    <target name="convert_ada_2_fhir_sub">
+        
+        <fileset id="inputFiles" dir="${xsl.in}" includes="${xsl.in.include}"/>
+        
+        <echo/>
+        <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
+        <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputFiles"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+            <param name="generateInstructionText" expression="true"/>
+            <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
+            <param name="mask-ids" expression="${param.maskids}" if="param.maskids"/>
+        </xslt>
+        
+    </target>
     
     <target name="convert_fhir_2_ada">
-        <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
-        
+
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="build.dir" value="${build.dir}"/>
-            <param name="xsl.in" value="fhir_instance"/>
-            <param name="xsl.out" value="ada_instance_converted"/>
-				</antcall>
-        
-        <!-- beschikbaarstellen_medicatieoverzicht -->
-				<antcall target="convert_fhir_2_ada_sub">
-            <param name="usecase" value="${usecase.mo}"/>
+            <param name="xsl.in" value="fhir_instance_repo"/>
+            <param name="xsl.out" value="ada_instance_repo"/>
+        </antcall>
+
+        <!-- sturen_medicatievoorschrift -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mv}"/>
             <param name="build.dir" value="${build.dir}"/>
             <param name="xsl.in" value="fhir_instance"/>
-            <param name="xsl.out" value="ada_instance_converted"/>
-				</antcall>
-        
- 
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.av}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.vma}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.avma}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.vvv}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.avvv}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+
     </target>
 
     <target name="convert_fhir_2_ada_sub">
@@ -87,100 +147,137 @@
             <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesMP"/>
                 <factory name="${xsl.saxon.class}"/>
-                 <classpath location="${xsl.saxon}"/>
+                <classpath location="${xsl.saxon}"/>
             </xslt>
-            
+
         </sequential>
     </target>
-    
+
+    <target name="roundtrip_fhir_2_ada_2_fhir">
+
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance_repo"/>
+            <param name="xsl.out" value="ada_instance_repo"/>
+        </antcall>
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.2.0/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.mg}/roundtrip_fhir_instance_repo"/>
+            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+    </target>
+
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
-        
-         <!-- beschikbaarstellen_medicatiegegevens -->
-        <antcall target="setup_sub_schemas">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
-            <param name="schema.string" value="*${usecase.mg}.xsd"/>
-        </antcall>
-        <!-- beschikbaarstellen_medicatieoverzicht -->
-        <antcall target="setup_sub_schemas">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
-            <param name="schema.string" value="*${usecase.mo}.xsd"/>
-        </antcall>
-        
-        <!-- copy instances from ada_2_fhir-r4 -->
-        
-        <echo/>
-        <echo>Setup ${build.dir}/${usecase.mg} containing refreshed hl7 instances (hl7_instance)</echo>
-        
+
         <!-- beschikbaarstellen_medicatiegegevens -->
-        <mkdir dir="${build.dir}/${usecase.mg}/fhir_instance"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg}/fhir_instance" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg}/fhir_instance_repo">
-                <include name="mg*.xml"/>
-            </fileset>
-        </copy>
-        <!-- beschikbaarstellen_medicatieoverzicht -->
-        <mkdir dir="${build.dir}/${usecase.mo}/fhir_instance"/>
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mo}/fhir_instance" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mo}/fhir_instance">
-                <include name="*.xml"/>
-            </fileset>
-        </copy>        
-    </target>    
-    
-    <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
-        
-        <antcall target="setup_sub_schemas">
-            <param name="schema.string" value="${schema.string}"/>
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="folder.name" value="fhir_instance_repo"/>
+            <param name="include.files" value="mg*.xml"/>
         </antcall>
-        
-        <antcall target="setup_sub_instances">
-            <param name="fileset.dir" value="${fileset.dir}"/>
-            <param name="usecase" value="${usecase}"></param>
+
+        <!-- sturen_medicatievoorschrift -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
         </antcall>
-        
+
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.av}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+
+        <!-- sturen_voorstel_medicatieafspraak -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.vma}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.avma}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.vvv}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.avvv}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="*.xml"/>
+        </antcall>
+
+
     </target>
-    
+
+    <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
+
+        <antcall target="setup_sub_schemas">
+            <param name="sub.build.dir" value="${build.dir}/${usecase}"/>
+            <param name="schema.string" value="*${usecase}.xsd"/>
+        </antcall>
+
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase}"/>
+            <param name="folder.name" value="${folder.name}"/>
+            <param name="include.files" value="${include.files}"/>
+        </antcall>
+
+    </target>
+
     <target name="setup_sub_schemas" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project">
         <echo/>
         <echo>Setup ${sub.build.dir} containing refreshed ada schemas (${schema.string})</echo>
-        
+
         <mkdir dir="${sub.build.dir}/ada_schemas"/>
         <delete>
             <fileset dir="${sub.build.dir}/ada_schemas" includes="*.xsd"/>
         </delete>
-        
+
         <copy todir="${sub.build.dir}/ada_schemas" failonerror="true">
             <fileset dir="${ada.project.source.dir}/schemas">
                 <include name="${schema.string}"/>
                 <include name="ada_meta.xsd"/>
             </fileset>
         </copy>
-        
+
     </target>
-    
-    <target name="setup_sub_instances" description="Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.dir})">
-        
+
+    <target name="setup_sub_instances" description="Setup ${build.dir}/${usecase} containing refreshed hl7 instances (${fileset.dir})">
+
         <echo/>
-        <echo>Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.dir})</echo>
-        
-        <mkdir dir="${sub.build.dir}/${fileset.dir}"/>
+        <echo>Setup ${build.dir}/${usecase} containing refreshed fhir instances</echo>
+
+        <mkdir dir="${build.dir}/${usecase}/${folder.name}"/>
         <delete>
-            <fileset dir="${sub.build.dir}/${fileset.dir}" includes="*.xml"/>
+            <fileset dir="${build.dir}/${usecase}/${folder.name}" includes="*.xml"/>
         </delete>
-        <copy todir="${sub.build.dir}/${fileset.dir}" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase}/${fileset.dir}">
-                <include name="${fileset.include}"/>
+        <copy todir="${build.dir}/${usecase}/${folder.name}" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase}/${folder.name}">
+                <include name="${include.files}"/>
             </fileset>
         </copy>
-        
+
     </target>
-    
+
 
 </project>

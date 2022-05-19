@@ -1,0 +1,130 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-05-18T16:28:57.21956+02:00"
+         last-update-date="2022-05-18T16:28:57.21956+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp92"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="DUMMY">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="C. XXX_Brugge"/>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-16" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_start_eind" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_200_start_eind_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="2021-12-22T11:20:00+01:00" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2021-12-22T00:00:00+01:00" datatype="datetime"/>
+                  <eind_datum_tijd value="2021-12-27T23:59:59+01:00" datatype="datetime"/>
+                  <criterium value="3 dagen voor opname stoppen"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-eed60bd8-d6aa-11ec-5106-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-eed60bba-d6aa-11ec-5106-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 22 dec 2021, tot en met 27 dec 2021, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-eed60bba-d6aa-11ec-5106-020000000000">
+               <product_code code="6947"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="METOCLOPRAMIDE TABLET 10MG"
+                             preferred="true"/>
+               <product_code code="19429"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METOCLOPRAMIDE TABLET 10MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-eed60bd8-d6aa-11ec-5106-020000000000">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Peter van Pulver"/>
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-eed60c14-d6aa-11ec-5106-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-eed60c14-d6aa-11ec-5106-020000000000">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

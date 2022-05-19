@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="365508006"/>
                         <display value="Residence and accommodation circumstances - finding"/>
                     </coding>
@@ -79,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="118871000146108"/>
                                 <display value="Type of home adaptation"/>
                             </coding>
@@ -94,7 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="224249004"/>
                                 <display value="Characteristics of home environment"/>
                             </coding>

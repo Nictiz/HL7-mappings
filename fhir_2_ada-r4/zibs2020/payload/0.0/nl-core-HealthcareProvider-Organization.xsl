@@ -24,6 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- organisatie_naam -->
             <xsl:apply-templates select="f:name" mode="#current"/>
+            <!-- afdeling_specialisme -->
+            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value=$oidMap[@oid=$oidAGBSpecialismen]/@uri]]" mode="#current"/>
             <!-- contactgegevens -->
             <xsl:if test="f:telecom">
                 <contactgegevens>
@@ -33,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             <!-- organisatie_type -->
-            <xsl:apply-templates select="f:type" mode="#current"/>
+            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidRoleCodeNLOrganizations) or @value=$oidMap[@oid=$oidRoleCodeNLOrganizations]/@uri]]" mode="#current"/>
             <!-- organisatie_locatie TODO -->
         </zorgaanbieder>
     </xsl:template>
@@ -66,23 +68,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:type to organisatie_type</xd:desc>
     </xd:doc>
-   
+
     <xsl:template match="f:type" mode="nl-core-HealthcareProvider-Organization">
         <xsl:choose>
-            <xsl:when test="f:coding/f:system[@value eq 'urn:oid:2.16.840.1.113883.2.4.6.7']">
-                    <afdeling_specialisme>
-                        <xsl:call-template name="Coding-to-code">
-                            <xsl:with-param name="in" select="f:coding"/>
-                        </xsl:call-template>                        
-                    </afdeling_specialisme>
-                </xsl:when>
-                <xsl:when test="f:coding/f:system[@value eq 'urn:oid:2.16.840.1.113883.2.4.15.1060']">
-                    <organisatie_type>
-                        <xsl:call-template name="Coding-to-code">
-                            <xsl:with-param name="in" select="f:coding"/>
-                        </xsl:call-template>                        
-                    </organisatie_type>
-                </xsl:when>
-            </xsl:choose>
+            <xsl:when test="f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value=$oidMap[@oid=$oidAGBSpecialismen]/@uri]">
+                <afdeling_specialisme>
+                    <xsl:call-template name="Coding-to-code">
+                        <xsl:with-param name="in" select="f:coding"/>
+                    </xsl:call-template>
+                </afdeling_specialisme>
+            </xsl:when>
+            <xsl:when test="f:coding/f:system[@value = concat('urn:oid:', $oidRoleCodeNLOrganizations) or @value=$oidMap[@oid=$oidRoleCodeNLOrganizations]/@uri]">
+                <organisatie_type>
+                    <xsl:call-template name="Coding-to-code">
+                        <xsl:with-param name="in" select="f:coding"/>
+                    </xsl:call-template>
+                </organisatie_type>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>

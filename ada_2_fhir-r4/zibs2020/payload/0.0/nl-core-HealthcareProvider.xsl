@@ -168,7 +168,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:next-match>
                 </xsl:when>
                 <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
-                    <xsl:value-of select="nf:assure-logicalid-length(upper-case(nf:assure-logicalid-chars(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/concat(@root, '-', @value))))"/>
+                    <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                    <xsl:for-each select="(zorgaanbieder_identificatienummer[@value | @root])[1]">
+                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                    </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:next-match>

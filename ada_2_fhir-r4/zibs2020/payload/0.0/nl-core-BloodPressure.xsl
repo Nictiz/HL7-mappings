@@ -140,7 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="85549003"/>
                                 <display value="Korotkofftonen (waarneembare entiteit)"/>
                             </coding>
@@ -156,7 +156,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="70665002"/>
                                 <display value="Blood pressure cuff"/>
                             </coding>
@@ -172,7 +172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="6797001"/>
                                 <display value="gemiddelde bloeddruk (waarneembare entiteit)"/>
                             </coding>

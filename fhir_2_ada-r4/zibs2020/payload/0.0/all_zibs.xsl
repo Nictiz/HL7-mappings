@@ -14,10 +14,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
+    <xsl:param name="fhirVersion">R4</xsl:param>
+
     <xsl:import href="../../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="../../../../util/mp-functions.xsl"/>
+
     <xsl:import href="contextContactEpisodeOfCare.xsl"/>
+    <xsl:import href="ext-CopyIndicator.xsl"/>
+    <xsl:import href="ext-MedicationAgreementPeriodOfUseCondition.xsl"/>
+    <xsl:import href="ext-TimeInterval-period.xsl"/>
+    <xsl:import href="ext-TimeInterval-Duration.xsl"/>
     <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
+    <xsl:import href="nl-core-BodyHeight.xsl"/>
+    <xsl:import href="nl-core-BodyWeight.xsl"/>
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
     <xsl:import href="nl-core-HealthcareProvider-Organization.xsl"/>
@@ -31,15 +41,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-Patient.xsl"/>
     <xsl:import href="nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="nl-core-Problem.xsl"/>
-    <xsl:import href="ext-TimeInterval-period.xsl"/>
-    <xsl:import href="ext-TimeInterval-Duration.xsl"/>
-    <xsl:import href="ext-CopyIndicator.xsl"/>
     <xsl:import href="nl-core-MedicationUse2.xsl"/>
     <xsl:import href="nl-core-ext-StopType.xsl"/>
     <xsl:import href="nl-core-DispenseRequest.xsl"/>
     <xsl:import href="nl-core-MedicationDispense.xsl"/>
     <xsl:import href="nl-core-Note.xsl"/>
-    
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
