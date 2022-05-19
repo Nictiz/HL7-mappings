@@ -94,5 +94,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- and output the resource in a file -->
         <xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
     </xsl:template>
-
+    
 </xsl:stylesheet>

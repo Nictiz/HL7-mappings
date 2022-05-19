@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="extStoptype">http://nictiz.nl/fhir/StructureDefinition/ext-StopType</xsl:variable>
     <xsl:variable name="extMedicationUse2Prescriber" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber'"/>
-    <xsl:variable name="ext-MedicationUse-Author" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author'"/>
+    <xsl:variable name="extMedicationUseAuthor" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author'"/>
 
     <xd:doc>
         <xd:desc>Template to convert f:MedicationStatement to ADA medicatie_gebruik</xd:desc>
@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
             <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
-             <!-- gebruiksperiode -->
+            <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_product -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- informant -->
             <xsl:apply-templates select="f:informationSource" mode="#current"/>
             <!-- auteur -->
-            <xsl:apply-templates select="f:extension[@url = $ext-MedicationUse-Author]" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url = $extMedicationUseAuthor]" mode="#current"/>
             <!-- reden_gebruik -->
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
             <!-- reden_wijzigen_of_stoppen_gebruik -->
@@ -370,7 +370,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url ext-MedicationUse.Author to auteur</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $ext-MedicationUse-Author]" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:extension[@url = $extMedicationUseAuthor]" mode="nl-core-MedicationUse2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <auteur>
@@ -383,32 +383,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$resource/local-name() = 'Practitioner'">
                     <auteur_is_zorgverlener>
                         <zorgverlener datatype="reference" value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/>
-                        <!--                        <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0">
-                            <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
-                            <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
-                        </xsl:apply-templates>-->
                     </auteur_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <auteur_is_zorgverlener>
                         <xsl:variable name="practitionerRole" select="string(f:valueReference/f:reference/@value)"/>
                         <xsl:variable name="practitioner" select="string(/f:Bundle/f:entry[f:fullUrl/@value eq $practitionerRole]/f:resource/f:PractitionerRole/f:practitioner/f:reference/@value)"/>
-                        <zorgverlener datatype="reference" value="{nf:convert2NCName($practitioner)}"/>
-
-                        <!--                        <xsl:apply-templates select="$resource" mode="resolve-practitionerRole">
-                            <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
-                            <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
-                            <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
-                        </xsl:apply-templates>-->
+                        <zorgverlener datatype="reference" value="{nf:convert2NCName($practitionerRole)}"/>
                     </auteur_is_zorgverlener>
                 </xsl:when>
-                <!--                !! NB: no reference in the specs https://simplifier.net/packages/nictiz.fhir.nl.r4.zib2020/0.1.0-beta1/files/412364 indicates the occurece of the value below (Organization)-->
                 <xsl:when test="$resource/local-name() = 'Organization'">
-                    <auteur_is_zorgverlener>
+                    <auteur_is_zorgaanbieder>
                         <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0">
                             <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                         </xsl:apply-templates>
-                    </auteur_is_zorgverlener>
+                    </auteur_is_zorgaanbieder>
                 </xsl:when>
             </xsl:choose>
         </auteur>

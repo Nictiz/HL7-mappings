@@ -64,7 +64,7 @@
     <target name="setup_sub_instances" description="Setup ${sub.build.dir} containing refreshed ada production instances">
 
         <echo>Copying ADA instances from ${refs.dir}/ada_instance to ${sub.build.dir}/${fileset.dir}</echo>
-        
+
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${sub.build.dir}/${fileset.dir}"/>
 
@@ -83,40 +83,37 @@
 
     <!-- from ada2fhir -->
     <target name="convert_ada_2_fhir_sub">
+        
+        <fileset id="inputFiles" dir="${xsl.in}" includes="${xsl.in.include}"/>
 
-    
-        <sequential>
-            <fileset id="inputFiles" dir="${xsl.in}" includes="${xsl.in.include}"/>
-
-            <echo/>
-            <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
-            <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputFiles"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-                <param name="generateInstructionText" expression="true"/>
-                <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
-                <param name="mask-ids" expression="${param.maskids}" if="param.maskids"/>
-            </xslt>
-           
-        </sequential>
+        <echo/>
+        <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
+        <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputFiles"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+            <param name="generateInstructionText" expression="true"/>
+            <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
+            <param name="mask-ids" expression="${param.maskids}" if="param.maskids"/>
+        </xslt>
+        
     </target>
-    
+
     <!-- validates xml using xsd -->
     <target name="schemavalidate_sub">
-        
+
         <fileset id="inputfiles.validate" dir="${build.dir}">
             <include name="${fileset.include}"/>
             <exclude name="${fileset.exclude}"/>
         </fileset>
-        
+
         <echo/>
         <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
         <schemavalidate warn="true" failonerror="false">
             <fileset refid="inputfiles.validate"/>
             <schema namespace="urn:hl7-org:v3" file="${validate.schema}"/>
         </schemavalidate>
-        
+
     </target>
 
 

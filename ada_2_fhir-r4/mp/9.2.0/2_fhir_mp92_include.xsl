@@ -284,7 +284,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="mp-MedicationUse2">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="subject" select="../../patient" as="element()"/>
-                        <xsl:with-param name="prescriber" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]"/>
+                        <xsl:with-param name="prescriber" select="ancestor::*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]"/>
                     </xsl:call-template>
                 </resource>
             </entry>

@@ -201,17 +201,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Specific template for generating an id for afleverlocatie.</xd:desc>
         <xd:param name="in">The ADA element to generate the id for.</xd:param>
     </xd:doc>
-    <xsl:template match="afleverlocatie" mode="_generateId">
+    <xsl:template match="medicatieverstrekking/afleverlocatie" mode="_generateId">
         <xsl:param name="in" select="."/>
 
-        <xsl:choose>
-            <xsl:when test="string-length(nf:assure-logicalid-chars(@value)) le 64">
-                <xsl:value-of select="nf:assure-logicalid-chars(@value)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="nf:assure-logicalid-chars(nf:get-uuid($in))"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="uniqueString" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="@value">
+                    <xsl:value-of select="@value"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="uuid:get-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
 
     </xsl:template>
 
