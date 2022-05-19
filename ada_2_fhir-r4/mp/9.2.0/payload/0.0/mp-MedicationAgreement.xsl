@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
 
                 <xsl:for-each select="(medicatieafspraak_aanvullende_informatie | aanvullende_informatie)">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.AdditionalInformation">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>
                         </valueCodeableConcept>
