@@ -36,6 +36,7 @@
     <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
     <property name="refs.dir" value="${build.dir}/../../../ada_2_fhir-r4/${is.abbreviation}/${is.version}"/>
 
+    <property name="usecase.fhir.fixtures" value="fhir_fixtures4Touchstone"/>
     <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
@@ -165,7 +166,7 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.2.0/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.2.0/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
             <param name="xsl.in" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.mg}/roundtrip_fhir_instance_repo"/>
