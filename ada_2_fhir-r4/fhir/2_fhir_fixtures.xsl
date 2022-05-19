@@ -250,6 +250,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="node"/>
         <!-- date calculation automatically goes correct when you add the timezone information, in this case that is UTC. -->
         <xsl:variable name="duration-from-1582" as="xs:dayTimeDuration">
+            <!-- fixed date for stable uuid for test purposes -->
             <xsl:sequence select="xs:dateTime('2022-01-01T00:00:00.000Z') - xs:dateTime('1582-10-15T00:00:00.000Z')"/>
         </xsl:variable>
         <xsl:variable name="random-offset" as="xs:integer">
