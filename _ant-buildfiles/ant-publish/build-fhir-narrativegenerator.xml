@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../../" default="build">
+    <!-- Build a release file for the FHIR narrative generator -->
+    <property name="narrativegenerator.version" value="1.0.0"/>
+    
+    <target name="build">
+        <zip destfile="fhir-narrativegenerator-${narrativegenerator.version}.zip">
+            <zipfileset dir="fhir-narrativegenerator" prefix="fhir-narrativegenerator">
+                <include name="README.md"/>
+            </zipfileset>
+            <zipfileset dir="fhir-narrativegenerator" prefix="fhir-narrativegenerator/build">
+                <exclude name="README.md"/>
+            </zipfileset>
+            <zipfileset dir="util" prefix="fhir-narrativegenerator/util">
+                <include name="NarrativeGenerator.xsl"/>
+                <include name="formatXML.xsl"/>
+                <include name="utilities.xsl"/>
+                <include name="utilities-l10n.xml"/>
+            </zipfileset>
+        </zip>
+    </target>
+</project>
