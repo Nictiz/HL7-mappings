@@ -15,7 +15,7 @@ Add Narratives to FHIR resources.
 
 The narrative generator is implemented in XSL. There are different ways to run the narrative generator:
 
-* For direct inclusion in other templates, the file `../util/NarrativeGenerator.xsl` can be used.
-* To transform an existing FHIR resource file, the file `addNarratives.xsl` in this folder can be used.
-* To transform a complete directory (including subdirectories) with FHIR resource file, the ANT build script in this directory can be used. A single input dir can be set using the `input.dir` parameter, or a `dirset` with the required directories can be defined by a file that includes the build file. Note: the files are re-formatted after adding the Narrative.
+* For direct inclusion in other templates, the file `util/NarrativeGenerator.xsl` can be used.
+* To transform an existing FHIR resource file, the file `addNarratives.xsl` can be used.
+* To transform a complete directory (including subdirectories) with FHIR resource file, the ANT build file `build.xml` can be used. A single input dir can be set using the `input.dir` parameter, or a `dirset` with the required directories can be defined by a file that includes the build file. Note: the files are re-formatted after adding the Narrative.
 
