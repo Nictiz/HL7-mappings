@@ -259,6 +259,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- do the math to get the 100 nano second intervals -->
         <xsl:sequence select="(days-from-duration($duration-from-1582) * 24 * 60 * 60 + hours-from-duration($duration-from-1582) * 60 * 60 + minutes-from-duration($duration-from-1582) * 60 + seconds-from-duration($duration-from-1582)) * 1000 * 10000 + $random-offset"/>
     </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Override this function here to use a stable timestamp in order to create stable uuids</xd:desc>
+    </xd:doc>
+    <xsl:function name="uuid:generate-clock-id" as="xs:string">
+        <xsl:sequence select="'0000'"/>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
