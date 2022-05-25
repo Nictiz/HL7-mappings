@@ -79,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <id value="{nf:get-uuid(*[1])}"/>
                 <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement($in/..)}"/>                
+                    <profile value="{nf:get-full-profilename-from-adaelement($in/..)}-Bundle"/>                
                 </meta>
                 <type value="transaction"/>
                 <xsl:choose>
