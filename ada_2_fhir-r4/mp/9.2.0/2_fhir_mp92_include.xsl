@@ -314,10 +314,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <meta>
                             <xsl:choose>
                                 <xsl:when test="antwoord_medicatieafspraak[@code]">
-                                    <profile value="{concat($urlBaseNictizProfile, '/mp-ReplyProposalMedicationAgreement')}"/>
+                                    <profile value="{concat($urlBaseNictizProfile, 'mp-ReplyProposalMedicationAgreement')}"/>
                                 </xsl:when>
                                 <xsl:when test="antwoord_verstrekkingsverzoek[@code]">
-                                    <profile value="{concat($urlBaseNictizProfile, '/mp-ReplyProposalDispenseRequest')}"/>
+                                    <profile value="{concat($urlBaseNictizProfile, 'mp-ReplyProposalDispenseRequest')}"/>
                                 </xsl:when>
                             </xsl:choose>
                             <xsl:if test="string-length($metaTag) gt 0">
