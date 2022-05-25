@@ -196,7 +196,10 @@
     <xsl:template match="f:TestScript//f:profile" mode="filter" />
     <xsl:template match="f:TestScript//f:variable" mode="filter" />
     <xsl:template match="f:TestScript//f:extension[@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule']" mode="filter" />
-
+    
+    <!-- Silence rule use elements that have been produced in the wrong place as a side effect of the declaration element --> 
+    <xsl:template match="f:TestScript//f:extension[@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-assert-rule'][not(parent::f:assert)]" mode="filter" />
+    
     <!-- Silence all remaining nts: elements and attributes (that have been read but are not transformed) -->
     <xsl:template match="nts:*" mode="filter"/>
     <xsl:template match="@nts:*" mode="filter"/>
@@ -418,8 +421,14 @@
         </xsl:apply-templates>
     </xsl:template>
     
-    <!-- Expand a nts:rule element -->
-    <xsl:template match="nts:rule[@id and @href]" mode="expand">
+    <!--
+        Expand a nts:rule element that declares a rule (which should go to the header section of the TestScript).
+        Note: it is possible to use a single nts:rule element both for declaring and using a rule, hence this template
+        matches first by setting a high priority and subsequently calls the 'use' template. A side effect that a 'use'
+        output will be produced in the place where only a declaration is required, but this will be filtered out in the
+        filter step.
+    -->
+    <xsl:template match="nts:rule[@id and @href]" mode="expand" priority="2">
         <!-- https://touchstone.aegis.net/touchstone/userguide/html/testscript-authoring/rule-authoring/basics.html -->
         <extension url="http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule">
             <extension url="ruleId">
@@ -428,6 +437,40 @@
             <extension url="path">
                 <valueString value="{nts:constructFilePath($referenceBase, @href)}"/>
             </extension>
+        </extension>
+        <xsl:next-match/>
+    </xsl:template>
+
+    <!--
+        Expand a nts:rule element that uses a rule (in an assert).
+        Note: it is possible to use a single nts:rule element both for declaring and using a rule, hence this template
+        matches first by setting a high priority and subsequently calls the 'use' template,
+    -->
+    <xsl:template match="nts:rule[@id]" mode="expand">
+        <extension url="http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-assert-rule">
+            <extension url="ruleId">
+                <valueId value="{@id}"/>
+            </extension>
+            <xsl:for-each select="./@*[not(local-name() = ('id', 'href'))]">
+                <extension url="param">
+                    <extension url="name">
+                        <valueString value="{local-name()}"/>
+                    </extension>
+                    <extension url="value">
+                        <valueString value="{.}"/>
+                    </extension>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="./nts:with-param">
+                <extension url="param">
+                    <extension url="name">
+                        <valueString value="{@name}"/>
+                    </extension>
+                    <extension url="value">
+                        <valueString value="{@value}"/>
+                    </extension>
+                </extension>
+            </xsl:for-each>
         </extension>
     </xsl:template>
     

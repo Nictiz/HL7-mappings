@@ -122,9 +122,11 @@ If the `description` parameter is omitted when including this component, the lat
 
 ### Fixtures, profiles and rules
 
-For fixtures, profiles and rules, custom elements have been made that are a bit more concise than their FHIR equivalents.
+### Defining fixtures, profiles and rules
+
+Fixtures, profiles and rules all have te be declared in a TestScript before they can be used in a test. Custom elements have been made that are a bit more concise than their FHIR equivalents.
   
-Fixtures and rules can be defined using:
+Fixtures and rules may be declared using:
 
 ```xml
 <nts:fixture id=".." href=".."/>
@@ -133,12 +135,44 @@ Fixtures and rules can be defined using:
 
 `href` is considered to be relative to a predefined fixtures folder. It defaults to the "_reference" folder directly beneath the project-folder. See the section on building to set an alternate location. All fixtures and rules in the "_reference"-folder are copied to the output folder.
 
-A LoadResources script is generated for all fixtures in the "_reference"-folder. See the section on building on how to exclude files and/or folders from being added the LoadResources script. 
-
-Profiles may be defined using:
+Profiles may be declared using:
 
 ```xml
 <nts:profile id=".." value=".."/>
+```
+
+#### Fixtures
+
+A LoadResources script is generated for all fixtures in the "_reference"-folder. See the section on building on how to exclude files and/or folders from being added the LoadResources script. 
+
+#### Using rules
+
+Once a rule is declared, it may be used in an `<assert>` using the same tag with only the `id` attribute set. Optional parameters to the rule are passed as attributes or using the `<nts:with-param>` tag, similar to how it is done with `<nts:include/>`: 
+
+```xml
+<nts:rule id=".."
+  param1="value1"
+  param2="value2" />
+```
+
+is equivalent to:
+
+```xml
+<nts:rule id="..">
+  <nts:with-param name="param1" value="value1"/>
+  <nts:with-param name="param2" value="value2"/>  
+</nts:rule>
+```
+
+It is also possible implicitly declare the rule when it is used by adding the `href` attribute here, e.g.:
+```xml
+<assert>
+  ..
+  <nts:rule id=".." href=".."
+    param1="value1"
+    param2="value2" />
+  ..
+</assert>  
 ```
 
 ### Patient token and date T

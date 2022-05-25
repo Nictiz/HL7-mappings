@@ -37,8 +37,9 @@
         <xsl:text>&#xA;</xsl:text>
         
         <xsl:variable name="rules" as="xs:string*">
-            <xsl:for-each select="//f:rule[f:resource]">
-                <xsl:value-of select="substring-after(f:resource/f:reference/@value, $includesDir)"/>        
+            <xsl:for-each select="//f:extension[@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule']">
+                <xsl:value-of select="substring-after(f:extension[@url = 'path']/f:valueString/@value, $includesDir)"/>
+                
             </xsl:for-each>
             <xsl:for-each select="tokenize($additionalRules, ';')">
                 <xsl:if test="string-length(.) &gt; 0">
