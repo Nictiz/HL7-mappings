@@ -75,6 +75,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="product_code"/>
+                                <!-- OTH is part of ValueSet, binding is 'required', so no other nullFlavors allowed -->
+                                <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
                             </xsl:call-template>
                             <xsl:if test="not(product_code[@originalText]) and product_specificatie/product_naam/@value">
                                 <text value="{product_specificatie/product_naam/@value}"/>
@@ -102,6 +104,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>                    
                     <xsl:when test="product_specificatie/product_naam[@value]">
                         <code>
+                            <coding>
+                                <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                                <code value="OTH"/>
+                                <display value="overig"/>
+                            </coding>
                             <text value="{product_specificatie/product_naam/@value}"/>
                         </code>
                     </xsl:when>
