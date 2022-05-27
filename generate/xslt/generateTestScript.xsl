@@ -105,7 +105,9 @@
                         <xsl:message terminate="yes" select="concat('Encountered different rules using the id ''', f:extension[@url = 'ruleId']/f:valueId/@value, '''')"/>
                     </xsl:if>
                 </xsl:for-each>
-                <xsl:copy-of select="current-group()[1]"/>
+                <xsl:apply-templates select="current-group()[1]" mode="filter">
+                    <xsl:with-param name="doCopy" select="true()"/>
+                </xsl:apply-templates>
             </xsl:for-each-group>
             
             <xsl:apply-templates select="f:extension[not(@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule')] | f:modifierExtension" mode="#current"/>
@@ -169,7 +171,9 @@
                         <xsl:message terminate="yes" select="concat('Encountered different fixture inclusions using the same id ''', @id, '''')"/>
                     </xsl:if>
                 </xsl:for-each>
-                <xsl:copy-of select="current-group()[1]"/>
+                <xsl:apply-templates select="current-group()[1]" mode="filter">
+                    <xsl:with-param name="doCopy" select="true()"/>
+                </xsl:apply-templates>
             </xsl:for-each-group>
             <xsl:for-each-group select="$profiles" group-by="@id">
                 <xsl:for-each select="subsequence(current-group(), 2)">
@@ -177,7 +181,9 @@
                         <xsl:message terminate="yes" select="concat('Encountered different profile declarations using the id ''', @id, '''')"/>
                     </xsl:if>
                 </xsl:for-each>
-                <xsl:copy-of select="current-group()[1]"/>
+                <xsl:apply-templates select="current-group()[1]" mode="filter">
+                    <xsl:with-param name="doCopy" select="true()"/>
+                </xsl:apply-templates>
             </xsl:for-each-group>
             <xsl:for-each-group select="$variables" group-by="f:name/@value">
                 <xsl:for-each select="subsequence(current-group(), 2)">
@@ -185,17 +191,40 @@
                         <xsl:message terminate="yes" select="concat('Encountered different variables using the name ''', f:name/@value, '''')"/>
                     </xsl:if>
                 </xsl:for-each>
-                <xsl:copy-of select="current-group()[1]"/>
+                <xsl:apply-templates select="current-group()[1]" mode="filter">
+                    <xsl:with-param name="doCopy" select="true()"/>
+                </xsl:apply-templates>
             </xsl:for-each-group>
             <xsl:apply-templates select="f:setup | f:test | f:teardown" mode="#current"/>
         </xsl:copy>
     </xsl:template>
     
-    <!-- Silence fixture, profile, variable and rule elements, because they are already handled elsewhere -->
-    <xsl:template match="f:TestScript//f:fixture" mode="filter" />
-    <xsl:template match="f:TestScript//f:profile" mode="filter" />
-    <xsl:template match="f:TestScript//f:variable" mode="filter" />
-    <xsl:template match="f:TestScript//f:extension[@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule']" mode="filter" />
+    <!-- Fixture, profile, variable and rule elements:
+        Silence by default, because they are already handled elsewhere, but copied if explicitly intended with param doCopy -->
+    <xsl:template match="f:TestScript//f:fixture" mode="filter">
+        <xsl:param name="doCopy" select="false()"/>
+        <xsl:if test="$doCopy">
+            <xsl:next-match/>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="f:TestScript//f:profile" mode="filter">
+        <xsl:param name="doCopy" select="false()"/>
+        <xsl:if test="$doCopy">
+            <xsl:next-match/>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="f:TestScript//f:variable" mode="filter">
+        <xsl:param name="doCopy" select="false()"/>
+        <xsl:if test="$doCopy">
+            <xsl:next-match/>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="f:TestScript//f:extension[@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-rule']" mode="filter">
+        <xsl:param name="doCopy" select="false()"/>
+        <xsl:if test="$doCopy">
+            <xsl:next-match/>
+        </xsl:if>
+    </xsl:template>
     
     <!-- Silence rule use elements that have been produced in the wrong place as a side effect of the declaration element --> 
     <xsl:template match="f:TestScript//f:extension[@url = 'http://touchstone.aegis.net/touchstone/fhir/testing/StructureDefinition/testscript-assert-rule'][not(parent::f:assert)]" mode="filter" />
