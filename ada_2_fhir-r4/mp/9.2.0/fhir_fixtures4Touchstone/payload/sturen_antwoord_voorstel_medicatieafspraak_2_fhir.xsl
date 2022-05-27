@@ -59,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="antwoordVoorstelMedicatieafspraak920">
-            <xsl:with-param name="in" select="//sturen_antwoord_voorstel_medicatieafspraak/voorstel_gegevens"/>
+            <xsl:with-param name="in" select=".//sturen_antwoord_voorstel_medicatieafspraak/voorstel_gegevens"/>
         </xsl:call-template>
     </xsl:template>
     <xd:doc>
@@ -77,7 +77,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$schematronXsdLinkInOutput">
                     <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
                 </xsl:if>
-                <id value="{nf:get-uuid(*[1])}"/>
+                <id value="{..[1]/@id}"/>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement($in/..)}"/>                
                 </meta>

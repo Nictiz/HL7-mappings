@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="Medicatiegegevens_90">
-            <xsl:with-param name="mbh" select="//beschikbaarstellen_medicatiegegevens/medicamenteuze_behandeling"/>
+            <xsl:with-param name="mbh" select=".//beschikbaarstellen_medicatiegegevens/medicamenteuze_behandeling"/>
         </xsl:call-template>
     </xsl:template>
     <xd:doc>
@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="$schematronXsdLinkInOutput">
                 <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
             </xsl:if>
-            <id value="{nf:get-uuid(*[1])}"/>
+            <id value="{.//beschikbaarstellen_medicatiegegevens[1]/@id}"/>
             <type value="searchset"/>
             <total value="{count($bouwstenen-920)}"/>
             <xsl:choose>
