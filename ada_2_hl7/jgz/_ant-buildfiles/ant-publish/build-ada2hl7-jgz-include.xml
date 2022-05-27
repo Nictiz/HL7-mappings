@@ -7,12 +7,15 @@
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
 <project basedir="." default="convert_ada_2_hl7" name="build-ada2hl7-jgz-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <property name="is.name" value="Jeugdgezondheidszorg"/>
+    <property name="is.name" value="jeugdgezondheidszorg"/>
     <property name="is.abbreviation" value="jgz"/>
     <property name="project.version" value="1.0.0"/>
     <property name="build.dir" value="../.."/>
-    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
-    <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\${is.version}"/>
+    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.version.short}"/>
+    <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.name}\${is.version}"/>
+    
+    <!-- OG: uncommented because relevance for JGZ project is unknown. Where is this used? -->
+    <!-- <property name="organizer.to.cda.xsl" value="MP9_Transform_Organizer2CDA.xsl"/> -->
 
     <!-- place import exactly here, otherwise it can't resolve the properties above, or we can't resolve some properties below, such as ${echo.label.in} -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-include.xml"/>
@@ -20,11 +23,11 @@
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
 
-    <property name="usecase.dob" value="sturen_dossieroverdracht"/>
+    <property name="usecase.dob" value="dossieroverdracht"/>
 
     <target name="setup" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir}">
 
-        <!-- sturen_medicatievoorschrift copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <!-- sturen_dossieroverdracht copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.dob}"/>
             <param name="fileset.dir" value="ada_instance"/>
@@ -32,33 +35,20 @@
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
 
-        <!-- xml voorbeelden -->
-        <!-- schemas -->
-        <mkdir dir="${build.dir}/ada_schemas"/>
-        <delete>
-            <fileset dir="${build.dir}/ada_schemas" includes="*.xsd"/>
-        </delete>
-        <copy todir="${build.dir}/ada_schemas" failonerror="true">
-            <fileset dir="${ada.project.source.dir}/schemas">
-                <include name="*${usecase.dob}.xsd"/>
-                <include name="ada_meta.xsd"/>
-            </fileset>
-        </copy>
-
     </target>
 
     <target name="convert_ada_2_hl7">
 
-        <!-- convert sturen_dossieroverdracht -->
+        <!-- convert medicatievoorschrift -->
         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.dob}"/>
-            <param name="xsl.name" value="payload/${usecase.dob}_2_hl7v3.xsl"/>
+            <param name="xsl.name" value="payload/${usecase.dob}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
 
     </target>
-
+ 
     <target name="convert_ada_2_hl7_sub">
 
         <property name="xsl.jgz" value="${sub.build.dir}/${xsl.name}"/>
@@ -72,22 +62,23 @@
             <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
 
-        <fileset id="inputfiles" dir="${xsl.input}" includes="*.xml"/>
+        <sequential>
+            <fileset id="inputfilesJGZ" dir="${xsl.input}" includes="*.xml"/>
 
-        <echo/>
-        <echo>${echo.label} ${xsl.jgz} input dir ${xsl.input}</echo>
-        <xslt force="true" style="${xsl.jgz}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-            <fileset refid="inputfiles"/>
-            <param name="dateT" expression="${date.T}" if="date.T"/>
-            <!-- whether to generate the textual instruction for use based on structured data, 
+            <echo/>
+            <echo>${echo.label} ${xsl.jgz} input dir ${xsl.input}</echo>
+            <xslt force="true" style="${xsl.jgz}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesJGZ"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!-- whether to generate the textual instruction for use based on structured data, 
                     typically true for test/example instances 
                     typically false for production -->
-            <param name="generateInstructionText" expression="true"/>
-            <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="schematronRef" expression="false"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
     </target>
-
 
 </project>
