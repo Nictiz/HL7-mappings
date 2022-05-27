@@ -52,7 +52,7 @@
     <xsl:variable name="gContactKlas2" select="format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y'),'[Y0001][M01][D01]')"/>
     
     <xsl:variable name="W0639_HL7_W0646_HL7_W0647_HL7" as="element()*">
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2012-05-21T01:26:54" statusCode="final" versionLabel="326">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="400">
             <desc language="nl-NL">RubriekID voor alle rubrieken</desc>
             <conceptList>
                 <concept code="R002" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Dossierinformatie" level="0" type="L"/>
@@ -102,7 +102,7 @@
                 <concept code="R054" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Screening psychosociale problemen" level="0" type="L"/>
             </conceptList>
         </valueSet>
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.646" name="W0646_HL7" displayName="W0646 GroepID" effectiveDate="2012-05-21T01:26:54" statusCode="final" versionLabel="326">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.646" name="W0646_HL7" displayName="W0646 GroepID" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="400">
             <desc language="nl-NL">GroepID</desc>
             <conceptList>
                 <concept code="G001" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Adres cliënt" level="0" type="L"/>
@@ -179,9 +179,12 @@
                 <concept code="G113" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Afkapwaarden bloeddruk systolisch" level="0" type="D"/>
                 <concept code="G114" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Afkapwaarden bloeddruk diastolisch" level="0" type="D"/>
                 <concept code="G115" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Toestemming gegevensuitwisseling RVP" level="0" type="L"/>
+                <!--<concept code="G116" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Gezagstatus ouder/verzorger" level="0" type="L"/>-->
+                <concept code="G117" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Visus" level="0" type="L"/>
+                <!--<concept code="G118" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Rota-vaccinatie" level="0" type="L"/>-->
             </conceptList>
         </valueSet>
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.647" name="W0647_HL7" displayName="W0647 BDS Elementen" effectiveDate="2012-05-21T01:26:54" statusCode="final" versionLabel="326">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.647" name="W0647_HL7" displayName="W0647 BDS Elementen" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="400">
             <desc language="nl-NL">BDS Elementen</desc>
             <conceptList>
                 <concept code="1" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voorvoegsel achternaam" level="0" type="L"/>
@@ -266,10 +269,8 @@
                 <concept code="135" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden drinken" level="0" type="L"/>
                 <concept code="137" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Vitamine K toegediend/voorgeschreven" level="0" type="L"/>
                 <concept code="138" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gammaglobuline toegediend tegen Hepatitis B" level="0" type="L"/>
-                <concept code="139" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Geel zien" level="0" type="D"/>
                 <concept code="140" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Oorzaak geel zien" level="0" type="L"/>
                 <concept code="142" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Therapie" level="0" type="L"/>
-                <concept code="143" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opname kinderafdeling" level="0" type="D"/>
                 <concept code="144" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Couveuse" level="0" type="L"/>
                 <concept code="145" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden pasgeborene en eerste levensweken" level="0" type="L"/>
                 <concept code="146" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="A. femoralis rechts" level="0" type="L"/>
@@ -359,7 +360,6 @@
                 <concept code="361" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Type zorg" level="0" type="L"/>
                 <concept code="362" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zorg voor" level="0" type="L"/>
                 <concept code="363" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting zorg" level="0" type="L"/>
-                <concept code="364" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode zorg" level="0" type="D"/>
                 <concept code="365" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden" level="0" type="L"/>
                 <concept code="368" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Hielprik afgenomen" level="0" type="L"/>
                 <concept code="370" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende instantie hielprik" level="0" type="L"/>
@@ -368,8 +368,8 @@
                 <concept code="379" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden herhaling/tweede hielprik" level="0" type="L"/>
                 <concept code="380" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden niet afgenomen hielprik" level="0" type="L"/>
                 <concept code="381" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitslag" level="0" type="L"/>
-                <concept code="390" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reflexbeeldje rechts" level="0" type="L"/>
-                <concept code="391" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reflexbeeldje links" level="0" type="L"/>
+                <concept code="390" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Cornea lichtreflex rechts" level="0" type="L"/>
+                <concept code="391" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Cornea lichtreflex links" level="0" type="L"/>
                 <concept code="392" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afdektest: geen instel beweging rechts" level="0" type="L"/>
                 <concept code="393" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afdektest: geen instel beweging links" level="0" type="L"/>
                 <concept code="394" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afdektest: geen herstel beweging rechts" level="0" type="L"/>
@@ -400,7 +400,7 @@
                 <concept code="472" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Partijnummer" level="0" type="L"/>
                 <concept code="476" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Informatie verstrekt over werkwijze JGZ" level="0" type="L"/>
                 <concept code="480" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gegeven voorlichting" level="0" type="L"/>
-                <concept code="481" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bedreiging sociaal milieu" level="0" type="L"/>
+                <concept code="481" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bedreiging sociaal milieu" level="0" type="D"/>
                 <concept code="482" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Conclusie" level="0" type="L"/>
                 <concept code="483" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Interventie" level="0" type="L"/>
                 <concept code="485" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Indicatie" level="0" type="L"/>
@@ -414,7 +414,7 @@
                 <concept code="510" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Passief roken in huis" level="0" type="L"/>
                 <concept code="514" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ervaren gezondheid" level="0" type="L"/>
                 <concept code="603" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-organisatie URA" level="0" type="L"/>
-                <concept code="604" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Huisarts UZI" level="0" type="D"/>
+                <concept code="604" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Huisarts UZI" level="0" type="L"/>
                 <concept code="605" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="School/brinnummer" level="0" type="L"/>
                 <concept code="606" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Leerling/onderwijsnummer" level="0" type="L"/>
                 <concept code="607" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gezinssamenstelling woonverband" level="0" type="L"/>
@@ -445,7 +445,7 @@
                 <concept code="672" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Achternaam broer/zus" level="0" type="L"/>
                 <concept code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bezwaar" level="0" type="L"/>
                 <concept code="686" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden van enting" level="0" type="L"/>
-                <concept code="688" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Andere betrokken hulpverlener UZI" level="0" type="D"/>
+                <concept code="688" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Andere betrokken hulpverlener UZI" level="0" type="L"/>
                 <concept code="692" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-kaart uitslag rechts" level="0" type="L"/>
                 <concept code="695" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Dossiernummer" level="0" type="L"/>
                 <concept code="696" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Dossier status" level="0" type="L"/>
@@ -460,7 +460,7 @@
                 <concept code="706" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="E-mail contactpersoon" level="0" type="L"/>
                 <concept code="707" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Laag- of niet geletterde" level="0" type="L"/>
                 <concept code="708" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-professional UZI" level="0" type="D"/>
-                <concept code="709" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Huisartsenpraktijk URA" level="0" type="D"/>
+                <concept code="709" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Huisartsenpraktijk URA" level="0" type="L"/>
                 <concept code="710" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam contactpersoon/hulpverlener" level="0" type="L"/>
                 <concept code="711" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Functie contactpersoon/hulpverlener" level="0" type="L"/>
                 <concept code="712" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Telefoon contactpersoon/hulpverlener" level="0" type="L"/>
@@ -473,10 +473,10 @@
                 <concept code="720" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Functie contactpersoon school" level="0" type="L"/>
                 <concept code="721" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Telefoon contactpersoon school" level="0" type="L"/>
                 <concept code="722" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="E-mail contactpersoon school" level="0" type="L"/>
-                <concept code="723" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Andere betrokken hulpverlenersorganisatie URA" level="0" type="D"/>
+                <concept code="723" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Andere betrokken hulpverlenersorganisatie URA" level="0" type="L"/>
                 <concept code="724" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum activiteit" level="0" type="L"/>
                 <concept code="725" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Status activiteit" level="0" type="L"/>
-                <concept code="730" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende activiteit UZI" level="0" type="D"/>
+                <concept code="730" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-professional activiteit UZI" level="0" type="L"/>
                 <concept code="731" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Begeleider" level="0" type="L"/>
                 <concept code="732" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="WID controle ouder/verzorger uitgevoerd" level="0" type="L"/>
                 <concept code="733" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="WID controle datum ouder/verzorger" level="0" type="L"/>
@@ -540,7 +540,6 @@
                 <concept code="800" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Hoogteverschil gibbus bij scoliose" level="0" type="L"/>
                 <concept code="801" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichaamskant scoliose hoekmeting" level="0" type="L"/>
                 <concept code="802" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden bovenste extremiteiten" level="0" type="L"/>
-                <concept code="803" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichaamskant bijzonderheden bovenste extremiteiten" level="0" type="D"/>
                 <concept code="804" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beenlengteverschil" level="0" type="L"/>
                 <concept code="805" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden voet links" level="0" type="L"/>
                 <concept code="806" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Scrotale testes" level="0" type="L"/>
@@ -564,7 +563,7 @@
                 <concept code="824" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden menstruatie" level="0" type="L"/>
                 <concept code="825" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Pubesbeharing meisje" level="0" type="L"/>
                 <concept code="826" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek pubesbeharing meisje" level="0" type="L"/>
-                <concept code="827" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bedreiging fysiek milieu" level="0" type="L"/>
+                <concept code="827" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bedreiging fysiek milieu" level="0" type="D"/>
                 <concept code="829" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Doel" level="0" type="L"/>
                 <concept code="831" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bril/lenzen dragend" level="0" type="L"/>
                 <concept code="832" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-kaart uitslag links" level="0" type="L"/>
@@ -575,8 +574,8 @@
                 <concept code="837" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Landolt-C-kaart uitslag rechts" level="0" type="L"/>
                 <concept code="838" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Landolt-C-kaart uitslag links" level="0" type="L"/>
                 <concept code="839" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden visusbepaling" level="0" type="L"/>
-                <concept code="840" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Fundusreflex rechts" level="0" type="L"/>
-                <concept code="841" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Fundusreflex links" level="0" type="L"/>
+                <concept code="840" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Rode fundusreflex rechts" level="0" type="L"/>
+                <concept code="841" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Rode fundusreflex links" level="0" type="L"/>
                 <concept code="842" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden VOV-onderzoek" level="0" type="L"/>
                 <concept code="851" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden inspectie oog" level="0" type="L"/>
                 <concept code="852" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ishiharatest" level="0" type="L"/>
@@ -596,10 +595,9 @@
                 <concept code="870" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden afwijkend schema" level="0" type="L"/>
                 <concept code="871" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting afwijkend schema" level="0" type="L"/>
                 <concept code="872" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting afwijkende plaats vaccinatie" level="0" type="L"/>
-                <concept code="873" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode reactie" level="0" type="D"/>
                 <concept code="874" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verschijnselen" level="0" type="L"/>
                 <concept code="875" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reactie gemeld aan bevoegde instantie datum" level="0" type="L"/>
-                <concept code="876" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reactie gemeld aan bevoegde instantie door UZI" level="0" type="D"/>
+                <concept code="876" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reactie gemeld aan bevoegde instantie door UZI" level="0" type="L"/>
                 <concept code="877" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gedragstoestand Van Wiechen" level="0" type="L"/>
                 <concept code="878" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Interactie Van Wiechen" level="0" type="L"/>
                 <concept code="879" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="1. Ogen fixeren" level="0" type="L"/>
@@ -809,7 +807,6 @@
                 <concept code="1115" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Score hyperactiviteit" level="0" type="L"/>
                 <concept code="1116" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="SDQ totaal score" level="0" type="L"/>
                 <concept code="1117" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Score pro-sociaal gedrag" level="0" type="L"/>
-                <concept code="1150" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Duur zorg op maat" level="0" type="D"/>
                 <concept code="1151" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Probleemomschrijving" level="0" type="L"/>
                 <concept code="1152" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Oorzaak" level="0" type="L"/>
                 <concept code="1153" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zich uitend in" level="0" type="L"/>
@@ -818,7 +815,7 @@
                 <concept code="1156" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Evaluatie" level="0" type="L"/>
                 <concept code="1157" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voorlichtingsmateriaal" level="0" type="L"/>
                 <concept code="1158" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Extra zorg/interventie" level="0" type="L"/>
-                <concept code="1159" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Advies en verwijzing naar" level="0" type="L"/>
+                <concept code="1159" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verwijzing naar" level="0" type="L"/>
                 <concept code="1163" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
                 <concept code="1164" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bron toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
                 <concept code="1165" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toestemming verstrekking informatie aan derden" level="0" type="L"/>
@@ -846,7 +843,7 @@
                 <concept code="1189" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="E-mail contactpersoon voor- of buitenschoolse voorziening" level="0" type="L"/>
                 <concept code="1190" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden woonverband" level="0" type="L"/>
                 <concept code="1191" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Spreektaal ouder/verzorger" level="0" type="L"/>
-                <concept code="1194" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Aanmelder UZI Verwijsindex risicojongeren" level="0" type="D"/>
+                <concept code="1194" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Aanmelder UZI Verwijsindex risicojongeren" level="0" type="L"/>
                 <concept code="1195" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum aanmelding Verwijsindex risicojongeren" level="0" type="L"/>
                 <concept code="1196" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum afmelding Verwijsindex risicojongeren" level="0" type="L"/>
                 <concept code="1197" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Status in zorg" level="0" type="L"/>
@@ -923,7 +920,7 @@
                 <concept code="1322" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Doodsoorzaak ouder/verzorger" level="0" type="L"/>
                 <concept code="1323" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Stuitligging laatste trimester" level="0" type="L"/>
                 <concept code="1324" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Wijze van geboorte" level="0" type="L"/>
-                <concept code="1325" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Aanmelder UZI Veilig Thuis" level="0" type="D"/>
+                <concept code="1325" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Aanmelder UZI Veilig Thuis" level="0" type="L"/>
                 <concept code="1326" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum melding Veilig Thuis" level="0" type="L"/>
                 <concept code="1327" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum consultatie Veilig Thuis" level="0" type="L"/>
                 <concept code="1328" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden consultatie Veilig Thuis" level="0" type="L"/>
@@ -947,7 +944,7 @@
                 <concept code="1346" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Conclusie SPP" level="0" type="L"/>
                 <concept code="1349" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
                 <concept code="1350" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1351" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Contact met" level="0" type="L"/>
+                <concept code="1351" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Contact met" level="0" type="D"/>
                 <concept code="1352" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Woonverband ID" level="0" type="L"/>
                 <concept code="1363" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Woonverband ID cliënt" level="0" type="L"/>
                 <concept code="1364" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Woonverband ID ouder/verzorger" level="0" type="L"/>
@@ -961,20 +958,13 @@
                 <concept code="1374" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden zoon/dochter" level="0" type="L"/>
                 <concept code="1375" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Woonverband ID zoon/dochter" level="0" type="L"/>
                 <concept code="1377" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Activiteit ID" level="0" type="L"/>
-                <concept code="1378" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zwemles" level="0" type="D"/>
                 <concept code="1379" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Oogonderzoek uitgevoerd" level="0" type="L"/>
                 <concept code="1380" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden melding Veilig Thuis" level="0" type="L"/>
-                <concept code="1381" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende UZI consultatie Veilig Thuis" level="0" type="D"/>
+                <concept code="1381" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende UZI consultatie Veilig Thuis" level="0" type="L"/>
                 <concept code="1382" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gebruikt hand" level="0" type="L"/>
                 <concept code="1383" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum toestemming aan verpleegkundige om te vaccineren" level="0" type="L"/>
-                <concept code="1384" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bedreigingen nagevraagd" level="0" type="L"/>
-                <concept code="1385" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Arts UZI toestemming aan verpleegkundige om te vaccineren" level="0" type="D"/>
-                <concept code="1386" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid adres cliënt" level="0" type="D"/>
-                <!--concept code="1387" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid uitvoerende JGZ-organisatie" level="0" type="L"/-->
-                <concept code="1388" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid huisarts" level="0" type="D"/>
-                <concept code="1389" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid andere betrokken organisatie/hulpverlener" level="0" type="D"/>
-                <concept code="1390" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid voor- of buitenschoolse voorzieningen" level="0" type="D"/>
-                <concept code="1391" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid school" level="0" type="D"/>
+                <concept code="1384" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bedreigingen nagevraagd" level="0" type="D"/>
+                <concept code="1385" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Arts UZI toestemming aan verpleegkundige om te vaccineren" level="0" type="L"/>
                 <concept code="1392" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden testis links" level="0" type="L"/>
                 <concept code="1393" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden scrotum links" level="0" type="L"/>
                 <concept code="1394" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Vergewissen uitgevoerd" level="0" type="L"/>
@@ -1010,10 +1000,6 @@
                 <concept code="1424" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Indicatie activiteit" level="0" type="L"/>
                 <concept code="1425" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden hand links" level="0" type="L"/>
                 <concept code="1426" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden hand rechts" level="0" type="L"/>
-                <concept code="1427" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid contactpersoon" level="0" type="D"/>
-                <concept code="1428" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid contactpersoon/hulpverlener" level="0" type="D"/>
-                <concept code="1429" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid contactpersoon school" level="0" type="D"/>
-                <concept code="1430" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid contactpersoon voor- of buitenschoolse voorziening" level="0" type="D"/>
                 <concept code="1431" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden hielprikafname" level="0" type="L"/>
                 <concept code="1432" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Setnummer vorige hielprik" level="0" type="L"/>
                 <concept code="1433" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Diagnose Audiologisch Centrum gehoor links" level="0" type="L"/>
@@ -1026,7 +1012,6 @@
                 <concept code="1440" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Menstekening" level="0" type="L"/>
                 <concept code="1441" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verantwoordelijke JGZ-organisatie URA" level="0" type="L"/>
                 <concept code="1442" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verantwoordelijke JGZ-professional UZI" level="0" type="D"/>
-                <!--concept code="1443" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Periode geldigheid verantwoordelijke JGZ-organisatie" level="0" type="L"/-->
                 <concept code="1446" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting bijzonderheden heupen" level="0" type="L"/>
                 <concept code="1447" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="SDQ impactscore" level="0" type="L"/>
                 <concept code="1448" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum verkrijgen vaccinatieschema" level="0" type="L"/>
@@ -1069,10 +1054,6 @@
                 <concept code="1485" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Middelomtrek in millimeters" level="0" type="L"/>
                 <concept code="1486" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bloeddruk systolisch" level="0" type="L"/>
                 <concept code="1487" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bloeddruk diastolisch" level="0" type="L"/>
-                <concept code="1488" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afkapwaarde ondergrens bloeddruk systolisch" level="0" type="D"/>
-                <concept code="1489" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afkapwaarde bovengrens bloeddruk systolisch" level="0" type="D"/>
-                <concept code="1490" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afkapwaarde ondergrens bloeddruk diastolisch" level="0" type="D"/>
-                <concept code="1491" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afkapwaarde bovengrens bloeddruk diastolisch" level="0" type="D"/>
                 <concept code="1492" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gewichtsklasse op basis van BMI" level="0" type="L"/>
                 <concept code="1493" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden geen deelname aan VVE" level="0" type="L"/>
                 <concept code="1494" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verwijsbrief" level="0" type="L"/>
@@ -1082,14 +1063,13 @@
                 <concept code="1498" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bestand mimetype" level="0" type="L"/>
                 <concept code="1499" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zwemles" level="0" type="L"/>
                 <concept code="1500" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Schoolzwemmen" level="0" type="L"/>
-                <concept code="1501" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende activiteit naam" level="0" type="L"/>
-                <!--<concept code="1502" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende instantie vaccinatie URA" level="0" type="L"/>-->
+                <concept code="1501" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-professional activiteit naam" level="0" type="L"/>
                 <concept code="1503" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Vreemdelingennummer" level="0" type="L"/>
                 <concept code="1504" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Arts BIG toestemming aan verpleegkundige om te vaccineren" level="0" type="L"/>
                 <concept code="1505" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Arts naam toestemming aan verpleegkundige om te vaccineren" level="0" type="L"/>
                 <concept code="1506" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-organisatie naam" level="0" type="L"/>
                 <concept code="1507" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verantwoordelijke JGZ-organisatie naam" level="0" type="L"/>
-                <concept code="1508" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende activiteit BIG" level="0" type="L"/>
+                <concept code="1508" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-professional activiteit BIG" level="0" type="L"/>
                 <concept code="1509" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Huisarts AGB" level="0" type="L"/>
                 <concept code="1510" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Huisartspraktijk AGB" level="0" type="L"/>
                 <concept code="1511" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Andere betrokken hulpverlener AGB" level="0" type="L"/>
@@ -1104,7 +1084,7 @@
                 <concept code="1520" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Aanmelder naam Veilig Thuis" level="0" type="L"/>
                 <concept code="1521" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Arts AGB toestemming aan verpleegkundige om te vaccineren" level="0" type="L"/>
                 <concept code="1522" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Aanmelder AGB Verwijsindex risicojongeren" level="0" type="L"/>
-                <concept code="1523" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende activiteit AGB" level="0" type="L"/>
+                <concept code="1523" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-professional activiteit AGB" level="0" type="L"/>
                 <concept code="1524" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Aanmelder AGB Veilig Thuis" level="0" type="L"/>
                 <concept code="1525" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende AGB consultatie Veilig Thuis" level="0" type="L"/>
                 <concept code="1526" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reactie gemeld aan bevoegde instantie door AGB" level="0" type="L"/>
@@ -1124,6 +1104,38 @@
                 <concept code="1540" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam toestemming gegevensuitwisseling RVP" level="0" type="L"/>
                 <concept code="1541" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toestemmingswijze gegevensuitwisseling RVP" level="0" type="L"/>
                 <concept code="1542" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Berekende toestemming gegevensuitwisseling RVP" level="0" type="L"/>
+                <!--<concept code="1543" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron overdracht dossier binnen JGZ" level="0" type="L"/>
+                <concept code="1547" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
+                <concept code="1548" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
+                <concept code="1549" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
+                <concept code="1550" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
+                <concept code="1551" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
+                <concept code="1552" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron toestemming aanmelding LSP" level="0" type="L"/>
+                <concept code="1553" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie toestemming aanmelding LSP" level="0" type="L"/>
+                <concept code="1554" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming aanmelding LSP" level="0" type="L"/>
+                <concept code="1555" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming aanmelding LSP" level="0" type="L"/>
+                <concept code="1556" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming aanmelding LSP" level="0" type="L"/>
+                <concept code="1557" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming aanmelding LSP" level="0" type="L"/>
+                <concept code="1558" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron toestemming verstrekking informatie aan derden" level="0" type="L"/>
+                <concept code="1559" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie verstrekking informatie aan derden" level="0" type="L"/>
+                <concept code="1560" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
+                <concept code="1561" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
+                <concept code="1562" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
+                <concept code="1563" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
+                <concept code="1564" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron bezwaar tegen hergebruik van geanonimiseerde dossiergegevens" level="0" type="L"/>
+                <concept code="1565" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gezag ouder/verzorger" level="0" type="L"/>
+                <concept code="1566" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Startdatum geldigheid gezag ouder/verzorger" level="0" type="L"/>
+                <concept code="1567" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Einddatum geldigheid gezag ouder/verzorger" level="0" type="L"/>
+                <concept code="1568" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden sociale/fysieke milieu" level="0" type="L"/>-->
+                <concept code="1569" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Er zijn (blijvende) zorgen dat de opvoed- en/of opgroeisituatie van de jeugdige een bedreiging voor de veiligheid van de jeugdige kunnen vormen" level="0" type="L"/>
+                <concept code="1570" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="De (blijvende) zorgen zijn gedeeld met de jeugdige/ouder(s)/verzorger(s)" level="0" type="L"/>
+                <concept code="1571" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden om (blijvende) zorgen niet te delen" level="0" type="L"/>
+                <concept code="1572" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afwegingsvraag 1: Is er een vermoeden van (dreiging van) huiselijk geweld en/of kindermishandeling?" level="0" type="L"/>
+                <concept code="1573" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afwegingsvraag 2: Is er sprake van acute onveiligheid en/of structurele onveiligheid?" level="0" type="L"/>
+                <concept code="1574" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afwegingsvraag 3: Ben ik, als JGZ-professional, in staat effectieve hulp te bieden of te organiseren?" level="0" type="L"/>
+                <concept code="1575" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afwegingsvraag 4: Aanvaarden de betrokkenen de hulp? Ben ik in staat de hulp te bieden of te organiseren?" level="0" type="L"/>
+                <concept code="1576" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Afwegingsvraag 5: Leidt de hulp binnen de gewenste termijn tot duurzame veiligheid en/of het welzijn van alle betrokkenen?" level="0" type="L"/>
+                <concept code="1577" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Vorm activiteit" level="0" type="L"/>
                 <concept code="1578" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="A terme datum" level="0" type="L"/>
                 <concept code="1579" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Moeder heeft kinkhoest doorgemaakt na zwangerschapsduur 12w6d" level="0" type="L"/>
                 <concept code="1580" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Kinkhoest doorgemaakt na zwangerschapsduur 12w6d" level="0" type="L"/>
@@ -1136,7 +1148,25 @@
                 <concept code="1587" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum maternale kinkhoestvaccinatie" level="0" type="L"/>
                 <concept code="1588" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Medicijngebruik tijdens zwangerschap" level="0" type="L"/>
                 <concept code="1589" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Vaccinatie door RIVM afgekeurd" level="0" type="L"/>
-                <concept code="5063" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="BCG litteken" level="0" type="D"/>
+                <concept code="1590" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Soort visuskaart" level="0" type="L"/>
+                <concept code="1591" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitslag visus rechts" level="0" type="L"/>
+                <concept code="1592" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitslag visus links" level="0" type="L"/>
+                <!--<concept code="1593" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een absolute contra-indicatie voor rota-vaccinatie afgegeven?" level="0" type="L"/>
+                <concept code="1594" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Absolute contra-indicatie rota-vaccinatie" level="0" type="L"/>
+                <concept code="1595" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een relatieve contra-indicatie voor rota-vaccinatie afgegeven?" level="0" type="L"/>
+                <concept code="1596" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Relatieve contra-indicatie rota-vaccinatie" level="0" type="L"/>
+                <concept code="1597" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Heeft de moeder tijdens de zwangerschap een biological gebruikt?" level="0" type="L"/>
+                <concept code="1598" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een detecteerbare bloedspiegel bij het kind met betrekking tot biological?" level="0" type="L"/>-->
+                <concept code="1599" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende activiteit discipline" level="0" type="L"/>
+                <concept code="1600" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Contact ivm meldcode met functie" level="0" type="L"/>
+                <concept code="1601" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Schoolverzuim" level="0" type="L"/>
+                <concept code="1602" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting schoolverzuim" level="0" type="L"/>
+                <concept code="1603" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Advies met betrekking tot deelname aan lesprogramma" level="0" type="L"/>
+                <concept code="1604" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting advies met betrekking tot deelname lesprogramma" level="0" type="L"/>
+                <concept code="1605" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Status activiteit" level="0" type="L"/>
+                <concept code="1606" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Contact ivm meldcode met naam" level="0" type="L"/>
+                <concept code="1607" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Einddatum toestemming gegevensuitwisseling RVP" level="0" type="L"/>
+                <concept code="5063" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="BCG litteken" level="0" type="L"/>
             </conceptList>
         </valueSet>
     </xsl:variable>
