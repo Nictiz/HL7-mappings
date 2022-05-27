@@ -46,4 +46,15 @@
 
     </target>
     
+    <target name="convert_ada_2_hl7_700_test">
+        
+        <!-- convert JGZ dob -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.dob}"/>
+            <param name="xsl.name" value="../${usecase.dob}/payload/${usecase.dob}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance_test"/>
+        </antcall>
+        
+    </target>
 </project>
