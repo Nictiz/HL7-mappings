@@ -39,14 +39,11 @@
         <xd:desc> add schema, should be overridden from a calling use case specific xslt </xd:desc>
     </xd:doc>
     <xsl:template match="adaxml" mode="ada907_2_920">
-        <xsl:variable name="noConceptIdAdaXml">
-            <xsl:copy>
-                <xsl:apply-templates select="@*" mode="#current"/>
-                <xsl:attribute name="xsi:noNamespaceSchemaLocation">../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd</xsl:attribute>
-                <xsl:apply-templates select="node()" mode="#current"/>
-            </xsl:copy>
-        </xsl:variable>
-        <xsl:apply-templates select="$noConceptIdAdaXml" mode="addConceptId"/>
+        <xsl:copy>
+            <xsl:apply-templates select="@*" mode="#current"/>
+            <xsl:attribute name="xsi:noNamespaceSchemaLocation">../../../9.2.0/<xsl:value-of select="data/*/local-name()"/>/ada_schemas/ada_<xsl:value-of select="data/*/local-name()"/>.xsd</xsl:attribute>
+            <xsl:apply-templates select="node()" mode="#current"/>
+        </xsl:copy>
     </xsl:template>
 
     <xd:doc>
@@ -56,7 +53,6 @@
         <xsl:copy>
             <!-- bestaande attributen kopiëren -->
             <xsl:apply-templates select="@*" mode="#current"/>
-            <!-- app en formName attribuut alsnog overschrijven -->
             <!-- app en formName attribuut alsnog overschrijven -->
             <xsl:attribute name="app">mp-mp92</xsl:attribute>
             <xsl:variable name="mapTrans" select="$mapTransaction[@usecase = local-name(current())]/mp920"/>
@@ -129,7 +125,6 @@
                             <organisatie_type code="T2" displayName="Thuiszorg" codeSystem="{$oidRoleCodeNLOrganizations}" codeSystemName="{$oidMap[@oid=$oidRoleCodeNLOrganizations]/@displayName}"/>
                         </zorgaanbieder>
                     </xsl:for-each-group>
-
                     <xsl:for-each-group select=".//zorgaanbieder[not(zorgaanbieder)][not(ancestor::documentgegevens)]" group-by="adaextension/reference_id/@value">
                         <xsl:copy>
                             <xsl:attribute name="id" select="adaextension/reference_id/@value"/>
@@ -154,6 +149,18 @@
                             <xsl:apply-templates select="node()[not(self::zorgaanbieder_identificatienummer | self::zorgaanbieder_identificatie_nummer | self::organisatie_naam)]" mode="#current"/>
                         </xsl:copy>
                     </xsl:for-each-group>
+                    <xsl:if test="self::sturen_medicatievoorschrift">
+                        <xsl:for-each select="medicamenteuze_behandeling/medicatieafspraak/lichaamslengte">
+                            <xsl:copy>
+                                <xsl:apply-templates select="@* | node()" mode="#current"/>
+                            </xsl:copy>
+                        </xsl:for-each>
+                        <xsl:for-each select="medicamenteuze_behandeling/medicatieafspraak/lichaamsgewicht">
+                            <xsl:copy>
+                                <xsl:apply-templates select="@* | node()" mode="#current"/>
+                            </xsl:copy>
+                        </xsl:for-each>
+                    </xsl:if>
                 </bouwstenen>
             </xsl:variable>
             <xsl:if test="$theBouwstenen/*">
@@ -214,21 +221,21 @@
     </xd:doc>
     <xsl:template match="relaties_ketenzorg" mode="ada907_2_920">
 
-        <xsl:if test="identificatie_contactmoment">
+        <xsl:for-each select="identificatie_contactmoment">
             <relatie_contact>
-                <identificatie>
+                <identificatienummer>
                     <xsl:apply-templates select="@*" mode="#current"/>
-                </identificatie>
+                </identificatienummer>
             </relatie_contact>
-        </xsl:if>
-        
-        <xsl:if test="identificatie_episode">
+        </xsl:for-each>
+
+        <xsl:for-each select="identificatie_episode">
             <relatie_zorgepisode>
-                <identificatie>
+                <identificatienummer>
                     <xsl:apply-templates select="@*" mode="#current"/>
-                </identificatie>
+                </identificatienummer>
             </relatie_zorgepisode>
-        </xsl:if>
+        </xsl:for-each>
 
     </xsl:template>
 
@@ -521,7 +528,7 @@
     </xd:doc>
     <xsl:template match="voorschrijver | verstrekkingsverzoek/auteur | auteur_is_zorgverlener | informant_is_zorgverlener" mode="ada907_2_920">
         <xsl:copy>
-            <zorgverlener datatype="reference" value="{zorgverlener/@referenceId}"/>
+            <zorgverlener datatype="reference" value="{zorgverlener/adaextension/reference_id/@value}"/>
         </xsl:copy>
     </xsl:template>
 
@@ -558,7 +565,7 @@
     </xd:doc>
     <xsl:template match="(verstrekkingsverzoek/beoogd_verstrekker | toedieningsafspraak/verstrekker | verstrekking/verstrekker | zorgverlener/zorgaanbieder)[zorgaanbieder] | auteur_is_zorgaanbieder[not(ancestor::documentgegevens)]" mode="ada907_2_920">
         <xsl:copy>
-            <zorgaanbieder datatype="reference" value="{zorgaanbieder/@referenceId}"/>
+            <zorgaanbieder datatype="reference" value="{zorgaanbieder/adaextension/reference_id/@value}"/>
         </xsl:copy>
     </xsl:template>
 
@@ -567,7 +574,7 @@
     </xd:doc>
     <xsl:template match="zorgverlener/zorgaanbieder[not(zorgaanbieder)]" mode="ada907_2_920">
         <xsl:copy>
-            <zorgaanbieder datatype="reference" value="{@referenceId}"/>
+            <zorgaanbieder datatype="reference" value="{adaextension/reference_id/@value}"/>
         </xsl:copy>
     </xsl:template>
 
@@ -576,7 +583,7 @@
     </xd:doc>
     <xsl:template match="afgesproken_geneesmiddel | te_verstrekken_geneesmiddel | geneesmiddel_bij_toedieningsafspraak | verstrekt_geneesmiddel" mode="ada907_2_920">
         <xsl:copy>
-            <farmaceutisch_product datatype="reference" value="{product/@referenceId}"/>
+            <farmaceutisch_product datatype="reference" value="{product/adaextension/reference_id/@value}"/>
         </xsl:copy>
     </xsl:template>
 
@@ -585,7 +592,7 @@
     </xd:doc>
     <xsl:template match="gebruiks_product" mode="ada907_2_920">
         <gebruiksproduct>
-            <farmaceutisch_product datatype="reference" value="{product/@referenceId}"/>
+            <farmaceutisch_product datatype="reference" value="{product/adaextension/reference_id/@value}"/>
         </gebruiksproduct>
     </xsl:template>
 
@@ -597,13 +604,13 @@
         <xsl:choose>
             <xsl:when test="rol_of_functie[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.4']">
                 <informant_is_zorgverlener>
-                    <zorgverlener datatype="reference" value="{@referenceId}"/>
+                    <zorgverlener datatype="reference" value="{adaextension/reference_id/@value}"/>
                 </informant_is_zorgverlener>
             </xsl:when>
             <xsl:otherwise>
                 <!-- simply output contactpersoon using reference -->
                 <xsl:copy>
-                    <contactpersoon datatype="reference" value="{@referenceId}"/>
+                    <contactpersoon datatype="reference" value="{adaextension/reference_id/@value}"/>
                 </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
@@ -772,7 +779,7 @@
     <xsl:template match="patient-afko" mode="ada907_2_920"/>
 
     <xd:doc>
-        <xd:desc> no conceptIds, no value (local for ada gui) for coded elements </xd:desc>
+        <xd:desc> no conceptIds, no value for coded elements (local for ada gui), get rid of temp reference_id in adaextension </xd:desc>
     </xd:doc>
     <xsl:template match="@conceptId | *[@code]/@value | adaextension[reference_id][not(*[not(self::reference_id)])] | adaextension/reference_id" mode="ada907_2_920"/>
 

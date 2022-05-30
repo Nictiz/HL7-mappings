@@ -27,6 +27,10 @@
 
     <property name="build.dir" value="${basedir}/../.."/>
     <property name="dummy.output.dir" value="dummy"/>
+    
+    <property name="base.url.github.907" value="https://raw.githubusercontent.com/Nictiz/HL7-mappings/master/ada_2_hl7/mp/9.0.7"/>
+    <property name="base.url.github.920" value="https://raw.githubusercontent.com/Nictiz/HL7-mappings/mp92-ada2hl7/ada_2_hl7/mp/9.2.0"/>
+    
 
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2ada-mp-include.xml"/>
 
@@ -35,46 +39,80 @@
     <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\${is.version}"/>
     <property name="refs.dir.907" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\9.0.7"/>
     <property name="refs.dir.920" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\9.2.0"/>
-    
+
 
     <target name="build">
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="build_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="usecase.short" value="mg"/>
+            <param name="input.dir.startstring" value="ada_instance_repo"/>
+        </antcall>
+        
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="build_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="usecase.short" value="mv"/>
+            <param name="input.dir.startstring" value="ada_instance"/>
+        </antcall>
+        
+        
+    
+    </target>
+    
+
+    <target name="build_sub">
 
         <!-- beschikbaarstellen_medicatiegegevens start at 907-->
-     <!--   <antcall target="ada_2_ada_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.name" value="ada_mg_907_to_920.xsl"/>
-            <param name="input.dir" value="ada_instance_repo_in_907"/>
-            <param name="output.dir" value="ada_instance_repo_in_907_uit_920"/>
-        </antcall>
-        <!-\- roundtrip -\->
         <antcall target="ada_2_ada_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.name" value="ada_mg_920_to_907.xsl"/>
-            <param name="input.dir" value="ada_instance_repo_in_907_uit_920"/>
-            <param name="output.dir" value="ada_instance_repo_in_907_uit_907_roundtrip"/>
-        </antcall>
-        <!-\- double roundtrip -\->
-        <antcall target="ada_2_ada_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.name" value="ada_mg_907_to_920.xsl"/>
-            <param name="input.dir" value="ada_instance_repo_in_907_uit_907_roundtrip"/>
-            <param name="output.dir" value="ada_instance_repo_in_907_uit_920_roundtrip"/>
-        </antcall>-->
-        
-        <!-- beschikbaarstellen_medicatiegegevens start at 920 -->
-        <antcall target="ada_2_ada_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.name" value="ada_mg_920_to_907.xsl"/>
-            <param name="input.dir" value="ada_instance_repo_in_920"/>
-            <param name="output.dir" value="ada_instance_repo_in_920_uit_907"/>
+            <param name="usecase" value="${usecase}"/>
+            <param name="xsl.name" value="ada_${usecase.short}_907_to_920.xsl"/>
+            <param name="input.dir" value="${input.dir.startstring}_in_907"/>
+            <param name="output.dir" value="${input.dir.startstring}_in_907_uit_920"/>
+            <param name="base.url.github" value="${base.url.github.920}"/>
         </antcall>
         <!-- roundtrip -->
         <antcall target="ada_2_ada_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.name" value="ada_mg_907_to_920.xsl"/>
-            <param name="input.dir" value="ada_instance_repo_in_920_uit_907"/>
-            <param name="output.dir" value="ada_instance_repo_in_920_uit_920_roundtrip"/>
+            <param name="usecase" value="${usecase}"/>
+            <param name="xsl.name" value="ada_${usecase.short}_920_to_907.xsl"/>
+            <param name="input.dir" value="${input.dir.startstring}_in_907_uit_920"/>
+            <param name="output.dir" value="${input.dir.startstring}_in_907_uit_907_roundtrip"/>
+            <param name="base.url.github" value="${base.url.github.907}"/>
         </antcall>
+        <!-- double roundtrip -->
+        <antcall target="ada_2_ada_sub">
+            <param name="usecase" value="${usecase}"/>
+            <param name="xsl.name" value="ada_${usecase.short}_907_to_920.xsl"/>
+            <param name="input.dir" value="${input.dir.startstring}_in_907_uit_907_roundtrip"/>
+            <param name="output.dir" value="${input.dir.startstring}_in_907_uit_920_roundtrip"/>
+            <param name="base.url.github" value="${base.url.github.920}"/>
+        </antcall>
+
+        <!-- beschikbaarstellen_medicatiegegevens start at 920 -->
+        <antcall target="ada_2_ada_sub">
+            <param name="usecase" value="${usecase}"/>
+            <param name="xsl.name" value="ada_${usecase.short}_920_to_907.xsl"/>
+            <param name="input.dir" value="${input.dir.startstring}_in_920"/>
+            <param name="output.dir" value="${input.dir.startstring}_in_920_uit_907"/>
+            <param name="base.url.github" value="${base.url.github.907}"/>
+        </antcall>
+        <!-- roundtrip -->
+        <antcall target="ada_2_ada_sub">
+            <param name="usecase" value="${usecase}"/>
+            <param name="xsl.name" value="ada_${usecase.short}_907_to_920.xsl"/>
+            <param name="input.dir" value="${input.dir.startstring}_in_920_uit_907"/>
+            <param name="output.dir" value="${input.dir.startstring}_in_920_uit_920_roundtrip"/>
+            <param name="base.url.github" value="${base.url.github.920}"/>
+        </antcall>
+        <!-- double roundtrip -->
+        <antcall target="ada_2_ada_sub">
+            <param name="usecase" value="${usecase}"/>
+            <param name="xsl.name" value="ada_${usecase.short}_920_to_907.xsl"/>
+            <param name="input.dir" value="${input.dir.startstring}_in_920_uit_920_roundtrip"/>
+            <param name="output.dir" value="${input.dir.startstring}_in_920_uit_907_roundtrip"/>
+            <param name="base.url.github" value="${base.url.github.907}"/>
+        </antcall>
+        
     </target>
 
     <target name="ada_2_ada_sub">
@@ -97,26 +135,58 @@
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
+        
+        <!-- okay, now let's add conceptid's, for better comparison results, but not needed for conversion to HL7v3 or FHIR, so kept outside the ada2ada XSL's for performance reasons -->
+        <move file="${build.dir}/${usecase}/${output.dir}" tofile="${build.dir}/${usecase}/${output.dir}_noconceptid"/>
+        <fileset id="inputfilesAddConcept" dir="${build.dir}/${usecase}/${output.dir}_noconceptid"  includes="*.xml"/>
+        
+        <xslt force="true" destdir="${build.dir}/${usecase}/${output.dir}" extension=".xml" useImplicitFileset="false">
+            <style>
+                <url url="${base.url.github}/../../../ada_2_ada/ada/AddConceptIds.xsl"/>
+            </style>
+            <fileset refid="inputfilesAddConcept"/>
+            <param name="schemaFileString" expression="${base.url.github}/${usecase}/ada_schemas/${usecase}.xsd"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        
+        <!-- remove the temp noconceptid folder -->
+        <delete dir="${build.dir}/${usecase}/${output.dir}_noconceptid" deleteonexit="true"/>
+        
     </target>
 
-    <target name="setup">
-        
-        <!-- beschikbaarstellen_medicatiegegevens -->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="target.dir.instances" value="ada_instance_repo_in_907"/>
-            <param name="refs.dir.instances" value="${refs.dir.907}/${usecase.mg}/ada_instance_repo"/>
-            <param name="fileset.include" value="*.xml"/>
-        </antcall>
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="target.dir.instances" value="ada_instance_repo_in_920"/>
-            <param name="refs.dir.instances" value="${refs.dir.920}/${usecase.mg}/ada_instance_repo"/>
-            <param name="fileset.include" value="*.xml"/>
-        </antcall>
-        
-    </target>
+<target name="setup">
+    <!-- beschikbaarstellen_medicatiegegevens ada_instance_repo -->
+    <antcall target="setup_sub_usecase">
+        <param name="usecase" value="${usecase.mg}"/>
+        <param name="input.dir.startstring" value="ada_instance_repo"/>
+    </antcall>
     
+    <!-- sturen_medicatievoorschrift -->
+    <antcall target="setup_sub_usecase">
+        <param name="usecase" value="${usecase.mv}"/>
+        <param name="input.dir.startstring" value="ada_instance"/>
+    </antcall>
+    
+</target>
+
+    <target name="setup_sub_usecase">
+
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase}"/>
+            <param name="target.dir.instances" value="${input.dir.startstring}_in_907"/>
+            <param name="refs.dir.instances" value="${refs.dir.907}/${usecase}/${input.dir.startstring}"/>
+            <param name="fileset.include" value="*.xml"/>
+        </antcall>
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase}"/>
+            <param name="target.dir.instances" value="${input.dir.startstring}_in_920"/>
+            <param name="refs.dir.instances" value="${refs.dir.920}/${usecase}/${input.dir.startstring}"/>
+            <param name="fileset.include" value="*.xml"/>
+        </antcall>     
+
+    </target>
+
 
     <target name="setup_sub" description="Setup ${usecase} containing the new/schemas folder from the original ADA project and refreshed ada production instances">
         <antcall target="setup_sub_schemas">
@@ -132,7 +202,7 @@
     </target>
 
     <target name="setup_sub_schemas" description="Setup ${target.dir} containing the new/schemas folder from the original ADA project">
-            
+
         <mkdir dir="${target.dir}/ada_schemas"/>
         <delete>
             <fileset dir="${target.dir}/ada_schemas">
@@ -149,7 +219,7 @@
     </target>
 
     <target name="setup_sub_instances" description="Setup ${target.dir} containing refreshed ada production instances">
-        
+
         <mkdir dir="${target.dir}"/>
         <delete>
             <fileset dir="${target.dir}">

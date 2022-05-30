@@ -29,12 +29,8 @@
             </xsl:copy>
         </xsl:variable>
         <!-- step two, some of the elements unfortunately have different names which are not consistent over the dataset -->
-        <xsl:variable name="noConceptIdAdaXmlStep2">
-            <xsl:apply-templates select="$noConceptIdAdaXml" mode="ada920_2_907_step2"/>
-        </xsl:variable>
+        <xsl:apply-templates select="$noConceptIdAdaXml" mode="ada920_2_907_step2"/>
 
-        <!-- move this to outside of default XSLT, not needed for conversion to FHIR or HL7v3 -->
-        <xsl:apply-templates select="$noConceptIdAdaXmlStep2" mode="addConceptId"/>
     </xsl:template>
 
 
@@ -98,8 +94,6 @@
     <xsl:template match="zorgverlener/zorgaanbieder[zorgaanbieder] | criterium[criterium]" mode="ada920_2_907">
         <xsl:apply-templates select="*" mode="#current"/>
     </xsl:template>
-
-
 
     <xd:doc>
         <xd:desc>Gebruiksinstructie/HerhaalperiodeCyclischSchema/@unit=dag (920)
@@ -518,12 +512,12 @@
             </xsl:if>
             <xsl:if test="relatie_contact | relatie_zorgepisode">
                 <relaties_ketenzorg>
-                    <xsl:for-each select="relatie_contact/identificatie[@value | @root]">
+                    <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value | @root]">
                         <identificatie_contactmoment>
                             <xsl:apply-templates select="@*" mode="#current"/>
                         </identificatie_contactmoment>
                     </xsl:for-each>
-                    <xsl:for-each select="relatie_zorgepisode/identificatie[@value | @root]">
+                    <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value | @root]">
                         <identificatie_episode>
                             <xsl:apply-templates select="@*" mode="#current"/>
                         </identificatie_episode>

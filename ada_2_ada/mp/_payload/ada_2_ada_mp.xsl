@@ -84,7 +84,8 @@
             <mp920 transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301" transactionEffectiveDate="2022-02-07T00:00:00" formName="medicatiegegevens" />
         </map>
         <map xmlns="" usecase="sturen_medicatievoorschrift">
-            <mp907 transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.271" transactionEffectiveDate="2021-05-05T10:25:34" formName="sturen_medicatievoorschrift" />
+            <mp907 transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" formName="sturen_voorschrift" />
+            <mp920 transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.322" transactionEffectiveDate="2022-02-07T00:00:00" formName="sturen_medicatievoorschrift" />
         </map>
     </xsl:variable>
 </xsl:stylesheet>

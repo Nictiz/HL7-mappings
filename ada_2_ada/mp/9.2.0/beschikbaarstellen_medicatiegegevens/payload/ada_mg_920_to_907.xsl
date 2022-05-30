@@ -11,20 +11,4 @@
     
     <!-- Transforms ada from 907 to 9 2.0, only the transaction specific stuff for beschikbaarstellen_medicatiegegevens -->
 
-    <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml instance -->
-    <xsl:param name="schemaFileString" as="xs:string?">../mp/9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
-
-    <!-- add schema -->
-<!--    <xsl:template match="adaxml" mode="ada920_2_907">
-        <xsl:variable name="noConceptIdAdaXml">
-            <xsl:copy>
-                <xsl:apply-templates select="@*" mode="#current"/>
-                <xsl:attribute name="xsi:noNamespaceSchemaLocation">../../../<xsl:value-of select="$schemaFileString"/></xsl:attribute>
-                <xsl:apply-templates select="node()" mode="#current"/>
-            </xsl:copy>
-        </xsl:variable>
-        <xsl:apply-templates select="$noConceptIdAdaXml" mode="addConceptId"/>
-    </xsl:template>-->
-
-
-</xsl:stylesheet>
+ </xsl:stylesheet>
