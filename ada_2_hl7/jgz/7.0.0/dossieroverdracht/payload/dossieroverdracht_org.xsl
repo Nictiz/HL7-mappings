@@ -16,7 +16,7 @@
     <xsl:variable name="gOIDBaseEncounter" select="concat($gOIDBase,'3')"/>
     <xsl:variable name="gOIDBaseWoonverband" select="concat($gOIDBase,'10')"/>
     
-    <xsl:variable name="gPatientBSN" select="//versturen_jgzdossieroverdrachtverzoek_v02/r003_persoonsgegevens/bsn/@value"/>
+    <xsl:variable name="gPatientBSN" select="//versturen_jgzdossieroverdrachtverzoek_v03/r003_persoonsgegevens/bsn/@value"/>
     <xsl:variable name="gCREATIONDATETIME-dt" select="current-dateTime()"/>
     <xsl:variable name="gPatientDOB-dt" select="$gCREATIONDATETIME-dt - xs:yearMonthDuration('P3Y9M')"/>
     <xsl:variable name="gMotherDOB-dt" select="$gCREATIONDATETIME-dt - xs:yearMonthDuration('P31Y9M')"/>
@@ -1182,12 +1182,12 @@
         <xd:desc/>
     </xd:doc>
     <xsl:template name="Message">
-        <REPC_IN902120NL xmlns="urn:hl7-org:v3">
+        <REPC_IN902120NL03 xmlns="urn:hl7-org:v3">
             <xsl:if test="$schema-ref">
-                <xsl:attribute name="xsi:schemaLocation"><xsl:text>urn:hl7-org:v3 </xsl:text><xsl:value-of select="$schemaBaseDir"/><xsl:text>/REPC_IN902120NL.xsd</xsl:text></xsl:attribute>
+                <xsl:attribute name="xsi:schemaLocation"><xsl:text>urn:hl7-org:v3 </xsl:text><xsl:value-of select="$schemaBaseDir"/><xsl:text>/REPC_IN902120NL03.xsd</xsl:text></xsl:attribute>
             </xsl:if>
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.100_20140715000000">
-                <xsl:with-param name="interactionId">REPC_IN902120NL</xsl:with-param>
+                <xsl:with-param name="interactionId">REPC_IN902120NL03</xsl:with-param>
                 <xsl:with-param name="patientId" select=".//r003_persoonsgegevens/bsn/@value"/>
             </xsl:call-template>
             <ControlActProcess classCode="CACT" moodCode="EVN">
@@ -1203,7 +1203,7 @@
                     </participant>
                 </authorOrPerformer>
                 <subject>
-                    <xsl:for-each select="//versturen_jgzdossieroverdrachtverzoek_v02">
+                    <xsl:for-each select="//versturen_jgzdossieroverdrachtverzoek_v03">
                         <CareProvisionRequest>
                             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
                             <code code="CPHC" codeSystem="2.16.840.1.113883.5.4" displayName="certified public health and general preventive medicine care"/>
@@ -1216,13 +1216,13 @@
                                 </assignedEntity>
                             </author>
                             <sequelTo>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20120801000000"/>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20200527000000"/>
                             </sequelTo>
                         </CareProvisionRequest>
                     </xsl:for-each>
                 </subject>
             </ControlActProcess>
-        </REPC_IN902120NL>
+        </REPC_IN902120NL03>
     </xsl:template>
     
 </xsl:stylesheet>
