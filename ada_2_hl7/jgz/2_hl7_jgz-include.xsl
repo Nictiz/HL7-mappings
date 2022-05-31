@@ -245,6 +245,8 @@
                 </xsl:call-template>
             </xsl:for-each>
             <code codeSystem="2.16.840.1.113883.5.4" code="CPHC" displayName="certified public health and general preventive medicine care"/>
+            <!-- Dossierstatus -->
+            <statusCode code="{r002_dossierinformatie/dossier_status/@code}"/>
             <effectiveTime>
                 <low nullFlavor="UNK"/>
             </effectiveTime>
