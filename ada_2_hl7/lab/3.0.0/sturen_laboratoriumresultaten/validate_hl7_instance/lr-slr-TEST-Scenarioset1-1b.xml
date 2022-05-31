@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                        xmlns:saxon="http://saxon.sf.net/"
+                        xmlns:schold="http://www.ascc.net/xml/schematron"
+                        xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                        xmlns:hl7="urn:hl7-org:v3"
+                        xmlns:cda="urn:hl7-org:v3"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xmlns:hl7v2="urn:hl7-org:v2xml"
+                        xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                        xmlns:ihe="urn:ihe:pcc:hl7v3"
+                        xmlns:sdtc="urn:hl7-org:sdtc"
+                        xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                        xmlns:pharm="urn:ihe:pharm:medication"
+                        xmlns:f="http://hl7.org/fhir"
+                        xmlns:hl7nl="urn:hl7-nl:v3"
+                        title="Schematron file for transaction Sturen laboratoriumresultaten (2.16.840.1.113883.2.4.3.11.60.25.4.28 2022-03-03T00:00:00)"
+                        schemaVersion=""><!--   
+		   
+		   
+		 -->
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:v3" prefix="hl7"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:v3" prefix="cda"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XMLSchema-instance" prefix="xsi"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:v2xml" prefix="hl7v2"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:oid:1.3.6.1.4.1.19376.1.3.2" prefix="lab"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:ihe:pcc:hl7v3" prefix="ihe"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:sdtc" prefix="sdtc"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:urn:nictiz-nl:v3/nfu" prefix="nfu"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:ihe:pharm:medication" prefix="pharm"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://hl7.org/fhir" prefix="f"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-nl:v3" prefix="hl7nl"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        name="LabOrganizerOrCDA"/>
+   <svrl:fired-rule context="/" fpi="RUL-EXPEL"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.121.10.51-2022-03-30T000000"
+                        name="Laboratory organizer or CDA"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]"
+                    id="d6795e43-false-d6967e0"
+                    fpi="RULC-1"/>
+   <svrl:failed-assert test="count(hl7:statusCode[@code = 'completed']) &gt;= 1"
+                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.66.10.77-2022-03-30T000000.html"
+                       role="error"
+                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>(OrganizerLabbepalingen): element hl7:statusCode[@code = 'completed'] is mandatory [min 1x].</svrl:text>
+   </svrl:failed-assert>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']"
+                    id="d6795e49-false-d7401e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:code[(@code = '26436-6' and @codeSystem = '2.16.840.1.113883.6.1')]"
+                    id="d6795e54-false-d7420e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]"
+                    id="d7454e30-false-d7475e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]"
+                    id="d7454e32-false-d7525e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]/hl7:id[@root = '2.16.840.1.113883.2.4.6.3']"
+                    id="d7454e34-false-d7583e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]/hl7:patient[hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/exception/@code]]"
+                    id="d7454e53-false-d7888e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]/hl7:patient[hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/exception/@code]]/hl7:name"
+                    id="d7454e55-false-d7951e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]/hl7:patient[hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/exception/@code]]/hl7:name/hl7:given[@qualifier='BR']"
+                    id="d8086e294-false-d8117e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]/hl7:patient[hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/exception/@code]]/hl7:name/hl7:family[tokenize(@qualifier,'\s')='BR']"
+                    id="d8086e412-false-d8238e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]/hl7:patient[hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/exception/@code]]/hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/exception/@code]"
+                    id="d7454e66-false-d8363e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]/hl7:patient[hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/exception/@code]]/hl7:birthTime"
+                    id="d7454e71-false-d8390e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:id[@root = '2.16.840.1.113883.2.4.6.3']]/hl7:patient[hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2015-04-01T000000.xml')//valueSet[1]/conceptList/exception/@code]]/sdtc:multipleBirthInd"
+                    id="d7454e73-false-d8407e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']"
+                    id="d8751e9-false-d8757e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']/hl7:participantRole[@classCode = 'ASSIGNED']"
+                    id="d8796e45-false-d8817e0"
+                    fpi="RULC-1"/>
+   <svrl:failed-assert test="count(hl7:id) &gt;= 1"
+                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.66.10.9041-2018-10-16T000000.html"
+                       role="error"
+                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][1]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>(kezo-CDACustodianPartyBody): element hl7:id is required [min 1x].</svrl:text>
+   </svrl:failed-assert>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']/hl7:participantRole[@classCode = 'ASSIGNED']/hl7:code[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.2.3-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.1.6-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
+                    id="d8796e58-false-d8902e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']/hl7:participantRole[@classCode = 'ASSIGNED']/hl7:addr"
+                    id="d8796e70-false-d8938e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']/hl7:participantRole[@classCode = 'ASSIGNED']/hl7:playingEntity[@classCode = ('PSN', 'ORG')][@determinerCode = 'INSTANCE']"
+                    id="d8796e75-false-d8964e0"
+                    fpi="RULC-1"/>
+   <svrl:failed-assert test="count(hl7:name) &gt;= 1"
+                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.66.10.9041-2018-10-16T000000.html"
+                       role="error"
+                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][1]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]/*:playingEntity[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>(kezo-CDACustodianPartyBody): element hl7:name is required [min 1x].</svrl:text>
+   </svrl:failed-assert>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']/hl7:participantRole[@classCode = 'ASSIGNED']/hl7:scopingEntity[@classCode = 'ORG'][@determinerCode = 'INSTANCE']"
+                    id="d8796e89-false-d9022e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']/hl7:participantRole[@classCode = 'ASSIGNED']/hl7:scopingEntity[@classCode = 'ORG'][@determinerCode = 'INSTANCE']/hl7:id"
+                    id="d8796e101-false-d9073e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']/hl7:participantRole[@classCode = 'ASSIGNED']/hl7:scopingEntity[@classCode = 'ORG'][@determinerCode = 'INSTANCE']/hl7:code[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.2.3-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
+                    id="d8796e108-false-d9088e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/hl7:participant[@typeCode='CST']/hl7:participantRole[@classCode = 'ASSIGNED']/hl7:scopingEntity[@classCode = 'ORG'][@determinerCode = 'INSTANCE']/hl7:desc"
+                    id="d8796e113-false-d9112e0"
+                    fpi="RULC-1"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.121.10.51-2022-03-30T000000-closed"
+                        name="Laboratory organizer or CDA"/>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/*[not(@xsi:nil = 'true')][not(self::hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77'] | self::hl7:code[(@code = '26436-6' and @codeSystem = '2.16.840.1.113883.6.1')] | self::hl7:statusCode[@code = 'completed'] | self::hl7:recordTarget[hl7:patientRole] | self::hl7:participant[@typeCode='RESP'] | self::hl7:participant[@typeCode='CST'] | self::hl7:component[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']] | self::hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]] | self::hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]] | self::hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]])]"
+                    id="d70921e43-true-d71284e0"
+                    fpi="RUL-QQQ"/>
+   <svrl:failed-assert test="not(.)"
+                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.66.10.77-2022-03-30T000000.html"
+                       role="warning"
+                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:statusCode[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>(OrganizerLabbepalingen)/d70921e43-true-d71284e0: dit element 'statusCode' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77'] | hl7:code[(@code = '26436-6' and @codeSystem = '2.16.840.1.113883.6.1')] | hl7:statusCode[@code = 'completed'] | hl7:recordTarget[hl7:patientRole] | hl7:participant[@typeCode='RESP'] | hl7:participant[@typeCode='CST'] | hl7:component[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']] | hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]] | hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]] | hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]] (rule-reference: d70921e43-true-d71284e0)</svrl:text>
+   </svrl:failed-assert>
+   <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']]/*[not(@xsi:nil = 'true')][not(self::hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77'] | self::hl7:code[(@code = '26436-6' and @codeSystem = '2.16.840.1.113883.6.1')] | self::hl7:statusCode[@code = 'completed'] | self::hl7:recordTarget[hl7:patientRole] | self::hl7:participant[@typeCode='RESP'] | self::hl7:participant[@typeCode='CST'] | self::hl7:component[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']] | self::hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]] | self::hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]] | self::hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]])]"
+                    id="d70921e43-true-d71284e0"
+                    fpi="RUL-QQQ"/>
+   <svrl:failed-assert test="not(.)"
+                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.66.10.77-2022-03-30T000000.html"
+                       role="warning"
+                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>(OrganizerLabbepalingen)/d70921e43-true-d71284e0: dit element 'observation' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77'] | hl7:code[(@code = '26436-6' and @codeSystem = '2.16.840.1.113883.6.1')] | hl7:statusCode[@code = 'completed'] | hl7:recordTarget[hl7:patientRole] | hl7:participant[@typeCode='RESP'] | hl7:participant[@typeCode='CST'] | hl7:component[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']] | hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]] | hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]] | hl7:component[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]] (rule-reference: d70921e43-true-d71284e0)</svrl:text>
+   </svrl:failed-assert>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.1.1-2008-08-08T000000"
+                        name="Notification Organizer"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.1.1.1-2008-08-08T000000"
+                        name="Notifiable Condition"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.1.1.2-2008-08-08T000000"
+                        name="Case Identification"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.1.1.3-2008-08-08T000000"
+                        name="Outbreak Identification"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.1.3-2008-08-08T000000"
+                        name="Specimen Received"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.3.1.2-2008-08-08T000000"
+                        name="Non-Human Subject"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.3.1.2.1-2008-08-08T000000"
+                        name="Non-Human Subject"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.3.1.3-2008-08-08T000000"
+                        name="Human Patient with Non-Human Subject"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.3.1.3.1-2009-12-04T000000"
+                        name="Human Patient with Non-Human Subject"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.3.1.4-2008-08-08T000000"
+                        name="XD-LAB Information Recipient"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.3.1.5-2008-08-08T000000"
+                        name="Laboratory Results Validator"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.3.1.6-2008-08-08T000000"
+                        name="Ordering Provider"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.3.3.1.7-2008-08-08T000000"
+                        name="Laboratory Performer"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-1.3.6.1.4.1.19376.1.5.3.1.4.2-2013-12-20T000000"
+                        name="IHE Comment Entry"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.121.10.53-2022-03-30T000000"
+                        name="MEDLAB 1.0 IDE+2 Identificatie materiaal/aanvraag"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9200-2018-01-12T101847"
+                        name="Kopie-indicator"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.25.10.52-2022-03-30T000000"
+                        name="Laboratory Specialty Section NL"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.25.10.53-2022-03-30T000000"
+                        name="Laboratory Report Data Processing Entry NL"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.25.10.54-2022-03-30T000000"
+                        name="Laboratory Report Item Section NL"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.3.10.0.9-2018-06-11T000000"
+                        name="scoping Entity"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.3.10.3.27-2018-06-11T000000"
+                        name="zorgverlener-participantRole"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.7.10.2-2022-03-30T000000"
+                        name="Laboratory Battery Organizer NL (Specimen)"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.7.10.3-2017-10-16T000000"
+                        name="Specimen Collection HCIM"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.7.10.31-2022-03-30T000000"
+                        name="Laboratory Observation NL"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.7.10.4-2022-03-30T000000"
+                        name="Laboratory Isolate Organizer NL (Specimen)"/>
+   <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenarioset1-1b.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.7.10.47-2017-12-05T000000"
+                        name="Laboratory Observation Request NL"/>
+</svrl:schematron-output>

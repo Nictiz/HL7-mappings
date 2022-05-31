@@ -7,14 +7,21 @@
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
 <project basedir="." default="convert_ada_2_hl7" name="build-ada2hl7-lab-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <property name="is.name" value="Laboratoriumuitwisseling"/>
+    <property name="is.name" value="Laboratoriumgegevens"/>
     <property name="is.abbreviation" value="lab"/>
     <property name="project.version" value="3.0.0"/>
     <property name="build.dir" value="../.."/>
-    <property name="ada.project.source.dir" value="/Users/ahenket/Development/GForge/art_decor/trunk/ada-data/projects/${is.abbreviation}"/>
-    <property name="refs.dir" value="/Users/ahenket/Development/GForge/art_decor/trunk/ada-data/adarefs2ada/${is.abbreviation}/${is.version}"/>
-    
-    <property name="organizer.to.cda.xsl" value="MP9_Transform_Organizer2CDA.xsl"/>
+    <!--
+        ~/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/_ant-buildfiles/ant-publish
+        
+        ~/Development/SVN/art_decor/trunk/ada-data/projects/
+        
+        ~/Development/SVN/art_decor/trunk/ada-data/adarefs2ada/
+    -->
+    <property name="ada.project.source.dir" value="../../../../../../../../SVN/art_decor/trunk/ada-data/projects/${is.abbreviation}"/>
+    <property name="refs.dir" value="../../../../../../../../SVN/art_decor/trunk/ada-data/adarefs2ada/${is.abbreviation}/${is.version}"/>
+
+    <property name="organizer.to.cda.xsl" value="LAB_Transform_Organizer2CDA.xsl"/>
 
     <!-- place import exactly here, otherwise it can't resolve the properties above, or we can't resolve some properties below, such as ${echo.label.in} -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-include.xml"/>
@@ -22,24 +29,15 @@
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
 
-    <property name="usecase.lab2zorg.st" value="sturen_laboratoriumresultaten"/>
-    <property name="usecase.lab2zorg.bs" value="beschikbaarstellen_laboratoriumresultaten"/>
+    <property name="usecase.labsr" value="sturen_laboratoriumresultaten"/>
 
     <target name="setup" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir}">
 
-        <!-- sturen_laboratoriumresultaten copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <!-- sturen_laboratoriumgegevens copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.lab2zorg.st}"/>
+            <param name="usecase" value="${usecase.labsr}"/>
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        
-        <!-- beschikbaarstellen_laboratoriumresultaten copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.lab2zorg.bs}"/>
-             <param name="fileset.dir" value="ada_instance_MA"/>
-            <param name="fileset.include" value="*MA*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
 
@@ -51,43 +49,42 @@
         </delete>
         <copy todir="${build.dir}/xml-voorbeelden/ada_schemas" failonerror="true">
             <fileset dir="${ada.project.source.dir}/schemas">
-                <include name="*${usecase.lab2zorg.st}.xsd"/>
-                <include name="*${usecase.lab2zorg.bs}.xsd"/>
+                <include name="*${usecase.labsr}.xsd"/>
                 <include name="ada_meta.xsd"/>
             </fileset>
         </copy>
-        
         <!-- instances -->
         <echo/>
-        <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*.xml)</echo>
+        <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
 
         <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
         <delete>
-            <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*.xml"/>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*example*.xml"/>
         </delete>
         <copy todir="${build.dir}/xml-voorbeelden/ada_instance" failonerror="true">
             <fileset dir="${refs.dir}/xml-voorbeelden/ada_instance">
-                <include name="*.xml"/>
+                <include name="*example*.xml"/>
             </fileset>
         </copy>
+
     </target>
 
     <target name="convert_ada_2_hl7">
 
-        <!-- convert sturen_laboratoriumresultaten -->
+        <!-- convert medicatievoorschrift -->
         <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.lab2zorg.st}"/>
-            <param name="xsl.name" value="payload/${usecase.lab2zorg.st}.xsl"/>
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labs}"/>
+            <param name="xsl.name" value="payload/${usecase.labs}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
 
-        <!-- convert beschikbaarstellen_laboratoriumresultaten -->
+        <!-- medicatievoorschrift also to CDA-->
         <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.lab2zorg.bs}"/>
-            <param name="xsl.name" value="payload/${usecase.lab2zorg.st}.xsl"/>
-            <param name="xsl.in" value="ada_instance"/>
-            <param name="xsl.out" value="hl7_instance"/>
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labs}"/>
+            <param name="xsl.name" value="../../${organizer.to.cda.xsl}"/>
+            <param name="xsl.in" value="hl7_instance"/>
+            <param name="xsl.out" value="cda_instance"/>
         </antcall>
 
         <!-- also do the examples -->
@@ -106,34 +103,20 @@
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="*.xml"/>
         </delete>
-        
-        <!-- sturen_laboratoriumresultaten -->
+        <!-- laboratoriumresultaten -->
         <sequential>
-            <fileset id="inputfiles" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*.xml"/>
+            <fileset id="inputfiles" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mv*.xml"/>
 
             <echo/>
-            <echo>${echo.label} ${build.dir}/${usecase.lab2zorg.st}/payload/${usecase.lab2zorg.st}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
-            <xslt force="true" style="${build.dir}/${usecase.lab2zorg.st}/payload/${usecase.lab2zorg.st}.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+            <echo>${echo.label} ${build.dir}/${usecase.labs}/payload/${usecase.labs}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.labs}/payload/${usecase.labs}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
                 <fileset refid="inputfiles"/>
+                <param name="generateInstructionText" expression="true"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
-
-        <!-- beschikbaarstellen_laboratoriumresultaten -->
-        <sequential>
-            <fileset id="inputfiles" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*.xml"/>
-
-            <echo/>
-            <echo>${echo.label} ${build.dir}/${usecase.lab2zorg.bs}/payload/${usecase.lab2zorg.st}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
-            <xslt force="true" style="${build.dir}/${usecase.lab2zorg.st}/payload/${usecase.lab2zorg.st}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
-                <fileset refid="inputfiles"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential> 
     </target>
 
     <target name="convert_ada_2_hl7_sub">
@@ -149,20 +132,21 @@
             <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
 
-        <sequential>
-            <fileset id="inputfiles" dir="${xsl.input}" includes="*.xml"/>
+        <fileset id="inputfiles" dir="${xsl.input}" includes="*.xml"/>
 
-            <echo/>
-            <echo>${echo.label} ${xsl.lab} input dir ${xsl.input}</echo>
-            <xslt force="true" style="${xsl.lab}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfiles"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
-                <param name="schematronRef" expression="false"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
+        <echo/>
+        <echo>${echo.label} ${xsl.lab} input dir ${xsl.input}</echo>
+        <xslt force="true" style="${xsl.lab}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfiles"/>
+            <param name="dateT" expression="${date.T}" if="date.T"/>
+            <!-- whether to generate the textual instruction for use based on structured data, 
+                    typically true for test/example instances 
+                    typically false for production -->
+            <param name="generateInstructionText" expression="true"/>
+            <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
     </target>
-
 
 </project>
