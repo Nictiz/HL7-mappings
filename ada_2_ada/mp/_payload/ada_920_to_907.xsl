@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet exclude-result-prefixes="#all" version="2.0" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsl:stylesheet exclude-result-prefixes="#all" version="2.0" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nfa2a="http://www.nictiz.nl/functions/ada2ada" xmlns:uuid="http://www.uuid.org" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xsl:import href="ada_2_ada_mp.xsl"/>
     <xsl:import href="../../../util/uuid.xsl"/>
     <xsl:import href="../../../util/mp-functions.xsl"/>
@@ -120,7 +120,10 @@
             <xsl:apply-templates select="aantal_herhalingen" mode="#current"/>
             <xsl:apply-templates select="te_verstrekken_geneesmiddel" mode="#current"/>
             <!-- the rest, except what was already done and the elements not supported in 907, such as relatie_contact/relatie_zorgepisode and financiele_indicatiecode -->
-            <xsl:apply-templates select="*[not(self::identificatie | self::verstrekkingsverzoek_datum_tijd | self::verstrekkingsverzoek_datum | self::auteur | self::te_verstrekken_hoeveelheid | self::aantal_herhalingen | self::te_verstrekken_geneesmiddel | self::financiele_indicatiecode | self::relatie_contact | self::relatie_zorgepisode)]" mode="#current"/>
+            <xsl:apply-templates select="*[not(self::identificatie | self::verstrekkingsverzoek_datum_tijd | self::verstrekkingsverzoek_datum | self::auteur | self::te_verstrekken_hoeveelheid | self::aantal_herhalingen | self::te_verstrekken_geneesmiddel | self::financiele_indicatiecode | self::toelichting | self::relatie_medicatieafspraak | self::relatie_contact | self::relatie_zorgepisode)]" mode="#current"/>
+            <!-- output toelichting including non supported fields in 907 -->
+            <xsl:call-template name="_toelichting"/>
+            <xsl:apply-templates select="relatie_medicatieafspraak" mode="#current"/>
         </xsl:copy>
     </xsl:template>
 
@@ -134,7 +137,10 @@
             <xsl:apply-templates select="identificatie | toedieningsafspraak_datum_tijd" mode="#current"/>
             <xsl:apply-templates select="gebruiksperiode/tijds_duur" mode="#current"/>
             <!-- distributievorm not present in 907 -->
-            <xsl:apply-templates select="*[not(self::identificatie | self::toedieningsafspraak_datum_tijd | self::gebruiksperiode | self::distributievorm)]" mode="#current"/>
+            <xsl:apply-templates select="*[not(self::identificatie | self::toedieningsafspraak_datum_tijd | self::gebruiksperiode | self::distributievorm | self::toelichting | self::kopie_indicator | self::relatie_medicatieafspraak)]" mode="#current"/>
+            <!--  output toelichting, also for non supported fields in 907 -->
+            <xsl:call-template name="_toelichting"/>
+            <xsl:apply-templates select="kopie_indicator | relatie_medicatieafspraak" mode="#current"/>
             <xsl:if test="not(relatie_medicatieafspraak/identificatie[@value | @root | @nullFlavor])">
                 <!-- relatie_naar_medicatieafspraak is 1..1 R in 907 let's output a nullFlavor -->
                 <relatie_naar_medicatieafspraak>
@@ -250,7 +256,6 @@
         </xsl:copy>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc>move lichaamslengte en lichaamsgewicht </xd:desc>
     </xd:doc>
@@ -288,10 +293,11 @@
     </xd:doc>
     <xsl:template match="reden_wijzigen_of_staken | reden_wijzigen_of_stoppen_gebruik" mode="ada920_2_907">
         <xsl:copy>
-            <!-- do not copy @value, because it is a silly ada UI attribute for coded elements, for which we also cannot really predict the appropriate content that ada -->
-            <xsl:apply-templates select="@*[not(name() = 'value')]" mode="#current"/>
+            <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:for-each select="$mapRedenwijzigenstaken[mp920[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
                 <xsl:copy-of select="mp907/@*"/>
+                <!-- but we do want to keep the original displayName, if present -->
+                <xsl:if test="string-length(@displayName) gt 0"><xsl:copy-of select="@displayName"></xsl:copy-of></xsl:if>
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
@@ -323,24 +329,7 @@
     </xd:doc>
     <xsl:template match="toedieningsafspraak_reden_wijzigen_of_staken" mode="ada920_2_907">
         <!-- change of code datatype to string -->
-        <reden_afspraak>
-            <xsl:attribute name="value">
-                <xsl:choose>
-                    <xsl:when test="string-length(@originalText) gt 0">
-                        <xsl:value-of select="@originalText"/>
-                    </xsl:when>
-                    <xsl:when test="string-length(@displayName) gt 0">
-                        <xsl:value-of select="@displayName"/>
-                    </xsl:when>
-                    <xsl:when test="string-length(@code) gt 0">
-                        <xsl:value-of select="string-join(@code | @codeSystem, '|')"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="@value"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-        </reden_afspraak>
+        <reden_afspraak value="{nfa2a:code-2-string(.)}"/>
     </xsl:template>
 
     <xd:doc>
@@ -380,6 +369,45 @@
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Handle toelichting, needs to be enriched with non supported stuff in 907</xd:desc>
+    </xd:doc>
+    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/toelichting" mode="ada920_2_907">
+        <xsl:call-template name="_toelichting"/>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc> toelichting en niet ondersteuende velden in toelichting van MP9 2.0 naar 9.0.7 </xd:desc>
+    </xd:doc>
+    <xsl:template name="_toelichting">
+        <xsl:variable name="newValue" as="xs:string*">
+            <xsl:if test="toelichting[@value]">
+                <xsl:value-of select="toelichting/@value"/>
+            </xsl:if>
+            <!-- ma/ta/mgb gebruiksperiode/criterium -->
+            <xsl:if test="gebruiksperiode/criterium[@value]">
+                <xsl:value-of select="concat('Criterium gebruiksperiode: ', gebruiksperiode/criterium/@value)"/>
+            </xsl:if>
+            <!-- ta distributievorm -->
+            <xsl:if test="distributievorm[@code | @value | @displayName | @originalText]">
+                <xsl:value-of select="concat('Distributievorm: ', nfa2a:code-2-string(distributievorm))"/>
+            </xsl:if>
+            <!-- vv/financiele_indicatiecode -->
+            <xsl:if test="financiele_indicatiecode[@code | @value | @displayName | @originalText]">
+                <xsl:value-of select="concat('Financiële indicatiecode: ', nfa2a:code-2-string(financiele_indicatiecode))"/>
+            </xsl:if>
+        </xsl:variable>
+
+        <xsl:if test="string-length($newValue) gt 0">
+            <toelichting>
+                <xsl:apply-templates select="toelichting/@*" mode="#current"/>
+                <xsl:attribute name="value">
+                    <xsl:value-of select="string-join($newValue, ' | ')"/>
+                </xsl:attribute>
+            </toelichting>
+        </xsl:if>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc>gebruiksproduct</xd:desc>
     </xd:doc>
     <xsl:template match="gebruiksproduct" mode="ada920_2_907">
@@ -389,20 +417,33 @@
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Handle the medicatiegebruik/informant/persoon. TODO</xd:desc>
+        <xd:desc>Handle the medicatiegebruik/informant for thuiszorg.</xd:desc>
     </xd:doc>
-    <xsl:template match="informant/persoon" mode="ada920_2_907">
-        <!-- special handling for thuiszorg, because in 920 a thuiszorg professional is conveyed using zorgverlener see issue https://bits.nictiz.nl/browse/ZIB-1075 -->
+    <xsl:template match="informant" mode="ada920_2_907">
+        <!-- special handling for thuiszorg, because in 920 a thuiszorg professional is conveyed using zorgverlener and in 907 as persoon, see issue https://bits.nictiz.nl/browse/ZIB-1075 -->
+        <xsl:variable name="relatedZorgverlener" select="//bouwstenen/zorgverlener[@id = current()/informant_is_zorgverlener/zorgverlener/@value]"/>
+        <xsl:variable name="relatedZorgaanbieder" select="//bouwstenen//zorgaanbieder[@id = $relatedZorgverlener//zorgaanbieder[not(zorgaanbieder)]/@value]"/>
+
         <xsl:choose>
-            <xsl:when test="rol_of_functie[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.4']">
-                <informant_is_zorgverlener>
-                    <zorgverlener datatype="reference" value="{@referenceId}"/>
-                </informant_is_zorgverlener>
+            <!-- thuiszorg -->
+            <xsl:when test="$relatedZorgaanbieder[organisatie_type[@code = 'T2'][@codeSystem = '2.16.840.1.113883.2.4.15.1060']]">
+                <xsl:copy>
+                    <persoon>
+                        <xsl:apply-templates select="$relatedZorgverlener/adresgegevens" mode="#current"/>
+                        <!-- do naamgegevens manually here, because there is no double nesting in 907 in persoon -->
+                        <naamgegevens>
+                            <xsl:apply-templates select="$relatedZorgverlener/naamgegevens/(@* | node())" mode="#current"/>
+                        </naamgegevens>
+                        <rol_of_functie>
+                            <xsl:copy-of select="$mapContactpersoonRol[@rol = 'thuiszorg']/mp907/@*"/>
+                        </rol_of_functie>
+                    </persoon>
+                </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <!-- simply output contactpersoon using reference -->
+                <!-- do normal processing -->
                 <xsl:copy>
-                    <contactpersoon datatype="reference" value="{@referenceId}"/>
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
                 </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
@@ -413,10 +454,11 @@
     </xd:doc>
     <xsl:template match="rol_of_functie" mode="ada920_2_907">
         <rol>
-            <!-- do not copy @value, because it is a silly ada UI attribute for coded elements, for which we also cannot really predict the appropriate content that ada -->
-            <xsl:apply-templates select="@*[not(name() = 'value')]" mode="#current"/>
-            <xsl:for-each select="$mapRedenwijzigenstaken[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp920]">
+            <xsl:apply-templates select="@*" mode="#current"/>
+            <xsl:for-each select="$mapContactpersoonRol[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp920]">
                 <xsl:copy-of select="mp920/@*"/>
+                <!-- but we do want to keep the original displayName, if present -->
+                <xsl:if test="string-length(@displayName) gt 0"><xsl:copy-of select="@displayName"></xsl:copy-of></xsl:if>                
             </xsl:for-each>
         </rol>
     </xsl:template>
@@ -460,7 +502,7 @@
     <xd:doc>
         <xd:desc>relaties in medicatiegebruik</xd:desc>
     </xd:doc>
-    <xsl:template match="medicatiegebruik" mode="ada920_2_907">
+    <xsl:template match="medicatiegebruik | medicatie_gebruik" mode="ada920_2_907">
         <medicatie_gebruik>
             <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:apply-templates select="gebruiksperiode/(start_datum_tijd | eind_datum_tijd)" mode="#current"/>
@@ -480,7 +522,9 @@
                 </gerelateerde_afspraak>
             </xsl:if>
             <!-- the rest, except what was already done and the elements not supported in 907, such as relatie_contact/relatie_zorgepisode -->
-            <xsl:apply-templates select="relatie_medicatieverstrekking | voorschrijver | informant | auteur | reden_gebruik | reden_wijzigen_of_stoppen_gebruik | toelichting" mode="#current"/>
+            <xsl:apply-templates select="relatie_medicatieverstrekking | voorschrijver | informant | auteur | reden_gebruik | reden_wijzigen_of_stoppen_gebruik" mode="#current"/>
+            <!--  output toelichting, also for non supported fields in 907 -->
+            <xsl:call-template name="_toelichting"/>
         </medicatie_gebruik>
     </xsl:template>
 
@@ -524,7 +568,16 @@
                     </xsl:for-each>
                 </relaties_ketenzorg>
             </xsl:if>
-            <xsl:apply-templates select="*[not(self::identificatie | self::medicatieafspraak_datum_tijd | self::gebruiksperiode | self::geannuleerd_indicator | self::medicatieafspraak_stop_type | self::relatie_medicatieafspraak | self::relatie_toedieningsafspraak | self::relatie_medicatiegebruik | self::relatie_contact | self::relatie_zorgepisode)]" mode="#current"/>
+            <xsl:apply-templates select="voorschrijver | reden_wijzigen_of_staken | reden_van_voorschrijven | afgesproken_geneesmiddel | gebruiksinstructie" mode="#current"/>
+            <!-- lengte en gewicht vanuit sturen_medicatievoorschrift -->
+            <xsl:for-each select="ancestor::sturen_medicatievoorschrift/bouwstenen/(lichaamslengte | lichaamsgewicht)">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                </xsl:copy>
+            </xsl:for-each>
+            <xsl:apply-templates select="aanvullende_informatie | kopie_indicator" mode="#current"/>
+            <!-- still output toelichting for non supported fields in 907 -->
+            <xsl:call-template name="_toelichting"/>
         </xsl:copy>
     </xsl:template>
 
