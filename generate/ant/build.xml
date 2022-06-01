@@ -39,7 +39,7 @@
 
 -->
 
-<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="buildNTSProject" default="build">
     <!-- Make the directories passed as parameters absolute (except for output.dir.abs, because we first need to
          guarantee that this folder exists. This is done in check-input. -->
     <property name="input.dir.abs"            location="${input.dir}"/>
@@ -51,7 +51,7 @@
     <property file="${input.dir.abs}/build.properties"/>
     
     <!-- Set testscripttools.dir if it is not supplied by the including build file. -->
-    <dirname property="testscripttools.dir" file="${ant.file.generateTestScripts}/.."/>
+    <dirname property="testscripttools.dir" file="${ant.file.buildNTSProject}/.."/>
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
@@ -152,7 +152,7 @@
                     </and>
                 </not>
                 <then>
-                    <fail message="Please set 'common.dir' to the directory that holds the folder with common components."/>
+                    <fail message="Please set 'commoncomponents.dir' to the directory that holds the folder with common components."/>
                 </then>
             </if>
             

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="buildMultipleNTSProjects" default="build">
+    <!-- 
+        Build multiple NTS projects, identified by their build.properties files.
+        This build file is intended to be included by another build file that:
+        * Sets the basedir to the path understood by the build.properties files
+        * Defines a fileset with the id input.files with all the build.properties files that need to be built.
+    -->
+    
+    <dirname property="testscripttools.dir" file="${ant.file.buildMultipleNTSProjects}/.."/>
+    <include file="${testscripttools.dir}/ant/build.xml" as="main"/>
+
+    <target name="get-input-dirs">
+        <dirset id="input.dirset" dir="${basedir}" includes="${input.dirs}"/>
+    </target>
+    
+    <target name="build" depends="get-input-dirs, main.load">
+        <for  param="input.dir">
+            <dirset refid="input.dirset"/>
+            <sequential>
+                <echo/>
+                <echo message="Building @{input.dir}"/>
+                <echo message="---------------"/>
+                <ant antfile="${testscripttools.dir}/ant/build.xml" dir="${basedir}" inheritAll="false">
+                    <property file="@{input.dir}/build.properties"/>
+                    <property name="lib.dir" value="${lib.dir}"/>
+                    <property name="commoncomponents.dir" value="${commoncomponents.dir}"/>
+                </ant>
+            </sequential>
+        </for>
+   </target>
+</project>
