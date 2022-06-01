@@ -152,7 +152,7 @@
     </macrodef>
     
     <target name="build" depends="load, check-input">
-        <for param="subdir" list="${subdirs}">
+        <for param="subdir" list="${subdirs}" trim="true">
             <sequential>
                 <local name="subdir.abs"/> 
                 <local name="output.dir.abs"/>
