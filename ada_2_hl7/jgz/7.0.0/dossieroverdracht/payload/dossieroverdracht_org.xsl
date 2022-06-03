@@ -1206,6 +1206,13 @@
                     <xsl:for-each select="//versturen_jgzdossieroverdrachtverzoek_v03">
                         <CareProvisionRequest>
                             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
+                            <!-- Item(s) :: dossiernummer-->
+                            <xsl:for-each select="r002_dossierinformatie/dossiernummer">
+                                <xsl:call-template name="makeIIValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
                             <code code="CPHC" codeSystem="2.16.840.1.113883.5.4" displayName="certified public health and general preventive medicine care"/>
                             <statusCode code="active"/>
                             <author>
