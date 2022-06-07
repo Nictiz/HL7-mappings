@@ -32,7 +32,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="organizationReference">Optional reference to the Organization the Practitioner belongs to e.g. the ADA zorgaanbieder</xd:param>
         <xd:param name="specialtyReference">Optional reference to the PractitionerRole the Practitioner belongs to e.g. the ADA specialisme</xd:param>
     </xd:doc>
-    <!-- XXXwim f:Practitioner met hoofdletter?-->
     <xsl:template match="f:Practitioner" mode="nl-core-practitioner-2.0">
         <xsl:param name="organizationReference"/>
         <xsl:param name="specialtyReference"/>

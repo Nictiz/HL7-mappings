@@ -3,7 +3,7 @@
     <xsl:import href="mp-functions.xsl"/>
     <!-- this import should be commented out here, as the import must be chosen in the calling xslt -->
     <!-- uncomment only for development purposes -->
-<!--        <xsl:import href="../../HL7-mappings/ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
+    <!--    <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
 
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
