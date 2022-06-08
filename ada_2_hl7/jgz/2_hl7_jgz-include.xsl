@@ -265,6 +265,37 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.131_20200527000000"/>
                 </subject>
             </xsl:for-each>
+            <!-- Uitvoerende JGZ-organisaties -->
+            <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie">
+                <xsl:sort select="*/startdatum_geldigheid_uitvoerende_jgzorganisatie/@value" order="descending"/>
+                <author typeCode="AUT">
+                    <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
+                        <time xsi:type="IVL_TS">
+                            <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
+                            <xsl:for-each select="startdatum_geldigheid_uitvoerende_jgzorganisatie">
+                                <xsl:call-template name="makeTSValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">low</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: einddatum_geldigheid_uitvoerende_jgzorganisatie-->
+                            <xsl:for-each select="einddatum_geldigheid_uitvoerende_jgzorganisatie">
+                                <xsl:call-template name="makeTSValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">high</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </time>
+                    </xsl:for-each>
+                    <!-- R_AssignedEntityNL-->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
+                </author>
+            </xsl:for-each>
+
+            <!-- CareStatus -->
+            <xsl:for-each select="r050_zorggegevens">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000"/>
+            </xsl:for-each>
             
         </careProvisionEvent>
     </xsl:template>
