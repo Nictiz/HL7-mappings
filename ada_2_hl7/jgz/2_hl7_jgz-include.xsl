@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <import href="../hl7/2_hl7_hl7_include.xsl"/>
+    <xsl:variable name="ExportWithQualificationPlaceholder" select="false()"/>
     
     <!-- TransmissionWrapper Initiating -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.100_20140715000000">
         <xsl:param name="interactionId" required="yes" as="xs:string"/>
         <xsl:param name="patientId" select=".//r003_persoonsgegevens/bsn/@value" required="no" as="xs:string*"/>
         
-        <id extension="{{$messageId}}" root="{{$messageIdRoot}}" xmlns="urn:hl7-org:v3"/>
+        <xsl:choose>
+            <when test="$ExportWithQualificationPlaceholder">
+                <id extension="{{$messageId}}" root="{{$messageIdRoot}}" xmlns="urn:hl7-org:v3"/>
+            </when>
+            <otherwise>
+                <id extension="1243567" root="2.16.528.1.1007.3.3.12345678.1" xmlns="urn:hl7-org:v3"/>
+            </otherwise>
+        </xsl:choose>
+            
         <creationTime xmlns="urn:hl7-org:v3" value="{format-dateTime(current-dateTime(), '[Y0001][M01][D01][H01][m01][s01]')}"/>
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
         <interactionId xmlns="urn:hl7-org:v3" extension="{$interactionId}" root="{$oidHL7InteractionID}"/>
