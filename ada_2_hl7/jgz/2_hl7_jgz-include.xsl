@@ -1278,6 +1278,70 @@
     </xsl:template>
     
     <!-- Care Provision Event subjectOf CareStatus -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000">
+        <xsl:for-each select="groep_g093_status_in_zorg">
+            <xsl:variable name="datumStart" select="datum_start_zorg/@value"/>
+            <xsl:variable name="organisatie" select="
+                    ../../r005_betrokken_jgzorganisaties/*[*/startdatum_geldigheid_uitvoerende_jgzorganisatie/@value = $datumStart],
+                    ../../r005_betrokken_jgzorganisaties/*[*/startdatum_geldigheid_verantwoordelijke_jgzorganisatie/@value = $datumStart],
+                    ../../r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie,
+                    ../../r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp
+                    " as="element()*"/>
+
+            <subjectOf xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
+                <careStatus classCode="STC" moodCode="EVN">
+                    <code code="1197" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1197'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                    </code>
+                    <!-- Item(s) :: datum_start_zorg-->
+                    <xsl:for-each select="datum_start_zorg">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <!-- Item(s) :: status_in_zorg-->
+                    <xsl:for-each select="status_in_zorg">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">reasonCode</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </careStatus>
+            </subjectOf>
+        </xsl:for-each>
+        <xsl:for-each select="groep_g092_zorgbeeindiging">
+            <xsl:variable name="datumEind" select="datum_zorgbeeindiging/@value"/>
+            <xsl:variable name="organisatie" select="
+                    ../../r005_betrokken_jgzorganisaties/*[*/einddatum_geldigheid_uitvoerende_jgzorganisatie/@value = $datumEind],
+                    ../../r005_betrokken_jgzorganisaties/*[*/einddatum_geldigheid_verantwoordelijke_jgzorganisatie/@value = $datumEind],
+                    ../../r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie,
+                    ../../r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp
+                    " as="element()*"/>
+
+            <subjectOf xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
+                <careStatus classCode="STC" moodCode="EVN">
+                    <code code="487" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '487'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                    </code>
+                    <!-- Item(s) :: datum_zorgbeeindiging-->
+                    <xsl:for-each select="datum_zorgbeeindiging">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <!-- Item(s) :: zorgbeeindiging-->
+                    <xsl:for-each select="zorgbeeindiging">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">reasonCode</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </careStatus>
+            </subjectOf>
+        </xsl:for-each>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20120801000000">
         <xsl:for-each select="groep_g093_status_in_zorg">
             <xsl:variable name="datumStart" select="datum_start_zorg/@value"/>
