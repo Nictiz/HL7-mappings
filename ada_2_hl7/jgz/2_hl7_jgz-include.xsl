@@ -2175,7 +2175,11 @@
                 <!-- Item(s) :: huisletter huisnummertoevoeging-->
                 <xsl:if test="huisletter | huisnummertoevoeging">
                     <buildingNumberSuffix>
-                        <xsl:value-of select="string-join((huisletter/@value, huisnummertoevoeging/@value), ' ')"/>
+                        <xsl:value-of select="huisletter/@value"/>
+                        <!-- Er moet een spatie vooraf gaan aan een huisnummertoevoeging. Ook als er geen huisletter is. -->
+                        <xsl:if test="string-length(huisnummertoevoeging/@value) > 0">
+                            <xsl:value-of select="concat(' ', huisnummertoevoeging/@value)"/>
+                        </xsl:if>
                     </buildingNumberSuffix>
                 </xsl:if>
                 <!-- Item(s) :: aanduiding_bij_huisnummer-->
