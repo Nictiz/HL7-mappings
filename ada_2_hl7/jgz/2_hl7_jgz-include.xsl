@@ -2223,14 +2223,14 @@
                 </xsl:for-each>
                 <!-- Item(s) :: gemeente-->
                 <xsl:for-each select="gemeente">
-                    <xsl:call-template name="makeADXPValue">
+                    <xsl:call-template name="makeSCValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">county</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- Item(s) :: woonplaats-->
                 <xsl:for-each select="woonplaats">
-                    <xsl:call-template name="makeADXPValue">
+                    <xsl:call-template name="makeSCValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">city</xsl:with-param>
                     </xsl:call-template>
