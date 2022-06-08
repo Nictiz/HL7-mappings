@@ -259,6 +259,12 @@
             <effectiveTime>
                 <low nullFlavor="UNK"/>
             </effectiveTime>
+            <!-- Kindgegevens -->
+            <xsl:for-each select="r003_persoonsgegevens">
+                <subject typeCode="SBJ">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.131_20200527000000"/>
+                </subject>
+            </xsl:for-each>
             
         </careProvisionEvent>
     </xsl:template>
@@ -8150,6 +8156,78 @@
     </xsl:template>
     
     <!-- R_PatientNL_JGZ [universal] -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.131_20200527000000">
+        <patient xmlns="urn:hl7-org:v3" classCode="PAT">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
+            <!-- Item(s) :: bsn-->
+            <xsl:for-each select="bsn">
+                <xsl:call-template name="makeII.NL.BSNValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">id</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <!-- Adres -->
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10222_20120801000000"/>
+            <!-- Item(s) :: groep_g002_telefoonnummer_client soort_telefoonnummer telefoonnummer email-->
+            <xsl:for-each select="groep_g002_telefoonnummer_client/telefoonnummer">
+                <telecom>
+                    <xsl:if test="../soort_telefoonnummer">
+                        <xsl:attribute name="use" select="../soort_telefoonnummer/(@code, @value)[1]"/>
+                    </xsl:if>
+                    <xsl:attribute name="value">
+                        <xsl:choose>
+                            <xsl:when test="starts-with(@value, 'tel:')">
+                                <xsl:value-of select="replace(@value, '\s', '')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="concat('tel:', replace(@value, '\s', ''))"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </telecom>
+            </xsl:for-each>
+            <xsl:for-each select="email_client">
+                <telecom>
+                    <xsl:attribute name="value">
+                        <xsl:choose>
+                            <xsl:when test="starts-with(@value, 'mailto:')">
+                                <xsl:value-of select="replace(@value, '\s', '')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="concat('mailto:', replace(@value, '\s', ''))"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </telecom>
+            </xsl:for-each>
+            <statusCode code="active"/>
+            <patientPerson>
+                <!-- NaamKindOfficieel -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10232_20120801000000"/>
+                <!-- NaamKindZoalsBekendBijInstelling -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10233_20120801000000"/>
+                <!-- Item(s) :: geslacht-->
+                <xsl:for-each select="geslacht">
+                    <xsl:call-template name="makeCVValue">
+                        <xsl:with-param name="elemName">administrativeGenderCode</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: geboortedatum-->
+                <xsl:for-each select="geboortedatum">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: datum_overlijden-->
+                <xsl:for-each select="datum_overlijden">
+                    <deceasedInd value="true"/>
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">deceasedTime</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </patientPerson>
+        </patient>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.131_20120801000000">
         <patient xmlns="urn:hl7-org:v3" classCode="PAT">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
